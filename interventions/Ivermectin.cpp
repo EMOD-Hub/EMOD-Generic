@@ -14,7 +14,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "InterventionEnums.h"
 #include "InterventionFactory.h"
-#include "VectorInterventionsContainerContexts.h"
+#include "VectorContexts.h"
 #include "IIndividualHumanContext.h"
 
 SETUP_LOGGING( "Ivermectin" )
@@ -78,13 +78,7 @@ namespace Kernel
         bool distributed = BaseIntervention::Distribute( context, pCCO );
         if( distributed )
         {
-            if (s_OK != context->QueryInterface(GET_IID(IVectorInterventionEffectsSetter), (void**)&m_pIVIES) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                               "context",
-                                               "IVectorInterventionEffectsSetter",
-                                               "IIndividualHumanInterventionsContext" );
-            }
+            m_pIVIES = context->GetContainerVector();
         }
         return distributed;
     }
@@ -99,13 +93,7 @@ namespace Kernel
         }
 
         LOG_DEBUG("Ivermectin::SetContextTo (probably deserializing)\n");
-        if (s_OK != context->GetInterventionsContext()->QueryInterface(GET_IID(IVectorInterventionEffectsSetter), (void**)&m_pIVIES) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                           "context",
-                                           "IVectorInterventionEffectsSetter",
-                                           "IIndividualHumanContext" );
-        }
+        m_pIVIES = context->GetInterventionsContext()->GetContainerVector();
     }
 
     void Ivermectin::Update( float dt )
@@ -127,6 +115,7 @@ namespace Kernel
             }
         }
 
+        release_assert(m_pIVIES);
         m_pIVIES->UpdateInsecticidalDrugKillingProbability( killing );
 
         // Discard if efficacy is sufficiently low

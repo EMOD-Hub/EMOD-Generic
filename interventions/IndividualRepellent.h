@@ -22,7 +22,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    struct IIndividualRepellentConsumer;
+    struct IVectorInterventionsEffects;
 
     class SimpleIndividualRepellent : public BaseIntervention
     {
@@ -44,7 +44,7 @@ namespace Kernel
 
     protected:
         IWaningEffect* blocking_effect;
-        IIndividualRepellentConsumer *m_pIRC; // aka individual or individual vector interventions container
+        IVectorInterventionsEffects* m_pIRC; // aka individual or individual vector interventions container
 
         DECLARE_SERIALIZABLE(SimpleIndividualRepellent);
     };

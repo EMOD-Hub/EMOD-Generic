@@ -27,15 +27,14 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(AntiTBDrug)
 
     AntiTBDrug::AntiTBDrug()
-    : GenericDrug()
-    , drug_type( TBDrugType::DOTS )
-    , TB_drug_inactivation_rate(0)
-    , TB_drug_cure_rate(0)
-    , TB_drug_resistance_rate(0)
-    , TB_drug_relapse_rate(0)
-    , TB_drug_mortality_rate(0)
-    , itbda(nullptr)
-    , m_pCCO(nullptr)
+        : GenericDrug()
+        , drug_type( TBDrugType::DOTS )
+        , TB_drug_inactivation_rate(0)
+        , TB_drug_cure_rate(0)
+        , TB_drug_resistance_rate(0)
+        , TB_drug_relapse_rate(0)
+        , TB_drug_mortality_rate(0)
+        , itbda(nullptr)
     {
         initSimTypes( 1, "TBHIV_SIM" );
     }
@@ -70,10 +69,7 @@ namespace Kernel
         return current_efficacy * TB_drug_mortality_rate;
     }
 
-    bool
-    AntiTBDrug::Configure(
-        const Configuration * inputJson
-    )
+    bool AntiTBDrug::Configure( const Configuration* inputJson )
     {
         initConfig( "Drug_Type", drug_type, inputJson, MetadataDescriptor::Enum("Drug_Type", TB_Drug_Type_DESC_TEXT, MDD_ENUM_ARGS(TBDrugType)));
         initConfigTypeMap("TB_Drug_Inactivation_Rate", &TB_drug_inactivation_rate, TB_Drug_Inactivation_Rate_DESC_TEXT, 0.0, 1.0, 0.0);
@@ -92,33 +88,20 @@ namespace Kernel
         return ret;
     }
 
-    bool
-    AntiTBDrug::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * pCCO
-    )
+    bool AntiTBDrug::Distribute( IIndividualHumanInterventionsContext* context, ICampaignCostObserver* pCCO )
     {
         if (s_OK != context->QueryInterface(GET_IID(ITBDrugEffectsApply), (void**)&itbda) )
         {
             throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "ITBDrugEffectsApply", "IIndividualHumanInterventionsContext" );
         }
-        m_pCCO = pCCO;
         return GenericDrug::Distribute( context, pCCO );
     }
 
-    void
-    AntiTBDrug::SetContextTo(
-        IIndividualHumanContext *context
-    )
+    void AntiTBDrug::SetContextTo( IIndividualHumanContext* context )
     {
         if (s_OK != context->GetInterventionsContext()->QueryInterface(GET_IID(ITBDrugEffectsApply), (void**)&itbda) )
         {
             throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "ITBDrugEffectsApply", "IIndividualHumanContext" );
-        }
-
-        if (s_OK != context->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&m_pCCO) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent->GetEventContext()->GetNodeEventContext()", "ICampaignCostObserver", "INodeEventContext");
         }
 
         return GenericDrug::SetContextTo( context );
@@ -136,7 +119,7 @@ namespace Kernel
 
     void AntiTBDrug::ApplyEffects()
     {
-        assert(itbda);
+        release_assert(itbda);
         itbda->ApplyDrugVaccineReducedAcquireEffect(GetDrugReducedAcquire());
         itbda->ApplyDrugVaccineReducedTransmitEffect(GetDrugReducedTransmit());
 
@@ -157,12 +140,6 @@ namespace Kernel
         //Update the person's failed flag to false in the TBInterventionsContainer
         release_assert(itbda);
         itbda->UpdateTreatmentStatus( EventTrigger::TBStopDrugRegimen );
-
-        // notify campaign event observer
-        if (m_pCCO != nullptr)
-        {
-            m_pCCO->notifyCampaignEventOccurred( (IBaseIntervention*)this, nullptr, parent );
-        }
     }
 
     REGISTER_SERIALIZABLE(AntiTBDrug);

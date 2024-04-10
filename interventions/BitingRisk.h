@@ -19,7 +19,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    struct IBitingRisk;
+    struct IVectorInterventionsEffects;
 
     class BitingRisk : public BaseIntervention
     {
@@ -39,7 +39,7 @@ namespace Kernel
         virtual void Update( float dt ) override;
 
     protected:
-        IBitingRisk* m_IBitingRisk; // aka individual vector interventions container
+        IVectorInterventionsEffects* m_IBitingRisk;
         IDistribution* m_Distribution;
 
         DECLARE_SERIALIZABLE( BitingRisk );

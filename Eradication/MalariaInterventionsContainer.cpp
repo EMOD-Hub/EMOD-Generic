@@ -34,7 +34,12 @@ namespace Kernel
     MalariaInterventionsContainer::~MalariaInterventionsContainer()
     {
     }
-  
+
+    IMalariaDrugEffectsApply* MalariaInterventionsContainer::GetMalariaDrugApply()
+    {
+        return static_cast<IMalariaDrugEffectsApply*>(this);
+    }
+
     void MalariaInterventionsContainer::InfectiousLoopUpdate(float dt)
     {
         m_DrugEffectsCollection.clear();

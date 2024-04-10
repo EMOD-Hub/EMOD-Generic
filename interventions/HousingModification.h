@@ -20,7 +20,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    struct IHousingModificationConsumer;
+    struct IVectorInterventionsEffects;
 
     class SimpleHousingModification : public BaseIntervention
     {
@@ -48,7 +48,7 @@ namespace Kernel
 
         IWaningEffect* killing_effect;
         IWaningEffect* blocking_effect;
-        IHousingModificationConsumer* m_pIHMC; // aka individual or individual vector interventions container
+        IVectorInterventionsEffects* m_pIHMC; // aka individual or individual vector interventions container
 
         DECLARE_SERIALIZABLE(SimpleHousingModification);
     };

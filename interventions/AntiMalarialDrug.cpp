@@ -87,10 +87,7 @@ namespace Kernel
         return dosing_type;
     }
 
-    bool
-    AntimalarialDrug::Configure(
-        const Configuration * inputJson
-    )
+    bool AntimalarialDrug::Configure( const Configuration* inputJson )
     {
         jsonConfigurable::tFixedStringSet drug_name_set;
         if( !JsonConfigurable::_dryrun )
@@ -144,19 +141,12 @@ namespace Kernel
         initSimTypes( 1, "MALARIA_SIM" );
     }
 
-    bool
-    AntimalarialDrug::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * pCCO
-    )
+    bool AntimalarialDrug::Distribute( IIndividualHumanInterventionsContext* context, ICampaignCostObserver* pCCO )
     {
         bool keep = false;
 
-        IMalariaHumanContext* p_mhc = nullptr;
-        if( context->GetParent()->QueryInterface( GET_IID( IMalariaHumanContext ), (void**)&p_mhc ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context->GetParent()", "IMalariaHumanContext", "IIndividualHumanContext" );
-        }
+        IMalariaHumanContext* p_mhc = context->GetParent()->GetIndividualMalaria();
+        release_assert(p_mhc);
 
         if( (GetDrugUsageType() == DrugUsageType::FullTreatmentParasiteDetect) ||
             (GetDrugUsageType() == DrugUsageType::SingleDoseParasiteDetect   ) )
@@ -189,11 +179,7 @@ namespace Kernel
 
         if( keep )
         {
-            if (s_OK != context->QueryInterface(GET_IID(IMalariaDrugEffectsApply), (void**)&imda) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IMalariaDrugEffectsApply", "IIndividualHumanInterventionsContext" );
-            }
-
+            imda = context->GetMalariaDrugApply();
             // just add in another Drug to list, can later check the person's records and apply accordingly (TODO)
             return GenericDrug::Distribute( context, pCCO );
         }
@@ -203,18 +189,10 @@ namespace Kernel
         }
     }
 
-    void
-    AntimalarialDrug::SetContextTo(
-        IIndividualHumanContext *context
-    )
+    void AntimalarialDrug::SetContextTo( IIndividualHumanContext* context )
     {
-        release_assert( context );
-        release_assert( context->GetInterventionsContext() );
-        if (s_OK != context->GetInterventionsContext()->QueryInterface(GET_IID(IMalariaDrugEffectsApply), (void**)&imda) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context->GetInterventionsContext()", "IMalariaDrugEffectsApply", "IIndividualHumanInterventionsContext" );
-        }
-
+        release_assert(context);
+        imda = context->GetInterventionsContext()->GetMalariaDrugApply();
         return GenericDrug::SetContextTo( context );
     }
 
@@ -308,13 +286,13 @@ namespace Kernel
 
     void AntimalarialDrug::ApplyEffects()
     {
-        assert(imda);
-
+        release_assert(imda);
         imda->AddDrugEffects( this );
     }
 
     void AntimalarialDrug::Expire()
     {
+        release_assert(imda);
         imda->RemoveDrugEffects( this );
         GenericDrug::Expire();
     }

@@ -29,7 +29,6 @@ namespace Kernel
         HANDLE_INTERFACE(ITBDrugEffectsApply)
         HANDLE_INTERFACE(ITBDrugEffects)
         HANDLE_INTERFACE(ITBInterventionsContainer)
-        HANDLE_INTERFACE(IHealthSeekingBehaviorUpdateEffectsApply)
     END_QUERY_INTERFACE_DERIVED(TBInterventionsContainer, InterventionsContainer)
 
     TBInterventionsContainer::TBInterventionsContainer() :

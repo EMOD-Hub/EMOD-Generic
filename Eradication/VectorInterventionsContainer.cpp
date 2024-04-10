@@ -25,12 +25,7 @@ SETUP_LOGGING( "VectorInterventionsContainer" )
 namespace Kernel
 {
     BEGIN_QUERY_INTERFACE_DERIVED(VectorInterventionsContainer, InterventionsContainer)
-        HANDLE_INTERFACE(IBednetConsumer)
-        HANDLE_INTERFACE(IBitingRisk)
         HANDLE_INTERFACE(IVectorInterventionsEffects)
-        HANDLE_INTERFACE(IHousingModificationConsumer)
-        HANDLE_INTERFACE(IIndividualRepellentConsumer)
-        HANDLE_INTERFACE(IVectorInterventionEffectsSetter)
     END_QUERY_INTERFACE_DERIVED(VectorInterventionsContainer, InterventionsContainer)
 
     VectorInterventionsContainer::VectorInterventionsContainer()
@@ -57,65 +52,52 @@ namespace Kernel
     {
     }
 
-    void VectorInterventionsContainer::UpdateProbabilityOfBlocking(
-        float prob
-    )
+    IVectorInterventionsEffects* VectorInterventionsContainer::GetContainerVector()
+    {
+        return static_cast<IVectorInterventionsEffects*>(this);
+    }
+
+    void VectorInterventionsContainer::UpdateProbabilityOfBlocking(float prob)
     {
         p_block_net = prob;
     }
 
-    void VectorInterventionsContainer::UpdateProbabilityOfKilling(
-        float prob
-    )
+    void VectorInterventionsContainer::UpdateProbabilityOfKilling(float prob)
     {
         p_kill_ITN = prob;
     }
 
-    void VectorInterventionsContainer::ApplyHouseBlockingProbability(
-        float prob
-    )
+    void VectorInterventionsContainer::ApplyHouseBlockingProbability(float prob)
     {
         p_penetrate_housingmod *= (1.0f-prob);  // will multiply by 1-all housing mods and then do 1- that.
     }
 
-    void VectorInterventionsContainer::UpdateProbabilityOfScreenKilling(
-        float prob
-    )
+    void VectorInterventionsContainer::UpdateProbabilityOfScreenKilling(float prob)
     {
         p_kill_IRSpostfeed = prob;
     }
 
-    void VectorInterventionsContainer::UpdatePhotonicFenceKillingRate(
-        float rate
-    )
+    void VectorInterventionsContainer::UpdatePhotonicFenceKillingRate(float rate)
     {
         p_kill_PFH = rate;  // killing rate is the effect(to reuse methods), but it actually kills mosquitoes because that is its first and only efficacy
     }
             
-    void VectorInterventionsContainer::UpdateArtificialDietAttractionRate(
-        float rate
-    )
+    void VectorInterventionsContainer::UpdateArtificialDietAttractionRate(float rate)
     {
         p_attraction_ADIH = rate;
     }
 
-    void VectorInterventionsContainer::UpdateArtificialDietKillingRate(
-        float rate
-    )
+    void VectorInterventionsContainer::UpdateArtificialDietKillingRate(float rate)
     {
         p_kill_ADIH = rate;
     }
 
-    void VectorInterventionsContainer::UpdateProbabilityOfIndRepBlocking(
-        float prob
-        )
+    void VectorInterventionsContainer::UpdateProbabilityOfIndRepBlocking(float prob)
     {
         p_block_indrep = prob;
     }
 
-    void VectorInterventionsContainer::UpdateProbabilityOfIndRepKilling(
-        float prob
-        )
+    void VectorInterventionsContainer::UpdateProbabilityOfIndRepKilling(float prob)
     {
         if ( prob > 0 )
         {

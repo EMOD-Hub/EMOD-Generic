@@ -23,7 +23,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    struct IVectorInterventionEffectsSetter;
+    struct IVectorInterventionsEffects;
 
     class HumanHostSeekingTrap : public BaseIntervention
     {
@@ -45,7 +45,7 @@ namespace Kernel
     protected:
         IWaningEffect* killing_effect;
         IWaningEffect* attract_effect;
-        IVectorInterventionEffectsSetter *ivies;
+        IVectorInterventionsEffects *ivies;
 
         DECLARE_SERIALIZABLE(HumanHostSeekingTrap);
     };

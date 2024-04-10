@@ -12,7 +12,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "Exceptions.h"
 #include "InterventionFactory.h"
-#include "NodeMalariaEventContext.h"  // for ISporozoiteChallengeConsumer methods
+#include "NodeMalariaEventContext.h"
 #include "SusceptibilityVector.h"     // for age-dependent biting risk static methods
 
 SETUP_LOGGING( "InputEIR" )
@@ -29,23 +29,23 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(InputEIR)
 
     InputEIR::InputEIR() 
-    : BaseNodeIntervention()
-    , age_dependence(AgeDependentBitingRisk::OFF)
-    , monthly_EIR()
-    , today(0)
-    , daily_EIR(0.0f)
-    , risk_function(nullptr)
+        : BaseNodeIntervention()
+        , age_dependence(AgeDependentBitingRisk::OFF)
+        , monthly_EIR()
+        , today(0)
+        , daily_EIR(0.0f)
+        , risk_function(nullptr)
     {
         initSimTypes( 1, "MALARIA_SIM" ); // using sporozoite challenge
     }
 
     InputEIR::InputEIR( const InputEIR& master )
-    : BaseNodeIntervention( master )
-    , age_dependence(master.age_dependence)
-    , monthly_EIR(master.monthly_EIR)
-    , today( master.today )
-    , daily_EIR( master.daily_EIR )
-    , risk_function( master.risk_function )
+        : BaseNodeIntervention( master )
+        , age_dependence(master.age_dependence)
+        , monthly_EIR(master.monthly_EIR)
+        , today( master.today )
+        , daily_EIR( master.daily_EIR )
+        , risk_function( master.risk_function )
     {
     }
 
@@ -101,15 +101,9 @@ namespace Kernel
 
         LOG_DEBUG_F("Day = %d, annualized EIR = %0.2f\n", today, DAYSPERYEAR*daily_EIR);
 
-        ISporozoiteChallengeConsumer *iscc;
-        if (s_OK == parent->QueryInterface(GET_IID(ISporozoiteChallengeConsumer), (void**)&iscc))
-        {
-            iscc->ChallengeWithInfectiousBites(1, daily_EIR, risk_function);
-        }
-        else
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "iscc", "ISporozoiteChallengeConsumer", "INodeEventContext" );
-        }    
+        INodeMalariaInterventionEffects* inmie = parent->GetNodeMalariaInterventionEffects();
+        release_assert(inmie);
+        inmie->ChallengeWithInfectiousBites(1, daily_EIR, risk_function);
     }
 
     float InputEIR::GetCostPerUnit() const

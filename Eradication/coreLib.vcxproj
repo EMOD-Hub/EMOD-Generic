@@ -523,7 +523,6 @@
     <ClInclude Include="VectorEnums.h" />
     <ClInclude Include="VectorHabitat.h" />
     <ClInclude Include="VectorInterventionsContainer.h" />
-    <ClInclude Include="VectorInterventionsContainerContexts.h" />
     <ClInclude Include="VectorMatingStructure.h" />
     <ClInclude Include="VectorParameters.h" />
     <ClInclude Include="VectorPopulation.h" />

@@ -23,7 +23,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    struct IHealthSeekingBehaviorUpdateEffectsApply;
+    struct ITBInterventionsContainer;
 
     class HealthSeekingBehaviorUpdate : public BaseIntervention
     {
@@ -48,7 +48,7 @@ namespace Kernel
 
     protected:
         float new_probability_of_seeking;
-        IHealthSeekingBehaviorUpdateEffectsApply *ihsbuea;
+        ITBInterventionsContainer* ihsbuea;
     };
 }
 

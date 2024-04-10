@@ -56,8 +56,6 @@ namespace Kernel
 
         virtual void Expire() override;
 
-        ICampaignCostObserver * m_pCCO;
-
         DECLARE_SERIALIZABLE(AntiTBDrug);
     };
 }

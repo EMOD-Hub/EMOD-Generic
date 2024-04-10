@@ -55,6 +55,7 @@ namespace Kernel
         virtual ICampaignCostObserver*       GetCampaignCostObserver()       override;
         virtual IIndividualEventBroadcaster* GetIndividualEventBroadcaster() override;
 
+        virtual INodeMalariaInterventionEffects*     GetNodeMalariaInterventionEffects()      override  { return nullptr; }
         virtual INodeTyphoidInterventionEffects*     GetNodeTyphoidInterventionEffects()      override  { return nullptr; }
         virtual INodeVectorInterventionEffects*      GetNodeVectorInterventionEffects()       override  { return nullptr; }
         virtual INodeVectorInterventionEffectsApply* GetNodeVectorInterventionEffectsApply()  override  { return nullptr; }
@@ -104,7 +105,6 @@ namespace Kernel
 
         // ICampaignCostObserver
         virtual void notifyCampaignExpenseIncurred( float expenseIncurred, const IIndividualHumanEventContext * pIndiv ) override;
-        virtual void notifyCampaignEventOccurred( /*const*/ ISupports * pDistributedIntervention, /*const*/ ISupports * pDistributor, /*const*/ IIndividualHumanContext * pDistributeeIndividual ) override;
 
     protected:
         Node* node;

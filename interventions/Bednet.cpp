@@ -14,7 +14,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "IIndividualHumanContext.h"
 #include "InterventionFactory.h"
-#include "VectorInterventionsContainerContexts.h"  // for IBednetConsumer methods
+#include "VectorContexts.h"
 #include "Log.h"
 #include "IndividualEventContext.h"
 #include "NodeEventContext.h"
@@ -196,7 +196,7 @@ namespace Kernel
         }
     }
 
-    void AbstractBednet::SetContextTo( IIndividualHumanContext *context )
+    void AbstractBednet::SetContextTo( IIndividualHumanContext* context )
     {
         BaseIntervention::SetContextTo( context );
 
@@ -209,10 +209,8 @@ namespace Kernel
             m_pEffectBlocking->SetContextTo( context );
         }
 
-        if( s_OK != context->GetInterventionsContext()->QueryInterface( GET_IID( IBednetConsumer ), (void**)&m_pConsumer ) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IBednetConsumer", "IIndividualHumanContext" );
-        }
+        m_pConsumer = context->GetInterventionsContext()->GetContainerVector();
+        release_assert(m_pConsumer);
     }
 
     void AbstractBednet::BroadcastEvent( const EventTrigger::Enum& trigger ) const

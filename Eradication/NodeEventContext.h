@@ -38,6 +38,7 @@ namespace Kernel
     class  RANDOMBASE;
     struct IdmDateTime;
 
+    class  INodeMalariaInterventionEffects;
     struct INodeTyphoidInterventionEffects;
     struct INodeVectorInterventionEffects;
     class  INodeVectorInterventionEffectsApply;
@@ -97,6 +98,7 @@ namespace Kernel
         virtual ICampaignCostObserver*       GetCampaignCostObserver()       = 0;
         virtual IIndividualEventBroadcaster* GetIndividualEventBroadcaster() = 0;
 
+        virtual INodeMalariaInterventionEffects*     GetNodeMalariaInterventionEffects()     = 0;
         virtual INodeTyphoidInterventionEffects*     GetNodeTyphoidInterventionEffects()     = 0;
         virtual INodeVectorInterventionEffects*      GetNodeVectorInterventionEffects()      = 0;
         virtual INodeVectorInterventionEffectsApply* GetNodeVectorInterventionEffectsApply() = 0;

@@ -15,7 +15,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "InterventionEnums.h"
 #include "InterventionsContainer.h"
 #include "VectorContexts.h"
-#include "VectorInterventionsContainerContexts.h"
 
 namespace Kernel
 {
@@ -23,12 +22,7 @@ namespace Kernel
     // It needs to implement consumer interfaces for all the relevant intervention types.
 
     class VectorInterventionsContainer : public InterventionsContainer,
-                                         public IVectorInterventionsEffects,
-                                         public IVectorInterventionEffectsSetter,
-                                         public IBednetConsumer,
-                                         public IHousingModificationConsumer,
-                                         public IIndividualRepellentConsumer,
-                                         public IBitingRisk
+                                         public IVectorInterventionsEffects
     {
     public:
         VectorInterventionsContainer();
@@ -38,28 +32,11 @@ namespace Kernel
         virtual int AddRef() override;
         virtual int Release() override;
 
-        // IBednetConsumer
-        virtual void UpdateProbabilityOfBlocking( float prob ) override;
-        virtual void UpdateProbabilityOfKilling( float prob ) override;
-
-        // IHousingModificationConsumer
-        virtual void ApplyHouseBlockingProbability( float prob ) override;
-        virtual void UpdateProbabilityOfScreenKilling( float prob ) override;
-
-        // IIndividualRepellentConsumer
-        virtual void UpdateProbabilityOfIndRepBlocking( float prob ) override;
-        virtual void UpdateProbabilityOfIndRepKilling( float prob ) override;
-
-        // IVectorInterventionEffectsSetter
-        virtual void UpdatePhotonicFenceKillingRate( float rate ) override;
-        virtual void UpdateArtificialDietAttractionRate( float rate ) override;
-        virtual void UpdateArtificialDietKillingRate( float rate ) override;
-        virtual void UpdateInsecticidalDrugKillingProbability( float prob ) override;
+        virtual IVectorInterventionsEffects* GetContainerVector() override;
 
         virtual void InfectiousLoopUpdate( float dt ) override; 
         virtual void Update( float dt ) override; // update non-infectious loop update interventions once per time step
 
-        // IVectorInterventionEffects
         virtual float GetDieBeforeFeeding() override;
         virtual float GetHostNotAvailable() override;
         virtual float GetDieDuringFeeding() override;
@@ -76,8 +53,20 @@ namespace Kernel
         virtual float GetblockOutdoorVectorAcquire() override;
         virtual float GetblockOutdoorVectorTransmit() override;
 
-        // IBitingRisk
+        virtual void UpdateProbabilityOfBlocking( float prob ) override;
+        virtual void UpdateProbabilityOfKilling( float prob ) override;
         virtual void UpdateRelativeBitingRate( float rate ) override;
+
+        virtual void UpdatePhotonicFenceKillingRate( float rate ) override;
+        virtual void UpdateArtificialDietAttractionRate( float rate ) override;
+        virtual void UpdateArtificialDietKillingRate( float rate ) override;
+        virtual void UpdateInsecticidalDrugKillingProbability( float prob ) override;
+
+        virtual void ApplyHouseBlockingProbability( float prob ) override;
+        virtual void UpdateProbabilityOfScreenKilling( float prob ) override;
+
+        virtual void UpdateProbabilityOfIndRepBlocking( float prob ) override;
+        virtual void UpdateProbabilityOfIndRepKilling( float prob ) override;
 
     protected:
         // These are calculated from the values set by the interventions and returned to the model

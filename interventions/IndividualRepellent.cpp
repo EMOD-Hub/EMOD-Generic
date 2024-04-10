@@ -13,7 +13,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "IIndividualHumanContext.h"
 #include "InterventionEnums.h"
 #include "InterventionFactory.h"
-#include "VectorInterventionsContainerContexts.h"  // for IIndividualRepellentConsumer methods
+#include "VectorContexts.h"
 
 SETUP_LOGGING( "SimpleIndividualRepellent" )
 
@@ -66,11 +66,8 @@ namespace Kernel
 
     bool SimpleIndividualRepellent::Distribute(IIndividualHumanInterventionsContext* context, ICampaignCostObserver* const pCCO)
     {
-        if (s_OK != context->QueryInterface(GET_IID(IIndividualRepellentConsumer), (void**)&m_pIRC) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                           "context", "IIndividualRepellentConsumer", "IIndividualHumanInterventionsContext" );
-        }
+        m_pIRC = context->GetContainerVector();
+
         return BaseIntervention::Distribute( context, pCCO );
     }
 
@@ -84,11 +81,7 @@ namespace Kernel
         }
 
         LOG_DEBUG("SimpleIndividualRepellent::SetContextTo (probably deserializing)\n");
-        if (s_OK != context->GetInterventionsContext()->QueryInterface(GET_IID(IIndividualRepellentConsumer), (void**)&m_pIRC) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                           "context", "IIndividualRepellentConsumer", "IIndividualHumanContext" );
-        }
+        m_pIRC = context->GetInterventionsContext()->GetContainerVector();
     }
 
     void SimpleIndividualRepellent::Update( float dt )

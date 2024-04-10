@@ -24,7 +24,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 namespace Kernel
 {
 
-    struct IBednetConsumer;
+    struct IVectorInterventionsEffects;
 
     class AbstractBednet : public BaseIntervention
     {
@@ -61,7 +61,7 @@ namespace Kernel
 
         IWaningEffect* m_pEffectKilling;
         IWaningEffect* m_pEffectBlocking;
-        IBednetConsumer* m_pConsumer;
+        IVectorInterventionsEffects* m_pConsumer;
 
         static void serialize( IArchive& ar, AbstractBednet* obj );
     };

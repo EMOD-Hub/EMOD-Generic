@@ -129,10 +129,7 @@ namespace Kernel
         }
     }
 
-    bool
-    IVCalendar::Configure(
-        const Configuration * inputJson
-    )
+    bool IVCalendar::Configure(const Configuration* inputJson)
     {
         IndividualInterventionConfig actual_intervention_config;
         AgeAndProbabilityList age_prob_list;
@@ -158,11 +155,7 @@ namespace Kernel
         return ret ;
     }
 
-    bool
-    IVCalendar::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * const pICCO
-    )
+    bool IVCalendar::Distribute(IIndividualHumanInterventionsContext* context, ICampaignCostObserver* const pICCO)
     {
         parent = context->GetParent(); // is there a better way to get the parent?
 
@@ -227,14 +220,7 @@ namespace Kernel
             LOG_DEBUG_F("Calendar says it's time to apply an intervention...\n");
             LOG_DEBUG_F("Calendar (intervention) distributed actual intervention at age %f\n", parent->GetEventContext()->GetAge());
 
-            ICampaignCostObserver* pICCO;
-            if (s_OK != parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&pICCO) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                               "parent->GetEventContext()->GetNodeEventContext()",
-                                               "ICampaignCostObserver",
-                                               "INodeEventContext" );
-            }
+            ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
 
             for( auto p_intervention : m_Interventions )
             {

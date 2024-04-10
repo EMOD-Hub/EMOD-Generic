@@ -79,8 +79,6 @@ namespace Kernel
 
         LarvalHabitatMultiplier larval_reduction;
 
-
-
     protected: 
         float pLarvalKilling;
         float pLarvalHabitatReduction;

@@ -34,10 +34,6 @@ class StubNode : public INodeContext
 
             ISupports* foundInterface;
 
-            /*if ( iid == GET_IID(ISporozoiteChallengeConsumer)) 
-                foundInterface = static_cast<ISporozoiteChallengeConsumer*>(this);*/
-            // -->> add support for other I*Consumer interfaces here <<--      
-            //else 
             if ( iid == GET_IID(ISupports)) 
                 foundInterface = static_cast<ISupports*>((this));
             else

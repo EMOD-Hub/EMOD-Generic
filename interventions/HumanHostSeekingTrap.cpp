@@ -15,7 +15,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "IIndividualHumanContext.h"
 #include "InterventionEnums.h"
 #include "InterventionFactory.h"
-#include "VectorInterventionsContainerContexts.h"  // for IVectorInterventionEffectsSetter methods
+#include "VectorContexts.h"
 
 SETUP_LOGGING( "HumanHostSeekingTrap" )
 
@@ -88,10 +88,7 @@ namespace Kernel
         bool distributed = BaseIntervention::Distribute( context, pCCO );
         if( distributed )
         {
-            if (s_OK != context->QueryInterface(GET_IID(IVectorInterventionEffectsSetter), (void**)&ivies) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IVectorInterventionEffectsSetter", "IIndividualHumanInterventionsContext" );
-            }
+            ivies = context->GetContainerVector();
         }
         return distributed;
     }
@@ -112,6 +109,7 @@ namespace Kernel
             }
             else
             {
+                release_assert(ivies);
                 ivies->UpdateArtificialDietKillingRate( killing_effect->Current() );
             }
         }
@@ -126,6 +124,7 @@ namespace Kernel
             }
             else
             {
+                release_assert(ivies);
                 ivies->UpdateArtificialDietAttractionRate( attract_effect->Current() );
             }
         }
@@ -144,10 +143,7 @@ namespace Kernel
             attract_effect->SetContextTo( context );
         }
 
-        if (s_OK != context->GetInterventionsContext()->QueryInterface(GET_IID(IVectorInterventionEffectsSetter), (void**)&ivies) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IVectorInterventionEffectsSetter", "IIndividualHumanContext" );
-        }
+        ivies = context->GetInterventionsContext()->GetContainerVector();
     }
 
     REGISTER_SERIALIZABLE(HumanHostSeekingTrap);

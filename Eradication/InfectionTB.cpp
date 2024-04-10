@@ -724,16 +724,6 @@ namespace Kernel
                     LOG_DEBUG("Evolved drug resistance strain while having active disease and on drugs \n");
 
                     infectiousness *= InfectionTBConfig::TB_MDR_Fitness_Multiplier;     //fitness penalty for MDR
-                    
-                    /*if(Environment::getInstance()->Log->CheckLogLevel(Logger::DEBUG, "EEL"))
-                    {
-                        std::ostringstream msg;
-                        msg << "t=" << ((INodeContext*)((IndividualHuman*)parent)->GetParent())->GetTime().time;
-                        msg << ",hum_id=" << parent->GetSuid().data;
-                        msg << ",inf_id=-1";
-                        msg << ",ev=MDR";
-                        Environment::getInstance()->Log->Log(Logger::DEBUG, "EEL", "%s\n", msg.str().c_str()  );
-                    }*/
                 }
             }
         }

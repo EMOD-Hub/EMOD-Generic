@@ -77,6 +77,23 @@ namespace Kernel
         virtual float GetblockIndoorVectorTransmit() = 0;
         virtual float GetblockOutdoorVectorAcquire() = 0;
         virtual float GetblockOutdoorVectorTransmit() = 0;
+
+        virtual void UpdateProbabilityOfBlocking( float prob ) = 0;
+        virtual void UpdateProbabilityOfKilling( float prob ) = 0;
+
+        virtual void UpdateRelativeBitingRate( float rate ) = 0;
+
+        virtual void UpdatePhotonicFenceKillingRate( float rate ) = 0;
+        virtual void UpdateArtificialDietAttractionRate( float rate ) = 0;
+        virtual void UpdateArtificialDietKillingRate( float rate ) = 0;
+        virtual void UpdateInsecticidalDrugKillingProbability( float prob ) = 0;
+
+        virtual void UpdateProbabilityOfIndRepBlocking( float prob ) = 0;
+        virtual void UpdateProbabilityOfIndRepKilling( float prob ) = 0;
+
+        virtual void ApplyHouseBlockingProbability( float prob ) = 0;
+        virtual void UpdateProbabilityOfScreenKilling( float prob ) = 0;
+
         virtual ~IVectorInterventionsEffects() { }
     };
 

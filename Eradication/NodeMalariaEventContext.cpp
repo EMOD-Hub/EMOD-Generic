@@ -22,7 +22,6 @@ SETUP_LOGGING( "NodeMalariaEventContext" )
 namespace Kernel
 {
     BEGIN_QUERY_INTERFACE_DERIVED(NodeMalariaEventContextHost, NodeVectorEventContextHost)
-        HANDLE_INTERFACE(ISporozoiteChallengeConsumer)
     END_QUERY_INTERFACE_DERIVED(NodeMalariaEventContextHost, NodeVectorEventContextHost)
 
     NodeMalariaEventContextHost::NodeMalariaEventContextHost(Node* _node) : NodeVectorEventContextHost(_node)
@@ -31,6 +30,11 @@ namespace Kernel
 
     NodeMalariaEventContextHost::~NodeMalariaEventContextHost()
     {
+    }
+
+    INodeMalariaInterventionEffects* NodeMalariaEventContextHost::GetNodeMalariaInterventionEffects()
+    {
+        return static_cast<INodeMalariaInterventionEffects*>(this);
     }
 
     void NodeMalariaEventContextHost::ChallengeWithSporozoites(int n_sporozoites, float coverage, tAgeBitingFunction risk )

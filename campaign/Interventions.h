@@ -34,6 +34,8 @@ namespace Kernel
     struct IHIVInterventionsContainer;
     struct ITBInterventionsContainer;
     struct ITyphoidVaccineEffectsApply;
+    struct IVectorInterventionsEffects;
+    struct IMalariaDrugEffectsApply;
     struct IDrug;
     struct IHealthSeekingBehavior;
     struct INodeEventContext;
@@ -41,9 +43,7 @@ namespace Kernel
 
     struct IDMAPI ICampaignCostObserver : ISupports
     {
-        virtual void notifyCampaignExpenseIncurred( float expenseIncurred, const IIndividualHumanEventContext * pIndiv ) = 0;
-        virtual void notifyCampaignEventOccurred( /*const*/ ISupports * pDistributedIntervention, /*const*/ ISupports * pDistributor, /*const*/ IIndividualHumanContext * pDistributeeIndividual ) = 0;
-        virtual ~ICampaignCostObserver() {}
+        virtual void notifyCampaignExpenseIncurred( float expenseIncurred, const IIndividualHumanEventContext* pIndiv ) = 0;
     };
 
 #pragma warning(push)
@@ -92,6 +92,8 @@ namespace Kernel
         virtual IHIVInterventionsContainer*   GetContainerHIV()           = 0;
         virtual ITBInterventionsContainer*    GetContainerTB()            = 0;
         virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()       = 0;
+        virtual IVectorInterventionsEffects*  GetContainerVector()        = 0;
+        virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()       = 0;
 
         virtual ~IIndividualHumanInterventionsContext() {}
     };

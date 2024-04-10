@@ -15,7 +15,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "IIndividualHumanContext.h"
 #include "InterventionEnums.h"
 #include "InterventionFactory.h"
-#include "VectorInterventionsContainerContexts.h"  // for IHousingModificationConsumer methods
+#include "VectorContexts.h"
 #include "Log.h"
 
 SETUP_LOGGING( "SimpleHousingModification" )
@@ -107,10 +107,7 @@ namespace Kernel
             return false;
         }
 
-        if (s_OK != context->QueryInterface(GET_IID(IHousingModificationConsumer), (void**)&m_pIHMC) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IHousingModificationConsumer", "IIndividualHumanInterventionsContext" );
-        }
+        m_pIHMC = context->GetContainerVector();
 
         context->PurgeExisting( typeid(*this).name() );
 
@@ -131,10 +128,7 @@ namespace Kernel
         }
 
         LOG_DEBUG("SimpleHousingModification::SetContextTo (probably deserializing)\n");
-        if (s_OK != context->GetInterventionsContext()->QueryInterface(GET_IID(IHousingModificationConsumer), (void**)&m_pIHMC) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IHousingModificationConsumer", "IIndividualHumanContext" );
-        }
+        m_pIHMC = context->GetInterventionsContext()->GetContainerVector();
     }
 
     void SimpleHousingModification::Update( float dt )

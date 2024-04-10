@@ -148,11 +148,8 @@ namespace Kernel
         expired = true;
 
         // Now make sure cost gets reported back to node
-        ICampaignCostObserver* pICCO;
-        if (s_OK != parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), reinterpret_cast<void**>(&pICCO)) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent->GetEventContext()->GetNodeEventContext()", "ICampaignCostObserver", "INodeEventContext");
-        }
+        ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
+
         LOG_DEBUG_F("interventions array size = %d\n", m_Interventions.size());
 
         for( auto p_intervention: m_Interventions )

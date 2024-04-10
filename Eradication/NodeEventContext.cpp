@@ -178,28 +178,6 @@ namespace Kernel
         IncrementCampaignCost( cost );
     }
 
-    // First cut of this function writes the intervention report to stdout. It is an abbreviated,
-    // 1-line-per-intervention report.
-    void NodeEventContextHost::notifyCampaignEventOccurred(
-        /*const*/ ISupports * pDistributedIntervention,
-        /*const*/ ISupports * pDistributor,// for tb, cool to know parent intervention that 'gave', including tendency if it's an HSB.
-        /*const*/ IIndividualHumanContext * pDistributeeIndividual
-    )
-    {
-        if( Environment::getInstance()->Log->CheckLogLevel(Logger::DEBUG, "EEL") )
-        {
-            // intervention recipient
-            std::stringstream msg;
-            float recipientAge = float(pDistributeeIndividual->GetEventContext()->GetAge());
-            msg << "hum_id="
-                << pDistributeeIndividual->GetSuid().data
-                << ",ra="
-                << recipientAge
-                << std::endl;
-            Environment::getInstance()->Log->Log(Logger::DEBUG, "EEL","%s\n", msg.str().c_str() );
-        }
-    }
-
     const suids::suid& NodeEventContextHost::GetId() const
     {
         return node->suid;

@@ -19,7 +19,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    struct IVectorInterventionEffectsSetter;
+    struct IVectorInterventionsEffects;
 
     class Ivermectin : public BaseIntervention
     {
@@ -40,7 +40,7 @@ namespace Kernel
 
     protected:
         IWaningEffect* killing_effect;
-        IVectorInterventionEffectsSetter* m_pIVIES; // aka individual vector interventions container
+        IVectorInterventionsEffects* m_pIVIES; // aka individual vector interventions container
 
         DECLARE_SERIALIZABLE(Ivermectin);
     };

@@ -27,7 +27,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 SETUP_LOGGING( "InterventionsContainer" )
 
-
 namespace Kernel
 {
     QueryResult

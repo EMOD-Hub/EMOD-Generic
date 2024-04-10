@@ -9,7 +9,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "BitingRisk.h"
-#include "VectorInterventionsContainerContexts.h"
+#include "VectorContexts.h"
 #include "IIndividualHumanContext.h"
 #include "Distributions.h"
 #include "DistributionFactory.h"
@@ -70,10 +70,7 @@ namespace Kernel
         bool distributed = BaseIntervention::Distribute( context, pCCO );
         if( distributed )
         {
-            if( s_OK != context->QueryInterface( GET_IID( IBitingRisk ), (void**)&m_IBitingRisk ) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IBitingRisk", "IIndividualHumanInterventionsContext" );
-            }
+            m_IBitingRisk = context->GetContainerVector();
         }
         return distributed;
     }
@@ -82,10 +79,7 @@ namespace Kernel
     {
         BaseIntervention::SetContextTo( context );
 
-        if( s_OK != context->GetInterventionsContext()->QueryInterface( GET_IID( IBitingRisk ), (void**)&m_IBitingRisk ) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context->GetInterventionsContext()", "IBitingRisk", "IIndividualHumanInterventionsContext" );
-        }
+        m_IBitingRisk = context->GetInterventionsContext()->GetContainerVector();
     }
 
     void BitingRisk::Update( float dt )
@@ -93,6 +87,7 @@ namespace Kernel
         if( !BaseIntervention::UpdateIndividualsInterventionStatus() ) return;
 
         float rate = m_Distribution->Calculate( parent->GetRng() );
+        release_assert(m_IBitingRisk);
         m_IBitingRisk->UpdateRelativeBitingRate( rate );
         expired = true;
     }

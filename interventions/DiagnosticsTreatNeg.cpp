@@ -26,9 +26,7 @@ namespace Kernel
 
     IMPLEMENT_FACTORY_REGISTERED(DiagnosticTreatNeg)
 
-    bool DiagnosticTreatNeg::Configure(
-        const Configuration * inputJson
-    )
+    bool DiagnosticTreatNeg::Configure( const Configuration* inputJson )
     {
         EventOrConfig::Enum use_event_or_config;
         initConfig( "Event_Or_Config", use_event_or_config, inputJson, MetadataDescriptor::Enum("EventOrConfig", Event_Or_Config_DESC_TEXT, MDD_ENUM_ARGS( EventOrConfig ) ) );
@@ -49,23 +47,23 @@ namespace Kernel
     }
 
     DiagnosticTreatNeg::DiagnosticTreatNeg()
-    : SimpleDiagnostic()
-    , negative_diagnosis_config()
-    , negative_diagnosis_event()
-    , defaulters_config()
-    , defaulters_event()
-    , m_gets_positive_test_intervention(false)
+        : SimpleDiagnostic()
+        , negative_diagnosis_config()
+        , negative_diagnosis_event()
+        , defaulters_config()
+        , defaulters_event()
+        , m_gets_positive_test_intervention(false)
     {
         initSimTypes( 1, "TBHIV_SIM" );
         days_to_diagnosis.handle = std::bind( &DiagnosticTreatNeg::onDiagnosisComplete, this, 0.0f );
     }
 
     DiagnosticTreatNeg::DiagnosticTreatNeg( const DiagnosticTreatNeg& master )
-    : SimpleDiagnostic( master )
-    , negative_diagnosis_config(master.negative_diagnosis_config)
-    , negative_diagnosis_event(master.negative_diagnosis_event)
-    , defaulters_event(master.defaulters_event)
-    , m_gets_positive_test_intervention(master.m_gets_positive_test_intervention)
+        : SimpleDiagnostic( master )
+        , negative_diagnosis_config(master.negative_diagnosis_config)
+        , negative_diagnosis_event(master.negative_diagnosis_event)
+        , defaulters_event(master.defaulters_event)
+        , m_gets_positive_test_intervention(master.m_gets_positive_test_intervention)
     {
         initSimTypes( 1, "TBHIV_SIM" );
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -82,10 +80,7 @@ namespace Kernel
     }
 
     
-    bool DiagnosticTreatNeg::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * const pICCO
-    )
+    bool DiagnosticTreatNeg::Distribute( IIndividualHumanInterventionsContext* context, ICampaignCostObserver* const pICCO )
     {
         //flag for pos/neg test result so that if you are counting down days_to_diagnosis you know what to give when the time comes
         m_gets_positive_test_intervention = true;
@@ -124,8 +119,7 @@ namespace Kernel
     }
     
     //if negative test result, either distribute the negative test intervention now, or note you got a negative test and count your days_to_diagnosis down
-    void
-    DiagnosticTreatNeg::onNegativeTestResult()
+    void DiagnosticTreatNeg::onNegativeTestResult()
     {
         LOG_DEBUG("Negative test Result function\n");
 
@@ -178,7 +172,6 @@ namespace Kernel
 
     void DiagnosticTreatNeg::negativeTestDistribute()
     {
-
         LOG_DEBUG_F( "Individual %d tested 'negative', receiving negative intervention.\n", parent->GetSuid().data );
 
         if( use_event_or_config == EventOrConfig::Event )
@@ -196,7 +189,6 @@ namespace Kernel
             if (s_OK == parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&pICCO) )
             {
                 di->Distribute( parent->GetInterventionsContext(), pICCO );
-                pICCO->notifyCampaignEventOccurred( (IBaseIntervention*)di, (IBaseIntervention*)this, parent );
             }
             else
             {
@@ -210,8 +202,7 @@ namespace Kernel
         expired = true;
     }
     
-    void
-    DiagnosticTreatNeg::onPatientDefault()
+    void DiagnosticTreatNeg::onPatientDefault()
     {
         LOG_DEBUG_F( "Individual %d got the test but defaulted, receiving Defaulters intervention without waiting for days_to_diagnosis (actually means days_to_intervention) \n", parent->GetSuid().data );
 
@@ -230,7 +221,6 @@ namespace Kernel
             if (s_OK == parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&pICCO) )
             {
                 di->Distribute( parent->GetInterventionsContext(), pICCO );
-                pICCO->notifyCampaignEventOccurred( (IBaseIntervention*)di, (IBaseIntervention*)this, parent );
             }
             else
             {

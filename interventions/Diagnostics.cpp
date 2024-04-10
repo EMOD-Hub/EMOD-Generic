@@ -30,10 +30,7 @@ namespace Kernel
 
     IMPLEMENT_FACTORY_REGISTERED(SimpleDiagnostic)
 
-    EventOrConfig::Enum
-    SimpleDiagnostic::getEventOrConfig(
-        const Configuration * inputJson
-    )
+    EventOrConfig::Enum SimpleDiagnostic::getEventOrConfig( const Configuration* inputJson )
     {
         EventOrConfig::Enum event_or_config;
         initConfig( "Event_Or_Config", event_or_config, inputJson, MetadataDescriptor::Enum("EventOrConfig", Event_Or_Config_DESC_TEXT, MDD_ENUM_ARGS( EventOrConfig ) ) );
@@ -42,9 +39,7 @@ namespace Kernel
 
     // This is deliberately broken out into separate function so that derived classes can invoke
     // without calling SD::Configure -- if they want Positive_Dx_Config/Event but not Treatment_Fraction.
-    void SimpleDiagnostic::ConfigurePositiveEventOrConfig(
-        const Configuration * inputJson
-    )
+    void SimpleDiagnostic::ConfigurePositiveEventOrConfig( const Configuration* inputJson )
     {
         use_event_or_config = getEventOrConfig( inputJson );
 
@@ -57,15 +52,11 @@ namespace Kernel
         {
             initConfigComplexType("Positive_Diagnosis_Config", &positive_diagnosis_config, SD_Positive_Diagnosis_Config_DESC_TEXT, "Event_Or_Config", "Config" );
         }
-
     }
-    
-    bool SimpleDiagnostic::Configure(
-        const Configuration * inputJson
-    )
+
+    bool SimpleDiagnostic::Configure( const Configuration* inputJson )
     {
         ConfigurePositiveEventOrConfig( inputJson );
-       
         initConfigTypeMap("Treatment_Fraction", &treatment_fraction, SD_Treatment_Fraction_DESC_TEXT, 0, 1);
 
         bool ret = BaseIntervention::Configure( inputJson );
@@ -109,18 +100,17 @@ namespace Kernel
         }
     }
 
-
     SimpleDiagnostic::SimpleDiagnostic()
-    : BaseIntervention()
-    , diagnostic_type(0)
-    , base_specificity(0)
-    , base_sensitivity(0)
-    , treatment_fraction(1.0f)
-    , days_to_diagnosis(0)
-    , enable_isSymptomatic(false)
-    , use_event_or_config( EventOrConfig::Event )
-    , positive_diagnosis_event()
-    , positive_diagnosis_config()
+        : BaseIntervention()
+        , diagnostic_type(0)
+        , base_specificity(0)
+        , base_sensitivity(0)
+        , treatment_fraction(1.0f)
+        , days_to_diagnosis(0)
+        , enable_isSymptomatic(false)
+        , use_event_or_config( EventOrConfig::Event )
+        , positive_diagnosis_event()
+        , positive_diagnosis_config()
     {
         initConfigTypeMap("Base_Specificity",   &base_specificity, SD_Base_Specificity_DESC_TEXT,     1.0f );
         initConfigTypeMap("Base_Sensitivity",   &base_sensitivity, SD_Base_Sensitivity_DESC_TEXT,     1.0f );
@@ -151,10 +141,7 @@ namespace Kernel
     {
     }
 
-    bool SimpleDiagnostic::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * const pICCO
-    )
+    bool SimpleDiagnostic::Distribute( IIndividualHumanInterventionsContext* context, ICampaignCostObserver* const pICCO )
     {
         // ----------------------------------------------------------------------------------
         // --- Putting this here because we don't want anything to happen if we are aborting
@@ -236,20 +223,17 @@ namespace Kernel
         return applySensitivityAndSpecificity( test_result );
     }
 
-    void
-    SimpleDiagnostic::onPatientDefault()
+    void SimpleDiagnostic::onPatientDefault()
     {
         expired = true;
     }
 
-    void
-    SimpleDiagnostic::onNegativeTestResult()
+    void SimpleDiagnostic::onNegativeTestResult()
     {
         expired = true;
     }
 
-    void
-    SimpleDiagnostic::broadcastEvent( const EventTrigger::Enum& event )
+    void SimpleDiagnostic::broadcastEvent( const EventTrigger::Enum& event )
     {
         if( event != EventTrigger::NoTrigger )
         {
@@ -286,7 +270,6 @@ namespace Kernel
             if (s_OK == parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&pICCO) )
             {
                 di->Distribute( parent->GetInterventionsContext(), pICCO );
-                pICCO->notifyCampaignEventOccurred( (IBaseIntervention*)di, (IBaseIntervention*)this, parent );
             }
             else
             {

@@ -33,10 +33,7 @@ namespace Kernel
 
     IMPLEMENT_FACTORY_REGISTERED(SimpleHealthSeekingBehavior)
 
-    bool
-    SimpleHealthSeekingBehavior::Configure(
-        const Configuration * inputJson
-    )
+    bool SimpleHealthSeekingBehavior::Configure(const Configuration* inputJson)
     {
         IndividualInterventionConfig actual_intervention_config;
 
@@ -132,19 +129,11 @@ namespace Kernel
                 LOG_DEBUG_F("SimpleHealthSeekingBehavior is distributing actual intervention to individual %d.\n", parent->GetSuid().data );
 
                 // Now make sure cost gets reported back to node
-                ICampaignCostObserver* pICCO;
-                if (s_OK != parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&pICCO) )
-                {
-                    throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                                   "parent->GetEventContext()->GetNodeEventContext()", "ICampaignCostObserver", "INodeEventContext");
-                }
+                ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
                 IDistributableIntervention* di = m_di->Clone();
                 di->AddRef();
                 di->Distribute( parent->GetInterventionsContext(), pICCO );
                 di->Release();
-
-                //Expire();
-
             }
             if( single_use )
             {

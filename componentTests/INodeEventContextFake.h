@@ -81,11 +81,7 @@ public:
     virtual int32_t AddRef()  { return 10 ; }
     virtual int32_t Release() { return 10 ; }
 
-
     virtual void notifyCampaignExpenseIncurred( float expenseIncurred, const IIndividualHumanEventContext * pIndiv ) {};
-    virtual void notifyCampaignEventOccurred( ISupports * pDistributedIntervention,
-                                              ISupports * pDistributor, 
-                                              IIndividualHumanContext * pDistributeeIndividual ) {};
 
     // -----------------------------------------------
     // --- IIndividualEventBroadcaster Methods
@@ -218,6 +214,7 @@ public:
     virtual int GetIndividualHumanCount() const { return m_HumanList.size(); }
     virtual ExternalNodeId_t GetExternalId()  const { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
 
+    virtual INodeMalariaInterventionEffects*     GetNodeMalariaInterventionEffects()      override  { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual INodeTyphoidInterventionEffects*     GetNodeTyphoidInterventionEffects()      override  { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual INodeVectorInterventionEffects*      GetNodeVectorInterventionEffects()       override  { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual INodeVectorInterventionEffectsApply* GetNodeVectorInterventionEffectsApply()  override  { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }

@@ -26,39 +26,21 @@ namespace Kernel
     END_QUERY_INTERFACE_BODY(HealthSeekingBehaviorUpdate)
 
     HealthSeekingBehaviorUpdate::HealthSeekingBehaviorUpdate()
-    :new_probability_of_seeking(0.0f)
-    , ihsbuea(nullptr)
+        : new_probability_of_seeking(0.0f)
+        , ihsbuea(nullptr)
     {
         initSimTypes( 1, "TBHIV_SIM" );
     }
 
-    bool
-    HealthSeekingBehaviorUpdate::Configure(
-        const Configuration * inputJson
-    )
+    bool HealthSeekingBehaviorUpdate::Configure(const Configuration* inputJson)
     {
         initConfigTypeMap("New_Tendency", &new_probability_of_seeking, HSB_Update_New_Tendency_DESC_TEXT );
         return BaseIntervention::Configure( inputJson );
     }
 
-    bool
-    HealthSeekingBehaviorUpdate::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * const pCCO
-    )
+    bool HealthSeekingBehaviorUpdate::Distribute(IIndividualHumanInterventionsContext* context, ICampaignCostObserver* const pCCO)
     {
-        if (s_OK != context->QueryInterface(GET_IID(IHealthSeekingBehaviorUpdateEffectsApply), (void**)&ihsbuea) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IHealthSeekingBehaviorUpdateEffectsApply", "IIndividualHumanInterventionsContext" );
-        }
-
-        // this intervention only works with TB Interventions Container, throw an error if you are not using that
-        ITBInterventionsContainer * itbivc = nullptr;
-        if (s_OK != context->QueryInterface(GET_IID(ITBInterventionsContainer), (void**)&itbivc)  )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "ITBInterventionsContainer", "IIndividualHumanInterventionsContext" );
-        }
-
+        ihsbuea = context->GetContainerTB();
         return BaseIntervention::Distribute( context, pCCO );
     }
 
@@ -66,19 +48,15 @@ namespace Kernel
     {
         if( !BaseIntervention::UpdateIndividualsInterventionStatus() ) return;
 
+        release_assert(ihsbuea);
         ihsbuea->UpdateHealthSeekingBehaviors( new_probability_of_seeking );
         LOG_DEBUG_F( "Update the HSB tendency with value %f\n", new_probability_of_seeking );
         expired = true;
     }
 
-    void HealthSeekingBehaviorUpdate::SetContextTo(
-        IIndividualHumanContext *context
-    )
+    void HealthSeekingBehaviorUpdate::SetContextTo(IIndividualHumanContext* context)
     {
         BaseIntervention::SetContextTo( context );
-        if (s_OK != context->GetInterventionsContext()->QueryInterface(GET_IID(IHealthSeekingBehaviorUpdateEffectsApply), (void**)&ihsbuea) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IHealthSeekingBehaviorUpdateEffectsApply", "IIndividualHumanContext" );
-        }
+        ihsbuea = context->GetInterventionsContext()->GetContainerTB();
     }
 }

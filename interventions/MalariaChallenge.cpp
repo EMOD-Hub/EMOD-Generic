@@ -12,7 +12,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "Exceptions.h"
 #include "InterventionFactory.h"
-#include "NodeMalariaEventContext.h"  // for ISporozoiteChallengeConsumer methods
+#include "NodeMalariaEventContext.h"
 
 SETUP_LOGGING( "MalariaChallenge" )
 
@@ -28,26 +28,26 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(MalariaChallenge)
 
     MalariaChallenge::MalariaChallenge()
-    : BaseNodeIntervention()
-    , challenge_type( MalariaChallengeType::InfectiousBites )
-    , n_challenged_objects(1)
-    , coverage(1.0)
+        : BaseNodeIntervention()
+        , challenge_type( MalariaChallengeType::InfectiousBites )
+        , n_challenged_objects(1)
+        , coverage(1.0)
     {
         initSimTypes( 1, "MALARIA_SIM" );
     }
 
     MalariaChallenge::MalariaChallenge( const MalariaChallenge& master )
-    : BaseNodeIntervention( master )
-    , challenge_type( master.challenge_type )
-    , n_challenged_objects( master.n_challenged_objects )
-    , coverage( master.coverage )
+        : BaseNodeIntervention( master )
+        , challenge_type( master.challenge_type )
+        , n_challenged_objects( master.n_challenged_objects )
+        , coverage( master.coverage )
     {
     }
 
-    bool MalariaChallenge::Configure( const Configuration * inputJson )
+    bool MalariaChallenge::Configure( const Configuration* inputJson )
     {
         initConfig( "Challenge_Type", challenge_type, inputJson, MetadataDescriptor::Enum("Challenge_Type", MC_Challenge_Type_DESC_TEXT, MDD_ENUM_ARGS(MalariaChallengeType)) );
-        initConfigTypeMap( "Coverage", &coverage, MC_Coverage_DESC_TEXT, 0, 1, 1 );        
+        initConfigTypeMap( "Coverage", &coverage, MC_Coverage_DESC_TEXT, 0, 1, 1 );
 
         if (!JsonConfigurable::_dryrun)
         {
@@ -86,21 +86,18 @@ namespace Kernel
             return false;
         }
 
-        ISporozoiteChallengeConsumer *iscc;
-        if (s_OK != context->QueryInterface(GET_IID(ISporozoiteChallengeConsumer), (void**)&iscc))
-        {
-            throw QueryInterfaceException(__FILE__, __LINE__, __FUNCTION__, "iscc", "ISporozoiteChallengeConsumer", "INodeEventContext");
-        }
+        INodeMalariaInterventionEffects* inmie = context->GetNodeMalariaInterventionEffects();
+        release_assert(inmie);
 
         bool wasDistributed = false;
         if(this->challenge_type == MalariaChallengeType::InfectiousBites)
         {
-            iscc->ChallengeWithInfectiousBites(n_challenged_objects, coverage);
+            inmie->ChallengeWithInfectiousBites(n_challenged_objects, coverage);
             wasDistributed = true;
         }
         else if(this->challenge_type == MalariaChallengeType::Sporozoites)
         {
-            iscc->ChallengeWithSporozoites(n_challenged_objects, coverage);
+            inmie->ChallengeWithSporozoites(n_challenged_objects, coverage);
             wasDistributed = true;
         }
 

@@ -14,7 +14,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    class ISporozoiteChallengeConsumer : public ISupports
+    class INodeMalariaInterventionEffects : public ISupports
     {
         public:
             virtual void ChallengeWithSporozoites(int n_sporozoites, float coverage=1.0f, tAgeBitingFunction=nullptr ) = 0;
@@ -22,7 +22,7 @@ namespace Kernel
     };
 
     class NodeMalariaEventContextHost : public NodeVectorEventContextHost,
-                                        public ISporozoiteChallengeConsumer
+                                        public INodeMalariaInterventionEffects
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
         DECLARE_QUERY_INTERFACE()
@@ -31,7 +31,8 @@ namespace Kernel
         NodeMalariaEventContextHost(Node* _node);
         virtual ~NodeMalariaEventContextHost();
 
-        // ISporozoiteChallengeConsumer
+        virtual INodeMalariaInterventionEffects* GetNodeMalariaInterventionEffects() override;
+
         virtual void ChallengeWithSporozoites( int n_sporozoites, float coverage, tAgeBitingFunction );
         virtual void ChallengeWithInfectiousBites( int n_bites, float coverage, tAgeBitingFunction );
     };

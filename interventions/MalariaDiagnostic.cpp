@@ -35,15 +35,15 @@ namespace Kernel
     }
 
     MalariaDiagnostic::MalariaDiagnostic()
-    : SimpleDiagnostic()
-    , malaria_diagnostic_type(MalariaDiagnosticType::Other)
-    , detection_threshold(0)
+        : SimpleDiagnostic()
+        , malaria_diagnostic_type(MalariaDiagnosticType::Other)
+        , detection_threshold(0)
     {
         initSimTypes( 1, "MALARIA_SIM" );
     }
 
     MalariaDiagnostic::MalariaDiagnostic( const MalariaDiagnostic& master )
-    : SimpleDiagnostic( master )
+        : SimpleDiagnostic( master )
     {
         malaria_diagnostic_type = master.malaria_diagnostic_type;
         detection_threshold = master.detection_threshold;
@@ -58,11 +58,8 @@ namespace Kernel
     {
         LOG_DEBUG("Positive test Result function\n");
 
-        IMalariaHumanContext* individual_malaria = NULL;
-        if(parent->QueryInterface( GET_IID( IMalariaHumanContext ), (void**)&individual_malaria ) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IMalariaHumanContext", "IIndividualHuman" );
-        }
+        IMalariaHumanContext* individual_malaria = parent->GetIndividualMalaria();
+        release_assert(individual_malaria);
 
         if( malaria_diagnostic_type == MalariaDiagnosticType::Other)
         {

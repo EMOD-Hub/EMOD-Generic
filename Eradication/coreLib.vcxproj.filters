@@ -1146,9 +1146,6 @@
     <ClInclude Include="..\interventions\OutbreakIndividualMalaria.h">
       <Filter>Source Files\Campaign\IndividualTargeted\Vector\Malaria</Filter>
     </ClInclude>
-    <ClInclude Include="VectorInterventionsContainerContexts.h">
-      <Filter>Source Files\Campaign\InterventionContainers\Vector</Filter>
-    </ClInclude>
     <ClInclude Include="MalariaInterventionsContainerContexts.h">
       <Filter>Source Files\Campaign\InterventionContainers\Vector\Malaria</Filter>
     </ClInclude>

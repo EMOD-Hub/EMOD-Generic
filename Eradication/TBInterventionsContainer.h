@@ -52,19 +52,14 @@ namespace Kernel
         virtual bool GetTxNaiveStatus() const = 0;
         virtual bool GetTxFailedStatus() const = 0;
         virtual bool GetTxEverRelapsedStatus() const = 0;
-    };
 
-    struct IHealthSeekingBehaviorUpdateEffectsApply : public ISupports
-    {
-        virtual void UpdateHealthSeekingBehaviors( float new_probability_of_seeking) = 0; //this function is called by HSBUpdate to the InterventionsContainer
+        virtual void UpdateHealthSeekingBehaviors( float new_probability_of_seeking) = 0;
     };
 
     class TBInterventionsContainer : public InterventionsContainer,
         public ITBDrugEffects,
         public ITBDrugEffectsApply,
-        public ITBInterventionsContainer,
-        public IHealthSeekingBehaviorUpdateEffectsApply
-
+        public ITBInterventionsContainer
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
