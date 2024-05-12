@@ -73,48 +73,6 @@ namespace Kernel
     {
         return true;
     }
-#if 0
-    void HIVRandomChoice::positiveTestDistribute()
-    {
-        LOG_DEBUG_F( "Individual %d tested HIVRandomChoice receiving actual intervention from HIVRandomChoice.\n", parent->GetSuid().data );
-
-        // random number to choose an event from the dictionary
-        float p = parent->GetRng()->e();
-
-        EventTrigger::Enum trigger;
-        float probSum = 0;
-
-        // pick the EventTrigger to broadcast 
-        for (int i = 0; i < event_names.size(); i++)
-        {
-            probSum += event_probabilities[i];
-            if (p <= probSum)
-            { 
-                trigger = event_names[i];
-                break;
-            }
-        }
-
-        // expire the intervention
-        expired = true;
-
-        // broadcast the event 
-        INodeTriggeredInterventionConsumer* broadcaster = nullptr;
-        if (s_OK != parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(INodeTriggeredInterventionConsumer), (void**)&broadcaster))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                           "parent->GetEventContext()->GetNodeEventContext()",
-                                           "INodeTriggeredInterventionConsumer",
-                                           "INodeEventContext" );
-        }
-
-        if( trigger != EventTrigger::NoTrigger )
-        {
-            IIndividualEventBroadcaster* broadcaster = parent->GetEventContext()->GetNodeEventContext()->GetIndividualEventBroadcaster();
-            broadcaster->TriggerObservers( parent->GetEventContext(), trigger );
-        }
-    }
-#endif
 
     void HIVRandomChoice::positiveTestDistribute()
     {

@@ -108,13 +108,14 @@ namespace Kernel
         virtual IIndividualHumanEventContext*         GetEventContext()                                                  override;
         virtual ISusceptibilityContext*               GetSusceptibilityContext()                                 const   override;
 
-        virtual IIndividualHuman*         GetIndividual()                override;
-        virtual IIndividualHumanSTI*      GetIndividualSTI()             override { return nullptr; }
-        virtual IIndividualHumanHIV*      GetIndividualHIV()             override { return nullptr; }
-        virtual IIndividualHumanTB*       GetIndividualTB()              override { return nullptr; }
-        virtual IMalariaHumanContext*     GetIndividualMalaria()         override { return nullptr; }
-        virtual IIndividualHumanPolio*    GetIndividualPolio()           override { return nullptr; }
-        virtual IIndividualHumanTyphoid*  GetIndividualTyphoid()         override { return nullptr; }
+        virtual IIndividualHuman*               GetIndividual()                override;
+        virtual IIndividualHumanSTI*            GetIndividualSTI()             override { return nullptr; }
+        virtual IIndividualHumanHIV*            GetIndividualHIV()             override { return nullptr; }
+        virtual IIndividualHumanTB*             GetIndividualTB()              override { return nullptr; }
+        virtual IIndividualHumanCoInfection*    GetIndividualCoInf()           override { return nullptr; }
+        virtual IMalariaHumanContext*           GetIndividualMalaria()         override { return nullptr; }
+        virtual IIndividualHumanPolio*          GetIndividualPolio()           override { return nullptr; }
+        virtual IIndividualHumanTyphoid*        GetIndividualTyphoid()         override { return nullptr; }
 
         // IIndividualHumanEventContext methods
         virtual bool              IsPregnant()                     const override { return is_pregnant; };

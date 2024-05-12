@@ -32,12 +32,14 @@ namespace Kernel
     struct IInterventionConsumer;
     struct ISTIInterventionsContainer;
     struct IHIVInterventionsContainer;
+    struct IPolioDrugEffects;
     struct ITBInterventionsContainer;
     struct ITyphoidVaccineEffectsApply;
     struct IVectorInterventionsEffects;
     struct IMalariaDrugEffectsApply;
     struct IDrug;
     struct IHealthSeekingBehavior;
+    struct IPolioVaccine;
     struct INodeEventContext;
     struct IEventCoordinator2;
 
@@ -59,12 +61,13 @@ namespace Kernel
         virtual bool Expired() = 0;
         virtual void SetExpired( bool isExpired ) = 0;
         virtual void OnExpiration() = 0;
-        virtual IDistributableIntervention * Clone()  = 0;
+        virtual IDistributableIntervention* Clone()  = 0;
         virtual bool NeedsInfectiousLoopUpdate() const = 0;
         virtual bool NeedsPreInfectivityUpdate() const = 0;
 
         virtual IDrug*                     GetDrug()             = 0;
         virtual IHealthSeekingBehavior*    GetHSB()              = 0;
+        virtual IPolioVaccine*             GetPolioVax()         = 0;
 
         virtual ~IDistributableIntervention() { }
     };
@@ -90,6 +93,7 @@ namespace Kernel
         virtual IInterventionConsumer*        GetInterventionConsumer()   = 0;
         virtual ISTIInterventionsContainer*   GetContainerSTI()           = 0;
         virtual IHIVInterventionsContainer*   GetContainerHIV()           = 0;
+        virtual IPolioDrugEffects*            GetContainerPolio()         = 0;
         virtual ITBInterventionsContainer*    GetContainerTB()            = 0;
         virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()       = 0;
         virtual IVectorInterventionsEffects*  GetContainerVector()        = 0;
@@ -145,6 +149,7 @@ namespace Kernel
 
         virtual IDrug*                     GetDrug()       override     { return nullptr; }
         virtual IHealthSeekingBehavior*    GetHSB()        override     { return nullptr; }
+        virtual IPolioVaccine*             GetPolioVax()   override     { return nullptr; }
 
     protected:
         BaseIntervention();

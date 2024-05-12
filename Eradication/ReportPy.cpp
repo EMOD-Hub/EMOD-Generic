@@ -27,9 +27,7 @@ static const std::string _num_chronic_carriers_label     = "Number of Chronic Ca
 static const std::string _num_subclinic_infections_label = "Number of New Sub-Clinical Infections";
 static const std::string _num_acute_infections_label     = "Number of New Acute Infections";
 
-
 GET_SCHEMA_STATIC_WRAPPER_IMPL(ReportPy,ReportPy)
-
 
 ReportPy::ReportPy()
 {
@@ -44,55 +42,30 @@ bool ReportPy::Configure( const Configuration * inputJson )
 void ReportPy::EndTimestep( float currentTime, float dt )
 {
     Report::EndTimestep( currentTime, dt );
-    
+
     // Make sure we push at least one zero per timestep
     Accumulate( _num_chronic_carriers_label, 0 );
     Accumulate( _num_subclinic_infections_label, 0 );
     Accumulate( _num_acute_infections_label, 0 );
 }
 
-void
-ReportPy::postProcessAccumulatedData()
+void ReportPy::postProcessAccumulatedData()
 {
     LOG_DEBUG( "postProcessAccumulatedData\n" );
     Report::postProcessAccumulatedData();
-
-    // pass through normalization
-    // order matters, since we're changing channels in place (not like old way)
-    //normalizeChannel(_aoi_label, _tot_prev_label);
-
 }
 
-void
-ReportPy::populateSummaryDataUnitsMap(
-    std::map<std::string, std::string> &units_map
-)
+void ReportPy::populateSummaryDataUnitsMap( std::map<std::string, std::string> &units_map )
 {
     Report::populateSummaryDataUnitsMap(units_map);
-    
-    // Additional malaria channels
-    //units_map[_wpv1_prev_label]                 = _infected_fraction_label;
 }
 
-void
-ReportPy::LogIndividualData(
-    IIndividualHuman * individual
-)
+void ReportPy::LogIndividualData( IIndividualHuman* individual )
 {
     Report::LogIndividualData( individual );
-    IIndividualHumanPy* typhoid_individual = NULL;
-    if( individual->QueryInterface( GET_IID( IIndividualHumanPy ), (void**)&typhoid_individual ) != s_OK )
-    {
-        throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualPy", "IndividualHuman" );
-    }
-
-    auto mc_weight = individual->GetMonteCarloWeight();
 }
 
-void
-ReportPy::LogNodeData(
-    INodeContext * pNC
-)
+void ReportPy::LogNodeData( INodeContext* pNC )
 {
     Report::LogNodeData( pNC );
 }

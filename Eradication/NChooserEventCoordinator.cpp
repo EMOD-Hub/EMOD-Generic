@@ -849,14 +849,9 @@ namespace Kernel
             // ------------------------------------------------------------------------------------------------------
             for( auto pIHEC : individual_list )
             {
-                IDistributableIntervention *di = m_pIntervention->Clone();
+                IDistributableIntervention* di = m_pIntervention->Clone();
                 release_assert(di);
-
-                ICampaignCostObserver* p_icco = nullptr;
-                if (s_OK != pIHEC->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&p_icco))
-                {
-                    throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pIHEC->GetNodeEventContext()", "ICampaignCostObserver", "INodeEventContext" );
-                }
+                ICampaignCostObserver* p_icco = pIHEC->GetNodeEventContext()->GetCampaignCostObserver();
 
                 di->AddRef();
                 di->Distribute( pIHEC->GetInterventionsContext(), p_icco );

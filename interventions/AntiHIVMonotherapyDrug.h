@@ -10,14 +10,13 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #pragma once
 
 #include "Drugs.h"
-#include "HIVInterventionsContainer.h"  // For IHIVIntervention 
 
 namespace Kernel
 {
     //------------------------------ Anti-HIV Monotherapy Drug -------------------------------------------
     struct IHIVDrugEffectsApply;
 
-    class AntiHIVMonotherapyDrug : public GenericDrug, public IHIVIntervention
+    class AntiHIVMonotherapyDrug : public GenericDrug
     {
         DECLARE_FACTORY_REGISTERED(InterventionFactory, AntiHIVMonotherapyDrug, IDistributableIntervention);
 

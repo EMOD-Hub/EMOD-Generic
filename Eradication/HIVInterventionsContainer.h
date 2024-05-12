@@ -19,7 +19,6 @@ namespace Kernel
     class HIVInterventionsContainer
         : public STIInterventionsContainer
         , public IHIVInterventionsContainer
-        , public IHIVCampaignSemaphores
         , public IHIVMedicalHistory
         , public IHIVDrugEffectsApply
     {
@@ -82,12 +81,6 @@ namespace Kernel
         virtual float LastRecordedWHOStage() const override;
         virtual ReceivedTestResultsType::Enum ReceivedTestResultForHIV() const override;
 
-        // IHIVCampaignSemaphores
-        virtual bool SemaphoreExists( const std::string& counter ) const override;
-        virtual void SemaphoreInit( const std::string& counter, int value ) override;
-        virtual int SemaphoreIncrement( const std::string& counter ) override;
-        virtual bool SemaphoreDecrement( const std::string& counter ) override;
-
         virtual NaturalNumber GetTotalARTInitiations() const override;
         virtual NonNegativeFloat GetTotalYearsOnART() const override;
         virtual NonNegativeFloat GetYearsSinceFirstARTInit() const override;
@@ -101,6 +94,12 @@ namespace Kernel
         virtual float GetDurationSinceLastStartingART() const override;
         virtual const ProbabilityNumber& GetProbMaternalTransmissionModifier() const override;
         virtual void BroadcastNewHIVInfection() override;
+
+        virtual bool SemaphoreExists( const std::string& counter ) const override;
+        virtual void SemaphoreInit( const std::string& counter, int value ) override;
+        virtual int SemaphoreIncrement( const std::string& counter ) override;
+        virtual bool SemaphoreDecrement( const std::string& counter ) override;
+
         virtual IHIVDrugEffectsApply* GetHIVDrugEffectApply() override;
         virtual IHIVMedicalHistory*   GetHIVMedicalHistory()  override;
 

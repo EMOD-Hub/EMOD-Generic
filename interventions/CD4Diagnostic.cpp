@@ -49,11 +49,8 @@ namespace Kernel
 
     float CD4Diagnostic::GetValue() const
     {
-        IIndividualHumanHIV* hiv_ind = nullptr;
-        if(parent->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&hiv_ind ) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanHIV", "IIndividualHuman" );
-        }
+        IIndividualHumanHIV* hiv_ind = parent->GetIndividualHIV();
+        release_assert(hiv_ind);
 
         auto cd4count = hiv_ind->GetHIVSusceptibility()->GetCD4count();
         LOG_DEBUG_F( "cd4count measured at %f. %d thresholds configured.\n", cd4count, range_thresholds.Size() );

@@ -28,13 +28,13 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(HIVARTStagingCD4AgnosticDiagnostic)
 
     HIVARTStagingCD4AgnosticDiagnostic::HIVARTStagingCD4AgnosticDiagnostic()
-    : HIVARTStagingAbstract()
-    , adultAge(5)
+        : HIVARTStagingAbstract()
+        , adultAge(5)
     {
     }
 
     HIVARTStagingCD4AgnosticDiagnostic::HIVARTStagingCD4AgnosticDiagnostic( const HIVARTStagingCD4AgnosticDiagnostic& master )
-    : HIVARTStagingAbstract( master )
+        : HIVARTStagingAbstract( master )
     {
         adultAge  = master.adultAge ;
         adultByWHOStage = master.adultByWHOStage;
@@ -48,13 +48,9 @@ namespace Kernel
     bool HIVARTStagingCD4AgnosticDiagnostic::Configure( const Configuration* inputJson )
     {
         initConfigTypeMap("Adult_Treatment_Age", &adultAge, HIV_Adult_Treatment_Age_DESC_TEXT, -1, FLT_MAX, 5);
-        //initConfigTypeMap("Stable_Partner_Minimum_Duration", &stablePartnerMinimumDuration, HIV_Stable_Partner_Minimum_Duration_DESC_TEXT , -1, FLT_MAX, 365);
-        
         initConfigTypeMap("Adult_By_WHO_Stage", &adultByWHOStage, HIV_Adult_By_WHO_Stage_DESC_TEXT);
         initConfigTypeMap("Adult_By_TB", &adultByTB, HIV_Adult_By_TB_DESC_TEXT);
-        //initConfigTypeMap("Adult_By_Stable_Discordant_Partner", &adultByStableDiscodantPartner, HIV_Adult_By_Stable_Discordant_Partner_DESC_TEXT );
         initConfigTypeMap("Adult_By_Pregnant", &adultByPregnant, HIV_Adult_By_Pregnant_DESC_TEXT );
-
         initConfigTypeMap("Child_Treat_Under_Age_In_Years_Threshold", &childTreatUnderAgeThreshold, HIV_Child_Treat_Under_Age_In_Years_Threshold_DESC_TEXT );
         initConfigTypeMap("Child_By_WHO_Stage", &childByWHOStage, HIV_Child_By_WHO_Stage_DESC_TEXT );
         initConfigTypeMap("Child_By_TB", &childByTB, HIV_Child_By_TB_DESC_TEXT );
@@ -69,19 +65,13 @@ namespace Kernel
                                                                  bool hasActiveTB, 
                                                                  bool isPregnant )
     {
-
-        if( !pHIV->HasHIV() ) {
+        if( !pHIV->HasHIV() )
+        {
             return false;
         }
 
-        IHIVMedicalHistory * med_parent = nullptr;
-        if (parent->GetInterventionsContext()->QueryInterface(GET_IID(IHIVMedicalHistory), (void**)&med_parent) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, 
-                                           "parent->GetInterventionsContext()", 
-                                           "IHIVMedicalHistory", 
-                                           "IInterventionsContext" );
-        }
+        IHIVInterventionsContainer* ihiv_iv = parent->GetInterventionsContext()->GetContainerHIV();
+        release_assert(ihiv_iv);
 
         float WHO_Stage = MIN_WHO_HIV_STAGE ;
         if( pHIV->HasHIV() )
@@ -89,7 +79,7 @@ namespace Kernel
             WHO_Stage = pHIV->GetHIVInfection()->GetWHOStage();
         }
 
-        med_parent->OnAssessWHOStage(WHO_Stage);
+        ihiv_iv->GetHIVMedicalHistory()->OnAssessWHOStage(WHO_Stage);
 
         float age_days = parent->GetEventContext()->GetAge();
 

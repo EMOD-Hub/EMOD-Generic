@@ -20,11 +20,8 @@ namespace Kernel
 {
     static void CalculateAvailableLarvalHabitat( INodeContext* pNC, std::vector<std::string>& species, std::vector<float>& capacity_vec )
     {
-        INodeVector * pnv = NULL;
-        if (s_OK != pNC->QueryInterface(GET_IID(INodeVector), (void**)&pnv) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodeVector", "INodeContext" );
-        }
+        INodeVector* pnv = pNC->GetNodeVector();
+        release_assert(pnv);
 
         for( auto pvp : pnv->GetVectorPopulationReporting() )
         {

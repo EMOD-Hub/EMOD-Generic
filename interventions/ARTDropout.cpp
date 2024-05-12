@@ -9,8 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 
-//#ifdef ENABLE_STI
-
 #include "ARTDropout.h"
 
 #include "IIndividualHumanContext.h"
@@ -31,7 +29,7 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(ARTDropout)
 
     ARTDropout::ARTDropout()
-    : BaseIntervention()
+        : BaseIntervention()
     {
         initSimTypes( 2, "HIV_SIM", "TBHIV_SIM" );
     }
@@ -40,32 +38,23 @@ namespace Kernel
     {
     }
 
-    bool
-    ARTDropout::Configure(
-        const Configuration * inputJson
-    )
+    bool ARTDropout::Configure(const Configuration* inputJson)
     {
         initConfigTypeMap("Cost_To_Consumer", &cost_per_unit, DRUG_Cost_To_Consumer_DESC_TEXT, 0, 99999);
         // Skip GenericDrug (base class) Configure (to avoid picking up all those parameters). Connection with GenericDrug is fairly loose.
         return BaseIntervention::Configure( inputJson );
     }
 
-    bool
-    ARTDropout::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * pCCO
-    )
+    bool ARTDropout::Distribute(IIndividualHumanInterventionsContext* context, ICampaignCostObserver* pCCO)
     {
         bool distributed = BaseIntervention::Distribute( context, pCCO );
         if( distributed )
         {
             LOG_DEBUG_F( "ARTDropout distributed to individual %d.\n", context->GetParent()->GetSuid().data );
-            IHIVDrugEffectsApply* itbda = nullptr;
-            if (s_OK != context->QueryInterface(GET_IID(IHIVDrugEffectsApply), (void**)&itbda) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IHIVDrugEffectsApply", "IIndividualHumanInterventionsContext" );
-            } 
-            itbda->GoOffART();
+
+            IHIVInterventionsContainer* ihiv_iv = context->GetContainerHIV();
+            release_assert(ihiv_iv);
+            ihiv_iv->GetHIVDrugEffectApply()->GoOffART();
         }
         return distributed;
     }
@@ -83,5 +72,3 @@ namespace Kernel
         ARTDropout& art = *obj;
     }
 }
-
-//#endif // ENABLE_STI

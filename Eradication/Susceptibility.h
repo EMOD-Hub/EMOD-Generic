@@ -73,8 +73,9 @@ namespace Kernel
         virtual void  InitNewInfection() override;
         virtual bool  IsImmune() const override;
 
-        virtual ISusceptibilityHIV*   GetSusceptibilityHIV()     override { return nullptr; }
-        virtual ISusceptibilityTB*    GetSusceptibilityTB()      override { return nullptr; }
+        virtual ISusceptibilityHIV*       GetSusceptibilityHIV()         override { return nullptr; }
+        virtual ISusceptibilityTB*        GetSusceptibilityTB()          override { return nullptr; }
+        virtual ISusceptibilityVector*    GetSusceptibilityVector()      override { return nullptr; }
 
     protected:
         Susceptibility();

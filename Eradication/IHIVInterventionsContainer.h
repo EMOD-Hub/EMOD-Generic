@@ -21,9 +21,6 @@ namespace Kernel
 {
     #define INACTIVE_DURATION (-1.0f)
 
-    struct IHIVIntervention: public ISupports
-    {};
-
     // interface for HIV medical chart queries and updates
     struct IHIVMedicalHistory : public ISupports
     {
@@ -62,15 +59,6 @@ namespace Kernel
         virtual NonNegativeFloat GetYearsSinceLatestARTInit() const = 0;
     };
 
-    // interface for campaign semaphores
-    struct IHIVCampaignSemaphores : public ISupports
-    {
-        virtual bool SemaphoreExists( const std::string& counter) const = 0;
-        virtual void SemaphoreInit( const std::string& counter, int value) = 0;
-        virtual int SemaphoreIncrement( const std::string& counter ) = 0;
-        virtual bool SemaphoreDecrement( const std::string& counter ) = 0;
-    };
-
     struct IHIVDrugEffectsApply : public ISupports
     {
         virtual void ApplyDrugConcentrationAction( std::string , float current_concentration ) = 0;
@@ -100,6 +88,11 @@ namespace Kernel
         virtual void BroadcastNewHIVInfection() = 0;
 
         virtual void ApplyProbMaternalTransmissionModifier( const ProbabilityNumber &probReduction ) = 0;
+
+        virtual bool SemaphoreExists( const std::string& counter) const = 0;
+        virtual void SemaphoreInit( const std::string& counter, int value) = 0;
+        virtual int SemaphoreIncrement( const std::string& counter ) = 0;
+        virtual bool SemaphoreDecrement( const std::string& counter ) = 0;
 
         virtual IHIVDrugEffectsApply* GetHIVDrugEffectApply() = 0;
         virtual IHIVMedicalHistory*   GetHIVMedicalHistory()  = 0;

@@ -45,7 +45,6 @@ using namespace std;
 namespace Kernel
 {
     BEGIN_QUERY_INTERFACE_DERIVED(NodeVector, Node)
-        HANDLE_INTERFACE(IVectorNodeContext)
         HANDLE_INTERFACE(INodeVector)
     END_QUERY_INTERFACE_DERIVED(NodeVector, Node)
 
@@ -265,11 +264,8 @@ namespace Kernel
         // normalize human-to-vector contagion (per-bite infection probabilities)
         // This is the place in this pattern to scale by returning mortality: (1-p_kill_PFV)
         // TODO: it should be possible to push the PFV normalization back into VectorProbabilities
-        INodeVectorInterventionEffects* invie = nullptr;
-        if (s_OK != GetEventContext()->QueryInterface(GET_IID(INodeVectorInterventionEffects), (void**)&invie))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "GetEventContext()", "INodeVectorInterventionEffects", "INodeEventContext" );
-        }
+        INodeVectorInterventionEffects* invie = GetEventContext()->GetNodeVectorInterventionEffects();
+        release_assert(invie);
         float weight = 1.0f - invie->GetPFVKill();
 
         // Acquire infections with strain tracking for exposed queues

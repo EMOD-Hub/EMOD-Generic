@@ -40,7 +40,7 @@ namespace Kernel
 
     // QI stuff in case we want to use it more extensively
     BEGIN_QUERY_INTERFACE_DERIVED(SusceptibilityVector, Susceptibility)
-        HANDLE_INTERFACE(IVectorSusceptibilityContext)
+        HANDLE_INTERFACE(ISusceptibilityVector)
     END_QUERY_INTERFACE_DERIVED(SusceptibilityVector, Susceptibility)
 
     void SusceptibilityVector::Initialize(float immmod, float riskmod)
@@ -60,6 +60,11 @@ namespace Kernel
 
     SusceptibilityVector::~SusceptibilityVector()
     {
+    }
+
+    ISusceptibilityVector* SusceptibilityVector::GetSusceptibilityVector()
+    {
+        return static_cast<ISusceptibilityVector*>(this);
     }
 
     void SusceptibilityVector::Update(float dt)

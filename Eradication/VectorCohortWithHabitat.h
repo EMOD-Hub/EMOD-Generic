@@ -20,6 +20,7 @@ namespace Kernel
     public:
         virtual VectorHabitatType::Enum GetHabitatType() = 0;
         virtual IVectorHabitat* GetHabitat() = 0;
+        virtual IVectorCohort* GetCohort() = 0;
         virtual void SetHabitat( IVectorHabitat* ) = 0;
     };
 
@@ -39,6 +40,8 @@ namespace Kernel
 
         virtual VectorHabitatType::Enum GetHabitatType();
         virtual IVectorHabitat* GetHabitat();
+        virtual IVectorCohort* GetCohort();
+        virtual IVectorCohortWithHabitat* GetCohortWithHabitat() override;
         virtual void SetHabitat( IVectorHabitat* );
 
     protected:

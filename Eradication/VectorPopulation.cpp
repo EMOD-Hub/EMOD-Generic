@@ -172,14 +172,11 @@ namespace Kernel
         m_txOutdoor = txOutdoor;
     }
 
-    void VectorPopulation::SetupLarvalHabitat( INodeContext *context )
+    void VectorPopulation::SetupLarvalHabitat( INodeContext* context )
     {
         // Query for vector node context
-        IVectorNodeContext* ivnc = nullptr;
-        if (s_OK !=  context->QueryInterface(GET_IID(IVectorNodeContext), (void**)&ivnc))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IVectorNodeContext", "INodeContext" );
-        }
+        INodeVector* ivnc = context->GetNodeVector();
+        release_assert(ivnc);
 
         // Create a larval habitat for each type specified in configuration file for this species
         for( auto habitat_param : species()->habitat_params.habitat_map )
@@ -1107,12 +1104,8 @@ namespace Kernel
         for( size_t iCohort = 0; iCohort < LarvaQueues.size(); /* increment in loop */ )
         {
             IVectorCohort* cohort = LarvaQueues[ iCohort ];
-
-            IVectorCohortWithHabitat *larvaentry = nullptr;
-            if( cohort->QueryInterface( GET_IID( IVectorCohortWithHabitat ), (void**)&larvaentry ) != s_OK )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "larva", "IVectorCohortWithHabitat", "IVectorCohort" );
-            }
+            IVectorCohortWithHabitat* larvaentry = cohort->GetCohortWithHabitat();
+            release_assert(larvaentry);
 
             // Apply temperature and over-crowding dependent larval development
             cohort->IncreaseProgress( GetLarvalDevelopmentProgress(dt, larvaentry) );
@@ -1180,14 +1173,8 @@ namespace Kernel
     float VectorPopulation::GetLarvalMortalityProbability(float dt, IVectorCohortWithHabitat* larva) const
     {
         IVectorHabitat* habitat = larva->GetHabitat();
+        IVectorCohort* vc = larva->GetCohort();
 
-        // (1) Local larval mortality from larval competition in habitat
-        // float larval_survival_weight = GetRelativeSurvivalWeight(habitat);
-        IVectorCohort * vc = nullptr;
-        if( larva->QueryInterface( GET_IID( IVectorCohort ), (void**)&vc ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "IVectorCohortWithHabitat", "IVectorCohort", "larva" );
-        }
         float locallarvalmortality = habitat->GetLocalLarvalMortality(species()->aquaticmortalityrate, vc->GetProgress());
 
         // (2) Rainfall mortality
@@ -1284,12 +1271,8 @@ namespace Kernel
         // Find if there is a compatible existing cohort of eggs
         VectorCohortVector_t::iterator itEggs = std::find_if( EggQueues.begin(), EggQueues.end(), [vms_egg, habitat](IVectorCohort* cohort) -> bool 
         {
-            // If this QI gets cumbersome, nothing really prevents the EggQueues (and LarvaQueues) from being lists of the derived type pointers
-            IVectorCohortWithHabitat *eggentry = nullptr;
-            if( cohort->QueryInterface( GET_IID( IVectorCohortWithHabitat ), (void**)&eggentry ) != s_OK )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "cohort", "IVectorCohortWithHabitat", "IVectorCohort" );
-            }
+            IVectorCohortWithHabitat* eggentry = cohort->GetCohortWithHabitat();
+            release_assert(eggentry);
 
             // Compatible means with matching habitat and genetics
             return ( cohort->GetVectorGenetics() == vms_egg ) && ( eggentry->GetHabitat() == habitat );
@@ -1479,16 +1462,9 @@ namespace Kernel
         for( size_t iCohort = 0; iCohort < EggQueues.size(); /* increment in loop */ )
         {
             IVectorCohort* cohort = EggQueues[ iCohort ];
-
-            IVectorCohortWithHabitat *eggentry = nullptr;
-            if( cohort->QueryInterface( GET_IID( IVectorCohortWithHabitat ), (void**)&eggentry ) != s_OK )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "cohort", "IVectorCohortWithHabitat", "IVectorCohort" );
-            }
+            IVectorCohortWithHabitat* eggentry = cohort->GetCohortWithHabitat();
+            release_assert(eggentry);
             IVectorHabitat* habitat = eggentry->GetHabitat();
-
-            // Potential inter-species competitive weighting
-            // float egg_survival_weight = GetRelativeSurvivalWeight(habitat);
 
             // Calculate egg-crowding correction for these eggs based on habitat and decrease population
             if (params()->vector_params->delayed_hatching_when_habitat_dries_up)  // if delayed hatching is given, we need them to survive upon drought, thus only adjust population when there is water
@@ -1969,11 +1945,8 @@ namespace Kernel
         m_species_params = GetVectorSpeciesParameters( species_ID );
 
         // Query for vector node context
-        IVectorNodeContext* ivnc = nullptr;
-        if (s_OK !=  context->QueryInterface(GET_IID(IVectorNodeContext), (void**)&ivnc))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IVectorNodeContext", "INodeContext" );
-        }
+        INodeVector* ivnc = context->GetNodeVector();
+        release_assert(ivnc);
 
         // Set pointer to shared vector lifecycle probabilities container.
         // The species-independent probabilities, e.g. dependent on individual-human vector-control interventions, are updated once by the node

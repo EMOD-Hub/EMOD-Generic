@@ -75,12 +75,10 @@ namespace Kernel
     {
         IndividualHuman::PropagateContextToDependents();
 
-        if( vector_susceptibility == nullptr && susceptibility != nullptr)
+        if(susceptibility && !vector_susceptibility)
         {
-            if ( s_OK != susceptibility->QueryInterface(GET_IID(IVectorSusceptibilityContext), (void**)&vector_susceptibility) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "susceptibility", "IVectorSusceptibilityContext", "Susceptibility" );
-            }
+            vector_susceptibility = susceptibility->GetSusceptibilityVector();
+            release_assert(vector_susceptibility);
         }
     }
 
@@ -252,9 +250,8 @@ namespace Kernel
     {
         return InfectionVector::CreateInfection(this, _suid);
     }
-    
-    float 
-    IndividualHumanVector::GetRelativeBitingRate(void) const
+
+    float IndividualHumanVector::GetRelativeBitingRate(void) const
     {
         release_assert( vector_susceptibility );
         return vector_susceptibility->GetRelativeBitingRate();

@@ -14,7 +14,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    struct ITBDrugEffectsApply;
+    struct ITBInterventionsContainer;
 
     class AntiTBDrug : public GenericDrug
     {
@@ -52,7 +52,7 @@ namespace Kernel
         float TB_drug_resistance_rate;
         float TB_drug_relapse_rate;
         float TB_drug_mortality_rate;
-        ITBDrugEffectsApply * itbda;
+        ITBInterventionsContainer* itbda;
 
         virtual void Expire() override;
 

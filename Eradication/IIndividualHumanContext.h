@@ -25,6 +25,7 @@ namespace Kernel
     struct IIndividualHumanSTI;
     struct IIndividualHumanHIV;
     struct IIndividualHumanTB;
+    class  IIndividualHumanCoInfection;
     struct IMalariaHumanContext;
     class  IIndividualHumanPolio;
     class  IIndividualHumanTyphoid;
@@ -45,6 +46,7 @@ namespace Kernel
         virtual IIndividualHumanSTI*                   GetIndividualSTI()                                                = 0;
         virtual IIndividualHumanHIV*                   GetIndividualHIV()                                                = 0;
         virtual IIndividualHumanTB*                    GetIndividualTB()                                                 = 0;
+        virtual IIndividualHumanCoInfection*           GetIndividualCoInf()                                              = 0;
         virtual IMalariaHumanContext*                  GetIndividualMalaria()                                            = 0;
         virtual IIndividualHumanPolio*                 GetIndividualPolio()                                              = 0;
         virtual IIndividualHumanTyphoid*               GetIndividualTyphoid()                                            = 0;

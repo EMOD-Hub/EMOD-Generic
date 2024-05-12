@@ -58,7 +58,7 @@ namespace Kernel
         // cumulative exposure by pool stored along with randomly selected strain from each pool + total exposure
         std::vector<strain_exposure_t>  m_strain_exposure; // cumulative strain exposure is sorted for fast weighted random strain selection (although now it is only indoor+outdoor)
         float m_total_exposure;
-        IVectorSusceptibilityContext * vector_susceptibility;
+        ISusceptibilityVector* vector_susceptibility;
         VectorInterventionsContainer * vector_interventions; // cache this so we don't have to QI for it all the time. It won't change over time, but careful with malaria sims
 
         // TODO change double to float

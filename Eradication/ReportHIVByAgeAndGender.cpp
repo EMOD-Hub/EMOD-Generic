@@ -656,26 +656,13 @@ namespace Kernel
     {
         LOG_DEBUG_F( "%s: do_report = %d\n", __FUNCTION__, do_report );
 
-        IIndividualHumanHIV* hiv_individual = nullptr;
-        if( individual->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&hiv_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualHIV", "IndividualHuman" );
-        }
+        IIndividualHumanSTI* sti_individual = individual->GetIndividualContext()->GetIndividualSTI();
+        release_assert(sti_individual);
 
-        IIndividualHumanSTI* sti_individual = NULL;
-        if( individual->QueryInterface( GET_IID( IIndividualHumanSTI ), (void**)&sti_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualSTI", "IndividualHuman" );
-        }
+        IIndividualHumanHIV* hiv_individual = individual->GetIndividualContext()->GetIndividualHIV();
+        release_assert(hiv_individual);
 
-        IHIVMedicalHistory * med_parent = nullptr;
-        if ( individual->GetInterventionsContext()->QueryInterface(GET_IID(IHIVMedicalHistory), (void**)&med_parent) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                           "individual->GetInterventionsContext()",
-                                           "IHIVMedicalHistory",
-                                           "IIndividualHumanInterventionsContext" );
-        }
+        IHIVMedicalHistory* med_parent = hiv_individual->GetHIVInterventionsContainer()->GetHIVMedicalHistory();
 
         float mc_weight = individual->GetMonteCarloWeight();
 
@@ -749,12 +736,8 @@ namespace Kernel
             if( relationship->GetState() == RelationshipState::NORMAL )
             {
                 IIndividualHumanSTI* sti_partner = relationship->GetPartner( sti_individual );
-
-                IIndividualHumanHIV* hiv_partner = nullptr;
-                if( sti_partner->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&hiv_partner ) != s_OK )
-                {
-                    throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "sti_partner", "IIndividualHIV", "IndividualHuman" );
-                }
+                IIndividualHumanHIV* hiv_partner = sti_partner->GetEventContext()->GetIndividual()->GetIndividualContext()->GetIndividualHIV();
+                release_assert(hiv_partner);
 
                 data.num_relationships_by_type[ rel_type ] += mc_weight;
                 if( hiv_individual->HasHIV() == hiv_partner->HasHIV() )
@@ -856,11 +839,7 @@ namespace Kernel
             return;
         }
 
-        IIndividualHumanEventContext* p_transmitter_context = nullptr;
-        if (p_transmitter->QueryInterface(GET_IID(IIndividualHumanEventContext), (void**)&p_transmitter_context) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "p_transmitter", "IIndividualHumanEventContext", "IIndividualHumanSTI" );
-        }
+        IIndividualHumanEventContext* p_transmitter_context = p_transmitter->GetEventContext();
 
         uint64_t map_key = GetDataMapKey( p_transmitter_context );
         if( data_map.count( map_key ) == 0 )
@@ -874,17 +853,11 @@ namespace Kernel
 
     uint64_t ReportHIVByAgeAndGender::GetDataMapKey( IIndividualHumanEventContext* context )
     {
-        IIndividualHumanSTI* sti_individual = NULL;
-        if( context->QueryInterface( GET_IID( IIndividualHumanSTI ), (void**)&sti_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IIndividualSTI", "IndividualHuman" );
-        }
+        IIndividualHumanSTI* sti_individual = context->GetIndividual()->GetIndividualContext()->GetIndividualSTI();
+        release_assert(sti_individual);
 
-        IIndividualHumanHIV* hiv_individual = NULL;
-        if( context->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&hiv_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IIndividualHIV", "IndividualHuman" );
-        }
+        IIndividualHumanHIV* hiv_individual = context->GetIndividual()->GetIndividualContext()->GetIndividualHIV();
+        release_assert(hiv_individual);
 
         int index_node   = context->GetNodeEventContext()->GetId().data;
         int index_age    = (dim_age_bins.size() > 0) ? ReportUtilities::GetAgeBin( context->GetAge(), dim_age_bins ) : 0;

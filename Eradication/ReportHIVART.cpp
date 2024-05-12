@@ -58,26 +58,17 @@ namespace Kernel
         return header.str();
     }
 
-    bool ReportHIVART::notifyOnEvent( IIndividualHumanEventContext *context, const EventTrigger::Enum& trigger )
+    bool ReportHIVART::notifyOnEvent( IIndividualHumanEventContext* context, const EventTrigger::Enum& trigger )
     {
-        /*IIndividualHumanHIV * iindividual_hiv = nullptr;
-        if (s_OK != context->QueryInterface(GET_IID(IIndividualHumanHIV), (void**)&iindividual_hiv) )
-        {
-            throw QueryInterfaceException(__FILE__, __LINE__, __FUNCTION__, "context", "IIndividualHumanHIV", "IIndividualHumanEventContext");
-        }*/
-
-        IHIVMedicalHistory * med_parent = nullptr;
-        if (context->GetInterventionsContext()->QueryInterface(GET_IID(IHIVMedicalHistory), (void**)&med_parent) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IHIVMedicalHistory", "IIndividualHumanContext" );
-        }
+        IHIVInterventionsContainer* p_hiv_container = context->GetInterventionsContext()->GetContainerHIV();
+        release_assert(p_hiv_container);
+        IHIVMedicalHistory* med_parent = p_hiv_container->GetHIVMedicalHistory();
 
         float            sim_year = simulation->GetSimulationTime().Year();
         ExternalNodeId_t node_id  = context->GetNodeEventContext()->GetNodeContext()->GetExternalID();
         int              id       = context->GetSuid().data;
         float            age      = context->GetAge();
         bool             gender   = (context->GetGender() == Gender::MALE) ? 0 : 1 ;
-        //float            cd4count = iindividual_hiv->GetHIVSusceptibility()->GetCD4count();
         float            cd4count = med_parent->LastRecordedCD4();
 
         bool startingART = 1;

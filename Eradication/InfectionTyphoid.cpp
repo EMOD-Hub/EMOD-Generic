@@ -192,10 +192,9 @@ namespace Kernel
 
     void InfectionTyphoid::handlePrepatentExpiry()
     {
-        auto age = dynamic_cast<IIndividualHuman*>(parent)->GetAge() / DAYSPERYEAR;
-        auto sex = dynamic_cast<IIndividualHuman*>(parent)->GetGender();
+        auto age = parent->GetAge() / DAYSPERYEAR;
         auto mort = parent->GetVaccineContext()->GetInterventionReducedMortality(m_source_route);
-        //LOG_DEBUG_F("hasclin subclinical dur %d, pre %d\n", _subclinical_duration, prepatent_timer); 
+
         prepatent_timer=UNINIT_TIMER; 
         LOG_DEBUG_F( "Deciding post-prepatent tx using typhoid_symptomatic_fraction=%f.\n", IndividualHumanTyphoidConfig::typhoid_symptomatic_fraction );
         float mu = 0.0f;
@@ -215,7 +214,6 @@ namespace Kernel
 
             acute_timer = int(_acute_duration);
             treatment_timer = int(treatment_day);
-            //LOG_INFO_F("treatment timer=%i\n", treatment_timer);
 
             state_to_report=ACUTE_STATE_LABEL;
         }
@@ -237,8 +235,8 @@ namespace Kernel
 
     void InfectionTyphoid::handleAcuteExpiry()
     {
-        auto age = dynamic_cast<IIndividualHuman*>(parent)->GetAge() / DAYSPERYEAR;
-        auto sex = dynamic_cast<IIndividualHuman*>(parent)->GetGender();
+        auto age = parent->GetAge() / DAYSPERYEAR;
+        auto sex = parent->GetIndividual()->GetGender();
 
         if( parent->GetRng()->SmartDraw( CFRU ) && (treatment_multiplier < 1) ) // untreated at end of period has higher fatality rate
         {
@@ -291,8 +289,8 @@ namespace Kernel
 
     void InfectionTyphoid::handleSubclinicalExpiry()
     {
-        auto age = dynamic_cast<IIndividualHuman*>(parent)->GetAge() / DAYSPERYEAR;
-        auto sex = dynamic_cast<IIndividualHuman*>(parent)->GetGender();
+        auto age = parent->GetAge() / DAYSPERYEAR;
+        auto sex = parent->GetIndividual()->GetGender();
 
         //LOG_INFO_F("SOMEONE FINSIHED SUB %d, %d\n", _subclinical_duration, subclinical_timer);
         subclinical_timer = UNINIT_TIMER;
@@ -335,7 +333,7 @@ namespace Kernel
 
     void InfectionTyphoid::Update(float dt, ISusceptibilityContext* _immunity)
     {
-        auto age = dynamic_cast<IIndividualHuman*>(parent)->GetAge() / DAYSPERYEAR;
+        auto age = parent->GetAge() / DAYSPERYEAR;
         LOG_DEBUG_F("%d age %f INFECTED! prepat=%d,acute=%d,subclin=%d,chronic=%d\n", parent->GetSuid().data, age, (int) prepatent_timer, acute_timer, subclinical_timer,chronic_timer);
         /*if( prepatent_timer.IsDead() == false )
         {

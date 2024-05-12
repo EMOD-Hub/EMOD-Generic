@@ -89,12 +89,6 @@ namespace Kernel
     {
         auto tempind = NodeAirborne::addNewIndividual(monte_carlo_weight, initial_age, gender, initial_infection_count, immparam, riskparam);
 
-        IIndividualHumanTB * tbhivp = NULL;
-        if (s_OK != tempind->QueryInterface(GET_IID(IIndividualHumanTB), (void **) &tbhivp ) )
-        {
-            throw QueryInterfaceException(__FILE__ ,__LINE__, __FUNCTION__, "tempind", "IndividualHuman", "IndividualHumanTB");
-        }
-
         return tempind;
     }
 
@@ -107,9 +101,8 @@ namespace Kernel
             {
                 throw QueryInterfaceException(__FILE__, __LINE__, __FUNCTION__, "context", "IIndividualHumanCoInfection", "IIndividualHumanEventContext");
             }
-            
-            // now adjust the CD4 trajectories and timers accordingly for the latently infected
 
+            // now adjust the CD4 trajectories and timers accordingly for the latently infected
             if (p_human_co->HasLatentInfection())
             {
                 // order of logging matters (for SFTs). Keep this before function call.

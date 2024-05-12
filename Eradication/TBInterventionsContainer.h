@@ -37,15 +37,6 @@ namespace Kernel
         virtual ~ITBDrugEffects() { }
     };
 
-    struct ITBDrugEffectsApply : public ISupports
-    {
-        virtual void ApplyDrugVaccineReducedAcquireEffect( float rate ) = 0;
-        virtual void ApplyDrugVaccineReducedTransmitEffect( float rate ) = 0;
-        virtual void ApplyTBDrugEffects( TBDrugEffects_t effects, TBDrugType::Enum drug_type ) = 0;
-        virtual void UpdateTreatmentStatus( const EventTrigger::Enum& new_treatment_status ) = 0;
-        virtual ~ITBDrugEffectsApply() { }
-    };
-
     struct ITBInterventionsContainer : public ISupports
     {
         virtual int GetNumTBDrugsActive() = 0;
@@ -54,11 +45,15 @@ namespace Kernel
         virtual bool GetTxEverRelapsedStatus() const = 0;
 
         virtual void UpdateHealthSeekingBehaviors( float new_probability_of_seeking) = 0;
+
+        virtual void ApplyDrugVaccineReducedAcquireEffect( float rate ) = 0;
+        virtual void ApplyDrugVaccineReducedTransmitEffect( float rate ) = 0;
+        virtual void ApplyTBDrugEffects( TBDrugEffects_t effects, TBDrugType::Enum drug_type ) = 0;
+        virtual void UpdateTreatmentStatus( const EventTrigger::Enum& new_treatment_status ) = 0;
     };
 
     class TBInterventionsContainer : public InterventionsContainer,
         public ITBDrugEffects,
-        public ITBDrugEffectsApply,
         public ITBInterventionsContainer
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
@@ -72,17 +67,16 @@ namespace Kernel
         // ISupports
         virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
 
-        // ITBDrugEffectsApply
-        virtual void ApplyDrugVaccineReducedAcquireEffect( float rate ) override;
-        virtual void ApplyDrugVaccineReducedTransmitEffect( float rate ) override;
-        virtual void ApplyTBDrugEffects( TBDrugEffects_t effects, TBDrugType::Enum drug_type ) override;
-        virtual void UpdateTreatmentStatus( const EventTrigger::Enum& new_treatment_status ) override;
-        
         //functions in the ITBInterventionsContainer
         virtual int GetNumTBDrugsActive() override;
         virtual bool GetTxNaiveStatus() const override;
         virtual bool GetTxFailedStatus() const override;
         virtual bool GetTxEverRelapsedStatus() const override;
+
+        virtual void ApplyDrugVaccineReducedAcquireEffect( float rate ) override;
+        virtual void ApplyDrugVaccineReducedTransmitEffect( float rate ) override;
+        virtual void ApplyTBDrugEffects( TBDrugEffects_t effects, TBDrugType::Enum drug_type ) override;
+        virtual void UpdateTreatmentStatus( const EventTrigger::Enum& new_treatment_status ) override;
 
         //functions in IHealthSeekingBehaviorUpdateEffectsApply
         virtual void UpdateHealthSeekingBehaviors(float new_probability_of_seeking) override;
@@ -91,8 +85,6 @@ namespace Kernel
 
     protected:
         virtual TBDrugEffectsMap_t GetDrugEffectsMap() override;
-
-        //virtual void PropagateContextToDependents(); // pass context to interventions if they need it
 
         TBDrugEffectsMap_t TB_drug_effects;
 

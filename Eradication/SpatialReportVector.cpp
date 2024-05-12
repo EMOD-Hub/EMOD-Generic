@@ -33,18 +33,17 @@ GET_SCHEMA_STATIC_WRAPPER_IMPL(SpatialReportVector,SpatialReportVector)
 /////////////////////////
 // Initialization methods
 /////////////////////////
-IReport*
-SpatialReportVector::CreateReport()
+IReport* SpatialReportVector::CreateReport()
 {
     return new SpatialReportVector();
 }
 
 SpatialReportVector::SpatialReportVector()
-: SpatialReport()
-, adult_vectors_info(       "Adult_Vectors",                "")
-, infectious_vectors_info(  "Infectious_Vectors",           "infectious fraction")
-, daily_eir_info(           "Daily_EIR",                    "infectious bites/day")
-, daily_hbr_info(           "Daily_Bites_Per_Human",        "bites/day")
+    : SpatialReport()
+    , adult_vectors_info(       "Adult_Vectors",                "")
+    , infectious_vectors_info(  "Infectious_Vectors",           "infectious fraction")
+    , daily_eir_info(           "Daily_EIR",                    "infectious bites/day")
+    , daily_hbr_info(           "Daily_Bites_Per_Human",        "bites/day")
 {
 }
 
@@ -70,10 +69,7 @@ void SpatialReportVector::populateChannelInfos(tChanInfoMap &channel_infos)
     channel_infos[ daily_hbr_info.name ] = &daily_hbr_info;
 }
 
-void
-SpatialReportVector::LogNodeData(
-    Kernel::INodeContext * pNC
-)
+void SpatialReportVector::LogNodeData( Kernel::INodeContext* pNC )
 {
     SpatialReport::LogNodeData(pNC);
 
@@ -83,11 +79,8 @@ SpatialReportVector::LogNodeData(
     float daily_hbr          = 0;
 
     // We want to get the vector populations from our Node pointer. What a perfect use case for QI-ing...
-    INodeVector* pNV = nullptr;
-    if( pNC->QueryInterface( GET_IID( INodeVector ), (void**) & pNV ) != s_OK )
-    {
-        throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodeVector", "INodeContext" );
-    }
+    INodeVector* pNV = pNC->GetNodeVector();
+    release_assert(pNV);
 
     const VectorPopulationReportingList_t& vectorPopulations = pNV->GetVectorPopulationReporting();
 
@@ -125,15 +118,5 @@ void SpatialReportVector::postProcessAccumulatedData()
         normalizeChannel(infectious_vectors_info.name, adult_vectors_info.name);
     }
 }
-
-#if 0
-template<class Archive>
-void serialize(Archive &ar, SpatialReport& report, const unsigned int v)
-{
-    ar & report.timesteps_reduced;
-    ar & report.channelDataMap;
-    ar & report._nrmSize;
-}
-#endif
 
 }

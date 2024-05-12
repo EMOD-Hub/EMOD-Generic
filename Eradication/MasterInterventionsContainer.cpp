@@ -40,16 +40,6 @@ namespace Kernel
                 }
             }
         }
-        else if (iid == GET_IID(ITBDrugEffectsApply))
-        {
-            for (auto container : InterventionsContainerList)
-            {
-                if (container->QueryInterface(GET_IID(ITBDrugEffectsApply), (void**)&foundInterface ) == s_OK)
-                {
-                    break; 
-                }
-            }
-        }    
         else if (iid == GET_IID(IHIVDrugEffectsApply))
         {
             for (auto container : InterventionsContainerList)
@@ -150,8 +140,8 @@ namespace Kernel
         for (auto container : InterventionsContainerList)
         {
             //first check if it is TB or HIV container, only use the TB container for base class functions
-            ISupports* tempInterface;
-            if (container->QueryInterface(GET_IID(ITBInterventionsContainer), (void**)&tempInterface ) == s_OK)
+            ITBInterventionsContainer* pTBIC = container->GetContainerTB();
+            if (pTBIC)
             {
                 return container->GetInterventionsByType(type_name);
             }
@@ -243,8 +233,8 @@ namespace Kernel
         for (auto container : InterventionsContainerList)
         {
             //first check if it is TB or HIV container, only use the TB container for base class functions
-            ISupports* tempInterface;
-            if (container->QueryInterface(GET_IID(ITBInterventionsContainer), (void**)&tempInterface ) == s_OK)
+            ITBInterventionsContainer* pTBIC = container->GetContainerTB();
+            if (pTBIC)
             {
                 return container->GetInterventionReducedAcquire(tx_route);
             }
@@ -258,8 +248,8 @@ namespace Kernel
         for (auto container : InterventionsContainerList)
         {
             //first check if it is TB or HIV container, only use the TB container for base class functions
-            ISupports* tempInterface;
-            if (container->QueryInterface(GET_IID(ITBInterventionsContainer), (void**)&tempInterface ) == s_OK)
+            ITBInterventionsContainer* pTBIC = container->GetContainerTB();
+            if (pTBIC)
             {
                 return container->GetInterventionReducedTransmit(tx_route);
             }
@@ -272,8 +262,9 @@ namespace Kernel
     {
         for (auto container : InterventionsContainerList)
         {
-            ISupports* tempInterface;
-            if (container->QueryInterface(GET_IID(ITBInterventionsContainer), (void**)&tempInterface ) == s_OK)
+            //first check if it is TB or HIV container, only use the TB container for base class functions
+            ITBInterventionsContainer* pTBIC = container->GetContainerTB();
+            if (pTBIC)
             {
                 return container->GetInterventionReducedMortality(tx_route);
             }
@@ -282,29 +273,15 @@ namespace Kernel
         return 0.0f;
     }
 
-    bool MasterInterventionsContainer::GiveIntervention( IDistributableIntervention * pIV )
+    bool MasterInterventionsContainer::GiveIntervention( IDistributableIntervention* pIV )
     {
-        IHIVIntervention* phivde;
-        if ( pIV->QueryInterface(GET_IID(IHIVIntervention), (void**)&phivde ) == s_OK)
+        for (auto container : InterventionsContainerList)
         {
-            for (auto container : InterventionsContainerList)
+            //first check if it is TB or HIV container, only use the TB container for base class functions
+            ITBInterventionsContainer* pTBIC = container->GetContainerTB();
+            if (pTBIC)
             {
-                IHIVInterventionsContainer* tempInterface = container->GetContainerHIV();
-                if(tempInterface)
-                {
-                    return container->GiveIntervention(pIV);
-                }
-            }
-        }
-        else  //default is to go to TBInterventionConsumer 
-        {
-            for (auto container : InterventionsContainerList)
-            {
-                ISupports* tempInterface;
-                if (container->QueryInterface(GET_IID(ITBInterventionsContainer), (void**)&tempInterface ) == s_OK)
-                {
-                    return container->GiveIntervention(pIV);
-                }
+                return container->GiveIntervention(pIV);
             }
         }
 

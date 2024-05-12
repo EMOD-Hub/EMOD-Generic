@@ -75,18 +75,6 @@ namespace Kernel
         Node::resetNodeStateCounters();
     }
 
-    void NodePy::updateNodeStateCounters(IndividualHuman *ih)
-    {
-        float mc_weight                = float(ih->GetMonteCarloWeight());
-        IIndividualHumanPy *tempind2 = NULL;
-        if( ih->QueryInterface( GET_IID( IIndividualHumanPy ), (void**)&tempind2 ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "tempind2", "IndividualHumanPy", "IndividualHuman" );
-        }
-
-        Node::updateNodeStateCounters(ih);
-    }
-
     IndividualHuman* NodePy::createHuman(suids::suid suid, float monte_carlo_weight, float initial_age, int gender)
     {
         return IndividualHumanPy::CreateHuman(this, suid, monte_carlo_weight, initial_age, gender);

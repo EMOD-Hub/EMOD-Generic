@@ -59,6 +59,7 @@ namespace Kernel
         virtual IInterventionConsumer*        GetInterventionConsumer()  override;
         virtual ISTIInterventionsContainer*   GetContainerSTI()          override { return nullptr; }
         virtual IHIVInterventionsContainer*   GetContainerHIV()          override { return nullptr; }
+        virtual IPolioDrugEffects*            GetContainerPolio()        override { return nullptr; }
         virtual ITBInterventionsContainer*    GetContainerTB()           override { return nullptr; }
         virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()      override { return nullptr; }
         virtual IVectorInterventionsEffects*  GetContainerVector()       override { return nullptr; }

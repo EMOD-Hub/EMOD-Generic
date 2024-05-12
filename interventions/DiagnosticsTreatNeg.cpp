@@ -146,12 +146,8 @@ namespace Kernel
         //This test is the same as smear, but if you are smear neg you can get a different intervention
 
         // Apply diagnostic test with given specificity/sensitivity
-        IIndividualHumanTB* tb_ind = nullptr;
-        if(parent->QueryInterface( GET_IID( IIndividualHumanTB ), (void**)&tb_ind ) != s_OK)
-        {
-            LOG_WARN("DiagnosticTreatNeg works with TB sims ONLY");
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanTB", "IIndividualHuman" );
-        }
+        IIndividualHumanTB* tb_ind = parent->GetIndividualTB();
+        release_assert(tb_ind);
 
         bool activeinf = tb_ind->HasActiveInfection() && !tb_ind->HasActivePresymptomaticInfection();
 
@@ -183,17 +179,8 @@ namespace Kernel
         {
             // Distribute the test-negative intervention
             IDistributableIntervention* di = InterventionFactory::getInstance()->CreateIntervention( negative_diagnosis_config._json, "", "campaign");
-
-            ICampaignCostObserver* pICCO;
-            // Now make sure cost of the test-positive intervention is reported back to node
-            if (s_OK == parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&pICCO) )
-            {
-                di->Distribute( parent->GetInterventionsContext(), pICCO );
-            }
-            else
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent->GetEventContext()->GetNodeEventContext()", "ICampaignCostObserver", "INodeEventContext" );
-            }
+            ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
+            di->Distribute( parent->GetInterventionsContext(), pICCO );
         }
         else
         {
@@ -215,17 +202,8 @@ namespace Kernel
         {
             // Distribute the defaulters intervention, right away (do not use the days_to_diagnosis
             IDistributableIntervention* di = InterventionFactory::getInstance()->CreateIntervention( defaulters_config._json, "", "campaign");
-
-            ICampaignCostObserver* pICCO;
-            // Now make sure cost of the test-positive intervention is reported back to node
-            if (s_OK == parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&pICCO) )
-            {
-                di->Distribute( parent->GetInterventionsContext(), pICCO );
-            }
-            else
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent->GetEventContext()->GetNodeEventContext()", "ICampaignCostObserver", "INodeEventContext" );
-            }
+            ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
+            di->Distribute( parent->GetInterventionsContext(), pICCO );
         }
         else
         {

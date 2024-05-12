@@ -316,46 +316,22 @@ namespace Kernel {
         //release_assert(pRel);
         LOG_DEBUG_F( "Depositing contagion into %d relationship %d (index %d).\n", pRel->GetType(), poolIndexToRelationshipReverseMap[ poolIndex ], poolIndex );
 
-        const tRelationshipMembers& members = pRel->GetMembers();
-        auto male_partner = *(members.begin());
+        auto male_partner = pRel->MalePartner();
         release_assert( male_partner );
-        auto female_partner = *(members.rbegin());
+        auto female_partner = pRel->FemalePartner();
         release_assert( female_partner );
 
-        IIndividualHumanContext* human1 = nullptr;
-        IIndividualHumanContext* human2 = nullptr;
+        IIndividualHumanEventContext* humanEvent1 = male_partner->GetEventContext();
+        IIndividualHumanEventContext* humanEvent2 = female_partner->GetEventContext();
 
-        if (male_partner->QueryInterface(GET_IID(IIndividualHumanContext), (void**)&human1) != s_OK) {
-            LOG_ERR("Couldn't get IIndividualHumanContext pointer for male_partner.");
-            return;
-        }
-
-        if (female_partner->QueryInterface(GET_IID(IIndividualHumanContext), (void**)&human2) != s_OK) {
-            LOG_ERR("Couldn't get IIndividualHumanContext pointer for female_partner.");
-            return;
-        }
-
-        IIndividualHumanEventContext* humanEvent1 = nullptr;
-        IIndividualHumanEventContext* humanEvent2 = nullptr;
-
-        if (male_partner->QueryInterface(GET_IID(IIndividualHumanEventContext), (void**)&humanEvent1) != s_OK) {
-            LOG_ERR("Couldn't get IIndividualHumanEventContext pointer for male_partner.");
-            return;
-        }
-
-        if (female_partner->QueryInterface(GET_IID(IIndividualHumanEventContext), (void**)&humanEvent2) != s_OK) {
-            LOG_ERR("Couldn't get IIndividualHumanEventContext pointer for female_partner.");
-            return;
-        }
-
-        LOG_DEBUG_F( "Relationship has individuals %lu (inf=%d) and %lu (inf=%d)\n", human1->GetSuid().data, humanEvent1->IsInfected(), human2->GetSuid().data, humanEvent2->IsInfected() );
+        LOG_DEBUG_F( "Relationship has individuals %lu (inf=%d) and %lu (inf=%d)\n", humanEvent1->GetSuid().data, humanEvent1->IsInfected(), humanEvent2->GetSuid().data, humanEvent2->IsInfected() );
         if( humanEvent1->IsInfected() && humanEvent2->IsInfected() )
         {
             LOG_DEBUG_F( "Concordant infected couple; stop wasting time on them.\n" );
             return;
         }
 
-        unsigned int depositor = humanEvent1->IsInfected() ? human1->GetSuid().data : human2->GetSuid().data;
+        unsigned int depositor = humanEvent1->IsInfected() ? humanEvent1->GetSuid().data : humanEvent2->GetSuid().data;
 
         act_prob_t new_ca_entry;
         new_ca_entry.prob_per_act = prob;
@@ -366,23 +342,6 @@ namespace Kernel {
         // TBD: this should probably be cleared somewhere
         LOG_DEBUG_F( "Depositing prob %f into shedContagion at index %d for vector size %d and 'depositor' %d.\n",
                      new_ca_entry.prob_per_act, poolIndex, shedContagion[poolIndex].size(), depositor );
-/*
-        for( auto &act_prob_i : act_prob_vec )
-        {
-            float approx_amount = act_prob_i.num_acts * act_prob_i.prob_per_act;
-            LOG_DEBUG_F( "amount = %f\n", approx_amount);   // Approximate amount for logging
-
-            if (approx_amount >0)
-            {
-                LogActivity( 0x000ADDED, depositor, poolIndex, approx_amount );
-
-                shedContagion[poolIndex].push_back( act_prob_i );
-                
-                LOG_DEBUG_F("deposited %f amount of contagion to pool %d, now = %f\n", approx_amount, poolIndex, shedContagion[ poolIndex ] );
-            }
-            LOG_DEBUG_F( "shedContagion.size = %d\n", shedContagion.size() );
-        }
-*/
     }
 
     void 

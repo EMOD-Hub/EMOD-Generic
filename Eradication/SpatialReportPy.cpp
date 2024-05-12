@@ -35,14 +35,13 @@ GET_SCHEMA_STATIC_WRAPPER_IMPL(SpatialReportPy,SpatialReportPy)
 /////////////////////////
 // Initialization methods
 /////////////////////////
-IReport*
-SpatialReportPy::CreateReport()
+IReport* SpatialReportPy::CreateReport()
 {
     return new SpatialReportPy();
 }
 
 SpatialReportPy::SpatialReportPy()
-: SpatialReport()
+    : SpatialReport()
 {
 }
 
@@ -61,24 +60,12 @@ void SpatialReportPy::LogIndividualData( IIndividualHuman * individual )
     NewInfectionState::_enum nis = individual->GetNewInfectionState();
 }
 
-void
-SpatialReportPy::LogNodeData(
-    INodeContext * pNC
-)
+void SpatialReportPy::LogNodeData( INodeContext* pNC )
 {
     SpatialReport::LogNodeData(pNC);
-
-    //int nodeid = pNC->GetExternalID();
-
-    //const Kernel::INodePy * pPyNode = NULL;
-    //if( pNC->QueryInterface( GET_IID( Kernel::INodePy), (void**) &pPyNode ) != Kernel::s_OK )
-    //{
-    //    throw Kernel::QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodePy", "INodeContext" );
-    //}
 }
 
-void
-SpatialReportPy::postProcessAccumulatedData()
+void SpatialReportPy::postProcessAccumulatedData()
 {
     SpatialReport::postProcessAccumulatedData();
 

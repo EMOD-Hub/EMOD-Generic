@@ -28,11 +28,11 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(HIVSimpleDiagnostic)
 
     HIVSimpleDiagnostic::HIVSimpleDiagnostic()
-    : SimpleDiagnostic() // true implies only support events in SimpleDiagnostic
-    , firstUpdate(true)
-    , result_of_positive_test(false)
-    , original_days_to_diagnosis(0.0)
-    , negative_diagnosis_event()
+        : SimpleDiagnostic() // true implies only support events in SimpleDiagnostic
+        , firstUpdate(true)
+        , result_of_positive_test(false)
+        , original_days_to_diagnosis(0.0)
+        , negative_diagnosis_event()
     {
         initSimTypes(2, "HIV_SIM", "TBHIV_SIM");
 
@@ -42,7 +42,7 @@ namespace Kernel
     }
 
     HIVSimpleDiagnostic::HIVSimpleDiagnostic( const HIVSimpleDiagnostic& master )
-    : SimpleDiagnostic( master )
+        : SimpleDiagnostic( master )
     {
         firstUpdate = master.firstUpdate;
         result_of_positive_test = master.result_of_positive_test;
@@ -68,19 +68,13 @@ namespace Kernel
         return ret ;
     }
 
-    EventOrConfig::Enum
-    HIVSimpleDiagnostic::getEventOrConfig(
-        const Configuration * inputJson
-    )
+    EventOrConfig::Enum HIVSimpleDiagnostic::getEventOrConfig( const Configuration* inputJson )
     {
         // For those premature optimizers out there, this function is expected to get more interesting in the future.
         return EventOrConfig::Event;
     }
 
-    bool HIVSimpleDiagnostic::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * const pICCO
-    )
+    bool HIVSimpleDiagnostic::Distribute( IIndividualHumanInterventionsContext* context, ICampaignCostObserver* const pICCO )
     {
         parent = context->GetParent();
         LOG_DEBUG_F( "Individual %d is getting tested.\n", parent->GetSuid().data );
@@ -117,8 +111,7 @@ namespace Kernel
         }
     }
 
-    void
-    HIVSimpleDiagnostic::onNegativeTestResult()
+    void HIVSimpleDiagnostic::onNegativeTestResult()
     {
         auto iid = parent->GetSuid().data;
         LOG_DEBUG_F( "Individual %d tested 'negative' in HIVSimpleDiagnostic, receiving actual intervention.\n", iid );
@@ -169,14 +162,9 @@ namespace Kernel
 
     bool HIVSimpleDiagnostic::positiveTestResult()
     {
-
-#ifndef DISABLE_TBHIV    
-        IIndividualHumanHIV* HIVpersonptr = nullptr;
-
-        if (parent->QueryInterface(GET_IID(IIndividualHumanHIV), (void**)&HIVpersonptr) != s_OK)
-        {
-            throw QueryInterfaceException(__FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanHIV", "IIndividualHumanContext");
-        }
+#ifndef DISABLE_TBHIV
+        IIndividualHumanHIV* HIVpersonptr = parent->GetIndividualHIV();
+        release_assert(HIVpersonptr);
 
         // Apply diagnostic test with given specificity/sensitivity
         bool  infected = HIVpersonptr->HasHIV();
@@ -189,7 +177,6 @@ namespace Kernel
         LOG_DEBUG_F( "HIVSimpleDiagnostic is broadcasting +ve event: %s.\n", EventTrigger::pairs::lookup_key( positive_diagnosis_event ).c_str() );
         return SimpleDiagnostic::positiveTestResult();
 #endif
-
     }
 
     REGISTER_SERIALIZABLE(HIVSimpleDiagnostic);

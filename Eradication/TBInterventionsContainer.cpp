@@ -26,7 +26,6 @@ SETUP_LOGGING( "TBInterventionsContainer" )
 namespace Kernel
 {
     BEGIN_QUERY_INTERFACE_DERIVED(TBInterventionsContainer, InterventionsContainer)
-        HANDLE_INTERFACE(ITBDrugEffectsApply)
         HANDLE_INTERFACE(ITBDrugEffects)
         HANDLE_INTERFACE(ITBInterventionsContainer)
     END_QUERY_INTERFACE_DERIVED(TBInterventionsContainer, InterventionsContainer)
@@ -114,11 +113,7 @@ namespace Kernel
         //this function is called when the drug is started and stopped/expires
         
         //first get the pointer to the person, parent is the generic individual
-        IIndividualHumanTB* tb_patient = nullptr;
-        if ( parent->QueryInterface( GET_IID(IIndividualHumanTB), (void**) &tb_patient ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndvidualHumanTB2", "IndividualHuman" );
-        }
+        IIndividualHumanTB* tb_patient = parent->GetIndividualTB();
         LOG_DEBUG_F( "Individual %d disease state is active %d, latent %d, pending relapse %d \n", parent->GetSuid().data,tb_patient->HasActiveInfection(), tb_patient->HasLatentInfection(), tb_patient->HasPendingRelapseInfection() );
         
         IIndividualEventBroadcaster* broadcaster = parent->GetEventContext()->GetNodeEventContext()->GetIndividualEventBroadcaster();

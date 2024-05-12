@@ -34,7 +34,7 @@ namespace Kernel
         DECLARE_QUERY_INTERFACE()
     };
 
-    class SusceptibilityVector : public Susceptibility, public IVectorSusceptibilityContext
+    class SusceptibilityVector : public Susceptibility, public ISusceptibilityVector
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
         DECLARE_QUERY_INTERFACE()
@@ -45,7 +45,8 @@ namespace Kernel
 
         virtual void Update(float dt=0.0) override;
 
-        // IVectorSusceptibilityContext interface
+        virtual ISusceptibilityVector* GetSusceptibilityVector() override;
+
         virtual void  SetRelativeBitingRate( float rate ) override;
         virtual float GetRelativeBitingRate(void) const override;
 

@@ -163,6 +163,7 @@ public:
 
     virtual ISusceptibilityContext* GetSusceptibilityContext() const override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IVaccineConsumer* GetVaccineContext()              const override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual IIndividualHumanCoInfection* GetIndividualCoInf()        override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IIndividualHumanTB* GetIndividualTB()                    override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IIndividualHumanPolio* GetIndividualPolio()              override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IIndividualHumanTyphoid* GetIndividualTyphoid()          override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }

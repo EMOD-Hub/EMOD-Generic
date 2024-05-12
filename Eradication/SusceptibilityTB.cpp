@@ -118,14 +118,11 @@ namespace Kernel
         if (SusceptibilityTBConfig::TB_fast_progressor_fraction_type == TBFastProgressorType::AGE)
         {
             float progression_modifier = 1.0;
-            IIndividualHumanCoInfection* pInCo = nullptr;
+            IIndividualHumanCoInfection* pInCo = parent->GetIndividualCoInf();
 
-            if (s_OK == parent->QueryInterface(GET_IID(IIndividualHumanCoInfection), (void **)&pInCo))
+            if (pInCo && pInCo->HasHIV())
             {
-                if (pInCo->HasHIV())
-                {
-                    progression_modifier = pInCo->GetCD4PrimaryMap(pInCo->GetCD4());
-                }
+                progression_modifier = pInCo->GetCD4PrimaryMap(pInCo->GetCD4());
             }
 
             //Assumes HIV progression has same relative effect on children and adults
@@ -241,18 +238,7 @@ namespace Kernel
         //note this is sort of similar to the m_individual_biting_risk stuff that Edward and I put together for malaria
 
         m_cough_infectiousness = _riskmod;
-
         m_fast_progression_modulator_immmod = _immmod;
-
-        if (SusceptibilityTBConfig::TB_fast_progressor_fraction_type == TBFastProgressorType::POVERTY_SUSCEPTIBILITY_TO_INFECTION || SusceptibilityTBConfig::TB_fast_progressor_fraction_type == TBFastProgressorType::POVERTY_AND_SUSCEPTIBILITY)
-        {
-            IIndividualHumanEventContext * ihec = nullptr;
-            if(parent->QueryInterface( GET_IID( IIndividualHumanEventContext ), (void**)&ihec ) != s_OK)
-            { 
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pIndividual", "IIndividualHumanEventContext", "parent" );
-            }
-            release_assert(ihec);
-        }
     }
 
     SusceptibilityTB::~SusceptibilityTB(void) { }

@@ -25,7 +25,7 @@ namespace Kernel
     struct IMigrationInfoVector;
     class SpatialReportVector;
 
-    class NodeVector : public Node, public IVectorNodeContext, public INodeVector
+    class NodeVector : public Node, public INodeVector
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
         DECLARE_QUERY_INTERFACE()
@@ -41,7 +41,6 @@ namespace Kernel
         // INodeContext methods
         virtual INodeVector*         GetNodeVector() override;
 
-        // IVectorNodeContext methods
         virtual VectorProbabilities* GetVectorLifecycleProbabilities() override;
         virtual IVectorHabitat*      GetVectorHabitatBySpeciesAndType( std::string& species, VectorHabitatType::Enum type, const Configuration* inputJson) override;
         virtual VectorHabitatList_t* GetVectorHabitatsBySpecies( std::string& species ) override;

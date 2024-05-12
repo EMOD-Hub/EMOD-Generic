@@ -189,6 +189,7 @@ namespace Kernel
         //IIndividualHumanContext
         virtual IIndividualHumanTB* GetIndividualTB() override;
         virtual IIndividualHumanHIV* GetIndividualHIV() override;
+        virtual IIndividualHumanCoInfection* GetIndividualCoInf() override;
         virtual float GetNextLatentActivation(float time) const override;
 
         //Hooks for changing infectiousness, activation, mortality based on CD4 count and age (maybe there is a more natural spot for this)

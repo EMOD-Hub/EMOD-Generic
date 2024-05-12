@@ -26,18 +26,18 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(HIVMuxer)
 
     HIVMuxer::HIVMuxer()
-    : HIVDelayedIntervention()
-    , max_entries(1)
-    , muxer_name("")
-    , firstUpdate(true)
+        : HIVDelayedIntervention()
+        , max_entries(1)
+        , muxer_name("")
+        , firstUpdate(true)
     {
     }
 
     HIVMuxer::HIVMuxer( const HIVMuxer &master )
-    : HIVDelayedIntervention( master )
-    , max_entries(master.max_entries)
-    , muxer_name(master.muxer_name)
-    , firstUpdate(master.firstUpdate)
+        : HIVDelayedIntervention( master )
+        , max_entries(master.max_entries)
+        , muxer_name(master.muxer_name)
+        , firstUpdate(master.firstUpdate)
     {
     }
 
@@ -91,21 +91,18 @@ namespace Kernel
         }
     }
 
-    bool HIVMuxer::Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pICCO )
+    bool HIVMuxer::Distribute(IIndividualHumanInterventionsContext* context, ICampaignCostObserver* const pICCO )
     {
         bool distributed = HIVDelayedIntervention::Distribute(context, pICCO);
         if( distributed )
         {
-            IHIVCampaignSemaphores *ihcs = nullptr;
-            if ( s_OK != context->QueryInterface(GET_IID(IHIVCampaignSemaphores), (void **)&ihcs) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IHIVCampaignSemaphores", "IIndividualHumanInterventionsContext" );
-            }
+            IHIVInterventionsContainer* ihiv_iv = context->GetContainerHIV();
+            release_assert(ihiv_iv);
 
             // initialize the semaphore if not already done
-            if (!ihcs->SemaphoreExists(muxer_name))
+            if (!ihiv_iv->SemaphoreExists(muxer_name))
             {
-                ihcs->SemaphoreInit(muxer_name, 0);
+                ihiv_iv->SemaphoreInit(muxer_name, 0);
             }
         }
         return distributed;
@@ -113,17 +110,12 @@ namespace Kernel
 
     void HIVMuxer::Update(float dt)
     {
-        IHIVCampaignSemaphores *ihcs = nullptr;
-        if ( s_OK != parent->GetInterventionsContext()->QueryInterface(GET_IID(IHIVCampaignSemaphores), (void **)&ihcs) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent->GetInterventionsContext()", 
-                                                                             "IHIVCampaignSemaphores", 
-                                                                             "IIndividualHumanInterventionsContext" );
-        }
+        IHIVInterventionsContainer* ihiv_iv = parent->GetInterventionsContext()->GetContainerHIV();
+        release_assert(ihiv_iv);
 
         if (firstUpdate)
         {
-            int num_entries = ihcs->SemaphoreIncrement(muxer_name);
+            int num_entries = ihiv_iv->SemaphoreIncrement(muxer_name);
             expired = num_entries > max_entries;
             LOG_DEBUG_F("Individual %d now has %d instances of %s (allows %d).  expired == %d.\n", 
                          parent->GetSuid().data, num_entries, muxer_name.c_str(), max_entries, expired);
@@ -137,7 +129,7 @@ namespace Kernel
 
         if (expired)
         {
-            if (!ihcs->SemaphoreDecrement(muxer_name))
+            if (!ihiv_iv->SemaphoreDecrement(muxer_name))
             {
                 LOG_WARN_F("Individual %d has freed more instances of %s than they created.\n", parent->GetSuid().data, muxer_name.c_str());
             }

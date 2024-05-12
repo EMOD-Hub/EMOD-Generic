@@ -268,20 +268,13 @@ namespace Kernel
         return pIndoorKilling;
     }
 
-    void NodeVectorEventContextHost::ReleaseMosquitoes(
-        NonNegativeFloat cost,
-        const std::string& species,
-        const VectorMatingStructure& genetics,
-        uint32_t number
-    )
+    void NodeVectorEventContextHost::ReleaseMosquitoes( NonNegativeFloat cost, const std::string& species, const VectorMatingStructure& genetics, uint32_t number )
     {
         IncrementCampaignCost( cost );
-        INodeVector * pNV = nullptr;
-        if( node->QueryInterface( GET_IID( INodeVector ), (void**)&pNV ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "node", "Node", "INodeVector" );
-        }
+        INodeVector* pNV = node->GetNodeVector();
+        release_assert(pNV);
         pNV->AddVectors( species, genetics, number );
+
         return;
     }
 }

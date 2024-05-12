@@ -114,13 +114,8 @@ namespace Kernel
 
     void VectorInterventionsContainer::UpdateRelativeBitingRate( float rate )
     {
-        ISusceptibilityContext* p_susc = parent->GetSusceptibilityContext();
-
-        IVectorSusceptibilityContext* p_susc_vector = nullptr;
-        if( s_OK != p_susc->QueryInterface( GET_IID( IVectorSusceptibilityContext ), (void**)&p_susc_vector ) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "p_susc", "IVectorSusceptibilityContext", "ISusceptibilityContext" );
-        }
+        ISusceptibilityVector* p_susc_vector = parent->GetSusceptibilityContext()->GetSusceptibilityVector();
+        release_assert(p_susc_vector);
 
         // Subtract the last person's contribution to the group before re-adding it with the updated biting rate
         parent->GetEventContext()->GetIndividual()->UpdateGroupPopulation(-1.0f);
@@ -177,20 +172,13 @@ namespace Kernel
         // adjust indoor post-feed kill to include combined probability of IRS & insectidical drug
 
         // Reach back into owning individual's owning node's event context to see if there's a node-wide IRS intervention
-        IIndividualHumanContext* parent = GetParent();
-        IIndividualHuman* human = nullptr;
-        if (s_OK != parent->QueryInterface(GET_IID(IIndividualHuman), (void**)&human)) {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHuman", "IIndividualHumanContext" );
-        }
-        INodeContext* node = human->GetParent();
-        INodeEventContext* context = node->GetEventContext();
-        INodeVectorInterventionEffects* effects = nullptr;
-        if (s_OK != context->QueryInterface(GET_IID(INodeVectorInterventionEffects), (void**)&effects)) {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "INodeVectorInterventionEffects", "INodeEventContext" );
-        }
+        INodeVectorInterventionEffects* effects = GetParent()->GetParent()->GetEventContext()->GetNodeVectorInterventionEffects();
+        release_assert(effects);
+
         float p_kill_IRSpostfeed_node = effects->GetIndoorKilling();
         // Node-wide IRS intervention overrides individual intervention
-        if ( (p_kill_IRSpostfeed > 0.0f) && (p_kill_IRSpostfeed_node > 0.0f) ) {
+        if ( (p_kill_IRSpostfeed > 0.0f) && (p_kill_IRSpostfeed_node > 0.0f) )
+        {
             LOG_WARN_F( "%s: Both node and individual have an IRS intervention. Node killing rate will be used.\n", __FUNCTION__ );
         }
         float p_kill_IRSpostfeed_effective = (p_kill_IRSpostfeed_node > 0) ? p_kill_IRSpostfeed_node : p_kill_IRSpostfeed;

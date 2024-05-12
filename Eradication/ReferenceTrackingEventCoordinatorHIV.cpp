@@ -10,6 +10,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 
 #include "ReferenceTrackingEventCoordinatorHIV.h"
+#include "IIndividualHuman.h"
+#include "IIndividualHumanContext.h"
 #include "IIndividualHumanHIV.h"
 #include "IHIVInterventionsContainer.h"
 
@@ -39,18 +41,11 @@ namespace Kernel
         bool qualifies = ReferenceTrackingEventCoordinator::qualifiesDemographically( pIndividual );
         if( qualifies )
         {
-            IIndividualHumanHIV* p_hiv_individual = nullptr;
-            if(const_cast<IIndividualHumanEventContext*>(pIndividual)->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&p_hiv_individual ) != s_OK)
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pIndividual", "IIndividualHumanHIV", "IIndividualHumanEventContext" );
-            }
-
-            IHIVInterventionsContainer* p_hiv_container = p_hiv_individual->GetHIVInterventionsContainer();
-            IHIVMedicalHistory* p_med_history = nullptr;
-            if( p_hiv_container->QueryInterface( GET_IID( IHIVMedicalHistory ), (void**)&p_med_history ) != s_OK)
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "p_hiv_container", "IHIVMedicalHistory", "IHIVInterventionsContainer" );
-            }
+            IIndividualHumanHIV* p_hiv_individual = pIndividual->GetIndividual()->GetIndividualContext()->GetIndividualHIV();
+            release_assert(p_hiv_individual);
+            IHIVInterventionsContainer* p_hiv_container = pIndividual->GetInterventionsContext()->GetContainerHIV();
+            release_assert(p_hiv_container);
+            IHIVMedicalHistory* p_med_history = p_hiv_container->GetHIVMedicalHistory();
 
             switch( target_disease_state )
             {

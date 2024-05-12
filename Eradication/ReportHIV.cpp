@@ -175,17 +175,11 @@ namespace Kernel {
         }
     }
 
-    void
-    ReportHIV::LogIndividualData(
-        IIndividualHuman* individual
-    )
+    void ReportHIV::LogIndividualData( IIndividualHuman* individual )
     {
         ReportSTI::LogIndividualData( individual );
-        IIndividualHumanHIV* hiv_individual = nullptr;
-        if( individual->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&hiv_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualHIV", "IndividualHuman" );
-        }
+        IIndividualHumanHIV* hiv_individual = individual->GetIndividualContext()->GetIndividualHIV();
+        release_assert(hiv_individual);
 
         if( hiv_individual->GetHIVInfection() )
         {

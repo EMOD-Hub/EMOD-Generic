@@ -34,7 +34,6 @@ namespace Kernel
         HANDLE_INTERFACE(IHIVDrugEffectsApply)
         HANDLE_INTERFACE(IHIVInterventionsContainer)
         HANDLE_INTERFACE(IHIVMedicalHistory)
-        HANDLE_INTERFACE(IHIVCampaignSemaphores)
     END_QUERY_INTERFACE_DERIVED(HIVInterventionsContainer, STIInterventionsContainer)
 
     HIVInterventionsContainer::HIVInterventionsContainer()

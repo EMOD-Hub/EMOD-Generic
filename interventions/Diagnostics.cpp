@@ -264,17 +264,8 @@ namespace Kernel
         {
             // Distribute the test-positive intervention
             IDistributableIntervention* di = InterventionFactory::getInstance()->CreateIntervention( positive_diagnosis_config._json, "", "campaign");
-            
-            ICampaignCostObserver* pICCO;
-            // Now make sure cost of the test-positive intervention is reported back to node
-            if (s_OK == parent->GetEventContext()->GetNodeEventContext()->QueryInterface(GET_IID(ICampaignCostObserver), (void**)&pICCO) )
-            {
-                di->Distribute( parent->GetInterventionsContext(), pICCO );
-            }
-            else
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent->GetEventContext()->GetNodeEventContext()", "ICampaignCostObserver", "INodeEventContext" );
-            }
+            ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
+            di->Distribute( parent->GetInterventionsContext(), pICCO );
         }
         expired = true;
     }

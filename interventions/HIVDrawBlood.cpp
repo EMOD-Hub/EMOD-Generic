@@ -28,12 +28,12 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(HIVDrawBlood)
 
     HIVDrawBlood::HIVDrawBlood()
-    : HIVSimpleDiagnostic()
+        : HIVSimpleDiagnostic()
     {
     }
 
     HIVDrawBlood::HIVDrawBlood( const HIVDrawBlood& master )
-    : HIVSimpleDiagnostic( master )
+        : HIVSimpleDiagnostic( master )
     {
     }
 
@@ -56,19 +56,14 @@ namespace Kernel
     void HIVDrawBlood::positiveTestDistribute()
     {
         LOG_DEBUG_F( "HIVDrawBlood: %s\n", __FUNCTION__ );
-        IIndividualHumanHIV * hiv_parent = nullptr;
-        if (parent->QueryInterface(GET_IID(IIndividualHumanHIV), (void**)&hiv_parent) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanHIV", "IIndividualHumanContext" );
-        }
-        IHIVMedicalHistory * med_parent = nullptr;
-        if (parent->GetInterventionsContext()->QueryInterface(GET_IID(IHIVMedicalHistory), (void**)&med_parent) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IHIVMedicalHistory", "IIndividualHumanContext" );
-        }
+        IIndividualHumanHIV* hiv_parent = parent->GetIndividualHIV();
+        release_assert(hiv_parent);
+
+        IHIVInterventionsContainer* ihiv_iv = parent->GetInterventionsContext()->GetContainerHIV();
+        release_assert(ihiv_iv);
 
         float cd4count = hiv_parent->GetHIVSusceptibility()->GetCD4count();
-        med_parent->OnTestCD4(cd4count);
+        ihiv_iv->GetHIVMedicalHistory()->OnTestCD4(cd4count);
 
         expired = true;
 
@@ -81,7 +76,5 @@ namespace Kernel
     {
         HIVSimpleDiagnostic::serialize( ar, obj );
         HIVDrawBlood& blood = *obj;
-
-        //ar.labelElement("xxx") & delayed.xxx;
     }
 }

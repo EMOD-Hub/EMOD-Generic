@@ -69,6 +69,16 @@ namespace Kernel
         return habitat;
     }
 
+    IVectorCohort* VectorCohortWithHabitat::GetCohort()
+    {
+        return static_cast<IVectorCohort*>(this);
+    }
+
+    IVectorCohortWithHabitat* VectorCohortWithHabitat::GetCohortWithHabitat()
+    {
+        return static_cast<IVectorCohortWithHabitat*>(this);
+    }
+
     void VectorCohortWithHabitat::SetHabitat( IVectorHabitat* new_habitat )
     {
         if ( new_habitat != habitat )

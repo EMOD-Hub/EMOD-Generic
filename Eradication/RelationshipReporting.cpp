@@ -10,6 +10,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 
 #include "RelationshipReporting.h"
+#include "IndividualEventContext.h"
 #include "IIndividualHuman.h"
 #include "IIndividualHumanSTI.h"
 #include "IIndividualHumanHIV.h"
@@ -66,28 +67,16 @@ namespace Kernel
         return retLine;
     }
 
-    void
-    CoitalActInfo::GatherLineFromRelationship(
-        const IRelationship* pRel
-    )
+    void CoitalActInfo::GatherLineFromRelationship( const IRelationship* pRel )
     {
         release_assert( pRel );
         std::ostringstream line;
 
-        IIndividualHumanSTI *sti_A = pRel->MalePartner();
-        IIndividualHumanSTI *sti_B = pRel->FemalePartner();
+        IIndividualHumanSTI* sti_A = pRel->MalePartner();
+        IIndividualHumanSTI* sti_B = pRel->FemalePartner();
 
-        IIndividualHuman *ih_A;
-        if( sti_A->QueryInterface( GET_IID( IIndividualHuman ), (void**)&ih_A ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "sti_A", "IndividualHumanSTI", "IIndividualHuman" );
-        }
-
-        IIndividualHuman *ih_B;
-        if( sti_B->QueryInterface( GET_IID( IIndividualHuman ), (void**)&ih_B ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "sti_B", "IndividualHumanSTI", "IIndividualHuman" );
-        }
+        IIndividualHuman* ih_A = sti_A->GetEventContext()->GetIndividual();
+        IIndividualHuman *ih_B = sti_B->GetEventContext()->GetIndividual();
 
         // --------------------------------------------------------
         // --- Assuming that the individuals in a relationship
@@ -99,8 +88,8 @@ namespace Kernel
         int hiv_infection_stage_A = -1;
         bool On_ART_A = false;
         bool stiCoInfection_A = false;
-        IIndividualHumanHIV *hiv_A;
-        if( infected_A && sti_A->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&hiv_A ) == s_OK )
+        IIndividualHumanHIV* hiv_A = ih_A->GetIndividualContext()->GetIndividualHIV();
+        if( infected_A && hiv_A )
         {
             hiv_infection_stage_A = hiv_A->GetHIVInfection()->GetStage();
             On_ART_A = hiv_A->GetHIVInterventionsContainer()->OnArtQuery();
@@ -111,8 +100,8 @@ namespace Kernel
         int hiv_infection_stage_B = -1;
         bool On_ART_B = false;
         bool stiCoInfection_B = false;
-        IIndividualHumanHIV *hiv_B;
-        if( infected_B && sti_B->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&hiv_B ) == s_OK )
+        IIndividualHumanHIV* hiv_B = ih_B->GetIndividualContext()->GetIndividualHIV();
+        if( infected_B && hiv_B )
         {
             hiv_infection_stage_B = hiv_B->GetHIVInfection()->GetStage();
             On_ART_B = hiv_B->GetHIVInterventionsContainer()->OnArtQuery();

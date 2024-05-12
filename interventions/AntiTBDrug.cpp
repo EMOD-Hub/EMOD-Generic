@@ -13,7 +13,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "IIndividualHumanContext.h"
 #include "Debug.h"
-#include "TBInterventionsContainer.h"  // for ITBDrugEffectsApply methods
+#include "TBInterventionsContainer.h"
 #include "NodeEventContext.h"          // for INodeEventContext (ICampaignCostObserver)
 #include "EventTrigger.h"
 
@@ -90,20 +90,13 @@ namespace Kernel
 
     bool AntiTBDrug::Distribute( IIndividualHumanInterventionsContext* context, ICampaignCostObserver* pCCO )
     {
-        if (s_OK != context->QueryInterface(GET_IID(ITBDrugEffectsApply), (void**)&itbda) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "ITBDrugEffectsApply", "IIndividualHumanInterventionsContext" );
-        }
+        itbda = context->GetContainerTB();
         return GenericDrug::Distribute( context, pCCO );
     }
 
     void AntiTBDrug::SetContextTo( IIndividualHumanContext* context )
     {
-        if (s_OK != context->GetInterventionsContext()->QueryInterface(GET_IID(ITBDrugEffectsApply), (void**)&itbda) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "ITBDrugEffectsApply", "IIndividualHumanContext" );
-        }
-
+        itbda = context->GetInterventionsContext()->GetContainerTB();
         return GenericDrug::SetContextTo( context );
     }
 

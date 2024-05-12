@@ -62,6 +62,7 @@ namespace Kernel
         virtual void IncreaseAge( float dt ) override;
 
         virtual IVectorCohortIndividual* GetCohortIndividual() override { return nullptr; }
+        virtual IVectorCohortWithHabitat* GetCohortWithHabitat() override { return nullptr; }
 
     protected:
         VectorCohortAbstract();

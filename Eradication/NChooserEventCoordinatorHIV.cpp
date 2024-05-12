@@ -10,6 +10,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 
 #include "NChooserEventCoordinatorHIV.h"
+#include "IIndividualHuman.h"
+#include "IIndividualHumanContext.h"
 #include "IIndividualHumanSTI.h"
 #include "IIndividualHumanHIV.h"
 #include "IHIVInterventionsContainer.h"
@@ -166,30 +168,20 @@ namespace Kernel
         }
     }
 
-    bool TargetedDistributionHIV::QualifiesByDiseaseState( IIndividualHumanEventContext *pHEC ) const
+    bool TargetedDistributionHIV::QualifiesByDiseaseState( IIndividualHumanEventContext* pHEC ) const
     {
         if( m_DiseaseStates.size() == 0 )
         {
             return true;
         }
 
-        IIndividualHumanSTI* p_ind_sti = NULL;
-        if( pHEC->QueryInterface( GET_IID( IIndividualHumanSTI ), (void**)&p_ind_sti ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "ihec", "IIndividualSTI", "IIndividualHumanEventContext" );
-        }
+        IIndividualHumanSTI* p_ind_sti = pHEC->GetIndividual()->GetIndividualContext()->GetIndividualSTI();
+        release_assert(p_ind_sti);
 
-        IIndividualHumanHIV * p_ind_hiv = nullptr;
-        if( pHEC->QueryInterface(GET_IID(IIndividualHumanHIV), (void**)&p_ind_hiv) != s_OK )
-        {
-            throw QueryInterfaceException(__FILE__, __LINE__, __FUNCTION__, "ihec", "IIndividualHumanHIV", "IIndividualHumanEventContext");
-        }
+        IIndividualHumanHIV* p_ind_hiv = pHEC->GetIndividual()->GetIndividualContext()->GetIndividualHIV();
+        release_assert(p_ind_hiv);
 
-        IHIVMedicalHistory * p_med_history = nullptr;
-        if( p_ind_hiv->GetHIVInterventionsContainer()->QueryInterface(GET_IID(IHIVMedicalHistory), (void**)&p_med_history) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "p_ind_hiv", "IHIVMedicalHistory", "IHIVInterventionsContainer" );
-        }
+        IHIVMedicalHistory* p_med_history = p_ind_hiv->GetHIVInterventionsContainer()->GetHIVMedicalHistory();
 
         for( auto& states_to_and : m_DiseaseStates )
         {

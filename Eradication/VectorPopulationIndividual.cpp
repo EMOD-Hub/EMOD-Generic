@@ -40,10 +40,10 @@ namespace Kernel
     END_QUERY_INTERFACE_DERIVED(VectorPopulationIndividual, VectorPopulation)
 
     VectorPopulationIndividual::VectorPopulationIndividual(uint32_t mosquito_weight) 
-    : VectorPopulation()
-    , m_mosquito_weight(mosquito_weight)
-    , m_average_oviposition_killing(0.0f)
-    , current_vci(nullptr)
+        : VectorPopulation()
+        , m_mosquito_weight(mosquito_weight)
+        , m_average_oviposition_killing(0.0f)
+        , current_vci(nullptr)
     { 
     }
 
@@ -539,11 +539,8 @@ namespace Kernel
                 cp->ResolveInfectingStrain( &strainID );
 
                 // Set state to STATE_INFECTED and store strainID
-                IVectorCohortIndividual *vci = nullptr;
-                if( (exposed)->QueryInterface( GET_IID( IVectorCohortIndividual ), (void**)&vci ) != s_OK )
-                {
-                    throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "exposed", "IVectorCohortIndividual", "VectorCohort" );
-                }
+                IVectorCohortIndividual *vci = exposed->GetCohortIndividual();
+                release_assert(vci);
                 vci->AcquireNewInfection( &strainID );
 
                 // Adjust population-level counters
@@ -638,14 +635,8 @@ namespace Kernel
 
             if (cohort->GetProgress() == 0)
             {
-                IVectorCohortIndividual* ivci = NULL;
-                if( s_OK != cohort->QueryInterface( GET_IID( IVectorCohortIndividual ), (void**)&ivci ) )
-                {
-                    throw QueryInterfaceException(
-                        __FILE__, __LINE__, __FUNCTION__,
-                        "cohort", "IVectorCohortIndividual", "VectorCohort" );
-                }
-
+                IVectorCohortIndividual* ivci = cohort->GetCohortIndividual();
+                release_assert(ivci);
                 suids.push_back(ivci->GetID());
             }
         }
@@ -661,14 +652,8 @@ namespace Kernel
             if (cohort->GetState() != VectorStateEnum::STATE_INFECTIOUS)
                 continue;
 
-            IVectorCohortIndividual* ivci = NULL;
-            if( s_OK != cohort->QueryInterface( GET_IID( IVectorCohortIndividual ), (void**)&ivci ) )
-            {
-                throw QueryInterfaceException(
-                    __FILE__, __LINE__, __FUNCTION__,
-                    "cohort", "IVectorCohortIndividual", "VectorCohort" );
-            }
-
+            IVectorCohortIndividual* ivci = cohort->GetCohortIndividual();
+            release_assert(ivci);
             suids.push_back(ivci->GetID());
         }
 

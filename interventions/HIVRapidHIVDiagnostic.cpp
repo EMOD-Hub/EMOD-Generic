@@ -27,8 +27,8 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(HIVRapidHIVDiagnostic)
 
     HIVRapidHIVDiagnostic::HIVRapidHIVDiagnostic()
-    : HIVSimpleDiagnostic()
-    , m_ProbReceivedResults(1.0)
+        : HIVSimpleDiagnostic()
+        , m_ProbReceivedResults(1.0)
     {
         initConfigTypeMap("Probability_Received_Result", &m_ProbReceivedResults, HIV_RHD_Probability_Received_Result_DESC_TEXT, 0, 1.0, 1.0);
     }
@@ -42,11 +42,9 @@ namespace Kernel
     // runs on a positive test when in positive treatment fraction
     void HIVRapidHIVDiagnostic::positiveTestDistribute()
     {
-        IHIVMedicalHistory * hiv_parent = nullptr;
-        if( parent->GetInterventionsContext()->QueryInterface( GET_IID(IHIVMedicalHistory), (void**)&hiv_parent ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IHIVMedicalHistory", "IHIVInterventionsContainer" );
-        }
+        IHIVInterventionsContainer* ihiv_iv = parent->GetInterventionsContext()->GetContainerHIV();
+        release_assert(ihiv_iv);
+        IHIVMedicalHistory* hiv_parent = ihiv_iv->GetHIVMedicalHistory();
 
         // update the patient's medical chart with testing history
         hiv_parent->OnTestForHIV(true);
@@ -60,11 +58,9 @@ namespace Kernel
     // runs on a negative test when in negative treatment fraction
     void HIVRapidHIVDiagnostic::onNegativeTestResult()
     {
-        IHIVMedicalHistory * hiv_parent = nullptr;
-        if( parent->GetInterventionsContext()->QueryInterface( GET_IID(IHIVMedicalHistory), (void**)&hiv_parent ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IHIVMedicalHistory", "IHIVInterventionsContainer" );
-        }
+        IHIVInterventionsContainer* ihiv_iv = parent->GetInterventionsContext()->GetContainerHIV();
+        release_assert(ihiv_iv);
+        IHIVMedicalHistory* hiv_parent = ihiv_iv->GetHIVMedicalHistory();
 
         // update the patent's medical chart with testing history
         hiv_parent->OnTestForHIV(false);

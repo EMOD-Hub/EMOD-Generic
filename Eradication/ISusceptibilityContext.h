@@ -12,8 +12,9 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    class ISusceptibilityHIV;
-    class ISusceptibilityTB;
+    class  ISusceptibilityHIV;
+    class  ISusceptibilityTB;
+    struct ISusceptibilityVector;
 
     struct ISusceptibilityContext : ISerializable
     {
@@ -27,7 +28,8 @@ namespace Kernel
         virtual void  InitNewInfection() = 0;
         virtual bool  IsImmune() const = 0;
 
-        virtual ISusceptibilityHIV*   GetSusceptibilityHIV()     = 0;
-        virtual ISusceptibilityTB*    GetSusceptibilityTB()      = 0;
+        virtual ISusceptibilityHIV*       GetSusceptibilityHIV()     = 0;
+        virtual ISusceptibilityTB*        GetSusceptibilityTB()      = 0;
+        virtual ISusceptibilityVector*    GetSusceptibilityVector()  = 0;
     };
 }

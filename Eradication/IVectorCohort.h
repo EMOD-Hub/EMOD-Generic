@@ -18,6 +18,7 @@ namespace Kernel
     struct IMigrate;
     struct IStrainIdentity;
     struct IVectorCohortIndividual;
+    class  IVectorCohortWithHabitat;
 
     struct IVectorCohort : ISerializable
     {
@@ -44,8 +45,8 @@ namespace Kernel
         virtual const std::vector<uint32_t>& GetNewEggs() const = 0;
 
         virtual IVectorCohortIndividual* GetCohortIndividual() = 0;
+        virtual IVectorCohortWithHabitat* GetCohortWithHabitat() = 0;
     };
 
     typedef std::vector<IVectorCohort*> VectorCohortVector_t;
-
 }

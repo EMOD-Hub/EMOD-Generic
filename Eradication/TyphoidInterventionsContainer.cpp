@@ -49,9 +49,6 @@ namespace Kernel
 
     void TyphoidInterventionsContainer::Update(float dt)
     {
-        //LOG_DEBUG_F( "Resetting clearance_rate for this update for individual %d.\n", parent->GetSuid().data );
-        //clearance_rate = 0.0f;
-        // call base level
         InterventionsContainer::Update(dt);
     }
 
@@ -77,13 +74,11 @@ namespace Kernel
 
     float TyphoidInterventionsContainer::GetContactDepositAttenuation() const
     {
-        //LOG_VALID_F( "%s: Returning %f for current_shedding_attenuation_contact for individual %d.\n", __FUNCTION__, current_shedding_attenuation_contact, parent->GetSuid().data );
         return current_shedding_attenuation_contact;
     }
 
     float TyphoidInterventionsContainer::GetEnviroDepositAttenuation() const
     {
-        //LOG_VALID_F( "%s: Returning %f for current_shedding_attenuation_environment for individual %d.\n", __FUNCTION__, current_shedding_attenuation_environment, parent->GetSuid().data );
         return current_shedding_attenuation_environment;
     }
 
@@ -110,11 +105,8 @@ namespace Kernel
     // Infection Clearance
     void TyphoidInterventionsContainer::ApplyClearance( ProbabilityNumber clearanceRate /*not used yet*/ )
     {
-        IIndividualHumanTyphoid* p_iht = nullptr;
-        if (s_OK !=  parent->QueryInterface(GET_IID(IIndividualHumanTyphoid), (void**)&p_iht))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanTyphoid", "IIndividualHumanContext" );
-        }
+        IIndividualHumanTyphoid* p_iht = parent->GetIndividualTyphoid();
+        release_assert(p_iht);
         p_iht->ForceClearInfection();
     }
 }

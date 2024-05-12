@@ -1016,6 +1016,11 @@ namespace Kernel
         return static_cast<IIndividualHumanTB*>(this);
     }
 
+    IIndividualHumanCoInfection* IndividualHumanCoInfection::GetIndividualCoInf()
+    {
+        return static_cast<IIndividualHumanCoInfection*>(this);
+    }
+
     void IndividualHumanCoInfection::setupInterventionsContainer()
     {
         interventions = _new_ MasterInterventionsContainer();

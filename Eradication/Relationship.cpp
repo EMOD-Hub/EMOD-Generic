@@ -125,13 +125,8 @@ namespace Kernel {
         rel_timer = DAYSPERYEAR * pRNG->Weibull2( pParams->GetDurationWeibullScale(),
                                                   pParams->GetDurationWeibullHeterogeneity() );
 
-        IIndividualHuman* individual = nullptr;
-        if( male_partnerIn->QueryInterface(GET_IID(IIndividualHuman), (void**)&individual) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "male_partnerIn", "IIndividualHuman", "IIndividualHumanSTI" );
-        }
-
-        start_time = float(individual->GetParent()->GetTime().time);
+        IIndividualHuman* individual = male_partnerIn->GetEventContext()->GetIndividual();
+        start_time = static_cast<float>(individual->GetParent()->GetTime().time);
         scheduled_end_time = start_time + rel_timer;
 
         original_node_id = individual->GetParent()->GetExternalID();
@@ -284,15 +279,6 @@ namespace Kernel {
             }
         }
         release_assert( coital_rate_attenuation_factor > 0 );
-
-        /*LOG_INFO_F( "(EEL) Coital Act: rel = %d, insertive = %d, relationships = %d, receptive = %d, relationships = %d, time till next act = %f.\n",
-                    GetSuid().data,
-                    male_partner->GetSuid().data,
-                    male_partner->GetRelationships().size(),
-                    female_partner->GetSuid().data,
-                    female_partner->GetRelationships().size(),
-                    next_coital_act_timer
-                  );*/
 
         double ratetime = dt * coital_rate_attenuation_factor * GetCoitalRate();
         unsigned int acts_this_dt = pRNG->Poisson( ratetime );

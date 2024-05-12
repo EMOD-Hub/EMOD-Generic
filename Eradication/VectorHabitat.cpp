@@ -321,11 +321,8 @@ namespace Kernel
     void VectorHabitat::UpdateLarvalProbabilities( float dt, INodeContext* node, const std::string& species )
     {
         // TODO: if this querying gets tedious, we can pass it in as an argument from NodeVector?
-        INodeVectorInterventionEffects* invie = nullptr;
-        if (s_OK != node->GetEventContext()->QueryInterface(GET_IID(INodeVectorInterventionEffects), (void**)&invie))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "GetEventContext()", "INodeVectorInterventionEffects", "INodeEventContext" );
-        }
+        INodeVectorInterventionEffects* invie = node->GetEventContext()->GetNodeVectorInterventionEffects();
+        release_assert(invie);
 
         m_oviposition_trap_killing    = invie->GetOviTrapKilling(m_habitat_type);
         m_artificial_larval_mortality = EXPCDF( -dt * ( invie->GetLarvalKilling(m_habitat_type) ) );

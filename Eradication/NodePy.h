@@ -36,7 +36,6 @@ namespace Kernel
         virtual ~NodePy(void);
 
         virtual void resetNodeStateCounters(void);
-        virtual void updateNodeStateCounters(IndividualHuman *ih);
 
     protected:
         NodePy();

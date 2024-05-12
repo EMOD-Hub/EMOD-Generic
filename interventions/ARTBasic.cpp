@@ -9,8 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 
-//#ifdef ENABLE_STI
-
 #include "ARTBasic.h"
 
 #include "IIndividualHumanContext.h"
@@ -31,9 +29,9 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(ARTBasic)
 
     ARTBasic::ARTBasic()
-    : BaseIntervention()
-    , viral_suppression(true)
-    , days_to_achieve_suppression(183.0f)
+        : BaseIntervention()
+        , viral_suppression(true)
+        , days_to_achieve_suppression(183.0f)
     {
         initSimTypes( 2, "HIV_SIM", "TBHIV_SIM" );
     }
@@ -42,10 +40,7 @@ namespace Kernel
     {
     }
 
-    bool
-    ARTBasic::Configure(
-        const Configuration * inputJson
-    )
+    bool ARTBasic::Configure(const Configuration* inputJson)
     {
         initConfigTypeMap( "Cost_To_Consumer", &cost_per_unit, DRUG_Cost_To_Consumer_DESC_TEXT, 0, 99999);
         initConfigTypeMap( "Viral_Suppression", &viral_suppression, ART_Basic_Viral_Suppression_DESC_TEXT, true );
@@ -55,22 +50,16 @@ namespace Kernel
         return BaseIntervention::Configure( inputJson );
     }
 
-    bool
-    ARTBasic::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * pCCO
-    )
+    bool ARTBasic::Distribute(IIndividualHumanInterventionsContext* context, ICampaignCostObserver* pCCO)
     {
         bool distributed = BaseIntervention::Distribute( context, pCCO );
         if( distributed )
         {
             LOG_DEBUG_F( "ARTBasic distributed to individual %d.\n", context->GetParent()->GetSuid().data );
-            IHIVDrugEffectsApply* itbda = nullptr;
-            if (s_OK != context->QueryInterface(GET_IID(IHIVDrugEffectsApply), (void**)&itbda) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IHIVDrugEffectsApply", "IIndividualHumanInterventionsContext" );
-            } 
-            itbda->GoOnART( viral_suppression, days_to_achieve_suppression );
+
+            IHIVInterventionsContainer* ihiv_iv = context->GetContainerHIV();
+            release_assert(ihiv_iv);
+            ihiv_iv->GetHIVDrugEffectApply()->GoOnART( viral_suppression, days_to_achieve_suppression );
         }
         return distributed;
     }

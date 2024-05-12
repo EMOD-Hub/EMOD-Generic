@@ -197,16 +197,13 @@ void VectorSpeciesReport::LogIndividualData( Kernel::IIndividualHuman* individua
     LOG_DEBUG( "VectorSpeciesReport::LogIndividualData\n" );
 }
 
-void VectorSpeciesReport::LogNodeData( Kernel::INodeContext * pNC )
+void VectorSpeciesReport::LogNodeData( Kernel::INodeContext* pNC )
 {
     LOG_DEBUG( "VectorSpeciesReport::LogNodeData.\n" );
 
     int   bin_index = 0;
-    Kernel::INodeVector * pNV = nullptr;
-    if( pNC->QueryInterface( GET_IID( Kernel::INodeVector ), (void**) &pNV ) != Kernel::s_OK )
-    {
-        throw Kernel::QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodeVector", "INodeContext" );
-    }
+    Kernel::INodeVector* pNV = pNC->GetNodeVector();
+    release_assert(pNV);
 
     // reverse order, since push_front is used in NodeVector::SetVectorPopulations(), why??
     const VectorPopulationReportingList_t& population_list = pNV->GetVectorPopulationReporting();

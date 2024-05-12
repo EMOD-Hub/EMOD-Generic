@@ -60,6 +60,7 @@ public:
     }
 
     virtual ISTIInterventionsContainer*   GetContainerSTI()        { return nullptr; }
+    virtual IPolioDrugEffects*            GetContainerPolio()      { return nullptr; }
     virtual ITBInterventionsContainer*    GetContainerTB()         { return nullptr; }
     virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()    { return nullptr; }
     virtual IVectorInterventionsEffects*  GetContainerVector()     { return nullptr; }
@@ -84,6 +85,10 @@ public:
     virtual void                      BroadcastNewHIVInfection()                   { release_assert(false); }
     virtual IHIVDrugEffectsApply*     GetHIVDrugEffectApply()                      { release_assert(false); }
 
+    virtual bool                      SemaphoreExists( const std::string& counter) const { release_assert(false); }
+    virtual void                      SemaphoreInit( const std::string& counter, int value) { release_assert(false); }
+    virtual int                       SemaphoreIncrement( const std::string& counter ) { release_assert(false); }
+    virtual bool                      SemaphoreDecrement( const std::string& counter ) { release_assert(false); }
     virtual void                      ApplyProbMaternalTransmissionModifier ( const ProbabilityNumber& probReduction ) { release_assert(false); }
 
     virtual std::list<IDistributableIntervention*> GetInterventionsByType(const std::string &type_name)
