@@ -21,7 +21,7 @@ namespace Kernel
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
         DECLARE_QUERY_INTERFACE()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, TyphoidCarrierDiagnostic, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, TyphoidCarrierDiagnostic, IDistributableIntervention)
 
     public:
         TyphoidCarrierDiagnostic();

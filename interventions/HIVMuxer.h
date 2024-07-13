@@ -17,7 +17,7 @@ namespace Kernel
 {
     class HIVMuxer: public HIVDelayedIntervention
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, HIVMuxer, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, HIVMuxer, IDistributableIntervention)
     
     public: 
         HIVMuxer();

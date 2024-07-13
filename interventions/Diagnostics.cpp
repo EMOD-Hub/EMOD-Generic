@@ -11,7 +11,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "Diagnostics.h"
 
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "NodeEventContext.h"  // for INodeEventContext (ICampaignCostObserver)
 #include "IIndividualHumanContext.h"
 #include "ISimulationContext.h"
@@ -263,7 +262,7 @@ namespace Kernel
         else if( positive_diagnosis_config._json.Type() != ElementType::NULL_ELEMENT )
         {
             // Distribute the test-positive intervention
-            IDistributableIntervention* di = InterventionFactory::getInstance()->CreateIntervention( positive_diagnosis_config._json, "", "campaign");
+            IDistributableIntervention* di = InterventionFactory::CreateIntervention( positive_diagnosis_config._json, "", "campaign");
             ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
             di->Distribute( parent->GetInterventionsContext(), pICCO );
         }

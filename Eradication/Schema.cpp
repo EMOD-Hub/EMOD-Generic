@@ -79,70 +79,49 @@ const std::vector<std::string> getSimTypeList()
     return simTypeList;
 }
 
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// access to input schema embedding
-
-void IDMAPI writeInputSchemas(
-    const char* dll_path,
-    const char* output_path,
-    const char* exe_name
-)
+void writeInputSchemas( const char* dll_path, const char* output_path, const char* exe_name )
 {
-    std::ofstream schema_ostream_file;
-    json::Object fakeJsonRoot;
-    json::QuickBuilder total_schema( fakeJsonRoot );
+    json::Object jsonRoot;
+    json::QuickBuilder total_schema( jsonRoot );
 
-    // Get DTK version into schema
+    Kernel::JsonConfigurable::_dryrun = true;
+
+    // --------------------------
+    // --- Create Metadata Schema
+    // --------------------------
     json::Object vsRoot;
     json::QuickBuilder versionSchema( vsRoot );
     ProgDllVersion pv;
-    versionSchema["DTK_Version"] = json::String( pv.getVersion() );
-    versionSchema["DTK_Branch"] = json::String( pv.getSccsBranch() );
+    versionSchema["DTK_Version"]    = json::String( pv.getVersion() );
+    versionSchema["DTK_Branch"]     = json::String( pv.getSccsBranch() );
     versionSchema["DTK_Build_Date"] = json::String( pv.getBuildDate() );
-    versionSchema["Creator"] = json::String( exe_name );
-    total_schema["Version"] = versionSchema.As<json::Object>();
+    versionSchema["Creator"]        = json::String( exe_name );
 
-    std::string szOutputPath = std::string( output_path );
-    if( szOutputPath != "stdout" )
-    {
-        // Attempt to open output path
-        FileSystem::OpenFileForWriting( schema_ostream_file, output_path );
-    }
-    std::ostream &schema_ostream = ( ( szOutputPath == "stdout" ) ? std::cout : schema_ostream_file );
+    total_schema["Version"]         = versionSchema.As<json::Object>();
 
+    // ---------------------
+    // --- Create DLL Schema
+    // ---------------------
     DllLoader dllLoader;
     std::map< std::string, createSim > createSimFuncPtrMap;
 
     if( dllLoader.LoadDiseaseDlls(createSimFuncPtrMap) )
     {
-        //LOG_DEBUG( "Calling GetDiseaseDllSchemas\n" );
         json::Object diseaseSchemas = dllLoader.GetDiseaseDllSchemas();
         total_schema[ "config:emodules" ] = diseaseSchemas;
     }
 
-    // Intervention dlls don't need any schema printing, just loading them
-    // through DllLoader causes them to all get registered with exe's Intervention
-    // Factory, which makes regular GetSchema pathway work. This still doesn't solve
-    // the problem of reporting in the schema output what dll they came from, if we
-    // even want to.
-    dllLoader.LoadInterventionDlls();
-
-    Kernel::JsonConfigurable::_dryrun = true;
-    std::ostringstream oss;
-
-    // ---------------------------
+    // ------------------------
     // --- Create Config Schema
-    // ---------------------------
+    // ------------------------
     json::Object configSchemaAll;
 
     for (auto& sim_type : getSimTypeList())
     {
         json::Object fakeSimTypeConfigJson;
         fakeSimTypeConfigJson["Simulation_Type"] = json::String(sim_type);
-        Configuration * fakeConfig = Configuration::CopyFromElement( fakeSimTypeConfigJson );
-        Kernel::SimulationConfig * pConfig = Kernel::SimulationConfigFactory::CreateInstance(fakeConfig);
+        Configuration* fakeConfig = Configuration::CopyFromElement( fakeSimTypeConfigJson );
+        Kernel::SimulationConfig* pConfig = Kernel::SimulationConfigFactory::CreateInstance(fakeConfig);
         release_assert( pConfig );
 
         json::QuickBuilder config_schema = pConfig->GetSchema();
@@ -161,43 +140,89 @@ void IDMAPI writeInputSchemas(
 
     total_schema[ "config" ] = configSchemaAll;
 
-    // ---------------------------
+    // --------------------------
     // --- Create Campaign Schema
-    // ---------------------------
-    if( !Kernel::InterventionFactory::getInstance() )
-    {
-        throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, "Kernel::InterventionFactory::getInstance(" );
-    }
+    // --------------------------
+    json::Object useDefaultsRoot;
+    json::QuickBuilder udSchema( useDefaultsRoot );
 
-    json::QuickBuilder ces_schema = Kernel::CampaignEventFactory::getInstance()->GetSchema();
-    json::QuickBuilder ecs_schema = Kernel::EventCoordinatorFactory::getInstance()->GetSchema();
-    json::QuickBuilder ivs_schema = Kernel::InterventionFactory::getInstance()->GetSchema();
-    json::QuickBuilder ns_schema  = Kernel::NodeSetFactory::getInstance()->GetSchema();
+    udSchema["type"]        = json::String( "bool" );
+    udSchema["default"]     = json::Number( 0 );
+    udSchema["description"] = json::String( CAMP_Use_Defaults_DESC_TEXT );
 
     json::Object objRoot;
     json::QuickBuilder camp_schema( objRoot );
 
-    json::Object useDefaultsRoot;
-    json::QuickBuilder udSchema( useDefaultsRoot );
-    udSchema["type"] = json::String( "bool" );
-    udSchema["default"] = json::Number( 0 );
-    udSchema["description"] = json::String( CAMP_Use_Defaults_DESC_TEXT );
+    camp_schema["Events"][0]    = json::String( "idmType:CampaignEvent" );
     camp_schema["Use_Defaults"] = udSchema.As<json::Object>();
 
-    camp_schema["Events"][0] = json::String( "idmType:CampaignEvent" );
+    total_schema[ "interventions" ] = camp_schema.As<json::Object>();
 
-    camp_schema[ "idmTypes" ][ "idmType:CampaignEvent"          ] = ces_schema.As<json::Object>();
-    camp_schema[ "idmTypes" ][ "idmType:EventCoordinator"       ] = ecs_schema.As<json::Object>();
-    camp_schema[ "idmTypes" ][ "idmType:Intervention"           ] = ivs_schema.As<json::Object>();
-    camp_schema[ "idmTypes" ][ "idmType:NodeSet"                ] = ns_schema.As<json::Object>();
+    // --------------------------
+    // --- Create idmTypes Schema
+    // --------------------------
+    json::Object ivtypes_root;
+    json::QuickBuilder ivt_schema( ivtypes_root );
 
-    total_schema[ "interventions" ] = camp_schema.As< json::Object> ();
-    schema_ostream << std::setprecision(10);
+    json::QuickBuilder ivs_schema = Kernel::IndividualIVFactory::getInstance()->GetSchema();
+    json::QuickBuilder nvs_schema = Kernel::NodeIVFactory::getInstance()->GetSchema();
+
+    ivt_schema["idmAbstractType:IndividualIntervention"] = ivs_schema.As<json::Object>();
+    ivt_schema["idmAbstractType:NodeIntervention"]       = nvs_schema.As<json::Object>();
+
+    json::Object idmtypes_root;
+    json::QuickBuilder idmtypes_schema( idmtypes_root );
+    
+    json::QuickBuilder ces_schema = Kernel::CampaignEventFactory::getInstance()->GetSchema();
+    json::QuickBuilder ecs_schema = Kernel::EventCoordinatorFactory::getInstance()->GetSchema();
+    json::QuickBuilder nds_schema  = Kernel::NodeSetFactory::getInstance()->GetSchema();
+
+    idmtypes_schema["idmAbstractType:CampaignEvent"]    = ces_schema.As<json::Object>();
+    idmtypes_schema["idmAbstractType:Intervention"]     = ivt_schema.As<json::Object>();
+    idmtypes_schema["idmAbstractType:EventCoordinator"] = ecs_schema.As<json::Object>();
+    idmtypes_schema["idmAbstractType:NodeSet"]          = nds_schema.As<json::Object>();
+
+    total_schema[ "idmTypes" ] = idmtypes_schema.As<json::Object>();
+
+    // --------------------------
+    // --- Post-processing schema
+    // --------------------------
+    json::Object idmtypes_addl;
+    json::SchemaUpdater updater(idmtypes_addl);
+    jsonRoot.Accept(updater);
+
+    json::Object::iterator it(idmtypes_addl.Begin());
+    json::Object::iterator itEnd(idmtypes_addl.End());
+
+    while (it != itEnd)
+    {
+        if( it->element.Type() == json::ElementType::OBJECT_ELEMENT &&
+            (json::QuickInterpreter(it->element)).As<json::Object>().Exist("base") )
+        {
+            // Don't add element
+        }
+        else
+        {
+            total_schema["idmTypes"][it->name] = it->element;
+        }
+        it++;
+    }
 
     // --------------------------
     // --- Write Schema to output
     // --------------------------
-    json::Writer::Write( total_schema, schema_ostream );
+    std::ofstream schema_ostream_file;
+    
+    std::string szOutputPath = std::string( output_path );
+    if( szOutputPath != "stdout" )
+    {
+        // Attempt to open output path
+        FileSystem::OpenFileForWriting( schema_ostream_file, output_path );
+    }
+    std::ostream &schema_ostream = ( ( szOutputPath == "stdout" ) ? std::cout : schema_ostream_file );
+    schema_ostream << std::setprecision(10);
+    
+    json::Writer::Write( total_schema, schema_ostream, "    ", true, true );
     schema_ostream_file.close();
 
     // PythonSupportPtr can be null during componentTests
@@ -208,3 +233,105 @@ void IDMAPI writeInputSchemas(
     }
 }
 
+
+namespace json
+{
+    void SchemaUpdater::Visit(Array& array)
+    {
+        Array::iterator it(array.Begin());
+        Array::iterator itEnd(array.End());
+
+        // Iterate over elements
+        while (it != itEnd)
+        {
+            // No action; 
+            it->Accept(*this); 
+            it++;
+        }
+    }
+
+    void SchemaUpdater::Visit(Object& object)
+    {
+        Object::iterator it(object.Begin());
+        Object::iterator itEnd(object.End());
+
+        // Iterate over elements
+        while (it != itEnd)
+        {
+            it->element.Accept(*this);
+
+            // Aggregate idmTypes to separate object
+            std::string key_str = it->name;
+            if(key_str.rfind("idmType:", 0) == 0)
+            {
+                if(!m_idmt_schema.Exist(it->name))
+                {
+                    Object::Member obj_copy(key_str, Element(it->element));
+                    m_idmt_schema.Insert(obj_copy);
+                }
+                it = object.Erase(it);
+            }
+            else
+            {
+                it++;
+            }
+        }
+    }
+
+    void SchemaUpdater::Visit(String& stringElement)
+    {
+        std::string in_val = stringElement;
+
+        // Replace "Type" with "AbstractType" as needed
+        if (in_val == "idmType:Intervention")
+        {
+            json::QuickBuilder type_str(stringElement);
+            type_str = json::String("idmAbstractType:Intervention");
+        }
+        else if (in_val == "idmType:IndividualIntervention")
+        {
+            json::QuickBuilder type_str(stringElement);
+            type_str = json::String("idmAbstractType:IndividualIntervention");
+        }
+        else if (in_val == "idmType:NodeIntervention")
+        {
+            json::QuickBuilder type_str(stringElement);
+            type_str = json::String("idmAbstractType:NodeIntervention");
+        }
+        else if (in_val == "idmType:EventCoordinator")
+        {
+            json::QuickBuilder type_str(stringElement);
+            type_str = json::String("idmAbstractType:EventCoordinator");
+        }
+        else if (in_val == "idmType:CampaignEvent")
+        {
+            json::QuickBuilder type_str(stringElement);
+            type_str = json::String("idmAbstractType:CampaignEvent");
+        }
+        else if (in_val == "idmType:NodeSet")
+        {
+            json::QuickBuilder type_str(stringElement);
+            type_str = json::String("idmAbstractType:NodeSet");
+        }
+    }
+
+    void SchemaUpdater::Visit(Number& number)
+    {
+        // No action;
+    }
+
+    void SchemaUpdater::Visit(Uint64& number)
+    {
+        // No action;
+    }
+
+    void SchemaUpdater::Visit(Boolean& booleanElement)
+    {
+        // No action;
+    }
+
+    void SchemaUpdater::Visit(Null& nullElement)
+    {
+        // No action;
+    }
+}

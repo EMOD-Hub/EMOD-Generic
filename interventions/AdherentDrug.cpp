@@ -14,7 +14,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "IWaningEffect.h"
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "IndividualEventContext.h"
 #include "NodeEventContext.h"
 #include "IIndividualHumanContext.h"

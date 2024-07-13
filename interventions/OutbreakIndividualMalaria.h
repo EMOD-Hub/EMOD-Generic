@@ -16,7 +16,7 @@ namespace Kernel
     class OutbreakIndividualMalaria : public OutbreakIndividual
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED( InterventionFactory, OutbreakIndividualMalaria, IDistributableIntervention )
+        DECLARE_FACTORY_REGISTERED( IndividualIVFactory, OutbreakIndividualMalaria, IDistributableIntervention )
 
     public:
         OutbreakIndividualMalaria();

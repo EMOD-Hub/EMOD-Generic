@@ -27,7 +27,7 @@ namespace Kernel
     class IDMAPI SimpleDiagnostic :  public BaseIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, SimpleDiagnostic, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, SimpleDiagnostic, IDistributableIntervention)
 
     public:
         SimpleDiagnostic();

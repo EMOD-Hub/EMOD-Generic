@@ -11,9 +11,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include <cmath>
 
 #include "HealthSeekingBehavior.h"
-
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "HealthSeekingBehavior.h"
 #include "NodeEventContext.h"    // for INodeEventContext (ICampaignCostObserver)
 #include "IIndividualHumanContext.h"
@@ -63,10 +61,7 @@ namespace Kernel
 
             if( use_event_or_config == EventOrConfig::Config )
             {
-                m_di = InterventionFactory::getInstance()->CreateIntervention( actual_intervention_config._json,
-                                                                               inputJson->GetDataLocation(),
-                                                                               "Actual_IndividualIntervention_Config",
-                                                                               true ); 
+                m_di = InterventionFactory::CreateIntervention( actual_intervention_config._json, inputJson->GetDataLocation(), "Actual_IndividualIntervention_Config", true ); 
             }
         }
         return ret ;

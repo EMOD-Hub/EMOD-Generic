@@ -11,7 +11,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include <sstream>
 
 #include "GroupEventCoordinator.h"
-#include "InterventionFactory.h"
 #include "IIndividualHuman.h"
 #include "IIndividualHumanContext.h"
 #include "TBContexts.h" //for querying to IIndividualHumanTB

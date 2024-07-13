@@ -9,7 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "CalendarEventCoordinator.h"
-#include "InterventionFactory.h"
 #include "SimulationEventContext.h"
 #include "IdmDateTime.h"
 #include "IIndividualHumanContext.h"

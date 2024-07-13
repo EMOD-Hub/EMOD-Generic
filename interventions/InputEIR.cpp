@@ -9,9 +9,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "InputEIR.h"
-
 #include "Exceptions.h"
-#include "InterventionFactory.h"
 #include "NodeMalariaEventContext.h"
 #include "SusceptibilityVector.h"     // for age-dependent biting risk static methods
 

@@ -20,7 +20,7 @@ namespace Kernel
 
     class AdherentDrug : public AntimalarialDrug
     {
-        DECLARE_FACTORY_REGISTERED( InterventionFactory, AdherentDrug, IDistributableIntervention )
+        DECLARE_FACTORY_REGISTERED( IndividualIVFactory, AdherentDrug, IDistributableIntervention )
 
     public:
         AdherentDrug();

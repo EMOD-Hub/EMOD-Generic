@@ -26,7 +26,7 @@ namespace Kernel
 {
     class RTSSVaccine : public BaseIntervention
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, RTSSVaccine, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, RTSSVaccine, IDistributableIntervention)
 
     public:
         RTSSVaccine();

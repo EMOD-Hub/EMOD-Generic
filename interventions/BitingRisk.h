@@ -23,7 +23,7 @@ namespace Kernel
 
     class BitingRisk : public BaseIntervention
     {
-        DECLARE_FACTORY_REGISTERED( InterventionFactory, BitingRisk, IDistributableIntervention )
+        DECLARE_FACTORY_REGISTERED( IndividualIVFactory, BitingRisk, IDistributableIntervention )
 
     public:
         BitingRisk();

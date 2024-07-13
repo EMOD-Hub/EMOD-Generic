@@ -14,8 +14,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "IIndividualHumanContext.h"
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
-#include "STIInterventionsContainer.h"  // for ISTIBarrierConsumer methods
+#include "STIInterventionsContainer.h"
 #include "IRelationship.h"
 #include "Sigmoid.h"
 #include "Common.h"

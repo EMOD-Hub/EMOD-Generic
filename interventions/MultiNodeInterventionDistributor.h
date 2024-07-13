@@ -16,7 +16,7 @@ namespace Kernel
 {
     class MultiNodeInterventionDistributor : public BaseNodeIntervention
     {
-        DECLARE_FACTORY_REGISTERED( InterventionFactory, MultiNodeInterventionDistributor, INodeDistributableIntervention )
+        DECLARE_FACTORY_REGISTERED( NodeIVFactory, MultiNodeInterventionDistributor, INodeDistributableIntervention )
 
     public:
         MultiNodeInterventionDistributor();

@@ -27,7 +27,7 @@ namespace Kernel
 
     class HealthSeekingBehaviorUpdate : public BaseIntervention
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, HealthSeekingBehaviorUpdate, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, HealthSeekingBehaviorUpdate, IDistributableIntervention)
 
     public: 
         HealthSeekingBehaviorUpdate();

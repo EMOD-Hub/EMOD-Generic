@@ -13,7 +13,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include <typeinfo>
 
 #include "IIndividualHumanContext.h"
-#include "InterventionFactory.h"
 #include "VectorContexts.h"
 #include "Log.h"
 #include "IndividualEventContext.h"

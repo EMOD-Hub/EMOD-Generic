@@ -13,7 +13,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "Sugar.h"
 #include "Debug.h"
 #include "Environment.h"
-#include "InterventionFactory.h"
 #include "PyInterventionsContainer.h"
 
 SETUP_LOGGING( "PyInterventionsContainer" )

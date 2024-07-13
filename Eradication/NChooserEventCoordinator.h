@@ -252,6 +252,8 @@ namespace Kernel
 
         virtual bool Configure( const Configuration * inputJson ) override;
 
+        virtual IConfigurable* GetConfigurable() override { return JsonConfigurable::GetConfigurable(); }
+
         // IEventCoordinator methods
         virtual void SetContextTo(ISimulationEventContext *isec) override;
         virtual void CheckStartDay( float campaignStartDay ) const override;

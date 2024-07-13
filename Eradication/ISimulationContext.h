@@ -19,7 +19,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 namespace Kernel
 {
     class IReport;
-    struct IInterventionFactory;
     struct DemographicsContext;
     struct INodeQualifier; 
     struct IIndividualHuman;

@@ -58,9 +58,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Eradication.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\cajun\include\cast.inl">
       <Filter>Header Files\External\cajun</Filter>
     </None>

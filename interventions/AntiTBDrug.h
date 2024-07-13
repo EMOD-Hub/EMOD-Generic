@@ -18,7 +18,7 @@ namespace Kernel
 
     class AntiTBDrug : public GenericDrug
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, AntiTBDrug, IDistributableIntervention);
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, AntiTBDrug, IDistributableIntervention);
 
     public:
         AntiTBDrug();

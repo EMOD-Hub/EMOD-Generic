@@ -17,7 +17,7 @@ namespace Kernel
     class HIVPiecewiseByYearAndSexDiagnostic : public HIVSimpleDiagnostic
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, HIVPiecewiseByYearAndSexDiagnostic, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, HIVPiecewiseByYearAndSexDiagnostic, IDistributableIntervention)
 
     public: 
         HIVPiecewiseByYearAndSexDiagnostic();

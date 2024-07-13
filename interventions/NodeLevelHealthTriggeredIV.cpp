@@ -9,8 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "NodeLevelHealthTriggeredIV.h"
-
-#include "InterventionFactory.h"
 #include "Log.h"
 #include "Debug.h"
 #include "NodeEventContext.h"  // for INodeEventContext (ICampaignCostObserver)
@@ -158,17 +156,11 @@ namespace Kernel
             demographic_restrictions.CheckConfiguration();
             if( inputJson->Exist( "Actual_IndividualIntervention_Config" ) )
             {
-                m_di = InterventionFactory::getInstance()->CreateIntervention( actual_individual_intervention_config._json,
-                                                                               inputJson->GetDataLocation(),
-                                                                               "Actual_IndividualIntervention_Config",
-                                                                               true );
+                m_di = InterventionFactory::CreateIntervention( actual_individual_intervention_config._json, inputJson->GetDataLocation(), "Actual_IndividualIntervention_Config", true );
             }
             else if( inputJson->Exist( "Actual_NodeIntervention_Config" ) )
             {
-                m_ndi = InterventionFactory::getInstance()->CreateNDIIntervention( actual_node_intervention_config._json,
-                                                                                   inputJson->GetDataLocation(),
-                                                                                   "Actual_NodeIntervention_Config",
-                                                                                   true );
+                m_ndi = InterventionFactory::CreateNDIIntervention( actual_node_intervention_config._json, inputJson->GetDataLocation(), "Actual_NodeIntervention_Config", true );
             }
 
             event_occurred_list.resize( EventTrigger::NUM_EVENT_TRIGGERS );

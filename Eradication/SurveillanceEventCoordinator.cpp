@@ -10,7 +10,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 #include "SurveillanceEventCoordinator.h"
 #include "SimulationEventContext.h"
-#include "InterventionFactory.h"
 #include "IncidenceCounterSurveillance.h"
 #include "ReportStatsByIP.h"
 

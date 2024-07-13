@@ -59,7 +59,7 @@ namespace Kernel
 
     class Larvicides : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, Larvicides, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, Larvicides, INodeDistributableIntervention) 
 
     public:
         Larvicides();
@@ -78,7 +78,7 @@ namespace Kernel
 
     class SpaceSpraying : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, SpaceSpraying, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, SpaceSpraying, INodeDistributableIntervention) 
 
     public:
         SpaceSpraying();
@@ -98,7 +98,7 @@ namespace Kernel
 
     class MultiInsecticideSpaceSpraying : public SpaceSpraying
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, MultiInsecticideSpaceSpraying, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, MultiInsecticideSpaceSpraying, INodeDistributableIntervention) 
 
     public:
         MultiInsecticideSpaceSpraying();
@@ -111,7 +111,7 @@ namespace Kernel
 
     class IndoorSpaceSpraying : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, IndoorSpaceSpraying, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, IndoorSpaceSpraying, INodeDistributableIntervention) 
 
     public:
         IndoorSpaceSpraying();
@@ -129,7 +129,7 @@ namespace Kernel
 
     class MultiInsecticideIndoorSpaceSpraying : public IndoorSpaceSpraying
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, MultiInsecticideIndoorSpaceSpraying, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, MultiInsecticideIndoorSpaceSpraying, INodeDistributableIntervention) 
 
     public:
         MultiInsecticideIndoorSpaceSpraying();
@@ -142,7 +142,7 @@ namespace Kernel
 
     class SpatialRepellent : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, SpatialRepellent, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, SpatialRepellent, INodeDistributableIntervention) 
 
     public:
         SpatialRepellent();
@@ -161,7 +161,7 @@ namespace Kernel
 
     class ArtificialDiet : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, ArtificialDiet, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, ArtificialDiet, INodeDistributableIntervention) 
 
     public:
         ArtificialDiet();
@@ -180,7 +180,7 @@ namespace Kernel
 
     class SugarTrap : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, SugarTrap, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, SugarTrap, INodeDistributableIntervention) 
 
     public:
         SugarTrap();
@@ -202,7 +202,7 @@ namespace Kernel
 
     class OvipositionTrap : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, OvipositionTrap, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, OvipositionTrap, INodeDistributableIntervention) 
         
     public:
         virtual bool Configure( const Configuration * config ) override;
@@ -214,7 +214,7 @@ namespace Kernel
 
     class OutdoorRestKill : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, OutdoorRestKill, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, OutdoorRestKill, INodeDistributableIntervention) 
 
     public:
         virtual bool Configure( const Configuration * config ) override;
@@ -225,7 +225,7 @@ namespace Kernel
 
     class AnimalFeedKill : public SimpleVectorControlNode
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, AnimalFeedKill, INodeDistributableIntervention) 
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, AnimalFeedKill, INodeDistributableIntervention) 
 
     public:
         virtual bool Configure( const Configuration * config ) override;

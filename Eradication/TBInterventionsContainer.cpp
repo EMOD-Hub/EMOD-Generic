@@ -13,7 +13,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "TBContexts.h"
 
 #include "Drugs.h" // for IDrug interface
-#include "InterventionFactory.h"
 #include "Log.h"
 #include "Sugar.h"
 #include "IHealthSeekingBehavior.h" //for IHealthSeekingBehavior interface

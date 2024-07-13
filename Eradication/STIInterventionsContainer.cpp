@@ -10,11 +10,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 
 #include "STIInterventionsContainer.h"
-
 #include "IIndividualHuman.h"
-
 #include "SimulationEnums.h"
-#include "InterventionFactory.h"
 #include "Log.h"
 #include "Sugar.h"
 #include "IndividualSTI.h"

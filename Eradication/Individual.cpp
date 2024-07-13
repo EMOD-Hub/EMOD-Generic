@@ -21,7 +21,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "IndividualEventContext.h"
 #include "Infection.h"
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "IMigrationInfo.h"
 #include "INodeContext.h"
 #include "NodeDemographics.h"

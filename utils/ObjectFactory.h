@@ -53,7 +53,7 @@ namespace Kernel
                                          bool nullOrEmptyOrNoClassNotError =false );
 
     protected:
-        ObjectFactory( bool queryForReturnInterface = true );
+        ObjectFactory();
 
         // check that the input JSON ('pConfig') is valid
         bool CheckElement( const Configuration* pConfig,
@@ -61,16 +61,15 @@ namespace Kernel
                            bool nullOrEmptyNotError );
 
         // Provides a hook for the factory to add other stuff to the schema for an object
-        virtual void ModifySchema( json::QuickBuilder& rSchema, ISupports*pObject ){};
+        virtual void ModifySchema( json::QuickBuilder& rSchema, ISupports* pObject ){};
 
         // Returns the name fo the factory
         std::string GetFactoryName();
 
-        void CheckSimType( ISupports* pObject );
+        void CheckSimType( IObject* pObject );
 
         support_spec_map_t m_RegisteredClasses;
         json::Object       m_FactorySchema;
-        bool               m_QueryForReturnInterface;
 
         static Factory* _instance;
     };

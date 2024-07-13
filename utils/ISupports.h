@@ -24,8 +24,6 @@ namespace Kernel
         Reference counting is not supported yet and wont be unless our ownership model becomes more complex. 
     */
 
-    // TODO (future): see how boost can serialize objects in dynamic libraries...obviously it wont be able to register the type statically! <ERAD-283>
-
     enum QueryResult { s_OK = 0, e_NOINTERFACE = 1, e_NULL_POINTER = 2 };
 
     typedef boost::uuids::uuid iid_t;
@@ -56,7 +54,9 @@ namespace Kernel
     // vvv Use this macro to retrieve IIDs conveniently and auto-generate them if they havent been already 
 #define GET_IID(interfacename) \
     Kernel::TypeInfo<interfacename>::GetIID(#interfacename)
-    
+
+    struct IConfigurable;
+
     struct IDMAPI ISupports
     {
         virtual QueryResult QueryInterface(iid_t iid, void** pinstance) = 0;
@@ -64,6 +64,8 @@ namespace Kernel
         // TODO: not implementing these because we have a simple hierarchical ownership structure...for the time being, but should be done soon <ERAD-285>
         virtual int32_t AddRef() = 0; // these return signed values because subtle concurrency issues could result in negative refcounts being returned in theory
         virtual int32_t Release() = 0;
+
+        virtual IConfigurable* GetConfigurable() { return nullptr; }
 
         virtual ~ISupports() {}
     };

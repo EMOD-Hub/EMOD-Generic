@@ -14,7 +14,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "IIndividualHumanContext.h"
 #include "ISimulationContext.h"
 #include "InterventionsContainer.h"
-#include "InterventionFactory.h"
 #include "NodeEventContext.h"
 #include "Exceptions.h"
 #include "StrainIdentity.h"

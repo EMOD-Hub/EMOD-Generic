@@ -189,12 +189,11 @@ namespace Kernel
     {}
 
     NodeSetConfig::NodeSetConfig(json::QuickInterpreter* qi)
-    : _json(*qi)
+        : _json(*qi)
     {
     }
 
-    json::QuickBuilder
-    NodeSetConfig::GetSchema()
+    json::QuickBuilder NodeSetConfig::GetSchema()
     {
         json::QuickBuilder schema( jsonSchemaBase );
         auto tn = JsonConfigurable::_typename_label();
@@ -205,11 +204,7 @@ namespace Kernel
         return schema;
     }
 
-    void
-    NodeSetConfig::ConfigureFromJsonAndKey(
-        const Configuration* inputJson,
-        const std::string& key
-    )
+    void NodeSetConfig::ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key )
     {
         if( !inputJson->Exist( key ) )
         {
@@ -230,11 +225,7 @@ namespace Kernel
     {
     }
 
-    void
-    EventConfig::ConfigureFromJsonAndKey(
-        const Configuration* inputJson,
-        const std::string& key
-    )
+    void EventConfig::ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key )
     {
         if( !inputJson->Exist( key ) )
         {
@@ -243,8 +234,7 @@ namespace Kernel
         _json = (*inputJson)[key];
     }
 
-    json::QuickBuilder
-    EventConfig::GetSchema()
+    json::QuickBuilder EventConfig::GetSchema()
     {
         json::QuickBuilder schema( jsonSchemaBase );
         auto tn = JsonConfigurable::_typename_label();
@@ -395,24 +385,23 @@ namespace Kernel
     namespace jsonConfigurable
     {
         ConstrainedString::ConstrainedString()
-        :constraint_param(nullptr)
+            : constraint_param(nullptr)
         {
         }
 
         ConstrainedString::ConstrainedString( const std::string &init_str )
-        : constraint_param(nullptr)
+            : constraint_param(nullptr)
         {
             *((std::string*)(this)) = init_str;
         }
 
         ConstrainedString::ConstrainedString( const char* init_str )
-        : constraint_param(nullptr)
+            : constraint_param(nullptr)
         {
             *((std::string*)(this)) = std::string( init_str );
         }
 
-        const ConstrainedString&
-        ConstrainedString::operator=( const std::string& new_value )
+        const ConstrainedString& ConstrainedString::operator=( const std::string& new_value )
         {
             *((std::string*)(this)) = new_value;
             if( constraint_param &&
@@ -478,9 +467,8 @@ namespace Kernel
     }
 
     JsonConfigurable::JsonConfigurable()
-    : IConfigurable()
-    , m_pData( nullptr )
-    , jsonSchemaBase()
+        : m_pData( nullptr )
+        , jsonSchemaBase()
     {
         // -----------------------------------------------------------------------
         // --- We don't want to create the ConfigData in the constructor because
@@ -490,9 +478,8 @@ namespace Kernel
     }
 
     JsonConfigurable::JsonConfigurable( const JsonConfigurable& rConfig )
-    : IConfigurable()
-    , m_pData( nullptr ) // !!! Don't copy stuff
-    , jsonSchemaBase( rConfig.jsonSchemaBase )
+        : m_pData( nullptr ) // !!! Don't copy stuff
+        , jsonSchemaBase( rConfig.jsonSchemaBase )
     {
         if( rConfig.m_pData != nullptr )
         {
@@ -504,6 +491,11 @@ namespace Kernel
     {
         delete m_pData;
         m_pData = nullptr;
+    }
+
+    IConfigurable* JsonConfigurable::GetConfigurable()
+    {
+        return static_cast<IConfigurable*>(this);
     }
 
     std::string JsonConfigurable::GetTypeName() const

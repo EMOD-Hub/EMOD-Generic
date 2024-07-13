@@ -61,5 +61,4 @@ else:
     eradicationExe = erad_env.Program('Eradication', eradicationSrcFiles)
     erad_env.Depends(eradicationExe, erad_env.Alias("CoreLibAlias") )
 
-eradicationResource = ['Eradication.rc']
 eradicationLocalInc = ['StdAfx.h']

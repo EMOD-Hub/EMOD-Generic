@@ -17,7 +17,7 @@ namespace Kernel
 {
     class UsageDependentBednet : public AbstractBednet
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, UsageDependentBednet, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, UsageDependentBednet, IDistributableIntervention)
 
     public:
         UsageDependentBednet();

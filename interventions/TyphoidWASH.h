@@ -18,7 +18,7 @@ namespace Kernel
 {
     class TyphoidWASH : public BaseNodeIntervention
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, TyphoidWASH, INodeDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, TyphoidWASH, INodeDistributableIntervention)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
         DECLARE_CONFIGURED(Outbreak)
 

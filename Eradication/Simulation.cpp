@@ -1122,14 +1122,6 @@ namespace Kernel
                 LOG_INFO("Found campaign file successfully.\n");
             }
 
-#ifdef WIN32
-            DllLoader dllLoader;
-            if (!dllLoader.LoadInterventionDlls())
-            {
-                LOG_WARN_F("Failed to load intervention emodules for SimType: %s from path: %s\n", SimType::pairs::lookup_key(GetParams()->sim_type).c_str(), dllLoader.GetEModulePath(INTERVENTION_EMODULES).c_str());
-            }
-#endif
-
             JsonConfigurable::_track_missing = false;
 
             loadCampaignFromFile(GetParams()->campaign_filename, demographic_node_ids);

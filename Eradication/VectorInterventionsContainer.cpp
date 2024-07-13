@@ -11,7 +11,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "VectorInterventionsContainer.h"
 
 #include "Exceptions.h"
-#include "InterventionFactory.h"
 #include "SimulationConfig.h"  // for "Human_Feeding_Mortality" parameter
 #include "IIndividualHuman.h"
 #include "IIndividualHumanContext.h"

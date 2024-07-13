@@ -16,7 +16,7 @@ namespace Kernel
     class IDMAPI HIVDrawBlood : public HIVSimpleDiagnostic
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, HIVDrawBlood, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, HIVDrawBlood, IDistributableIntervention)
 
     public: 
         HIVDrawBlood();

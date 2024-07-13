@@ -19,7 +19,7 @@ namespace Kernel
 {
     class DelayedIntervention: public BaseIntervention
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, DelayedIntervention, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, DelayedIntervention, IDistributableIntervention)
 
     public:
         DelayedIntervention();

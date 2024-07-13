@@ -19,7 +19,7 @@ namespace Kernel
     {
 
         DECLARE_CONFIGURED(OutbreakIndividualTBorHIV)
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, OutbreakIndividualTBorHIV, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, OutbreakIndividualTBorHIV, IDistributableIntervention)
     protected:
         int infection_type;
     public:

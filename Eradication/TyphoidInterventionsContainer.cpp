@@ -13,9 +13,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "Sugar.h"
 #include "Debug.h"
 #include "Environment.h"
-
 #include "IIndividualHumanContext.h"
-#include "InterventionFactory.h"
 #include "TyphoidInterventionsContainer.h"
 #include "IndividualTyphoid.h"
 

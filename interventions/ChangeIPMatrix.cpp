@@ -9,11 +9,9 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "ChangeIPMatrix.h"
-
 #include "Exceptions.h"
 #include "INodeContext.h"
 #include "NodeEventContext.h"
-#include "InterventionFactory.h"
 
 SETUP_LOGGING( "ChangeIPMatrix" )
 

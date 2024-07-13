@@ -14,10 +14,10 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    class HIVSigmoidByYearAndSexDiagnostic : public HIVSimpleDiagnostic//, public IHealthSeekingBehavior
+    class HIVSigmoidByYearAndSexDiagnostic : public HIVSimpleDiagnostic
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, HIVSigmoidByYearAndSexDiagnostic, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, HIVSigmoidByYearAndSexDiagnostic, IDistributableIntervention)
 
     public: 
         HIVSigmoidByYearAndSexDiagnostic();

@@ -22,7 +22,7 @@ namespace Kernel
     class NodeInfectivityMult : public BaseNodeIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, NodeInfectivityMult, INodeDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, NodeInfectivityMult, INodeDistributableIntervention)
 
     public:
         NodeInfectivityMult();

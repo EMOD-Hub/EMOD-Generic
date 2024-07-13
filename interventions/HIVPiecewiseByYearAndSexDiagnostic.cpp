@@ -11,9 +11,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include <math.h> // for std::floor
 #include "Exceptions.h"
 #include "HIVPiecewiseByYearAndSexDiagnostic.h"
-
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "NodeEventContext.h"  // for INodeEventContext (ICampaignCostObserver)
 #include "IIndividualHumanHIV.h"
 #include "IIndividualHumanContext.h"

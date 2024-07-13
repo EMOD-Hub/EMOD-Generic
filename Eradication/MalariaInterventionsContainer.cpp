@@ -11,8 +11,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "Sugar.h"
 #include "MalariaContexts.h"
-
-#include "InterventionFactory.h"
 #include "MalariaInterventionsContainer.h"
 #include "IIndividualHumanContext.h"
 

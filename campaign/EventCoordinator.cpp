@@ -10,8 +10,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 
 #include "EventCoordinator.h"
-#include "InterventionFactory.h"
 #include "ObjectFactoryTemplates.h"
+#include "Log.h"
 
 SETUP_LOGGING( "EventCoordinator" )
 

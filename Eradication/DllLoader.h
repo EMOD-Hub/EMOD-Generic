@@ -16,7 +16,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "ISimulation.h"
 #include "IReport.h"
-#include "InterventionFactory.h"
 #include "DllDefs.h"
 
 #ifdef __GNUC__
@@ -46,7 +45,6 @@ public:
     json::Object GetDiseaseDllSchemas();
     bool LoadReportDlls( std::unordered_map< std::string, Kernel::report_instantiator_function_t >& reportInstantiators,
                          const char* dllName = nullptr );
-    bool LoadInterventionDlls(const char* dllName=nullptr);
 
     bool StringEquals(const emodulewstr& wStr, const char* cStr);
 #if defined(WIN32)

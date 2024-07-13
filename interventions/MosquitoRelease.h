@@ -41,7 +41,7 @@ namespace Kernel
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
         DECLARE_CONFIGURED(MosquitoRelease)
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, MosquitoRelease, INodeDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, MosquitoRelease, INodeDistributableIntervention)
 
     public:
         MosquitoRelease();

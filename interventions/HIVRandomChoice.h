@@ -18,7 +18,7 @@ namespace Kernel
     class HIVRandomChoice : public HIVSimpleDiagnostic
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, HIVRandomChoice, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, HIVRandomChoice, IDistributableIntervention)
 
     public: 
         virtual bool Configure( const Configuration * inputJson ) override;

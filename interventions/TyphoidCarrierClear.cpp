@@ -11,7 +11,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "TyphoidCarrierClear.h"
 #include "TyphoidInterventionsContainer.h"
 #include "IndividualTyphoid.h"
-#include "InterventionFactory.h"
 #include "NodeEventContext.h"  // for INodeEventContext (ICampaignCostObserver)
 #include "TBContexts.h"
 

@@ -22,7 +22,7 @@ namespace Kernel
 {
     class InterventionForCurrentPartners : public BaseIntervention
     {
-        DECLARE_FACTORY_REGISTERED( InterventionFactory, InterventionForCurrentPartners, IDistributableIntervention )
+        DECLARE_FACTORY_REGISTERED( IndividualIVFactory, InterventionForCurrentPartners, IDistributableIntervention )
 
     public:
         InterventionForCurrentPartners();

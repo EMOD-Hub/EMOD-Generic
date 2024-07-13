@@ -13,7 +13,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #endif
 
 #include "BroadcastCoordinatorEvent.h"
-#include "InterventionFactory.h"
 #include "Log.h"
 #include "NodeEventContext.h"
 #include "SimulationEventContext.h"

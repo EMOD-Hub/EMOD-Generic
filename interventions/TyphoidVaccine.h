@@ -19,7 +19,7 @@ namespace Kernel
 
     class TyphoidVaccine : public BaseIntervention
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, TyphoidVaccine, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, TyphoidVaccine, IDistributableIntervention)
 
     public:
         TyphoidVaccine();

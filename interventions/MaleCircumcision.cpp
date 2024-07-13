@@ -9,9 +9,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "MaleCircumcision.h"
-
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "IndividualEventContext.h"
 #include "IIndividualHumanContext.h"
 #include "NodeEventContext.h"

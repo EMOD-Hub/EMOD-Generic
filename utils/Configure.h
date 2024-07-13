@@ -159,11 +159,12 @@ namespace Kernel
         friend class DistributionPiecewiseConstantConfigurable;
         friend class DistributionPiecewiseLinearConfigurable;
 
-
     public:
         typedef std::map< float, float > tFloatFloatMapConfigType;
         typedef std::map< std::string, float > tStringFloatMapConfigType;
         static const char * default_string;
+
+        virtual IConfigurable* GetConfigurable() override;
 
     private:
         typedef std::map< std::string, bool * > tBoolConfigTypeMapType;

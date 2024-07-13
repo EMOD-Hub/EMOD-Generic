@@ -42,20 +42,20 @@ namespace Kernel
 
     // ctor
     StandardInterventionDistributionEventCoordinator::StandardInterventionDistributionEventCoordinator( bool useDemographicCoverage ) 
-    : parent(nullptr)
-    , distribution_complete(false)
-    , num_repetitions(1)
-    , tsteps_between_reps(-1)
-    , tsteps_since_last(0)
-    , intervention_activated(false)
-    , cached_nodes()
-    , node_suids()
-    , demographic_restrictions( true, TargetDemographicType::Everyone, useDemographicCoverage )
-    , demographic_coverage(1.0)
-    , node_property_restrictions()
-    , log_intervention_name()
-    , m_pInterventionIndividual( nullptr )
-    , m_pInterventionNode( nullptr )
+        : parent(nullptr)
+        , distribution_complete(false)
+        , num_repetitions(1)
+        , tsteps_between_reps(-1)
+        , tsteps_since_last(0)
+        , intervention_activated(false)
+        , cached_nodes()
+        , node_suids()
+        , demographic_restrictions( true, TargetDemographicType::Everyone, useDemographicCoverage )
+        , demographic_coverage(1.0)
+        , node_property_restrictions()
+        , log_intervention_name()
+        , m_pInterventionIndividual( nullptr )
+        , m_pInterventionNode( nullptr )
     {
         LOG_DEBUG("StandardInterventionDistributionEventCoordinator ctor\n");
     }
@@ -66,10 +66,7 @@ namespace Kernel
         delete m_pInterventionNode;
     }
 
-    bool
-    StandardInterventionDistributionEventCoordinator::Configure(
-        const Configuration * inputJson
-    )
+    bool StandardInterventionDistributionEventCoordinator::Configure( const Configuration* inputJson )
     {
         InterventionConfig intervention_config;
         initConfigComplexType( "Intervention_Config", &intervention_config, Intervention_Config_DESC_TEXT );
@@ -87,16 +84,10 @@ namespace Kernel
 
             CheckRepetitionConfiguration();
 
-            m_pInterventionIndividual = InterventionFactory::getInstance()->CreateIntervention( intervention_config._json,
-                                                                                                inputJson->GetDataLocation(),
-                                                                                                "Intervention_Config",
-                                                                                                false ); // don't throw if null
+            m_pInterventionIndividual = InterventionFactory::CreateIntervention( intervention_config._json, inputJson->GetDataLocation(), "Intervention_Config", false ); // don't throw if null
             if( m_pInterventionIndividual == nullptr )
             {
-                m_pInterventionNode = InterventionFactory::getInstance()->CreateNDIIntervention( intervention_config._json,
-                                                                                                 inputJson->GetDataLocation(),
-                                                                                                 "Intervention_Config",
-                                                                                                 false ); // don't throw if null
+                m_pInterventionNode = InterventionFactory::CreateNDIIntervention( intervention_config._json, inputJson->GetDataLocation(), "Intervention_Config", false ); // don't throw if null
             }
             if( (m_pInterventionIndividual == nullptr) && (m_pInterventionNode == nullptr) )
             {
@@ -242,36 +233,30 @@ namespace Kernel
         return ihec->GetInterventionsContext()->GetParent()->GetRng()->SmartDraw( demographic_coverage );
     }
 
-    bool
-    StandardInterventionDistributionEventCoordinator::visitIndividualCallback( 
-        IIndividualHumanEventContext *ihec,
-        float & incrementalCostOut,
-        ICampaignCostObserver * pICCO
-    )
+    bool StandardInterventionDistributionEventCoordinator::visitIndividualCallback( IIndividualHumanEventContext* ihec, float& incrementalCostOut, ICampaignCostObserver* pICCO )
     {
         bool distributed = true;
+
+        // Add real checks on demographics based on intervention demographic targetting. 
+        // Return immediately if we hit a non-distribute condition
+        if( qualifiesDemographically( ihec ) == false )
         {
-            // Add real checks on demographics based on intervention demographic targetting. 
-            // Return immediately if we hit a non-distribute condition
-            if( qualifiesDemographically( ihec ) == false )
-            {
-                LOG_DEBUG("Individual not given intervention because not in target demographic\n");
-                return false;
-            }
-            LOG_DEBUG("Individual meets demographic targeting criteria\n"); 
-
-            if (!TargetedIndividualIsCovered(ihec))
-            {
-                incrementalCostOut = 0;
-                return false;
-            }
-            else
-            {
-                incrementalCostOut = 0;
-
-                distributed = DistributeInterventionsToIndividual( ihec, incrementalCostOut, pICCO );
-            }
+            LOG_DEBUG("Individual not given intervention because not in target demographic\n");
+            return false;
         }
+        LOG_DEBUG("Individual meets demographic targeting criteria\n"); 
+
+        if (!TargetedIndividualIsCovered(ihec))
+        {
+            incrementalCostOut = 0;
+            return false;
+        }
+        else
+        {
+            incrementalCostOut = 0;
+            distributed = DistributeInterventionsToIndividual( ihec, incrementalCostOut, pICCO );
+        }
+
         return distributed;
     }
 

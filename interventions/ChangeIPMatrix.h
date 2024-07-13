@@ -21,7 +21,7 @@ namespace Kernel
     class ChangeIPMatrix : public BaseNodeIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED( InterventionFactory, ChangeIPMatrix, INodeDistributableIntervention )
+        DECLARE_FACTORY_REGISTERED( NodeIVFactory, ChangeIPMatrix, INodeDistributableIntervention )
 
     public:
         ChangeIPMatrix();

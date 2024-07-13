@@ -9,8 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "NLHTIVNode.h"
-
-#include "InterventionFactory.h"
 #include "Log.h"
 #include "Debug.h"
 #include "ISimulationContext.h"
@@ -32,36 +30,36 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(NLHTIVNode)
 
     NLHTIVNode::NLHTIVNode()
-    : BaseNodeIntervention()
-    , m_trigger_conditions()
-    , max_duration(0.0f)
-    , duration(0.0f)
-    , node_property_restrictions()
-    , blackout_period(0.0)
-    , blackout_time_remaining(0.0)
-    , blackout_event_trigger()
-    , blackout_on_first_occurrence(false)
-    , notification_occurred(false)
-    , event_occurred_list()
-    , _ndi(nullptr)
-    , m_ClassName()
+        : BaseNodeIntervention()
+        , m_trigger_conditions()
+        , max_duration(0.0f)
+        , duration(0.0f)
+        , node_property_restrictions()
+        , blackout_period(0.0)
+        , blackout_time_remaining(0.0)
+        , blackout_event_trigger()
+        , blackout_on_first_occurrence(false)
+        , notification_occurred(false)
+        , event_occurred_list()
+        , _ndi(nullptr)
+        , m_ClassName()
     {
     }
 
     NLHTIVNode::NLHTIVNode( const NLHTIVNode& rMaster )
-    : BaseNodeIntervention( rMaster )
-    , m_trigger_conditions( rMaster.m_trigger_conditions )
-    , max_duration( rMaster.max_duration )
-    , duration( rMaster.duration )
-    , node_property_restrictions( rMaster.node_property_restrictions )
-    , blackout_period( rMaster.blackout_period)
-    , blackout_time_remaining( rMaster.blackout_time_remaining )
-    , blackout_event_trigger( rMaster.blackout_event_trigger )
-    , blackout_on_first_occurrence( rMaster.blackout_on_first_occurrence )
-    , notification_occurred( rMaster.notification_occurred )
-    , event_occurred_list( rMaster.event_occurred_list )
-    , _ndi(nullptr)
-    , m_ClassName( rMaster.m_ClassName )
+        : BaseNodeIntervention( rMaster )
+        , m_trigger_conditions( rMaster.m_trigger_conditions )
+        , max_duration( rMaster.max_duration )
+        , duration( rMaster.duration )
+        , node_property_restrictions( rMaster.node_property_restrictions )
+        , blackout_period( rMaster.blackout_period)
+        , blackout_time_remaining( rMaster.blackout_time_remaining )
+        , blackout_event_trigger( rMaster.blackout_event_trigger )
+        , blackout_on_first_occurrence( rMaster.blackout_on_first_occurrence )
+        , notification_occurred( rMaster.notification_occurred )
+        , event_occurred_list( rMaster.event_occurred_list )
+        , _ndi(nullptr)
+        , m_ClassName( rMaster.m_ClassName )
     {
         if( rMaster._ndi != nullptr )
         {
@@ -114,10 +112,7 @@ namespace Kernel
         //this section copied from standardevent coordinator
         if( retValue && !JsonConfigurable::_dryrun )
         {
-            _ndi = InterventionFactory::getInstance()->CreateNDIIntervention( actual_node_intervention_config._json,
-                                                                              inputJson->GetDataLocation(),
-                                                                              "Actual_NodeIntervention_Config",
-                                                                              true );
+            _ndi = InterventionFactory::CreateNDIIntervention( actual_node_intervention_config._json, inputJson->GetDataLocation(), "Actual_NodeIntervention_Config", true );
             m_ClassName = std::string( json::QuickInterpreter( actual_node_intervention_config._json )[ "class" ].As<json::String>() );
 
             event_occurred_list.resize( EventTrigger::NUM_EVENT_TRIGGERS );

@@ -9,6 +9,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #pragma once
 
+#include "Configure.h"
 #include "ObjectFactory.h"
 #ifndef WIN32
 #include <cxxabi.h>
@@ -23,10 +24,9 @@ namespace Kernel
     }
 
     template<class IObject, class Factory>
-    ObjectFactory<IObject,Factory>::ObjectFactory( bool queryForReturnInterface )
+    ObjectFactory<IObject,Factory>::ObjectFactory()
         : m_RegisteredClasses()
         , m_FactorySchema()
-        , m_QueryForReturnInterface( queryForReturnInterface )
     {
     }
 
@@ -60,19 +60,16 @@ namespace Kernel
             // ----------------------
             // --- Create the object
             // ----------------------
-            ISupports * pForSchema = creator();
+            ISupports* pForSchema = creator();
             release_assert( pForSchema );
 
             // --------------------------------
             // --- Get the schema for the class
             // --------------------------------
-            IConfigurable * p_config = NULL;
-            if( s_OK != pForSchema->QueryInterface( GET_IID( IConfigurable ), (void**)&p_config ) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "ret", "IConfigurable", "ISupports" );
-            }
+            IConfigurable* p_config = pForSchema->GetConfigurable();
+            release_assert( p_config );
 
-            Configuration * fakeConfig = Configuration::CopyFromElement( fakeJson );
+            Configuration* fakeConfig = Configuration::CopyFromElement( fakeJson );
             p_config->Configure( fakeConfig );
             json::QuickBuilder schema = p_config->GetSchema();
 
@@ -104,7 +101,7 @@ namespace Kernel
         IObject* obj = nullptr;
         if( is_valid_element )
         {
-            obj = CreateInstanceFromSpecs<IObject>( pConfig, m_RegisteredClasses, m_QueryForReturnInterface );
+            obj = CreateInstanceFromSpecs<IObject>( pConfig, m_RegisteredClasses );
             if( obj == nullptr )
             {
                 std::stringstream ss;
@@ -195,20 +192,27 @@ namespace Kernel
         std::string class_name = GET_CONFIG_STRING( pConfig, "class" );
         if( m_RegisteredClasses.find( class_name ) == m_RegisteredClasses.end() )
         {
-            std::stringstream json_text;
-            json::Writer::Write( *pConfig, json_text );
-
-            std::stringstream ss;
-            ss << "'" << GetFactoryName() << "' could not find class '" << class_name << "'.\n"
-               << "It was specified in parameter '" << parameterName << "' in <" << pConfig->GetDataLocation() << ">.\n"
-               << "This parameter had the following JSON:\n"
-               << json_text.str() << "\n"
-               << "Valid classes for this parameter are:\n";
-            for( auto entry : m_RegisteredClasses )
+            if( nullOrEmptyOrNoClassNotError )
             {
-                ss << entry.first << "\n";
+                return false;
             }
-            throw FactoryCreateFromJsonException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
+            else
+            {
+                std::stringstream json_text;
+                json::Writer::Write( *pConfig, json_text );
+
+                std::stringstream ss;
+                ss << "'" << GetFactoryName() << "' could not find class '" << class_name << "'.\n"
+                   << "It was specified in parameter '" << parameterName << "' in <" << pConfig->GetDataLocation() << ">.\n"
+                   << "This parameter had the following JSON:\n"
+                   << json_text.str() << "\n"
+                   << "Valid classes for this parameter are:\n";
+                for( auto entry : m_RegisteredClasses )
+                {
+                    ss << entry.first << "\n";
+                }
+                throw FactoryCreateFromJsonException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
+            }
         }
         return true;
     }
@@ -227,21 +231,18 @@ namespace Kernel
     }
 
     template<class IObject, class Factory>
-    void ObjectFactory<IObject, Factory>::CheckSimType( ISupports* pObject )
+    void ObjectFactory<IObject, Factory>::CheckSimType( IObject* pObject )
     {
         if( JsonConfigurable::_dryrun )
         {
             return;
         }
-        release_assert( pObject != nullptr );
+        release_assert(pObject);
 
         std::string sim_type_str = GET_CONFIG_STRING( EnvPtr->Config, "Simulation_Type" );
 
-        IConfigurable * p_config = nullptr;
-        if( s_OK != pObject->QueryInterface( GET_IID( IConfigurable ), (void**)&p_config ) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pObject", "IConfigurable", "IObject" );
-        }
+        IConfigurable* p_config = pObject->GetConfigurable();
+        release_assert(p_config);
 
         json::Object json_object = p_config->GetSchema().As<json::Object>();
 

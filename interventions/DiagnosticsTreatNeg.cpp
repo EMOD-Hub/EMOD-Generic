@@ -10,7 +10,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 #include "DiagnosticsTreatNeg.h"
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "NodeEventContext.h"  // for INodeEventContext (ICampaignCostObserver)
 #include "TBContexts.h"
 #include "IIndividualHumanContext.h"
@@ -178,7 +177,7 @@ namespace Kernel
         else if( negative_diagnosis_config._json.Type() != ElementType::NULL_ELEMENT )
         {
             // Distribute the test-negative intervention
-            IDistributableIntervention* di = InterventionFactory::getInstance()->CreateIntervention( negative_diagnosis_config._json, "", "campaign");
+            IDistributableIntervention* di = InterventionFactory::CreateIntervention( negative_diagnosis_config._json, "", "campaign");
             ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
             di->Distribute( parent->GetInterventionsContext(), pICCO );
         }
@@ -201,7 +200,7 @@ namespace Kernel
         else if( defaulters_config._json.Type() != ElementType::NULL_ELEMENT )
         {
             // Distribute the defaulters intervention, right away (do not use the days_to_diagnosis
-            IDistributableIntervention* di = InterventionFactory::getInstance()->CreateIntervention( defaulters_config._json, "", "campaign");
+            IDistributableIntervention* di = InterventionFactory::CreateIntervention( defaulters_config._json, "", "campaign");
             ICampaignCostObserver* pICCO = parent->GetEventContext()->GetNodeEventContext()->GetCampaignCostObserver();
             di->Distribute( parent->GetInterventionsContext(), pICCO );
         }

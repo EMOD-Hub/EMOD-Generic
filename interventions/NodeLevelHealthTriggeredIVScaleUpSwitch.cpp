@@ -9,8 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "NodeLevelHealthTriggeredIVScaleUpSwitch.h"
-
-#include "InterventionFactory.h"
 #include "Log.h"
 #include "Debug.h"
 #include "NodeEventContext.h"  // for INodeEventContext (ICampaignCostObserver)
@@ -115,9 +113,7 @@ namespace Kernel
                 std::stringstream param_name;
                 param_name << "Not_Covered_IndividualIntervention_Configs[" << idx << "]";
 
-                IDistributableIntervention *di = InterventionFactory::getInstance()->CreateIntervention( notcoveredIntervention,
-                                                                                                         "campaign",
-                                                                                                         param_name.str().c_str() ); 
+                IDistributableIntervention *di = InterventionFactory::CreateIntervention( notcoveredIntervention, "campaign", param_name.str().c_str() ); 
 
                 if( di )
                 {

@@ -24,7 +24,7 @@ namespace Kernel
 
     class Vaccine : public BaseIntervention
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, Vaccine, IDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, Vaccine, IDistributableIntervention)
 
         DECLARE_SERIALIZABLE(Vaccine);
 

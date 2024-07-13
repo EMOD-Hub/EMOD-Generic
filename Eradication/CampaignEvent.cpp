@@ -44,7 +44,7 @@ namespace Kernel
     template CampaignEventFactory* ObjectFactory<CampaignEvent, CampaignEventFactory>::getInstance();
 
     CampaignEventFactory::CampaignEventFactory()
-        : ObjectFactory<CampaignEvent, CampaignEventFactory>( false ) // do not queryForReturnInterface
+        : ObjectFactory<CampaignEvent, CampaignEventFactory>()
     {
     }
 

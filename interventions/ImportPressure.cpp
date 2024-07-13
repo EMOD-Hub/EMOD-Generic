@@ -11,7 +11,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "ImportPressure.h"
 
 #include "Exceptions.h"
-#include "InterventionFactory.h"
 #include "NodeEventContext.h"
 #include "RANDOM.h"
 

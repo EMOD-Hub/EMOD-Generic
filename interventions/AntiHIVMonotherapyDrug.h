@@ -18,7 +18,7 @@ namespace Kernel
 
     class AntiHIVMonotherapyDrug : public GenericDrug
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, AntiHIVMonotherapyDrug, IDistributableIntervention);
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, AntiHIVMonotherapyDrug, IDistributableIntervention);
 
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()

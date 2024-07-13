@@ -13,7 +13,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #endif
 
 #include "Interventions.h"
-#include "InterventionFactory.h"
 #include "INodeContext.h"
 #include "NodeEventContext.h"
 #include "IIndividualHumanContext.h"

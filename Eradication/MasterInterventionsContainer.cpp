@@ -12,8 +12,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "TBInterventionsContainer.h"
 #include "HIVInterventionsContainer.h"
 #include "TBInterventionsContainer.h"
-
-#include "InterventionFactory.h"
 #include "Log.h"
 #include "Sugar.h"
 #include <assert.h>

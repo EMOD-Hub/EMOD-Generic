@@ -16,7 +16,7 @@ namespace Kernel
 {
     class ARTBasic : public BaseIntervention
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, ARTBasic, IDistributableIntervention);
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, ARTBasic, IDistributableIntervention);
 
     public:
         ARTBasic();

@@ -13,7 +13,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include <list>
 
 #include "IdmApi.h"
-
 #include "ISupports.h"
 #include "Configure.h"                 // for JsonConfigurable
 #include "InterventionEnums.h"
@@ -151,6 +150,8 @@ namespace Kernel
         virtual IHealthSeekingBehavior*    GetHSB()        override     { return nullptr; }
         virtual IPolioVaccine*             GetPolioVax()   override     { return nullptr; }
 
+        virtual IConfigurable* GetConfigurable() override { return JsonConfigurable::GetConfigurable(); }
+
     protected:
         BaseIntervention();
         BaseIntervention( const BaseIntervention& );
@@ -188,6 +189,8 @@ namespace Kernel
         virtual void SetExpired( bool isExpired ) override;
         virtual void OnExpiration() override;
         virtual void SetContextTo( INodeEventContext *context ) override;
+
+        virtual IConfigurable* GetConfigurable() override { return JsonConfigurable::GetConfigurable(); }
 
     protected:
         BaseNodeIntervention();

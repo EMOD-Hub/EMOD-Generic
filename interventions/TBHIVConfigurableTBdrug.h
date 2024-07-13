@@ -16,7 +16,7 @@ namespace Kernel
 {
     class TBHIVConfigurableTBdrug : public AntiTBDrug
     {
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, TBHIVConfigurableTBdrug, IDistributableIntervention);
+        DECLARE_FACTORY_REGISTERED(IndividualIVFactory, TBHIVConfigurableTBdrug, IDistributableIntervention);
 
     public:
         TBHIVConfigurableTBdrug();

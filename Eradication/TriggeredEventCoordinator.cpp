@@ -9,7 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "TriggeredEventCoordinator.h"
-#include "InterventionFactory.h"
 #include "SimulationEventContext.h"
 
 SETUP_LOGGING( "TriggeredEventCoordinator" )

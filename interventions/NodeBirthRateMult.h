@@ -21,7 +21,7 @@ namespace Kernel
     class NodeBirthRateMult : public BaseNodeIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, NodeBirthRateMult, INodeDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, NodeBirthRateMult, INodeDistributableIntervention)
 
     public:
         NodeBirthRateMult();

@@ -11,7 +11,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "STIIsPostDebut.h"
 
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "IndividualSTI.h"
 
 SETUP_LOGGING( "STIIsPostDebut" )

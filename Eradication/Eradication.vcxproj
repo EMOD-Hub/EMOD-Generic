@@ -245,11 +245,6 @@
     <ClInclude Include="microsoft.hpc.scheduler.tlh" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Eradication.rc">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\utils</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\cajun\include\cast.inl" />
     <None Include="..\utils\config_params.rc" />
     <None Include="..\utils\iv_params.rc" />

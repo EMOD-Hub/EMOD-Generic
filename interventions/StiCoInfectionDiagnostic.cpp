@@ -10,7 +10,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 #include "StiCoInfectionDiagnostic.h"
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "IIndividualHumanSTI.h"
 #include "IIndividualHumanContext.h"
 

@@ -9,9 +9,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 #include "MosquitoRelease.h"
-
 #include "Exceptions.h"
-#include "InterventionFactory.h"
 #include "SimulationConfig.h"
 #include "NodeVectorEventContext.h"
 #include "VectorParameters.h"

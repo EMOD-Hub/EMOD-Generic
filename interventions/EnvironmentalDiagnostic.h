@@ -20,7 +20,7 @@ namespace Kernel
     class EnvironmentalDiagnostic: public BaseNodeIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_FACTORY_REGISTERED(InterventionFactory, EnvironmentalDiagnostic, INodeDistributableIntervention)
+        DECLARE_FACTORY_REGISTERED(NodeIVFactory, EnvironmentalDiagnostic, INodeDistributableIntervention)
 
     public:
         EnvironmentalDiagnostic();

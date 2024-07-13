@@ -33,7 +33,6 @@ namespace Kernel
     {
     };
 
-
     // class defines a simple set of nodes...either by id, 
     class IDMAPI NodeSetAll : public INodeSet, public JsonConfigurable
     {
@@ -47,33 +46,12 @@ namespace Kernel
         virtual bool Contains(INodeEventContext *ndc);
         virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);
 
+        virtual IConfigurable*  GetConfigurable()  override  { return JsonConfigurable::GetConfigurable(); }
+
     protected:
 #pragma warning( push )
 #pragma warning( disable: 4251 ) // See IdmApi.h for details
         DECLARE_SERIALIZABLE(NodeSetAll);
-#pragma warning( pop )
-    };
-
-    class IDMAPI NodeSetPolygon : public INodeSet, public JsonConfigurable
-    {
-        DECLARE_FACTORY_REGISTERED_EXPORT(NodeSetFactory, NodeSetPolygon, INodeSet)
-
-    public:
-        DECLARE_CONFIGURED(NodeSetPolygon)
-        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
-        virtual bool Contains(INodeEventContext *ndc);
-        virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);
-
-    protected:
-        void parseEmodFormat();
-        void parseGeoJsonFormat();
-
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
-        float * points_array;
-        size_t num_points;
-        std::string vertices_raw;
 #pragma warning( pop )
     };
 
@@ -95,7 +73,7 @@ namespace Kernel
 
     class IDMAPI NodeSetNodeList : public INodeSet, public JsonConfigurable
     {
-        DECLARE_FACTORY_REGISTERED(NodeSetFactory, NodeSetNodeList, INodeSet)
+        DECLARE_FACTORY_REGISTERED_EXPORT(NodeSetFactory, NodeSetNodeList, INodeSet)
 
     public:
         DECLARE_CONFIGURED(NodeSetNodeList)
@@ -103,6 +81,8 @@ namespace Kernel
         DECLARE_QUERY_INTERFACE()
         virtual bool Contains(INodeEventContext *ndc);
         virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);
+
+        virtual IConfigurable*  GetConfigurable()  override  { return JsonConfigurable::GetConfigurable(); }
 
     protected:
         NodeListConfig nodelist_config;

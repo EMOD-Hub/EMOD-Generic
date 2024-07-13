@@ -11,7 +11,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "RTSSVaccine.h"
 
 #include "InterventionEnums.h"
-#include "InterventionFactory.h"
 #include "MalariaContexts.h"     // for BoostAntibody method
 #include "IIndividualHumanContext.h"
 
