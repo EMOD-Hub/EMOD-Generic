@@ -10,6 +10,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #pragma once
 
 #include "IVectorCohort.h"
+#include "IVectorHabitat.h"
 #include "ISerializable.h"
 
 namespace Kernel
@@ -35,5 +36,22 @@ namespace Kernel
 
         // Supports MosquitoRelease intervention
         virtual void AddVectors( const VectorMatingStructure& _vector_genetics, uint32_t releasedNumber ) = 0;
+
+        // Reporting
+        virtual float GetEIRByPool(VectorPoolIdEnum::Enum pool_id)      const = 0;
+        virtual float GetHBRByPool(VectorPoolIdEnum::Enum pool_id)      const = 0;
+        virtual uint32_t getAdultCount()                                const = 0;
+        virtual uint32_t getInfectedCount(   IStrainIdentity* pStrain ) const = 0;
+        virtual uint32_t getInfectiousCount( IStrainIdentity* pStrain ) const = 0;
+        virtual uint32_t getMaleCount()                                 const = 0;
+        virtual uint32_t getNewEggsCount()                              const = 0;
+        virtual uint32_t getNewAdults()                                 const = 0;
+        virtual uint32_t getNumDiedBeforeFeeding()                      const = 0;
+        virtual uint32_t getNumDiedDuringFeedingIndoor()                const = 0;
+        virtual uint32_t getNumDiedDuringFeedingOutdoor()               const = 0;
+        virtual double  getInfectivity()                                const = 0;
+        virtual const VectorHabitatList_t& GetHabitats()                const = 0;
+        virtual std::vector<uint64_t> GetNewlyInfectedVectorIds()       const = 0;
+        virtual std::vector<uint64_t> GetInfectiousVectorIds()          const = 0;
     };
 }

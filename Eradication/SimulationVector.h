@@ -29,6 +29,8 @@ namespace Kernel
         static SimulationVector *CreateSimulation(const ::Configuration *config);
         virtual ~SimulationVector();
 
+        virtual IVectorSimulationContext* GetSimulationVector() override;
+
         // IVectorSimulationContext methods
         virtual void  PostMigratingVector( const suids::suid& nodeSuid, IVectorCohort* ind ) override;
         virtual float GetNodePopulation( const suids::suid& nodeSuid ) override;

@@ -25,10 +25,7 @@ namespace Kernel {
     ReportMalaria::ReportMalaria()
     {}
 
-    void
-    ReportMalaria::populateSummaryDataUnitsMap(
-        std::map<std::string, std::string> &units_map
-    )
+    void ReportMalaria::populateSummaryDataUnitsMap( std::map<std::string, std::string> &units_map )
     {
         ReportVector::populateSummaryDataUnitsMap(units_map);
         
@@ -41,8 +38,7 @@ namespace Kernel {
         units_map[_new_severe_cases_label]          = "";
     }
 
-    void
-    ReportMalaria::postProcessAccumulatedData()
+    void ReportMalaria::postProcessAccumulatedData()
     {
         ReportVector::postProcessAccumulatedData();
 
@@ -57,18 +53,13 @@ namespace Kernel {
     }
 
 
-    void
-    ReportMalaria::LogNodeData(
-        INodeContext * pNC
-    )
+    void ReportMalaria::LogNodeData( INodeContext* pNC )
     {
         ReportVector::LogNodeData( pNC );
 
-        const INodeMalaria* pMalariaNode = nullptr;
-        if( pNC->QueryInterface( GET_IID(INodeMalaria), (void**)&pMalariaNode ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodeMalaria", "INodeContext" );
-        }
+        const INodeMalaria* pMalariaNode = pNC->GetNodeMalaria();
+        release_assert(pMalariaNode);
+
         Accumulate(_parasite_prevalence_label,       pMalariaNode->GetParasitePositive());
         Accumulate(_mean_parasitemia_label,          pMalariaNode->GetLogParasites());
         Accumulate(_new_diagnostic_prevalence_label, pMalariaNode->GetNewDiagnosticPositive());

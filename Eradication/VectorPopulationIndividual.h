@@ -31,14 +31,14 @@ namespace Kernel
         virtual void Vector_Migration( float dt, IMigrationInfo* pMigInfo, VectorCohortVector_t* pMigratingQueue ) override;
         virtual void AddImmigratingVector( IVectorCohort* pvc ) override;
 
-        // IInfectable
-        virtual void Expose( const IContagionPopulation* cp, float dt, TransmissionRoute::Enum transmission_route ) override;
-
-        // IVectorPopulationReporting
         virtual uint32_t getInfectedCount(   IStrainIdentity* pStrain ) const override;
         virtual uint32_t getInfectiousCount( IStrainIdentity* pStrain ) const override;
         virtual std::vector<uint64_t> GetNewlyInfectedVectorIds()   const override;
         virtual std::vector<uint64_t> GetInfectiousVectorIds()      const override;
+
+        // IInfectable
+        virtual void Expose( const IContagionPopulation* cp, float dt, TransmissionRoute::Enum transmission_route ) override;
+
 
     protected:
         VectorPopulationIndividual(uint32_t mosquito_weight);

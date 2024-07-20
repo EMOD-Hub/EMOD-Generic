@@ -61,6 +61,9 @@ namespace Kernel
         static Simulation *CreateSimulation(const ::Configuration *config);
         virtual ~Simulation();
 
+        virtual ISimulation*                GetSimulation()        override;
+        virtual IVectorSimulationContext*   GetSimulationVector()  override   {return nullptr;};
+
         virtual bool Configure( const ::Configuration *json ) override;
         virtual bool TimeToStop() override;
 

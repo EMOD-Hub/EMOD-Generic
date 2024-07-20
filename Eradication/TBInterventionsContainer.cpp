@@ -25,7 +25,6 @@ SETUP_LOGGING( "TBInterventionsContainer" )
 namespace Kernel
 {
     BEGIN_QUERY_INTERFACE_DERIVED(TBInterventionsContainer, InterventionsContainer)
-        HANDLE_INTERFACE(ITBDrugEffects)
         HANDLE_INTERFACE(ITBInterventionsContainer)
     END_QUERY_INTERFACE_DERIVED(TBInterventionsContainer, InterventionsContainer)
 

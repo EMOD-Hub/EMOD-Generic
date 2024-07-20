@@ -236,25 +236,8 @@ namespace Kernel
 
     QueryResult Node::QueryInterface( iid_t iid, void** ppinstance )
     {
-        release_assert(ppinstance); // todo: add a real message: "QueryInterface requires a non-NULL destination!");
-
-        ISupports* foundInterface;
-        if ( iid == GET_IID(INodeContext)) 
-            foundInterface = static_cast<INodeContext*>(this);
-        else if ( iid == GET_IID(ISupports) )
-            foundInterface = static_cast<ISupports*>(static_cast<INodeContext*>(this));
-        else
-            foundInterface = nullptr;
-
-        QueryResult status = e_NOINTERFACE;
-        if ( foundInterface )
-        {
-            foundInterface->AddRef();
-            status = s_OK;
-        }
-
-        *ppinstance = foundInterface;
-        return status;
+        release_assert(ppinstance);
+        return e_NOINTERFACE;
     }
 
     Node *Node::CreateNode(ISimulationContext *_parent_sim, ExternalNodeId_t externalNodeId, suids::suid node_suid)
@@ -2461,10 +2444,7 @@ namespace Kernel
         propagateContextToDependents();
 
         // needed to get access to RNG - see GetRng() for more info
-        if( parent->QueryInterface( GET_IID( ISimulation ), (void**)&parent_sim ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "ISimulation", "ISimulationContext" );
-        }
+        parent_sim = context->GetSimulation();
         release_assert( parent_sim );
     }
 

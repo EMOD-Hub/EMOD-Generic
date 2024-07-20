@@ -120,37 +120,10 @@ namespace Kernel
         return rel1->GetSuid().data < rel2->GetSuid().data;
     }
 
-    // The reason for this explicit QI (instead of macro) is to let us resolve 
-    // the IJsonSerializable cast which is ambiguous and must be done via
-    // a specific intermediate.
-    Kernel::QueryResult
-    IndividualHumanSTI::QueryInterface( iid_t iid, void **ppinstance )
+    Kernel::QueryResult IndividualHumanSTI::QueryInterface( iid_t iid, void **ppinstance )
     {
-        if ( !ppinstance )
-        {
-            return e_NULL_POINTER;
-        }
-
-        ISupports* foundInterface = nullptr;
-
-        if ( iid == GET_IID(IIndividualHuman)) 
-            foundInterface = static_cast<IIndividualHuman*>(this);
-        else if ( iid == GET_IID(IIndividualHumanSTI)) 
-            foundInterface = static_cast<IIndividualHumanSTI*>(this);
-        else if ( iid == GET_IID(ISupports)) 
-            foundInterface = static_cast<ISupports*>(static_cast<IIndividualHumanSTI*>(this));
-        else if( IndividualHuman::QueryInterface( iid, (void**)&foundInterface ) != s_OK )
-            foundInterface = nullptr;
-
-        QueryResult status = e_NOINTERFACE;
-        if ( foundInterface )
-        {
-            foundInterface->AddRef();
-            status = s_OK;
-        }
-
-        *ppinstance = foundInterface;
-        return status;
+        release_assert(ppinstance);
+        return e_NOINTERFACE;
     }
 
     void IndividualHumanSTI::SetConcurrencyParameters( const char *prop, const char* prop_value )
@@ -293,14 +266,8 @@ namespace Kernel
         {
             return;
         }
-        // First thing is to cast cp to IContagionProbabilities.
-        IContagionProbabilities * pCP_as_Probs = nullptr;
-        if ((const_cast<IContagionPopulation*>(cp))->QueryInterface(GET_IID(IContagionProbabilities), (void**)&pCP_as_Probs) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "cp", "IContagionProbabilities", "IContagionPopulation" );
-        }
-        release_assert( pCP_as_Probs );
-        auto probs = pCP_as_Probs->GetProbabilities();
+
+        auto probs = cp->GetProbabilities();
 
         // Apply gender-based susceptibility multipliers here
         float mult = 1.0f;
@@ -370,7 +337,7 @@ namespace Kernel
             StrainIdentity strainId;
             // The ContagionProbability object can give us the ID of the Infector (Depositor)
             // We store this as the heretofore unused "Clade ID" of the Infecting Strain.
-            strainId.SetCladeID(pCP_as_Probs->GetInfectorID());
+            strainId.SetCladeID(cp->GetInfectorID());
             AcquireNewInfection( &strainId, tx_route, -1.0f );
         }
     }
@@ -652,8 +619,7 @@ namespace Kernel
         }
     }
 
-    void
-    IndividualHumanSTI::UpdateEligibility()
+    void IndividualHumanSTI::UpdateEligibility()
     {
         // DJK: Could return if pre-sexual-debut, related to <ERAD-1869>
         //release_assert( p_sti_node );
@@ -674,8 +640,7 @@ namespace Kernel
         }
     }
 
-    void
-    IndividualHumanSTI::ConsiderRelationships(float dt)
+    void IndividualHumanSTI::ConsiderRelationships(float dt)
     {
         if( p_sti_node == nullptr )
         {
@@ -766,10 +731,7 @@ namespace Kernel
         } // while ellapsed_time < dt
     }
 
-    void
-    IndividualHumanSTI::AddRelationship(
-        IRelationship * pNewRelationship
-    )
+    void IndividualHumanSTI::AddRelationship( IRelationship* pNewRelationship )
     {
         relationships.insert(pNewRelationship);
 
@@ -826,10 +788,7 @@ namespace Kernel
         }
     }
 
-    void
-    IndividualHumanSTI::RemoveRelationship(
-        IRelationship * pRelationship
-    )
+    void IndividualHumanSTI::RemoveRelationship( IRelationship* pRelationship )
     {
         LOG_DEBUG_F( "%s: individual %lu removing relationship: erase property: %s\n",
                      __FUNCTION__, GetSuid().data, pRelationship->GetPropertyName().c_str() );
@@ -866,14 +825,12 @@ namespace Kernel
         }
     }
 
-    bool
-    IndividualHumanSTI::IsBehavioralSuperSpreader() const
+    bool IndividualHumanSTI::IsBehavioralSuperSpreader() const
     {
         return IS_SUPER_SPREADER();
     }
 
-    unsigned int
-    IndividualHumanSTI::GetExtrarelationalFlags() const
+    unsigned int IndividualHumanSTI::GetExtrarelationalFlags() const
     {
         unsigned int bitmask = 0;
         for( int i = 0 ; i < RelationshipType::COUNT ; ++i )
@@ -884,35 +841,27 @@ namespace Kernel
         return flags;
     }
 
-    void
-    IndividualHumanSTI::SetStiCoInfectionState()
+    void IndividualHumanSTI::SetStiCoInfectionState()
     {
         has_other_sti_co_infection = true;
     }
 
-    void
-    IndividualHumanSTI::ClearStiCoInfectionState()
+    void IndividualHumanSTI::ClearStiCoInfectionState()
     {
         has_other_sti_co_infection = false;
     }
 
-    bool
-    IndividualHumanSTI::HasSTICoInfection()
-    const
+    bool IndividualHumanSTI::HasSTICoInfection() const
     {
         return has_other_sti_co_infection;
     }
 
-    float 
-    IndividualHumanSTI::GetCoInfectiveAcquisitionFactor()
-    const
+    float IndividualHumanSTI::GetCoInfectiveAcquisitionFactor() const
     {
         return has_other_sti_co_infection ? IndividualHumanSTIConfig::sti_coinfection_acq_mult : 1.0f;
     }
 
-    float 
-    IndividualHumanSTI::GetCoInfectiveTransmissionFactor()
-    const
+    float IndividualHumanSTI::GetCoInfectiveTransmissionFactor() const
     {
         if( has_other_sti_co_infection )
         {
@@ -934,14 +883,12 @@ namespace Kernel
         return m_pSTIInterventionsContainer->IsCircumcised();
     }
 
-    void
-    IndividualHumanSTI::onEmigrating()
+    void IndividualHumanSTI::onEmigrating()
     {
         disengageFromSociety();
     }
 
-    void
-    IndividualHumanSTI::onImmigrating()
+    void IndividualHumanSTI::onImmigrating()
     {
         LOG_DEBUG_F( "%s()\n", __FUNCTION__ );
         if( p_sti_node == nullptr )
@@ -1009,22 +956,18 @@ namespace Kernel
         return ret;
     }
 
-    RelationshipSet_t&
-    IndividualHumanSTI::GetRelationships()
+    RelationshipSet_t& IndividualHumanSTI::GetRelationships()
     {
         return relationships;
     }
 
-    RelationshipSet_t&
-    IndividualHumanSTI::GetRelationshipsAtDeath()
+    RelationshipSet_t& IndividualHumanSTI::GetRelationshipsAtDeath()
     {
         return relationships_at_death;
     }
 
     // This method finds the lowest 0 in the relationshipSlots bitmask
-    unsigned int
-    IndividualHumanSTI::GetOpenRelationshipSlot()
-    const
+    unsigned int IndividualHumanSTI::GetOpenRelationshipSlot() const
     {
         release_assert( relationshipSlots < SLOTS_FILLED );
         uint64_t bit = 1;
@@ -1043,41 +986,31 @@ namespace Kernel
         throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
     }
 
-    NaturalNumber
-    IndividualHumanSTI::GetLast6MonthRels()
-    const
+    NaturalNumber IndividualHumanSTI::GetLast6MonthRels() const
     {
         return last_6_month_relationships.size();
     }
 
-    NaturalNumber
-    IndividualHumanSTI::GetLast6MonthRels( RelationshipType::Enum ofType )
-    const
+    NaturalNumber IndividualHumanSTI::GetLast6MonthRels( RelationshipType::Enum ofType ) const
     {
         auto func = [ ofType ]( std::pair<int, float> p ) { return (ofType == p.first); };
         int num = std::count_if( last_6_month_relationships.begin(), last_6_month_relationships.end(), func );
         return num;
     }
 
-    NaturalNumber
-    IndividualHumanSTI::GetLast12MonthRels( RelationshipType::Enum ofType )
-    const
+    NaturalNumber IndividualHumanSTI::GetLast12MonthRels( RelationshipType::Enum ofType ) const
     {
         auto func = [ ofType ]( std::pair<int, float> p ) { return (ofType == p.first); };
         int num = std::count_if( last_12_month_relationships.begin(), last_12_month_relationships.end(), func );
         return num;
     }
 
-    NaturalNumber
-    IndividualHumanSTI::GetNumUniquePartners( int itp, int irel )
-    const
+    NaturalNumber IndividualHumanSTI::GetNumUniquePartners( int itp, int irel ) const
     {
         return num_unique_partners[ itp ][ irel ].size();
     }
 
-    NaturalNumber
-    IndividualHumanSTI::GetLifetimeRelationshipCount()
-    const
+    NaturalNumber IndividualHumanSTI::GetLifetimeRelationshipCount() const
     {
         unsigned int sum = 0;
         for( int type = 0; type < RelationshipType::COUNT; type++ )
@@ -1087,30 +1020,22 @@ namespace Kernel
         return sum;
     }
 
-    NaturalNumber
-    IndividualHumanSTI::GetLifetimeRelationshipCount( RelationshipType::Enum ofType )
-    const
+    NaturalNumber IndividualHumanSTI::GetLifetimeRelationshipCount( RelationshipType::Enum ofType ) const
     {
         return num_lifetime_relationships[ ofType ];
     }
 
-    NaturalNumber
-    IndividualHumanSTI::GetNumRelationshipsAtDeath()
-    const
+    NaturalNumber IndividualHumanSTI::GetNumRelationshipsAtDeath() const
     {
         return relationships_at_death.size();
     }
 
-    float
-    IndividualHumanSTI::GetDebutAge()
-    const
+    float IndividualHumanSTI::GetDebutAge() const
     {
         return sexual_debut_age;
     }
 
-    std::string
-    IndividualHumanSTI::toString()
-    const
+    std::string IndividualHumanSTI::toString() const
     {
         std::ostringstream me;
         me << "id="
@@ -1143,20 +1068,12 @@ namespace Kernel
         }
         else
         {
-            if (parent->QueryInterface(GET_IID(INodeSTI), (void**)&p_sti_node) != s_OK)
-            {
-                // Not throwing an exception because valid in pymod mode.
-                LOG_WARN_F( "Didn't find an object in the parent pointer that supports INodeSTI. OK for component use but not for full system." );
-                //throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "INodeSTI", "INodeContext" );
-            }
-            //release_assert( p_sti_node );
+            p_sti_node = parent->GetNodeSTI();
+            release_assert( p_sti_node );
         }
     }
 
-    void
-    IndividualHumanSTI::CheckForMigration(
-        float currenttime, float dt
-    )
+    void IndividualHumanSTI::CheckForMigration( float currenttime, float dt )
     {
         if( migrating_because_of_partner )
         {

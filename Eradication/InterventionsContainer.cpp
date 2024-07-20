@@ -29,41 +29,10 @@ SETUP_LOGGING( "InterventionsContainer" )
 
 namespace Kernel
 {
-    QueryResult
-    InterventionsContainer::QueryInterface( iid_t iid, void** ppinstance )
+    QueryResult InterventionsContainer::QueryInterface( iid_t iid, void** ppinstance )
     {
-        assert(ppinstance); // todo: add a real message: "QueryInterface requires a non-NULL destination!");
-
-        if ( !ppinstance )
-            return e_NULL_POINTER;
-
-        ISupports* foundInterface;
-
-        GET_IID(IIndividualHumanInterventionsContext);
-        iid_t retVal = GET_IID(IIndividualHumanInterventionsContext);
-        if (iid == retVal)
-            foundInterface = static_cast<IIndividualHumanInterventionsContext*>(this);
-        else if (iid == GET_IID(IInterventionConsumer))
-            foundInterface = static_cast<IInterventionConsumer*>(this);
-        else if (iid == GET_IID(IVaccineConsumer))
-            foundInterface = static_cast<IVaccineConsumer*>(this);
-        else
-            foundInterface = nullptr;
-
-        QueryResult status;
-        if ( !foundInterface )
-        {
-            status = e_NOINTERFACE;
-            // if we had a base class we would QI down into it, but we don't.
-        }
-        else
-        {
-            //foundInterface->AddRef();           // not implementing this yet!
-            status = s_OK;
-        }
-
-        *ppinstance = foundInterface;
-        return status;
+        assert(ppinstance);
+        return e_NOINTERFACE;
     }
 
     InterventionsContainer::~InterventionsContainer()

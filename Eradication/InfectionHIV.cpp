@@ -94,11 +94,8 @@ namespace Kernel
     void InfectionHIV::Initialize(suids::suid _suid)
     {
         InfectionSTI::Initialize(_suid);
-
-        if( s_OK != parent->QueryInterface(GET_IID(IIndividualHumanHIV), (void**)&hiv_parent) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanHIV", "IndividualHuman" );
-        }
+        hiv_parent = parent->GetIndividualHIV();
+        release_assert(hiv_parent);
 
         // Initialization of HIV infection members, start with constant-ish values
         ViralLoad = INITIAL_VIRAL_LOAD;
@@ -120,11 +117,8 @@ namespace Kernel
     void InfectionHIV::SetContextTo( IIndividualHumanContext* context )
     {
         InfectionSTI::SetContextTo( context );
-
-        if( s_OK != parent->QueryInterface(GET_IID(IIndividualHumanHIV), (void**)&hiv_parent) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanHIV", "IndividualHuman" );
-        }
+        hiv_parent = parent->GetIndividualHIV();
+        release_assert(hiv_parent);
     }
 
     IInfectionHIV* InfectionHIV::GetInfectionHIV()

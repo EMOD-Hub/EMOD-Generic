@@ -92,15 +92,12 @@ namespace Kernel
         return tempind;
     }
 
-    bool CD4TrajectoryChangeObserver::notifyOnEvent(IIndividualHumanEventContext *context, const EventTrigger::Enum& trigger)
+    bool CD4TrajectoryChangeObserver::notifyOnEvent(IIndividualHumanEventContext* context, const EventTrigger::Enum& trigger)
     {
         if (trigger == EventTrigger::StartedART || trigger == EventTrigger::StoppedART)
         {
-            IIndividualHumanCoInfection *p_human_co = nullptr;
-            if (s_OK != context->QueryInterface(GET_IID(IIndividualHumanCoInfection), (void**)&p_human_co))
-            {
-                throw QueryInterfaceException(__FILE__, __LINE__, __FUNCTION__, "context", "IIndividualHumanCoInfection", "IIndividualHumanEventContext");
-            }
+            IIndividualHumanCoInfection* p_human_co = context->GetIndividual()->GetIndividualContext()->GetIndividualCoInf();
+            release_assert(p_human_co);
 
             // now adjust the CD4 trajectories and timers accordingly for the latently infected
             if (p_human_co->HasLatentInfection())

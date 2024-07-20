@@ -94,6 +94,10 @@ namespace Kernel
     {
     }
 
+    ISurveillanceReporting* SurveillanceEventCoordinator::GetSurveillanceReporting()
+    {
+        return static_cast<ISurveillanceReporting*>(this);
+    }
 
     bool SurveillanceEventCoordinator::Configure( const Configuration * inputJson )
     {

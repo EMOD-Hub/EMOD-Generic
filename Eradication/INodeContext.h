@@ -41,8 +41,10 @@ namespace Kernel
     struct IIndividualHuman;
     struct ISimulationContext;
     class  INodeVector;
+    class  INodeMalaria;
     class  INodeSTI;
     struct INodeTBHIV;
+    struct INodePolio;
     class NPKeyValueContainer;
 
     struct IDMAPI INodeContext : ISerializable
@@ -62,9 +64,11 @@ namespace Kernel
         } ;
 
         virtual ISimulationContext* GetParent() = 0;
-        virtual INodeVector*        GetNodeVector() = 0;
-        virtual INodeSTI*           GetNodeSTI()    = 0;
-        virtual INodeTBHIV*         GetNodeTBHIV()  = 0;
+        virtual INodeVector*        GetNodeVector()    = 0;
+        virtual INodeMalaria*       GetNodeMalaria()   = 0;
+        virtual INodeSTI*           GetNodeSTI()       = 0;
+        virtual INodeTBHIV*         GetNodeTBHIV()     = 0;
+        virtual INodePolio*         GetNodePolio()     = 0;
 
         virtual const NodeParams* GetParams() const = 0;
 

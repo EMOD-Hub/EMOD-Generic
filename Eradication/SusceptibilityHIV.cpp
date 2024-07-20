@@ -144,10 +144,8 @@ namespace Kernel
     {
         SusceptibilitySTI::SetContextTo( context );
 
-        if( s_OK != parent->QueryInterface(GET_IID(IIndividualHumanHIV), (void**)&hiv_parent) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanHIV", "IndividualHuman" );
-        }
+        hiv_parent = context->GetIndividualHIV();
+        release_assert(hiv_parent);
     }
 
     void SusceptibilityHIV::setCD4Rate(const IInfectionHIV * const pInf)
@@ -167,11 +165,7 @@ namespace Kernel
     // The purpose of this function is to reduce the individual's CD4 count all at once
     // as dictated by the value of dt passed in. This does not represent a real-world 
     // behaviour. Rather it is for Outbreaks where we are pretending time has elapsed.
-    void
-    SusceptibilityHIV::FastForward(
-        const IInfectionHIV * const pInf,
-        float dt
-    )
+    void SusceptibilityHIV::FastForward( const IInfectionHIV* const pInf, float dt )
     {
         if( sqrtCD4_Rate == UNINITIALIZED_RATE )
         {
@@ -258,8 +252,7 @@ namespace Kernel
         LOG_DEBUG_F( "Individual %d has CD4 count of %f\n", parent->GetSuid().data, GetCD4count() );
     }
 
-    void
-    SusceptibilityHIV::ApplyARTOnset()
+    void SusceptibilityHIV::ApplyARTOnset()
     {
         CD4count_at_ART_start = GetCD4count();
         LOG_DEBUG_F( "CD4count_at_ART_start = %f for individual %d\n", CD4count_at_ART_start, parent->GetSuid().data );
@@ -274,10 +267,8 @@ namespace Kernel
     {
         Susceptibility::Initialize(_immmod, _riskmod);
 
-        if( s_OK != parent->QueryInterface(GET_IID(IIndividualHumanHIV), (void**)&hiv_parent) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IIndividualHumanHIV", "IndividualHuman" );
-        }
+        hiv_parent = parent->GetIndividualHIV();
+        release_assert(hiv_parent);
 
         // Calculate CD4 post-infection and at HIV-cause death
         float CD4_PostInfection = parent->GetRng()->Weibull2(SusceptibilityHIVConfig::post_infection_CD4_lambda, SusceptibilityHIVConfig::post_infection_CD4_inverse_kappa );

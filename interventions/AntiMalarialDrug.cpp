@@ -46,8 +46,7 @@ namespace Kernel
         return GenericDrug::CalculateEfficacy( modifier * this->drug_c50, start_concentration, end_concentration );
     }
 
-    float
-    AntimalarialDrug::get_drug_IRBC_killrate( const IStrainIdentity& rStrain )
+    float AntimalarialDrug::get_drug_IRBC_killrate( const IStrainIdentity& rStrain )
     {
         float modifier = pDrugResistantModifiers->GetMaxKilling( rStrain );
         float efficacy = CalculateModifiedEfficacy( rStrain );
@@ -60,29 +59,25 @@ namespace Kernel
         return current_efficacy * drug_hepatocyte;
     }
 
-    float
-    AntimalarialDrug::get_drug_gametocyte02( const IStrainIdentity& rStrain )
+    float AntimalarialDrug::get_drug_gametocyte02( const IStrainIdentity& rStrain )
     {
         float efficacy = CalculateModifiedEfficacy( rStrain );
         return efficacy * drug_gametocyte02;
     }
 
-    float
-    AntimalarialDrug::get_drug_gametocyte34( const IStrainIdentity& rStrain )
+    float AntimalarialDrug::get_drug_gametocyte34( const IStrainIdentity& rStrain )
     {
         float efficacy = CalculateModifiedEfficacy( rStrain );
         return efficacy * drug_gametocyte34;
     }
 
-    float
-    AntimalarialDrug::get_drug_gametocyteM( const IStrainIdentity& rStrain )
+    float AntimalarialDrug::get_drug_gametocyteM( const IStrainIdentity& rStrain )
     {
         float efficacy = CalculateModifiedEfficacy( rStrain );
         return efficacy * drug_gametocyteM;
     }
 
-    DrugUsageType::Enum
-    AntimalarialDrug::GetDrugUsageType()
+    DrugUsageType::Enum AntimalarialDrug::GetDrugUsageType()
     {
         return dosing_type;
     }
@@ -194,6 +189,11 @@ namespace Kernel
         release_assert(context);
         imda = context->GetInterventionsContext()->GetMalariaDrugApply();
         return GenericDrug::SetContextTo( context );
+    }
+
+    IMalariaDrugEffects* AntimalarialDrug::GetMalariaDrug()
+    {
+        return static_cast<IMalariaDrugEffects*>(this);
     }
 
     int AntimalarialDrug::GetNumDoses() const

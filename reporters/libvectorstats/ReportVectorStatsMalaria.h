@@ -26,7 +26,7 @@ namespace Kernel
 
     protected:
         virtual void ResetOtherCounters() override;
-        virtual void CollectOtherData( IVectorPopulationReporting* pIVPR ) override;
+        virtual void CollectOtherData( IVectorPopulation* pIVPR ) override;
         virtual void WriteOtherData() override;
 
     private:

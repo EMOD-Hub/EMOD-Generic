@@ -15,6 +15,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "InfectionHIV.h"
 #include "IHIVInterventionsContainer.h"
 #include "ISimulation.h"
+#include "IIndividualHuman.h"
 #include "IIndividualHumanSTI.h"
 #include "IIndividualHumanHIV.h"
 #include "INodeContext.h"
@@ -136,28 +137,17 @@ namespace Kernel {
         return header.str();
     }
 
-    bool
-    ReportHIVMortalityEvents::notifyOnEvent(
-        IIndividualHumanEventContext *context,
-        const EventTrigger::Enum& trigger
-    )
+    bool ReportHIVMortalityEvents::notifyOnEvent( IIndividualHumanEventContext* context, const EventTrigger::Enum& trigger )
     {
         LOG_DEBUG_F( "Individual %d experienced event %s\n",
                      context->GetSuid().data,
                      EventTrigger::pairs::lookup_key( trigger ).c_str()
                    );
-        IIndividualHumanHIV* hiv_individual = nullptr;
-        if ( context->QueryInterface( GET_IID(IIndividualHumanHIV), (void**)&hiv_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IIndividualHumanEventContext", "IIndividualHumanHIV" );
-        }
-        release_assert( hiv_individual );
-        IIndividualHumanSTI* sti_individual = nullptr;
-        if (context->QueryInterface( GET_IID(IIndividualHumanSTI), (void**)&sti_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IIndividualHumanEventContext", "IIndividualHumanSTI" );
-        }
-        release_assert( sti_individual );
+        IIndividualHumanHIV* hiv_individual = context->GetIndividual()->GetIndividualContext()->GetIndividualHIV();
+        release_assert(hiv_individual);
+
+        IIndividualHumanSTI* sti_individual = context->GetIndividual()->GetIndividualContext()->GetIndividualSTI();
+        release_assert(sti_individual);
 
         MortalityInfo info;
 
@@ -199,12 +189,8 @@ namespace Kernel {
                 }
 
                 // Get IHIVMedicalHistory
-                IHIVMedicalHistory * hiv_ivc = nullptr;
-                release_assert( hiv_individual->GetHIVInterventionsContainer() );
-                if( s_OK != hiv_individual->GetHIVInterventionsContainer()->QueryInterface(GET_IID(IHIVMedicalHistory), (void**)&hiv_ivc) )
-                {
-                    throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "hiv_ivc", "IHIVMedicalHistory", "IHIVInterventionsContainer" );
-                }
+                IHIVMedicalHistory* hiv_ivc = hiv_individual->GetHIVInterventionsContainer()->GetHIVMedicalHistory();
+
                 if( hiv_ivc )
                 {
                     info.total_number_ART_initiations = hiv_ivc->GetTotalARTInitiations();

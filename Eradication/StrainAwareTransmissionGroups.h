@@ -70,13 +70,16 @@ namespace Kernel
                 
         private:
             // IContagionPopulation implementation
+            virtual float GetTotalContagion() const override;
+            virtual NaturalNumber GetInfectorID() const override;
+            virtual act_prob_vec_t GetProbabilities() const override;
+
             RANDOMBASE* pRNG;
             virtual std::pair<uint32_t, uint64_t> GetStrainName(void) const override;
             virtual uint32_t GetCladeID() const override;
             virtual uint64_t GetGeneticID() const override;
             virtual void SetCladeID(uint32_t cladeID) override;
             virtual void SetGeneticID(uint64_t geneticID) override;
-            virtual float GetTotalContagion() const override;
             virtual void ResolveInfectingStrain( IStrainIdentity* strainId ) const override;
 
             uint32_t   cladeId;

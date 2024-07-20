@@ -107,7 +107,8 @@ namespace Kernel
 #define CHRONIC_STATE_LABEL "CHR"
 #define DEAD_STATE_LABEL "DED"
 
-    InfectionTyphoid::InfectionTyphoid(IIndividualHumanContext *context) : InfectionEnvironmental(context)
+    InfectionTyphoid::InfectionTyphoid(IIndividualHumanContext *context)
+        : InfectionEnvironmental(context)
     {
         treatment_multiplier = 1;
         chronic_timer = UNINIT_TIMER;
@@ -155,6 +156,11 @@ namespace Kernel
         state_changed=true;
     }
 
+    IInfectionTyphoid* InfectionTyphoid::GetInfectionTyphoid()
+    {
+        return static_cast<IInfectionTyphoid*>(this);
+    }
+
     void InfectionTyphoid::Initialize(suids::suid _suid)
     {
         InfectionEnvironmental::Initialize(_suid);
@@ -180,12 +186,6 @@ namespace Kernel
 
     void InfectionTyphoid::InitInfectionImmunology(ISusceptibilityContext* _immunity)
     {
-        ISusceptibilityTyphoid* immunity = NULL;
-        if( _immunity->QueryInterface( GET_IID( ISusceptibilityTyphoid ), (void**)&immunity ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "_immunity", "ISusceptibilityTyphoid", "Susceptibility" );
-        }
-
         StateChange = InfectionStateChange::New;
         return InfectionEnvironmental::InitInfectionImmunology( _immunity );
     }

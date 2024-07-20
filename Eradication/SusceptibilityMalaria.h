@@ -89,6 +89,8 @@ namespace Kernel
         // functions to mediate interaction with Infection_Malaria objects
         virtual void UpdateActiveAntibody( pfemp1_antibody_t &pfemp1_variant, int minor_variant, int major_variant ) override;
 
+        virtual IMalariaSusceptibility* GetSusceptibilityMalaria() override;
+
         // IMalariaSusceptibility interfaces
         virtual void   SetAntigenPresent() override;
         virtual float  get_fever()              const override;

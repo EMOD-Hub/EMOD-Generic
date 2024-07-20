@@ -36,7 +36,6 @@ namespace Kernel
     BEGIN_QUERY_INTERFACE_BODY(VectorPopulation)
         HANDLE_INTERFACE(IVectorPopulation)
         HANDLE_INTERFACE(IInfectable)
-        HANDLE_INTERFACE(IVectorPopulationReporting)
         HANDLE_ISUPPORTS_VIA(IVectorPopulation)
     END_QUERY_INTERFACE_BODY(VectorPopulation)
 

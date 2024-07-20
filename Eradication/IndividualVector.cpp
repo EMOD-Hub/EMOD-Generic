@@ -55,6 +55,11 @@ namespace Kernel
     {
     }
 
+    IIndividualHumanVectorContext* IndividualHumanVector::GetIndividualVector()
+    {
+        return static_cast<IIndividualHumanVectorContext*>(this);
+    }
+
     IndividualHumanVector *IndividualHumanVector::CreateHuman(INodeContext *context, suids::suid id, double MCweight, double init_age, int gender)
     {
         Kernel::IndividualHumanVector *newhuman = _new_ Kernel::IndividualHumanVector(id, MCweight, init_age, gender);
@@ -229,11 +234,8 @@ namespace Kernel
         float host_vector_weight = float(GetMonteCarloWeight() * GetRelativeBitingRate());
 
         // Effects from vector intervention container
-        IVectorInterventionsEffects* ivie = nullptr;
-        if ( s_OK !=  interventions->QueryInterface(GET_IID(IVectorInterventionsEffects), (void**)&ivie) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "interventions", "IVectorInterventionsEffects", "IndividualHumanVector" );
-        }
+        IVectorInterventionsEffects* ivie = interventions->GetContainerVector();
+        release_assert(ivie);
 
         // Loop again over infection strains, depositing (downscaled) infectivity modified by vector intervention effects etc. (indoor + outdoor)
         for (auto& infectivity : inf_mod_trans_by_strain)

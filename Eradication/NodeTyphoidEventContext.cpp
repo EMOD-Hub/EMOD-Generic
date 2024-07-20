@@ -36,33 +36,8 @@ namespace Kernel
 
     QueryResult NodeTyphoidEventContextHost::QueryInterface( iid_t iid, void** ppinstance )
     {
-        release_assert(ppinstance); // todo: add a real message: "QueryInterface requires a non-NULL destination!");
-
-        if ( !ppinstance )
-            return e_NULL_POINTER;
-
-        ISupports* foundInterface;
-
-        if ( iid == GET_IID(INodeTyphoidInterventionEffects)) 
-            foundInterface = static_cast<INodeTyphoidInterventionEffects*>(this);
-        // -->> add support for other I*Consumer interfaces here <<--      
-        else
-            foundInterface = nullptr;
-
-        QueryResult status; // = e_NOINTERFACE;
-        if ( !foundInterface )
-        {
-            //status = e_NOINTERFACE;
-            status = NodeEventContextHost::QueryInterface(iid, (void**)&foundInterface);
-        }
-        else
-        {
-            //foundInterface->AddRef();           // not implementing this yet!
-            status = s_OK;
-        }
-
-        *ppinstance = foundInterface;
-        return status;
+        release_assert(ppinstance);
+        return e_NOINTERFACE;
     }
 
     INodeTyphoidInterventionEffects* NodeTyphoidEventContextHost::GetNodeTyphoidInterventionEffects()

@@ -298,13 +298,7 @@ namespace Kernel
         {
             release_assert(population);
             population->UpdateVectorPopulation(dt);
-
-            IVectorPopulationReporting* p_ivpr = nullptr;
-            if( population->QueryInterface( GET_IID( IVectorPopulationReporting ), (void**)&p_ivpr ) != s_OK )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "population", "IVectorPopulationReporting", "IVectorPopulation" );
-            }
-            infectionrate += float( p_ivpr->getInfectivity());
+            infectionrate += float( population->getInfectivity() );
         }
 
         // do again so that humans bitten this time step get infected
@@ -323,12 +317,8 @@ namespace Kernel
 
         for (auto individual : individualHumans)
         {
-            IIndividualHumanVectorContext* host_individual = nullptr;
-            // We want IndividualHUman base class to give us a blessed pointer to IndivudalHumanVector
-            if( individual->QueryInterface( GET_IID( IIndividualHumanVectorContext ), (void**)&host_individual ) != s_OK )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualHumanVectorContext", "IndividualHuman" );
-            }
+            IIndividualHumanVectorContext* host_individual = individual->GetIndividualContext()->GetIndividualVector();
+            release_assert(host_individual);
 
             // Host vector weight includes heterogeneous biting
             // effect of heterogeneous biting explored in Smith, D. L., F. E. McKenzie, et al. (2007). "Revisiting the basic reproductive number for malaria and its implications for malaria control." PLoS Biol 5(3): e42.
@@ -336,11 +326,8 @@ namespace Kernel
             float host_vector_weight = float(individual->GetMonteCarloWeight() * host_individual->GetRelativeBitingRate());
 
             // Query for individual vector intervention effects interface
-            IIndividualHumanInterventionsContext* context = individual->GetInterventionsContext();
-            if (s_OK != context->QueryInterface(GET_IID(IVectorInterventionsEffects), (void**)&ivie))
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "host_individual->GetInterventionsContext()", "IVectorInterventionsEffects", "IIndividualHumanInterventionsContext" );
-            }
+            ivie = individual->GetInterventionsContext()->GetContainerVector();
+            release_assert(ivie);
 
             // Accumulate the probabilities corresponding to individual vector intervention effects
             m_vector_lifecycle_probabilities->AccumulateIndividualProbabilities(ivie, host_vector_weight);
@@ -350,11 +337,8 @@ namespace Kernel
         m_vector_lifecycle_probabilities->NormalizeIndividualProbabilities();
 
         // Query for node vector intervention effects interface
-        INodeVectorInterventionEffects* invie = nullptr;
-        if (s_OK !=  GetEventContext()->QueryInterface(GET_IID(INodeVectorInterventionEffects), (void**)&invie))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "GetEventContext()", "INodeVectorInterventionEffects", "INodeEventContext" );
-        }
+        INodeVectorInterventionEffects* invie = GetEventContext()->GetNodeVectorInterventionEffects();
+        release_assert(invie);
 
         // Get effects of node-level interventions on vector lifecycle probabilities
         m_vector_lifecycle_probabilities->SetNodeProbabilities(invie, dt);
@@ -505,11 +489,8 @@ namespace Kernel
 
     IVectorSimulationContext* NodeVector::context() const
     {
-        IVectorSimulationContext *ivsc;
-        if (s_OK != parent->QueryInterface(GET_IID(IVectorSimulationContext), (void**)&ivsc) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IVectorSimulationContext", "IVectorSimulationContext" );
-        }
+        IVectorSimulationContext* ivsc = parent->GetSimulationVector();
+        release_assert(ivsc);
 
         return ivsc;
     }
@@ -587,13 +568,7 @@ namespace Kernel
 
         // Add this new vector population to the list
         m_vectorpopulations.push_front(vp);
-
-        IVectorPopulationReporting* p_ivpr = nullptr;
-        if( vp->QueryInterface( GET_IID( IVectorPopulationReporting ), (void**)&p_ivpr ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "vp", "IVectorPopulationReporting", "IVectorPopulation" );
-        }
-        m_VectorPopulationReportingList.push_front( p_ivpr );
+        m_VectorPopulationReportingList.push_front(vp);
     }
 
     const VectorPopulationReportingList_t& NodeVector::GetVectorPopulationReporting() const
@@ -698,12 +673,7 @@ namespace Kernel
             {
                 for (const auto vector_population : node.m_vectorpopulations)
                 {
-                    IVectorPopulationReporting* p_ivpr = nullptr;
-                    if( vector_population->QueryInterface( GET_IID( IVectorPopulationReporting ), (void**)&p_ivpr ) != s_OK )
-                    {
-                        throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "vector_population", "IVectorPopulationReporting", "IVectorPopulation" );
-                    }
-                    node.m_VectorPopulationReportingList.push_back( p_ivpr );
+                    node.m_VectorPopulationReportingList.push_back( vector_population );
                 }
             }
         }

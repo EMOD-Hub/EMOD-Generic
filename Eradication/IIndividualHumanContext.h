@@ -26,6 +26,7 @@ namespace Kernel
     struct IIndividualHumanHIV;
     struct IIndividualHumanTB;
     class  IIndividualHumanCoInfection;
+    struct IIndividualHumanVectorContext;
     struct IMalariaHumanContext;
     class  IIndividualHumanPolio;
     class  IIndividualHumanTyphoid;
@@ -47,9 +48,11 @@ namespace Kernel
         virtual IIndividualHumanHIV*                   GetIndividualHIV()                                                = 0;
         virtual IIndividualHumanTB*                    GetIndividualTB()                                                 = 0;
         virtual IIndividualHumanCoInfection*           GetIndividualCoInf()                                              = 0;
+        virtual IIndividualHumanVectorContext*         GetIndividualVector()                                             = 0;
         virtual IMalariaHumanContext*                  GetIndividualMalaria()                                            = 0;
         virtual IIndividualHumanPolio*                 GetIndividualPolio()                                              = 0;
         virtual IIndividualHumanTyphoid*               GetIndividualTyphoid()                                            = 0;
+
         virtual IIndividualHumanInterventionsContext*  GetInterventionsContext()                                   const = 0; // internal components of individuals interact with interventions via this interface
         virtual IVaccineConsumer*                      GetVaccineContext()                                         const = 0;
         virtual IIndividualHumanEventContext*          GetEventContext()                                                 = 0; // access to specific attributes of the individual useful for events

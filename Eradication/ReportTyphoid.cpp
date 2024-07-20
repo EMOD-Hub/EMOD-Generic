@@ -37,15 +37,12 @@ void ReportTyphoid::BeginTimestep()
     return Report::BeginTimestep();
 }
 
-void ReportTyphoid::LogIndividualData( IIndividualHuman * individual )
+void ReportTyphoid::LogIndividualData( IIndividualHuman* individual )
 {
     Report::LogIndividualData( individual );
 
-    IIndividualHumanTyphoid* typhoid_individual = nullptr;
-    if( individual->QueryInterface( GET_IID( IIndividualHumanTyphoid ), (void**)&typhoid_individual ) != s_OK )
-    {
-        throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualTyphoid", "IndividualHuman" );
-    }
+    IIndividualHumanTyphoid* typhoid_individual = individual->GetIndividualContext()->GetIndividualTyphoid();
+    release_assert(typhoid_individual);
 
     float mcw = individual->GetMonteCarloWeight();
     if( typhoid_individual->IsChronicCarrier( false ) )

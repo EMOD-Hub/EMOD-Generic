@@ -12,11 +12,10 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "BaseTextReportEvents.h"
 #include "IVectorMigrationReporting.h"
 #include "ReportUtilitiesMalaria.h"
+#include "IVectorPopulation.h"
 
 namespace Kernel
 {
-    struct IVectorPopulationReporting;
-
     class ReportVectorStats : public BaseTextReportEvents, public IVectorMigrationReporting
     {
     public:
@@ -45,7 +44,7 @@ namespace Kernel
     protected:
         ReportVectorStats( const std::string& rReportName );
         virtual void ResetOtherCounters() {};
-        virtual void CollectOtherData( IVectorPopulationReporting* pIVPR ) {};
+        virtual void CollectOtherData( IVectorPopulation* pIVPR ) {};
         virtual void WriteOtherData() {};
 
     private:

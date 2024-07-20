@@ -27,11 +27,4 @@ namespace Kernel
 
         virtual ~IInfectable() {}
     };
-
-    struct IInfectionAcquirable : ISupports
-    {
-        virtual void AcquireNewInfection( const IStrainIdentity* infstrain=nullptr, TransmissionRoute::Enum tx_route=TransmissionRoute::CONTACT, float incubation_period_override=-1.0f ) = 0;
-
-        virtual ~IInfectionAcquirable() {}
-    };
 }

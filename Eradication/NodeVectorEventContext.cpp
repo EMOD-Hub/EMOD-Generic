@@ -45,36 +45,8 @@ namespace Kernel
 
     QueryResult NodeVectorEventContextHost::QueryInterface( iid_t iid, void** ppinstance )
     {
-        release_assert(ppinstance); // todo: add a real message: "QueryInterface requires a non-NULL destination!");
-
-        if ( !ppinstance )
-            return e_NULL_POINTER;
-
-        ISupports* foundInterface;
-
-        if ( iid == GET_IID(INodeVectorInterventionEffects)) 
-            foundInterface = static_cast<INodeVectorInterventionEffects*>(this);
-        else if (iid == GET_IID(INodeVectorInterventionEffectsApply))
-            foundInterface = static_cast<INodeVectorInterventionEffectsApply*>(this);
-
-        // -->> add support for other I*Consumer interfaces here <<--      
-        else
-            foundInterface = nullptr;
-
-        QueryResult status; // = e_NOINTERFACE;
-        if ( !foundInterface )
-        {
-            //status = e_NOINTERFACE;
-            status = NodeEventContextHost::QueryInterface(iid, (void**)&foundInterface);
-        }
-        else
-        {
-            //foundInterface->AddRef();           // not implementing this yet!
-            status = s_OK;
-        }
-
-        *ppinstance = foundInterface;
-        return status;
+        release_assert(ppinstance);
+        return e_NOINTERFACE;
     }
 
     INodeVectorInterventionEffects* NodeVectorEventContextHost::GetNodeVectorInterventionEffects()

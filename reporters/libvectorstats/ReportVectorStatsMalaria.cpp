@@ -125,7 +125,7 @@ namespace Kernel
         }
     }
 
-    void ReportVectorStatsMalaria::CollectOtherData( IVectorPopulationReporting* pIVPR )
+    void ReportVectorStatsMalaria::CollectOtherData( IVectorPopulation* pIVPR )
     {
         StrainIdentity strain;
         for( auto& r_column : genome_marker_columns )

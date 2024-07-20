@@ -38,6 +38,11 @@ namespace Kernel
         return static_cast<IMalariaDrugEffectsApply*>(this);
     }
 
+    IMalariaDrugEffects* MalariaInterventionsContainer::GetMalariaDrugStats()
+    {
+        return static_cast<IMalariaDrugEffects*>(this);
+    }
+
     void MalariaInterventionsContainer::InfectiousLoopUpdate(float dt)
     {
         m_DrugEffectsCollection.clear();
@@ -127,8 +132,8 @@ namespace Kernel
         {
             for( auto iv : container.interventions )
             {
-                IMalariaDrugEffects * p_mde = nullptr;
-                if( iv->QueryInterface( GET_IID( IMalariaDrugEffects ), (void**)&p_mde ) == s_OK )
+                IMalariaDrugEffects* p_mde = iv->GetMalariaDrug();
+                if( p_mde )
                 {
                     container.AddDrugEffects( p_mde );
                 }

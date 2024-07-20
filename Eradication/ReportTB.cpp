@@ -85,10 +85,7 @@ namespace Kernel
         infectiousness_fast = 0.0f;
     }
 
-    void
-    ReportTB::populateSummaryDataUnitsMap(
-        std::map<std::string, std::string> &units_map
-    )
+    void ReportTB::populateSummaryDataUnitsMap( std::map<std::string, std::string> &units_map )
     {
         ReportAirborne::populateSummaryDataUnitsMap(units_map);
     
@@ -122,8 +119,7 @@ namespace Kernel
         units_map[_disease_deaths_MDR_label]      = "";
     }
 
-    void
-    ReportTB::postProcessAccumulatedData()
+    void ReportTB::postProcessAccumulatedData()
     {
         ReportAirborne::postProcessAccumulatedData();
 
@@ -147,14 +143,10 @@ namespace Kernel
         normalizeChannel(_active_sx_label,               _stat_pop_label);
     }
 
-    void ReportTB::UpdateSEIRW( const IIndividualHuman* const individual, float monte_carlo_weight )
+    void ReportTB::UpdateSEIRW( IIndividualHuman* individual, float monte_carlo_weight )
     {
-        IIndividualHumanCoInfection* tbhiv_ind = nullptr;
-
-        if( ( const_cast<IIndividualHuman*>( individual ) )->QueryInterface( GET_IID( IIndividualHumanCoInfection ), (void**)&tbhiv_ind ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualHumanCoInfection", "IndividualHuman" );
-        }
+        IIndividualHumanCoInfection* tbhiv_ind = individual->GetIndividualContext()->GetIndividualCoInf();
+        release_assert(tbhiv_ind);
 
         if (!individual->IsInfected())  // Susceptible, Recovered (Immune), or Waning
         {
@@ -314,18 +306,9 @@ namespace Kernel
         new_mdr_fast_active_infection_counter += individual_tb->new_mdr_fast_active_infection_counter;
     }
 
-    void
-    ReportTB::LogNodeData(
-        Kernel::INodeContext * pNC
-    )
+    void ReportTB::LogNodeData( Kernel::INodeContext* pNC )
     {
         ReportAirborne::LogNodeData( pNC );
-
-        const INodeTB* pTBNode = nullptr;
-        if( pNC->QueryInterface( GET_IID(INodeTB), (void**)&pTBNode ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodeTB", "INodeContext" );
-        }
     }
 
     void ReportTB::EndTimestep( float currentTime, float dt )

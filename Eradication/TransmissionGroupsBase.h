@@ -60,6 +60,8 @@ namespace Kernel
             virtual void SetCladeID(uint32_t in_cladeID) override;
             virtual void SetGeneticID(uint64_t in_geneticID) override;
             virtual float GetTotalContagion( void ) const override;
+            virtual NaturalNumber GetInfectorID() const override;
+            virtual act_prob_vec_t GetProbabilities() const override;
             virtual void ResolveInfectingStrain( IStrainIdentity* strainId ) const override;
 
             float contagionQuantity;

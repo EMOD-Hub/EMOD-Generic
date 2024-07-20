@@ -33,6 +33,8 @@ public:
 
     virtual const                        DemographicsContext* GetDemographicsContext() const override                                                   { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual const                        SimParams* GetParams() const override                                                                          { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual ISimulation*                 GetSimulation() override                                                                                       { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual IVectorSimulationContext*    GetSimulationVector() override                                                                                 { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual const                        std::vector<std::string> GetRelationshipTypes() const override                                                 { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual const IdmDateTime&           GetSimulationTime() const override                                                                             { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual suids::suid                  GetNextInfectionSuid() override                                                                                { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
@@ -62,21 +64,21 @@ private:
 
 public:
     INodeContextFake( int id = 1 )
-    : m_suid()
-    , m_pNEC(nullptr)
-    , m_NodeProperties()
-    , m_Time()
-    , m_FakeSim()
+        : m_suid()
+        , m_pNEC(nullptr)
+        , m_NodeProperties()
+        , m_Time()
+        , m_FakeSim()
     {
         m_suid.data = id ;
     }
 
     INodeContextFake( const suids::suid& rSuid, INodeEventContext* pNEC = nullptr )
-    : m_suid(rSuid)
-    , m_pNEC(pNEC)
-    , m_NodeProperties()
-    , m_Time()
-    , m_FakeSim()
+        : m_suid(rSuid)
+        , m_pNEC(pNEC)
+        , m_NodeProperties()
+        , m_Time()
+        , m_FakeSim()
     {
         if( m_pNEC != nullptr )
         {
@@ -175,6 +177,8 @@ public:
     }
 
     virtual INodeVector*             GetNodeVector()             override         { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual INodeMalaria*            GetNodeMalaria()            override         { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual INodePolio*              GetNodePolio()              override         { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual INodeSTI*                GetNodeSTI()                override         { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual INodeTBHIV*              GetNodeTBHIV()              override         { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
 

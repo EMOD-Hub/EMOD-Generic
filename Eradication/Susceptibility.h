@@ -76,6 +76,9 @@ namespace Kernel
         virtual ISusceptibilityHIV*       GetSusceptibilityHIV()         override { return nullptr; }
         virtual ISusceptibilityTB*        GetSusceptibilityTB()          override { return nullptr; }
         virtual ISusceptibilityVector*    GetSusceptibilityVector()      override { return nullptr; }
+        virtual ISusceptibilityDengue*    GetSusceptibilityDengue()      override { return nullptr; }
+        virtual IMalariaSusceptibility*   GetSusceptibilityMalaria()     override { return nullptr; }
+        virtual ISusceptibilityPolio*     GetSusceptibilityPolio()       override { return nullptr; }
 
     protected:
         Susceptibility();

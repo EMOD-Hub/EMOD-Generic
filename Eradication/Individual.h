@@ -75,7 +75,6 @@ namespace Kernel
                             public IIndividualHumanContext,
                             public IIndividualHumanEventContext,
                             public IInfectable,
-                            public IInfectionAcquirable,
                             public IMigrate
     {
         friend class Simulation;
@@ -113,6 +112,7 @@ namespace Kernel
         virtual IIndividualHumanHIV*            GetIndividualHIV()             override { return nullptr; }
         virtual IIndividualHumanTB*             GetIndividualTB()              override { return nullptr; }
         virtual IIndividualHumanCoInfection*    GetIndividualCoInf()           override { return nullptr; }
+        virtual IIndividualHumanVectorContext*  GetIndividualVector()          override { return nullptr; }
         virtual IMalariaHumanContext*           GetIndividualMalaria()         override { return nullptr; }
         virtual IIndividualHumanPolio*          GetIndividualPolio()           override { return nullptr; }
         virtual IIndividualHumanTyphoid*        GetIndividualTyphoid()         override { return nullptr; }

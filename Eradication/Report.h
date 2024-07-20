@@ -46,7 +46,7 @@ protected:
     virtual void postProcessAccumulatedData() override;
 
     virtual void AddSEIRWUnits( std::map<std::string, std::string> &units_map );
-    virtual void UpdateSEIRW( const Kernel::IIndividualHuman* individual, float monte_carlo_weight );
+    virtual void UpdateSEIRW( Kernel::IIndividualHuman* individual, float monte_carlo_weight );
     virtual void AccumulateSEIRW();
     virtual void NormalizeSEIRWChannels();
 

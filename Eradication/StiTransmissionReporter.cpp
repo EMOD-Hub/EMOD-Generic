@@ -16,6 +16,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "IInfection.h"
 #include "ReportUtilities.h"
 #include "ReportUtilitiesSTI.h"
+#include "IIndividualHumanContext.h"
 #include "IndividualEventContext.h"
 #include "StrainIdentity.h"
 #include "INodeContext.h"
@@ -57,22 +58,15 @@ namespace Kernel
         BaseTextReportEvents::Initialize( nrmSize );
     }
 
-    bool StiTransmissionReporter::notifyOnEvent( IIndividualHumanEventContext *context, const EventTrigger::Enum& trigger )
+    bool StiTransmissionReporter::notifyOnEvent( IIndividualHumanEventContext* context, const EventTrigger::Enum& trigger )
     {
         LOG_DEBUG_F( "transmission event for individual %d\n", context->GetSuid().data );
         StiTransmissionInfo info;
 
-        IIndividualHuman* individual = nullptr;
-        if (context->QueryInterface(GET_IID(IIndividualHuman), (void**)&individual) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "context", "IIndividualHuman", "IIndividualHumanEventContext" );
-        }
+        IIndividualHuman* individual = context->GetIndividual();
 
-        IIndividualHumanSTI* p_sti_dest = nullptr;
-        if (individual->QueryInterface(GET_IID(IIndividualHumanSTI), (void**)&p_sti_dest) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualHumanSTI", "IIndividualHuman" );
-        }
+        IIndividualHumanSTI* p_sti_dest = individual->GetIndividualContext()->GetIndividualSTI();
+        release_assert(p_sti_dest);
 
         IIndividualHumanSTI* p_sti_source = ReportUtilitiesSTI::GetTransmittingPartner( individual->GetEventContext() );
         if( p_sti_source == nullptr )
@@ -81,11 +75,7 @@ namespace Kernel
             return true;
         }
 
-        IIndividualHuman* partner = nullptr;
-        if (p_sti_source->QueryInterface(GET_IID(IIndividualHuman), (void**)&partner) != s_OK)
-        {
-            throw QueryInterfaceException(__FILE__, __LINE__, __FUNCTION__, "p_sti_source", "IIndividualHuman", "IIndividualHumanSTI");
-        }
+        IIndividualHuman* partner = p_sti_source->GetEventContext()->GetIndividual();
 
         auto& relationships = p_sti_dest->GetRelationships();
         if( (individual->GetStateChange() == HumanStateChange::DiedFromNaturalCauses) ||

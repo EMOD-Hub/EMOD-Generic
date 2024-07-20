@@ -117,38 +117,16 @@ namespace Test {
                 Kernel::JsonConfigurable::_dryrun = true;
                 Kernel::JsonConfigurable::_track_missing = false;
                 Kernel::IndividualHumanConfig adam;
-                //adam.Configure( nullptr ); // protected
                 auto schema = adam.GetSchema();
                 std::ostringstream schema_ostream;
                 json::Writer::Write( schema, schema_ostream );
-                //std::cout << schema_ostream.str() << std::endl;
-                //result = schema_ostream.str();
                 Kernel::JsonConfigurable::_dryrun = false;
             }
 
             QueryResult QueryInterface( iid_t iid, void** ppinstance )
             {
                 release_assert( ppinstance );
-
-                ISupports* foundInterface;
-                if( iid == GET_IID( ISimulationContext ) )
-                    foundInterface = static_cast<ISimulationContext*>(this);
-                else if( iid == GET_IID( ISimulation ) )
-                    foundInterface = static_cast<ISimulation*>(this);
-                else if( iid == GET_IID( ISupports ) )
-                    foundInterface = static_cast<ISupports*>(static_cast<ISimulationContext*>(this));
-                else
-                    foundInterface = nullptr;
-
-                QueryResult status = e_NOINTERFACE;
-                if( foundInterface )
-                {
-                    foundInterface->AddRef();
-                    status = s_OK;
-                }
-
-                *ppinstance = foundInterface;
-                return status;
+                return e_NOINTERFACE;
             }
 
             static void SeedRNG(int rng_seed)

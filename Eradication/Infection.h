@@ -76,15 +76,18 @@ namespace Kernel
         virtual NonNegativeFloat GetDuration() const override;
         virtual bool StrainMatches( IStrainIdentity * pStrain );
 
-        virtual IInfectionMalaria*        GetInfectionMalaria()           override { return nullptr; }
-        virtual IInfectionHIV*            GetInfectionHIV()               override { return nullptr; }
-        virtual IInfectionTB*             GetInfectionTB()                override { return nullptr; }
-
+        virtual IInfectionDengue*            GetInfectionDengue()            override { return nullptr; }
+        virtual IInfectionMalaria*           GetInfectionMalaria()           override { return nullptr; }
+        virtual IInfectionHIV*               GetInfectionHIV()               override { return nullptr; }
+        virtual IInfectionTB*                GetInfectionTB()                override { return nullptr; }
+        virtual IInfectionPolioReportable*   GetInfectionPolio()             override { return nullptr; }
+        virtual IInfectionPy*                GetInfectionPy()                override { return nullptr; }
+        virtual IInfectionTyphoid*           GetInfectionTyphoid()           override { return nullptr; }
 
         virtual bool IsSymptomatic() const override;
 
     protected:
-        IIndividualHumanContext *parent;
+        IIndividualHumanContext* parent;
 
         suids::suid suid; // unique id of this infection within the system
 

@@ -57,39 +57,10 @@ namespace Kernel
         arrival_distribution_sources.clear();
     }
 
-    // This was done with macros, but prefer actual code.
     Kernel::QueryResult NodeEventContextHost::QueryInterface( iid_t iid, void** ppinstance )
     {
-        release_assert(ppinstance); // todo: add a real message: "QueryInterface requires a non-NULL destination!");
-
-        if ( !ppinstance )
-            return e_NULL_POINTER;
-
-        ISupports* foundInterface;
-
-        if ( iid == GET_IID(INodeEventContext)) 
-            foundInterface = static_cast<INodeEventContext*>(this);
-        else if (iid == GET_IID(INodeInterventionConsumer))
-            foundInterface = static_cast<INodeInterventionConsumer*>(this);
-        else if (iid == GET_IID(ICampaignCostObserver))
-            foundInterface = static_cast<ICampaignCostObserver*>(this);
-        else if (iid == GET_IID( IIndividualEventBroadcaster ))
-            foundInterface = static_cast<IIndividualEventBroadcaster*>(this);
-        else if (iid == GET_IID(INodeContext))
-            foundInterface = (INodeContext*)node;
-        else
-            foundInterface = nullptr;
-
-        QueryResult status = e_NOINTERFACE;
-        if ( foundInterface )
-        {
-            foundInterface->AddRef();
-            status = s_OK;
-            //status = InterventionsContainer::QueryInterface(iid, (void**)&foundInterface);
-        }
-
-        *ppinstance = foundInterface;
-        return status;
+        release_assert(ppinstance);
+        return e_NOINTERFACE;
     }
 
     void NodeEventContextHost::SetContextTo( INodeContext* context )

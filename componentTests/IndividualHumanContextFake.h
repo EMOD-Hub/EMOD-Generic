@@ -73,24 +73,7 @@ public:
     // ---------------------
     virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override
     {
-        *ppvObject = nullptr ;
-        if ( iid == GET_IID(IIndividualHumanHIV)) 
-            *ppvObject = static_cast<IIndividualHumanHIV*>(this);
-        else if ( iid == GET_IID(IIndividualHumanEventContext)) 
-            *ppvObject = static_cast<IIndividualHumanEventContext*>(this);
-        else if ( iid == GET_IID(IIndividualHumanSTI)) 
-            *ppvObject = static_cast<IIndividualHumanSTI*>(this);
-        else if ( iid == GET_IID(IIndividualHuman)) 
-            *ppvObject = static_cast<IIndividualHuman*>(this);
-        else if( iid == GET_IID( IMalariaHumanContext ) )
-            *ppvObject = static_cast<IMalariaHumanContext*>(this);
-
-        if( *ppvObject != nullptr )
-        {
-            return QueryResult::s_OK ;
-        }
-        else
-            return QueryResult::e_NOINTERFACE ;
+        return e_NOINTERFACE;
     }
 
     virtual int32_t AddRef() override
@@ -163,10 +146,12 @@ public:
 
     virtual ISusceptibilityContext* GetSusceptibilityContext() const override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IVaccineConsumer* GetVaccineContext()              const override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+
     virtual IIndividualHumanCoInfection* GetIndividualCoInf()        override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IIndividualHumanTB* GetIndividualTB()                    override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IIndividualHumanPolio* GetIndividualPolio()              override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IIndividualHumanTyphoid* GetIndividualTyphoid()          override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual IIndividualHumanVectorContext* GetIndividualVector()     override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
 
     virtual const std::string& GetPropertyReportString() const     override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
 
@@ -434,7 +419,8 @@ public:
     virtual bool  HasClinicalSymptom( ClinicalSymptomsEnum::Enum symptom ) const { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented." ); }
     virtual IMalariaSusceptibility* GetMalariaSusceptibilityContext()      const { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented." ); }
     virtual std::vector<std::pair<uint32_t,uint64_t>> GetInfectingStrainIds()     const { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented." ); }
-
+    virtual bool ChallengeWithBites( int n_infectious_bites )                    { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented." ); }
+    virtual bool ChallengeWithSporozoites( int n_sporozoites )                   { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented." ); }
 
 
 

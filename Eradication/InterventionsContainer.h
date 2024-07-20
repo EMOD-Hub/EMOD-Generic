@@ -64,6 +64,7 @@ namespace Kernel
         virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()      override { return nullptr; }
         virtual IVectorInterventionsEffects*  GetContainerVector()       override { return nullptr; }
         virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()      override { return nullptr; }
+        virtual IMalariaDrugEffects*          GetMalariaDrugStats()      override { return nullptr; }
 
         // IUnknown
         virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;

@@ -541,12 +541,7 @@ namespace Kernel
     BEGIN_QUERY_INTERFACE_BODY(StrainAwareTransmissionGroups::GenomePopulationImpl)
     END_QUERY_INTERFACE_BODY(StrainAwareTransmissionGroups::GenomePopulationImpl)
 
-    StrainAwareTransmissionGroups::GenomePopulationImpl::GenomePopulationImpl(
-        RANDOMBASE* prng,
-    uint32_t _cladeId,
-    float _quantity,
-    const GenomeMap_t& _genomeDistribution
-    )
+    StrainAwareTransmissionGroups::GenomePopulationImpl::GenomePopulationImpl( RANDOMBASE* prng, uint32_t _cladeId, float _quantity, const GenomeMap_t& _genomeDistribution )
         : pRNG( prng )
         , cladeId(_cladeId)
         , contagionQuantity(_quantity)
@@ -555,8 +550,8 @@ namespace Kernel
 
     std::pair<uint32_t, uint64_t> StrainAwareTransmissionGroups::GenomePopulationImpl::GetStrainName( void ) const
     {
-        // Never valid code path, have to implement this method due to interface.
-        throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Not valid for GenomePopulationImpl" );
+        // Not a valid code path
+        release_assert(false);
     }
 
     uint32_t StrainAwareTransmissionGroups::GenomePopulationImpl::GetCladeID( void ) const
@@ -566,25 +561,37 @@ namespace Kernel
 
     uint64_t StrainAwareTransmissionGroups::GenomePopulationImpl::GetGeneticID( void ) const
     {
-        // Never valid code path, have to implement this method due to interface.
-        throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Not valid for GenomePopulationImpl" );
+        // Not a valid code path
+        release_assert(false);
     }
 
     void StrainAwareTransmissionGroups::GenomePopulationImpl::SetCladeID( uint32_t cladeID )
     {
-        // Never valid code path, have to implement this method due to interface.
-        throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Not valid for GenomePopulationImpl" );
+        // Not a valid code path
+        release_assert(false);
     }
 
     void StrainAwareTransmissionGroups::GenomePopulationImpl::SetGeneticID( uint64_t geneticID )
     {
-        // Never valid code path, have to implement this method due to interface.
-        throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Not valid for GenomePopulationImpl" );
+        // Not a valid code path
+        release_assert(false);
     }
 
     float StrainAwareTransmissionGroups::GenomePopulationImpl::GetTotalContagion( void ) const
     {
         return contagionQuantity;
+    }
+
+    NaturalNumber StrainAwareTransmissionGroups::GenomePopulationImpl::GetInfectorID() const
+    {
+        // Not a valid code path
+        release_assert(false);
+    }
+
+    act_prob_vec_t StrainAwareTransmissionGroups::GenomePopulationImpl::GetProbabilities() const
+    {
+        // Not a valid code path
+        release_assert(false);
     }
 
     void StrainAwareTransmissionGroups::GenomePopulationImpl::ResolveInfectingStrain( IStrainIdentity* strainId ) const

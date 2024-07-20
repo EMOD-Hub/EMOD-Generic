@@ -174,35 +174,8 @@ namespace Kernel
 
     QueryResult IndividualHuman::QueryInterface( iid_t iid, void** ppinstance )
     {
-        release_assert(ppinstance); // todo: add a real message: "QueryInterface requires a non-NULL destination!");
-
-        ISupports* foundInterface;
-        if ( iid == GET_IID(IIndividualHumanEventContext))
-            foundInterface = static_cast<IIndividualHumanEventContext*>(this);
-        else if ( iid == GET_IID(IIndividualHumanContext))
-            foundInterface = static_cast<IIndividualHumanContext*>(this);
-        else if ( iid == GET_IID(IIndividualHuman)) 
-            foundInterface = static_cast<IIndividualHuman*>(this);
-        else if ( iid == GET_IID(IInfectable))
-            foundInterface = static_cast<IInfectable*>(this);
-        else if ( iid == GET_IID(IInfectionAcquirable))
-            foundInterface = static_cast<IInfectionAcquirable*>(this);
-        else if ( iid == GET_IID(IMigrate))
-            foundInterface = static_cast<IMigrate*>(this);
-        else if ( iid == GET_IID(ISupports) )
-            foundInterface = static_cast<ISupports*>(static_cast<IIndividualHumanContext*>(this));
-        else
-            foundInterface = nullptr;
-
-        QueryResult status = e_NOINTERFACE;
-        if ( foundInterface )
-        {
-            foundInterface->AddRef();
-            status = s_OK;
-        }
-
-        *ppinstance = foundInterface;
-        return status;
+        release_assert(ppinstance);
+        return e_NOINTERFACE;
     }
 
     IndividualHuman *IndividualHuman::CreateHuman()

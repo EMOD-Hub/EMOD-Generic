@@ -13,15 +13,9 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "TransmissionGroupsBase.h"
 
-namespace Kernel {
-    class IContagionProbabilities: public ISupports
-    {
-        public:
-        virtual act_prob_vec_t GetProbabilities() const = 0;
-        virtual NaturalNumber GetInfectorID( void ) const = 0;
-    };
-
-    class DiscreteContagionPopulation : public IContagionPopulation, public IContagionProbabilities
+namespace Kernel
+{
+    class DiscreteContagionPopulation : public IContagionPopulation
     {
         DECLARE_QUERY_INTERFACE()
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
@@ -34,21 +28,20 @@ namespace Kernel {
         virtual ~DiscreteContagionPopulation() {}
 
         // IContagionPopulation
+        virtual float GetTotalContagion() const override;
+        virtual NaturalNumber GetInfectorID() const override;
+        virtual act_prob_vec_t GetProbabilities() const override
+        {
+            return probs;
+        }
+
         virtual std::pair<uint32_t, uint64_t> GetStrainName(void) const override;
         virtual uint32_t GetCladeID( void ) const override;
         virtual uint64_t GetGeneticID( void ) const override;
         virtual void SetCladeID(uint32_t in_cladeID) override;
         virtual void SetGeneticID(uint64_t in_geneticID) override;
-        virtual float GetTotalContagion( void ) const override;
+
         virtual void ResolveInfectingStrain( IStrainIdentity* strainId ) const override;
-
-        // IContagionProbabilities
-        virtual NaturalNumber GetInfectorID( void ) const override;
-
-        virtual act_prob_vec_t GetProbabilities() const override
-        {
-            return probs;
-        }
 
     protected:
         act_prob_vec_t probs;

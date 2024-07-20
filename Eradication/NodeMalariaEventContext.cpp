@@ -12,8 +12,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "stdafx.h"
 #include "NodeMalariaEventContext.h"
 #include "InterventionsContainer.h"
-#include "MalariaContexts.h" // for IMalariaHumanInfectable
-#include "IInfectable.h"     // for IInfectionAcquirable
+#include "MalariaContexts.h"
+#include "IIndividualHuman.h"
 #include "IIndividualHumanContext.h"
 #include "RANDOM.h"
 
@@ -55,20 +55,12 @@ namespace Kernel
             // Adding route aware IVs required querying based on route of infection; malaria sims only use CONTACT route (default)
             relative_risk *= ihec->GetInterventionsContext()->GetParent()->GetVaccineContext()->GetInterventionReducedAcquire(TransmissionRoute::CONTACT);
 
-            IMalariaHumanInfectable* imhi = nullptr;
-            if ( s_OK !=  ihec->QueryInterface(GET_IID(IMalariaHumanInfectable), (void**)&imhi) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "ihec", "IMalariaHumanInfectable", "IIndividualHumanEventContext" );
-            }
+            IMalariaHumanContext* imhi = ihec->GetIndividual()->GetIndividualContext()->GetIndividualMalaria();
+            release_assert(imhi);
 
             if( GetRng()->SmartDraw( coverage*relative_risk ) && imhi->ChallengeWithSporozoites( n_sporozoites ) )
             {
-                IInfectionAcquirable* iia = nullptr;
-                if ( s_OK !=  ihec->QueryInterface(GET_IID(IInfectionAcquirable), (void**)&iia) )
-                {
-                    throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "ihec", "IInfectionAcquirable", "IIndividualHumanEventContext" );
-                }
-                iia->AcquireNewInfection();
+                ihec->GetIndividual()->AcquireNewInfection();
             }
         };
 
@@ -93,20 +85,12 @@ namespace Kernel
             // Adding route aware IVs required querying based on route of infection; malaria sims only use CONTACT route (default)
             relative_risk *= ihec->GetInterventionsContext()->GetParent()->GetVaccineContext()->GetInterventionReducedAcquire(TransmissionRoute::CONTACT);
 
-            IMalariaHumanInfectable* imhi = nullptr;
-            if ( s_OK !=  ihec->QueryInterface(GET_IID(IMalariaHumanInfectable), (void**)&imhi) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "ihec", "IMalariaHumanInfectable", "IIndividualHumanEventContext" );
-            }
+            IMalariaHumanContext* imhi = ihec->GetIndividual()->GetIndividualContext()->GetIndividualMalaria();
+            release_assert(imhi);
 
             if( GetRng()->SmartDraw( coverage*relative_risk ) && imhi->ChallengeWithBites( n_bites ) )
             {
-                IInfectionAcquirable* iia = nullptr;
-                if ( s_OK !=  ihec->QueryInterface(GET_IID(IInfectionAcquirable), (void**)&iia) )
-                {
-                    throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "ihec", "IInfectionAcquirable", "IIndividualHumanEventContext" );
-                }
-                iia->AcquireNewInfection();
+                ihec->GetIndividual()->AcquireNewInfection();
             }
         };
 

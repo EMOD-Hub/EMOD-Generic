@@ -24,6 +24,8 @@ namespace Kernel
         static NodeMalaria *CreateNode(ISimulationContext *simulation, ExternalNodeId_t externalNodeId, suids::suid suid);
         virtual ~NodeMalaria();
 
+        virtual INodeMalaria* GetNodeMalaria() override;
+
         virtual float GetParasitePositive()         const override { return m_Parasite_positive; }
         virtual float GetLogParasites()             const override { return m_Log_parasites; }
         virtual float GetFeverPositive()            const override { return m_Fever_positive; }

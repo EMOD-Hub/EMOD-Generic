@@ -22,71 +22,8 @@ namespace Kernel
 {
     Kernel::QueryResult MasterInterventionsContainer::QueryInterface( iid_t iid, void** ppinstance )
     {
-        assert(ppinstance); // todo: add a real message: "QueryInterface requires a non-NULL destination!");
-        if ( !ppinstance )
-            return e_NULL_POINTER;
-
-        ISupports* foundInterface = nullptr;
-
-        if ( iid == GET_IID(ITBDrugEffects)) 
-        {
-            for (auto container : InterventionsContainerList)
-            {
-                if (container->QueryInterface(GET_IID(ITBDrugEffects), (void**)&foundInterface ) == s_OK)
-                {
-                    break; 
-                }
-            }
-        }
-        else if (iid == GET_IID(IHIVDrugEffectsApply))
-        {
-            for (auto container : InterventionsContainerList)
-            {
-                if (container->QueryInterface(GET_IID(IHIVDrugEffectsApply), (void**)&foundInterface ) == s_OK)
-                {
-                    break; 
-                }
-            }
-        }
-        else if (iid == GET_IID(IInterventionConsumer))
-        {
-            foundInterface = static_cast<IInterventionConsumer*>(this);
-        }
-
-        else
-            foundInterface = 0;
-
-        QueryResult status;
-        if ( !foundInterface )
-        {
-            status = e_NOINTERFACE;
-
-            //check the base class
-            for (auto container : InterventionsContainerList)
-            {
-                //first check if it is TB or HIV container, only use the TB container for base class functions
-                ISupports* tempInterface;
-                if (container->QueryInterface(GET_IID(ITBInterventionsContainer), (void**)&tempInterface ) == s_OK)
-                {
-                    status = container->QueryInterface(iid, (void**)&foundInterface);
-                    if (status == s_OK)
-                    {
-                        break; 
-                    }
-                }
-            }
-            //status = InterventionsContainer::QueryInterface(iid, (void**)&foundInterface);
-            // TODO! QI down into the base class, this automatically takes the first off the interventions container list and QIs down to its base class????
-            // What to do about repeats of the base class + Master has its own Base class
-        }
-        else
-        {
-            //foundInterface->AddRef();           // not implementing this yet!
-            status = s_OK;
-        }
-
-        *ppinstance = foundInterface;
-        return status;
+        assert(ppinstance);
+        return e_NOINTERFACE;
     }
 
     MasterInterventionsContainer::MasterInterventionsContainer()

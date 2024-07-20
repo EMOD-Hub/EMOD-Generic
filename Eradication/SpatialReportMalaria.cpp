@@ -32,20 +32,19 @@ GET_SCHEMA_STATIC_WRAPPER_IMPL(SpatialReportMalaria,SpatialReportMalaria)
 /////////////////////////
 // Initialization methods
 /////////////////////////
-IReport*
-SpatialReportMalaria::CreateReport()
+IReport* SpatialReportMalaria::CreateReport()
 {
     return new SpatialReportMalaria();
 }
 
 SpatialReportMalaria::SpatialReportMalaria()
-: SpatialReportVector()
-, parasite_prevalence_info(         "Parasite_Prevalence",          "infected fraction")
-, mean_parasitemia_info(            "Mean_Parasitemia",             "geo. mean parasites/microliter")
-, new_diagnostic_prevalence_info(   "New_Diagnostic_Prevalence",    "positive fraction")
-, fever_prevalence_info(            "Fever_Prevalence",             "fraction")
-, new_clinical_cases_info(          "New_Clinical_Cases",           "")
-, new_severe_cases_info(            "New_Severe_Cases",             "")
+    : SpatialReportVector()
+    , parasite_prevalence_info(         "Parasite_Prevalence",          "infected fraction")
+    , mean_parasitemia_info(            "Mean_Parasitemia",             "geo. mean parasites/microliter")
+    , new_diagnostic_prevalence_info(   "New_Diagnostic_Prevalence",    "positive fraction")
+    , fever_prevalence_info(            "Fever_Prevalence",             "fraction")
+    , new_clinical_cases_info(          "New_Clinical_Cases",           "")
+    , new_severe_cases_info(            "New_Severe_Cases",             "")
 {
 }
 
@@ -74,20 +73,14 @@ void SpatialReportMalaria::populateChannelInfos(tChanInfoMap &channel_infos)
 }
 
 
-void
-SpatialReportMalaria::LogNodeData(
-    Kernel::INodeContext * pNC
-)
+void SpatialReportMalaria::LogNodeData( Kernel::INodeContext* pNC )
 {
     SpatialReportVector::LogNodeData(pNC);
 
     auto nodeid = pNC->GetExternalID();
 
-    const INodeMalaria* pMalariaNode = nullptr;
-    if( pNC->QueryInterface( GET_IID(INodeMalaria), (void**)&pMalariaNode ) != s_OK )
-    {
-        throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodeMalaria", "INodeContext" );
-    }
+    const INodeMalaria* pMalariaNode = pNC->GetNodeMalaria();
+    release_assert(pMalariaNode);
 
     if(parasite_prevalence_info.enabled)
         Accumulate(parasite_prevalence_info.name, nodeid, pMalariaNode->GetParasitePositive());
@@ -108,8 +101,7 @@ SpatialReportMalaria::LogNodeData(
         Accumulate(new_severe_cases_info.name, nodeid, pMalariaNode->GetNewSevereCases());
 }
 
-void
-SpatialReportMalaria::postProcessAccumulatedData()
+void SpatialReportMalaria::postProcessAccumulatedData()
 {
     SpatialReportVector::postProcessAccumulatedData();
 
@@ -139,16 +131,5 @@ SpatialReportMalaria::postProcessAccumulatedData()
     if( fever_prevalence_info.enabled )
         normalizeChannel(fever_prevalence_info.name, population_info.name);
 }
-
-
-#if 0
-template<class Archive>
-void serialize(Archive &ar, SpatialReportMalaria& report, const unsigned int v)
-{
-    ar & report.timesteps_reduced;
-    ar & report.channelDataMap;
-    ar & report._nrmSize;
-}
-#endif
 
 }

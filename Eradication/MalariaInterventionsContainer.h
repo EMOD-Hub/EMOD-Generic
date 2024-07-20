@@ -46,6 +46,7 @@ namespace Kernel
         virtual void InfectiousLoopUpdate(float dt) override; // update interventions in the infection loop
 
         virtual IMalariaDrugEffectsApply* GetMalariaDrugApply() override;
+        virtual IMalariaDrugEffects*      GetMalariaDrugStats() override;
 
     protected:
         std::vector<IMalariaDrugEffects*> m_DrugEffectsCollection;

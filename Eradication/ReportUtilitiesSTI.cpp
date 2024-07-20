@@ -13,6 +13,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "ReportUtilitiesSTI.h"
 #include "Debug.h"
 #include "IIndividualHuman.h"
+#include "IIndividualHumanContext.h"
 #include "IIndividualHumanSTI.h"
 #include "IndividualEventContext.h"
 #include "StrainIdentity.h"
@@ -28,26 +29,13 @@ namespace ReportUtilitiesSTI
 {
     IIndividualHumanSTI* GetTransmittingPartner( IIndividualHumanEventContext* pRecipientContext )
     {
-        IIndividualHuman* p_recipient = nullptr;
-        if (pRecipientContext->QueryInterface(GET_IID(IIndividualHuman), (void**)&p_recipient) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pRecipientContext", "IIndividualHuman", "IIndividualHumanEventContext" );
-        }
+        IIndividualHuman* p_recipient = pRecipientContext->GetIndividual();
 
-        IIndividualHumanSTI* p_recipient_sti = nullptr;
-        if (p_recipient->QueryInterface(GET_IID(IIndividualHumanSTI), (void**)&p_recipient_sti) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "p_recipient", "IIndividualHumanSTI", "IIndividualHuman" );
-        }
+        IIndividualHumanSTI* p_recipient_sti = p_recipient->GetIndividualContext()->GetIndividualSTI();
+        release_assert(p_recipient_sti);
 
         // Let's figure out who the Infector was. This info is stored in the HIVInfection's strainidentity object
-        //auto infections = dynamic_cast<IInfectable*>(individual)->GetInfections();
-        IInfectable* p_infectable = nullptr;
-        if (p_recipient->QueryInterface(GET_IID(IInfectable), (void**)&p_infectable) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "p_recipient", "IInfectable", "IIndividualHuman" );
-        }
-        auto infections = p_infectable->GetInfections();
+        auto infections = p_recipient->GetInfections();
         if( infections.size() == 0 )
         {
             // This person cleared their infection on this timestep already! Nothing to report.

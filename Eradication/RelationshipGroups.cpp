@@ -27,10 +27,8 @@ namespace Kernel {
 
 #ifndef DISABLE_STI
     //IContagionPopulation
-    //IContagionProbabilities
     BEGIN_QUERY_INTERFACE_BODY(DiscreteContagionPopulation)
         HANDLE_INTERFACE(IContagionPopulation)
-        HANDLE_INTERFACE(IContagionProbabilities)
     END_QUERY_INTERFACE_BODY(DiscreteContagionPopulation)
 
     RelationshipGroups::RelationshipGroups( RANDOMBASE * prng )

@@ -26,10 +26,7 @@ namespace Kernel {
 ReportVector::ReportVector()
 {}
 
-void
-ReportVector::populateSummaryDataUnitsMap(
-    std::map<std::string, std::string> &units_map
-)
+void ReportVector::populateSummaryDataUnitsMap( std::map<std::string, std::string> &units_map )
 {
     LOG_DEBUG( "populateSummaryDataUnitsMap\n" );
     Report::populateSummaryDataUnitsMap(units_map);
@@ -39,11 +36,9 @@ ReportVector::populateSummaryDataUnitsMap(
     units_map[_infectious_vectors_label]    = "Infectious %";
     units_map[_daily_eir_label]             = "Infectious Bites/Day";
     units_map[_daily_bites_per_human_label] = "Bites/Day";
-    //units_map[_log_prev_label]              = "Log Prevalence";
 }
 
-void
-ReportVector::postProcessAccumulatedData()
+void ReportVector::postProcessAccumulatedData()
 {
     LOG_DEBUG( "postProcessAccumulatedData\n" );
     Report::postProcessAccumulatedData();
@@ -54,15 +49,9 @@ ReportVector::postProcessAccumulatedData()
     normalizeChannel(_adult_vectors_label,         (float)_nrmSize);
     normalizeChannel(_daily_eir_label,             _nrmSize);
     normalizeChannel(_daily_bites_per_human_label, (float)_nrmSize);
-
-    // add derived channels
-    //addDerivedLogScaleSummaryChannel("Infected", _log_prev_label);
 }
 
-void
-ReportVector::LogNodeData(
-    Kernel::INodeContext * pNC
-)
+void ReportVector::LogNodeData( Kernel::INodeContext* pNC )
 {
     Report::LogNodeData( pNC );
 
@@ -71,11 +60,8 @@ ReportVector::LogNodeData(
     float daily_eir          = 0;
     float daily_hbr          = 0;
 
-    INodeVector* pNV = nullptr;
-    if( pNC->QueryInterface( GET_IID( INodeVector ), (void**) & pNV ) != s_OK )
-    {
-        throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodeVector", "INodeContext" );
-    }
+    INodeVector* pNV = pNC->GetNodeVector();
+    release_assert(pNV);
 
     const VectorPopulationReportingList_t& vectorPopulations = pNV->GetVectorPopulationReporting();
 

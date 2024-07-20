@@ -72,7 +72,6 @@ namespace Kernel
     // ----------------- IndividualHumanMalaria ---------------
     BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanMalaria, IndividualHumanVector)
         HANDLE_INTERFACE(IMalariaHumanContext)
-        HANDLE_INTERFACE(IMalariaHumanInfectable)
     END_QUERY_INTERFACE_DERIVED(IndividualHumanMalaria, IndividualHumanVector)
 
     IndividualHumanMalaria::IndividualHumanMalaria(suids::suid _suid, double monte_carlo_weight, double initial_age, int gender)
@@ -131,10 +130,8 @@ namespace Kernel
 
         if( malaria_susceptibility == nullptr && susceptibility != nullptr)
         {
-            if ( s_OK != susceptibility->QueryInterface(GET_IID(IMalariaSusceptibility), (void**)&malaria_susceptibility) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "susceptibility", "IMalariaSusceptibility", "Susceptibility" );
-            }
+            malaria_susceptibility = susceptibility->GetSusceptibilityMalaria();
+            release_assert(malaria_susceptibility);
         }
     }
 
@@ -159,22 +156,16 @@ namespace Kernel
     {
         if ( mother )
         {
-            IMalariaHumanContext* malaria_mother;
-            if( s_OK != mother->QueryInterface(GET_IID(IMalariaHumanContext), (void**)&malaria_mother) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "mother", "IMalariaHumanContext", "IIndividualHumanContext" );
-            }
+            IMalariaHumanContext* malaria_mother = mother->GetIndividualMalaria();
+            release_assert(malaria_mother);
 
             // If we are using individual pregnancies, initialize maternal antibodies dependent on mother's antibody history
             malaria_susceptibility->init_maternal_antibodies(malaria_mother->GetMalariaSusceptibilityContext()->get_fraction_of_variants_with_antibodies(MalariaAntibodyType::PfEMP1_major));
         }
         else
         {
-            INodeMalaria* malaria_node;
-            if( s_OK != node->QueryInterface(GET_IID(INodeMalaria), (void**)&malaria_node) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "node", "INodeMalaria", "INodeContext" );
-            }
+            INodeMalaria* malaria_node = node->GetNodeMalaria();
+            release_assert(malaria_node);
 
             // If we are doing births at population level, use the average antibody history of all possible mothers
             malaria_susceptibility->init_maternal_antibodies(malaria_node->GetMaternalAntibodyFraction());
@@ -303,11 +294,8 @@ namespace Kernel
     void IndividualHumanMalaria::UpdateGametocyteCounts(float dt)
     {
         // Check for mature gametocyte drug killing
-        IMalariaDrugEffects* imde = nullptr;
-        if (s_OK != GetInterventionsContext()->QueryInterface(GET_IID(IMalariaDrugEffects), (void **)&imde))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "GetInterventionsContext()", "IMalariaDrugEffects", "IIndividualHumanInterventionsContext" );
-        }
+        IMalariaDrugEffects* imde = GetInterventionsContext()->GetMalariaDrugStats();
+        release_assert(imde);
 
         m_male_gametocytes = 0;
         m_female_gametocytes = 0;
@@ -317,11 +305,8 @@ namespace Kernel
         for (auto infection : infections)
         {
             // Cast from Infection --> InfectionMalaria
-            IInfectionMalaria *tempinf = nullptr;
-            if( infection->QueryInterface( GET_IID(IInfectionMalaria), (void**)&tempinf ) != s_OK )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "Infection", "IInfectionMalaria", "tempinf" );
-            }
+            IInfectionMalaria* tempinf = infection->GetInfectionMalaria();
+            release_assert(tempinf);
 
             // Get mature gametocytes at this time step
             // N.B. malariaCycleGametocytes is called once per asexual cycle (several days),
@@ -381,11 +366,8 @@ namespace Kernel
         float weighted_infectiousnesss = host_vector_weight * infectiousness;
 
         // Effects from vector intervention container
-        IVectorInterventionsEffects* ivie = nullptr;
-        if ( s_OK !=  interventions->QueryInterface(GET_IID(IVectorInterventionsEffects), (void**)&ivie) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "interventions", "IVectorInterventionsEffects", "IndividualHumanVector" );
-        }
+        IVectorInterventionsEffects* ivie = interventions->GetContainerVector();
+        release_assert(ivie);
 
         // Here we deposit human-to-vector infectiousness based on proportional outcrossing of strain IDs
         gametocytes_strain_map_t::const_iterator gc1,gc2,end=m_female_gametocytes_by_strain.end();

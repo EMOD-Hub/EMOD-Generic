@@ -11,6 +11,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "ReportTB.h"
 #include "ReportTBHIV.h" // for base class
 
+#include "IIndividualHumanContext.h"
 #include "IndividualCoInfection.h"
 #include "IIndividualHumanHIV.h"
 #include "IHIVInterventionsContainer.h"
@@ -125,28 +126,22 @@ namespace Kernel
         ReportTB::LogNodeData( pNode );
     }
 
-    void ReportTBHIV::LogIndividualData( IIndividualHuman * individual )
+    void ReportTBHIV::LogIndividualData( IIndividualHuman* individual )
     { 
         ReportTB::LogIndividualData(individual);
         // Cast from IndividualHuman to IndividualHumanCoinfection
         float mc_weight = (float) individual->GetMonteCarloWeight();
 
-        IIndividualHumanCoInfection* tbhiv_ind = NULL;
-        if( individual->QueryInterface( GET_IID(IIndividualHumanCoInfection), (void**) &tbhiv_ind ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualHumanCoInfection", "IndividualHuman" );
-        } 
+        IIndividualHumanCoInfection* tbhiv_ind = individual->GetIndividualContext()->GetIndividualCoInf();
+        release_assert(tbhiv_ind);
 
         if(tbhiv_ind->HasHIV())
         {
             LOG_VALID_F( "Individual %d has HIV.\n", individual->GetSuid().data );
             m_HIV_persons += mc_weight;
 
-            IIndividualHumanHIV* pHIVHum = nullptr;
-            if (individual->QueryInterface(GET_IID(IIndividualHumanHIV), (void**) &pHIVHum ) != s_OK)
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualHumanHIV", "IndividualHuman" );
-            }
+            IIndividualHumanHIV* pHIVHum = individual->GetIndividualContext()->GetIndividualHIV();
+            release_assert(pHIVHum);
 
             if (pHIVHum->GetHIVInterventionsContainer()->OnArtQuery() == true)
             {
@@ -173,7 +168,6 @@ namespace Kernel
                 }
             }        
         }
-
 
         if ( tbhiv_ind->GetTBInterventionsContainer()->GetNumTBDrugsActive() >= 1 )
         {   

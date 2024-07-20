@@ -15,6 +15,9 @@ namespace Kernel
     class  ISusceptibilityHIV;
     class  ISusceptibilityTB;
     struct ISusceptibilityVector;
+    class  ISusceptibilityDengue;
+    struct IMalariaSusceptibility;
+    class  ISusceptibilityPolio;
 
     struct ISusceptibilityContext : ISerializable
     {
@@ -31,5 +34,8 @@ namespace Kernel
         virtual ISusceptibilityHIV*       GetSusceptibilityHIV()     = 0;
         virtual ISusceptibilityTB*        GetSusceptibilityTB()      = 0;
         virtual ISusceptibilityVector*    GetSusceptibilityVector()  = 0;
+        virtual ISusceptibilityDengue*    GetSusceptibilityDengue()  = 0;
+        virtual IMalariaSusceptibility*   GetSusceptibilityMalaria() = 0;
+        virtual ISusceptibilityPolio*     GetSusceptibilityPolio()   = 0;
     };
 }

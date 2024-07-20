@@ -31,12 +31,6 @@ namespace Kernel
 
     typedef std::map <TBDrugType::Enum, TBDrugEffects_t> TBDrugEffectsMap_t;
 
-    struct ITBDrugEffects : public ISupports
-    {
-        virtual TBDrugEffectsMap_t GetDrugEffectsMap() = 0;
-        virtual ~ITBDrugEffects() { }
-    };
-
     struct ITBInterventionsContainer : public ISupports
     {
         virtual int GetNumTBDrugsActive() = 0;
@@ -50,11 +44,11 @@ namespace Kernel
         virtual void ApplyDrugVaccineReducedTransmitEffect( float rate ) = 0;
         virtual void ApplyTBDrugEffects( TBDrugEffects_t effects, TBDrugType::Enum drug_type ) = 0;
         virtual void UpdateTreatmentStatus( const EventTrigger::Enum& new_treatment_status ) = 0;
+
+        virtual TBDrugEffectsMap_t GetDrugEffectsMap() = 0;
     };
 
-    class TBInterventionsContainer : public InterventionsContainer,
-        public ITBDrugEffects,
-        public ITBInterventionsContainer
+    class TBInterventionsContainer : public InterventionsContainer, public ITBInterventionsContainer
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 

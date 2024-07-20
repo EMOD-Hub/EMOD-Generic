@@ -41,7 +41,7 @@ namespace Kernel
     class VectorCohortWithHabitat;
     class RANDOMBASE;
 
-    class VectorPopulation : public IVectorPopulation, public IInfectable, public IVectorPopulationReporting
+    class VectorPopulation : public IVectorPopulation, public IInfectable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
         DECLARE_QUERY_INTERFACE()
@@ -68,16 +68,6 @@ namespace Kernel
         // Supports MosquitoRelease intervention
         virtual void AddVectors( const VectorMatingStructure& _vector_genetics, uint32_t releasedNumber ) override;
 
-        // ---------------
-        // --- IInfectable
-        // ---------------
-        virtual void Expose( const IContagionPopulation* cp, float dt, TransmissionRoute::Enum transmission_route ) override;
-        virtual const infection_list_t& GetInfections() const override;
-        virtual IIndividualHuman* GetIndividual() override;
-
-        // -------------------------------
-        // --- IVectorPopulationReporting
-        // -------------------------------
         virtual float  GetEIRByPool(VectorPoolIdEnum::Enum pool_id)     const override;
         virtual float  GetHBRByPool(VectorPoolIdEnum::Enum pool_id)     const override;
         virtual uint32_t getAdultCount()                                const override;
@@ -94,6 +84,13 @@ namespace Kernel
         virtual const VectorHabitatList_t& GetHabitats()                const override;
         virtual std::vector<uint64_t> GetNewlyInfectedVectorIds()       const override;
         virtual std::vector<uint64_t> GetInfectiousVectorIds()          const override;
+
+        // ---------------
+        // --- IInfectable
+        // ---------------
+        virtual void Expose( const IContagionPopulation* cp, float dt, TransmissionRoute::Enum transmission_route ) override;
+        virtual const infection_list_t& GetInfections() const override;
+        virtual IIndividualHuman* GetIndividual() override;
 
     protected:
         VectorPopulation();

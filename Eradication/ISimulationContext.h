@@ -23,11 +23,16 @@ namespace Kernel
     struct INodeQualifier; 
     struct IIndividualHuman;
     struct IdmDateTime;
+    struct ISimulation;
+    struct IVectorSimulationContext;
     struct ISimulationEventContext;
     struct SimParams;
 
     struct IDMAPI ISimulationContext : public ISupports
     {
+        virtual ISimulation*               GetSimulation()             = 0;
+        virtual IVectorSimulationContext*  GetSimulationVector()       = 0;
+
         // demographics
         virtual const DemographicsContext* GetDemographicsContext() const = 0;
 

@@ -105,22 +105,16 @@ namespace Kernel
 
     void ReportHIVInfection::LogIndividualData(IIndividualHuman* individual)
     {
-        IIndividualHumanHIV* hiv_individual = nullptr;
-        if( individual->QueryInterface( GET_IID( IIndividualHumanHIV ), (void**)&hiv_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualHIV", "IndividualHuman" );
-        }
+        IIndividualHumanHIV* hiv_individual = individual->GetIndividualContext()->GetIndividualHIV();
+        release_assert(hiv_individual);
 
         bool isInfected = hiv_individual->HasHIV();
 
         if( !isInfected )
             return;
 
-        IIndividualHumanSTI* sti_individual = nullptr;
-        if( individual->QueryInterface( GET_IID( IIndividualHumanSTI ), (void**)&sti_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualSTI", "IndividualHuman" );
-        }
+        IIndividualHumanSTI* sti_individual = individual->GetIndividualContext()->GetIndividualSTI();
+        release_assert(sti_individual);
 
         GetOutputStream() 
             << std::setprecision(10)

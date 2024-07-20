@@ -19,9 +19,13 @@ namespace Kernel
     struct IIndividualHumanContext;
     struct IStrainIdentity;
 
-    class IInfectionMalaria;
-    class IInfectionHIV;
-    class IInfectionTB;
+    class  IInfectionDengue;
+    class  IInfectionMalaria;
+    class  IInfectionHIV;
+    class  IInfectionTB;
+    struct IInfectionPolioReportable;
+    class  IInfectionPy;
+    class  IInfectionTyphoid;
 
     struct IInfection : ISerializable
     {
@@ -36,9 +40,13 @@ namespace Kernel
         virtual void GetInfectiousStrainID( IStrainIdentity* ) = 0;
         virtual const IStrainIdentity* GetStrain() const  = 0;
 
-        virtual IInfectionMalaria*        GetInfectionMalaria()                 = 0;
-        virtual IInfectionHIV*            GetInfectionHIV()                     = 0;
-        virtual IInfectionTB*             GetInfectionTB()                      = 0;
+        virtual IInfectionDengue*            GetInfectionDengue()                  = 0;
+        virtual IInfectionMalaria*           GetInfectionMalaria()                 = 0;
+        virtual IInfectionHIV*               GetInfectionHIV()                     = 0;
+        virtual IInfectionTB*                GetInfectionTB()                      = 0;
+        virtual IInfectionPolioReportable*   GetInfectionPolio()                   = 0;
+        virtual IInfectionPy*                GetInfectionPy()                      = 0;
+        virtual IInfectionTyphoid*           GetInfectionTyphoid()                 = 0;
 
         virtual bool IsActive() const = 0;
         virtual NonNegativeFloat GetDuration() const = 0;

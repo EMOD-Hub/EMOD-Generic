@@ -42,6 +42,7 @@ namespace Kernel
         virtual const std::string& GetName() const override;
         virtual const IdmDateTime& GetTime() const override;
         virtual IEventCoordinator* GetEventCoordinator() override { return this; };
+        virtual ISurveillanceReporting* GetSurveillanceReporting() override { return nullptr; };
 
     protected:
         ISimulationEventContext* m_Parent;

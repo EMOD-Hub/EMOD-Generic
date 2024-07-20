@@ -67,6 +67,7 @@ namespace Kernel
         virtual const IdmDateTime& GetTime() const override;
         virtual IEventCoordinator* GetEventCoordinator() override { return this; };
         virtual IEventCoordinatorEventContext* GetEventContext() override { return this; }
+        virtual ISurveillanceReporting* GetSurveillanceReporting() override;
 
         virtual bool IsFinished() override;
         virtual void ConsiderResponding();

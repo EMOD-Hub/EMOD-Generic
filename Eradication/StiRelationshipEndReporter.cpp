@@ -44,12 +44,8 @@ namespace Kernel
 
     void StiRelationshipEndReporter::onNewNode(Kernel::INodeContext* node)
     {
-        INodeSTI* sti = nullptr;
-
-        if (node->QueryInterface(GET_IID(INodeSTI), (void**)&sti) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "node", "INodeSTI*", "INodeContext*" );
-        }
+        INodeSTI* sti = node->GetNodeSTI();
+        release_assert(sti);
 
         auto manager = sti->GetRelationshipManager();
         manager->RegisterRelationshipTerminationObserver([&](IRelationship* relationship){ this->onRelationshipTermination(relationship); });

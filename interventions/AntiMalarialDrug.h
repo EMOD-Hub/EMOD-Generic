@@ -37,6 +37,8 @@ namespace Kernel
         // IDistributableIntervention
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO ) override;
 
+        virtual IMalariaDrugEffects* GetMalariaDrug() override;
+
         // Other methods
         virtual DrugUsageType::Enum GetDrugUsageType();
 
@@ -68,7 +70,7 @@ namespace Kernel
         float drug_gametocyteM;
         MalariaDrugTypeParameters* pMalariaDrugTypeParameters;
         const DrugResistantModifiers* pDrugResistantModifiers;
-        IMalariaDrugEffectsApply * imda;
+        IMalariaDrugEffectsApply* imda;
 
         static bodyweight_map_t create_bodyweight_map();
         static const bodyweight_map_t bodyweight_map_;

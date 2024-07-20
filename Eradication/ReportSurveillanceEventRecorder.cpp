@@ -66,10 +66,11 @@ namespace Kernel
         return header.str();
     }
 
-    bool ReportSurveillanceEventRecorder::notifyOnEvent( IEventCoordinatorEventContext *pEntity, const EventTriggerCoordinator& trigger )
+    bool ReportSurveillanceEventRecorder::notifyOnEvent( IEventCoordinatorEventContext* pEntity, const EventTriggerCoordinator& trigger )
     {
-        ISurveillanceReporting* p_isr = nullptr;
-        if( pEntity->QueryInterface( GET_IID( ISurveillanceReporting ), (void**)&p_isr ) == s_OK )
+        ISurveillanceReporting* p_isr = pEntity->GetSurveillanceReporting();
+
+        if( p_isr )
         {
             return ReportEventRecorderCoordinator::notifyOnEvent( pEntity, trigger );
         }
@@ -82,12 +83,8 @@ namespace Kernel
     std::string ReportSurveillanceEventRecorder::GetOtherData( IEventCoordinatorEventContext *pEntity,
                                                               const EventTriggerCoordinator& trigger )
     {
-        ISurveillanceReporting* p_isr = nullptr;
-        if( pEntity->QueryInterface( GET_IID( ISurveillanceReporting ), (void**)&p_isr ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__,
-                                           "pEntity", "ISurveillanceReporting", "IEventCoordinatorEventContext" );
-        }
+        ISurveillanceReporting* p_isr = pEntity->GetSurveillanceReporting();
+        release_assert(p_isr);
 
         m_ReportStatsByIP.ResetData();
 

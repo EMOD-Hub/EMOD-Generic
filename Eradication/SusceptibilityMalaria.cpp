@@ -75,6 +75,52 @@ namespace Kernel
     BEGIN_QUERY_INTERFACE_BODY(SusceptibilityMalariaConfig)
     END_QUERY_INTERFACE_BODY(SusceptibilityMalariaConfig)
 
+    bool SusceptibilityMalariaConfig::Configure( const Configuration* config )
+    {
+        initConfigTypeMap( "Anemia_Mortality_Threshold",              &anemiaMortalityLevel,              Anemia_Mortality_Threshold_DESC_TEXT,              0.0, 100.0f,      DEFAULT_ANEMIA_MORTALITY_LEVEL );
+        initConfigTypeMap( "Parasite_Mortality_Threshold",            &parasiteMortalityLevel,            Parasite_Mortality_Threshold_DESC_TEXT,            0.0, FLT_MAX,     DEFAULT_PARASITE_MORTALITY_LEVEL );
+        initConfigTypeMap( "Fever_Mortality_Threshold",               &feverMortalityLevel,               Fever_Mortality_Threshold_DESC_TEXT,               0.0, 1000.0,      DEFAULT_FEVER_MORTALITY_LEVEL );
+        initConfigTypeMap( "Enable_Sexual_Combination",               &sexual_combination,                Enable_Sexual_Combination_DESC_TEXT,                                 false );
+        initConfigTypeMap( "Base_Gametocyte_Mosquito_Survival_Rate",  &base_gametocyte_mosquito_survival, Base_Gametocyte_Mosquito_Survival_Rate_DESC_TEXT,  0.0f, 1.0f,       DEFAULT_BASE_GAMETOCYTE_MOSQUITO_SURVIVAL );
+        initConfigTypeMap( "Cytokine_Gametocyte_Inactivation",        &cytokine_gametocyte_inactivation,  Cytokine_Gametocyte_Inactivation_DESC_TEXT,        0.0f, 1.0f,       DEFAULT_CYTOKINE_GAMETOCYTE_INACTIVATION );
+        initConfigTypeMap( "Anemia_Mortality_Inverse_Width",          &anemiaMortalityInvWidth,           Anemia_Mortality_Inverse_Width_DESC_TEXT,          0.1f, 1000000.0f, DEFAULT_ANEMIA_MORTALITY_INV_WIDTH );
+        initConfigTypeMap( "Parasite_Mortality_Inverse_Width",        &parasiteMortalityInvWidth,         Parasite_Mortality_Inverse_Width_DESC_TEXT,        0.1f, 1000000.0f, DEFAULT_PARASITE_MORTALITY_INV_WIDTH );
+        initConfigTypeMap( "Fever_Mortality_Inverse_Width",           &feverMortalityInvWidth,            Fever_Mortality_Inverse_Width_DESC_TEXT,           0.1f, 1000000.0f, DEFAULT_FEVER_MORTALITY_INV_WIDTH );
+        initConfigTypeMap( "Anemia_Severe_Threshold",                 &anemiaSevereLevel,                 Anemia_Severe_Threshold_DESC_TEXT,                 0.0f, 100.0f,     DEFAULT_ANEMIA_SEVERE_LEVEL );
+        initConfigTypeMap( "Parasite_Severe_Threshold",               &parasiteSevereLevel,               Parasite_Severe_Threshold_DESC_TEXT,               0.0f, FLT_MAX,    DEFAULT_PARASITE_SEVERE_LEVEL );
+        initConfigTypeMap( "Fever_Severe_Threshold",                  &feverSevereLevel,                  Fever_Severe_Threshold_DESC_TEXT,                  0.0f, 10.0f,      DEFAULT_FEVER_SEVERE_LEVEL );
+        initConfigTypeMap( "Anemia_Severe_Inverse_Width",             &anemiaSevereInvWidth,              Anemia_Severe_Inverse_Width_DESC_TEXT,             0.1f, 1000000.0f, DEFAULT_ANEMIA_SEVERE_INV_WIDTH );
+        initConfigTypeMap( "Parasite_Severe_Inverse_Width",           &parasiteSevereInvWidth,            Parasite_Severe_Inverse_Width_DESC_TEXT,           0.1f, 1000000.0f, DEFAULT_PARASITE_SEVERE_INV_WIDTH );
+        initConfigTypeMap( "Fever_Severe_Inverse_Width",              &feverSevereInvWidth,               Fever_Severe_Inverse_Width_DESC_TEXT,              0.1f, 1000000.0f, DEFAULT_FEVER_SEVERE_INV_WIDTH );
+        initConfigTypeMap( "Clinical_Fever_Threshold_Low",            &clinicalFeverThreshold_low,        Clinical_Fever_Threshold_Low_DESC_TEXT,            0.0f, 5.0f,       DEFAULT_CLINICAL_FEVER_THRESHOLD_LOW );
+        initConfigTypeMap( "Clinical_Fever_Threshold_High",           &clinicalFeverThreshold_high,       Clinical_Fever_Threshold_High_DESC_TEXT,           0.0f, 15.0f,      DEFAULT_CLINICAL_FEVER_THRESHOLD_HIGH );
+        initConfigTypeMap( "Min_Days_Between_Clinical_Incidents",     &minDaysBetweenClinicalIncidents,   Min_Days_Between_Clinical_Incidents_DESC_TEXT,     0.0f, 1000000.0f, DEFAULT_MIN_DAYS_BETWEEN_INCIDENTS );
+        initConfigTypeMap( "Antibody_Memory_Level",                   &memory_level,                      Antibody_Memory_Level_DESC_TEXT,                   0.0f, 0.35f,       0.2f );
+        initConfigTypeMap( "Max_MSP1_Antibody_Growthrate",            &MSP1_antibody_growthrate,          Max_MSP1_Antibody_Growthrate_DESC_TEXT,            0.0f, 1.0f,       0.02f );
+        initConfigTypeMap( "Antibody_Stimulation_C50",                &antibody_stimulation_c50,          Antibody_Stimulation_C50_DESC_TEXT,                0.1f, 10000.0f,   10.0f );
+        initConfigTypeMap( "Antibody_Capacity_Growth_Rate",           &antibody_capacity_growthrate,      Antibody_Capacity_Growth_Rate_DESC_TEXT,           0.0f, 1.0f,       0.1f );
+        initConfigTypeMap( "Min_Adapted_Response",                    &minimum_adapted_response,          Min_Adapted_Response_DESC_TEXT,                    0.0f, 1.0f,       0.02f );
+        initConfigTypeMap( "Nonspecific_Antibody_Growth_Rate_Factor", &non_specific_growth,               Nonspecific_Antibody_Growth_Rate_Factor_DESC_TEXT, 0.0f, 1000.0f,    0.5f );
+        initConfigTypeMap( "Antibody_CSP_Decay_Days",                 &antibody_csp_decay_days,           Antibody_CSP_Decay_Days_DESC_TEXT,                 1.0f, FLT_MAX,    DEFAULT_ANTIBODY_CSP_DECAY_DAYS );
+        initConfigTypeMap( "Erythropoiesis_Anemia_Effect",            &erythropoiesis_anemia_effect,      Erythropoiesis_Anemia_Effect_DESC_TEXT,            0.0f, 1000.0f,    3.5f );
+
+        initConfigTypeMap("Enable_Maternal_Antibodies_Transmission", &enable_maternal_antibodies_transmission, Enable_Maternal_Antibodies_Transmission_DESC_TEXT, false, "Simulation_Type","MALARIA_SIM");
+        initConfig( "Maternal_Antibodies_Type", maternal_antibodies_type, config, MetadataDescriptor::Enum("maternal_antibodies_type", Maternal_Antibodies_Type_DESC_TEXT, MDD_ENUM_ARGS(MaternalAntibodiesType)), "Enable_Maternal_Antibodies_Transmission" );
+        initConfigTypeMap( "Maternal_Antibody_Protection",        &maternal_antibody_protection,      Maternal_Antibody_Protection_DESC_TEXT,            0.0f, 1.0f,       0.1f, "Maternal_Antibodies_Type", "SIMPLE_WANING,CONSTANT_INITIAL_IMMUNITY" );
+        initConfigTypeMap( "Maternal_Antibody_Decay_Rate",        &maternal_antibody_decay_rate,      Maternal_Antibody_Decay_Rate_DESC_TEXT,            0.0f, FLT_MAX,    0.01f, "Maternal_Antibodies_Type", "SIMPLE_WANING,CONSTANT_INITIAL_IMMUNITY" );
+
+        initConfig( "Innate_Immune_Variation_Type", innate_immune_variation_type, config, MetadataDescriptor::Enum("innate_immune_variation_type", Innate_Immune_Variation_Type_DESC_TEXT, MDD_ENUM_ARGS(InnateImmuneVariationType)) );
+        initConfigTypeMap( "Pyrogenic_Threshold", &pyrogenic_threshold, Pyrogenic_Threshold_DESC_TEXT, 0.1f, 20000.0f, 1000.0f );
+        initConfigTypeMap( "Fever_IRBC_Kill_Rate", &fever_IRBC_killrate, Fever_IRBC_Kill_Rate_DESC_TEXT, 0.0, 1000.0, DEFAULT_FEVER_IRBC_KILL_RATE );
+
+        bool configured = JsonConfigurable::Configure( config );
+
+        hyperimmune_decay_rate = -log((0.4f - memory_level) / (1.0f - memory_level)) / 120.0f;  // This sets the decay rate towards memory level so that the decay from antibody levels of 1 to levels of 0.4 is consistent
+        // this is part of the new intrahost model explained in the Intrahost paper by Eckhoff
+
+        return configured;
+    }
+
     // QI stuff in case we want to use it more extensively
     BEGIN_QUERY_INTERFACE_DERIVED(SusceptibilityMalaria, SusceptibilityVector)
         HANDLE_INTERFACE(IMalariaSusceptibility)
@@ -124,61 +170,9 @@ namespace Kernel
     {
     }
 
-    bool
-    SusceptibilityMalariaConfig::Configure(
-        const Configuration* config
-    )
+    IMalariaSusceptibility* SusceptibilityMalaria::GetSusceptibilityMalaria()
     {
-        initConfigTypeMap( "Anemia_Mortality_Threshold",              &anemiaMortalityLevel,              Anemia_Mortality_Threshold_DESC_TEXT,              0.0, 100.0f,      DEFAULT_ANEMIA_MORTALITY_LEVEL );
-        initConfigTypeMap( "Parasite_Mortality_Threshold",            &parasiteMortalityLevel,            Parasite_Mortality_Threshold_DESC_TEXT,            0.0, FLT_MAX,     DEFAULT_PARASITE_MORTALITY_LEVEL );
-        initConfigTypeMap( "Fever_Mortality_Threshold",               &feverMortalityLevel,               Fever_Mortality_Threshold_DESC_TEXT,               0.0, 1000.0,      DEFAULT_FEVER_MORTALITY_LEVEL );
-        initConfigTypeMap( "Enable_Sexual_Combination",               &sexual_combination,                Enable_Sexual_Combination_DESC_TEXT,                                 false );
-        initConfigTypeMap( "Base_Gametocyte_Mosquito_Survival_Rate",  &base_gametocyte_mosquito_survival, Base_Gametocyte_Mosquito_Survival_Rate_DESC_TEXT,  0.0f, 1.0f,       DEFAULT_BASE_GAMETOCYTE_MOSQUITO_SURVIVAL );
-        initConfigTypeMap( "Cytokine_Gametocyte_Inactivation",        &cytokine_gametocyte_inactivation,  Cytokine_Gametocyte_Inactivation_DESC_TEXT,        0.0f, 1.0f,       DEFAULT_CYTOKINE_GAMETOCYTE_INACTIVATION );
-        initConfigTypeMap( "Anemia_Mortality_Inverse_Width",          &anemiaMortalityInvWidth,           Anemia_Mortality_Inverse_Width_DESC_TEXT,          0.1f, 1000000.0f, DEFAULT_ANEMIA_MORTALITY_INV_WIDTH );
-        initConfigTypeMap( "Parasite_Mortality_Inverse_Width",        &parasiteMortalityInvWidth,         Parasite_Mortality_Inverse_Width_DESC_TEXT,        0.1f, 1000000.0f, DEFAULT_PARASITE_MORTALITY_INV_WIDTH );
-        initConfigTypeMap( "Fever_Mortality_Inverse_Width",           &feverMortalityInvWidth,            Fever_Mortality_Inverse_Width_DESC_TEXT,           0.1f, 1000000.0f, DEFAULT_FEVER_MORTALITY_INV_WIDTH );
-        initConfigTypeMap( "Anemia_Severe_Threshold",                 &anemiaSevereLevel,                 Anemia_Severe_Threshold_DESC_TEXT,                 0.0f, 100.0f,     DEFAULT_ANEMIA_SEVERE_LEVEL );
-        initConfigTypeMap( "Parasite_Severe_Threshold",               &parasiteSevereLevel,               Parasite_Severe_Threshold_DESC_TEXT,               0.0f, FLT_MAX,    DEFAULT_PARASITE_SEVERE_LEVEL );
-        initConfigTypeMap( "Fever_Severe_Threshold",                  &feverSevereLevel,                  Fever_Severe_Threshold_DESC_TEXT,                  0.0f, 10.0f,      DEFAULT_FEVER_SEVERE_LEVEL );
-        initConfigTypeMap( "Anemia_Severe_Inverse_Width",             &anemiaSevereInvWidth,              Anemia_Severe_Inverse_Width_DESC_TEXT,             0.1f, 1000000.0f, DEFAULT_ANEMIA_SEVERE_INV_WIDTH );
-        initConfigTypeMap( "Parasite_Severe_Inverse_Width",           &parasiteSevereInvWidth,            Parasite_Severe_Inverse_Width_DESC_TEXT,           0.1f, 1000000.0f, DEFAULT_PARASITE_SEVERE_INV_WIDTH );
-        initConfigTypeMap( "Fever_Severe_Inverse_Width",              &feverSevereInvWidth,               Fever_Severe_Inverse_Width_DESC_TEXT,              0.1f, 1000000.0f, DEFAULT_FEVER_SEVERE_INV_WIDTH );
-        initConfigTypeMap( "Clinical_Fever_Threshold_Low",            &clinicalFeverThreshold_low,        Clinical_Fever_Threshold_Low_DESC_TEXT,            0.0f, 5.0f,       DEFAULT_CLINICAL_FEVER_THRESHOLD_LOW );
-        initConfigTypeMap( "Clinical_Fever_Threshold_High",           &clinicalFeverThreshold_high,       Clinical_Fever_Threshold_High_DESC_TEXT,           0.0f, 15.0f,      DEFAULT_CLINICAL_FEVER_THRESHOLD_HIGH );
-        initConfigTypeMap( "Min_Days_Between_Clinical_Incidents",     &minDaysBetweenClinicalIncidents,   Min_Days_Between_Clinical_Incidents_DESC_TEXT,     0.0f, 1000000.0f, DEFAULT_MIN_DAYS_BETWEEN_INCIDENTS );
-        initConfigTypeMap( "Antibody_Memory_Level",                   &memory_level,                      Antibody_Memory_Level_DESC_TEXT,                   0.0f, 0.35f,       0.2f );
-        initConfigTypeMap( "Max_MSP1_Antibody_Growthrate",            &MSP1_antibody_growthrate,          Max_MSP1_Antibody_Growthrate_DESC_TEXT,            0.0f, 1.0f,       0.02f );
-        initConfigTypeMap( "Antibody_Stimulation_C50",                &antibody_stimulation_c50,          Antibody_Stimulation_C50_DESC_TEXT,                0.1f, 10000.0f,   10.0f );
-        initConfigTypeMap( "Antibody_Capacity_Growth_Rate",           &antibody_capacity_growthrate,      Antibody_Capacity_Growth_Rate_DESC_TEXT,           0.0f, 1.0f,       0.1f );
-        initConfigTypeMap( "Min_Adapted_Response",                    &minimum_adapted_response,          Min_Adapted_Response_DESC_TEXT,                    0.0f, 1.0f,       0.02f );
-        initConfigTypeMap( "Nonspecific_Antibody_Growth_Rate_Factor", &non_specific_growth,               Nonspecific_Antibody_Growth_Rate_Factor_DESC_TEXT, 0.0f, 1000.0f,    0.5f );
-        initConfigTypeMap( "Antibody_CSP_Decay_Days",                 &antibody_csp_decay_days,           Antibody_CSP_Decay_Days_DESC_TEXT,                 1.0f, FLT_MAX,    DEFAULT_ANTIBODY_CSP_DECAY_DAYS );
-        initConfigTypeMap( "Erythropoiesis_Anemia_Effect",            &erythropoiesis_anemia_effect,      Erythropoiesis_Anemia_Effect_DESC_TEXT,            0.0f, 1000.0f,    3.5f );
-
-        initConfigTypeMap("Enable_Maternal_Antibodies_Transmission", &enable_maternal_antibodies_transmission, Enable_Maternal_Antibodies_Transmission_DESC_TEXT, false, "Simulation_Type","MALARIA_SIM");
-        initConfig( "Maternal_Antibodies_Type", maternal_antibodies_type, config, MetadataDescriptor::Enum("maternal_antibodies_type", Maternal_Antibodies_Type_DESC_TEXT, MDD_ENUM_ARGS(MaternalAntibodiesType)), "Enable_Maternal_Antibodies_Transmission" );
-        initConfigTypeMap( "Maternal_Antibody_Protection",        &maternal_antibody_protection,      Maternal_Antibody_Protection_DESC_TEXT,            0.0f, 1.0f,       0.1f, "Maternal_Antibodies_Type", "SIMPLE_WANING,CONSTANT_INITIAL_IMMUNITY" );
-        initConfigTypeMap( "Maternal_Antibody_Decay_Rate",        &maternal_antibody_decay_rate,      Maternal_Antibody_Decay_Rate_DESC_TEXT,            0.0f, FLT_MAX,    0.01f, "Maternal_Antibodies_Type", "SIMPLE_WANING,CONSTANT_INITIAL_IMMUNITY" );
-
-        initConfig( "Innate_Immune_Variation_Type", innate_immune_variation_type, config, MetadataDescriptor::Enum("innate_immune_variation_type", Innate_Immune_Variation_Type_DESC_TEXT, MDD_ENUM_ARGS(InnateImmuneVariationType)) );
-        initConfigTypeMap( "Pyrogenic_Threshold", &pyrogenic_threshold, Pyrogenic_Threshold_DESC_TEXT, 0.1f, 20000.0f, 1000.0f );
-        initConfigTypeMap( "Fever_IRBC_Kill_Rate", &fever_IRBC_killrate, Fever_IRBC_Kill_Rate_DESC_TEXT, 0.0, 1000.0, DEFAULT_FEVER_IRBC_KILL_RATE );
-
-        bool configured = JsonConfigurable::Configure( config );
-
-        // JPS: can we just change the max specified above, and remove this check?
-        // This corrects for a memory level being set too high.  Since the hyperimmunity decay time is set based on memory level below
-        // memory level is set to have 0.35 be the maximum to keep 0.4-memory_level from getting too close to zero
-        //if (memory_level > 0.35f)
-        //{
-        //    memory_level = 0.35f;
-        //}
-
-        hyperimmune_decay_rate = -log((0.4f - memory_level) / (1.0f - memory_level)) / 120.0f;  // This sets the decay rate towards memory level so that the decay from antibody levels of 1 to levels of 0.4 is consistent
-        // this is part of the new intrahost model explained in the Intrahost paper by Eckhoff
-
-        return configured;
+        return static_cast<IMalariaSusceptibility*>(this);
     }
 
     void SusceptibilityMalaria::Initialize(float immmod, float riskmod)
@@ -253,11 +247,8 @@ namespace Kernel
 
         if(GetParent()->GetParent()->GetParams()->initial_sus_dist_type == DistributionType::DISTRIBUTION_COMPLEX )
         {
-            INodeMalaria* p_node_malaria = nullptr;
-            if (parent->GetEventContext()->GetNodeEventContext()->GetNodeContext()->QueryInterface( GET_IID( INodeMalaria ), (void**)&p_node_malaria ) != s_OK)
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent->GetEventContext()->GetNodeEventContext()->GetNodeContext()", "INodeMalaria", "INodeContext" );
-            }
+            INodeMalaria* p_node_malaria = parent->GetEventContext()->GetNodeEventContext()->GetNodeContext()->GetNodeMalaria();
+            release_assert(p_node_malaria);
 
             float rand = parent->GetRng()->eGauss();
             // -- MSP --
@@ -676,11 +667,8 @@ namespace Kernel
     void  SusceptibilityMalaria::ReportClinicalCase( ClinicalSymptomsEnum::Enum symptom )
     {
         // for reporting symptoms (clinical, severe, anemia, etc.)
-        IMalariaHumanContext *imhc = nullptr;
-        if ( s_OK != parent->QueryInterface(GET_IID(IMalariaHumanContext), (void**)&imhc) )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "parent", "IMalariaHumanContext", "IIndividualHumanContext" );
-        }
+        IMalariaHumanContext* imhc = parent->GetIndividualMalaria();
+        release_assert(imhc);
         imhc->AddClinicalSymptom( symptom );
     }
 

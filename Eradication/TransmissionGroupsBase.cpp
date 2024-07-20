@@ -174,16 +174,16 @@ namespace Kernel
     END_QUERY_INTERFACE_BODY(TransmissionGroupsBase::ContagionPopulationImpl)
 
     TransmissionGroupsBase::ContagionPopulationImpl::ContagionPopulationImpl( IStrainIdentity * strain, float quantity )
-    : contagionQuantity(quantity)
-    , cladeId( strain->GetCladeID() )
+        : contagionQuantity(quantity)
+        , cladeId( strain->GetCladeID() )
     {
         LOG_DEBUG_F( "Creating contagion population with clade id %d and quantity %f\n", cladeId, contagionQuantity );
     }
 
     std::pair<uint32_t, uint64_t> TransmissionGroupsBase::ContagionPopulationImpl::GetStrainName( void ) const
     {
-        // Never valid code path, have to implement this method due to interface.
-        throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Not valid for ContagionPopulationImpl" );
+        // Not a valid code path
+        release_assert(false);
     }
 
     uint32_t TransmissionGroupsBase::ContagionPopulationImpl::GetCladeID() const
@@ -193,25 +193,37 @@ namespace Kernel
 
     uint64_t TransmissionGroupsBase::ContagionPopulationImpl::GetGeneticID() const
     {
-        // Never valid code path, have to implement this method due to interface.
-        throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Not valid for ContagionPopulationImpl" );
+        // Not a valid code path
+        release_assert(false);
     }
 
     void TransmissionGroupsBase::ContagionPopulationImpl::SetCladeID( uint32_t cladeID )
     {
-        // Never valid code path, have to implement this method due to interface.
-        throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Not valid for ContagionPopulationImpl" );
+        // Not a valid code path
+        release_assert(false);
     }
 
     void TransmissionGroupsBase::ContagionPopulationImpl::SetGeneticID( uint64_t geneticID )
     {
-        // Never valid code path, have to implement this method due to interface.
-        throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Not valid for ContagionPopulationImpl" );
+        // Not a valid code path
+        release_assert(false);
     }
 
     float TransmissionGroupsBase::ContagionPopulationImpl::GetTotalContagion( void ) const
     {
         return contagionQuantity;
+    }
+
+    NaturalNumber TransmissionGroupsBase::ContagionPopulationImpl::GetInfectorID() const
+    {
+        // Not a valid code path
+        release_assert(false);
+    }
+
+    act_prob_vec_t TransmissionGroupsBase::ContagionPopulationImpl::GetProbabilities() const
+    {
+        // Not a valid code path
+        release_assert(false);
     }
 
     void TransmissionGroupsBase::ContagionPopulationImpl::ResolveInfectingStrain( IStrainIdentity* strainId ) const
@@ -222,9 +234,7 @@ namespace Kernel
 
     act_prob_vec_t TransmissionGroupsBase::DiscreteGetTotalContagion( void )
     {
-       throw NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, 
-            "The use of DiscreteGetTotalContagion is not supported in \"GENERIC_SIM\".  \
-             To use discrete transmission, please use a simulation type derived from either \
-             \"STI_SIM\" or \"HIV_SIM\"." ); 
+        // Not a valid code path
+        release_assert(false);
     }
 }

@@ -7,11 +7,11 @@ class StubNode : public INodeContext
 {
     public:
         StubNode()
-        : INodeContext()
-        , node_properties()
-        , m_pRNG(nullptr)
-        , m_RouteList({TransmissionRoute::CONTACT})
-        , m_NodeId(Kernel::suids::nil_suid())
+            : INodeContext()
+            , node_properties()
+            , m_pRNG(nullptr)
+            , m_RouteList({TransmissionRoute::CONTACT})
+            , m_NodeId(Kernel::suids::nil_suid())
         {
             //IPFactory::CreateFactory();
             pyMathFuncInit();
@@ -28,28 +28,7 @@ class StubNode : public INodeContext
         Kernel::QueryResult QueryInterface( iid_t iid, void **ppinstance )
         {
             assert(ppinstance);
-
-            if ( !ppinstance )
-                return e_NULL_POINTER;
-
-            ISupports* foundInterface;
-
-            if ( iid == GET_IID(ISupports)) 
-                foundInterface = static_cast<ISupports*>((this));
-            else
-                foundInterface = 0;
-
-            QueryResult status;
-            if ( !foundInterface )
-                status = e_NOINTERFACE;
-            else
-            {
-                //foundInterface->AddRef();           // not implementing this yet!
-                status = s_OK;
-            }
-
-            *ppinstance = foundInterface;
-            return status;
+            return e_NOINTERFACE;
         }
 
         virtual const NodeParams* GetParams() const

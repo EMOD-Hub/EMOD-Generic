@@ -231,12 +231,9 @@ namespace Kernel
             LOG_DEBUG_F( "[Update] Somebody cleared their infection.\n" );
             // ClearInfection
             auto inf = GetInfections().front();
-            IInfectionPy * inf_pydemo  = NULL;
-            if (s_OK != inf->QueryInterface(GET_IID(IInfectionPy ), (void**)&inf_pydemo) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "inf", "IInfectionPy ", "Infection" );
-            }
-            // get InfectionPy pointer
+            IInfectionPy* inf_pydemo = inf->GetInfectionPy();
+            release_assert(inf_pydemo);
+
             inf_pydemo->Clear();
         }
         else if( state_to_report == "D" && state_changed )

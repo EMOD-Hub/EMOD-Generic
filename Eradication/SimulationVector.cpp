@@ -56,6 +56,11 @@ namespace Kernel
         Simulation::Initialize();
     }
 
+    IVectorSimulationContext* SimulationVector::GetSimulationVector()
+    {
+        return static_cast<IVectorSimulationContext*>(this);
+    }
+
     void SimulationVector::Initialize(const ::Configuration *config)
     {
         Simulation::Initialize(config);

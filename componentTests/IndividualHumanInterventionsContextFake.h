@@ -20,8 +20,7 @@ class IndividualHumanInterventionsContextFake : public IIndividualHumanIntervent
                                                 public IInterventionConsumer,
                                                 public IHIVInterventionsContainer,
                                                 public IHIVMedicalHistory,
-                                                public IMalariaDrugEffectsApply,
-                                                public IMalariaDrugEffects
+                                                public IMalariaDrugEffectsApply
 {
 public:
     IndividualHumanInterventionsContextFake()
@@ -65,6 +64,7 @@ public:
     virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()    { return nullptr; }
     virtual IVectorInterventionsEffects*  GetContainerVector()     { return nullptr; }
     virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()    { return nullptr; }
+    virtual IMalariaDrugEffects*          GetMalariaDrugStats()    { return nullptr; }
 
     virtual IHIVInterventionsContainer* GetContainerHIV()
     {
@@ -142,22 +142,7 @@ public:
     // ---------------------
     virtual QueryResult QueryInterface(iid_t iid, void **ppvObject)
     {
-        *ppvObject = nullptr ;
-        if ( iid == GET_IID(IInterventionConsumer)) 
-            *ppvObject = static_cast<IInterventionConsumer*>(this);
-        else if ( iid == GET_IID(IHIVMedicalHistory)) 
-            *ppvObject = static_cast<IHIVMedicalHistory*>(this);
-        else if( iid == GET_IID( IMalariaDrugEffectsApply ) )
-            *ppvObject = static_cast<IMalariaDrugEffectsApply*>(this);
-        else if( iid == GET_IID( IMalariaDrugEffects ) )
-            *ppvObject = static_cast<IMalariaDrugEffects*>(this);
-
-        if( *ppvObject != nullptr )
-        {
-            return QueryResult::s_OK ;
-        }
-        else
-            return QueryResult::e_NOINTERFACE ;
+        return e_NOINTERFACE;
     }
 
     virtual int32_t AddRef()
@@ -286,13 +271,6 @@ public:
     virtual NonNegativeFloat GetTotalYearsOnART()         const { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual NonNegativeFloat GetYearsSinceFirstARTInit()  const { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual NonNegativeFloat GetYearsSinceLatestARTInit() const { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
-
-    // IMalariaDrugEffects
-    virtual float get_drug_IRBC_killrate( const IStrainIdentity& rStrain ) { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
-    virtual float get_drug_hepatocyte(    const IStrainIdentity& rStrain ) { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
-    virtual float get_drug_gametocyte02(  const IStrainIdentity& rStrain ) { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
-    virtual float get_drug_gametocyte34(  const IStrainIdentity& rStrain ) { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
-    virtual float get_drug_gametocyteM(   const IStrainIdentity& rStrain ) { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
 
     //IMalariaDrugEffectsApply
     virtual void AddDrugEffects(    IMalariaDrugEffects* pDrugEffects )

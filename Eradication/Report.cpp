@@ -224,7 +224,7 @@ void Report::postProcessAccumulatedData()
 }
 
 
-void Report::UpdateSEIRW( const Kernel::IIndividualHuman* individual, float monte_carlo_weight )
+void Report::UpdateSEIRW( Kernel::IIndividualHuman* individual, float monte_carlo_weight )
 {
     if (!individual->IsInfected())  // Susceptible, Recovered (Immune), or Waning
     {

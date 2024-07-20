@@ -173,6 +173,11 @@ namespace Kernel
 */        
     }
 
+    ISimulation* Simulation::GetSimulation()
+    {
+        return static_cast<ISimulation*>(this);
+    }
+
     bool Simulation::Configure( const Configuration * inputJson )
     {
         LOG_DEBUG("Configure\n");

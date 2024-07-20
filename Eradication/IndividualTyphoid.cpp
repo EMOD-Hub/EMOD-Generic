@@ -578,12 +578,8 @@ namespace Kernel
         {
             // ClearInfection
             auto inf = GetInfections().front();
-            IInfectionTyphoid * inf_typhoid  = NULL;
-            if (s_OK != inf->QueryInterface(GET_IID(IInfectionTyphoid ), (void**)&inf_typhoid) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "inf", "IInfectionTyphoid ", "Infection" );
-            }
-            // get InfectionTyphoid pointer
+            IInfectionTyphoid* inf_typhoid  = inf->GetInfectionTyphoid();
+            release_assert(inf_typhoid);
             inf_typhoid->Clear();
         }
         else if( state_to_report == "DED" && state_changed )
@@ -732,15 +728,11 @@ namespace Kernel
         {
             // ClearInfection
             auto inf = GetInfections().front();
-            IInfectionTyphoid * inf_typhoid  = NULL;
-            if (s_OK != inf->QueryInterface(GET_IID(IInfectionTyphoid ), (void**)&inf_typhoid) )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "inf", "IInfectionTyphoid ", "Infection" );
-            }
-            // get InfectionTyphoid pointer
+            IInfectionTyphoid* inf_typhoid  = inf->GetInfectionTyphoid();
+            release_assert(inf_typhoid);
+
             LOG_DEBUG_F( "Clearing infection in individual %d in state %s based on intervention.\n", GetSuid().data, state_to_report.c_str() );
             inf_typhoid->Clear();
-            //release_assert( state_to_report == "CHR" ); // Keeping this during early smoke-testing of the feature
         }
     }
 

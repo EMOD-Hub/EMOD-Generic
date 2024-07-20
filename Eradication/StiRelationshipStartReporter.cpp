@@ -61,12 +61,8 @@ namespace Kernel
 
     void StiRelationshipStartReporter::onNewNode(INodeContext* node)
     {
-        INodeSTI* sti = nullptr;
-
-        if (node->QueryInterface(GET_IID(INodeSTI), (void**)&sti) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "node", "INodeSTI*", "INodeContext*" );
-        }
+        INodeSTI* sti = node->GetNodeSTI();
+        release_assert(sti);
 
         auto manager = sti->GetRelationshipManager();
         manager->RegisterNewRelationshipObserver([&](IRelationship* relationship){ this->onNewRelationship(relationship); });
@@ -96,15 +92,11 @@ namespace Kernel
 
             IIndividualHumanEventContext* individual = nullptr;
 
-            if (male_partner->QueryInterface(GET_IID(IIndividualHumanEventContext), (void**)&individual) != s_OK)
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "male_partner", "IIndividualHumanContext", "IIndividualHumanSTI*" );
-            }
+            individual = male_partner->GetEventContext();
 
             // --------------------------------------------------------
             // --- Assuming that the individuals in a relationship
             // --- must be in the same node.
-            //release_assert( false );
             // --------------------------------------------------------
             info.original_node_id = relationship->GetOriginalNodeId();
             info.current_node_id  = individual->GetNodeEventContext()->GetNodeContext()->GetExternalID();
@@ -133,11 +125,7 @@ namespace Kernel
             info.participant_a.has_sti                           = male_partner->HasSTICoInfection();
             info.participant_a.is_superspreader                  = male_partner->IsBehavioralSuperSpreader();
 
-
-            if (female_partner->QueryInterface(GET_IID(IIndividualHumanEventContext), (void**)&individual) != s_OK)
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "female_partner", "IIndividualHumanContext", "IIndividualHumanSTI*" );
-            }
+            individual = female_partner->GetEventContext();
 
             info.participant_b.id                                = female_partner->GetSuid().data;
             info.participant_b.is_infected                       = female_partner->IsInfected();

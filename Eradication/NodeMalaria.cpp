@@ -56,25 +56,25 @@ namespace Kernel
     }
 
     NodeMalaria::NodeMalaria(ISimulationContext *simulation, ExternalNodeId_t externalNodeId, suids::suid suid)
-    : NodeVector(simulation, externalNodeId, suid)
-    , m_Parasite_positive(0)
-    , m_Log_parasites(0)
-    , m_Fever_positive(0)
-    , m_New_Clinical_Cases(0)
-    , m_New_Severe_Cases(0)
-    , m_Parasite_Prevalence(0)
-    , m_New_Diagnostic_Positive(0)
-    , m_New_Diagnostic_Prevalence(0)
-    , m_Geometric_Mean_Parasitemia(0)
-    , m_Fever_Prevalence(0)
-    , m_Maternal_Antibody_Fraction(0)
-    , MSP_mean_antibody_distribution( nullptr )
-    , nonspec_mean_antibody_distribution( nullptr )
-    , PfEMP1_mean_antibody_distribution( nullptr )
-    , MSP_variance_antibody_distribution( nullptr )
-    , nonspec_variance_antibody_distribution( nullptr )
-    , PfEMP1_variance_antibody_distribution( nullptr )
-    , distribution_susceptibility( nullptr )
+        : NodeVector(simulation, externalNodeId, suid)
+        , m_Parasite_positive(0)
+        , m_Log_parasites(0)
+        , m_Fever_positive(0)
+        , m_New_Clinical_Cases(0)
+        , m_New_Severe_Cases(0)
+        , m_Parasite_Prevalence(0)
+        , m_New_Diagnostic_Positive(0)
+        , m_New_Diagnostic_Prevalence(0)
+        , m_Geometric_Mean_Parasitemia(0)
+        , m_Fever_Prevalence(0)
+        , m_Maternal_Antibody_Fraction(0)
+        , MSP_mean_antibody_distribution( nullptr )
+        , nonspec_mean_antibody_distribution( nullptr )
+        , PfEMP1_mean_antibody_distribution( nullptr )
+        , MSP_variance_antibody_distribution( nullptr )
+        , nonspec_variance_antibody_distribution( nullptr )
+        , PfEMP1_variance_antibody_distribution( nullptr )
+        , distribution_susceptibility( nullptr )
     {
         delete event_context_host;
         NodeMalaria::setupEventContextHost();    // This is marked as a virtual function, but isn't virtualized here because we're still in the ctor.
@@ -104,6 +104,11 @@ namespace Kernel
         //delete MSP_variance_antibody_distribution;
         //delete nonspec_variance_antibody_distribution;
         //delete PfEMP1_variance_antibody_distribution;
+    }
+
+    INodeMalaria* NodeMalaria::GetNodeMalaria()
+    {
+        return static_cast<INodeMalaria*>(this);
     }
 
     IIndividualHuman* NodeMalaria::createHuman( suids::suid suid, float monte_carlo_weight, float initial_age, int gender)
@@ -176,11 +181,8 @@ namespace Kernel
         Node::accumulateIndividualPopulationStatistics(dt, basic_individual);
 
         // Cast from IndividualHuman to IndividualHumanMalaria
-        IMalariaHumanContext *individual = nullptr;
-        if( basic_individual->QueryInterface( GET_IID( IMalariaHumanContext ), (void**)&individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IndividualHumanMalaria", "IndividualHuman" );
-        }
+        IMalariaHumanContext* individual = basic_individual->GetIndividualContext()->GetIndividualMalaria();
+        release_assert(individual);
         float mc_weight = float(basic_individual->GetMonteCarloWeight());
 
         // NOTE: always perform the malaria test (so we have a definite number to report), but
@@ -235,14 +237,11 @@ namespace Kernel
         }
     }
 
-    void NodeMalaria::updateNodeStateCounters( IIndividualHuman *ih)
+    void NodeMalaria::updateNodeStateCounters( IIndividualHuman* ih )
     {
         float weight = ih->GetMonteCarloWeight();
-        IMalariaHumanContext *malaria_human = nullptr;
-        if( ih->QueryInterface( GET_IID( IMalariaHumanContext ), (void**) &malaria_human ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "ih", "IndividualHuman", "IndividualHumanMalaria" );
-        }
+        IMalariaHumanContext* malaria_human = ih->GetIndividualContext()->GetIndividualMalaria();
+        release_assert(malaria_human);
 
         m_New_Clinical_Cases += weight * malaria_human->HasClinicalSymptom(ClinicalSymptomsEnum::CLINICAL_DISEASE);
         m_New_Severe_Cases   += weight * malaria_human->HasClinicalSymptom(ClinicalSymptomsEnum::SEVERE_DISEASE);

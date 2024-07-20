@@ -26,16 +26,14 @@ namespace Kernel
     
     IMPLEMENT_FACTORY_REGISTERED(TyphoidCarrierClear)
 
-#define TYPHOID_CARRIER_CLEARANCE_RATE_DESC_TEXT ""
-    bool TyphoidCarrierClear::Configure(
-        const Configuration * inputJson
-    )
+    bool TyphoidCarrierClear::Configure( const Configuration* inputJson )
     {
-        initConfigTypeMap( "Clearance_Rate", &clearance_rate, TYPHOID_CARRIER_CLEARANCE_RATE_DESC_TEXT, 0, 1.0, 1.0 );
+        initConfigTypeMap( "Clearance_Rate", &clearance_rate, "", 0, 1.0, 1.0 );
         return JsonConfigurable::Configure( inputJson );
     }
 
-    TyphoidCarrierClear::TyphoidCarrierClear() : BaseIntervention()
+    TyphoidCarrierClear::TyphoidCarrierClear()
+        : BaseIntervention()
     {
         initSimTypes( 1, "TYPHOID_SIM" );
     }
@@ -45,32 +43,28 @@ namespace Kernel
         LOG_DEBUG("Destructing TyphoidCarrier Clear\n");
     }
 
-    bool TyphoidCarrierClear::Distribute(
-        IIndividualHumanInterventionsContext *context,
-        ICampaignCostObserver * pCCO
-    )
+    bool TyphoidCarrierClear::Distribute( IIndividualHumanInterventionsContext* context, ICampaignCostObserver* pCCO )
     {
-        bool distributed = false;
-        // TBD: Get individual from context, and infect
-        //auto individual = dynamic_cast<IIndividualHumanTyphoid*>(context->GetParent()); // QI in new code
-        //INodeEventContext * pContext = individual->GetParent()->GetEventContext();
         LOG_DEBUG_F( "Setting clearance rate of %f on individual.\n", clearance_rate  );
-        if( dynamic_cast<IndividualHumanTyphoid*>(context->GetParent())->IsChronicCarrier( false ) )
+
+        IIndividualHumanTyphoid* p_typh_ind = context->GetParent()->GetIndividualTyphoid();
+        release_assert(p_typh_ind);
+
+        ITyphoidVaccineEffectsApply* p_typh_ivc = context->GetContainerTyphoid();
+        release_assert(p_typh_ivc);
+
+        if( p_typh_ind->IsChronicCarrier(false) )
         {
-            dynamic_cast<TyphoidInterventionsContainer*>(context)->ApplyClearance( clearance_rate );
+            p_typh_ivc->ApplyClearance( clearance_rate );
         }
 
-        distributed = true;
-        
-        return distributed;
+        return true;
     }
 
     void TyphoidCarrierClear::Update( float dt )
     {
         // Distribute() doesn't call GiveIntervention() for this intervention, so it isn't added to the NodeEventContext's list of NDI
     }
-
-    //REGISTER_SERIALIZABLE(TyphoidCarrierClear);
 }
 
 

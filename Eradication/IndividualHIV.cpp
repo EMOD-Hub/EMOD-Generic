@@ -61,10 +61,8 @@ namespace Kernel
     {
         auto susc = SusceptibilityHIV::CreateSusceptibility(this, imm_mod, risk_mod);
         susceptibility = susc; // serialization/migration?
-        if ( susc->QueryInterface(GET_IID(ISusceptibilityHIV), (void**)&hiv_susceptibility) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "susc", "IHIVSusceptibilityHIV", "Susceptibility" );
-        }
+        hiv_susceptibility = susc->GetSusceptibilityHIV();
+        release_assert(hiv_susceptibility);
     }
 
     IndividualHumanHIV::IndividualHumanHIV(suids::suid _suid, float monte_carlo_weight, float initial_age, int gender)
@@ -101,8 +99,8 @@ namespace Kernel
         bool ret = false;
         for (auto infection : infections)
         {
-            IInfectionHIV* pinfHIV = nullptr;
-            if (s_OK == infection->QueryInterface(GET_IID( IInfectionHIV ), (void**)&pinfHIV) )
+            IInfectionHIV* pinfHIV = infection->GetInfectionHIV();
+            if( pinfHIV )
             {
                 ret = true;
                 break;
@@ -206,9 +204,10 @@ namespace Kernel
 
         if( ar.IsReader() )
         {
-            if ( ind_hiv.susceptibility->QueryInterface(GET_IID(ISusceptibilityHIV), (void**)&ind_hiv.hiv_susceptibility) != s_OK)
+            ind_hiv.hiv_susceptibility = ind_hiv.susceptibility->GetSusceptibilityHIV();
+            if ( !ind_hiv.hiv_susceptibility )
             {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "susc", "IHIVSusceptibilityHIV", "Susceptibility" );
+                release_assert(false);
             }
         }
     }

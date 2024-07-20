@@ -33,16 +33,7 @@ public:
     // ---------------------
     virtual QueryResult QueryInterface(iid_t iid, void **ppvObject)
     {
-        *ppvObject = nullptr ;
-        if ( iid == GET_IID(ISimulationEventContext)) 
-            *ppvObject = static_cast<ISimulationEventContext*>(this);
-
-        if( *ppvObject != nullptr )
-        {
-            return QueryResult::s_OK ;
-        }
-        else
-            return QueryResult::e_NOINTERFACE ;
+        return e_NOINTERFACE;
     }
 
     virtual int32_t AddRef()  { return 10 ; }

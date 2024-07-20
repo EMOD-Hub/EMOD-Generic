@@ -43,6 +43,8 @@ namespace Kernel
         static InfectionPy *CreateInfection(IIndividualHumanContext *context, suids::suid _suid);
         virtual ~InfectionPy(void);
 
+        virtual IInfectionPy* GetInfectionPy() override;
+
         virtual void InitInfectionImmunology(Susceptibility* _immunity);
         virtual void Update(float dt, ISusceptibilityContext* _immunity = nullptr) override;
         void SetMCWeightOfHost(float ind_mc_weight);

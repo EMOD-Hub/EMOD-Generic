@@ -35,6 +35,7 @@ namespace Kernel
     struct ITBInterventionsContainer;
     struct ITyphoidVaccineEffectsApply;
     struct IVectorInterventionsEffects;
+    struct IMalariaDrugEffects;
     struct IMalariaDrugEffectsApply;
     struct IDrug;
     struct IHealthSeekingBehavior;
@@ -65,6 +66,7 @@ namespace Kernel
         virtual bool NeedsPreInfectivityUpdate() const = 0;
 
         virtual IDrug*                     GetDrug()             = 0;
+        virtual IMalariaDrugEffects*       GetMalariaDrug()      = 0;
         virtual IHealthSeekingBehavior*    GetHSB()              = 0;
         virtual IPolioVaccine*             GetPolioVax()         = 0;
 
@@ -97,6 +99,7 @@ namespace Kernel
         virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()       = 0;
         virtual IVectorInterventionsEffects*  GetContainerVector()        = 0;
         virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()       = 0;
+        virtual IMalariaDrugEffects*          GetMalariaDrugStats()       = 0;
 
         virtual ~IIndividualHumanInterventionsContext() {}
     };
@@ -146,9 +149,10 @@ namespace Kernel
         virtual bool NeedsInfectiousLoopUpdate() const { return false; }
         virtual bool NeedsPreInfectivityUpdate() const { return false; }
 
-        virtual IDrug*                     GetDrug()       override     { return nullptr; }
-        virtual IHealthSeekingBehavior*    GetHSB()        override     { return nullptr; }
-        virtual IPolioVaccine*             GetPolioVax()   override     { return nullptr; }
+        virtual IDrug*                     GetDrug()          override     { return nullptr; }
+        virtual IMalariaDrugEffects*       GetMalariaDrug()   override     { return nullptr; }
+        virtual IHealthSeekingBehavior*    GetHSB()           override     { return nullptr; }
+        virtual IPolioVaccine*             GetPolioVax()      override     { return nullptr; }
 
         virtual IConfigurable* GetConfigurable() override { return JsonConfigurable::GetConfigurable(); }
 

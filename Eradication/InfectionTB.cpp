@@ -170,7 +170,8 @@ namespace Kernel
         m_is_pending_relapse = false;
         m_shows_symptoms = false;
 
-        if( parent->QueryInterface( GET_IID( IIndividualHumanCoInfection ), (void**)&human_coinf ) != s_OK )
+        human_coinf = parent->GetIndividualCoInf();
+        if( !human_coinf )
         {
             LOG_DEBUG_F( "parent is just tb person, not co-inf.\n" );
             human_coinf = nullptr;
@@ -331,11 +332,8 @@ namespace Kernel
         LOG_DEBUG( "Initializing a latent infection.\n" ); 
         StateChange = InfectionStateChange::TBLatent; 
 
-        ISusceptibilityTB* immunityTB = nullptr;
-        if( immunity->QueryInterface( GET_IID( ISusceptibilityTB ), (void**)&immunityTB ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "immunity", "Susceptibility", "SusceptibilityTB" );
-        }
+        ISusceptibilityTB* immunityTB = immunity->GetSusceptibilityTB();
+        release_assert(immunityTB);
 
         // Figure out individual dependence of disease activation
         float fast_fraction = immunityTB->GetFastProgressorFraction();
@@ -409,11 +407,8 @@ namespace Kernel
     void InfectionTB::InitializePendingRelapse(ISusceptibilityContext* immunity)
     {
         LOG_DEBUG( "Initializing a pending relapse.\n" );
-        ISusceptibilityTB* immunityTB = nullptr;
-        if( immunity->QueryInterface( GET_IID( ISusceptibilityTB ), (void**)&immunityTB ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "immunity", "Susceptibility", "SusceptibilityTB" );
-        }
+        ISusceptibilityTB* immunityTB = immunity->GetSusceptibilityTB();
+        release_assert(immunityTB);
 
         // Reset timer
         duration = 0.0f;
@@ -442,11 +437,8 @@ namespace Kernel
     void InfectionTB::InitializeActivePresymptomaticInfection(ISusceptibilityContext* immunity)
     {
         LOG_DEBUG( "InitializeActivePresymptomaticInfection\n" );
-        ISusceptibilityTB* immunityTB = nullptr;
-        if( immunity->QueryInterface( GET_IID( ISusceptibilityTB ), (void**)&immunityTB ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "immunity", "ISusceptibilityTB", "Susceptibility" );
-        }
+        ISusceptibilityTB* immunityTB = immunity->GetSusceptibilityTB();
+        release_assert(immunityTB);
 
         // Reset timer
         duration = 0.0f;
@@ -462,13 +454,8 @@ namespace Kernel
         }
 
         //Relapsers do not spend any time in Presymptomatic infection, they go directly to active disease
-        IIndividualHumanTB* tb_ind = nullptr;
-        
-        IIndividualHumanContext * patient = GetParent();
-        if(patient->GetEventContext()->QueryInterface( GET_IID( IIndividualHumanTB ), (void**)&tb_ind ) != s_OK)
-        { 
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pIndividual", "IIndividualHumanTB2", "IIndividualHumanEventContext" );
-        }
+        IIndividualHumanTB* tb_ind = GetParent()->GetIndividualTB();
+        release_assert(tb_ind);
 
         if ( tb_ind->HasEverRelapsedAfterTreatment() )
         {
@@ -493,11 +480,8 @@ namespace Kernel
     void InfectionTB::InitializeActiveInfection(ISusceptibilityContext* immunity)
     {
         LOG_DEBUG("InitializeActiveInfection\n");
-        ISusceptibilityTB* immunityTB = nullptr;
-        if (immunity->QueryInterface(GET_IID(ISusceptibilityTB), (void**)&immunityTB) != s_OK)
-        {
-            throw QueryInterfaceException(__FILE__, __LINE__, __FUNCTION__, "immunity", "ISusceptibilityTB", "Susceptibility");
-        }
+        ISusceptibilityTB* immunityTB = immunity->GetSusceptibilityTB();
+        release_assert(immunityTB);
 
         if (infection_strain->GetGeneticID() == FirstLineResistant)
         {            
@@ -617,14 +601,9 @@ namespace Kernel
         float TB_drug_relapse_rate = 0;
         float TB_drug_mortality_rate = 0;
 
-        IIndividualHumanContext *patient              = nullptr;
-        IIndividualHumanInterventionsContext *context = nullptr;
-        ITBDrugEffects *itde                          = nullptr;
+        ITBInterventionsContainer* itde = GetParent()->GetInterventionsContext()->GetContainerTB();
 
-        patient = GetParent();
-        context = patient->GetInterventionsContext();
-
-        if (s_OK ==  context->QueryInterface(GET_IID(ITBDrugEffects), (void**)&itde))
+        if( itde )
         {
             TBDrugEffectsMap_t TB_drug_effects = itde->GetDrugEffectsMap();
 
@@ -652,8 +631,8 @@ namespace Kernel
         }
 
         //Modulate drug clearance rate depending if person has ever failed (prob should be specific for drug type and for this particular infection in future)
-        IIndividualHumanTB* tb_ind = nullptr;
-        if(patient->GetEventContext()->QueryInterface( GET_IID( IIndividualHumanTB ), (void**)&tb_ind ) == s_OK)
+        IIndividualHumanTB* tb_ind = GetParent()->GetIndividualTB();
+        if( tb_ind )
         { 
             if (tb_ind->HasFailedTreatment())
             {
@@ -1031,7 +1010,8 @@ namespace Kernel
     {
         Infection::SetContextTo(context);
 
-        if (s_OK != parent->QueryInterface(GET_IID(IIndividualHumanCoInfection), (void**)&human_coinf))
+        human_coinf = context->GetIndividualCoInf();
+        if( !human_coinf )
         {
             LOG_DEBUG_F("parent is just tb person, not co-inf.\n");
             human_coinf = nullptr;

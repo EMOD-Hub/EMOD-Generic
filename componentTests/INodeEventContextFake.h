@@ -60,22 +60,7 @@ public:
     // ---------------------
     virtual QueryResult QueryInterface(iid_t iid, void **ppvObject)
     {
-        *ppvObject = nullptr ;
-        if ( iid == GET_IID(INodeEventContext)) 
-            *ppvObject = static_cast<INodeEventContext*>(this);
-        else if ( iid == GET_IID( IIndividualEventBroadcaster ))
-            *ppvObject = static_cast<IIndividualEventBroadcaster*>(this);
-        else if ( iid == GET_IID(ICampaignCostObserver)) 
-            *ppvObject = static_cast<ICampaignCostObserver*>(this);
-        else if ( iid == GET_IID(INodeInterventionConsumer)) 
-            *ppvObject = static_cast<INodeInterventionConsumer*>(this);
-
-        if( *ppvObject != nullptr )
-        {
-            return QueryResult::s_OK ;
-        }
-        else
-            return QueryResult::e_NOINTERFACE ;
+        return e_NOINTERFACE;
     }
 
     virtual int32_t AddRef()  { return 10 ; }

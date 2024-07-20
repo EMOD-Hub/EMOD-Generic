@@ -64,9 +64,12 @@ namespace Kernel
         virtual void PreUpdate();
         virtual void Update(float dt) override;
         virtual ISimulationContext* GetParent() override;
-        virtual INodeVector*        GetNodeVector() override { return nullptr; };
-        virtual INodeSTI*           GetNodeSTI()    override { return nullptr; };
-        virtual INodeTBHIV*         GetNodeTBHIV()  override { return nullptr; };
+        virtual INodeVector*        GetNodeVector()    override { return nullptr; };
+        virtual INodeMalaria*       GetNodeMalaria()   override { return nullptr; };
+        virtual INodeSTI*           GetNodeSTI()       override { return nullptr; };
+        virtual INodeTBHIV*         GetNodeTBHIV()     override { return nullptr; };
+        virtual INodePolio*         GetNodePolio()     override { return nullptr; };
+
         virtual suids::suid   GetSuid() const override;
         virtual suids::suid   GetNextInfectionSuid() override; 
         virtual RANDOMBASE* GetRng() override;

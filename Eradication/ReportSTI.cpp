@@ -11,6 +11,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "Debug.h"
 #include "ReportSTI.h"
+#include "IIndividualHumanContext.h"
 #include "IIndividualHumanSTI.h"
 #include "IRelationship.h"
 #include "INodeContext.h"
@@ -89,25 +90,18 @@ static NaturalNumber num_adults_not_related = 0;
         }
     }
 
-    void
-    ReportSTI::LogIndividualData(
-        IIndividualHuman* individual
-    )
+    void ReportSTI::LogIndividualData( IIndividualHuman* individual )
     {
         Report::LogIndividualData( individual );
-        IIndividualHumanSTI* sti_individual = nullptr;
-        if( individual->QueryInterface( GET_IID( IIndividualHumanSTI ), (void**)&sti_individual ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualSTI", "IndividualHuman" );
-        }
+
+        IIndividualHumanSTI* sti_individual = individual->GetIndividualContext()->GetIndividualSTI();
+        release_assert(sti_individual);
 
         // STI sims are never going to have non-unity Monte Carlo Weights because of the pair-forming
         unsigned int mcw = (unsigned int)individual->GetMonteCarloWeight();
 
         if( individual->GetAge() < 50*DAYSPERYEAR && 
-            individual->GetAge() >= 15*DAYSPERYEAR
-
-          )
+            individual->GetAge() >= 15*DAYSPERYEAR   )
         {
             if( individual->GetGender() == Gender::MALE )
             {
@@ -172,11 +166,8 @@ static NaturalNumber num_adults_not_related = 0;
     {
         Report::LogNodeData( pNC );
 
-        INodeSTI* p_node_sti = nullptr;
-        if( pNC->QueryInterface( GET_IID( INodeSTI ), (void**)&p_node_sti ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "pNC", "INodeSTI", "INodeContext" );
-        }
+        INodeSTI* p_node_sti = pNC->GetNodeSTI();
+        release_assert(p_node_sti);
 
         IRelationshipManager* p_rel_mgr = p_node_sti->GetRelationshipManager();
         const tNodeRelationshipType& r_rel_id_to_rel_map = p_rel_mgr->GetNodeRelationships();

@@ -26,6 +26,7 @@ namespace Kernel
     struct ISimulationEventContext;
     struct IEventCoordinator;
     struct IEventCoordinatorEventContext;
+    struct ISurveillanceReporting;
     struct IdmDateTime;
 
     namespace suids 
@@ -49,6 +50,7 @@ namespace Kernel
         virtual const std::string& GetName() const = 0;
         virtual const IdmDateTime& GetTime() const = 0;
         virtual IEventCoordinator* GetEventCoordinator() = 0;
+        virtual ISurveillanceReporting* GetSurveillanceReporting() = 0;
     };
 
     struct IEventCoordinator2 : public ISupports

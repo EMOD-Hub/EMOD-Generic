@@ -276,12 +276,8 @@ namespace Kernel
             throw NullPointerException( __FILE__, __LINE__, __FUNCTION__, "_immunity", "Susceptibility" );
         }
 
-        //SusceptibilityMalaria* immunity = static_cast<SusceptibilityMalaria*>(_immunity);
-        IMalariaSusceptibility* immunity = nullptr;
-        if (s_OK != _immunity->QueryInterface(GET_IID(IMalariaSusceptibility), (void **)&immunity))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "_immunity", "IMalariaSusceptibility", "Susceptibility" );
-        }
+        IMalariaSusceptibility* immunity = _immunity->GetSusceptibilityMalaria();
+        release_assert(immunity);
 
         m_MSP_antibody = immunity->RegisterAntibody(MalariaAntibodyType::MSP1, m_MSPtype);
 
@@ -305,15 +301,8 @@ namespace Kernel
     {
         LOG_VALID("\n--------------------------------------------------\n\n");
 
-        // Needed for this timestep
-        //SusceptibilityMalaria *immunity = static_cast<SusceptibilityMalaria *>(_immunity);
-        // TBD: Should we cache the IMalariaSusceptibility? Should be constant for an infection. But Infection does not own it,
-        // so need to find right point? Or access always through a wrapper?
-        IMalariaSusceptibility* immunity = nullptr;
-        if (s_OK != _immunity->QueryInterface(GET_IID(IMalariaSusceptibility), (void **)&immunity))
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "Susceptibility", "IMalariaSusceptibility", "_immunity" );
-        }
+        IMalariaSusceptibility* immunity = _immunity->GetSusceptibilityMalaria();
+        release_assert(immunity);
 
         m_inv_microliters_blood = immunity->get_inv_microliters_blood();
 
@@ -500,7 +489,7 @@ namespace Kernel
 
             if( m_pMDE == nullptr )
             {
-                context->QueryInterface( GET_IID( IMalariaDrugEffects ), (void **)&m_pMDE );
+                m_pMDE = GetParent()->GetInterventionsContext()->GetMalariaDrugStats();
             }
 
             double drug_killrate = 0;
@@ -603,7 +592,7 @@ namespace Kernel
 
                 if( m_pMDE == nullptr )
                 {
-                    context->QueryInterface( GET_IID( IMalariaDrugEffects ), (void **)&m_pMDE );
+                    m_pMDE = GetParent()->GetInterventionsContext()->GetMalariaDrugStats();
                 }
 
                 // gametocyte killing drugs
@@ -807,13 +796,11 @@ namespace Kernel
         // check for valid inputs
         if (dt > 0 && immunity && m_hepatocytes > 0)
         {
-            // ability to query for drug effects
-            IIndividualHumanContext *patient = GetParent();
-            IIndividualHumanInterventionsContext *context = patient->GetInterventionsContext();
+            IIndividualHumanInterventionsContext* context = GetParent()->GetInterventionsContext();
 
             if( m_pMDE == nullptr )
             {
-                context->QueryInterface( GET_IID( IMalariaDrugEffects ), (void **)&m_pMDE );
+                m_pMDE = GetParent()->GetInterventionsContext()->GetMalariaDrugStats();
             }
 
             double drug_killrate = 0;
@@ -871,8 +858,8 @@ namespace Kernel
         Kernel::Infection::SetContextTo(context);
 
         // test more performant serialization
-        IMalariaSusceptibility *immunity;
-        if( s_OK != context->GetSusceptibilityContext()->QueryInterface(GET_IID(IMalariaSusceptibility), (void**)&immunity) )
+        IMalariaSusceptibility* immunity = context->GetSusceptibilityContext()->GetSusceptibilityMalaria();
+        if( !immunity )
         {
             LOG_WARN("Couldn't query for IMalariaSusceptibilityContext interface from ISusceptibilityContext\n");
             return;

@@ -11,6 +11,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "VectorEnums.h"
 #include "IVectorHabitat.h"
+#include "IVectorPopulation.h"
 
 namespace Kernel
 {
@@ -18,11 +19,10 @@ namespace Kernel
     struct IVectorCohort;
     class  VectorHabitat;
     class  VectorMatingStructure;
-    struct IVectorPopulationReporting;
     class  VectorProbabilities;
     class  LarvalHabitatMultiplier;
 
-    typedef std::list<IVectorPopulationReporting *> VectorPopulationReportingList_t;
+    typedef std::list<IVectorPopulation*> VectorPopulationReportingList_t;
 
     struct IVectorSimulationContext : public ISupports
     {
@@ -129,25 +129,5 @@ namespace Kernel
         virtual void UpdateIndoorKilling( float ) = 0;
 
         virtual void ReleaseMosquitoes( NonNegativeFloat cost, const std::string& species, const VectorMatingStructure& genetics, uint32_t number ) = 0;
-    };
-
-    struct IVectorPopulationReporting : ISupports
-    {
-        virtual float GetEIRByPool(VectorPoolIdEnum::Enum pool_id)      const = 0;
-        virtual float GetHBRByPool(VectorPoolIdEnum::Enum pool_id)      const = 0;
-        virtual uint32_t getAdultCount()                                const = 0;
-        virtual uint32_t getInfectedCount(   IStrainIdentity* pStrain ) const = 0;
-        virtual uint32_t getInfectiousCount( IStrainIdentity* pStrain ) const = 0;
-        virtual uint32_t getMaleCount()                                 const = 0;
-        virtual uint32_t getNewEggsCount()                              const = 0;
-        virtual uint32_t getNewAdults()                                 const = 0;
-        virtual uint32_t getNumDiedBeforeFeeding()                      const = 0;
-        virtual uint32_t getNumDiedDuringFeedingIndoor()                const = 0;
-        virtual uint32_t getNumDiedDuringFeedingOutdoor()               const = 0;
-        virtual double  getInfectivity()                                const = 0;
-        virtual const std::string& get_SpeciesID()                      const = 0;
-        virtual const VectorHabitatList_t& GetHabitats()                const = 0;
-        virtual std::vector<uint64_t> GetNewlyInfectedVectorIds()       const = 0;
-        virtual std::vector<uint64_t> GetInfectiousVectorIds()          const = 0;
     };
 }

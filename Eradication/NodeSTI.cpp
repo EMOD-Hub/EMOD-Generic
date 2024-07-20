@@ -108,11 +108,8 @@ namespace Kernel
 
         for (auto& person : individualHumans)
         {
-            IIndividualHumanSTI* sti_person = nullptr;
-            if (person->QueryInterface(GET_IID(IIndividualHumanSTI), (void**)&sti_person) != s_OK)
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "person", "IIndividualHumanSTI", "IIndividualHuman" );
-            }
+            IIndividualHumanSTI* sti_person = person->GetIndividualContext()->GetIndividualSTI();
+            release_assert(sti_person);
             sti_person->UpdateEligibility();        // DJK: Could be slow to do this on every update.  Could check for relationship status changes. <ERAD-1869>
             sti_person->UpdateHistory( GetTime(), dt );
         }
@@ -121,11 +118,8 @@ namespace Kernel
 
         for (auto& person : individualHumans)
         {
-            IIndividualHumanSTI* sti_person = nullptr;
-            if (person->QueryInterface(GET_IID(IIndividualHumanSTI), (void**)&sti_person) != s_OK)
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "person", "IIndividualHumanSTI", "IIndividualHuman" );
-            }
+            IIndividualHumanSTI* sti_person = person->GetIndividualContext()->GetIndividualSTI();
+            release_assert(sti_person);
             sti_person->ConsiderRelationships(dt);
         }
 
@@ -137,11 +131,8 @@ namespace Kernel
 
         for( auto& person : individualHumans )
         {
-            IIndividualHumanSTI* sti_person = nullptr;
-            if( person->QueryInterface( GET_IID( IIndividualHumanSTI ), (void**)&sti_person ) != s_OK )
-            {
-                throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "person", "IIndividualHumanSTI", "IIndividualHuman" );
-            }
+            IIndividualHumanSTI* sti_person = person->GetIndividualContext()->GetIndividualSTI();
+            release_assert(sti_person);
             sti_person->UpdatePausedRelationships( GetTime(), dt );
         }
     }
@@ -177,28 +168,18 @@ namespace Kernel
         return static_cast<INodeSTI*>(this);
     }
 
-    void
-    NodeSTI::processEmigratingIndividual(
-        IIndividualHuman* individual
-    )
+    void NodeSTI::processEmigratingIndividual( IIndividualHuman* individual )
     {
         event_context_host->TriggerObservers( individual->GetEventContext(), EventTrigger::STIPreEmigrating );
 
-        IIndividualHumanSTI* sti_individual=nullptr;
-        if (individual->QueryInterface(GET_IID(IIndividualHumanSTI), (void**)&sti_individual) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "individual", "IIndividualSTI", "IndividualHuman" );
-        }
-
+        IIndividualHumanSTI* sti_individual = individual->GetIndividualContext()->GetIndividualSTI();
+        release_assert(sti_individual);
         sti_individual->onEmigrating();
 
         Node::processEmigratingIndividual( individual );
     }
 
-    IIndividualHuman*
-    NodeSTI::processImmigratingIndividual(
-        IIndividualHuman* movedind
-    )
+    IIndividualHuman* NodeSTI::processImmigratingIndividual( IIndividualHuman* movedind )
     {
         // -------------------------------------------------------------------------------
         // --- SetContextTo() is called in Node::processImmigratingIndividual() but
@@ -207,11 +188,8 @@ namespace Kernel
         // -------------------------------------------------------------------------------
         movedind->SetContextTo(getContextPointer());
 
-        IIndividualHumanSTI* sti_individual = nullptr;
-        if (movedind->QueryInterface(GET_IID(IIndividualHumanSTI), (void**)&sti_individual) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "retVal", "IIndividualSTI", "IndividualHuman" );
-        }
+        IIndividualHumanSTI* sti_individual = movedind->GetIndividualContext()->GetIndividualSTI();
+        release_assert(sti_individual);
         sti_individual->onImmigrating();
 
         auto retVal = Node::processImmigratingIndividual( movedind );

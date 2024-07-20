@@ -95,10 +95,7 @@ namespace Kernel
         virtual bool  HasClinicalSymptom(ClinicalSymptomsEnum::Enum symptom) const = 0;
         virtual IMalariaSusceptibility* GetMalariaSusceptibilityContext() const = 0;
         virtual std::vector< std::pair<uint32_t,uint64_t> > GetInfectingStrainIds() const = 0; // potentially this would be worth putting down in IndividualHuman (generic)
-    };
 
-    struct IMalariaHumanInfectable : public ISupports
-    {
         virtual bool ChallengeWithBites( int n_infectious_bites ) = 0;
         virtual bool ChallengeWithSporozoites( int n_sporozoites ) = 0;
     };

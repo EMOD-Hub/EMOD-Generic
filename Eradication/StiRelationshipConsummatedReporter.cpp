@@ -45,12 +45,8 @@ namespace Kernel
 
     void StiRelationshipConsummatedReporter::onNewNode(Kernel::INodeContext* node)
     {
-        INodeSTI* sti = nullptr;
-
-        if (node->QueryInterface(GET_IID(INodeSTI), (void**)&sti) != s_OK)
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "node", "INodeSTI*", "INodeContext*" );
-        }
+        INodeSTI* sti = node->GetNodeSTI();
+        release_assert(sti);
 
         auto manager = sti->GetRelationshipManager();
         manager->RegisterRelationshipConsummationObserver([&](IRelationship* relationship){ this->onCoitalAct(relationship); });

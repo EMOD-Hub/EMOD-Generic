@@ -32,7 +32,7 @@ namespace Kernel
         virtual void populateSummaryDataUnitsMap( std::map<std::string, std::string> &units_map ) override;
         virtual void postProcessAccumulatedData() override;
 
-        virtual void UpdateSEIRW( const Kernel::IIndividualHuman * individual, float monte_carlo_weight ) override;
+        virtual void UpdateSEIRW( Kernel::IIndividualHuman* individual, float monte_carlo_weight ) override;
 
         //counters
         float latent_TB_persons;

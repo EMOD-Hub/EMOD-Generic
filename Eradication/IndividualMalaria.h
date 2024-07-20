@@ -37,8 +37,7 @@ namespace Kernel
         static MalariaModel::Enum malaria_model;
     };
 
-    // TBD: Make separate IndividualHumanMalariaConfig class!?!?!?!
-    class IndividualHumanMalaria : public IndividualHumanVector, public IMalariaHumanContext, public IMalariaHumanInfectable
+    class IndividualHumanMalaria : public IndividualHumanVector, public IMalariaHumanContext
     {
         friend class SimulationMalaria;
 
@@ -65,7 +64,6 @@ namespace Kernel
         virtual IMalariaSusceptibility* GetMalariaSusceptibilityContext() const override; // TBD: Get rid of this and use QueryInterface instead
         virtual std::vector< std::pair<uint32_t,uint64_t> > GetInfectingStrainIds() const override;
 
-        // IMalariaHumanInfectable methods
         virtual bool ChallengeWithBites( int n_infectious_bites ) override;
         virtual bool ChallengeWithSporozoites( int n_sporozoites ) override;
 

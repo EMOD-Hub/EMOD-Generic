@@ -49,8 +49,14 @@ namespace Kernel
     {
     }
 
-    InfectionPy::InfectionPy(IIndividualHumanContext *context) : Infection(context)
+    InfectionPy::InfectionPy(IIndividualHumanContext* context)
+        : Infection(context)
     {
+    }
+
+    IInfectionPy* InfectionPy::GetInfectionPy()
+    {
+        return static_cast<IInfectionPy*>(this);
     }
 
     void InfectionPy::Initialize(suids::suid _suid)
@@ -72,12 +78,6 @@ namespace Kernel
 
     void InfectionPy::InitInfectionImmunology(Susceptibility* _immunity)
     {
-        ISusceptibilityPy* immunity = NULL;
-        if( _immunity->QueryInterface( GET_IID( ISusceptibilityPy ), (void**)&immunity ) != s_OK )
-        {
-            throw QueryInterfaceException( __FILE__, __LINE__, __FUNCTION__, "_immunity", "ISusceptibilityPy", "Susceptibility" );
-        }
-
         StateChange = InfectionStateChange::New;
         return Infection::InitInfectionImmunology( _immunity );
     }
