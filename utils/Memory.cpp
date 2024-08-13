@@ -17,6 +17,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #ifdef WIN32
 #include <windows.h>
 #include <Psapi.h>
+#else
+#include <unistd.h>
 #endif
 
 SETUP_LOGGING( "Memory" )

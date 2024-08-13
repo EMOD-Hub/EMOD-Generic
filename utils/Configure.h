@@ -28,6 +28,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include <map>
 #include <set>
 #include <vector>
+#include <iterator>
 
 #ifndef WIN32
 #include <limits>
