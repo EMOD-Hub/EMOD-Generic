@@ -19,18 +19,6 @@ SETUP_LOGGING( "GenericDrug" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(GenericDrug)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_INTERFACE(IDrug)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(GenericDrug)
-
-#ifndef INTERVENTIONS_AS_DLLS
-    //IMPLEMENT_FACTORY_REGISTERED(GenericDrug)
-#endif
-
     bool GenericDrug::Configure( const Configuration* inputJson )
     {
         initConfigTypeMap("Primary_Decay_Time_Constant", &fast_decay_time_constant, DRUG_Primary_Decay_Time_Constant_DESC_TEXT, 0, 999999);

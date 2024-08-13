@@ -22,8 +22,6 @@ namespace Kernel
 {
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Typhoid.Susceptibility, SusceptibilityTyphoidConfig)
-        BEGIN_QUERY_INTERFACE_BODY(SusceptibilityTyphoidConfig)
-    END_QUERY_INTERFACE_BODY(SusceptibilityTyphoidConfig)
 
     bool
     SusceptibilityTyphoidConfig::Configure(
@@ -33,18 +31,6 @@ namespace Kernel
         LOG_DEBUG("Configure\n");
         return JsonConfigurable::Configure(config);
     }
-
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityTyphoid)
-        HANDLE_INTERFACE(ISusceptibilityTyphoid)
-        HANDLE_INTERFACE(ISusceptibilityTyphoidReportable)
-        END_QUERY_INTERFACE_BODY(SusceptibilityTyphoid)
-
-    /*
-    SusceptibilityTyphoid::SusceptibilityTyphoid()
-      : SusceptibilityEnvironmental()
-    {
-    }
-    */
 
     SusceptibilityTyphoid::SusceptibilityTyphoid(IIndividualHumanContext *context)
     : SusceptibilityEnvironmental(context)

@@ -34,8 +34,6 @@ namespace Kernel
         InputEIR( const InputEIR& master );
         virtual ~InputEIR() { }
 
-        // INodeDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void Update(float dt) override;
 
         // IBaseIntervention

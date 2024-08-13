@@ -22,7 +22,6 @@ namespace Kernel
         // which provides a little more functionality than is needed by these little
         // "class types".
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
         public:
             DoseMap() {}
@@ -37,7 +36,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
         GenomeMarkerModifiers( const std::string& rMarkerName = "", uint64_t genomeBitMask = 0 );
         virtual ~GenomeMarkerModifiers();
@@ -66,7 +64,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
         DrugResistantModifiers( const IGenomeMarkers& rGenomeMarkers );
         virtual ~DrugResistantModifiers();
@@ -98,7 +95,6 @@ namespace Kernel
 
         virtual ~MalariaDrugTypeParameters();
         virtual bool Configure( const ::Configuration *json );
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
 
         typedef map< std::string, MalariaDrugTypeParameters* > tMDTPMap;
 

@@ -27,9 +27,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- Action
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY( Action )
-    END_QUERY_INTERFACE_BODY( Action )
-
     Action::Action()
         : JsonConfigurable()
         , m_Threshold( 0 )
@@ -150,9 +147,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- Responder
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY( Responder )
-    END_QUERY_INTERFACE_BODY( Responder )
-
     Responder::Responder()
         : JsonConfigurable()
         , m_ThresholdType(ThresholdType::COUNT)
@@ -294,10 +288,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- IncidenceCounter
     // ------------------------------------------------------------------------
-
-    BEGIN_QUERY_INTERFACE_BODY( IncidenceCounter )
-    END_QUERY_INTERFACE_BODY( IncidenceCounter )
-
     IncidenceCounter::IncidenceCounter()
         : JsonConfigurable()
         , m_Count(0)
@@ -472,14 +462,7 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- IncidenceEventCoordinator
     // ------------------------------------------------------------------------
-
     IMPLEMENT_FACTORY_REGISTERED( IncidenceEventCoordinator )
-
-    BEGIN_QUERY_INTERFACE_BODY( IncidenceEventCoordinator )
-        HANDLE_INTERFACE( IConfigurable )
-        HANDLE_INTERFACE( IEventCoordinator )
-        HANDLE_ISUPPORTS_VIA( IEventCoordinator )
-    END_QUERY_INTERFACE_BODY( IncidenceEventCoordinator )
 
     IncidenceEventCoordinator::IncidenceEventCoordinator()
         : JsonConfigurable()

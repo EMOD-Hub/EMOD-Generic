@@ -24,7 +24,6 @@ namespace Kernel
         friend class SimulationMalaria;
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER( IndividualHumanMalariaConfig )
 
     public:
@@ -42,7 +41,6 @@ namespace Kernel
         friend class SimulationMalaria;
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( IndividualHumanMalaria )
 
     public:
@@ -61,7 +59,7 @@ namespace Kernel
         virtual bool  HasFever() const override;
         virtual void  AddClinicalSymptom(ClinicalSymptomsEnum::Enum symptom) override;
         virtual bool  HasClinicalSymptom(ClinicalSymptomsEnum::Enum symptom) const override;
-        virtual IMalariaSusceptibility* GetMalariaSusceptibilityContext() const override; // TBD: Get rid of this and use QueryInterface instead
+        virtual IMalariaSusceptibility* GetMalariaSusceptibilityContext() const override;
         virtual std::vector< std::pair<uint32_t,uint64_t> > GetInfectingStrainIds() const override;
 
         virtual bool ChallengeWithBites( int n_infectious_bites ) override;

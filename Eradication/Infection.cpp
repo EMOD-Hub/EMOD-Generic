@@ -32,9 +32,6 @@ namespace Kernel
     bool  InfectionConfig::enable_disease_mortality = false;
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Infection,InfectionConfig)
-    BEGIN_QUERY_INTERFACE_BODY(InfectionConfig)
-    END_QUERY_INTERFACE_BODY(InfectionConfig)
-
 
     bool InfectionConfig::Configure(const Configuration* config)
     {
@@ -64,11 +61,6 @@ namespace Kernel
         , m_source_route(TransmissionRoute::CONTACT)
     {
     }
-
-    BEGIN_QUERY_INTERFACE_BODY(Infection)
-        HANDLE_INTERFACE(IInfection)
-        HANDLE_ISUPPORTS_VIA(IInfection)
-    END_QUERY_INTERFACE_BODY(Infection)
 
     Infection::Infection(IIndividualHumanContext *context)
         : parent(context)

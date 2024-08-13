@@ -48,8 +48,6 @@ namespace Kernel
 
     // QI stuff in case we want to use it more extensively outside of campaigns
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Individual,IndividualHumanConfig)
-    BEGIN_QUERY_INTERFACE_BODY(IndividualHumanConfig)
-    END_QUERY_INTERFACE_BODY(IndividualHumanConfig)
 
     //------------------------------------------------------------------
     //   Initialization methods
@@ -170,12 +168,6 @@ namespace Kernel
 
         delete susceptibility;
         delete interventions;
-    }
-
-    QueryResult IndividualHuman::QueryInterface( iid_t iid, void** ppinstance )
-    {
-        release_assert(ppinstance);
-        return e_NOINTERFACE;
     }
 
     IndividualHuman *IndividualHuman::CreateHuman()

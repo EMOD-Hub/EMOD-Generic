@@ -24,8 +24,6 @@ SETUP_LOGGING( "SimulationHIV" )
 namespace Kernel
 {
     GET_SCHEMA_STATIC_WRAPPER_IMPL(SimulationHIV,SimulationHIV)
-    BEGIN_QUERY_INTERFACE_DERIVED(SimulationHIV,SimulationSTI)
-    END_QUERY_INTERFACE_DERIVED(SimulationHIV,SimulationSTI)
 
     SimulationHIV::SimulationHIV()
     : report_hiv_by_age_and_gender(false)

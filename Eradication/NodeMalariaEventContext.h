@@ -25,7 +25,6 @@ namespace Kernel
                                         public INodeMalariaInterventionEffects
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         NodeMalariaEventContextHost(Node* _node);

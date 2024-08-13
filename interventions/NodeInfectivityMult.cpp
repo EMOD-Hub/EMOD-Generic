@@ -16,13 +16,6 @@ SETUP_LOGGING("NodeInfectivityMult")
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY( NodeInfectivityMult )
-        HANDLE_INTERFACE( IConfigurable )
-        HANDLE_INTERFACE( INodeDistributableIntervention )
-        HANDLE_INTERFACE( IBaseIntervention )
-        HANDLE_ISUPPORTS_VIA( INodeDistributableIntervention )
-    END_QUERY_INTERFACE_BODY( NodeInfectivityMult )
-
     IMPLEMENT_FACTORY_REGISTERED( NodeInfectivityMult )
 
     NodeInfectivityMult::NodeInfectivityMult()

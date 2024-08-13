@@ -140,11 +140,6 @@ public:
     // ---------------------
     // --- ISupport Methods
     // ---------------------
-    virtual QueryResult QueryInterface(iid_t iid, void **ppvObject)
-    {
-        return e_NOINTERFACE;
-    }
-
     virtual int32_t AddRef()
     {
         throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented.");

@@ -24,14 +24,6 @@ SETUP_LOGGING( "HIVPiecewiseByYearAndSexDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(HIVPiecewiseByYearAndSexDiagnostic)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        //HANDLE_INTERFACE(IHealthSeekingBehavior)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(HIVPiecewiseByYearAndSexDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(HIVPiecewiseByYearAndSexDiagnostic)
 
     HIVPiecewiseByYearAndSexDiagnostic::HIVPiecewiseByYearAndSexDiagnostic()

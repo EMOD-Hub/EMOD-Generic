@@ -23,7 +23,6 @@ namespace Kernel
         virtual ~TBHIVConfigurableTBdrug();
         virtual bool Configure( const Configuration * ) override;
 
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void  ConfigureDrugTreatment( IIndividualHumanInterventionsContext * ivc = nullptr ) override;
 
     protected:

@@ -31,7 +31,6 @@ namespace Kernel
     class VectorCohortIndividual : public VectorCohortAbstract, public IVectorCohortIndividual
     {
     public:
-        DECLARE_QUERY_INTERFACE()
         virtual int32_t AddRef() override { return 1; }
         virtual int32_t Release() override { return 1; }
 

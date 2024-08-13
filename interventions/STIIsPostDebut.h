@@ -23,9 +23,6 @@ namespace Kernel
         STIIsPostDebut( const STIIsPostDebut& ); // copy ctor
         virtual bool Configure( const Configuration* pConfig ) override;
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
-
         // SimpleDiagnostic
         virtual bool positiveTestResult() override;    // Test if recipient "tests positive"
         virtual void onNegativeTestResult() override;  // What to do if recipient "tests negative"

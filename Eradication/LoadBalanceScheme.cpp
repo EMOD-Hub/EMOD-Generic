@@ -86,7 +86,6 @@ namespace Kernel
         // ---------------------
         // --- ISupport Methods
         // ---------------------
-        virtual Kernel::QueryResult QueryInterface(Kernel::iid_t iid, void **ppvObject)  override { return Kernel::e_NOINTERFACE; }
         virtual int32_t AddRef()  override { return -1 ; }
         virtual int32_t Release() override { return -1 ; }
     private:

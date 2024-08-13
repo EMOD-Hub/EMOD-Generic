@@ -39,10 +39,5 @@ namespace Kernel
     {
         return JsonConfigurable::Configure( config );
     }
-
-    QueryResult TBDrugTypeParameters::QueryInterface(iid_t iid, void **ppvObject)
-    {
-        throw NotYetImplementedException(  __FILE__, __LINE__, __FUNCTION__, "Should not get here" );
-    }
 }
 

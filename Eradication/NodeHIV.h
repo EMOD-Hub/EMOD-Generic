@@ -15,7 +15,6 @@ namespace Kernel
 {
     class NodeHIV : public NodeSTI, public INodeHIV
     {
-        DECLARE_QUERY_INTERFACE()
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
     public:

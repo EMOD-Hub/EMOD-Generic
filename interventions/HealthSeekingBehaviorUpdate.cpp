@@ -19,12 +19,6 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(HealthSeekingBehaviorUpdate)
 
-    BEGIN_QUERY_INTERFACE_BODY(HealthSeekingBehaviorUpdate)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(HealthSeekingBehaviorUpdate)
-
     HealthSeekingBehaviorUpdate::HealthSeekingBehaviorUpdate()
         : new_probability_of_seeking(0.0f)
         , ihsbuea(nullptr)

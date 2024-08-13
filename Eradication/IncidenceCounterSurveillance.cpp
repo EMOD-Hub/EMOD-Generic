@@ -16,9 +16,6 @@ SETUP_LOGGING("IncidenceCounterSurveillance")
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY( IncidenceCounterSurveillance )
-    END_QUERY_INTERFACE_BODY( IncidenceCounterSurveillance )
-
     IncidenceCounterSurveillance::IncidenceCounterSurveillance()
         : IncidenceCounter()
         , m_CounterPeriod( 0 ) 

@@ -37,10 +37,6 @@ SETUP_LOGGING( "IndividualPy" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanPy, IndividualHuman)
-        HANDLE_INTERFACE(IIndividualHumanPy)
-    END_QUERY_INTERFACE_DERIVED(IndividualHumanPy, IndividualHuman)
-
     IndividualHumanPy::IndividualHumanPy(suids::suid _suid, float monte_carlo_weight, float initial_age, int gender) 
         : IndividualHuman(_suid, monte_carlo_weight, initial_age, gender)
     {

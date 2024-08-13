@@ -24,7 +24,6 @@ namespace Kernel
     public:
         DECLARE_CONFIGURED(GroupInterventionDistributionEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     public:
         GroupInterventionDistributionEventCoordinator();
         // IEventCoordinator

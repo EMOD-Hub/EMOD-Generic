@@ -18,12 +18,6 @@ SETUP_LOGGING( "TyphoidCarrierClear" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(TyphoidCarrierClear)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(TyphoidCarrierClear)
-    
     IMPLEMENT_FACTORY_REGISTERED(TyphoidCarrierClear)
 
     bool TyphoidCarrierClear::Configure( const Configuration* inputJson )

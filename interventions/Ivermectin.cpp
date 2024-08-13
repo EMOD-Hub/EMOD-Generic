@@ -20,12 +20,6 @@ SETUP_LOGGING( "Ivermectin" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(Ivermectin)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(Ivermectin)
-
     IMPLEMENT_FACTORY_REGISTERED(Ivermectin)
 
     Ivermectin::Ivermectin()

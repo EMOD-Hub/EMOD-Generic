@@ -21,7 +21,6 @@ namespace Kernel
     class LarvalHabitatParams : public JsonConfigurable, public IComplexJsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
         public:
             LarvalHabitatParams() {}
@@ -40,7 +39,6 @@ namespace Kernel
                                                                        const std::string& vector_species_name );
         virtual ~VectorSpeciesParameters();
         bool Configure( const ::Configuration *json );
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
 
 #pragma warning( push )
 #pragma warning( disable: 4251 ) // See IdmApi.h for details

@@ -20,10 +20,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    // this container becomes a help implementation member of the IndividualHumanSTI class 
-    // it needs to implement consumer interfaces for all the relevant intervention types
-
-
     class STIInterventionsContainer
         : public InterventionsContainer
         , public ISTIInterventionsContainer
@@ -33,9 +29,6 @@ namespace Kernel
     public:
         STIInterventionsContainer();
         virtual ~STIInterventionsContainer();
-
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
 
         // IIndividualHumanInterventionsContext
         virtual void ChangeProperty( const char *property, const char* new_value) override;

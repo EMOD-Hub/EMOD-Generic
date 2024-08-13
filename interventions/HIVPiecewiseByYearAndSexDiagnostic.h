@@ -23,7 +23,6 @@ namespace Kernel
         HIVPiecewiseByYearAndSexDiagnostic();
         HIVPiecewiseByYearAndSexDiagnostic( const HIVPiecewiseByYearAndSexDiagnostic& );
         virtual bool Configure( const Configuration* pConfig ) override;
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual bool positiveTestResult() override;
 
     protected:

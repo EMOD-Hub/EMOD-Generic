@@ -43,8 +43,6 @@ namespace Kernel
         OutbreakIndividual();
         virtual ~OutbreakIndividual() { }
 
-        // INodeDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
         virtual bool Distribute( IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO );
         virtual void SetContextTo(IIndividualHumanContext *context) { /* not needed for this intervention */ }
         virtual void Update(float dt);

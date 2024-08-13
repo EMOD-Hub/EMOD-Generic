@@ -30,10 +30,7 @@ SETUP_LOGGING( "GroupEventCoordinatorHIV" )
 
 namespace Kernel
 {
-
     IMPLEMENT_FACTORY_REGISTERED(GroupInterventionDistributionEventCoordinatorHIV)
-
-    IMPL_QUERY_INTERFACE2(GroupInterventionDistributionEventCoordinatorHIV, IEventCoordinator, IConfigurable)
 
     bool GroupInterventionDistributionEventCoordinatorHIV::Configure( const Configuration* inputJson)
     {

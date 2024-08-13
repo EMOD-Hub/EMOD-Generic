@@ -53,7 +53,6 @@ namespace Kernel
     protected:
         VectorHabitat( VectorHabitatType::Enum type );
 
-        virtual QueryResult QueryInterface( iid_t, void** ) override { return e_NOINTERFACE; }
         virtual int32_t AddRef() override { return 1; }
         virtual int32_t Release() override { return 0; }
 

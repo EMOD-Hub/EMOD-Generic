@@ -23,7 +23,6 @@ namespace Kernel
         : propertyNameToMatrixMap()
         , propertyValueToIndexMap()
     {
-
     }
 
     void TransmissionGroupsBase::checkForDuplicatePropertyName( const string& property ) const
@@ -169,9 +168,6 @@ namespace Kernel
 
         cumulativeMatrix = aggregateMatrix;
     }
-
-    BEGIN_QUERY_INTERFACE_BODY(TransmissionGroupsBase::ContagionPopulationImpl)
-    END_QUERY_INTERFACE_BODY(TransmissionGroupsBase::ContagionPopulationImpl)
 
     TransmissionGroupsBase::ContagionPopulationImpl::ContagionPopulationImpl( IStrainIdentity * strain, float quantity )
         : contagionQuantity(quantity)

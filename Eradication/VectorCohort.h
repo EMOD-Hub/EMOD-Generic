@@ -27,7 +27,6 @@ namespace Kernel
     public:
         virtual int32_t AddRef() override { return 1; }
         virtual int32_t Release() override { return 1; }
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static std::string _gambiae;
@@ -90,8 +89,6 @@ namespace Kernel
     class VectorCohort : public VectorCohortAbstract
     {
     public:
-        DECLARE_QUERY_INTERFACE()
-
         static VectorCohort *CreateCohort( VectorStateEnum::Enum state,
                                            float age,
                                            float progress,

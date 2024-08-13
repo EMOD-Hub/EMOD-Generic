@@ -25,7 +25,6 @@ namespace Kernel
     class IDMAPI FlowControllerImpl : public IPairFormationFlowController 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
-        DECLARE_QUERY_INTERFACE();
     public:
 
         virtual void UpdateEntryRates( const IdmDateTime& rCurrentTime, float dt );

@@ -17,10 +17,6 @@ SETUP_LOGGING( "NodeHIV" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(NodeHIV, NodeSTI)
-        HANDLE_INTERFACE(INodeHIV)
-    END_QUERY_INTERFACE_DERIVED(NodeHIV, NodeSTI)
-
     NodeHIV::NodeHIV(ISimulationContext *_parent_sim, ExternalNodeId_t externalNodeId, suids::suid node_suid)
         : NodeSTI(_parent_sim, externalNodeId, node_suid)
     { }

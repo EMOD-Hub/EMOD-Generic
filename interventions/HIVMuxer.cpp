@@ -20,9 +20,6 @@ SETUP_LOGGING( "HIVMuxer" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(HIVMuxer, HIVDelayedIntervention)
-    END_QUERY_INTERFACE_DERIVED(HIVMuxer, HIVDelayedIntervention)
-
     IMPLEMENT_FACTORY_REGISTERED(HIVMuxer)
 
     HIVMuxer::HIVMuxer()

@@ -23,9 +23,6 @@ namespace Kernel
     public: 
         virtual bool Configure( const Configuration * inputJson ) override;
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
-
         // HIVSimpleDiagnostic
         virtual bool positiveTestResult() override;
         virtual void positiveTestDistribute() override;

@@ -41,8 +41,7 @@ namespace Kernel
     public:
         DECLARE_CONFIGURED(NodeSetAll)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
-        
+
         virtual bool Contains(INodeEventContext *ndc);
         virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);
 
@@ -58,7 +57,6 @@ namespace Kernel
     class IDMAPI NodeListConfig : public JsonConfigurable, public IComplexJsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
         public:
             NodeListConfig() {}
@@ -78,7 +76,7 @@ namespace Kernel
     public:
         DECLARE_CONFIGURED(NodeSetNodeList)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
+
         virtual bool Contains(INodeEventContext *ndc);
         virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);
 

@@ -15,9 +15,6 @@ SETUP_LOGGING( "PropertyRestrictions" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(PropertyRestriction)
-    END_QUERY_INTERFACE_BODY(PropertyRestriction)
-
     bool PropertyRestriction::Configure(const Configuration* config)
     {
         initConfigTypeMap("Restrictions", &m_restrictions, "");

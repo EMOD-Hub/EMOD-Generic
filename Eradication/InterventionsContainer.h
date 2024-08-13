@@ -66,9 +66,6 @@ namespace Kernel
         virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()      override { return nullptr; }
         virtual IMalariaDrugEffects*          GetMalariaDrugStats()      override { return nullptr; }
 
-        // IUnknown
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
         // IVaccineConsumer
         virtual void UpdateIVAcquireRate(  float acq,  IVRoute::Enum vax_route) override;
         virtual void UpdateIVTransmitRate( float xmit, IVRoute::Enum vax_route) override;

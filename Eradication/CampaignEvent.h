@@ -51,7 +51,6 @@ namespace Kernel
         friend class CampaignEventFactory;
         DECLARE_CONFIGURED(CampaignEvent)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
 
         CampaignEvent();
         virtual ~CampaignEvent();

@@ -21,11 +21,6 @@ static const char* _module = "AntiHIVMonotherapyDrug";
 
 namespace Kernel
 {
-
-    BEGIN_QUERY_INTERFACE_DERIVED(AntiHIVMonotherapyDrug, GenericDrug)
-        HANDLE_INTERFACE(IHIVIntervention)
-    END_QUERY_INTERFACE_DERIVED(AntiHIVMonotherapyDrug, GenericDrug)
-
     IMPLEMENT_FACTORY_REGISTERED(AntiHIVMonotherapyDrug)
 
     AntiHIVMonotherapyDrug::AntiHIVMonotherapyDrug()

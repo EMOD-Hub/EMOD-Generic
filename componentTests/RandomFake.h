@@ -32,10 +32,6 @@ public:
         index = 0;
     }
 
-    /*virtual Kernel::QueryResult QueryInterface( Kernel::iid_t iid, void** pinstance) { return Kernel::QueryResult::e_NOINTERFACE ; };
-    virtual int32_t AddRef()  { return -1 ; };
-    virtual int32_t Release() { return -1 ; };*/
-
     void SetUL( const std::vector<uint32_t>& rBits )
     {
         m_SelectBits.clear();

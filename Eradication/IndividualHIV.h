@@ -33,7 +33,6 @@ namespace Kernel
         friend class SimulationHIV;
 
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( IndividualHumanHIV )
 
     public:

@@ -93,8 +93,6 @@ namespace Kernel
 
     IMPLEMENT_FACTORY_REGISTERED(CampaignEvent)
 
-    IMPL_QUERY_INTERFACE1(CampaignEvent, IConfigurable)
-
     CampaignEvent::CampaignEvent()
         : start_day(0.0f)
         , event_index(0)

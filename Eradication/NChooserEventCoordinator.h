@@ -29,7 +29,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         AgeRange( float minYears=0.0, float maxYears=MAX_HUMAN_AGE);
         virtual ~AgeRange();
@@ -132,7 +131,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         static bool LeftLessThanRight( const TargetedDistribution* pLeft, const TargetedDistribution* pRight );
 
@@ -244,7 +242,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, NChooserEventCoordinator, IEventCoordinator)    
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         NChooserEventCoordinator();
         NChooserEventCoordinator( NChooserObjectFactory* pObjectFactory );

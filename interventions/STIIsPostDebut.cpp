@@ -34,9 +34,6 @@ event.
 */
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(STIIsPostDebut, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(STIIsPostDebut, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(STIIsPostDebut)
 
     STIIsPostDebut::STIIsPostDebut()

@@ -44,13 +44,11 @@ namespace Kernel
 
         GET_SCHEMA_STATIC_WRAPPER(SusceptibilityConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     };
 
     class Susceptibility : public ISusceptibilityContext
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     public:
         static Susceptibility* Susceptibility::CreateSusceptibility(IIndividualHumanContext* context, float immmod, float riskmod);
 

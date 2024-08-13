@@ -32,10 +32,6 @@ namespace Kernel {
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(SocietyImpl,SocietyImpl)
 
-    BEGIN_QUERY_INTERFACE_BODY(SocietyImpl)
-        HANDLE_INTERFACE(ISociety)
-    END_QUERY_INTERFACE_BODY(SocietyImpl)
-
     SocietyImpl::SocietyImpl( IRelationshipManager* manager )
         : relationship_manager(manager)
         , p_concurrency( new ConcurrencyConfiguration() )

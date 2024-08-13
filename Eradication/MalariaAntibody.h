@@ -18,8 +18,6 @@ namespace Kernel
     class MalariaAntibody : public IMalariaAntibody
     {
     public:
-
-        DECLARE_QUERY_INTERFACE()
         IMPLEMENT_ONLY_REFERENCE_COUNTING()
 
         virtual ~MalariaAntibody() {}

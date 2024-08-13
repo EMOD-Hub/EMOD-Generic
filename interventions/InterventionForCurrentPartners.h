@@ -30,9 +30,6 @@ namespace Kernel
         virtual ~InterventionForCurrentPartners();
 
         virtual bool Configure( const Configuration * config ) override;
-
-        // IDistributableIntervention
-        virtual QueryResult QueryInterface( iid_t iid, void **ppvObject ) override;
         virtual void Update( float dt ) override;
 
     protected:

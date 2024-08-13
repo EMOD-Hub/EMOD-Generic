@@ -34,8 +34,6 @@ static const string _report_name = "SpatialReport"; // is this what it should be
 
 namespace Kernel {
 
-    BEGIN_QUERY_INTERFACE_BODY(SpatialReport)
-    END_QUERY_INTERFACE_BODY(SpatialReport)
     GET_SCHEMA_STATIC_WRAPPER_IMPL(SpatialReport,SpatialReport)
 
 /////////////////////////

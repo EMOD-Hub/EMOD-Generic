@@ -18,9 +18,6 @@ SETUP_LOGGING( "SmearDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(SmearDiagnostic, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(SmearDiagnostic, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(SmearDiagnostic)
 
     bool SmearDiagnostic::Configure( const Configuration* inputJson )

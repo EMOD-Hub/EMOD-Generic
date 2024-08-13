@@ -39,7 +39,6 @@ namespace Kernel
         virtual ~NodeEventContextHost();
 
         // INodeEventContext
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
         virtual void VisitIndividuals(individual_visit_function_t func) override;
         virtual int VisitIndividuals(IVisitIndividual* ) override;
         virtual const IdmDateTime& GetTime() const override;

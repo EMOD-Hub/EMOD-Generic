@@ -16,7 +16,6 @@ namespace Kernel
     class ImmunityBloodTest : public SimpleDiagnostic
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, ImmunityBloodTest, IDistributableIntervention)
 
         float threshold_acquisitionImmunity;

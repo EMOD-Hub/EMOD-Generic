@@ -24,7 +24,6 @@ namespace Kernel
         virtual ~MemoryGauge();
 
         virtual bool Configure( const Configuration* inputJson ) override;
-        virtual QueryResult QueryInterface( iid_t iid, void **ppvObject ) { return e_NOINTERFACE; }
         virtual int32_t AddRef() { return -1; }
         virtual int32_t Release() { return -1; }
 

@@ -18,7 +18,6 @@ namespace Kernel
         friend class IndividualTyphoid;
         GET_SCHEMA_STATIC_WRAPPER(InfectionTyphoidConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual bool Configure( const Configuration* config ) override;
@@ -40,7 +39,6 @@ namespace Kernel
     class InfectionTyphoid : public InfectionEnvironmental, public IInfectionTyphoid 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static InfectionTyphoid *CreateInfection(IIndividualHumanContext *context, suids::suid _suid);

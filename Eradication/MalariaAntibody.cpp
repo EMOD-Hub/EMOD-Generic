@@ -21,10 +21,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-
-    BEGIN_QUERY_INTERFACE_BODY(MalariaAntibody)
-    END_QUERY_INTERFACE_BODY(MalariaAntibody)
-
     MalariaAntibody::MalariaAntibody()
         : m_antigen_count(0)
         , m_antigen_present(false)

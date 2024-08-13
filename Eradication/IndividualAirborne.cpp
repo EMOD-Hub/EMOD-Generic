@@ -20,10 +20,6 @@ SETUP_LOGGING( "IndividualAirborne" )
 
 namespace Kernel
 {
-
-    BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanAirborne, IndividualHuman)
-    END_QUERY_INTERFACE_DERIVED(IndividualHumanAirborne, IndividualHuman)
-
     IndividualHumanAirborne *IndividualHumanAirborne::CreateHuman(INodeContext *context, suids::suid id, float MCweight, float init_age, int gender)
     {
         IndividualHumanAirborne *newindividual = _new_ IndividualHumanAirborne(id, MCweight, init_age, gender);

@@ -35,8 +35,6 @@ namespace Kernel
 #define UNINIT_TIMER (-100.0f)
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Typhoid.Infection,InfectionTyphoidConfig)
-    BEGIN_QUERY_INTERFACE_BODY(InfectionTyphoidConfig)
-    END_QUERY_INTERFACE_BODY(InfectionTyphoidConfig)
 
     IDistribution* InfectionTyphoidConfig::p_log_normal_distribution = nullptr;
 
@@ -91,10 +89,6 @@ namespace Kernel
         bool bRet = JsonConfigurable::Configure( config );
         return bRet;
     }
-
-    BEGIN_QUERY_INTERFACE_BODY(InfectionTyphoid)
-        HANDLE_INTERFACE(IInfectionTyphoid)
-    END_QUERY_INTERFACE_BODY(InfectionTyphoid)
 
     InfectionTyphoid::InfectionTyphoid()
     {

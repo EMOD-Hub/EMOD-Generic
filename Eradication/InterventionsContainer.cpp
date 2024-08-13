@@ -29,12 +29,6 @@ SETUP_LOGGING( "InterventionsContainer" )
 
 namespace Kernel
 {
-    QueryResult InterventionsContainer::QueryInterface( iid_t iid, void** ppinstance )
-    {
-        assert(ppinstance);
-        return e_NOINTERFACE;
-    }
-
     InterventionsContainer::~InterventionsContainer()
     {
         for (auto intervention : interventions)

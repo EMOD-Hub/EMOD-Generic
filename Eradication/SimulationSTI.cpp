@@ -27,11 +27,6 @@ namespace Kernel
 {
     GET_SCHEMA_STATIC_WRAPPER_IMPL(SimulationSTI,SimulationSTI)
 
-    BEGIN_QUERY_INTERFACE_DERIVED(SimulationSTI, Simulation)
-        HANDLE_INTERFACE(IIdGeneratorSTI)
-        HANDLE_INTERFACE(ISTISimulationContext)
-    END_QUERY_INTERFACE_DERIVED(SimulationSTI, Simulation)
-
     SimulationSTI::SimulationSTI()
         : relationshipSuidGenerator(EnvPtr->MPI.Rank, EnvPtr->MPI.NumTasks)
         , report_relationship_start(false)

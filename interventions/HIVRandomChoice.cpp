@@ -20,12 +20,8 @@ SETUP_LOGGING( "HIVRandomChoice" )
 
 namespace Kernel
 {
-
     const static float MIN_PROBABILITY = 0.0f ;
     const static float MAX_PROBABILITY = 1.0f ;
-
-    BEGIN_QUERY_INTERFACE_DERIVED(HIVRandomChoice, HIVSimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(HIVRandomChoice, HIVSimpleDiagnostic)
 
     IMPLEMENT_FACTORY_REGISTERED(HIVRandomChoice)
 

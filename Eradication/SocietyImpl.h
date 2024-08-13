@@ -28,7 +28,6 @@ namespace Kernel
     {
         GET_SCHEMA_STATIC_WRAPPER(SocietyImpl)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
-        DECLARE_QUERY_INTERFACE();
 
     public:
         static ISociety* Create(IRelationshipManager*);

@@ -23,9 +23,6 @@ SETUP_LOGGING( "AdherentDrug" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED( AdherentDrug, AntimalarialDrug )
-    END_QUERY_INTERFACE_DERIVED( AdherentDrug, AntimalarialDrug )
-
     IMPLEMENT_FACTORY_REGISTERED( AdherentDrug )
 
     AdherentDrug::AdherentDrug()

@@ -18,9 +18,6 @@ SETUP_LOGGING( "RateTableImpl" )
 
 namespace Kernel 
 {
-    BEGIN_QUERY_INTERFACE_BODY(RateTableImpl)
-    END_QUERY_INTERFACE_BODY(RateTableImpl)
-
     float RateTableImpl::GetRateForAgeAndSexAndRiskGroup( float age, int sex, RiskGroup::Enum risk_group ) const
     {
         int bin = parameters->BinIndexForAgeAndSex(age, sex);

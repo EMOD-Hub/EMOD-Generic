@@ -18,7 +18,6 @@ using namespace Kernel;
 class SerializationTimeCalc : public JsonConfigurable
 {
 IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-DECLARE_QUERY_INTERFACE()
 GET_SCHEMA_STATIC_WRAPPER(SerializationTimeCalc)
 public:
     std::deque<int32_t> GetSerializedTimeSteps(int32_t steps, float start_time, float step_size);

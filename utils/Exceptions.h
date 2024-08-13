@@ -244,15 +244,6 @@ namespace Kernel {
         OutOfRangeException( const char * file_name, int line_num, const char* func_name, const char* var_name, float value, float value_violated );
     };
 
-    // QueryInterfaceException is for anywhere that a variable is QI-ed for an interface
-    // but returns false. This exception lets you report the variable, the interface queried
-    // for, and the datatype of the variable.
-    class IDMAPI QueryInterfaceException: public DetailedException
-    {
-    public:
-        QueryInterfaceException( const char* file_name, int line_num, const char* function_name, const char* var_name, const char* queried_for_type, const char* variable_type );
-    };
-
     // The SerializationException is used any time we get an unrecoverable failure during
     // serializing or deserializing.
     class IDMAPI SerializationException : public DetailedException

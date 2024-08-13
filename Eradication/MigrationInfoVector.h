@@ -25,7 +25,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         //IMigrationInfoVector
@@ -49,7 +48,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
     public:
         virtual ~MigrationInfoVector();
 

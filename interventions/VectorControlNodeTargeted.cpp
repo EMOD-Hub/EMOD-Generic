@@ -20,13 +20,6 @@ SETUP_LOGGING( "VectorControlNodeTargeted" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(SimpleVectorControlNode)
-        HANDLE_INTERFACE( IConfigurable )
-        HANDLE_INTERFACE(INodeDistributableIntervention)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_ISUPPORTS_VIA(INodeDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(SimpleVectorControlNode)
-
     IMPLEMENT_FACTORY_REGISTERED(Larvicides)
     IMPLEMENT_FACTORY_REGISTERED(SpaceSpraying)
     IMPLEMENT_FACTORY_REGISTERED(MultiInsecticideSpaceSpraying)

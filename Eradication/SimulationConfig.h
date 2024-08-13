@@ -83,7 +83,6 @@ namespace Kernel
     public:
         DECLARE_CONFIGURED(SimulationConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         VectorParameters*  vector_params;
         MalariaParameters* malaria_params;

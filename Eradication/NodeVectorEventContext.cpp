@@ -43,12 +43,6 @@ namespace Kernel
     {
     }
 
-    QueryResult NodeVectorEventContextHost::QueryInterface( iid_t iid, void** ppinstance )
-    {
-        release_assert(ppinstance);
-        return e_NOINTERFACE;
-    }
-
     INodeVectorInterventionEffects* NodeVectorEventContextHost::GetNodeVectorInterventionEffects()
     {
         return static_cast<INodeVectorInterventionEffects*>(this);

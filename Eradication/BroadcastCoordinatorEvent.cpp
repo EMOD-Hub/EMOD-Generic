@@ -22,7 +22,6 @@ SETUP_LOGGING( "BroadcastCoordinatorEvent" )
 namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED( BroadcastCoordinatorEvent )
-    IMPL_QUERY_INTERFACE2( BroadcastCoordinatorEvent, IEventCoordinator, IConfigurable )
 
     BroadcastCoordinatorEvent::BroadcastCoordinatorEvent()
         : JsonConfigurable()

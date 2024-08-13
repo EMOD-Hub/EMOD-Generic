@@ -71,11 +71,6 @@ namespace Kernel
 
     IMPLEMENT_FACTORY_REGISTERED(SurveillanceEventCoordinator)
 
-    BEGIN_QUERY_INTERFACE_DERIVED( SurveillanceEventCoordinator, IncidenceEventCoordinator )
-        HANDLE_INTERFACE( IEventCoordinatorEventContext )
-        HANDLE_INTERFACE( ISurveillanceReporting )
-    END_QUERY_INTERFACE_DERIVED( SurveillanceEventCoordinator, IncidenceEventCoordinator )
-
     SurveillanceEventCoordinator::SurveillanceEventCoordinator()
         : IncidenceEventCoordinator( new IncidenceCounterSurveillance(), new ResponderSurveillance() )
         , m_StopTriggerConditionList()

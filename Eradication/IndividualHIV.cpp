@@ -26,20 +26,12 @@ namespace Kernel
 
     float IndividualHumanHIVConfig::maternal_transmission_ART_multiplier = 1.0f;
 
-    //GET_SCHEMA_STATIC_WRAPPER_IMPL(IndividualHumanHIV,IndividualHumanHIVConfig)
-    //BEGIN_QUERY_INTERFACE_BODY(IndividualHumanHIVConfig)
-    //END_QUERY_INTERFACE_BODY(IndividualHumanHIVConfig)
-
     bool IndividualHumanHIVConfig::Configure( const Configuration* config )
     {
         initConfigTypeMap( "Maternal_Transmission_ART_Multiplier", &maternal_transmission_ART_multiplier, Maternal_Transmission_ART_Multiplier_DESC_TEXT, 0.0f, 1.0f, 0.1f );
         IndividualHumanConfig::enable_immunity = true;
         return JsonConfigurable::Configure( config );
     }
-
-    BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanHIV, IndividualHumanSTI)
-        HANDLE_INTERFACE(IIndividualHumanHIV)
-    END_QUERY_INTERFACE_DERIVED(IndividualHumanHIV, IndividualHumanSTI)
 
     IndividualHumanHIV *IndividualHumanHIV::CreateHuman(INodeContext *context, suids::suid id, float MCweight, float init_age, int gender)
     {

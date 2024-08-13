@@ -24,9 +24,6 @@ SETUP_LOGGING( "BehaviorPfa" )
 
 namespace Kernel 
 {
-    BEGIN_QUERY_INTERFACE_BODY(BehaviorPfa)
-    END_QUERY_INTERFACE_BODY(BehaviorPfa)
-
     void BehaviorPfa::AddIndividual( IIndividualHumanSTI* sti_person )
     {
         IIndividualHuman* person = sti_person->GetEventContext()->GetIndividual();

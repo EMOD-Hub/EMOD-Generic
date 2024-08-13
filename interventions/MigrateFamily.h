@@ -31,8 +31,6 @@ namespace Kernel
         virtual ~MigrateFamily();
         virtual bool Configure( const Configuration* pConfig ) override;
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual bool Distribute( INodeEventContext *pNodeEventContext, IEventCoordinator2 *pEC ) override;
         virtual void Update(float dt) override;
 

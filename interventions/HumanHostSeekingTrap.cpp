@@ -20,12 +20,6 @@ SETUP_LOGGING( "HumanHostSeekingTrap" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(HumanHostSeekingTrap)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(HumanHostSeekingTrap)
-
     IMPLEMENT_FACTORY_REGISTERED(HumanHostSeekingTrap)
 
     HumanHostSeekingTrap::HumanHostSeekingTrap()

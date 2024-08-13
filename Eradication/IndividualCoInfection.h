@@ -28,7 +28,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 namespace Kernel
 {
     class IInfectionTB;
-    // This class has no need yet for flags beyond those in the base class
 
     class IIndividualHumanCoInfection : public ISupports
     {
@@ -79,7 +78,6 @@ namespace Kernel
         friend class NodeTBHIV;
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER( IndividualHumanCoInfectionConfig )
 
     public:
@@ -113,7 +111,6 @@ namespace Kernel
         friend class Node;
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( IndividualHumanCoInfection )
 
     public:

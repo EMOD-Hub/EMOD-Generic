@@ -17,7 +17,6 @@ namespace Kernel
     class MalariaDiagnostic : public SimpleDiagnostic 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, MalariaDiagnostic, IDistributableIntervention)
 
     public: 

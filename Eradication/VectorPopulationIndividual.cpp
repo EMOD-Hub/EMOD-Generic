@@ -35,10 +35,6 @@ SETUP_LOGGING( "VectorPopulationIndividual" )
 
 namespace Kernel
 {
-    // QI stuff
-    BEGIN_QUERY_INTERFACE_DERIVED(VectorPopulationIndividual, VectorPopulation)
-    END_QUERY_INTERFACE_DERIVED(VectorPopulationIndividual, VectorPopulation)
-
     VectorPopulationIndividual::VectorPopulationIndividual(uint32_t mosquito_weight) 
         : VectorPopulation()
         , m_mosquito_weight(mosquito_weight)

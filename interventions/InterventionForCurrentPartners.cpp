@@ -26,12 +26,6 @@ SETUP_LOGGING( "InterventionForCurrentPartners" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY( InterventionForCurrentPartners )
-        HANDLE_INTERFACE( IConfigurable )
-        HANDLE_INTERFACE( IDistributableIntervention )
-        HANDLE_ISUPPORTS_VIA( IDistributableIntervention )
-    END_QUERY_INTERFACE_BODY( InterventionForCurrentPartners )
-
     IMPLEMENT_FACTORY_REGISTERED( InterventionForCurrentPartners )
 
     InterventionForCurrentPartners::InterventionForCurrentPartners()

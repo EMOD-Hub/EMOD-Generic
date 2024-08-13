@@ -24,7 +24,6 @@ namespace Kernel
     {
         GET_SCHEMA_STATIC_WRAPPER(InfectionMalariaConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual bool Configure( const Configuration* config ) override;
@@ -51,7 +50,6 @@ namespace Kernel
     class InfectionMalaria : public InfectionVector, public IInfectionMalaria
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static InfectionMalaria *CreateInfection( IIndividualHumanContext *context, suids::suid suid, int initial_hepatocytes=1 );

@@ -24,11 +24,7 @@ SETUP_LOGGING( "TBHIVConfigurableTBdrug" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(TBHIVConfigurableTBdrug, AntiTBDrug)
-    END_QUERY_INTERFACE_DERIVED(TBHIVConfigurableTBdrug, AntiTBDrug)
-
     IMPLEMENT_FACTORY_REGISTERED(TBHIVConfigurableTBdrug)
-
 
     TBHIVConfigurableTBdrug::TBHIVConfigurableTBdrug()
     : AntiTBDrug()

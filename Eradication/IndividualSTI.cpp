@@ -56,7 +56,6 @@ static const float PERIODS[] = { THREE_MONTHS, SIX_MONTHS, NINE_MONTHS, TWELVE_M
 static std::vector<float> UNIQUE_PARTNER_TIME_PERIODS( PERIODS, PERIODS + sizeof( PERIODS ) / sizeof( PERIODS[ 0 ] ) );
 // -------------------------------------------------------------------
 
-
 namespace Kernel
 {
     float IndividualHumanSTIConfig::debutAgeYrsMale_inv_kappa = 1.0f;
@@ -81,8 +80,6 @@ namespace Kernel
     float IndividualHumanSTIConfig::coital_dilution_4_plus_partners = 1.0f;
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(IndividualHumanSTI,IndividualHumanSTIConfig)
-    BEGIN_QUERY_INTERFACE_BODY(IndividualHumanSTIConfig)
-    END_QUERY_INTERFACE_BODY(IndividualHumanSTIConfig)
 
     bool IndividualHumanSTIConfig::Configure( const Configuration* config )
     {
@@ -118,12 +115,6 @@ namespace Kernel
     bool RelationshipSetSorter::operator()(const IRelationship *rel1, const IRelationship *rel2) const
     {
         return rel1->GetSuid().data < rel2->GetSuid().data;
-    }
-
-    Kernel::QueryResult IndividualHumanSTI::QueryInterface( iid_t iid, void **ppinstance )
-    {
-        release_assert(ppinstance);
-        return e_NOINTERFACE;
     }
 
     void IndividualHumanSTI::SetConcurrencyParameters( const char *prop, const char* prop_value )

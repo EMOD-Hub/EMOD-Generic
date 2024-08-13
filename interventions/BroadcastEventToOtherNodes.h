@@ -34,8 +34,6 @@ namespace Kernel
 
         virtual bool Configure( const Configuration* pConfig ) override;
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void SetContextTo(IIndividualHumanContext *context) override;
         virtual void Update(float dt) override;
 

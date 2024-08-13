@@ -33,8 +33,6 @@ namespace Kernel
     float SusceptibilityConfig::basemortoffset     = 0.0f;
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Susceptibility,SusceptibilityConfig)
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityConfig)
-    END_QUERY_INTERFACE_BODY(SusceptibilityConfig)
 
     bool SusceptibilityConfig::Configure(const Configuration* config)
     {
@@ -76,12 +74,6 @@ namespace Kernel
 
         return bRet;
     }
-
-    // QI stuff in case we want to use it more extensively
-    BEGIN_QUERY_INTERFACE_BODY(Susceptibility)
-        HANDLE_INTERFACE(ISusceptibilityContext)
-        HANDLE_ISUPPORTS_VIA(ISusceptibilityContext)
-    END_QUERY_INTERFACE_BODY(Susceptibility)
 
     Susceptibility::Susceptibility()
         : mod_acquire( 0.0f )

@@ -33,7 +33,6 @@ namespace Kernel
         // INodeDistributableIntervention
         virtual bool Configure( const Configuration * config ) override;
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC=nullptr) override; 
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void SetContextTo(INodeEventContext *context) override;
         virtual void Update(float dt) override;
 

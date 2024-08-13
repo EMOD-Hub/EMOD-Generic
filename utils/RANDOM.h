@@ -15,9 +15,7 @@
 #include <stdint.h>
 #include <vector>
 #include <set>
-#ifndef WIN32
-#include<emmintrin.h> // for __m128i
-#endif
+#include <emmintrin.h>
 
 #include "ISerializable.h"
 

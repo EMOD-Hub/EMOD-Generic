@@ -18,9 +18,7 @@ namespace Kernel
 
     class VectorPopulationIndividual : public VectorPopulation
     {
-
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         VectorPopulationIndividual() : m_mosquito_weight(0), m_average_oviposition_killing(0) {};

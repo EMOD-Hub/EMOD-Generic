@@ -19,7 +19,6 @@ namespace Kernel
        ~LINEAR_CONGRUENTIAL_SER();
 
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( LINEAR_CONGRUENTIAL_SER );
         static void serialize( IArchive&, RANDOMBASE* );
     };
@@ -31,7 +30,6 @@ namespace Kernel
         ~PSEUDO_DES_SER();
 
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( PSEUDO_DES_SER );
         static void serialize( IArchive&, RANDOMBASE* );
     };
@@ -43,7 +41,6 @@ namespace Kernel
         ~AES_COUNTER_SER();
 
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( AES_COUNTER_SER );
         static void serialize( IArchive&, RANDOMBASE* );
     };

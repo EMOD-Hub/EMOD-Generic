@@ -20,9 +20,6 @@ SETUP_LOGGING( "HIVDrawBlood" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(HIVDrawBlood, HIVSimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(HIVDrawBlood, HIVSimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(HIVDrawBlood)
 
     HIVDrawBlood::HIVDrawBlood()

@@ -74,7 +74,6 @@ namespace Kernel
     class IDMAPI MigrationInfoNull : virtual public IMigrationInfo
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
     public:
         virtual ~MigrationInfoNull();
 
@@ -116,7 +115,6 @@ namespace Kernel
     class IDMAPI MigrationInfoFixedRate : virtual public IMigrationInfo
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
     public:
         virtual ~MigrationInfoFixedRate();
 
@@ -168,7 +166,6 @@ namespace Kernel
     class IDMAPI MigrationInfoAgeAndGender : public MigrationInfoFixedRate
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
     public:
         virtual ~MigrationInfoAgeAndGender();
 

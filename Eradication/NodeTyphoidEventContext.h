@@ -44,8 +44,6 @@ namespace Kernel
         NodeTyphoidEventContextHost(Node* _node);
         virtual ~NodeTyphoidEventContextHost();
  
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
         virtual INodeTyphoidInterventionEffects* GetNodeTyphoidInterventionEffects() override;
 
         // INodeTyphoidInterventionEffects

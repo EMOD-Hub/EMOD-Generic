@@ -31,8 +31,6 @@ namespace Kernel
         virtual ~MigrateIndividuals();
         virtual bool Configure( const Configuration* pConfig ) override;
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pICCO) override;
         virtual void Update(float dt) override;
 

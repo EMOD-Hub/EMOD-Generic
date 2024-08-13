@@ -32,7 +32,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
 
     IMPLEMENT_FACTORY_REGISTERED(CommunityHealthWorkerEventCoordinator)
-    IMPL_QUERY_INTERFACE2(CommunityHealthWorkerEventCoordinator, IEventCoordinator, IConfigurable)
 
     CommunityHealthWorkerEventCoordinator::CommunityHealthWorkerEventCoordinator()
     : m_Parent( nullptr )

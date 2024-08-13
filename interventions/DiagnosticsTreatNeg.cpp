@@ -20,9 +20,6 @@ SETUP_LOGGING( "DiagnosticTreatNeg" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(DiagnosticTreatNeg, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(DiagnosticTreatNeg, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(DiagnosticTreatNeg)
 
     bool DiagnosticTreatNeg::Configure( const Configuration* inputJson )

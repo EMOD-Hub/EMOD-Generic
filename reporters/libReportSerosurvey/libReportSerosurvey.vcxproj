@@ -84,7 +84,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;$(IDM_BOOST_PATH);..\..\cajun\Include;..\..\utils;..\..\baseReportLib;..\..\Eradication;..\..\interventions\;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;..\..\cajun\Include;..\..\utils;..\..\baseReportLib;..\..\Eradication;..\..\interventions\;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,8 +108,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;$(IDM_BOOST_PATH);..\..\cajun\Include;..\..\utils;..\..\baseReportLib;..\..\Eradication;..\..\interventions\;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BOOST_ALL_NO_LIB;_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;..\..\cajun\Include;..\..\utils;..\..\baseReportLib;..\..\Eradication;..\..\interventions\;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>

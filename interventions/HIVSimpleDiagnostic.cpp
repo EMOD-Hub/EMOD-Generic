@@ -20,9 +20,6 @@ SETUP_LOGGING( "HIVSimpleDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(HIVSimpleDiagnostic, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(HIVSimpleDiagnostic, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(HIVSimpleDiagnostic)
 
     HIVSimpleDiagnostic::HIVSimpleDiagnostic()

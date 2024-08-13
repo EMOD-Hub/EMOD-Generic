@@ -25,7 +25,6 @@ namespace Kernel
     class NodePy : public Node, public INodePy
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         // TODO Get rid of friending and provide accessors for all these floats
         friend class ::ReportPy;

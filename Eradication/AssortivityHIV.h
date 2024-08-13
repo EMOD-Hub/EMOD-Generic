@@ -17,7 +17,6 @@ namespace Kernel
     // AssortivityHIV adds the groups of STI CoInfection Status and HIV Infection Status
     class IDMAPI AssortivityHIV : public Assortivity
     {
-        DECLARE_QUERY_INTERFACE();
     public:
         AssortivityHIV( RelationshipType::Enum relType=RelationshipType::TRANSITORY, RANDOMBASE *prng=nullptr );
         virtual ~AssortivityHIV();

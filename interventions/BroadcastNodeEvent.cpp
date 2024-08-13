@@ -17,13 +17,6 @@ SETUP_LOGGING( "BroadcastNodeEvent" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY( BroadcastNodeEvent )
-        HANDLE_INTERFACE( IConfigurable )
-        HANDLE_INTERFACE( INodeDistributableIntervention )
-        HANDLE_INTERFACE( IBaseIntervention )
-        HANDLE_ISUPPORTS_VIA( INodeDistributableIntervention )
-    END_QUERY_INTERFACE_BODY( BroadcastNodeEvent )
-
     IMPLEMENT_FACTORY_REGISTERED( BroadcastNodeEvent )
 
     BroadcastNodeEvent::BroadcastNodeEvent()

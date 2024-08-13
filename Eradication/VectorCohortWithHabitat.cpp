@@ -13,12 +13,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
- 
-    // QI stuff
-    BEGIN_QUERY_INTERFACE_DERIVED(VectorCohortWithHabitat, VectorCohort)
-        HANDLE_INTERFACE(IVectorCohortWithHabitat)
-    END_QUERY_INTERFACE_DERIVED(VectorCohortWithHabitat, VectorCohort)
-
     VectorCohortWithHabitat::VectorCohortWithHabitat()
         : habitat( nullptr )
         , habitat_type( (VectorHabitatType::Enum)0 )

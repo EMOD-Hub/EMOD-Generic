@@ -20,7 +20,6 @@ namespace Kernel
     public:
         DECLARE_CONFIGURED(ReferenceTrackingEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         ReferenceTrackingEventCoordinator();
         virtual ~ReferenceTrackingEventCoordinator() { } 

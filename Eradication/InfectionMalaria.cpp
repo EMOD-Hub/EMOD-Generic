@@ -50,14 +50,7 @@ namespace Kernel
     float InfectionMalariaConfig::RBC_destruction_multiplier = 0.0f;
     int   InfectionMalariaConfig::n_asexual_cycles_wo_gametocytes = 0;
 
-    // QI stuff (none in InfectionVector or Infection for now)
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Malaria.Infection,InfectionMalariaConfig)
-    BEGIN_QUERY_INTERFACE_BODY(InfectionMalariaConfig)
-    END_QUERY_INTERFACE_BODY(InfectionMalariaConfig)
-
-    BEGIN_QUERY_INTERFACE_BODY(InfectionMalaria)
-        HANDLE_INTERFACE(IInfectionMalaria)
-    END_QUERY_INTERFACE_BODY(InfectionMalaria)
 
     InfectionMalaria::InfectionMalaria() : Kernel::InfectionVector(),
         m_IRBCtimer(0.0),

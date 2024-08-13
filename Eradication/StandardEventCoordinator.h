@@ -30,7 +30,6 @@ namespace Kernel
     public:
         DECLARE_CONFIGURED(StandardInterventionDistributionEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         StandardInterventionDistributionEventCoordinator( bool useDemographicCoverage = true );
         virtual ~StandardInterventionDistributionEventCoordinator();

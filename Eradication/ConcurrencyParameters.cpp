@@ -26,9 +26,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- ConcurrencyByProperty
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY(ConcurrencyByProperty)
-    END_QUERY_INTERFACE_BODY(ConcurrencyByProperty)
-
     ConcurrencyByProperty::ConcurrencyByProperty( const std::string& propertyKeyValue )
     : JsonConfigurable()
     , m_PropertyValue( propertyKeyValue )
@@ -58,9 +55,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- ConcurrencyParameters
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY(ConcurrencyParameters)
-    END_QUERY_INTERFACE_BODY(ConcurrencyParameters)
-
     ConcurrencyParameters::ConcurrencyParameters()
     : JsonConfigurable()
     , m_PropertyValueToConcurrencyMap()
@@ -148,9 +142,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- ConcurrencyConfigurationByProperty
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY(ConcurrencyConfigurationByProperty)
-    END_QUERY_INTERFACE_BODY(ConcurrencyConfigurationByProperty)
-
     ConcurrencyConfigurationByProperty::ConcurrencyConfigurationByProperty( const std::string& propertyValue )
     : JsonConfigurable()
     , m_PropretyValue( propertyValue )
@@ -201,9 +192,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- ConcurrencyConfiguration
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY(ConcurrencyConfiguration)
-    END_QUERY_INTERFACE_BODY(ConcurrencyConfiguration)
-
     ConcurrencyConfiguration::ConcurrencyConfiguration()
     : JsonConfigurable()
     , m_PropertyKey( DEFAULT_PROPERTY )

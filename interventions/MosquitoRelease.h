@@ -27,7 +27,6 @@ namespace Kernel
     class ResistanceHegGenetics : public JsonConfigurable, public IComplexJsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
         public:
             ResistanceHegGenetics() {}
             virtual void ConfigureFromJsonAndKey( const Configuration *, const std::string &key ) override;
@@ -49,7 +48,6 @@ namespace Kernel
         virtual ~MosquitoRelease() { }
 
         // INodeDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC);
         virtual void SetContextTo(INodeEventContext *context) { } // not needed for this intervention
         virtual void Update(float dt);

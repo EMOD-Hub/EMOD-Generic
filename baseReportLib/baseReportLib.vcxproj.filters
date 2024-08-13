@@ -48,9 +48,6 @@
     <ClInclude Include="BaseTextReportEvents.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\utils\BoostLibWrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\utils\Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>

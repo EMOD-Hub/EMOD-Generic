@@ -14,7 +14,6 @@ if env['AllDlls'] or ( 'DiseaseDll' in env and env[ 'DiseaseDll' ] !="" ):
 
     eradenv = env.Clone()
     eradenv.Append( CPPDEFINES=["_DLLS_" ] )
-    eradenv.Append( CPPDEFINES=["BOOST_ALL_NO_LIB"] )
     eradenv.Append( CPPDEFINES=["ENABLE_PYTHON" ] )
     #env.Append( CPPDEFINES=["ENABLE_POLIO" ] )
     if env['DiseaseDll'] != "Vector" and env['DiseaseDll'] != "Malaria" and env['DiseaseDll'] != "Environmental":

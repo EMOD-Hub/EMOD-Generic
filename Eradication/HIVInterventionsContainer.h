@@ -28,9 +28,6 @@ namespace Kernel
         HIVInterventionsContainer();
         virtual ~HIVInterventionsContainer();
 
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
         // IIndividualHumanInterventionsContext
         virtual void SetContextTo(IIndividualHumanContext* context) override;
         virtual IHIVInterventionsContainer* GetContainerHIV() override;

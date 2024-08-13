@@ -19,9 +19,6 @@ SETUP_LOGGING( "OutbreakIndividualMalaria" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED( OutbreakIndividualMalaria, OutbreakIndividual )
-    END_QUERY_INTERFACE_DERIVED( OutbreakIndividualMalaria, OutbreakIndividual )
-
     IMPLEMENT_FACTORY_REGISTERED( OutbreakIndividualMalaria )
 
     OutbreakIndividualMalaria::OutbreakIndividualMalaria()

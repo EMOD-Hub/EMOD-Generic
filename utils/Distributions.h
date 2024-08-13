@@ -26,7 +26,6 @@ namespace Kernel
         ~DistributionConstant();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionExponential : public DistributionBase
@@ -38,7 +37,6 @@ namespace Kernel
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual void SetParameters( double param1, double param2, double param3 ) override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionGaussian : public DistributionBase
@@ -49,7 +47,6 @@ namespace Kernel
         ~DistributionGaussian();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionPoisson : public DistributionBase
@@ -60,7 +57,6 @@ namespace Kernel
         ~DistributionPoisson();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionLogNormal : public DistributionBase
@@ -71,7 +67,6 @@ namespace Kernel
         ~DistributionLogNormal();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionWeibull : public DistributionBase
@@ -82,7 +77,6 @@ namespace Kernel
         ~DistributionWeibull();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionDualConstant : public DistributionBase
@@ -93,7 +87,6 @@ namespace Kernel
         ~DistributionDualConstant();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionDualExponential : public DistributionBase
@@ -104,7 +97,6 @@ namespace Kernel
         ~DistributionDualExponential();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionUniform : public DistributionBase
@@ -115,7 +107,6 @@ namespace Kernel
         ~DistributionUniform();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionGamma : public DistributionBase
@@ -126,7 +117,6 @@ namespace Kernel
         ~DistributionGamma();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     /******************  PiecewiseDistribution ******************/
@@ -138,7 +128,6 @@ namespace Kernel
         ~DistributionPiecewiseConstant();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionPiecewiseLinear : public PiecewiseDistributionBase
@@ -149,6 +138,5 @@ namespace Kernel
         ~DistributionPiecewiseLinear();
         virtual float Calculate( RANDOMBASE* pRNG ) const override;
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 }

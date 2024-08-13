@@ -26,7 +26,6 @@ namespace Kernel
     public:
         virtual bool Configure( const Configuration* config );
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
     };
 
     class ISusceptibilityPy : public ISupports
@@ -49,9 +48,7 @@ namespace Kernel
         public ISusceptibilityPyReportable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
 
-    protected:
     public:
         static SusceptibilityPy *CreateSusceptibility(IIndividualHumanContext *context, float immmod, float riskmod);
         void Initialize(float _immmod, float _riskmod);

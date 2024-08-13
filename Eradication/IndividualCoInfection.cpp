@@ -63,18 +63,7 @@ namespace Kernel
     bool IndividualHumanCoInfectionConfig::enable_coinfection_mortality = false;
     bool IndividualHumanCoInfectionConfig::enable_exogenous = false;
 
-
-    //CD4_act_map.insert(std::pair<float,float>(0.0f,0.0f)); 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(TBHIV.Individual,IndividualHumanCoInfectionConfig)
-    BEGIN_QUERY_INTERFACE_BODY(IndividualHumanCoInfectionConfig)
-    END_QUERY_INTERFACE_BODY(IndividualHumanCoInfectionConfig)
-
-    BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanCoInfection, IndividualHumanAirborne)
-        HANDLE_INTERFACE(IIndividualHumanCoInfection)
-        HANDLE_INTERFACE(IIndividualHumanTB)
-        HANDLE_INTERFACE(IIndividualHumanHIV) 
-    END_QUERY_INTERFACE_DERIVED(IndividualHumanCoInfection, IndividualHumanAirborne)
-
 
    IndividualHumanCoInfection::IndividualHumanCoInfection() :
         IndividualHumanAirborne(),

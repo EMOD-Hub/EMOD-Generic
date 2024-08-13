@@ -27,8 +27,6 @@ namespace Kernel
         AntiHIVMonotherapyDrug();
         virtual ~AntiHIVMonotherapyDrug();
 
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
         virtual void SetContextTo(IIndividualHumanContext *context);
 
         // IDistributableIntervention

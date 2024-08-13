@@ -20,11 +20,6 @@ namespace Kernel
 {
     static uint64_t VCI_COUNTER = 1 ; //TODO - need to make multi-core
 
-    // QI stuff
-    BEGIN_QUERY_INTERFACE_DERIVED(VectorCohortIndividual, VectorCohortAbstract )
-        HANDLE_INTERFACE( IVectorCohortIndividual )
-    END_QUERY_INTERFACE_DERIVED(VectorCohortIndividual, VectorCohortAbstract)
-
     VectorCohortIndividual::VectorCohortIndividual() 
         : VectorCohortAbstract()
         , m_ID( VCI_COUNTER++ )

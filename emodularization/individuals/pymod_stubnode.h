@@ -25,12 +25,6 @@ class StubNode : public INodeContext
         virtual int32_t AddRef() { return 0; }
         virtual int32_t Release() { return 0; }
 
-        Kernel::QueryResult QueryInterface( iid_t iid, void **ppinstance )
-        {
-            assert(ppinstance);
-            return e_NOINTERFACE;
-        }
-
         virtual const NodeParams* GetParams() const
         {
             return NodeConfig::GetNodeParams();

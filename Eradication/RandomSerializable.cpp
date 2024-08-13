@@ -30,9 +30,6 @@ namespace Kernel
     // ----------------------------------------------------------------------------
     // --- LINEAR_CONGRUENTIAL
     // ----------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY( LINEAR_CONGRUENTIAL_SER )
-    END_QUERY_INTERFACE_BODY( LINEAR_CONGRUENTIAL_SER )
-
     REGISTER_SERIALIZABLE( LINEAR_CONGRUENTIAL_SER );
 
     LINEAR_CONGRUENTIAL_SER::LINEAR_CONGRUENTIAL_SER( uint32_t iSequence, size_t nCache )
@@ -54,9 +51,6 @@ namespace Kernel
     // ----------------------------------------------------------------------------
     // --- PSEUDO_DES
     // ----------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY( PSEUDO_DES_SER )
-    END_QUERY_INTERFACE_BODY( PSEUDO_DES_SER )
-
     REGISTER_SERIALIZABLE( PSEUDO_DES_SER );
 
     PSEUDO_DES_SER::PSEUDO_DES_SER( uint64_t iSequence, size_t nCache )
@@ -79,9 +73,6 @@ namespace Kernel
     // ----------------------------------------------------------------------------
     // --- AES_COUNTER
     // ----------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY( AES_COUNTER_SER )
-    END_QUERY_INTERFACE_BODY( AES_COUNTER_SER )
-
     REGISTER_SERIALIZABLE( AES_COUNTER_SER );
 
     AES_COUNTER_SER::AES_COUNTER_SER( uint64_t iSequence, size_t nCache )

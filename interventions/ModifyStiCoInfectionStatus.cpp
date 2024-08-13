@@ -15,18 +15,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 SETUP_LOGGING( "ModifyStiCoInfectionStatus" )
 
-// Important: Use the instance method to obtain the intervention factory obj instead of static method to cross the DLL boundary
-// NO USAGE like this:  GET_CONFIGURABLE(SimulationConfig)->example_variable in DLL
-
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(ModifyStiCoInfectionStatus)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(ModifyStiCoInfectionStatus)
-
-
     IMPLEMENT_FACTORY_REGISTERED(ModifyStiCoInfectionStatus)
 
     ModifyStiCoInfectionStatus::ModifyStiCoInfectionStatus()

@@ -20,11 +20,6 @@ SETUP_LOGGING( "NodeTB" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(NodeTB, NodeAirborne)
-        HANDLE_INTERFACE(INodeTB)
-    END_QUERY_INTERFACE_DERIVED(NodeTB, NodeAirborne)
-
-
     NodeTB::~NodeTB(void)
     {
     }

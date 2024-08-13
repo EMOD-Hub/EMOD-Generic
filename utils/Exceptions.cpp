@@ -181,7 +181,6 @@ static inline std::string dump_backtrace()
 // * NotYetImplementedException (need to use more of these)
 // * NullPointerException (really try to avoid using this; why is a pointer null?)
 // * OutOfRangeException (consider whether should be ConfigurationRangeEx or CalculatedValueRangeEx; do we need an ArrayIndexOutOfBoundsEx?)
-// * QueryInterfaceException
 // * SerializationException
 //
 
@@ -539,22 +538,6 @@ namespace Kernel {
                  << std::setprecision(9) << value 
                  << " which was inconsistent with range limit "
                  << std::setprecision(9) << value_violated;
-        _msg = _tmp_msg.str();
-    }
-
-    QueryInterfaceException::QueryInterfaceException( const char* file_name, int line_num, const char* function_name, const char* var_name, const char* queried_for_type, const char* variable_type )
-    : DetailedException( file_name, line_num, function_name )
-    {
-        std::ostringstream _tmp_msg;
-        _tmp_msg << "QueryInterfaceException: "
-                 << what()
-                 << "QueryInterface on variable "
-                 << GET_VAR_NAME(var_name)
-                 << " of type "
-                 << GET_STR(variable_type)
-                 << " failed to find interface "
-                 << GET_STR(queried_for_type)
-                 << ".";
         _msg = _tmp_msg.str();
     }
 

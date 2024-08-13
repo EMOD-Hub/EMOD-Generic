@@ -22,8 +22,6 @@ namespace Kernel
         HIVDrawBlood();
         HIVDrawBlood( const HIVDrawBlood& );
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual bool Configure(const Configuration* inputJson) override;
 
         // HIVSimpleDiagnostic

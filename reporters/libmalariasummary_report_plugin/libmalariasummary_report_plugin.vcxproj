@@ -54,8 +54,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>BOOST_ALL_NO_LIB;_DLLS_;_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBCUSTOMMALARIA_REPORT_PLUGIN_NEW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;$(IDM_BOOST_PATH);..\..\cajun\Include;..\..\utils;..\..\interventions;..\..\baseReportLib;..\..\Eradication;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DLLS_;_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBCUSTOMMALARIA_REPORT_PLUGIN_NEW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;..\..\cajun\Include;..\..\utils;..\..\interventions;..\..\baseReportLib;..\..\Eradication;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -72,8 +72,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>BOOST_ALL_NO_LIB;_DLLS_;_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBCUSTOMMALARIA_REPORT_PLUGIN_NEW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;$(IDM_BOOST_PATH);..\..\cajun\Include;..\..\utils;..\..\interventions;..\..\baseReportLib;..\..\Eradication;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DLLS_;_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBCUSTOMMALARIA_REPORT_PLUGIN_NEW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;..\..\cajun\Include;..\..\utils;..\..\interventions;..\..\baseReportLib;..\..\Eradication;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

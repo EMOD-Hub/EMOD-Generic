@@ -20,9 +20,6 @@ SETUP_LOGGING( "HIVARTStagingCD4AgnosticDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(HIVARTStagingCD4AgnosticDiagnostic, HIVARTStagingAbstract)
-    END_QUERY_INTERFACE_DERIVED(HIVARTStagingCD4AgnosticDiagnostic, HIVARTStagingAbstract)
-
     IMPLEMENT_FACTORY_REGISTERED(HIVARTStagingCD4AgnosticDiagnostic)
 
     HIVARTStagingCD4AgnosticDiagnostic::HIVARTStagingCD4AgnosticDiagnostic()

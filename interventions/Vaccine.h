@@ -41,9 +41,6 @@ namespace Kernel
         virtual void Update(float dt) override;
         virtual bool NeedsInfectiousLoopUpdate() const;
 
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t, void**) override;
-
     protected:
 
         bool  vaccine_took;

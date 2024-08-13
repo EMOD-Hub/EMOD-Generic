@@ -27,7 +27,6 @@ namespace Kernel
     class VectorCohortWithHabitat : public VectorCohort, public IVectorCohortWithHabitat
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static VectorCohortWithHabitat *CreateCohort( IVectorHabitat* _habitat,

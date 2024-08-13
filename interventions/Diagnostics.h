@@ -39,9 +39,7 @@ namespace Kernel
 
         void ConfigurePositiveEventOrConfig( const Configuration * inputJson );
 
-        // IDistributingDistributableIntervention
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pICCO ) override;
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void Update(float dt) override;
 
         virtual bool positiveTestResult();

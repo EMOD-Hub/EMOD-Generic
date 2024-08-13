@@ -17,7 +17,6 @@ namespace Kernel
     class SimulationMalaria : public SimulationVector
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static SimulationMalaria *CreateSimulation();

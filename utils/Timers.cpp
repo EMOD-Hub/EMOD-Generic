@@ -12,9 +12,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel { 
 
-    BEGIN_QUERY_INTERFACE_BODY(CountdownTimer) 
-    END_QUERY_INTERFACE_BODY(CountdownTimer)
-
     CountdownTimer::CountdownTimer()
     : NonNegativeFloat( 0 ) // need diff base class (RangedFloat?) if we want to init with -1
     , dead( false )

@@ -20,7 +20,6 @@ namespace Kernel
     class MDRDiagnostic : public DiagnosticTreatNeg 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, MDRDiagnostic, IDistributableIntervention)
 
     public: 
@@ -33,7 +32,5 @@ namespace Kernel
     protected:
 
         float treatment_fraction_neg;
-
-// clorton        DECLARE_SERIALIZABLE(MDRDiagnostic);
     };
 }

@@ -18,9 +18,6 @@ SETUP_LOGGING( "MalariaDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(MalariaDiagnostic, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(MalariaDiagnostic, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(MalariaDiagnostic)
 
     bool MalariaDiagnostic::Configure(const Configuration * inputJson)

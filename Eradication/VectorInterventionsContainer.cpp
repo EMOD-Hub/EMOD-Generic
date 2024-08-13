@@ -23,10 +23,6 @@ SETUP_LOGGING( "VectorInterventionsContainer" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(VectorInterventionsContainer, InterventionsContainer)
-        HANDLE_INTERFACE(IVectorInterventionsEffects)
-    END_QUERY_INTERFACE_DERIVED(VectorInterventionsContainer, InterventionsContainer)
-
     VectorInterventionsContainer::VectorInterventionsContainer()
         : InterventionsContainer()
         , pDieBeforeFeeding(0)

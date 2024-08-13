@@ -26,11 +26,6 @@ SETUP_LOGGING( "NodeMalaria" )
 
 namespace Kernel
 {
-    // QI stuff in case we want to use it more extensively
-    BEGIN_QUERY_INTERFACE_DERIVED(NodeMalaria, NodeVector)
-        HANDLE_INTERFACE(INodeMalaria)
-    END_QUERY_INTERFACE_DERIVED(NodeMalaria, NodeVector)
-
     NodeMalaria::NodeMalaria() : NodeVector()
         , m_Parasite_positive(0)
         , m_Log_parasites(0)

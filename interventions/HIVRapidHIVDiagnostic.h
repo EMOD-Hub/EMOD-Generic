@@ -25,9 +25,6 @@ namespace Kernel
         HIVRapidHIVDiagnostic();
         HIVRapidHIVDiagnostic( const HIVRapidHIVDiagnostic& );
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
-
     protected:
         virtual void onNegativeTestResult() override;
         virtual void positiveTestDistribute() override;

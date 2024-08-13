@@ -17,7 +17,6 @@ namespace Kernel
     {
         DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, CoverageByNodeEventCoordinator, IEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         CoverageByNodeEventCoordinator();

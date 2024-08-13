@@ -837,7 +837,6 @@ namespace Kernel
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
         public:
             InterventionConfig();
             InterventionConfig(json::QuickInterpreter* qi);
@@ -892,7 +891,6 @@ namespace Kernel
     class NodeSetConfig : public JsonConfigurable, public IComplexJsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
         public:
             NodeSetConfig();
             NodeSetConfig(json::QuickInterpreter* qi);
@@ -905,7 +903,6 @@ namespace Kernel
     class EventConfig : public JsonConfigurable, public IComplexJsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
         public:
             EventConfig();
             EventConfig(json::QuickInterpreter* qi);

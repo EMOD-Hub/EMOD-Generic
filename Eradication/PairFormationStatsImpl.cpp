@@ -18,9 +18,6 @@ SETUP_LOGGING( "PairFormationStatsImpl" )
 
 namespace Kernel 
 {
-    BEGIN_QUERY_INTERFACE_BODY(PairFormationStatsImpl)
-    END_QUERY_INTERFACE_BODY(PairFormationStatsImpl)
-
     void PairFormationStatsImpl::ResetEligible()
     {
         for (int risk_group = 0; risk_group < RiskGroup::COUNT; risk_group++)  // Risk Group

@@ -58,9 +58,6 @@ namespace Kernel
 
         virtual ITBInterventionsContainer* GetContainerTB() override; 
 
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
         //functions in the ITBInterventionsContainer
         virtual int GetNumTBDrugsActive() override;
         virtual bool GetTxNaiveStatus() const override;

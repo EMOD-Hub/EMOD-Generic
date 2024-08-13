@@ -24,9 +24,6 @@ SETUP_LOGGING( "HIVARTStagingAbstract" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(HIVARTStagingAbstract, HIVSimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(HIVARTStagingAbstract, HIVSimpleDiagnostic)
-
     HIVARTStagingAbstract::HIVARTStagingAbstract()
     : HIVSimpleDiagnostic()
     , ip_tb_value_expected()

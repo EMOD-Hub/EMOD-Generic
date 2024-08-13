@@ -29,8 +29,6 @@ namespace Kernel
         friend class NodeVector;
         //friend class VectorPopulation;
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
-        //DECLARE_SERIALIZABLE( IndividualHumanVector )
 
     public:
         // TODO change double to float

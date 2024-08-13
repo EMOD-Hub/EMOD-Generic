@@ -20,7 +20,6 @@ namespace Kernel
     class RelationshipManager : public IRelationshipManager
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
-        DECLARE_QUERY_INTERFACE();
 
         friend class ReportSTI;
     public:

@@ -21,7 +21,6 @@ namespace Kernel
     class RangeThreshold : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
     public:
         RangeThreshold( const char* pLowDesc, const char* pHighDesc, const char* pEventDesc );
@@ -55,7 +54,6 @@ namespace Kernel
     class AgeDiagnostic : public SimpleDiagnostic 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, AgeDiagnostic, IDistributableIntervention)
 
     public: 

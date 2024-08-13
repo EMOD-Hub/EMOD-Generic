@@ -19,43 +19,6 @@ SETUP_LOGGING("DurationDistributionImpl")
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY( DistributionExponentialConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionExponentialConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionGammaConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionGammaConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionGaussianConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionGaussianConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionPoissonConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionPoissonConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionLogNormalConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionLogNormalConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionConstantConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionConstantConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionWeibullConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionWeibullConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionDualConstantConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionBimodaConfigurablel )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionDualExponentialConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionDualExponentialConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionUniformConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionUniformConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionPiecewiseConstantConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionPiecewiseConstantConfigurable )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionPiecewiseLinearConfigurable )
-    END_QUERY_INTERFACE_BODY( DistributionPiecewiseLinearConfigurable )
-
-
     // ---------- DistributionFunctionConfigurable::CONSTANT_DISTRIBUTION -------
     DistributionConstantConfigurable::DistributionConstantConfigurable()
         : DistributionConstant()

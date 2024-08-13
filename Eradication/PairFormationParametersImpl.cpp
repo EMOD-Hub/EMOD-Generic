@@ -19,9 +19,6 @@ SETUP_LOGGING( "PairFormationParametersImpl" )
 
 namespace Kernel 
 {
-    BEGIN_QUERY_INTERFACE_BODY(PairFormationParametersImpl)
-    END_QUERY_INTERFACE_BODY(PairFormationParametersImpl)
-
     RelationshipType::Enum PairFormationParametersImpl::GetRelationshipType() const
     {
         return rel_type ;

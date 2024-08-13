@@ -33,7 +33,6 @@ namespace Kernel
         // --------------
         // --- ISupports
         // --------------
-        virtual Kernel::QueryResult QueryInterface( Kernel::iid_t iid, void **ppvObject ) override { return Kernel::e_NOINTERFACE; }
         IMPLEMENT_NO_REFERENCE_COUNTING()
 
     protected:

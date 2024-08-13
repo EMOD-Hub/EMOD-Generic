@@ -71,13 +71,6 @@ namespace Kernel
         return schema;
     }
 
-    BEGIN_QUERY_INTERFACE_BODY(MosquitoRelease)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_INTERFACE(INodeDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(INodeDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(MosquitoRelease)
-
     IMPLEMENT_FACTORY_REGISTERED(MosquitoRelease)
 
     MosquitoRelease::MosquitoRelease()
@@ -192,15 +185,3 @@ namespace Kernel
         return releasedNumber;
     }
 }
-
-#if 0
-namespace Kernel {
-    template<class Archive>
-    void serialize_inner(Archive &ar, const unsigned int v)
-    {
-        ar & releasedSpecies;
-        ar & vector_genetics;
-        ar & releasedNumber;
-    }
-}
-#endif

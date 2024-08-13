@@ -16,7 +16,6 @@ SETUP_LOGGING( "DelayEventCoordinator" )
 namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED( DelayEventCoordinator )
-    IMPL_QUERY_INTERFACE2( DelayEventCoordinator, IEventCoordinator, IConfigurable )
 
     DelayEventCoordinator::DelayEventCoordinator()
         : TriggeredEventCoordinator()

@@ -25,13 +25,6 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(PropertyValueChanger)
 
-    BEGIN_QUERY_INTERFACE_BODY(PropertyValueChanger)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(PropertyValueChanger)
-
     PropertyValueChanger::PropertyValueChanger()
         : BaseIntervention()
         , target_property_key()

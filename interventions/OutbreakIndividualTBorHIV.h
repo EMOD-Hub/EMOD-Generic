@@ -24,7 +24,6 @@ namespace Kernel
         int infection_type;
     public:
         OutbreakIndividualTBorHIV();
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
         virtual ~OutbreakIndividualTBorHIV() { }
         QuickBuilder GetSchema();
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO);

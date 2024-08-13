@@ -65,13 +65,6 @@ void Stopwatch::Stop()
     QueryPerformanceCounter((LARGE_INTEGER*)&_stop);
 }
 
-//! Stops the timer and returns the result
-//double Stopwatch::StopResult()
-//{
-//    Stop();
-//    return ResultNanoseconds();
-//}
-
 //! You can get the result of the stopwatch start-stop sequence at
 //! your leisure.
 double Stopwatch::ResultNanoseconds()

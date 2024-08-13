@@ -33,8 +33,6 @@ namespace Kernel
         virtual ~BroadcastEvent() {  }
         bool Configure( const Configuration* pConfig ) override;
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void Update(float dt) override;
 
     protected:

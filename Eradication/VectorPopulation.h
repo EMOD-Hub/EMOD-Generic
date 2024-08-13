@@ -44,7 +44,6 @@ namespace Kernel
     class VectorPopulation : public IVectorPopulation, public IInfectable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static VectorPopulation *CreatePopulation( INodeContext *context, const std::string& species, uint32_t adults, uint32_t infectious );

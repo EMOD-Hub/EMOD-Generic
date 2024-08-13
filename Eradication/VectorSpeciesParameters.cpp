@@ -164,14 +164,6 @@ namespace Kernel
         return ret;
     }
 
-    QueryResult
-    VectorSpeciesParameters::QueryInterface(
-        iid_t iid, void **ppvObject
-    )
-    {
-        throw NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "Should not get here" );
-    }
-
     void VectorSpeciesParameters::Initialize(const std::string& vector_species_name)
     {
         LOG_DEBUG_F( "VectorSpeciesParameters::Initialize: species = %s\n", vector_species_name.c_str() );

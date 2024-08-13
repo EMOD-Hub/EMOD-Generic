@@ -13,6 +13,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include <cfloat>
 #include <ctime>
 #include <cmath>
+#include <algorithm>
 
 #include "ChannelDataMap.h"
 #include "Log.h"

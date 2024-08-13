@@ -24,10 +24,6 @@ SETUP_LOGGING( "TBInterventionsContainer" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(TBInterventionsContainer, InterventionsContainer)
-        HANDLE_INTERFACE(ITBInterventionsContainer)
-    END_QUERY_INTERFACE_DERIVED(TBInterventionsContainer, InterventionsContainer)
-
     TBInterventionsContainer::TBInterventionsContainer() :
         InterventionsContainer()
         , m_is_tb_tx_naive_TBIVC(true)

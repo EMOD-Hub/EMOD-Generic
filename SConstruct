@@ -228,7 +228,6 @@ if os.sys.platform == 'win32':
                           "#/baseReportLib",
                           "#/utils",
                           "#/libgeneric_static",
-                          os.environ['IDM_BOOST_PATH'],
                           os.environ['IDM_PYTHON3X_PATH']+"/include",
                           "#/Dependencies/ComputeClusterPack/Include",
                           "#/cajun/include",
@@ -348,8 +347,6 @@ elif "win32" == os.sys.platform:
 
     # PSAPI_VERSION relates to process api dll Psapi.dll.
     env.Append( CPPDEFINES=["_CONSOLE"] )
-
-    env.Append( CPPDEFINES=[ "BOOST_ALL_NO_LIB" ] )
     env.Append( CPPDEFINES=[ "IDM_EXPORT"] )
     env.Append( CPPDEFINES=[ "NDEBUG"] )
     env.Append( CPPDEFINES=[ "_UNICODE" ] )

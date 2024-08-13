@@ -20,8 +20,6 @@ namespace Kernel
     AgeDependentBitingRisk::Enum SusceptibilityVectorConfig::age_dependent_biting_risk_type = AgeDependentBitingRisk::OFF;
     float  SusceptibilityVectorConfig::m_newborn_biting_risk = 0.2f;
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Vector.Susceptibility,SusceptibilityVectorConfig)
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityVectorConfig)
-    END_QUERY_INTERFACE_BODY(SusceptibilityVectorConfig)
 
     bool SusceptibilityVectorConfig::Configure( const Configuration* config )
     {
@@ -37,11 +35,6 @@ namespace Kernel
     SusceptibilityVector::SusceptibilityVector(IIndividualHumanContext *context) : Kernel::Susceptibility(context)
     {
     }
-
-    // QI stuff in case we want to use it more extensively
-    BEGIN_QUERY_INTERFACE_DERIVED(SusceptibilityVector, Susceptibility)
-        HANDLE_INTERFACE(ISusceptibilityVector)
-    END_QUERY_INTERFACE_DERIVED(SusceptibilityVector, Susceptibility)
 
     void SusceptibilityVector::Initialize(float immmod, float riskmod)
     {

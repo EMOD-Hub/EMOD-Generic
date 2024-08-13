@@ -21,21 +21,10 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "Configure.h"
 #include "InterventionFactory.h"
 
-/*
-    Notes on extending ECH functionality
-    Each of the ECH levels implements ISupports so that extended versions can be queried
-    To expose more methods specific to your simulation/node/individual, first override the setupEventContext methods in your derived sim/node/ind type to instantiate a derived ECH
-    Have your ECH implement an extended EC interface, and support querying it
-    Then your event coordinators that need disease-specific info can query the appropriate sim/node/ind-ECH for the disease-specific EC
-
-*/
-
 SETUP_LOGGING( "SimulationEventContext" )
 
 namespace Kernel
 {
-    IMPL_QUERY_INTERFACE1(SimulationEventContextHost, ISimulationEventContext)
-
     SimulationEventContextHost::SimulationEventContextHost(Simulation* _sim)
         : sim(_sim)
         , event_coordinators()

@@ -22,7 +22,6 @@ namespace Kernel
     {
         GET_SCHEMA_STATIC_WRAPPER(SimulationSTI)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual ~SimulationSTI(void);

@@ -22,7 +22,6 @@ namespace Kernel
     public: 
         HIVSigmoidByYearAndSexDiagnostic();
         HIVSigmoidByYearAndSexDiagnostic( const HIVSigmoidByYearAndSexDiagnostic& );
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual bool positiveTestResult() override;
 
     protected:

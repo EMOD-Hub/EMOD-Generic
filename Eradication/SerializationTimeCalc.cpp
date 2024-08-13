@@ -17,8 +17,6 @@ using namespace Kernel;
 SETUP_LOGGING( "SerializationTimeCalc" )
 
 GET_SCHEMA_STATIC_WRAPPER_IMPL(SerializationTimeCalc, SerializationTimeCalc)
-BEGIN_QUERY_INTERFACE_BODY(SerializationTimeCalc)
-END_QUERY_INTERFACE_BODY(SerializationTimeCalc)
 
 std::deque<int32_t> SerializationTimeCalc::GetSerializedTimeSteps(int32_t steps, float start_time, float step_size)
 {

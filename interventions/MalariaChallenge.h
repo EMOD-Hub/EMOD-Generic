@@ -29,8 +29,6 @@ namespace Kernel
         MalariaChallenge( const MalariaChallenge& master );
         virtual ~MalariaChallenge() { }
 
-        // INodeDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC);
         virtual void SetContextTo(INodeEventContext *context) { /* not needed for this intervention */ }
         virtual void Update(float dt);

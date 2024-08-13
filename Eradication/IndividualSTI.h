@@ -26,7 +26,6 @@ namespace Kernel
         friend class Relationship;
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER( IndividualHumanSTIConfig )
 
     public:
@@ -63,7 +62,6 @@ namespace Kernel
         friend class SimulationSTI;
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( IndividualHumanSTI )
 
     public:

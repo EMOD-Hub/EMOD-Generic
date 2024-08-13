@@ -19,9 +19,6 @@ SETUP_LOGGING( "Assortivity" )
 
 namespace Kernel 
 {
-    BEGIN_QUERY_INTERFACE_BODY(Assortivity)
-    END_QUERY_INTERFACE_BODY(Assortivity)
-
     std::string Assortivity::ValuesToString( const std::vector<std::string>& rList )
     {
         std::stringstream ss ;

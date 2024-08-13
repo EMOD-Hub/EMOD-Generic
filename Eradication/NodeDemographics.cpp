@@ -34,8 +34,6 @@ namespace Kernel
 {
 
 GET_SCHEMA_STATIC_WRAPPER_IMPL(NodeDemographics,NodeDemographicsFactory)
-BEGIN_QUERY_INTERFACE_BODY(NodeDemographicsFactory)
-END_QUERY_INTERFACE_BODY(NodeDemographicsFactory)
 
 std::vector<std::string> NodeDemographicsFactory::demographics_filenames_list;
 

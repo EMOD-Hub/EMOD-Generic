@@ -19,10 +19,6 @@ SETUP_LOGGING( "NodeTBHIV" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(NodeTBHIV, NodeTB)
-        HANDLE_INTERFACE( INodeTBHIV )
-    END_QUERY_INTERFACE_DERIVED(NodeTBHIV, NodeTB)
-
     NodeTBHIV::~NodeTBHIV(void)
     {
     }

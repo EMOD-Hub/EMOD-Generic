@@ -21,9 +21,6 @@ SETUP_LOGGING( "AntiTBDrug" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(AntiTBDrug, GenericDrug)
-    END_QUERY_INTERFACE_DERIVED(AntiTBDrug, GenericDrug)
-
     IMPLEMENT_FACTORY_REGISTERED(AntiTBDrug)
 
     AntiTBDrug::AntiTBDrug()

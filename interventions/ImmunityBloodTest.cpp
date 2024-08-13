@@ -19,13 +19,8 @@ const float ImmuneThreshold = 1.0f; //threshold to be considered immune
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(ImmunityBloodTest, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(ImmunityBloodTest, SimpleDiagnostic)
-    IMPLEMENT_FACTORY_REGISTERED(ImmunityBloodTest)
-
     bool ImmunityBloodTest::Configure(const Configuration * inputJson)
     {
-        //initConfigTypeMap("Negative_Diagnosis_Event", &negative_diagnosis_event, IBT_Negative_Diagnosis_Config_Event_DESC_TEXT, "Event_Or_Config", "Event");
         initConfig( "Negative_Diagnosis_Event", negative_diagnosis_event, inputJson, MetadataDescriptor::Enum("Negative_Diagnosis_Event", IBT_Negative_Diagnosis_Config_Event_DESC_TEXT, MDD_ENUM_ARGS( EventTrigger ) ) );
         initConfigTypeMap("Positive_Threshold_AcquisitionImmunity", &threshold_acquisitionImmunity, IBT_Positive_Threshold_AcquisitionImmunity_DESC_TEXT, 0.0, 1.0, ImmuneThreshold);
         return SimpleDiagnostic::Configure(inputJson);

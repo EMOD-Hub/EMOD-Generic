@@ -27,9 +27,6 @@
     <ClInclude Include="EventCoordinator.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\utils\BoostLibWrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Eradication\Climate.h">
       <Filter>Header Files</Filter>
     </ClInclude>

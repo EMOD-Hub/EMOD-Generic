@@ -25,7 +25,6 @@ namespace Kernel
     {
         friend class SimulationAirborne;
 
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( IndividualHumanAirborne )
 
     public:

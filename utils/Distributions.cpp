@@ -19,43 +19,6 @@ SETUP_LOGGING("DurationDistributionImpl")
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY( DistributionExponential )
-    END_QUERY_INTERFACE_BODY( DistributionExponential )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionGamma )
-    END_QUERY_INTERFACE_BODY( DistributionGamma )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionGaussian )
-    END_QUERY_INTERFACE_BODY( DistributionGaussian )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionPoisson )
-    END_QUERY_INTERFACE_BODY( DistributionPoisson )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionLogNormal )
-    END_QUERY_INTERFACE_BODY( DistributionLogNormal )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionConstant )
-    END_QUERY_INTERFACE_BODY( DistributionConstant )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionWeibull )
-    END_QUERY_INTERFACE_BODY( DistributionWeibull )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionDualConstant )
-    END_QUERY_INTERFACE_BODY( DistributionDualConstant )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionDualExponential )
-    END_QUERY_INTERFACE_BODY( DistributionDualExponential )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionUniform )
-    END_QUERY_INTERFACE_BODY( DistributionUniform )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionPiecewiseConstant )
-    END_QUERY_INTERFACE_BODY( DistributionPiecewiseConstant )
-
-    BEGIN_QUERY_INTERFACE_BODY( DistributionPiecewiseLinear )
-    END_QUERY_INTERFACE_BODY( DistributionPiecewiseLinear )
-
-
     // ---------- DistributionFunction::CONSTANT_DISTRIBUTION -------
     DistributionConstant::DistributionConstant( )
         : DistributionBase() 

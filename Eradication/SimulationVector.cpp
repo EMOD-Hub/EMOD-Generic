@@ -35,11 +35,6 @@ SETUP_LOGGING( "SimulationVector" )
 
 namespace Kernel
 {
-    // QI stuff in case we want to use it more extensively
-    BEGIN_QUERY_INTERFACE_DERIVED(SimulationVector, Simulation)
-        HANDLE_INTERFACE(IVectorSimulationContext)
-    END_QUERY_INTERFACE_DERIVED(SimulationVector, Simulation)
-
     SimulationVector::SimulationVector()
         : Kernel::Simulation()
         , vector_migration_reports()

@@ -31,8 +31,7 @@ namespace Kernel
         PropertyRestriction() {}
         virtual bool Configure(const Configuration* config);
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-            DECLARE_QUERY_INTERFACE()
-        
+
         std::vector<std::string> const & GetRestrictions() const;
 
     private:
@@ -44,7 +43,6 @@ namespace Kernel
     class IDMAPI PropertyRestrictions : public JsonConfigurableCollection<PropertyRestriction>
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
     public:
         PropertyRestrictions();
         virtual void ConfigureFromJsonAndKey( const Configuration *, const std::string &key ) override;

@@ -41,7 +41,6 @@ namespace Kernel
 
         GET_SCHEMA_STATIC_WRAPPER(InfectionConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     };
 
     // generic infection base class
@@ -49,7 +48,6 @@ namespace Kernel
     class Infection : public IInfection
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static Infection *CreateInfection(IIndividualHumanContext *context, suids::suid _suid);

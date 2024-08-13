@@ -34,7 +34,6 @@ namespace Kernel
     public:
         DECLARE_CONFIGURED(GroupInterventionDistributionEventCoordinatorHIV)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     public:
         GroupInterventionDistributionEventCoordinatorHIV();
         

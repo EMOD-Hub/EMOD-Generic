@@ -30,8 +30,6 @@ namespace Kernel
         MalariaInterventionsContainer();
         virtual ~MalariaInterventionsContainer();
 
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
         // IMalariaDrugEffectsApply
         virtual void AddDrugEffects( IMalariaDrugEffects* pDrugEffects ) override;
         virtual void RemoveDrugEffects( IMalariaDrugEffects* pDrugEffects ) override;

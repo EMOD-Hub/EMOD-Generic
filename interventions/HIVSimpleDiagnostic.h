@@ -23,8 +23,6 @@ namespace Kernel
         HIVSimpleDiagnostic();
         HIVSimpleDiagnostic( const HIVSimpleDiagnostic& );
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void Update(float dt) override;
         virtual bool Configure(const Configuration* inputJson) override;
         virtual bool Distribute( IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pICCO ) override;

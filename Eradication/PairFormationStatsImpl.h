@@ -16,7 +16,6 @@ namespace Kernel
     class IDMAPI PairFormationStatsImpl : public IPairFormationStats 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
-        DECLARE_QUERY_INTERFACE();
     public:
         virtual void ResetEligible() override;
         virtual void UpdateEligible(float age_in_days, int sex, RiskGroup::Enum risk_group, int delta) override;

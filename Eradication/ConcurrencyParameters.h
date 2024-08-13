@@ -17,7 +17,6 @@ namespace Kernel
     class IDMAPI ConcurrencyByProperty : public JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     public:
         explicit ConcurrencyByProperty( const std::string& propertyKeyValue );
         virtual ~ConcurrencyByProperty();
@@ -44,7 +43,6 @@ namespace Kernel
     class IDMAPI ConcurrencyParameters : public JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     public:
         ConcurrencyParameters();
         virtual ~ConcurrencyParameters();
@@ -68,7 +66,6 @@ namespace Kernel
     class IDMAPI ConcurrencyConfigurationByProperty : public JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     public:
         explicit ConcurrencyConfigurationByProperty( const std::string& propertyKeyValue );
         virtual ~ConcurrencyConfigurationByProperty();
@@ -90,7 +87,6 @@ namespace Kernel
     class IDMAPI ConcurrencyConfiguration : public JsonConfigurable, public IConcurrency
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     public:
         ConcurrencyConfiguration();
         virtual ~ConcurrencyConfiguration();

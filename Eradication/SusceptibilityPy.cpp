@@ -21,8 +21,6 @@ SETUP_LOGGING( "SusceptibilityPy" )
 namespace Kernel
 {
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Py.Susceptibility,SusceptibilityPyConfig)
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityPyConfig)
-    END_QUERY_INTERFACE_BODY(SusceptibilityPyConfig)
 
     bool
     SusceptibilityPyConfig::Configure(
@@ -32,11 +30,6 @@ namespace Kernel
         LOG_DEBUG( "Configure\n" );
         return JsonConfigurable::Configure( config );
     }
-
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityPy)
-        HANDLE_INTERFACE(ISusceptibilityPy)
-        HANDLE_INTERFACE(ISusceptibilityPyReportable)
-    END_QUERY_INTERFACE_BODY(SusceptibilityPy)
 
     SusceptibilityPy::SusceptibilityPy(IIndividualHumanContext *context)
         : Susceptibility(context) 

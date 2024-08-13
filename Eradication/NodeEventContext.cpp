@@ -57,12 +57,6 @@ namespace Kernel
         arrival_distribution_sources.clear();
     }
 
-    Kernel::QueryResult NodeEventContextHost::QueryInterface( iid_t iid, void** ppinstance )
-    {
-        release_assert(ppinstance);
-        return e_NOINTERFACE;
-    }
-
     void NodeEventContextHost::SetContextTo( INodeContext* context )
     {
         PropagateContextToDependents();

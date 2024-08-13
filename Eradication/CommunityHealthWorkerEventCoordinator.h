@@ -48,7 +48,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, CommunityHealthWorkerEventCoordinator, IEventCoordinator)    
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         CommunityHealthWorkerEventCoordinator();
         virtual ~CommunityHealthWorkerEventCoordinator();

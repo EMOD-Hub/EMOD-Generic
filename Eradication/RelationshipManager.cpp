@@ -21,11 +21,6 @@ SETUP_LOGGING( "RelationshipMgr" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(RelationshipManager)
-        HANDLE_INTERFACE(IRelationshipManager)
-        HANDLE_ISUPPORTS_VIA(IRelationshipManager)
-    END_QUERY_INTERFACE_BODY(RelationshipManager)
-
     RelationshipManager::RelationshipManager( INodeContext* parent )
         : nodeRelationships()
         , relationshipListsForMP()

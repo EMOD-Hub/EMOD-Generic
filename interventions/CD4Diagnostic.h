@@ -16,7 +16,6 @@ namespace Kernel
     class CD4Diagnostic : public AgeDiagnostic 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, CD4Diagnostic, IDistributableIntervention)
 
     public: 

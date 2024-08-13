@@ -30,7 +30,6 @@ namespace Kernel
         virtual bool Configure( const Configuration * ) override;
 
         // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual int AddRef() override;
         virtual int Release() override;
 

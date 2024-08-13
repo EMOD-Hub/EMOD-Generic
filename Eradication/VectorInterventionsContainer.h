@@ -28,7 +28,6 @@ namespace Kernel
         VectorInterventionsContainer();
         virtual ~VectorInterventionsContainer();
 
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
         virtual int AddRef() override;
         virtual int Release() override;
 

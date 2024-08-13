@@ -38,7 +38,6 @@ SETUP_LOGGING( "InfectionTB" )
 #define  DrugSensitive       (0)
 #define  FirstLineResistant  (1)
 
-
 namespace Kernel
 {
     float InfectionTBConfig::TB_latent_cure_rate = 0.0f;
@@ -66,12 +65,6 @@ namespace Kernel
     IDistribution* InfectionTBConfig::p_infectious_timer_distribution = nullptr;
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(TB.Infection,InfectionTBConfig)
-    BEGIN_QUERY_INTERFACE_BODY(InfectionTBConfig)
-    END_QUERY_INTERFACE_BODY(InfectionTBConfig)
-
-    BEGIN_QUERY_INTERFACE_BODY(InfectionTB)
-    HANDLE_INTERFACE(IInfectionTB)
-    END_QUERY_INTERFACE_BODY(InfectionTB)
 
     bool InfectionTBConfig::Configure(const Configuration * config)
     {

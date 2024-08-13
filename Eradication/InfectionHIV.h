@@ -27,7 +27,6 @@ namespace Kernel
 
         GET_SCHEMA_STATIC_WRAPPER(InfectionHIVConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual bool Configure( const Configuration* config ) override;
@@ -56,7 +55,6 @@ namespace Kernel
     class InfectionHIV : public InfectionSTI, public IInfectionHIV
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
     public:
         virtual ~InfectionHIV(void);
         static InfectionHIV *CreateInfection(IIndividualHumanContext *context, suids::suid _suid);

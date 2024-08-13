@@ -30,12 +30,6 @@ SETUP_LOGGING( "HIVInterventionsContainer" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(HIVInterventionsContainer, STIInterventionsContainer)
-        HANDLE_INTERFACE(IHIVDrugEffectsApply)
-        HANDLE_INTERFACE(IHIVInterventionsContainer)
-        HANDLE_INTERFACE(IHIVMedicalHistory)
-    END_QUERY_INTERFACE_DERIVED(HIVInterventionsContainer, STIInterventionsContainer)
-
     HIVInterventionsContainer::HIVInterventionsContainer()
         : STIInterventionsContainer()
         , HIV_drug_inactivation_rate(0.0)

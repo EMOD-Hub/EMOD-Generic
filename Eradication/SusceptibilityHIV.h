@@ -23,7 +23,6 @@ namespace Kernel
         friend class IndividualHumanCoinfection;
         GET_SCHEMA_STATIC_WRAPPER(SusceptibilityHIVConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual bool Configure( const Configuration* config ) override;
@@ -53,7 +52,6 @@ namespace Kernel
         friend class IndividualHumanCoInfection;
          friend class IndividualHumanHIV;
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
 
         virtual ~SusceptibilityHIV(void);
         static Susceptibility *CreateSusceptibility(IIndividualHumanContext *context, float immmod, float riskmod);

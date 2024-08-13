@@ -20,7 +20,6 @@ namespace Kernel
     {
         GET_SCHEMA_STATIC_WRAPPER(IndividualHumanTyphoidConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
         virtual bool Configure( const Configuration* config );
     protected:
         friend class SimulationTyphoid;
@@ -65,7 +64,6 @@ namespace Kernel
         friend class SimulationTyphoid;
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( IndividualHumanTyphoid )
 
     public:

@@ -72,8 +72,6 @@ namespace Kernel
     float  SusceptibilityMalariaConfig::fever_IRBC_killrate               = 0.0f;
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Malaria.Susceptibility,SusceptibilityMalariaConfig)
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityMalariaConfig)
-    END_QUERY_INTERFACE_BODY(SusceptibilityMalariaConfig)
 
     bool SusceptibilityMalariaConfig::Configure( const Configuration* config )
     {
@@ -120,11 +118,6 @@ namespace Kernel
 
         return configured;
     }
-
-    // QI stuff in case we want to use it more extensively
-    BEGIN_QUERY_INTERFACE_DERIVED(SusceptibilityMalaria, SusceptibilityVector)
-        HANDLE_INTERFACE(IMalariaSusceptibility)
-    END_QUERY_INTERFACE_DERIVED(SusceptibilityMalaria, SusceptibilityVector)
 
     SusceptibilityMalaria::SusceptibilityMalaria() : SusceptibilityVector(),
         m_antigenic_flag(0),

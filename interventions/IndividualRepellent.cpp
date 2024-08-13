@@ -17,12 +17,6 @@ SETUP_LOGGING( "SimpleIndividualRepellent" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(SimpleIndividualRepellent)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(SimpleIndividualRepellent)
-
     IMPLEMENT_FACTORY_REGISTERED(SimpleIndividualRepellent)
 
     SimpleIndividualRepellent::SimpleIndividualRepellent()

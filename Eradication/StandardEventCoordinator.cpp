@@ -38,9 +38,6 @@ namespace Kernel
 
     IMPLEMENT_FACTORY_REGISTERED(StandardInterventionDistributionEventCoordinator)
 
-    IMPL_QUERY_INTERFACE2(StandardInterventionDistributionEventCoordinator, IEventCoordinator, IConfigurable)
-
-    // ctor
     StandardInterventionDistributionEventCoordinator::StandardInterventionDistributionEventCoordinator( bool useDemographicCoverage ) 
         : parent(nullptr)
         , distribution_complete(false)

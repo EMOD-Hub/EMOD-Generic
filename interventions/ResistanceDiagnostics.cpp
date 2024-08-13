@@ -18,9 +18,6 @@ SETUP_LOGGING( "MDRDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(MDRDiagnostic, DiagnosticTreatNeg)
-    END_QUERY_INTERFACE_DERIVED(MDRDiagnostic, DiagnosticTreatNeg)
-
     IMPLEMENT_FACTORY_REGISTERED(MDRDiagnostic)
 
     bool MDRDiagnostic::Configure(

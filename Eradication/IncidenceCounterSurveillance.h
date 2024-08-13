@@ -19,7 +19,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         IncidenceCounterSurveillance();
         virtual ~IncidenceCounterSurveillance();

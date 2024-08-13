@@ -38,8 +38,6 @@ namespace Kernel
 
         virtual bool Configure( const Configuration * config ) override;
 
-        // INodeDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual bool Distribute( INodeEventContext *pNodeEventContext, IEventCoordinator2 *pEC ) override;
         virtual void Update(float dt) override;
 

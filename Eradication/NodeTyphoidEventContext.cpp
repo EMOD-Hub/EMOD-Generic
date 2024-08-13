@@ -34,12 +34,6 @@ namespace Kernel
     {
     }
 
-    QueryResult NodeTyphoidEventContextHost::QueryInterface( iid_t iid, void** ppinstance )
-    {
-        release_assert(ppinstance);
-        return e_NOINTERFACE;
-    }
-
     INodeTyphoidInterventionEffects* NodeTyphoidEventContextHost::GetNodeTyphoidInterventionEffects()
     {
         return static_cast<INodeTyphoidInterventionEffects*>(this);

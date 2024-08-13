@@ -53,12 +53,6 @@ namespace Kernel {
 #define FEMALE_PARTNER_ID()     ( (absent_female_partner_id == suids::nil_suid()) ? female_partner->GetSuid() : absent_female_partner_id )
 #define PARTNERID( individual ) ( GetPartner( individual ) ? GetPartner( individual )->GetSuid() : suids::nil_suid()        )
 
-    BEGIN_QUERY_INTERFACE_BODY(Relationship)
-        HANDLE_INTERFACE(IRelationship)
-        HANDLE_ISUPPORTS_VIA(IRelationship)
-    END_QUERY_INTERFACE_BODY(Relationship)
-
-
     Relationship::Relationship()
         : IRelationship()
         , _suid(suids::nil_suid())
@@ -891,9 +885,6 @@ namespace Kernel {
     // ------------------------------------------------------------------------
     // --- TransitoryRelationship
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_DERIVED(TransitoryRelationship, Relationship)
-    END_QUERY_INTERFACE_DERIVED(TransitoryRelationship, Relationship)
-
     TransitoryRelationship::TransitoryRelationship()
     : Relationship()
     {
@@ -931,9 +922,6 @@ namespace Kernel {
     // ------------------------------------------------------------------------
     // --- InformalRelationship
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_DERIVED(InformalRelationship, Relationship)
-    END_QUERY_INTERFACE_DERIVED(InformalRelationship, Relationship)
-
     InformalRelationship::InformalRelationship()
     : Relationship()
     {
@@ -971,9 +959,6 @@ namespace Kernel {
     // ------------------------------------------------------------------------
     // --- MarriageRelationship
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_DERIVED(MarriageRelationship, Relationship)
-    END_QUERY_INTERFACE_DERIVED(MarriageRelationship, Relationship)
-
     MarriageRelationship::MarriageRelationship()
     : Relationship()
     {
@@ -1011,9 +996,6 @@ namespace Kernel {
     // ------------------------------------------------------------------------
     // --- CommercialRelationship
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_DERIVED(CommercialRelationship, Relationship)
-    END_QUERY_INTERFACE_DERIVED(CommercialRelationship, Relationship)
-
     CommercialRelationship::CommercialRelationship()
     : Relationship()
     {

@@ -27,7 +27,6 @@ namespace Kernel
         ~DistributionConstantConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& parameter, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionExponentialConfigurable : public DistributionExponential
@@ -39,7 +38,6 @@ namespace Kernel
         ~DistributionExponentialConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& param_name, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionGaussianConfigurable : public DistributionGaussian
@@ -51,7 +49,6 @@ namespace Kernel
         ~DistributionGaussianConfigurable();
         virtual bool Configure( JsonConfigurable * pParent, std::string & param_name, const Configuration * config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionPoissonConfigurable : public DistributionPoisson
@@ -63,7 +60,6 @@ namespace Kernel
         ~DistributionPoissonConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& param_name, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionLogNormalConfigurable : public DistributionLogNormal
@@ -75,7 +71,6 @@ namespace Kernel
         ~DistributionLogNormalConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& param_name, const Configuration* config);
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionWeibullConfigurable : public DistributionWeibull
@@ -87,7 +82,6 @@ namespace Kernel
         ~DistributionWeibullConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& parameter, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionDualConstantConfigurable : public DistributionDualConstant
@@ -99,7 +93,6 @@ namespace Kernel
         ~DistributionDualConstantConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& parameter, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionDualExponentialConfigurable : public DistributionDualExponential
@@ -111,7 +104,6 @@ namespace Kernel
         ~DistributionDualExponentialConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& parameter, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionUniformConfigurable : public DistributionUniform
@@ -123,7 +115,6 @@ namespace Kernel
         ~DistributionUniformConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& parameter, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionGammaConfigurable : public DistributionGamma
@@ -135,7 +126,6 @@ namespace Kernel
         ~DistributionGammaConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& parameter, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
     };
 
     class DistributionPiecewiseConstantConfigurable : public DistributionPiecewiseConstant
@@ -146,7 +136,6 @@ namespace Kernel
         ~DistributionPiecewiseConstantConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& param_base_name, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( DistributionPiecewiseConstantConfigurable );
     };
 
@@ -158,7 +147,6 @@ namespace Kernel
         ~DistributionPiecewiseLinearConfigurable();
         virtual bool Configure( JsonConfigurable* pParent, std::string& param_base_name, const Configuration* config );
         virtual IDistribution* Clone() const override;
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( DistributionPiecewiseLinearConfigurable );
     };
     

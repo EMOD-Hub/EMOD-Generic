@@ -42,7 +42,6 @@ namespace Kernel
         friend class IndividualTB;
         GET_SCHEMA_STATIC_WRAPPER(InfectionTBConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual bool Configure( const Configuration* config ) override;
@@ -84,7 +83,6 @@ namespace Kernel
     class InfectionTB : public InfectionAirborne, public IInfectionTB
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual ~InfectionTB(void);

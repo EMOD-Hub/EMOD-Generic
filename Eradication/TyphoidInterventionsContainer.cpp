@@ -21,11 +21,6 @@ SETUP_LOGGING( "TyphoidInterventionsContainer" )
 
 namespace Kernel
 {
-
-    BEGIN_QUERY_INTERFACE_DERIVED(TyphoidInterventionsContainer, InterventionsContainer)
-        HANDLE_INTERFACE(ITyphoidVaccineEffectsApply)
-    END_QUERY_INTERFACE_DERIVED(TyphoidInterventionsContainer, InterventionsContainer)
-
     TyphoidInterventionsContainer::TyphoidInterventionsContainer()
         : current_shedding_attenuation_contact( 1.0f )
         , current_dose_attenuation_contact( 1.0f )

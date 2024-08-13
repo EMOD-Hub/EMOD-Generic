@@ -19,9 +19,6 @@ SETUP_LOGGING( "PyInterventionsContainer" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(PyInterventionsContainer, InterventionsContainer)
-    END_QUERY_INTERFACE_DERIVED(PyInterventionsContainer, InterventionsContainer)
-
     PyInterventionsContainer::PyInterventionsContainer()
     {
     }

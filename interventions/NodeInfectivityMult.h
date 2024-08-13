@@ -29,8 +29,6 @@ namespace Kernel
         NodeInfectivityMult(const NodeInfectivityMult&);
         virtual ~NodeInfectivityMult();
 
-        virtual QueryResult QueryInterface(iid_t, void**) override;
-
         virtual bool Configure(const Configuration*) override;
         virtual bool Distribute(INodeEventContext* context, IEventCoordinator2* pEC = nullptr) override;
         virtual void Update(float) override;

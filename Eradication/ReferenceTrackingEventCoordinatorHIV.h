@@ -18,7 +18,6 @@ namespace Kernel
     public:
         DECLARE_CONFIGURED(ReferenceTrackingEventCoordinatorHIV)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         ReferenceTrackingEventCoordinatorHIV();
         virtual ~ReferenceTrackingEventCoordinatorHIV() { } 

@@ -390,7 +390,6 @@ namespace Kernel
     class AgentConfig : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER(AgentConfig)
 
     public:
@@ -407,7 +406,6 @@ namespace Kernel
     class ClimateConfig : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER(ClimateConfig)
 
     public:
@@ -424,7 +422,6 @@ namespace Kernel
     class LoggingConfig : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER(LoggingConfig)
 
     public:
@@ -441,7 +438,6 @@ namespace Kernel
     class MigrationConfig : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER(MigrationConfig)
 
     public:
@@ -457,7 +453,6 @@ namespace Kernel
     class NodeConfig : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER(NodeConfig)
 
     public:
@@ -474,7 +469,6 @@ namespace Kernel
     class PolioConfig : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER(PolioConfig)
 
     public:
@@ -491,7 +485,6 @@ namespace Kernel
     class SimConfig : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER(SimConfig)
 
     public:
@@ -508,7 +501,6 @@ namespace Kernel
     class TBHIVConfig : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         GET_SCHEMA_STATIC_WRAPPER(TBHIVConfig)
 
     public:

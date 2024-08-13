@@ -17,7 +17,6 @@ namespace Kernel
 {
     class DiscreteContagionPopulation : public IContagionPopulation
     {
-        DECLARE_QUERY_INTERFACE()
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
     public:
         DiscreteContagionPopulation( act_prob_vec_t &payload, NaturalNumber depositor_id )

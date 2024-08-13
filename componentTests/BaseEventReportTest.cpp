@@ -96,7 +96,6 @@ public:
     virtual bool Expired() override { return false; };
     virtual void SetExpired( bool ) override {};
     virtual void OnExpiration() override {};
-    virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override { return Kernel::e_NOINTERFACE; };
     virtual int32_t AddRef() override { return 0 ;};
     virtual int32_t Release() override { return 0 ;};
 

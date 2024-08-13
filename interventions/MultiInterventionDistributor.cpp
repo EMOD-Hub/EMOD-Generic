@@ -17,13 +17,6 @@ SETUP_LOGGING( "MultiInterventionDistributor" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(MultiInterventionDistributor)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(MultiInterventionDistributor)
-
     IMPLEMENT_FACTORY_REGISTERED(MultiInterventionDistributor)
 
     bool MultiInterventionDistributor::Configure( const Configuration * inputJson )

@@ -70,13 +70,11 @@ namespace Kernel
 
         GET_SCHEMA_STATIC_WRAPPER(SusceptibilityMalariaConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
     };
 
     class SusceptibilityMalaria : public SusceptibilityVector, public IMalariaSusceptibility
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
 

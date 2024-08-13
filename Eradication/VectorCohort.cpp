@@ -23,13 +23,6 @@ namespace Kernel
 {
     std::string VectorCohortAbstract::_gambiae( "gambiae" );
 
-    // QI stuff
-    BEGIN_QUERY_INTERFACE_BODY(VectorCohortAbstract)
-        HANDLE_INTERFACE(IVectorCohort)
-        HANDLE_INTERFACE(IMigrate)
-        HANDLE_ISUPPORTS_VIA(IVectorCohort)
-    END_QUERY_INTERFACE_BODY(VectorCohortAbstract)
-
     VectorCohortAbstract::VectorCohortAbstract() 
         : vector_genetics( VectorMatingStructure() )
         , state( VectorStateEnum::STATE_ADULT )
@@ -257,9 +250,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- VectorCohort
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_DERIVED( VectorCohort, VectorCohortAbstract )
-    END_QUERY_INTERFACE_DERIVED( VectorCohort, VectorCohortAbstract )
-
     VectorCohort::VectorCohort()
         : VectorCohortAbstract()
         , neweggs()

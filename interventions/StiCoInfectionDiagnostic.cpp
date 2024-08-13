@@ -17,9 +17,6 @@ SETUP_LOGGING( "StiCoInfectionDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(StiCoInfectionDiagnostic, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(StiCoInfectionDiagnostic, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(StiCoInfectionDiagnostic)
 
     bool StiCoInfectionDiagnostic::Configure( const Configuration* inputJson )

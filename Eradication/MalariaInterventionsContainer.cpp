@@ -18,11 +18,6 @@ SETUP_LOGGING( "MalariaInterventionsContainer" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(MalariaInterventionsContainer, VectorInterventionsContainer)
-        HANDLE_INTERFACE(IMalariaDrugEffects)
-        HANDLE_INTERFACE(IMalariaDrugEffectsApply)
-    END_QUERY_INTERFACE_DERIVED(MalariaInterventionsContainer, VectorInterventionsContainer)
-
     MalariaInterventionsContainer::MalariaInterventionsContainer()
         : VectorInterventionsContainer()
         , m_DrugEffectsCollection()

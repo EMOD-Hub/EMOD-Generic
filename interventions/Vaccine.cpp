@@ -21,15 +21,7 @@ SETUP_LOGGING("Vaccine")
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(Vaccine)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(Vaccine)
-
     IMPLEMENT_FACTORY_REGISTERED(Vaccine)
-
     REGISTER_SERIALIZABLE(Vaccine);
 
     Vaccine::Vaccine() 

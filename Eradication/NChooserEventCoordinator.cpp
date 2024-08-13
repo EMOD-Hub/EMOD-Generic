@@ -27,9 +27,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- AgeRange
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY(AgeRange)
-    END_QUERY_INTERFACE_BODY(AgeRange)
-
 
     AgeRange::AgeRange( float minYears, float maxYears )
     : JsonConfigurable()
@@ -240,10 +237,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- TargetedDistribution
     // ------------------------------------------------------------------------
-
-    BEGIN_QUERY_INTERFACE_BODY(TargetedDistribution)
-    END_QUERY_INTERFACE_BODY(TargetedDistribution)
-
     bool TargetedDistribution::LeftLessThanRight( const TargetedDistribution* pLeft, const TargetedDistribution* pRight )
     {
         return *pLeft < *pRight;
@@ -738,7 +731,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
 
     IMPLEMENT_FACTORY_REGISTERED(NChooserEventCoordinator)
-    IMPL_QUERY_INTERFACE2(NChooserEventCoordinator, IEventCoordinator, IConfigurable)
 
     NChooserEventCoordinator::NChooserEventCoordinator()
     : m_Parent( nullptr )

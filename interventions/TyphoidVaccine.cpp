@@ -19,14 +19,6 @@ SETUP_LOGGING( "TyphoidVaccine" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(TyphoidVaccine)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-        HANDLE_INTERFACE(IBaseIntervention)
-    END_QUERY_INTERFACE_BODY(TyphoidVaccine)
-
     IMPLEMENT_FACTORY_REGISTERED(TyphoidVaccine)
 
     TyphoidVaccine::TyphoidVaccine() 

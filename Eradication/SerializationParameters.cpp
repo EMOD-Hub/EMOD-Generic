@@ -20,11 +20,8 @@ using namespace Kernel;
 SETUP_LOGGING( "SerializationParameters" )
 
 GET_SCHEMA_STATIC_WRAPPER_IMPL(SerializationParameters, SerializationParameters)
-BEGIN_QUERY_INTERFACE_BODY(SerializationParameters)
-END_QUERY_INTERFACE_BODY(SerializationParameters)
 
 SerializationParameters* SerializationParameters::p_instance = nullptr;
-
 
 SerializationParameters::SerializationParameters()
     : m_serializationReadMask( 0 )

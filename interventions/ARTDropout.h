@@ -26,9 +26,6 @@ namespace Kernel
 
         virtual bool Configure( const Configuration * ) override;
 
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
-
         // IDistributableIntervention
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO ) override;
         virtual void Update( float dt ) override;

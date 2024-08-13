@@ -234,12 +234,6 @@ namespace Kernel
         return NodeConfig::GetNodeParams();
     }
 
-    QueryResult Node::QueryInterface( iid_t iid, void** ppinstance )
-    {
-        release_assert(ppinstance);
-        return e_NOINTERFACE;
-    }
-
     Node *Node::CreateNode(ISimulationContext *_parent_sim, ExternalNodeId_t externalNodeId, suids::suid node_suid)
     {
         Node *newnode = _new_ Node(_parent_sim, externalNodeId, node_suid);

@@ -31,11 +31,6 @@ SETUP_LOGGING( "NodePy" )
 #define ENABLE_PYTHON_FEVER 1
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(NodePy, Node)
-        HANDLE_INTERFACE(INodePy)
-    END_QUERY_INTERFACE_DERIVED(NodePy, Node)
-
-
     NodePy::NodePy() : Node() { }
 
     NodePy::NodePy(ISimulationContext *_parent_sim, ExternalNodeId_t externalNodeId, suids::suid node_suid)

@@ -22,7 +22,6 @@ namespace Kernel
     public:
         GET_SCHEMA_STATIC_WRAPPER( RandomNumberGeneratorFactory )
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         RandomNumberGeneratorFactory();
         ~RandomNumberGeneratorFactory();

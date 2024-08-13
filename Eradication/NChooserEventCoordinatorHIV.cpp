@@ -42,11 +42,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- TargetedDistributionHIV
     // ------------------------------------------------------------------------
-
-    BEGIN_QUERY_INTERFACE_DERIVED(TargetedDistributionHIV,TargetedDistributionSTI)
-    END_QUERY_INTERFACE_DERIVED(TargetedDistributionHIV,TargetedDistributionSTI)
-
-
     TargetedDistributionHIV::TargetedDistributionHIV( NChooserObjectFactory* pObjectFactory )
     : TargetedDistributionSTI(pObjectFactory)
     , m_Vector2dStringDiseaseStates()
@@ -228,7 +223,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
 
     IMPLEMENT_FACTORY_REGISTERED(NChooserEventCoordinatorHIV)
-    IMPL_QUERY_INTERFACE2(NChooserEventCoordinatorHIV, IEventCoordinator, IConfigurable)
 
     NChooserEventCoordinatorHIV::NChooserEventCoordinatorHIV()
     : NChooserEventCoordinatorSTI( new NChooserObjectFactoryHIV() )

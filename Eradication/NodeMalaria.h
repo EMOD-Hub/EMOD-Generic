@@ -18,7 +18,6 @@ namespace Kernel
     class NodeMalaria : public NodeVector, INodeMalaria
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static NodeMalaria *CreateNode(ISimulationContext *simulation, ExternalNodeId_t externalNodeId, suids::suid suid);

@@ -23,13 +23,6 @@ SETUP_LOGGING( "OutbreakIndividualTBorHIV" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(OutbreakIndividualTBorHIV)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_INTERFACE(IOutbreakIndividual)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(OutbreakIndividualTBorHIV) 
-
     IMPLEMENT_FACTORY_REGISTERED(OutbreakIndividualTBorHIV) 
 
     OutbreakIndividualTBorHIV::OutbreakIndividualTBorHIV()

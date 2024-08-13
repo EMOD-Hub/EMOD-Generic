@@ -50,7 +50,6 @@ namespace Kernel
         //JsonConfigurable methods
         virtual int32_t AddRef() { return 1; }
         virtual int32_t Release() { return 1; }
-        virtual QueryResult QueryInterface( iid_t iid, void** pinstance ) { return QueryResult::e_NOINTERFACE; }
 
         // IComplexJsonConfigurable methods
         virtual bool  HasValidDefault() const override

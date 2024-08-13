@@ -24,7 +24,6 @@ namespace Kernel
     class IDMAPI BehaviorPfa : public IPairFormationAgent 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
-        DECLARE_QUERY_INTERFACE();
     public:
         static IPairFormationAgent* CreatePfa( const Configuration* pConfig,
                                                const IPairFormationParameters* params,

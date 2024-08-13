@@ -16,7 +16,6 @@ namespace Kernel
     class IDMAPI InterpolatedValueMap : public JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
         public:
             InterpolatedValueMap( float min_time = 0.0f,
                                   float max_time = 999999.0f,

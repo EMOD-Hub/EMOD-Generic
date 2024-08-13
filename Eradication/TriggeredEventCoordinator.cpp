@@ -16,7 +16,6 @@ SETUP_LOGGING( "TriggeredEventCoordinator" )
 namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED( TriggeredEventCoordinator )
-    IMPL_QUERY_INTERFACE2( TriggeredEventCoordinator, IEventCoordinator, IConfigurable )
 
     TriggeredEventCoordinator::TriggeredEventCoordinator()
         : StandardInterventionDistributionEventCoordinator( false )//false=don't use standard demographic coverage

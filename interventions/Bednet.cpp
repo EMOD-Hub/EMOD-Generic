@@ -25,12 +25,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- AbstractBednet
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY( AbstractBednet )
-        HANDLE_INTERFACE( IConfigurable )
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY( AbstractBednet )
-
     AbstractBednet::AbstractBednet()
         : BaseIntervention()
         , m_pEffectKilling( nullptr )
@@ -232,9 +226,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- SimpleBednet
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_DERIVED( SimpleBednet, AbstractBednet )
-    END_QUERY_INTERFACE_DERIVED( SimpleBednet, AbstractBednet )
-
     IMPLEMENT_FACTORY_REGISTERED(SimpleBednet)
     
     SimpleBednet::SimpleBednet()

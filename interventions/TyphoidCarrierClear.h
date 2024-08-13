@@ -21,7 +21,6 @@ namespace Kernel
     class TyphoidCarrierClear : public BaseIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, TyphoidCarrierClear, IDistributableIntervention)
 
     public:
@@ -34,7 +33,6 @@ namespace Kernel
 
     protected:
         float clearance_rate;
-        //DECLARE_SERIALIZABLE(TyphoidCarrierClear);
     };
 }
 

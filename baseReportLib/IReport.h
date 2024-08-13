@@ -72,7 +72,6 @@ namespace Kernel
         // ---------------------
         virtual bool Configure( const Configuration* inputJson ) { return true ; };
         virtual bool Validate( const ISimulationContext* parent_sim ) { return true; }
-        virtual Kernel::QueryResult QueryInterface(Kernel::iid_t iid, void **ppvObject) { return Kernel::e_NOINTERFACE; }
         virtual int32_t AddRef()  { return -1 ; }
         virtual int32_t Release() { return -1 ; }
 

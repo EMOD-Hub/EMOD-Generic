@@ -18,7 +18,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, CalendarEventCoordinator, IEventCoordinator)
         DECLARE_CONFIGURED(CalendarEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         CalendarEventCoordinator();

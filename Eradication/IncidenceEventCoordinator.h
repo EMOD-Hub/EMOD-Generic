@@ -33,7 +33,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         Action();
         virtual ~Action();
@@ -88,7 +87,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         Responder();
         virtual ~Responder();
@@ -126,7 +124,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         IncidenceCounter();
         virtual ~IncidenceCounter();
@@ -177,7 +174,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED_EXPORT( EventCoordinatorFactory, IncidenceEventCoordinator, IEventCoordinator )
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         IncidenceEventCoordinator();
         virtual ~IncidenceEventCoordinator();

@@ -31,13 +31,11 @@ namespace Kernel
 
         GET_SCHEMA_STATIC_WRAPPER(SusceptibilityVectorConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
     };
 
     class SusceptibilityVector : public Susceptibility, public ISusceptibilityVector
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static SusceptibilityVector *CreateSusceptibility(IIndividualHumanContext *context, float immmod = 1.0f, float riskmod = 1.0f);

@@ -44,7 +44,6 @@ pyNodeDemogInit()
 // We'll need a stub node object as the individual's parent. Most functions are empty.
 //
 
-
 // Boiler-plate callback setting function that will be put in common file.
 PyObject*
 my_set_callback(PyObject *dummy, PyObject *args)
@@ -121,12 +120,6 @@ namespace Test {
                 std::ostringstream schema_ostream;
                 json::Writer::Write( schema, schema_ostream );
                 Kernel::JsonConfigurable::_dryrun = false;
-            }
-
-            QueryResult QueryInterface( iid_t iid, void** ppinstance )
-            {
-                release_assert( ppinstance );
-                return e_NOINTERFACE;
             }
 
             static void SeedRNG(int rng_seed)

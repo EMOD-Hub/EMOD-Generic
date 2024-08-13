@@ -19,9 +19,6 @@ SETUP_LOGGING( "FlowControllerImpl" )
 
 namespace Kernel 
 {
-    BEGIN_QUERY_INTERFACE_BODY(FlowControllerImpl)
-    END_QUERY_INTERFACE_BODY(FlowControllerImpl)
-
     void FlowControllerImpl::UpdateEntryRates( const IdmDateTime& rCurrentTime, float dt )
     {
         LOG_DEBUG_F("%s()\n", __FUNCTION__);

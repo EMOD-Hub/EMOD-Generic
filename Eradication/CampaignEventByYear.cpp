@@ -22,7 +22,6 @@ SETUP_LOGGING("CampaignEventByYear")
 namespace Kernel
 {
 #if !defined(DISABLE_STI) || defined(ENABLE_TYPHOID)
-    IMPL_QUERY_INTERFACE1(CampaignEventByYear, IConfigurable)
     IMPLEMENT_FACTORY_REGISTERED(CampaignEventByYear)
 
     CampaignEventByYear::CampaignEventByYear()

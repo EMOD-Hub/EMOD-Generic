@@ -18,7 +18,6 @@ namespace Kernel {
     class CountdownTimer : public NonNegativeFloat, public ISerializable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
         public:
             CountdownTimer();
             CountdownTimer( float initValue );

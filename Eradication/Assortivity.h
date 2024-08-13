@@ -21,7 +21,6 @@ namespace Kernel
     class IDMAPI Assortivity : public IAssortivity
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
-        DECLARE_QUERY_INTERFACE();
     public:
         Assortivity( RelationshipType::Enum relType=RelationshipType::TRANSITORY, RANDOMBASE *prng=nullptr );
         virtual ~Assortivity();

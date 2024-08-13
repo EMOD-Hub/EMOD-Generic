@@ -27,10 +27,6 @@ SETUP_LOGGING( "NodeSTI" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(NodeSTI, Node)
-        HANDLE_INTERFACE(INodeSTI)
-    END_QUERY_INTERFACE_DERIVED(NodeSTI, Node)
-
     NodeSTI::NodeSTI(ISimulationContext *_parent_sim, ExternalNodeId_t externalNodeId, suids::suid node_suid)
         : Node(_parent_sim, externalNodeId, node_suid)
         , relMan(nullptr)

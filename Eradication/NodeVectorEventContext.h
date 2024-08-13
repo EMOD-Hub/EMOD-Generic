@@ -35,8 +35,6 @@ namespace Kernel
         NodeVectorEventContextHost(Node* _node);
         virtual ~NodeVectorEventContextHost();
 
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
         virtual INodeVectorInterventionEffects*      GetNodeVectorInterventionEffects()       override;
         virtual INodeVectorInterventionEffectsApply* GetNodeVectorInterventionEffectsApply()  override;
 

@@ -28,9 +28,6 @@ namespace Kernel
         virtual ~ChangeIPMatrix();
 
         virtual bool Configure( const Configuration* pConfig ) override;
-
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface( iid_t iid, void **ppvObject ) override;
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC);
         virtual void Update(float dt);
 

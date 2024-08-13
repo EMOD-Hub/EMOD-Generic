@@ -19,10 +19,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- MigrationInfoNullVector
     // ------------------------------------------------------------------------
-
-    BEGIN_QUERY_INTERFACE_DERIVED( MigrationInfoNullVector, MigrationInfoNull )
-    END_QUERY_INTERFACE_DERIVED( MigrationInfoNullVector, MigrationInfoNull )
-
     MigrationInfoNullVector::MigrationInfoNullVector()
     : MigrationInfoNull()
     {
@@ -36,10 +32,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- MigrationInfoVector
     // ------------------------------------------------------------------------
-
-    BEGIN_QUERY_INTERFACE_DERIVED(MigrationInfoVector, MigrationInfoFixedRate)
-    END_QUERY_INTERFACE_DERIVED(MigrationInfoVector, MigrationInfoFixedRate)
-
     MigrationInfoVector::MigrationInfoVector( INodeContext * _parent,
                                               ModiferEquationType::Enum equation,
                                               float habitatModifier,

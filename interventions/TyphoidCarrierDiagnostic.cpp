@@ -17,9 +17,6 @@ SETUP_LOGGING( "TyphoidCarrierDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(TyphoidCarrierDiagnostic, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(TyphoidCarrierDiagnostic, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(TyphoidCarrierDiagnostic)
 
     bool TyphoidCarrierDiagnostic::Configure(

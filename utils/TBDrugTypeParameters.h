@@ -25,8 +25,6 @@ namespace Kernel
 
         bool Configure( const ::Configuration *json );
 
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
-
     protected:
         float TB_drug_inactivation_rate;
         float TB_drug_cure_rate;

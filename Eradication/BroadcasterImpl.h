@@ -15,10 +15,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-    /*class EventTriggerSillyClass : public EventTrigger
-    {
-    };*/
-
     // BroadcasterImpl provides the basic functions for an IEventBroadcaster.
     // By using a template, we can reuse the code for the different kinds of broadcasters
     // while keeping the types unique.
@@ -30,7 +26,6 @@ namespace Kernel
         ~BroadcasterImpl();
 
         // ISupports
-        virtual Kernel::QueryResult QueryInterface(Kernel::iid_t iid, void **ppvObject) override { return Kernel::e_NOINTERFACE; }
         virtual int32_t AddRef() { return 1; }
         virtual int32_t Release() { return 1; }
 

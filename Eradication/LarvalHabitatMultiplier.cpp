@@ -19,9 +19,6 @@ SETUP_LOGGING( "LarvalHabitatMultiplier" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(LarvalHabitatMultiplierSpec)
-    END_QUERY_INTERFACE_BODY(LarvalHabitatMultiplierSpec)
-
     LarvalHabitatMultiplier::LarvalHabitatMultiplier( bool usedByIntervention, float minValue, float maxValue, float defaultValue )
     : JsonConfigurable()
     , m_UsedByIntervention( usedByIntervention )

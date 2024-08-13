@@ -22,9 +22,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- UsageDependentBednet
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_DERIVED( UsageDependentBednet, AbstractBednet )
-    END_QUERY_INTERFACE_DERIVED( UsageDependentBednet, AbstractBednet )
-
     IMPLEMENT_FACTORY_REGISTERED( UsageDependentBednet )
 
     UsageDependentBednet::UsageDependentBednet()

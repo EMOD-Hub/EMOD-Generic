@@ -23,13 +23,6 @@ SETUP_LOGGING( "MigrateIndividuals" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(MigrateIndividuals)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(MigrateIndividuals)
-
     IMPLEMENT_FACTORY_REGISTERED(MigrateIndividuals)
 
     bool MigrateIndividuals::Configure( const Configuration * inputJson )

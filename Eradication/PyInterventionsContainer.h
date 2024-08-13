@@ -28,10 +28,6 @@ namespace Kernel
     public:
         PyInterventionsContainer();
         virtual ~PyInterventionsContainer();
-
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
-    private:
     };
 }
 #endif

@@ -20,12 +20,6 @@ SETUP_LOGGING( "MasterInterventionsContainer" )
 
 namespace Kernel
 {
-    Kernel::QueryResult MasterInterventionsContainer::QueryInterface( iid_t iid, void** ppinstance )
-    {
-        assert(ppinstance);
-        return e_NOINTERFACE;
-    }
-
     MasterInterventionsContainer::MasterInterventionsContainer()
         : InterventionsContainer()
         , InterventionsContainerList()

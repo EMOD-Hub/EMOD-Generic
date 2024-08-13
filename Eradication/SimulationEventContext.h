@@ -59,7 +59,6 @@ namespace Kernel
                                        public ICoordinatorEventBroadcaster,
                                        public INodeEventBroadcaster
     {
-        DECLARE_QUERY_INTERFACE()
         IMPLEMENT_NO_REFERENCE_COUNTING() 
 
     public:

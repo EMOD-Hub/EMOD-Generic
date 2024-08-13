@@ -26,7 +26,6 @@ namespace Kernel
     class NodeIdAndCoverage : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
     public:
         NodeIdAndCoverage()
@@ -93,8 +92,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
 
     IMPLEMENT_FACTORY_REGISTERED(CoverageByNodeEventCoordinator)
-
-    IMPL_QUERY_INTERFACE2(CoverageByNodeEventCoordinator, IEventCoordinator, IConfigurable)
 
     CoverageByNodeEventCoordinator::CoverageByNodeEventCoordinator()
         : StandardInterventionDistributionEventCoordinator( false )//false=don't use standard demographic coverage

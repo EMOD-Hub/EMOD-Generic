@@ -41,7 +41,6 @@ namespace Kernel
     float IndividualHumanTyphoidConfig::typhoid_acute_infectiousness = 0.0f;
     float IndividualHumanTyphoidConfig::typhoid_chronic_relative_infectiousness = 0.0f;
 
-    //        float IndividualHumanTyphoidConfig::typhoid_environmental_exposure = 0.0f;
     float IndividualHumanTyphoidConfig::typhoid_prepatent_relative_infectiousness = 0.0f;
     float IndividualHumanTyphoidConfig::typhoid_protection_per_infection = 0.0f;
     float IndividualHumanTyphoidConfig::typhoid_subclinical_relative_infectiousness = 0.0f;
@@ -55,19 +54,11 @@ namespace Kernel
     float IndividualHumanTyphoidConfig::typhoid_environmental_exposure_rate = 0.0f;
     float IndividualHumanTyphoidConfig::typhoid_contact_exposure_rate = 0.0f;
 
-
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Typhoid.Individual,IndividualHumanTyphoidConfig)
-
-    BEGIN_QUERY_INTERFACE_BODY(IndividualHumanTyphoidConfig)
-    END_QUERY_INTERFACE_BODY(IndividualHumanTyphoidConfig)
 
     bool IndividualHumanTyphoidConfig::Configure( const Configuration* config ) // just called once!
     {
         LOG_DEBUG( "Configure\n" );
-        // 
-        // typhoid
-        //
-        //initConfigTypeMap( "Environmental_Incubation_Period", &environmental_incubation_period, "So-called Waiting Period for environmental contagion, time between deposit and exposure.", 0, 100, 30 );
         initConfigTypeMap( "Typhoid_Acute_Infectiousness", &typhoid_acute_infectiousness, Typhoid_Acute_Infectiousness_DESC_TEXT, 0, 1e7, 4000 );
         initConfigTypeMap( "Typhoid_Chronic_Relative_Infectiousness", &typhoid_chronic_relative_infectiousness, Typhoid_Chronic_Relative_Infectiousness_DESC_TEXT, 0, 1, 1 ); 
         initConfigTypeMap( "Typhoid_Prepatent_Relative_Infectiousness", &typhoid_prepatent_relative_infectiousness, Typhoid_Prepatent_Relative_Infectiousness_DESC_TEXT, 0, 1, 1 ); 
@@ -93,11 +84,6 @@ namespace Kernel
     // environmental exposure constants
     const int IndividualHumanTyphoid::N50 = 1110000;
     const float IndividualHumanTyphoid::alpha = 0.175f;
-
-
-    BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanTyphoid, IndividualHumanEnvironmental)
-        HANDLE_INTERFACE(IIndividualHumanTyphoid)
-    END_QUERY_INTERFACE_DERIVED(IndividualHumanTyphoid, IndividualHumanEnvironmental)
 
     IndividualHumanTyphoid::IndividualHumanTyphoid(suids::suid _suid, float monte_carlo_weight, float initial_age, int gender) :
         IndividualHumanEnvironmental(_suid, monte_carlo_weight, initial_age, gender)

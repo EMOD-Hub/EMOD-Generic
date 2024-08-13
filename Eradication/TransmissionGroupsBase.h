@@ -47,7 +47,6 @@ namespace Kernel
         class ContagionPopulationImpl : public IContagionPopulation
         {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         public:
             ContagionPopulationImpl(float quantity) : contagionQuantity(quantity) {}
             ContagionPopulationImpl( IStrainIdentity * strain, float quantity );

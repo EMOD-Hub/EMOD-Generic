@@ -71,11 +71,6 @@ public:
     // ---------------------
     // --- ISupport Methods
     // ---------------------
-    virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override
-    {
-        return e_NOINTERFACE;
-    }
-
     virtual int32_t AddRef() override
     {
         m_RefCount++ ;

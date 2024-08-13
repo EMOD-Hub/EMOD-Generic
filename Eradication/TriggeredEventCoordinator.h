@@ -20,7 +20,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED_EXPORT( EventCoordinatorFactory, TriggeredEventCoordinator, IEventCoordinator )
         DECLARE_CONFIGURED( TriggeredEventCoordinator )
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         TriggeredEventCoordinator();

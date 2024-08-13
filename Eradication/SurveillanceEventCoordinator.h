@@ -50,7 +50,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, SurveillanceEventCoordinator, IEventCoordinator)
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         SurveillanceEventCoordinator();
         virtual ~SurveillanceEventCoordinator();

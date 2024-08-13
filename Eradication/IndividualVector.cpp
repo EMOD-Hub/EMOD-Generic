@@ -33,10 +33,6 @@ namespace Kernel
     TransmissionGroupMembership_t IndividualHumanVector::vector_indoor;
     TransmissionGroupMembership_t IndividualHumanVector::vector_outdoor;
 
-    BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanVector, IndividualHuman)
-        HANDLE_INTERFACE(IIndividualHumanVectorContext)
-    END_QUERY_INTERFACE_DERIVED(IndividualHumanVector, IndividualHuman)
-
     IndividualHumanVector::IndividualHumanVector(suids::suid _suid, double monte_carlo_weight, double initial_age, int gender)
         : Kernel::IndividualHuman(_suid, float(monte_carlo_weight), float(initial_age), gender)
         , m_strain_exposure()

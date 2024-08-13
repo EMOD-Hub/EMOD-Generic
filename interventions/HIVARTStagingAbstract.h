@@ -27,9 +27,6 @@ namespace Kernel
 
         virtual bool Configure( const Configuration * inputJson ) override;
 
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
-
     protected:
         virtual bool positiveTestResult() override;
         virtual void onNegativeTestResult() override;

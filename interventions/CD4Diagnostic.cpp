@@ -19,9 +19,6 @@ SETUP_LOGGING( "CD4Diagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(CD4Diagnostic, AgeDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(CD4Diagnostic, AgeDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(CD4Diagnostic)
 
     CD4Diagnostic::CD4Diagnostic()

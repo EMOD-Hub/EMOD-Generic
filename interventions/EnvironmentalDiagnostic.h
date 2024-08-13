@@ -28,7 +28,6 @@ namespace Kernel
         virtual ~EnvironmentalDiagnostic() {};
         virtual bool Configure(const Configuration* pConfig);
         virtual void Update(float dt) override;
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC = nullptr ) override;
 
     protected:

@@ -39,8 +39,6 @@ namespace Kernel
         TyphoidInterventionsContainer();
         virtual ~TyphoidInterventionsContainer();
 
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
         virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()  override;
 
         // Typhoid 'Vaccine' Apply/Update/Setter functions

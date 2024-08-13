@@ -22,13 +22,6 @@ SETUP_LOGGING( "SimpleHealthSeekingBehavior" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(SimpleHealthSeekingBehavior)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(SimpleHealthSeekingBehavior)
-
     IMPLEMENT_FACTORY_REGISTERED(SimpleHealthSeekingBehavior)
 
     bool SimpleHealthSeekingBehavior::Configure(const Configuration* inputJson)

@@ -22,7 +22,6 @@ namespace Kernel
                                                public JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
-        DECLARE_QUERY_INTERFACE();
     public:
         static IPairFormationParameters* CreateParameters( RelationshipType::Enum relType,
                                                            const Configuration* pConfig );

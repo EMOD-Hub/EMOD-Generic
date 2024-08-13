@@ -17,15 +17,10 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 SETUP_LOGGING( "GroupEventCoordinator" )
 
-
 namespace Kernel
 {
-
     IMPLEMENT_FACTORY_REGISTERED(GroupInterventionDistributionEventCoordinator)
 
-    IMPL_QUERY_INTERFACE2(GroupInterventionDistributionEventCoordinator, IEventCoordinator, IConfigurable)
-
-    // ctor
     GroupInterventionDistributionEventCoordinator::GroupInterventionDistributionEventCoordinator() 
         : StandardInterventionDistributionEventCoordinator()
     {

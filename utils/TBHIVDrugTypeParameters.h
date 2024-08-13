@@ -28,8 +28,6 @@ namespace Kernel
         TBHIVDrugTypeParameters( const std::string& tb_drug_name );
         virtual ~TBHIVDrugTypeParameters();
 
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
-
     protected:
         float TB_drug_inactivation_rate_mdr;
         float TB_drug_inactivation_rate_hiv;
@@ -49,13 +47,10 @@ namespace Kernel
         float TB_reduced_acquire;
     };
 
-
-
     class TBHIVDrugCollection : public JsonConfigurable, public IComplexJsonConfigurable
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         TBHIVDrugCollection();
         virtual ~TBHIVDrugCollection();

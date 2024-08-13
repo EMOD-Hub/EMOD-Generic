@@ -23,9 +23,6 @@ SETUP_LOGGING( "IndividualEnvironmental" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanEnvironmental, IndividualHuman)
-    END_QUERY_INTERFACE_DERIVED(IndividualHumanEnvironmental, IndividualHuman)
-
     IndividualHumanEnvironmental::IndividualHumanEnvironmental( suids::suid _suid, float monte_carlo_weight, float initial_age, int gender) 
         : IndividualHuman( _suid, monte_carlo_weight, initial_age, gender)
     {

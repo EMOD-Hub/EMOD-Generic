@@ -106,9 +106,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- MigrationInfoNull
     // ------------------------------------------------------------------------
-    BEGIN_QUERY_INTERFACE_BODY(MigrationInfoNull)
-    END_QUERY_INTERFACE_BODY(MigrationInfoNull)
-
     MigrationInfoNull::MigrationInfoNull()
     : m_EmptyListCDF()
     , m_EmptyListNodes()
@@ -163,10 +160,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- MigrationInfoFixedRate
     // ------------------------------------------------------------------------
-
-    BEGIN_QUERY_INTERFACE_BODY(MigrationInfoFixedRate)
-    END_QUERY_INTERFACE_BODY(MigrationInfoFixedRate)
-
     MigrationInfoFixedRate::MigrationInfoFixedRate( INodeContext * _parent ) 
         : m_Parent(_parent) 
         , m_ReachableNodes()
@@ -319,10 +312,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- MigrationInfoAgeAndGender
     // ------------------------------------------------------------------------
-
-    BEGIN_QUERY_INTERFACE_DERIVED(MigrationInfoAgeAndGender, MigrationInfoFixedRate)
-    END_QUERY_INTERFACE_DERIVED(MigrationInfoAgeAndGender, MigrationInfoFixedRate)
-
     MigrationInfoAgeAndGender::MigrationInfoAgeAndGender( INodeContext * _parent ) 
         : MigrationInfoFixedRate( _parent ) 
         , m_RateData()

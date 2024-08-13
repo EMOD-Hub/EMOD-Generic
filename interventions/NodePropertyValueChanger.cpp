@@ -23,13 +23,6 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED( NodePropertyValueChanger )
 
-    BEGIN_QUERY_INTERFACE_BODY( NodePropertyValueChanger )
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE( IBaseIntervention )
-        HANDLE_INTERFACE(INodeDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA( INodeDistributableIntervention )
-    END_QUERY_INTERFACE_BODY( NodePropertyValueChanger )
-
     NodePropertyValueChanger::NodePropertyValueChanger()
         : BaseNodeIntervention()
         , m_TargetKeyValue()

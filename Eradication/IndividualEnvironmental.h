@@ -18,7 +18,6 @@ namespace Kernel
     {
         friend class SimulationEnvironmental;
 
-        DECLARE_QUERY_INTERFACE()
         DECLARE_SERIALIZABLE( IndividualHumanEnvironmental )
 
     public:

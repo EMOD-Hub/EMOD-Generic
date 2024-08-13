@@ -18,12 +18,6 @@ SETUP_LOGGING( "ImportPressure" );
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(ImportPressure)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(INodeDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(INodeDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(ImportPressure)
-
     IMPLEMENT_FACTORY_REGISTERED(ImportPressure)
 
     ImportPressure::ImportPressure() 

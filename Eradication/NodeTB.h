@@ -32,7 +32,6 @@ namespace Kernel
         friend class ::ReportTB;
         friend class SpatialReportTB;
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual ~NodeTB(void);

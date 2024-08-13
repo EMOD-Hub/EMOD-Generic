@@ -27,9 +27,6 @@ namespace Kernel
     const float AntimalarialDrug::_adult_bodyweight_kg = 50.0f;
     const bodyweight_map_t AntimalarialDrug::bodyweight_map_ = create_bodyweight_map();
 
-    BEGIN_QUERY_INTERFACE_DERIVED(AntimalarialDrug, GenericDrug)
-        HANDLE_INTERFACE(IMalariaDrugEffects)
-    END_QUERY_INTERFACE_DERIVED(AntimalarialDrug, GenericDrug)
     IMPLEMENT_FACTORY_REGISTERED(AntimalarialDrug)
 
     AntimalarialDrug::~AntimalarialDrug()

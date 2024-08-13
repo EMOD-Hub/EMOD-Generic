@@ -25,8 +25,6 @@ namespace Kernel
         virtual ~AntiTBDrug() {};
         virtual bool Configure( const Configuration * ) override;
 
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void SetContextTo(IIndividualHumanContext *context) override;
 
         // IDistributableIntervention

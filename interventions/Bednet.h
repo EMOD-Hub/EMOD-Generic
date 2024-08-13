@@ -23,7 +23,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 namespace Kernel
 {
-
     struct IVectorInterventionsEffects;
 
     class AbstractBednet : public BaseIntervention
@@ -38,7 +37,6 @@ namespace Kernel
         // IDistributableIntervention
         virtual bool Distribute( IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO ) override;
         virtual void SetContextTo( IIndividualHumanContext *context ) override;
-        virtual QueryResult QueryInterface( iid_t iid, void **ppvObject ) override;
         virtual void Update( float dt ) override;
 
     protected:
@@ -76,7 +74,6 @@ namespace Kernel
         virtual ~SimpleBednet();
 
         // IDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void SetContextTo( IIndividualHumanContext *context ) override;
 
     protected:

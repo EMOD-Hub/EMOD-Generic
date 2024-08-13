@@ -44,10 +44,6 @@ using namespace std;
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(NodeVector, Node)
-        HANDLE_INTERFACE(INodeVector)
-    END_QUERY_INTERFACE_DERIVED(NodeVector, Node)
-
     NodeVector::NodeVector() 
         : m_larval_habitats()
         , m_vector_init_pop()

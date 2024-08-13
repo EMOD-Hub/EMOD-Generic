@@ -99,11 +99,6 @@ GetSchema()
 namespace Kernel
 {
     ///// Simulation /////
-
-    // QI stuff in case we want to use it more extensively
-    BEGIN_QUERY_INTERFACE_DERIVED(SimulationMalaria, SimulationVector)
-    END_QUERY_INTERFACE_DERIVED(SimulationMalaria, SimulationVector)
-
     SimulationMalaria::SimulationMalaria() : SimulationVector()
     {
         reportClassCreator = ReportMalaria::CreateReport;

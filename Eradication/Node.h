@@ -45,7 +45,6 @@ namespace Kernel
     class IDMAPI Node : public INodeContext
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         // This needs to go once we COM-ify and/or make accessors
         // BTW, the scope operators are needed by MSVC, not GCC (or is it the other way around?)

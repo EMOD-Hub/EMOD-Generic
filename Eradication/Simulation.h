@@ -53,7 +53,6 @@ namespace Kernel
     {
         GET_SCHEMA_STATIC_WRAPPER(Simulation)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
 

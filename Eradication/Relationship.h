@@ -24,7 +24,6 @@ namespace Kernel
         public:
             friend class IndividualHumanSTI;
             friend class RelationshipFactory;
-            DECLARE_QUERY_INTERFACE()
             IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
         public:
@@ -141,7 +140,6 @@ namespace Kernel
     {
         public:
             friend class RelationshipFactory;
-            DECLARE_QUERY_INTERFACE()
 
         protected:
             TransitoryRelationship();
@@ -164,7 +162,6 @@ namespace Kernel
     {
         public:
             friend class RelationshipFactory;
-            DECLARE_QUERY_INTERFACE()
 
         protected:
             InformalRelationship();
@@ -187,7 +184,6 @@ namespace Kernel
     {
         public:
             friend class RelationshipFactory;
-            DECLARE_QUERY_INTERFACE()
 
         protected:
             MarriageRelationship();
@@ -210,7 +206,6 @@ namespace Kernel
     {
         public:
             friend class RelationshipFactory;
-            DECLARE_QUERY_INTERFACE()
 
         protected:
             CommercialRelationship();

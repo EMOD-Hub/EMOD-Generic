@@ -21,9 +21,6 @@ SETUP_LOGGING( "NodeMalariaEventContext" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(NodeMalariaEventContextHost, NodeVectorEventContextHost)
-    END_QUERY_INTERFACE_DERIVED(NodeMalariaEventContextHost, NodeVectorEventContextHost)
-
     NodeMalariaEventContextHost::NodeMalariaEventContextHost(Node* _node) : NodeVectorEventContextHost(_node)
     { 
     }

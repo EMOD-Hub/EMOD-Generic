@@ -377,8 +377,6 @@ namespace Kernel
 
     // AgentConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(AgentConfig,AgentConfig)
-    BEGIN_QUERY_INTERFACE_BODY(AgentConfig)
-    END_QUERY_INTERFACE_BODY(AgentConfig)
 
     bool AgentConfig::Configure(const Configuration* config)
     {
@@ -484,8 +482,6 @@ namespace Kernel
 
     // ClimateConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(ClimateConfig,ClimateConfig)
-    BEGIN_QUERY_INTERFACE_BODY(ClimateConfig)
-    END_QUERY_INTERFACE_BODY(ClimateConfig)
 
     bool ClimateConfig::Configure(const Configuration* config)
     {
@@ -544,8 +540,6 @@ namespace Kernel
 
     // LoggingConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(LoggingConfig,LoggingConfig)
-    BEGIN_QUERY_INTERFACE_BODY(LoggingConfig)
-    END_QUERY_INTERFACE_BODY(LoggingConfig)
 
     bool LoggingConfig::Configure(const Configuration* config)
     {
@@ -601,8 +595,6 @@ namespace Kernel
 
     // MigrationConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(MigrationConfig,MigrationConfig)
-    BEGIN_QUERY_INTERFACE_BODY(MigrationConfig)
-    END_QUERY_INTERFACE_BODY(MigrationConfig)
 
     bool MigrationConfig::Configure(const Configuration* config)
     {
@@ -714,8 +706,6 @@ namespace Kernel
 
     // NodeConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(NodeConfig,NodeConfig)
-    BEGIN_QUERY_INTERFACE_BODY(NodeConfig)
-    END_QUERY_INTERFACE_BODY(NodeConfig)
 
     bool NodeConfig::Configure(const Configuration* config)
     {
@@ -829,8 +819,6 @@ namespace Kernel
 
     // PolioConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(PolioConfig,PolioConfig)
-    BEGIN_QUERY_INTERFACE_BODY(PolioConfig)
-    END_QUERY_INTERFACE_BODY(PolioConfig)
 
     bool PolioConfig::Configure(const Configuration* config)
     {
@@ -965,8 +953,6 @@ namespace Kernel
 
     // SimConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(SimConfig,SimConfig)
-    BEGIN_QUERY_INTERFACE_BODY(SimConfig)
-    END_QUERY_INTERFACE_BODY(SimConfig)
 
     bool SimConfig::Configure(const Configuration* config)
     {
@@ -1032,8 +1018,6 @@ namespace Kernel
 
     // TBHIVConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(TBHIVConfig,TBHIVConfig)
-    BEGIN_QUERY_INTERFACE_BODY(TBHIVConfig)
-    END_QUERY_INTERFACE_BODY(TBHIVConfig)
 
     bool TBHIVConfig::Configure(const Configuration* config)
     {

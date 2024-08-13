@@ -9,6 +9,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "stdafx.h"
 
+#include <algorithm>
+
 #include "BaseProperties.h"
 #include "PropertiesString.h"
 #include "Log.h"

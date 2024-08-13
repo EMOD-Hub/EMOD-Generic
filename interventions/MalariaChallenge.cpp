@@ -16,13 +16,6 @@ SETUP_LOGGING( "MalariaChallenge" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(MalariaChallenge)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_INTERFACE(INodeDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(INodeDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(MalariaChallenge)
-
     IMPLEMENT_FACTORY_REGISTERED(MalariaChallenge)
 
     MalariaChallenge::MalariaChallenge()

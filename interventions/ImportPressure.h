@@ -33,8 +33,6 @@ namespace Kernel
         ImportPressure();
         virtual ~ImportPressure();
 
-        // INodeDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
         virtual void Update(float dt);
         virtual void SetContextTo(INodeEventContext *context);
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC);

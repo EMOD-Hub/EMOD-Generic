@@ -31,9 +31,6 @@ namespace Kernel
     TBFastProgressorType::Enum SusceptibilityTBConfig::TB_fast_progressor_fraction_type = TBFastProgressorType::AGE;
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(SusceptibilityTBConfig,SusceptibilityTBConfig)
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityTBConfig)
-        HANDLE_INTERFACE(SusceptibilityTBConfig)
-    END_QUERY_INTERFACE_BODY(SusceptibilityTBConfig)
 
     bool SusceptibilityTBConfig::Configure( const Configuration* config )
     {
@@ -65,11 +62,6 @@ namespace Kernel
 
         return ret;
     }
-
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityTB)
-        HANDLE_INTERFACE(ISusceptibilityTB)
-    END_QUERY_INTERFACE_BODY(SusceptibilityTB)
-
 
     //---------------------------- SusceptibilityTB ----------------------------------------
     SusceptibilityTB *SusceptibilityTB::CreateSusceptibility(IIndividualHumanContext *context, float immmod, float riskmod)

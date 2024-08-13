@@ -44,9 +44,6 @@ namespace Kernel
     float                 IndividualHumanMalariaConfig::antibody_csp_killing_threshold    = 0.0f;
     float                 IndividualHumanMalariaConfig::antibody_csp_killing_invwidth     = 0.0f;
 
-    BEGIN_QUERY_INTERFACE_BODY(IndividualHumanMalariaConfig)
-    END_QUERY_INTERFACE_BODY(IndividualHumanMalariaConfig)
-
     bool IndividualHumanMalariaConfig::Configure( const Configuration * config )
     {
         LOG_DEBUG( "Configure\n" );
@@ -70,10 +67,6 @@ namespace Kernel
     }
 
     // ----------------- IndividualHumanMalaria ---------------
-    BEGIN_QUERY_INTERFACE_DERIVED(IndividualHumanMalaria, IndividualHumanVector)
-        HANDLE_INTERFACE(IMalariaHumanContext)
-    END_QUERY_INTERFACE_DERIVED(IndividualHumanMalaria, IndividualHumanVector)
-
     IndividualHumanMalaria::IndividualHumanMalaria(suids::suid _suid, double monte_carlo_weight, double initial_age, int gender)
     : IndividualHumanVector(_suid, monte_carlo_weight, initial_age, gender)
     , malaria_susceptibility(nullptr)
@@ -101,7 +94,6 @@ namespace Kernel
     , m_parasites_detected_by_blood_smear(0.0)
     , m_parasites_detected_by_new_diagnostic(0.0)
     , m_gametocytes_detected(0.0)
-    //, m_clinical_symptoms()
     , m_CSP_antibody(nullptr)
     , m_initial_infected_hepatocytes(0)
     {

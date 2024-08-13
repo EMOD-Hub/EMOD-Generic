@@ -39,10 +39,6 @@ namespace Kernel
 {
 #define MAX_CD4 (2500.0f)
 #define CUM_PROB_CUTOFF (0.99f)
- 
-    GET_SCHEMA_STATIC_WRAPPER_IMPL(HIV.SusceptibilityHIV,SusceptibilityHIVConfig)
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityHIVConfig)
-    END_QUERY_INTERFACE_BODY(SusceptibilityHIVConfig)
 
     float SusceptibilityHIVConfig::post_infection_CD4_lambda = 0.0f;
     float SusceptibilityHIVConfig::post_infection_CD4_inverse_kappa = 0.0f;
@@ -122,10 +118,6 @@ namespace Kernel
     }
 
     //---------------------------- SusceptibilityHIV ----------------------------------------
-
-    BEGIN_QUERY_INTERFACE_BODY(SusceptibilityHIV)
-        HANDLE_INTERFACE(ISusceptibilityHIV)
-    END_QUERY_INTERFACE_BODY(SusceptibilityHIV)
 
     Susceptibility *SusceptibilityHIV::CreateSusceptibility(IIndividualHumanContext *context, float immmod, float riskmod)
     {

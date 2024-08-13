@@ -88,7 +88,6 @@ utilsSrcFiles = [
     "IdmMpi.cpp",
     "InterpolatedValueMap.cpp",
     "ISerializable.cpp",
-    "ISupports.cpp",
     "JsonFullReader.cpp",
     "JsonFullWriter.cpp",
     "JsonObjectDemog.cpp",

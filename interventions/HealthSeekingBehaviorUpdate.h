@@ -40,9 +40,7 @@ namespace Kernel
         virtual int32_t AddRef() override { return BaseIntervention::AddRef(); }
         virtual int32_t Release() override { return BaseIntervention::Release(); }
 
-        // IDistributableIntervention
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO ) override;
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void SetContextTo(IIndividualHumanContext *context) override;
         virtual void Update(float dt) override;
 

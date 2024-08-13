@@ -16,13 +16,6 @@ SETUP_LOGGING("NodeBirthRateMult")
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY( NodeBirthRateMult )
-        HANDLE_INTERFACE( IConfigurable )
-        HANDLE_INTERFACE( INodeDistributableIntervention )
-        HANDLE_INTERFACE( IBaseIntervention )
-        HANDLE_ISUPPORTS_VIA( INodeDistributableIntervention )
-    END_QUERY_INTERFACE_BODY( NodeBirthRateMult )
-
     IMPLEMENT_FACTORY_REGISTERED( NodeBirthRateMult )
 
     NodeBirthRateMult::NodeBirthRateMult()

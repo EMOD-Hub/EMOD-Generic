@@ -48,9 +48,6 @@ namespace Kernel
         virtual IHIVInterventionsContainer* GetContainerHIV() override;
         virtual ITBInterventionsContainer*  GetContainerTB()  override;
 
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void** pinstance) override;
-
         // IVaccineConsumer
         virtual void UpdateIVAcquireRate(  float acq,  IVRoute::Enum vax_route);
         virtual void UpdateIVTransmitRate( float xmit, IVRoute::Enum vax_route);

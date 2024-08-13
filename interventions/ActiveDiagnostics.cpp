@@ -18,9 +18,6 @@ SETUP_LOGGING( "ActiveDiagnostic" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(ActiveDiagnostic, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(ActiveDiagnostic, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(ActiveDiagnostic)
 
     bool ActiveDiagnostic::Configure(const Configuration* inputJson)

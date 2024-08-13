@@ -29,9 +29,6 @@ namespace Kernel
 
         virtual bool Configure( const Configuration * ) override;
 
-        // ISupports
-        virtual QueryResult QueryInterface( iid_t iid, void **ppvObject ) override;
-
         // GenericDrug method
         virtual void Update( float dt ) override;
         virtual void SetContextTo( IIndividualHumanContext *context ) override;

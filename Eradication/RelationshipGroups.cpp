@@ -26,11 +26,6 @@ SETUP_LOGGING( "RelationshipGroups" )
 namespace Kernel {
 
 #ifndef DISABLE_STI
-    //IContagionPopulation
-    BEGIN_QUERY_INTERFACE_BODY(DiscreteContagionPopulation)
-        HANDLE_INTERFACE(IContagionPopulation)
-    END_QUERY_INTERFACE_BODY(DiscreteContagionPopulation)
-
     RelationshipGroups::RelationshipGroups( RANDOMBASE * prng )
         : tag( "relationship" )
     {

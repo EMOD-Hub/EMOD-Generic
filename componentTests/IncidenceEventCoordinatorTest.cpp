@@ -169,7 +169,6 @@ SUITE( IncidenceEventCoordinatorTest )
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface( iid_t iid, void** pinstance ) { return QueryResult::e_NOINTERFACE; }
 
         ActionEventListener( const EventTrigger::Enum& rListeningForEvent )
             : m_Event( rListeningForEvent )

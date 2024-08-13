@@ -60,17 +60,9 @@ using namespace std;
 
 SETUP_LOGGING( "Simulation" )
 
-
 namespace Kernel
 {
-    // Enable querying of interfaces from Simulation objects
     GET_SCHEMA_STATIC_WRAPPER_IMPL(Simulation,Simulation)
-    BEGIN_QUERY_INTERFACE_BODY(Simulation)
-        HANDLE_INTERFACE(ISimulation)
-        HANDLE_INTERFACE(ISimulationContext)
-        HANDLE_ISUPPORTS_VIA(ISimulationContext)
-    END_QUERY_INTERFACE_BODY(Simulation)
-
     //------------------------------------------------------------------
     //   Initialization methods
     //------------------------------------------------------------------

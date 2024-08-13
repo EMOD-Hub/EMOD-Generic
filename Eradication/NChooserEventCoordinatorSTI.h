@@ -21,8 +21,6 @@ namespace Kernel
     class IDMAPI TargetedDistributionSTI : public TargetedDistribution
     {
     public:
-        DECLARE_QUERY_INTERFACE()
-
         TargetedDistributionSTI( NChooserObjectFactory* pObjectFactory );
         virtual ~TargetedDistributionSTI();
 
@@ -68,8 +66,6 @@ namespace Kernel
     {
         DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, NChooserEventCoordinatorSTI, IEventCoordinator)    
     public:
-        DECLARE_QUERY_INTERFACE()
-
         NChooserEventCoordinatorSTI();
         NChooserEventCoordinatorSTI( NChooserObjectFactory* pObjectFactory );
         virtual ~NChooserEventCoordinatorSTI();

@@ -58,11 +58,6 @@ public:
     // ---------------------
     // --- ISupport Methods
     // ---------------------
-    virtual QueryResult QueryInterface(iid_t iid, void **ppvObject)
-    {
-        return e_NOINTERFACE;
-    }
-
     virtual int32_t AddRef()  { return 10 ; }
     virtual int32_t Release() { return 10 ; }
 

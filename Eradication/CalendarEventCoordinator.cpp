@@ -19,8 +19,6 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(CalendarEventCoordinator)
 
-    IMPL_QUERY_INTERFACE2(CalendarEventCoordinator, IEventCoordinator, IConfigurable)
-
     CalendarEventCoordinator::CalendarEventCoordinator()
     : StandardInterventionDistributionEventCoordinator(false)//false=don't use standard demographic coverage
     {

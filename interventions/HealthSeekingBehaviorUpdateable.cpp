@@ -14,10 +14,6 @@ SETUP_LOGGING( "HealthSeekingBehaviorUpdateable" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(HealthSeekingBehaviorUpdateable, SimpleHealthSeekingBehavior)
-        HANDLE_INTERFACE(IHealthSeekingBehavior)
-    END_QUERY_INTERFACE_DERIVED(HealthSeekingBehaviorUpdateable, SimpleHealthSeekingBehavior)
-
     IMPLEMENT_FACTORY_REGISTERED(HealthSeekingBehaviorUpdateable)
 
     HealthSeekingBehaviorUpdateable::HealthSeekingBehaviorUpdateable() : SimpleHealthSeekingBehavior()

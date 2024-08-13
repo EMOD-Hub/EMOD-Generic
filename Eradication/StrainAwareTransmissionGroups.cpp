@@ -538,9 +538,6 @@ namespace Kernel
 // NOTYET        return GetTotalContagionForGroup( txGroups );
 // NOTYET    }
 
-    BEGIN_QUERY_INTERFACE_BODY(StrainAwareTransmissionGroups::GenomePopulationImpl)
-    END_QUERY_INTERFACE_BODY(StrainAwareTransmissionGroups::GenomePopulationImpl)
-
     StrainAwareTransmissionGroups::GenomePopulationImpl::GenomePopulationImpl( RANDOMBASE* prng, uint32_t _cladeId, float _quantity, const GenomeMap_t& _genomeDistribution )
         : pRNG( prng )
         , cladeId(_cladeId)

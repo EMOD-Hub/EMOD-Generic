@@ -24,7 +24,6 @@ namespace Kernel
 {
     class StrainIdentity;
 
-
     struct IOutbreak : public ISupports
     {
         virtual uint32_t GetClade()     const = 0;
@@ -44,8 +43,6 @@ namespace Kernel
         Outbreak();
         virtual ~Outbreak() { }
 
-        // INodeDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject);
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC);
         virtual void SetContextTo(INodeEventContext *context) { /* not needed for this intervention */ }
         virtual void Update(float dt);

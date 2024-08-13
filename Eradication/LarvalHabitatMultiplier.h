@@ -27,7 +27,6 @@ namespace Kernel
         LarvalHabitatMultiplierSpec();
         virtual bool Configure(const Configuration* config);
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         float GetFactor() const;
         VectorHabitatType::Enum GetHabitat() const;
@@ -54,7 +53,6 @@ namespace Kernel
     {
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
     public:
         LarvalHabitatMultiplier( bool usedByIntervention = false, float minValue = 0.0f, float maxValue = FLT_MAX, float defaultValue = 1.0f );

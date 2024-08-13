@@ -22,7 +22,6 @@ namespace Kernel
     class SimulationVector : public Simulation, public IVectorSimulationContext
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static SimulationVector *CreateSimulation();

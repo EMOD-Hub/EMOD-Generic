@@ -32,13 +32,6 @@ namespace Kernel
 #ifndef WIN32
     #define min(a,b) ( (a<b) ? a : b )
 #endif
-    // QI stuff
-    BEGIN_QUERY_INTERFACE_BODY(VectorPopulation)
-        HANDLE_INTERFACE(IVectorPopulation)
-        HANDLE_INTERFACE(IInfectable)
-        HANDLE_ISUPPORTS_VIA(IVectorPopulation)
-    END_QUERY_INTERFACE_BODY(VectorPopulation)
-
     // ---------------------------------------------------------
     // --- integer form of the maximum age of a vector in days
     // ---------------------------------------------------------

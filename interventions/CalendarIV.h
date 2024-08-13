@@ -37,9 +37,7 @@ namespace Kernel
         virtual ~IVCalendar();
         bool Configure( const Configuration* config ) override;
 
-        // IDistributingDistributableIntervention
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pICCO ) override;
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
         virtual void Update(float dt) override;
 
     protected:

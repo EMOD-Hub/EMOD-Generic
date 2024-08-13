@@ -21,10 +21,6 @@ SETUP_LOGGING( "STIInterventionsContainer" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(STIInterventionsContainer, InterventionsContainer)
-        HANDLE_INTERFACE(ISTIInterventionsContainer)
-    END_QUERY_INTERFACE_DERIVED(STIInterventionsContainer, InterventionsContainer)
-
     STIInterventionsContainer::STIInterventionsContainer() 
         : InterventionsContainer()
         , is_circumcised(false)

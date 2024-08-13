@@ -103,10 +103,6 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- AgeDiagnostic
     // ------------------------------------------------------------------------
-
-    BEGIN_QUERY_INTERFACE_DERIVED(AgeDiagnostic, SimpleDiagnostic)
-    END_QUERY_INTERFACE_DERIVED(AgeDiagnostic, SimpleDiagnostic)
-
     IMPLEMENT_FACTORY_REGISTERED(AgeDiagnostic)
 
     AgeDiagnostic::AgeDiagnostic()

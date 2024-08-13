@@ -30,7 +30,6 @@ namespace Kernel
     class AgeAndProbability : public JsonConfigurable
     {
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
     public:
         AgeAndProbability()
@@ -87,14 +86,6 @@ namespace Kernel
             return new AgeAndProbability();
         }
     };
-
-
-    BEGIN_QUERY_INTERFACE_BODY(IVCalendar)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IBaseIntervention)
-    END_QUERY_INTERFACE_BODY(IVCalendar)
 
     IMPLEMENT_FACTORY_REGISTERED(IVCalendar)
 

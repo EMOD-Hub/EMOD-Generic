@@ -17,7 +17,6 @@ namespace Kernel
         friend class IndividualPy;
         GET_SCHEMA_STATIC_WRAPPER(InfectionPyConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual bool Configure( const Configuration* config ) override;
@@ -37,7 +36,6 @@ namespace Kernel
         , public IInfectionPy 
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         static InfectionPy *CreateInfection(IIndividualHumanContext *context, suids::suid _suid);

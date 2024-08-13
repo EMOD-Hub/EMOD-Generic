@@ -19,7 +19,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED_EXPORT( EventCoordinatorFactory, BroadcastCoordinatorEvent, IEventCoordinator )
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         BroadcastCoordinatorEvent();
         virtual ~BroadcastCoordinatorEvent();

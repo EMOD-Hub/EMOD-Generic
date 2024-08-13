@@ -36,9 +36,6 @@ namespace Kernel
         // IDistributableIntervention
         virtual void Update(float dt) override;
 
-        // ISupports
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
-
         TyphoidVaccineMode::Enum vaccine_mode;
         float effect;
         ITyphoidVaccineEffectsApply * itvc; // interventions container

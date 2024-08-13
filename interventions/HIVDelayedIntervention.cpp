@@ -23,9 +23,6 @@ SETUP_LOGGING( "HIVDelayedIntervention" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(HIVDelayedIntervention, DelayedIntervention)
-    END_QUERY_INTERFACE_DERIVED(HIVDelayedIntervention, DelayedIntervention)
-
     IMPLEMENT_FACTORY_REGISTERED(HIVDelayedIntervention)
 
     HIVDelayedIntervention::HIVDelayedIntervention()

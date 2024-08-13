@@ -21,7 +21,6 @@ namespace Kernel
     class ReportTBHIV; 
     class CD4TrajectoryChangeObserver : public IIndividualEventObserver
     {
-    virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; };
     virtual int32_t AddRef() { return 1; };
     virtual int32_t Release() { return 0; };
     public:
@@ -32,7 +31,6 @@ namespace Kernel
     class NodeTBHIV : public NodeTB, public INodeTBHIV
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
     public:
         virtual ~NodeTBHIV(void); 

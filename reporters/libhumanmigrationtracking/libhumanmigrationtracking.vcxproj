@@ -53,8 +53,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>BOOST_ALL_NO_LIB;_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBHUMANMIGRATIONTRACKING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;$(IDM_BOOST_PATH);..\..\cajun\Include;..\..\utils;..\..\baseReportLib;..\..\Eradication;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBHUMANMIGRATIONTRACKING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;..\..\cajun\Include;..\..\utils;..\..\baseReportLib;..\..\Eradication;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -73,8 +73,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>BOOST_ALL_NO_LIB;_DLLS_;_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBHUMANMIGRATIONTRACKING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;$(IDM_BOOST_PATH);..\..\cajun\Include;..\..\utils;..\..\baseReportLib;..\..\Eradication;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DLLS_;_REPORT_DLL;IDM_EXPORT;_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBHUMANMIGRATIONTRACKING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Dependencies\ComputeClusterPack\Include;..\..\cajun\Include;..\..\utils;..\..\baseReportLib;..\..\Eradication;..\..\jsonspirit;..\..\campaign;..\..\rapidjson\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

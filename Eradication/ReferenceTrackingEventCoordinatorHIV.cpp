@@ -20,7 +20,6 @@ SETUP_LOGGING( "ReferenceTrackingEventCoordinatorHIV" )
 namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(ReferenceTrackingEventCoordinatorHIV)
-    IMPL_QUERY_INTERFACE2(ReferenceTrackingEventCoordinatorHIV, IEventCoordinator, IConfigurable)
 
     ReferenceTrackingEventCoordinatorHIV::ReferenceTrackingEventCoordinatorHIV()
         : ReferenceTrackingEventCoordinator()

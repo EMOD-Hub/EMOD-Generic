@@ -25,7 +25,6 @@ namespace Kernel
     public:
         virtual bool Configure( const Configuration* config );
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
     };
 
     class ISusceptibilityTyphoid : public ISupports
@@ -44,7 +43,6 @@ namespace Kernel
         public ISusceptibilityTyphoidReportable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
 
     protected:
     public:

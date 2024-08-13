@@ -22,13 +22,6 @@ SETUP_LOGGING( "DelayedIntervention" )
 
 namespace Kernel
 {
-    BEGIN_QUERY_INTERFACE_BODY(DelayedIntervention)
-        HANDLE_INTERFACE(IConfigurable)
-        HANDLE_INTERFACE(IBaseIntervention)
-        HANDLE_INTERFACE(IDistributableIntervention)
-        HANDLE_ISUPPORTS_VIA(IDistributableIntervention)
-    END_QUERY_INTERFACE_BODY(DelayedIntervention)
-
     IMPLEMENT_FACTORY_REGISTERED(DelayedIntervention)
 
     void DelayedIntervention::PreConfigure( const Configuration * inputJson )

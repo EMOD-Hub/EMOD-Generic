@@ -16,7 +16,6 @@ namespace Kernel
 {
     // NodeSetAll 
     IMPLEMENT_FACTORY_REGISTERED(NodeSetAll)
-    IMPL_QUERY_INTERFACE2(NodeSetAll, INodeSet, IConfigurable)
 
     bool NodeSetAll::Configure(const Configuration * pInputJson)
     {

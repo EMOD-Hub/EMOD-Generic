@@ -20,9 +20,6 @@ SETUP_LOGGING( "AssortivityHIV" )
 
 namespace Kernel 
 {
-    BEGIN_QUERY_INTERFACE_DERIVED(AssortivityHIV,Assortivity)
-    END_QUERY_INTERFACE_DERIVED(AssortivityHIV,Assortivity)
-
     AssortivityHIV::AssortivityHIV( RelationshipType::Enum relType, RANDOMBASE* prng )
         : Assortivity( relType, prng )
     {

@@ -19,7 +19,6 @@ class TestConfigure : public Kernel::JsonConfigurable
 {
 public:
     TestConfigure() :JsonConfigurable() {};
-    QueryResult QueryInterface(iid_t iid, void** pinstance) { return (QueryResult)0; };
     int32_t AddRef(void) { return 0; };
     int32_t Release(void) { return 0; };
 

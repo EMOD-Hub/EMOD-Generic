@@ -21,10 +21,6 @@ namespace Kernel
 {
     GET_SCHEMA_STATIC_WRAPPER_IMPL(FerrandAgeDependentDistribution,FerrandAgeDependentDistribution)
 
-    BEGIN_QUERY_INTERFACE_BODY(FerrandAgeDependentDistribution)
-    END_QUERY_INTERFACE_BODY(FerrandAgeDependentDistribution)
-
-
     FerrandAgeDependentDistribution::FerrandAgeDependentDistribution()
     : JsonConfigurable()
     , m_child_beta(1.52f)

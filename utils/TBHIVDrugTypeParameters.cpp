@@ -53,17 +53,7 @@ namespace Kernel
     TBHIVDrugTypeParameters::~TBHIVDrugTypeParameters()
     { }
 
-    QueryResult TBHIVDrugTypeParameters::QueryInterface(iid_t iid, void **ppvObject)
-    {
-        throw NotYetImplementedException(  __FILE__, __LINE__, __FUNCTION__, "Should not get here" );
-    }
-
-
-
     // ***** TBHIVDrugCollection is a container for 0 or more TBHIVDrugTypeParameters *****
-    BEGIN_QUERY_INTERFACE_BODY(TBHIVDrugCollection)
-    END_QUERY_INTERFACE_BODY(TBHIVDrugCollection)
-
     TBHIVDrugCollection::TBHIVDrugCollection()
         : JsonConfigurable()
         , tbhiv_drug_map()

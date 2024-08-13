@@ -28,7 +28,6 @@ namespace Kernel
     class NodeVector : public Node, public INodeVector
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
 
         friend class ::ReportVector;
         friend class ::VectorSpeciesReport;

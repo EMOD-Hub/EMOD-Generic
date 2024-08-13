@@ -23,7 +23,6 @@ namespace Kernel
     public:
         virtual bool Configure( const Configuration* config ) override;
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
 
     protected:
         friend class SusceptibilityTB;
@@ -59,7 +58,6 @@ namespace Kernel
         friend class IndividualHumanCoInfection;
         friend class IndividualHumanCoInfection;
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
-        DECLARE_QUERY_INTERFACE()
 
         static SusceptibilityTB *CreateSusceptibility(IIndividualHumanContext *context, float immmod, float riskmod);
         virtual ~SusceptibilityTB(void);

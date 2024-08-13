@@ -64,7 +64,6 @@ namespace Kernel
         class GenomePopulationImpl : IContagionPopulation
         {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_QUERY_INTERFACE()
         public: 
             GenomePopulationImpl(RANDOMBASE* prng, uint32_t _cladeId, float _quantity, const GenomeMap_t& _genomeDistribution);
                 

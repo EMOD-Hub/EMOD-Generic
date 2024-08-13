@@ -27,10 +27,6 @@ namespace Kernel
         HIVDelayedIntervention( const HIVDelayedIntervention& );
 
         virtual bool Configure( const Configuration* config ) override;
-
-        // IDistributingDistributableIntervention
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) override;
-
         virtual void Update(float dt) override;
 
         virtual void Callback( float dt );

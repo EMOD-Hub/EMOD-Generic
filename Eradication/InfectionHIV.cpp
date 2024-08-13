@@ -45,12 +45,6 @@ namespace Kernel
     IDistribution* InfectionHIVConfig::p_hetero_infectivity_distribution = nullptr;
 
     GET_SCHEMA_STATIC_WRAPPER_IMPL(HIV.Infection,InfectionHIVConfig)
-    BEGIN_QUERY_INTERFACE_BODY(InfectionHIVConfig)
-    END_QUERY_INTERFACE_BODY(InfectionHIVConfig)
-
-    BEGIN_QUERY_INTERFACE_BODY(InfectionHIV)
-        HANDLE_INTERFACE(IInfectionHIV)
-    END_QUERY_INTERFACE_BODY(InfectionHIV)
 
     bool InfectionHIVConfig::Configure( const Configuration * config )
     {

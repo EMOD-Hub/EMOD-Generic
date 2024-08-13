@@ -17,7 +17,6 @@ namespace Kernel
     class NodeSTI : public Node, public INodeSTI
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
-        DECLARE_QUERY_INTERFACE();
 
     public:
         virtual ~NodeSTI(void);

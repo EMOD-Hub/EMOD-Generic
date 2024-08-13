@@ -22,7 +22,6 @@ namespace Kernel
 
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
-        virtual QueryResult QueryInterface(iid_t iid, void **ppvObject) { return e_NOINTERFACE; }
 
         virtual IWaningEffect* Clone()                               override;
 
