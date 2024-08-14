@@ -9,6 +9,8 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #pragma once
 
+#include <cstring>
+
 #include "RANDOM.h"
 
 class RandomFake : public Kernel::RANDOMBASE
