@@ -90,25 +90,21 @@ void FPE_SignalHandler( int signal )
 void SetFloatingPointSignalHandler()
 {
 #ifdef WIN32
-    unsigned int currentlControl = 0;        
-    _controlfp_s( &currentlControl, 0, 0 );      //read current FPE control word
-
-    _controlfp_s(&currentlControl, ~(_EM_ZERODIVIDE | _EM_OVERFLOW | _EM_INVALID), _MCW_EM);	// division by 0 | positive/negative infinity (e.g. FLT_MAX/FLT_MIN) |  NaN 
-
-    _controlfp_s(&currentlControl, 0, 0);        //read FPE control word after clearing the bits
+    unsigned int currentlControl = 0;
+    _controlfp_s( &currentlControl, 0, 0 );   //read current FPE control word
+    _controlfp_s(&currentlControl, ~(_EM_ZERODIVIDE | _EM_OVERFLOW | _EM_INVALID), _MCW_EM);   // /0 | +/-inf | NaN
+    _controlfp_s(&currentlControl, 0, 0);     //read FPE control word after clearing the bits
     LOG_DEBUG_F("Signal Handler control word: %u \n", currentlControl);
-
 #else
-    feenableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW);    // division by 0 | positive/negative infinity (e.g. FLT_MAX/FLT_MIN) |  NaN 
+    feenableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW);   // /0 | +/-inf | NaN
     LOG_DEBUG_F("Signal Handler control word: %d \n", fegetexcept() );
 #endif
 
     // Install a signal handler
-    if( std::signal(SIGFPE, FPE_SignalHandler) )
+    if( std::signal(SIGFPE, FPE_SignalHandler) != SIG_ERR )
     {
         LOG_WARN("Could not install Floating Point Exception signal handler\n");
     }
-
 }
 
 
@@ -117,12 +113,11 @@ void DisableFloatingPointSignalHandler()
 #ifdef WIN32
     unsigned int currentlControl = 0;
     _controlfp_s(&currentlControl, 0, 0);   //read current control word
-
-    _controlfp_s(&currentlControl, currentlControl | _EM_ZERODIVIDE | _EM_INVALID , _MCW_EM);	// disable FPE signals by setting bits    
+    _controlfp_s(&currentlControl, currentlControl | _EM_ZERODIVIDE | _EM_INVALID , _MCW_EM);   // disable FPE signals by setting bits
 #else
-    fedisableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW);    // disable FPE signals
+    fedisableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW);   // disable FPE signals
 #endif
-    std::signal(SIGFPE, SIG_DFL);	//set default signal handler for SIGFPE
+    std::signal(SIGFPE, SIG_DFL);   //set default signal handler for SIGFPE
 }
 
 
