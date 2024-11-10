@@ -174,10 +174,8 @@ if os.sys.platform == 'win32':
 
     if('14.3' in msvc_list):
         MSVC_ver = '14.3'
-    elif('14.0' in msvc_list):
-        MSVC_ver = '14.0'
     else:
-        raise RuntimeError("Only supports MSVC 14.0 and 14.3")
+        raise RuntimeError("Only supports MSVC 14.3")
 
 pa = platform.architecture()
 pi = os.sys.platform
@@ -209,6 +207,9 @@ env['BUILD_VARIANT'] = bvar
 #libdeps.setup_environment( env )
 
 env['EXTRACPPPATH'] = []
+env["LIBPATH"] = []
+env['EXTRALIBPATH'] = []
+
 if os.sys.platform == 'win32':
     if Dbg:
         print( "----------------------------------------------------" )
@@ -220,6 +221,14 @@ if os.sys.platform == 'win32':
     print('MSVC Version: ',env['MSVC_VERSION'])
 
     env['OS_FAMILY'] = 'win'
+
+    env.Append( EXTRACPPPATH=[ os.environ['IDM_PYTHON3X_PATH']+"/include" ] )
+    env.Append( EXTRALIBPATH=[ os.environ['IDM_PYTHON3X_PATH']+"/libs" ] )
+    env.Append( LIBS=["python3.lib"] )
+    env.Append( EXTRACPPPATH=[ "#/Dependencies/ComputeClusterPack/include" ] )
+    env.Append( EXTRALIBPATH=[ "#/Dependencies/ComputeClusterPack/Lib/amd64" ] )
+    env.Append( LIBS=["msmpi.lib"] )
+
     env.Append( EXTRACPPPATH=[
                           "#/Eradication",
                           "#/interventions",
@@ -228,8 +237,6 @@ if os.sys.platform == 'win32':
                           "#/baseReportLib",
                           "#/utils",
                           "#/libgeneric_static",
-                          os.environ['IDM_PYTHON3X_PATH']+"/include",
-                          "#/Dependencies/ComputeClusterPack/Include",
                           "#/cajun/include",
                           "#/rapidjson/include",
                           "#/snappy",
@@ -237,7 +244,7 @@ if os.sys.platform == 'win32':
 else:
     env['ENV']['PATH'] = path
     env['OS_FAMILY'] = 'posix'
-    env['CC'] = "mpicxx"
+    env['CC'] = "mpicc"
     env['CXX'] = "mpicxx"
     env.Append( CCFLAGS=["-fpermissive"] )
     env.Append( CCFLAGS=["--std=c++0x"] )
@@ -257,8 +264,29 @@ else:
                           "#/snappy",
                           "#/lz4/lib"])
 
-env["LIBPATH"] = []
-env['EXTRALIBPATH'] = []
+    if(sys.version_info.minor == 6):
+        env.Append( LIBS=["python3.6m"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.6m"] )
+    elif(sys.version_info.minor == 7):
+        env.Append( LIBS=["python3.7m"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.7m"] )
+    elif(sys.version_info.minor == 8):
+        env.Append( LIBS=["python3.8"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.8"] )
+    elif(sys.version_info.minor == 9):
+        env.Append( LIBS=["python3.9"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.9"] )
+    elif(sys.version_info.minor == 10):
+        env.Append( LIBS=["python3.10"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.10"] )
+    elif(sys.version_info.minor == 11):
+        env.Append( LIBS=["python3.11"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.11"] )
+    elif(sys.version_info.minor == 12):
+        env.Append( LIBS=["python3.12"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.12"] )
+    else:
+        raise RuntimeError("Unsupported python version")
 
 # ---- other build setup -----
 
@@ -290,38 +318,12 @@ if os.sys.platform.startswith("linux"):
     static = True
     platform = "linux"
 
-    env.Append( LIBS=['m'] )
-
     if os.uname()[4] == "x86_64":
         linux64 = True
         nixLibPrefix = "lib64"
         env.Append( EXTRALIBPATH=["/usr/lib64" , "/lib64" ] )
 
-    if(sys.version_info.minor == 6):
-        env.Append( LIBS=["python3.6m"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.6m"] )
-    elif(sys.version_info.minor == 7):
-        env.Append( LIBS=["python3.7m"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.7m"] )
-    elif(sys.version_info.minor == 8):
-        env.Append( LIBS=["python3.8"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.8"] )
-    elif(sys.version_info.minor == 9):
-        env.Append( LIBS=["python3.9"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.9"] )
-    elif(sys.version_info.minor == 10):
-        env.Append( LIBS=["python3.10"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.10"] )
-    elif(sys.version_info.minor == 11):
-        env.Append( LIBS=["python3.11"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.11"] )
-    elif(sys.version_info.minor == 12):
-        env.Append( LIBS=["python3.12"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.12"] )
-    else:
-        raise RuntimeError("Unsupported python version")
-
-    env.Append( LIBS=["pthread", "dl" ] )
+    env.Append( LIBS=["pthread", "dl", "m" ] )
     env.Append( EXTRALIBPATH=[ "/usr/local/lib", "/usr/lib64/mpich/lib" ] )
 
     if static:
@@ -412,12 +414,6 @@ elif "win32" == os.sys.platform:
     winLibString = "Dbghelp.lib psapi.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"
     winLibString += ""
     env.Append( LIBS=Split(winLibString) )
-
-    env.Append( EXTRALIBPATH=[ os.environ['IDM_PYTHON3X_PATH']+"/libs" ] )
-    env.Append( LIBS=["python3.lib"] )
-
-    env.Append( EXTRALIBPATH=[ "#/Dependencies/ComputeClusterPack/Lib/amd64" ] )
-    env.Append( LIBS=["msmpi.lib"] )
 
 else:
     print( "No special config for [" + os.sys.platform + "] which probably means it won't work" )
@@ -527,3 +523,4 @@ Export("env")
 
 # pass the build_dir as the variant directory
 env.SConscript( 'SConscript', variant_dir='$BUILD_DIR', duplicate=False )
+

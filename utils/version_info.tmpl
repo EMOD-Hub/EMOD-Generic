@@ -7,21 +7,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 ***************************************************************************************************/
 
-#define STRINGIFY(ver)       #ver
-#define XSTRINGIFY(ver)       STRINGIFY(ver)
-
-#ifdef WIN32
-static const char* BUILD_DATE = __DATE__ " " __TIME__;
-#else
-#define BUILD_DATE __DATE__
-#endif
-
-#ifndef SCCS_BRANCH
-#define    SCCS_BRANCH      "$BRANCH$ ($HASH$)"
-#endif
-#ifndef SCCS_DATE
-#define    SCCS_DATE        "$DATE$"
-#endif
 
 #define    MAJOR_VERSION    2
 #define    MINOR_VERSION    21
@@ -30,9 +15,21 @@ static const char* BUILD_DATE = __DATE__ " " __TIME__;
 #endif
 #define    BUILD_NUMBER     0
 
+static const char* BUILD_DATE = __DATE__ " " __TIME__;
+
+#ifndef SCCS_BRANCH
+#define    SCCS_BRANCH      "$BRANCH$($HASH$)"
+#endif
+#ifndef SCCS_DATE
+#define    SCCS_DATE        "$DATE$"
+#endif
+
 #ifndef BUILDER_NAME
 #define    BUILDER_NAME     "$BUILDER$"
 #endif
+
+#define STRINGIFY(ver)       #ver
+#define XSTRINGIFY(ver)       STRINGIFY(ver)
 
 #define FULL_VERSION_WITH_SVN       XSTRINGIFY(MAJOR_VERSION) "." XSTRINGIFY(MINOR_VERSION) "." XSTRINGIFY(REVISION_NUMBER)
 #define FULL_VERSION_WITH_SVN_NQ    MAJOR_VERSION,MINOR_VERSION,REVISION_NUMBER,BUILD_NUMBER

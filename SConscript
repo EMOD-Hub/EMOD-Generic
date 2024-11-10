@@ -37,10 +37,24 @@ if dst_path != "":
     sys.exit(0)
 
 # set the common libraries
-env.Append(LIBPATH = ["$BUILD_DIR/baseReportLib", "$BUILD_DIR/cajun", "$BUILD_DIR/campaign", "$BUILD_DIR/libsqlite", "$BUILD_DIR/snappy", "$BUILD_DIR/lz4", "$BUILD_DIR/utils"])
+env.Append( LIBPATH = [
+              "$BUILD_DIR/baseReportLib",
+              "$BUILD_DIR/campaign", 
+              "$BUILD_DIR/cajun", 
+              "$BUILD_DIR/libsqlite", 
+              "$BUILD_DIR/snappy", 
+              "$BUILD_DIR/lz4", 
+              "$BUILD_DIR/utils"])
 
 if os.name != "posix":
-    env.Append(LIBS=["baseReportLib", "cajun", "campaign", "snappy", "lz4", "utils", "libsqlite"])
+    env.Append( LIBS=[
+              "baseReportLib", 
+              "campaign",
+              "cajun",
+              "libsqlite",
+              "snappy",
+              "lz4",
+              "utils"])
 
 # First static libs
 statlibscriptlist = [
@@ -56,70 +70,6 @@ if os.name != "posix":
     statlibscriptlist.append( "libsqlite/SConscript" )
 
 SConscript( statlibscriptlist )
-
-# If DLL=true, build libgeneric_static.lib
-# to be used by other dlls
-
-# not sure yet exactly right set of conditions for this
-#if env['AllDlls'] or ( 'AllInterventions' in env and env['AllInterventions'] ) or ( 'DiseaseDll' in env and env[ 'DiseaseDll' ] != "" ) or ( 'Report' in env and env[ 'Report' ] != "" ) or ( 'Campaign' in env and env[ 'Campaign' ] != "" ):
-if env['AllDlls'] or ( 'DiseaseDll' in env and env[ 'DiseaseDll' ] != "" ) or ( 'Report' in env and env[ 'Report' ] != "" ):
-    print( "Build libgeneric_static.lib for dll...." )
-    SConscript( 'libgeneric_static/SConscript' )
-
-# Then build dlls
-if env['AllDlls']:
-    print( "Build all dlls..." )
-    SConscript( 'libgeneric/VectorSConscriptStatic' )
-    SConscript( 'libgeneric/MalariaSConscriptStatic' )
-    SConscript( 'libgeneric/EnvironmentalSConscriptStatic' )
-    SConscript( 'libgeneric/GenericSConscript' )
-    SConscript( 'libgeneric/VectorSConscript' )
-    SConscript( 'libgeneric/MalariaSConscript' )
-    SConscript( 'libgeneric/EnvironmentalSConscript' )
-    SConscript( 'libgeneric/TBSConscriptStatic' )
-    SConscript( 'libgeneric/TBSConscript' )
-    SConscript( 'libgeneric/STISConscriptStatic' )
-    SConscript( 'libgeneric/HIVSConscript' )
-    SConscript( 'libgeneric/PySConscript' )
-    #SConscript( 'libgeneric/PolioSConscript' )
-elif env[ 'DiseaseDll' ] != "":
-    print( "Build specific disease dll." )
-    dtype = env['DiseaseDll']
-    if dtype == 'Generic':
-        SConscript( 'libgeneric/GenericSConscript', variant_dir="Generic/disease_plugins" )
-    elif dtype == 'Vector':
-        SConscript( 'libgeneric/VectorSConscriptStatic' )
-        SConscript( 'libgeneric/VectorSConscript', variant_dir="Vector/disease_plugins" )
-    elif dtype == 'Malaria':
-        SConscript( 'libgeneric/VectorSConscriptStatic' )
-        SConscript( 'libgeneric/MalariaSConscriptStatic' )
-        SConscript( 'libgeneric/MalariaSConscript', variant_dir="Malaria/disease_plugins" )
-    elif dtype == 'Environmental':
-        SConscript( 'libgeneric/EnvironmentalSConscriptStatic' )
-        SConscript( 'libgeneric/EnvironmentalSConscript', variant_dir="Environmental/disease_plugins" )
-    elif dtype == 'Polio':
-        SConscript( 'libgeneric/EnvironmentalSConscriptStatic' )
-        SConscript( 'libgeneric/PolioSConscript', variant_dir="Polio/disease_plugins" )
-    elif dtype == 'TB':
-        SConscript( 'libgeneric/TBSConscriptStatic' )
-        SConscript( 'libgeneric/TBSConscript', variant_dir="TB/disease_plugins" )
-    elif dtype == 'STI':
-        SConscript( 'libgeneric/STISConscriptStatic' )
-        SConscript( 'libgeneric/STISConscript', variant_dir="STI/disease_plugins" )
-    elif dtype == 'HIV':
-        SConscript( 'libgeneric/STISConscriptStatic' )
-        SConscript( 'libgeneric/HIVSConscriptStatic' )
-        SConscript( 'libgeneric/HIVSConscript', variant_dir="HIV/disease_plugins" )
-    elif dtype == 'PY':
-        SConscript( 'libgeneric/PySConscript', variant_dir="Py/disease_plugins" )
-    else:
-        print( "Unspecified or unknown disease type: " + dtype )
-
-# intervention dlls
-if env['AllDlls'] or env[ 'DiseaseDll' ] != "":
-    print( "Building dlls." )
-
-    dll_op_path = env['DiseaseDll'] + "/interventions"
 
 # Finally executable
 SConscript('Eradication/SConscript')
