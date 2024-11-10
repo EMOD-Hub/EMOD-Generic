@@ -5,14 +5,13 @@
 import os
 from subprocess import Popen, PIPE
 import pdb
+import shutil
 
 Import("env")
-
 if os.sys.platform != 'win32':
     # for getting commit/branch info either get the info directly (if we're building in a repo)
     git_rev_handle = Popen( "git rev-list HEAD --count".encode('utf-8').split(), stdout=PIPE )
     rev = git_rev_handle.stdout.read().decode().strip().strip( '"\'' ).replace(" ","_")
-
     # or look for and use an externally provided file
     root = Dir('#').abspath
     provided_version_info_file = '{0}/utils/version.provided.txt'.format(root)
@@ -61,6 +60,13 @@ if os.sys.platform != 'win32':
     
     USER_STR = '-DBUILDER_NAME=\'"{0}"\''.format(os.environ['USER'])
     env.Append( CCFLAGS=[ USER_STR ] )
+
+    version_info_path = os.path.join(root,"utils/version_info.h")
+    version_tmpl_path = os.path.join(root,"utils/version_info.tmpl")
+    if os.path.exists(version_info_path):
+        os.remove(version_info_path)
+    shutil.copy(version_tmpl_path, version_info_path )
+
 else:
     root = Dir('#').abspath
     version_info = '{0}\\scripts\\gitversion.cmd {0}\\utils'.format(root)
