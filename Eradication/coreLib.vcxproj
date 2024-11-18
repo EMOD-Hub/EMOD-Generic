@@ -212,6 +212,7 @@
     <ClInclude Include="..\interventions\NodeLevelHealthTriggeredIV.h" />
     <ClInclude Include="..\interventions\NodeLevelHealthTriggeredIVScaleUpSwitch.h" />
     <ClInclude Include="..\interventions\NodePropertyValueChanger.h" />
+    <ClInclude Include="..\interventions\NodeRandomNumber.h" />
     <ClInclude Include="..\interventions\Outbreak.h" />
     <ClInclude Include="..\interventions\OutbreakIndividual.h" />
     <ClInclude Include="..\interventions\OutbreakIndividualTBorHIV.h" />
@@ -555,6 +556,7 @@
     <ClCompile Include="..\interventions\NodeLevelHealthTriggeredIV.cpp" />
     <ClCompile Include="..\interventions\NodeLevelHealthTriggeredIVScaleUpSwitch.cpp" />
     <ClCompile Include="..\interventions\NodePropertyValueChanger.cpp" />
+    <ClCompile Include="..\interventions\NodeRandomNumber.cpp" />
     <ClCompile Include="..\interventions\Outbreak.cpp" />
     <ClCompile Include="..\interventions\OutbreakIndividual.cpp" />
     <ClCompile Include="..\interventions\OutbreakIndividualTBorHIV.cpp" />

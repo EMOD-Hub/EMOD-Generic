@@ -23,10 +23,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utils", "utils\utils.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "campaign", "campaign\campaign.vcxproj", "{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "intervention emodules", "intervention emodules", "{24F5E1B1-F61A-4DA4-995B-421A9E18F995}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "disease emodules", "disease emodules", "{0F1B34B4-6AD2-49A8-9759-200427297588}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rapidjson", "rapidjson", "{3CA6C23F-2BEE-4E03-AD7A-AD12E90C6043}"
 	ProjectSection(SolutionItems) = preProject
 		rapidjson\include\rapidjson\document.h = rapidjson\include\rapidjson\document.h
@@ -81,36 +77,24 @@ Global
 		{2954683A-4400-459B-A5AF-6B6B19CB7270}.Debug|x64.ActiveCfg = Debug|x64
 		{2954683A-4400-459B-A5AF-6B6B19CB7270}.Debug|x64.Build.0 = Debug|x64
 		{2954683A-4400-459B-A5AF-6B6B19CB7270}.Debug|x86.ActiveCfg = Debug|x64
-		{2954683A-4400-459B-A5AF-6B6B19CB7270}.QuickStart|x64.ActiveCfg = QuickStart|x64
-		{2954683A-4400-459B-A5AF-6B6B19CB7270}.QuickStart|x64.Build.0 = QuickStart|x64
-		{2954683A-4400-459B-A5AF-6B6B19CB7270}.QuickStart|x86.ActiveCfg = QuickStart|x64
 		{2954683A-4400-459B-A5AF-6B6B19CB7270}.Release|x64.ActiveCfg = Release|x64
 		{2954683A-4400-459B-A5AF-6B6B19CB7270}.Release|x64.Build.0 = Release|x64
 		{2954683A-4400-459B-A5AF-6B6B19CB7270}.Release|x86.ActiveCfg = Release|x64
 		{7F91BC71-562B-44AE-A246-010C632F9796}.Debug|x64.ActiveCfg = Debug|x64
 		{7F91BC71-562B-44AE-A246-010C632F9796}.Debug|x64.Build.0 = Debug|x64
 		{7F91BC71-562B-44AE-A246-010C632F9796}.Debug|x86.ActiveCfg = Debug|x64
-		{7F91BC71-562B-44AE-A246-010C632F9796}.QuickStart|x64.ActiveCfg = QuickStart|x64
-		{7F91BC71-562B-44AE-A246-010C632F9796}.QuickStart|x64.Build.0 = QuickStart|x64
-		{7F91BC71-562B-44AE-A246-010C632F9796}.QuickStart|x86.ActiveCfg = QuickStart|x64
 		{7F91BC71-562B-44AE-A246-010C632F9796}.Release|x64.ActiveCfg = Release|x64
 		{7F91BC71-562B-44AE-A246-010C632F9796}.Release|x64.Build.0 = Release|x64
 		{7F91BC71-562B-44AE-A246-010C632F9796}.Release|x86.ActiveCfg = Release|x64
 		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.Debug|x64.ActiveCfg = Debug|x64
 		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.Debug|x64.Build.0 = Debug|x64
 		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.Debug|x86.ActiveCfg = Debug|x64
-		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.QuickStart|x64.ActiveCfg = QuickStart|x64
-		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.QuickStart|x64.Build.0 = QuickStart|x64
-		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.QuickStart|x86.ActiveCfg = QuickStart|x64
 		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.Release|x64.ActiveCfg = Release|x64
 		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.Release|x64.Build.0 = Release|x64
 		{DE5BA452-F1C7-4FC4-83D1-CDFAAF260929}.Release|x86.ActiveCfg = Release|x64
 		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.Debug|x64.ActiveCfg = Debug|x64
 		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.Debug|x64.Build.0 = Debug|x64
 		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.Debug|x86.ActiveCfg = Debug|x64
-		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.QuickStart|x64.ActiveCfg = QuickStart|x64
-		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.QuickStart|x64.Build.0 = QuickStart|x64
-		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.QuickStart|x86.ActiveCfg = QuickStart|x64
 		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.Release|x64.ActiveCfg = Release|x64
 		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.Release|x64.Build.0 = Release|x64
 		{FAB434AD-C0FC-490D-8F18-E05C99B2FD52}.Release|x86.ActiveCfg = Release|x64
@@ -118,10 +102,6 @@ Global
 		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.Debug|x64.Build.0 = Debug|x64
 		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.Debug|x86.ActiveCfg = Debug|Win32
 		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.Debug|x86.Build.0 = Debug|Win32
-		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.QuickStart|x64.ActiveCfg = QuickStart|x64
-		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.QuickStart|x64.Build.0 = QuickStart|x64
-		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.QuickStart|x86.ActiveCfg = QuickStart|Win32
-		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.QuickStart|x86.Build.0 = QuickStart|Win32
 		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.Release|x64.ActiveCfg = Release|x64
 		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.Release|x64.Build.0 = Release|x64
 		{E672EB5A-934B-4B47-834B-ABDD133D6B63}.Release|x86.ActiveCfg = Release|Win32

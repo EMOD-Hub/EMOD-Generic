@@ -68,3 +68,4 @@
 
 #define UDBednet_Usage_Config_List_DESC_TEXT                          "Waning effect configuration for bednet usage."
 
+#define NRN_Total_Numbers_DESC_TEXT                                   "Random numbers to generate and discard."

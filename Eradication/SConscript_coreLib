@@ -105,6 +105,7 @@ else:
                             "../interventions/NodeInfectivityMult.cpp",
                             "../interventions/NodeLevelHealthTriggeredIV.cpp",
                             "../interventions/NodeLevelHealthTriggeredIVScaleUpSwitch.cpp",
+                            "../interventions/NodeRandomNumber.cpp",
                             "../interventions/NLHTIVNode.cpp",
                             "../interventions/NodePropertyValueChanger.cpp",
                             "../interventions/Outbreak.cpp",
