@@ -48,7 +48,15 @@ For example, this documentation set includes installation and usage instructions
    faq
    glossary
 
+.. toctree::
+   :maxdepth: 3
+   :titlesonly:
+   :caption: Advancing the model
 
+   dev-install-overview
+   dev-architecture-overview
+   dev-debugging-overview
+   
 .. toctree::
    :maxdepth: 3
    :titlesonly:
