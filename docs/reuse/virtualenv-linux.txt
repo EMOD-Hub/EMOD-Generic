@@ -1,0 +1,29 @@
+Python virtual environments enable you to isolate your Python environments from one
+another and give you the option to run multiple versions of Python on the same computer. When using a
+virtual environment, you can indicate the version of Python you want to use and the packages you
+want to install, which will remain separate from other Python environments. You may use
+``virtualenv``, but ``venv`` is recommended and included with Python 3.3+.
+
+
+#.  Navigate to the location where you want to create the virtual environment directory and enter the
+    following to create a environment called "idm", or other desired name::
+
+        python -m venv idm
+
+#.  To activate the virtual environment, enter the following::
+
+        source idm/bin/activate
+
+#.  Verify that the command prompt displays "idm" at the beginning, which indicates that you are in
+    the idm virtual environment. For example::
+
+        (idm) my-computer:idm
+
+#.  To verify you are using |Python_supp|, enter the following::
+
+        python --version
+
+#.  When you are done working in this virtual environment, deactivate the environment. The
+    environment will be saved and you can reactivate it at any time. To deactivate it, enter the following::
+
+        deactivate

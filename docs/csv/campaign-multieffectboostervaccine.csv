@@ -1,0 +1,135 @@
+"Acquire_Config","JSON object","NA","NA","NA","The configuration for multi-effect vaccine acquisition. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
+
+    {
+        ""Acquire_Config"": {
+            ""Initial_Effect"": 0.9,
+            ""Decay_Time_Constant"": 2525,
+            ""class"": ""WaningEffectExponential""
+        }
+    }
+"
+"Boost_Acquire","float","0","1","0","Specifies the boosting effect on acquisition immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine. This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
+
+    {
+        ""Boost_Acquire"": 0.7
+    }
+"
+"Boost_Mortality","float","0","1","0","Specifies the boosting effect on mortality immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine. This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
+
+    {
+        ""Boost_Mortality"": 1.0
+    }
+"
+"Boost_Threshold_Acquire","float","0","1","0","Specifies how much acquisition immunity is required before the vaccine changes from a prime to a boost.",".. code-block:: json
+
+    {
+        ""Boost_Threshold_Acquire"": 0.0
+    }
+"
+"Boost_Threshold_Mortality","float","0","1","0","Specifies how much mortality immunity is required before the vaccine changes from a prime to a boost.",".. code-block:: json
+
+    {
+        ""Boost_Threshold_Mortality"": 0.0
+    }
+"
+"Boost_Threshold_Transmit","float","0","1","0","Specifies how much transmission immunity is required before the vaccine changes from a prime to a boost.",".. code-block:: json
+
+    {
+        ""Boost_Threshold_Transmit"": 0.0
+    }
+"
+"Boost_Transmit","float","0","1","0","Specifies the boosting effect on transmission immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine. This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
+
+    {
+        ""Boost_Transmit"": 0.5
+    }
+"
+"Cost_To_Consumer","float","0","999999","10","The unit cost per vaccine (unamortized).",".. code-block:: json
+
+    {
+        ""Cost_To_Consumer"": 10.0
+    }
+"
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Dont_Allow_Duplicates"": 0
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""MultiEffectBoosterVaccine"",
+            ""Intervention_Name"": ""Tetanus booster shot""
+        }
+    }
+"
+"Mortality_Config","JSON object","NA","NA","NA","The configuration for multi-effect vaccine mortality. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
+
+    {
+        ""Mortality_Config"": {
+            ""Initial_Effect"": 1.0,
+            ""Decay_Time_Constant"": 2525,
+            ""class"": ""WaningEffectExponential""
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"Prime_Acquire","float","0","1","0","Specifies the priming effect on acquisition immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine.",".. code-block:: json
+
+    {
+        ""Prime_Acquire"": 0.1
+    }
+"
+"Prime_Mortality","float","0","1","0","Specifies the priming effect on mortality immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine.",".. code-block:: json
+
+    {
+        ""Prime_Mortality"": 0.3
+    }
+"
+"Prime_Transmit","float","0","1","0","Specifies the priming effect on transmission immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine.",".. code-block:: json
+
+    {
+        ""Prime_Transmit"": 0.2
+    }
+"
+"Transmit_Config","JSON object","NA","NA","NA","The configuration for multi-effect vaccine transmission. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
+
+    {
+        ""Transmit_Config"": {
+            ""Initial_Effect"": 0.6,
+            ""Decay_Time_Constant"": 2525,
+            ""class"": ""WaningEffectExponential""
+        }
+    }
+"
+"Vaccine_Take","float","0","1","1","The rate at which delivered vaccines will successfully stimulate an immune response and achieve the desired efficacy. For example, if it is set to 0.9, there will be a 90 percent chance that the vaccine will start with the specified efficacy, and a 10 percent chance that it will have no efficacy at all.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""SimpleVaccine"",
+            ""Cost_To_Consumer"": 10,
+            ""Vaccine_Type"": ""AcquisitionBlocking"",
+            ""Vaccine_Take"": 1,
+            ""Efficacy_Is_Multiplicative"": 0,
+            ""Waning_Config"": {
+                ""class"": ""WaningEffectConstant"",
+                ""Initial_Effect"": 0.3
+            }
+        }
+    }
+"

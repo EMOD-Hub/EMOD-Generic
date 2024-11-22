@@ -1,0 +1,11 @@
+{
+    "Intervention_Config": {
+        "class": "SimpleBednet",
+        "Cost_To_Consumer": 5,
+        "Usage_Config": {
+            "class": "WaningEffectRandomBox",
+            "Initial_Effect": 1.0,
+            "Expected_Discard_Time": 60
+        }
+    }
+}

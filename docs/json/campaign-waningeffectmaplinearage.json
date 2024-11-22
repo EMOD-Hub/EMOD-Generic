@@ -1,0 +1,18 @@
+{
+  "class": "WaningEffectMapLinearAge",
+  "Initial_Effect": 1,
+  "Durability_Map": {
+    "Times": [
+      1,
+      2,
+      5,
+      7
+    ],
+    "Values": [
+      1,
+      0.75,
+      0.5,
+      0.25
+    ]
+  }
+}

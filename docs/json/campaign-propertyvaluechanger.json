@@ -1,0 +1,30 @@
+{
+    "Events": [
+        {
+            "class": "CampaignEvent",
+            "Start_Day": 10,
+            "Nodeset_Config": {
+                "class": "NodeSetAll"
+            },
+            "Event_Coordinator_Config": {
+                "class": "StandardInterventionDistributionEventCoordinator",
+                "Target_Demographic": "Everyone",
+                "Demographic_Coverage": 1.0,
+                "Property_Restrictions": [
+                    "Risk:LOW"
+                ],
+                "Intervention_Config": {
+                    "class": "PropertyValueChanger",
+                    "Disqualifying_Properties": [ "InterventionStatus:Diagnosed"],
+                    "New_Property_Value": "InterventionStatus:Monitor",
+                    "Target_Property_Key" : "Risk",
+                    "Target_Property_Value" : "HIGH",
+                    "Daily_Probability" : 1.0,
+                    "Maximum_Duration" : 0,
+                    "Revert" : 10
+                }
+            }
+        }
+    ],
+    "Use_Defaults": 1
+}

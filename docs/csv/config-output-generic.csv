@@ -1,0 +1,529 @@
+"Custom_Coordinator_Events","array of strings","NA","NA","NA","The list of valid, user-defined events for Event Coordinators that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ]
+    }
+"
+"Custom_Individual_Events","array of strings","NA","NA","NA","The list of valid, user-defined events that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
+
+.. note:: 
+
+    This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Individual_Events"": [
+            ""Individual_Event_1"",
+            ""Individual_Event_2"",
+            ""Individual_Event_3""
+        ]
+    }
+"
+"Custom_Node_Events","array of strings","NA","NA","NA","The list of valid, user-defined events for nodes that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
+
+.. note:: 
+
+    This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2"",
+            ""Node_Event_3""
+        ]
+    }
+"
+"Custom_Reports_Filename","string","NA","NA","UNINITIALIZED STRING","The name of the file containing custom report configuration parameters. Omitting this parameter or setting it to RunAllCustomReports will load all reporters found that are valid for the given simulation type. The file must be in JSON format.",".. code-block:: json
+
+    {
+        ""Custom_Reports_Filename"": ""custom_reports.json""
+    }
+"
+"Duration_Days","float","0","3.40282e+38","3.40282e+38","The duration of simulation days over which to report events. The report will stop collecting data when the simulation day is greater than Start_Day + Duration_Days. Used in all reports that are subclasses of BaseEventReport, such as: ReportEventCounter, MalariaTransmissionReport, and BaseEventReportIntervalOutput.",".. code-block:: json
+
+    {
+        ""Duration_Days"": 353,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""ReportEventCounter"": {
+            ""Enabled"": 1
+        },
+        ""Start_Day"": 12
+    }
+"
+"Enable_Default_Reporting","boolean","0","1","1","Controls whether or not the default InsetChart.json report is created.",".. code-block:: json
+
+    {
+        ""Enable_Default_Reporting"": 1
+    }
+"
+"Enable_Demographics_Reporting","boolean","0","1","1","Controls whether or not demographic summary data and age-binned reports are outputted to file.",".. code-block:: json
+
+    {
+        ""Enable_Demographics_Reporting"": 1
+    }
+"
+"Enable_Property_Output","boolean","0","1","0","Controls whether or not to create property output reports, which detail groups as defined in **IndividualProperties** in the demographics file (see :ref:`demo-properties` parameters).  When there is more than one property type, the report will display the channel information for all combinations of the property type groups.",".. code-block:: json
+
+    {
+        ""Enable_Property_Output"": 1
+    }
+"
+"Enable_Spatial_Output","boolean","0","1","0","Controls whether or not spatial output reports are created. If set to true (1), spatial output reports include all channels listed in the parameter **Spatial_Output_Channels**. 
+
+.. note:: 
+
+    Spatial output files require significant processing time and disk space.",".. code-block:: json
+
+    {
+        ""Enable_Spatial_Output"": 1,
+        ""Spatial_Output_Channels"": [
+            ""Prevalence"",
+            ""New_Infections""
+        ]
+    }
+"
+"Event_Trigger_List","array of strings","NA","NA","NA","The list of event triggers for the events included in the report.",".. code-block:: json
+
+    {
+        ""Start_Day"": 5,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetNodeList"",
+            ""Node_List"": [
+                2
+            ]
+        },
+        ""Pretty_Format"": 1,
+        ""Reporting_Interval"": 40,
+        ""Age_Bins"": [
+            10,
+            100
+        ],
+        ""Event_Trigger_List"": [
+            ""EveryUpdate""
+        ]
+    }
+"
+"Max_Number_Reports","float","1","1000000","1","Used by reports and custom reports. The maximum number of report output files that will be produced for a given simulation.",".. code-block:: json
+
+    {
+        ""Max_Number_Reports"": 15,
+        ""Report_Description"": ""Day0"",
+        ""Reporting_Interval"": 73
+    }
+"
+"Pretty_Format","boolean","0","1","0","True (1) sets pretty JSON formatting, which includes carriage returns, line feeds, and spaces for easier readability. The default, false (0), saves space where everything is on one line.",".. code-block:: json
+
+    {
+        ""Pretty_Format"": 1
+    }
+"
+"Report_Coordinator_Event_Recorder","boolean","0","1","0","Enables or disables the ReportCoordinatorEventRecorder.csv output report for coordinator events. When enabled (set to 1) reports will be generated for the broadcasted valid coordinator events, as specified in **Report_Coordinator_Event_Recorder_Events**.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ],
+        ""Report_Coordinator_Event_Recorder"": 1,
+        ""Report_Coordinator_Event_Recorder_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ]
+    }
+"
+"Report_Coordinator_Event_Recorder_Events","array of strings","NA","NA","NA","The list of events to include or exclude in the ReportCoordinatorEventRecorder.csv output report, based on how **Report_Coordinator_Event_Recorder_Ignore_Events_In_List** is set. This list must not be empty and is dependent upon **Report_Coordinator_Event_Recorder** being enabled. In addition, the events must be defined in **Customer_Coordinator_Events**.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ],
+        ""Report_Coordinator_Event_Recorder"": 1,
+        ""Report_Coordinator_Event_Recorder_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ]
+    }
+"
+"Report_Coordinator_Event_Recorder_Ignore_Events_In_List","boolean","0","1","0","If set to false (0), only the events listed in the **Report_Coordinator_Event_Recorder_Events** array will be included in the ReportCoordinatorEventRecorder.csv output report. If set to true (1), only the events listed in the array will be excluded, and all other events will be included. If you want to return all events from the simulation, leave the events array empty.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ],
+        ""Report_Coordinator_Event_Recorder"": 1,
+        ""Report_Coordinator_Event_Recorder_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ],
+        ""Report_Coordinator_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+"Report_Description","string","NA","NA","NA","Used by reports and custom reports. Augments the filename of the report. If multiple CSV reports are being generated, this allows you to distinguish among the multiple reports.",".. code-block:: json
+
+    {
+        ""Report_Description"": ""Annual Epidemiological Report""
+    }
+"
+"Report_Event_Recorder","boolean","0","1","0","Set to true (1) to enable or to false (0) to disable the ReportEventRecorder.csv output report that lists individual events in the simulation. See :doc:`parameter-campaign-event-list` for a list of all possible built-in events that will be recorded in the output when enabled.",".. code-block:: json
+
+    {
+        ""Report_Event_Recorder"": 1,
+        ""Report_Event_Recorder_Events"": [
+            ""VaccinatedA"",
+            ""VaccineExpiredA"",
+            ""VaccinatedB"",
+            ""VaccineExpiredB""
+        ],
+        ""Report_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+"Report_Event_Recorder_Events","array","NA","NA","","The list of events to include or exclude in the ReportEventRecorder.csv output report, based on how **Report_Event_Recorder_Ignore_Events_In_List** is set. See :doc:`parameter-campaign-event-list` for a list of all possible built-in events. You can also define events in **Custom_Individual_Events**. The list cannot be empty.",".. code-block:: json
+
+    {
+        ""Report_Event_Recorder"": 1,
+        ""Report_Event_Recorder_Events"": [
+            ""VaccinatedA"",
+            ""VaccineExpiredA"",
+            ""VaccinatedB"",
+            ""VaccineExpiredB""
+        ],
+        ""Report_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+"Report_Event_Recorder_Ignore_Events_In_List","boolean","0","1","0","If set to false (0), only the events listed in the **Report_Event_Recorder_Events** array will be included in the ReportEventRecorder.csv output report. If set to true (1), only the events listed in the array will be excluded, and all other events will be included. If you want to return all events from the simulation, leave the events array empty. 
+
+.. csv-table::
+    :header: Value, Events array, Output file 
+    :widths: 1, 2, 2
+
+    0, No events, No events
+    0, One or more events, Only the listed events.
+    1, No events, All events occurring in the simulation.
+    1, One or more events, ""All simulation events occurring in the simulation, except for those listed.""",".. code-block:: json
+
+    {
+        ""Report_Event_Recorder"": 1,
+        ""Report_Event_Recorder_Events"": [
+            ""VaccinatedA"",
+            ""VaccineExpiredA"",
+            ""VaccinatedB"",
+            ""VaccineExpiredB""
+        ],
+        ""Report_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+"Report_Event_Recorder_Individual_Properties","array of strings","NA","NA","[]","Specifies an array of (optional) individual property keys, as defined in **IndividualProperties** in the demographics file, to be added as additional columns to the output report. Individual's IP value will be added to the (key) column at the time of the event.",".. code-block:: json
+
+    {
+        ""Report_Event_Recorder_Individual_Properties"": [
+            ""Accessibility"",
+            ""Risk""
+        ]
+    }
+"
+"Reporting_Interval","float","1","1000000","1000000","Used by reports and custom reports. Defines the cadence of the report by specifying how many time steps to collect data before writing to the file.",".. code-block:: json
+
+    {
+        ""Max_Number_Reports"": 15,
+        ""Report_Description"": ""Day0"",
+        ""Reporting_Interval"": 73
+    }
+"
+"Report_Node_Event_Recorder","boolean","0","1","0","Enables or disables the ReportNodeEventRecorder.csv output report. When enabled (set to 1) reports will be generated for the broadcasted valid node events, as specified in **Report_Node_Event_Recorder_Events**.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ]
+    }
+"
+"Report_Node_Event_Recorder_Events","array of strings","NA","NA","NA","The list of node events to include or exclude in the ReportNodeEventRecorder.csv output report, based on how **Report_Node_Event_Recorder_Ignore_Events_In_List** is set.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+"Report_Node_Event_Recorder_Ignore_Events_In_List","boolean","0","1","0","If set to false (0), only the node events listed in the **Report_Node_Event_Recorder_Events** array will be included in the ReportNodeEventRecorder.csv output report. If set to true (1), only the node events listed in the array will be excluded, and all other node events will be included. If you want to return all node events from the simulation, leave the node events array empty.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.
+
+.. csv-table::
+    :header: Value, Events array, Output file 
+    :widths: 1, 2, 2
+
+    0, No events, No events
+    0, One or more events, Only the listed events.
+    1, No events, All events occurring in the simulation.
+    1, One or more events, ""All simulation events occurring in the simulation, except for those listed.""",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+"Report_Node_Event_Recorder_Node_Properties","array of strings","NA","NA","[]","Specifies an array of (optional) node property keys, as defined in **NodeProperties** in the demographics file, to be added as additional columns to the ReportNodeEventRecorder.csv output report.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder_Ignore_Events_In_List"": 0,
+        ""Report_Node_Event_Recorder_Node_Properties"": [
+            ""Geographic""
+        ]
+    }
+"
+"Report_Node_Event_Recorder_Stats_By_IPs","array of strings","NA","NA","[]","Specifies an array of (optional) individual property keys, as defined in **IndividualProperties** in the demographics file, to be added to the ReportNodeEventRecorder.csv output report. For each key:value pair there will be two additional columns (Key:Value:NumIndividuals, Key:Value:NumInfected) added to the report. For example, with a Risk property key assigned the values of LOW and HIGH there would then be four additional columns (Risk:LOW:NumIndividuals, Risk:LOW:NumInfected, Risk:HIGH:NumIndividuals, Risk:HIGH:NumInfected). An empty array equals no additional columns added.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder_Ignore_Events_In_List"": 0,
+        ""Report_Node_Event_Recorder_Node_Properties"": [
+            ""Geographic""
+        ],
+        ""Report_Node_Event_Recorder_Stats_By_IPs"": [
+            ""Risk""
+        ]
+    }
+"
+"Report_Surveillance_Event_Recorder","boolean","0","1","0","Enables or disables the ReportSurveillanceEventRecorder.csv output report. When enabled (set to 1) reports will be generated for the broadcasted valid coordinator events, as specified in **Report_Surveillance_Event_Recorder_Events**.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Start_ACF"",
+            ""Start_SIA_2"",
+            ""Start_SIA_4"",
+            ""Ind_Start_SIA_2"",
+            ""Ind_Start_SIA_4"",
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder"": 1,
+        ""Report_Surveillance_Event_Recorder_Events"": [
+            ""Respond_To_Surveillance""
+        ]
+    }
+"
+"Report_Surveillance_Event_Recorder_Events","array of strings","NA","NA","NA","The list of events to include or exclude in the ReportSurveillanceEventRecorder.csv output report, based on how **Report_Surveillance_Event_Recorder_Ignore_Events_In_List** is set. This list must not be empty and is  dependent upon **Report_Surveillance_Event_Recorder** being enabled.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Start_ACF"",
+            ""Start_SIA_2"",
+            ""Start_SIA_4"",
+            ""Ind_Start_SIA_2"",
+            ""Ind_Start_SIA_4"",
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder"": 1,
+        ""Report_Surveillance_Event_Recorder_Events"": [
+            ""Respond_To_Surveillance""
+        ]
+    }
+"
+"Report_Surveillance_Event_Recorder_Ignore_Events_In_List","boolean","0","1","0","If set to false (0), only the events listed in the **Report_Surveillance_Event_Recorder_Events** array will be included in the ReportSurveillanceEventRecorder.csv output report. If set to true (1), only the events listed in the array will be excluded, and all other events will be included. If you want to return all events from the simulation, leave the events array empty.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested. 
+
+.. csv-table::
+    :header: Value, Events array, Output file 
+    :widths: 1, 2, 2
+
+    0, No events, No events
+    0, One or more events, Only the listed events.
+    1, No events, All events occurring in the simulation.
+    1, One or more events, ""All simulation events occurring in the simulation, except for those listed.""",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Start_ACF"",
+            ""Start_SIA_2"",
+            ""Start_SIA_4"",
+            ""Ind_Start_SIA_2"",
+            ""Ind_Start_SIA_4"",
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder"": 1,
+        ""Report_Surveillance_Event_Recorder_Events"": [
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+"Report_Surveillance_Event_Recorder_Stats_By_IPs","array of strings","NA","NA","[]","Specifies an array of (optional) individual property keys, as defined in **IndividualProperties** in the demographics file, to be added to the ReportSurveillanceEventRecorder.csv output report. For each key:value pair there will be two additional columns (Key:Value:NumIndividuals, Key:Value:NumInfected) added to the report. For example, with a Risk property key assigned the values of LOW and HIGH there would then be four additional columns (Risk:LOW:NumIndividuals, Risk:LOW:NumInfected, Risk:HIGH:NumIndividuals, Risk:HIGH:NumInfected). An empty array equals no additional columns added.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Start_ACF"",
+            ""Start_SIA_2"",
+            ""Start_SIA_4"",
+            ""Ind_Start_SIA_2"",
+            ""Ind_Start_SIA_4"",
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder"": 1,
+        ""Report_Surveillance_Event_Recorder_Events"": [
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder_Stats_By_IPs"": []
+    }
+"
+"Spatial_Output_Channels","array of strings","NA","NA","[]","An array of channel names for spatial output by node and time step. The data from each channel will be written to a separate binary file. **Enable_Spatial_Output** must be set to true (1). Possible values are:
+
+Air_Temperature
+    Data related to air temperature.
+Births
+    Data related to the number of births.
+Campaign_Cost
+    Data related to the costs of a campaign.
+Disease_Deaths
+    Data related to the number of deaths due to disease.
+Human_Infectious_Reservoir
+    Data related to the total infectiousness of the population.
+Infection_Rate
+   Data related to infection rates.
+Land_Temperature
+    Data related to the average land temperature over all nodes.
+New_Infections
+    Data related to the presence of new infections.
+New_Reported_Infections
+    Data related to the presence of reported new infections.
+Population
+    Data related to the total population in the simulation.
+Prevalence
+    Data related to the fraction of the population that is infected.
+Rainfall
+    Data related to the presence of rainfall.
+Relative_Humidity
+    Data related to the presence of relative humidity.
+
+.. only:: malaria
+
+    Fever_Prevalence
+        Data related to the presence of fever.
+    Mean_Parasitemia
+        Data related to the presence of mean parasitemia.
+    New_Clinical_Cases
+        Data related to the presence of new clinical cases.
+    New_Diagnostic_Prevalence
+        Data related to the presence of a new diagnostic.
+    New_Severe_Cases
+        Data related to the presence of new severe cases.
+    Parasite_Prevalence
+        Data related to the presence of parasites.
+
+.. only:: vector or malaria 
+
+    Adult_Vectors
+        Data related to the presence of adult vectors.
+    Daily_EIR
+        Data related to entomological inoculation rate (EIR) for mosquitoes. 
+
+.. only:: tbhiv
+
+    Active_MDR_TB_Prevalence
+        Data related to the number of cases of active, multi-drug resistent TB. 
+    Active_TB_Prevalence
+        Data related to the number of active TB cases.
+    Latent_TB_Prevalence
+        Data related to the number of latent TB cases.
+    MDR_TB_Prevalence
+        Data related to the number of multi-drug resistant TB cases.
+    New_Active_TB_Infections
+        Data related to the number of new, active TB cases.
+    Newly_Cleared_TB_Infections
+        Data related to the number of newly cleared TB cases.
+    TB_Immune_Fraction
+        Data related to the fraction of people that are immune to TB.
+
+
+
+       
+
+",".. code-block:: json
+
+    {
+        ""Spatial_Output_Channels"": [
+            ""Prevalence"",
+            ""New_Infections""
+        ]
+    }
+"
+"Start_Day","float","0","3.40282e+38","0","The day to start collecting data for the report. Used in all reports that are subclasses of BaseEventReport, such as: ReportEventCounter, MalariaTransmissionReport, and BaseEventReportIntervalOutput.",".. code-block:: json
+
+    {
+        ""ReportEventCounter"": {
+            ""Enabled"": 1
+        },
+        ""Start_Day"": 12,
+        ""Duration_Days"": 353,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        }
+    }
+"

@@ -1,0 +1,96 @@
+"Add_Effects","boolean","0","1","0","The **Add_Effects** parameter allows you to combine multiple effects from the waning effect classes. If set to true (1), then the waning effect values from the different waning effect objects are added together. If set to false (0), the waning effect values are multiplied. The resulting waning effect value must be greater than 1.",".. code-block:: json
+
+    {
+        ""class"": ""WaningEffectCombo"",
+        ""Add_Effects"": 1,
+        ""Expires_When_All_Expire"": 0,
+        ""Effect_List"": [
+            {
+                ""class"": ""WaningEffectMapLinear"",
+                ""Initial_Effect"": 1.0,
+                ""Expire_At_Durability_Map_End"": 1,
+                ""Durability_Map"": {
+                    ""Times"": [
+                        0.0,
+                        1.0,
+                        2.0
+                    ],
+                    ""Values"": [
+                        0.2,
+                        0.4,
+                        0.6
+                    ]
+                }
+            },
+            {
+                ""class"": ""WaningEffectBox"",
+                ""Initial_Effect"": 0.5,
+                ""Box_Duration"": 5.0
+            }
+        ]
+    }
+"
+"Effect_List","array of JSON objects","NA","NA","NA","A list of nested JSON parameters to indicate how the intervention efficacy wanes over time.",".. code-block:: json
+
+    {
+        ""class"": ""WaningEffectCombo"",
+        ""Add_Effects"": 1,
+        ""Expires_When_All_Expire"": 0,
+        ""Effect_List"": [
+            {
+                ""class"": ""WaningEffectMapLinear"",
+                ""Initial_Effect"": 1.0,
+                ""Expire_At_Durability_Map_End"": 1,
+                ""Durability_Map"": {
+                    ""Times"": [
+                        0.0,
+                        1.0,
+                        2.0
+                    ],
+                    ""Values"": [
+                        0.2,
+                        0.4,
+                        0.6
+                    ]
+                }
+            },
+            {
+                ""class"": ""WaningEffectBox"",
+                ""Initial_Effect"": 0.5,
+                ""Box_Duration"": 5.0
+            }
+        ]
+    }
+"
+"Expires_When_All_Expire","boolean","0","1","0","If set to true (1), then all of the effects, as specified in the **Effect_List** parameter, must expire for the efficacy of the intervention to expire. If set to false (0), then the efficacy of the intervention will expire as soon as one of the parameters expires.",".. code-block:: json
+
+    {
+        ""class"": ""WaningEffectCombo"",
+        ""Add_Effects"": 1,
+        ""Expires_When_All_Expire"": 0,
+        ""Effect_List"": [
+            {
+                ""class"": ""WaningEffectMapLinear"",
+                ""Initial_Effect"": 1.0,
+                ""Expire_At_Durability_Map_End"": 1,
+                ""Durability_Map"": {
+                    ""Times"": [
+                        0.0,
+                        1.0,
+                        2.0
+                    ],
+                    ""Values"": [
+                        0.2,
+                        0.4,
+                        0.6
+                    ]
+                }
+            },
+            {
+                ""class"": ""WaningEffectBox"",
+                ""Initial_Effect"": 0.5,
+                ""Box_Duration"": 5.0
+            }
+        ]
+    }
+"

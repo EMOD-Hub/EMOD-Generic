@@ -1,0 +1,55 @@
+{
+  "Campaign_Name": "Initial Seeding",
+  "Events": [
+    {
+      "Event_Name": "Outbreak",
+      "class": "CampaignEvent",
+      "Nodeset_Config": {
+        "class": "NodeSetAll"
+      },
+      "Start_Day": 1,
+      "Event_Coordinator_Config": {
+        "class": "StandardInterventionDistributionEventCoordinator",
+        "Target_Demographic": "Everyone",
+        "Demographic_Coverage": 1.0,
+        "Intervention_Config": {
+          "class": "DelayedIntervention",
+          "Delay_Period_Distribution": "CONSTANT_DISTRIBUTION",
+          "Delay_Period_Constant": 25,
+          "Actual_IndividualIntervention_Configs": [
+            {
+              "Outbreak_Source": "PrevalenceIncrease",
+              "class": "OutbreakIndividual"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Event_Name": "Outbreak",
+      "class": "CampaignEvent",
+      "Nodeset_Config": {
+        "class": "NodeSetAll"
+      },
+      "Start_Day": 50,
+      "Event_Coordinator_Config": {
+        "class": "StandardInterventionDistributionEventCoordinator",
+        "Target_Demographic": "Everyone",
+        "Demographic_Coverage": 1.0,
+        "Intervention_Config": {
+          "class": "DelayedIntervention",
+          "Delay_Period_Distribution": "UNIFORM_DISTRIBUTION",
+          "Delay_Period_Min": 15,
+          "Delay_Period_Max": 30,
+          "Actual_IndividualIntervention_Configs": [
+            {
+              "Outbreak_Source": "PrevalenceIncrease",
+              "class": "OutbreakIndividual"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "Use_Defaults": 1
+}

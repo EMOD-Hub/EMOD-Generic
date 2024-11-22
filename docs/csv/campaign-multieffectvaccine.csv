@@ -1,0 +1,81 @@
+"Acquire_Config","JSON object","NA","NA","NA","The configuration for multi-effect vaccine acquisition. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
+
+    {
+        ""Acquire_Config"": {
+            ""Initial_Effect"": 0.9,
+            ""Decay_Time_Constant"": 2525,
+            ""class"": ""WaningEffectExponential""
+        }
+    }
+"
+"Cost_To_Consumer","float","0","999999","10","The unit cost per vaccine (unamortized).",".. code-block:: json
+
+    {
+        ""Cost_To_Consumer"": 10.0
+    }
+"
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Dont_Allow_Duplicates"": 0
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""MultiEffectVaccine"",
+            ""Intervention_Name"": ""Routine MMR vaccination""
+        }
+    }
+"
+"Mortality_Config","JSON object","NA","NA","NA","The configuration for multi-effect vaccine mortality. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
+
+    {
+        ""Mortality_Config"": {
+            ""Initial_Effect"": 1.0,
+            ""Decay_Time_Constant"": 2525,
+            ""class"": ""WaningEffectExponential""
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"Transmit_Config","JSON object","NA","NA","NA","The configuration for multi-effect vaccine transmission. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
+
+    {
+        ""Transmit_Config"": {
+            ""Initial_Effect"": 0.6,
+            ""Decay_Time_Constant"": 2525,
+            ""class"": ""WaningEffectExponential""
+        }
+    }
+"
+"Vaccine_Take","float","0","1","1","The rate at which delivered vaccines will successfully stimulate an immune response and achieve the desired efficacy. For example, if it is set to 0.9, there will be a 90 percent chance that the vaccine will start with the specified efficacy, and a 10 percent chance that it will have no efficacy at all.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""SimpleVaccine"",
+            ""Cost_To_Consumer"": 10,
+            ""Vaccine_Type"": ""AcquisitionBlocking"",
+            ""Vaccine_Take"": 1,
+            ""Efficacy_Is_Multiplicative"": 0,
+            ""Waning_Config"": {
+                ""class"": ""WaningEffectConstant"",
+                ""Initial_Effect"": 0.3
+            }
+        }
+    }
+"

@@ -1,0 +1,192 @@
+"Acquisition_Blocking_Immunity_Decay_Rate","float","0","1","0.001","The rate at which acquisition-blocking immunity decays after the initial period indicated by the base acquisition-blocking immunity offset. Only used when **Enable_Immunity** and **Enable_Immune_Decay** parameters are set to true (1).",".. code-block:: json
+
+    {
+        ""Acquisition_Blocking_Immunity_Decay_Rate"": 0.05
+    }
+"
+"Acquisition_Blocking_Immunity_Duration_Before_Decay","float","0","45000","0","The number of days after infection until acquisition-blocking immunity begins to decay. **Enable_Immunity** and **Enable_Immune_Decay** must be set to true (1).",".. code-block:: json
+
+    {
+        ""Acquisition_Blocking_Immunity_Duration_Before_Decay"": 10
+    }
+"
+"Enable_Immune_Decay","boolean","0","1","1","Controls whether or not immunity decays after an infection clears. Set to true (1) if immunity decays; set to false (0) if recovery from the disease confers complete immunity for life. **Enable_Immunity** must be set to true (1).
+
+.. only::  hiv or typhoid
+
+    This parameter should always be set to 0 (off) in this simulation type.
+
+.. only:: malaria or dengue
+
+    This parameter should always be set to 1 (on) in this simulation type.",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Immune_Decay"": 0
+    }
+"
+"Enable_Immunity","boolean","0","1","1","Controls whether or not an individual has protective immunity after an infection clears.
+",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1
+    }
+"
+"Enable_Initial_Susceptibility_Distribution","boolean","0","1","0","Controls whether or not individuals in the population have immunity at the beginning of the simulation. If set to 0, individuals are not initialized with immunity but may acquire immunity. If set to 1, you must indicate the type of distribution to use for immunity in the configuration parameter **Immunity_Initialization_Distribution_Type** and the distribution values in the demographics file. **Enable_Immunity** must be set to 1.",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Initial_Susceptibility_Distribution"": 1,
+        ""Immunity_Initialization_Distribution_Type"": ""DISTRIBUTION_SIMPLE""
+    }
+"
+"Enable_Maternal_Protection","boolean","0","1","0","Controls whether or not mothers pass immunity on to their infants. Setting to 1 (true) enables maternal protection as defined by **Maternal_Protection_Type**. **Enable_Birth** must be set to 1 (true).",".. code-block:: json
+
+    {
+        ""Enable_Maternal_Protection"": 1,
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL""
+    }
+"
+"Immune_Threshold_For_Downsampling","float","0","1","0","The threshold on acquisition immunity at which to apply immunity-dependent downsampling; individuals who are more immune than this this threshold are downsampled. A value of 1 is equivalent to full susceptibility and 0 is equivalent to full immunity. If the acquisition immunity modifier is larger than the threshold, no downsampling occurs. **Individual_Sampling_Type** must set to ADAPTED_SAMPLING_BY_IMMUNE_STATE.",".. code-block:: json
+
+    {
+        ""Relative_Sample_Rate_Immune"": 0.1,
+        ""Immune_Threshold_For_Downsampling"": 0.5,
+        ""Individual_Sampling_Type"": ""ADAPTED_SAMPLING_BY_IMMUNE_STATE""
+    }
+"
+"Maternal_Linear_Slope","float","0.0001","1","0.01","Slope parameter describing the rate of waning for maternal protection, must be positive. The per-day increase in susceptibility. **Maternal_Protection_Type** must be set to LINEAR_FRACTIONAL or LINEAR_BINARY.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL"",
+        ""Maternal_Linear_SusZero"": 0.45,
+        ""Maternal_Linear_Slope"": 0.02
+    }
+"
+"Maternal_Linear_SusZero","float","0","1","0.2","The initial level of maternal protection at age 0, given as susceptibility. A value of 0.0 implies total protection, a value of 1.0 implies no protection. **Maternal_Protection_Type** must be set to LINEAR_FRACTIONAL or LINEAR_BINARY.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL"",
+        ""Maternal_Linear_SusZero"": 0.45,
+        ""Maternal_Linear_Slope"": 0.02
+    }
+"
+"Maternal_Protection_Type","enum","NA","NA","NONE","The type of maternal protection afforded to infants. **Enable_Maternal_Protection** must be set to 1 (true). Possible values are:
+
+NONE 
+    No immune protection is passed on to infants.
+LINEAR
+    Susceptibility is a function of age and governed by a linear equation. Susceptibility = **Maternal_Linear_Slope** * age + **Maternal_Linear_SusZero**
+SIGMOID
+    Susceptibility is a function of age and governed by a sigmoidal equation. Susceptibility = **Maternal_Sigmoid_SusInit** + (1.0 - **Maternal_Sigmoid_SusInit**) / * (1.0 + EXP(( **Maternal_Sigmoid_HalfMaxAge** - age) / **Maternal_Sigmoid_SteepFac**))
+
+You must set **Susceptibility_Type** to determine if susceptibility at a particular age is interpreted as a fractional value or the probability of complete immunity or susceptibility.",".. code-block:: json
+
+    {
+        ""Enable_Maternal_Protection"": 1,
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL""
+    }
+"
+"Maternal_Sigmoid_HalfMaxAge","float","-270","3650","180","The age in days that the level of maternal protection is half of its initial value. **Maternal_Protection_Type** must be set to SIGMOID_FRACTIONAL or SIGMOID_BINARY.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""SIGMOID_BINARY"",
+        ""Maternal_Sigmoid_SteepFac"": 30,
+        ""Maternal_Sigmoid_HalfMaxAge"": 365,
+        ""Maternal_Sigmoid_SusInit"": 0.0002
+    }
+"
+"Maternal_Sigmoid_SteepFac","float","0.1","1000","30","The steepness factor describing the rate of waning for maternal protection, must be positive. Small values imply rapid waning.**Maternal_Protection_Type** must be set to SIGMOID_FRACTIONAL or SIGMOID_BINARY.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""SIGMOID_BINARY"",
+        ""Maternal_Sigmoid_SteepFac"": 30,
+        ""Maternal_Sigmoid_HalfMaxAge"": 365,
+        ""Maternal_Sigmoid_SusInit"": 0.0002
+    }
+"
+"Maternal_Sigmoid_SusInit","float","0","1","0","The initial level of maternal protection at age -INF, given as susceptibility. A value of 0.0 implies total protection, a value of 1.0 implies no protection. **Maternal_Protection_Type** must be set to SIGMOID_FRACTIONAL or SIGMOID_BINARY.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""SIGMOID_BINARY"",
+        ""Maternal_Sigmoid_SteepFac"": 30,
+        ""Maternal_Sigmoid_HalfMaxAge"": 365,
+        ""Maternal_Sigmoid_SusInit"": 0.0002
+    }
+"
+"Mortality_Blocking_Immunity_Decay_Rate","float","0","1","0.001","The rate at which mortality-blocking immunity decays after the mortality-blocking immunity offset period. **Enable_Immune_Decay** must be set to 1.",".. code-block:: json
+
+    {
+        ""Mortality_Blocking_Immunity_Decay_Rate"": 0.1
+    }
+"
+"Mortality_Blocking_Immunity_Duration_Before_Decay","float","0","45000","0","The number of days after infection until mortality-blocking immunity begins to decay. **Enable_Immunity** and **Enable_Immune_Decay** must be set to 1.",".. code-block:: json
+
+    {
+        ""Mortality_Blocking_Immunity_Duration_Before_Decay"": 270
+    }
+"
+"Post_Infection_Acquisition_Multiplier","float","0","1","0","The multiplicative reduction in the probability of reacquiring disease. At the time of recovery, the immunity against acquisition is multiplied by **Acquisition_Blocking_Immunity_Decay_Rate** x (1 - **Post_Infection_Acquisition_Multiplier**). **Enable_Immunity** must be set to 1 (true).",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Immune_Decay"": 1,
+        ""Post_Infection_Acquisition_Multiplier"": 0.9
+    }
+"
+"Post_Infection_Mortality_Multiplier","float","0","1","0","The multiplicative reduction in the probability of dying from infection after getting reinfected. At the time of recovery, the immunity against mortality is multiplied by **Mortality_Blocking_Immunity_Decay_Rate** x (1 - **Post_Infection_Mortality_Multiplier**). **Enable_Immunity** must be set to 1 (true).",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Immune_Decay"": 1,
+        ""Post_Infection_Mortality_Multiplier"": 0.5
+    }
+"
+"Post_Infection_Transmission_Multiplier","float","0","1","0","The multiplicative reduction in the probability of transmitting infection after getting reinfected. At the time of recovery, the immunity against transmission is multiplied by **Transmission_Blocking_Immunity_Decay_Rate** x (1 - **Post_Infection_Transmission_Multiplier**). **Enable_Immunity** must be set to 1 (true).",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Immunity_Decay"": 1,
+        ""Post_Infection_Transmission_Multiplier"": 0.9
+    }
+"
+"Susceptibility_Initialization_Distribution_Type","enum","NA","NA","DISTRIBUTION_OFF","The method for initializing the susceptibility distribution in the simulated population. **Enable_Initial_Susceptibility_Distribution** must be set to 1 (true). Possible values are: 
+
+DISTRIBUTION_OFF
+    All individuals default to no susceptibility. 
+DISTRIBUTION_SIMPLE
+    Individual susceptibilities are drawn from a distribution whose functional form and parameters are specified in the demographics file in **IndividualAttributes** using  **SusceptibilityDistributionFlag**, **SusceptibilityDistribution1**, and **SusceptibilityDistribution2** (see :ref:`demo-simpledistro` parameters).
+DISTRIBUTION_COMPLEX
+    Individual susceptibilities are drawn from an age-dependent piecewise linear function for each specific antibody in the demographics file (see :ref:`demo-complexdistro` parameters).",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Initial_Susceptibility_Distribution"": 1,
+        ""Susceptibility_Initialization_Distribution_Type"": ""DISTRIBUTION_COMPLEX""
+    }
+"
+"Susceptibility_Type","enum","NA","NA","FRACTIONAL","Controls implementation of an individual's susceptibility. Currently only relevant to **Maternal_Protection_Type** parameter. Possible values are:
+
+FRACTIONAL
+    All agents are assigned equal values between 0 and 1 according to a governing equation as specified by **Maternal_Protection_Type**.
+BINARY
+    Agents receive a value of either 0 or 1 (complete immunity or susceptibility) with the probability determined by a governing equation as specified by **Maternal_Protection_Type**. ",".. code-block:: json
+
+    {
+        ""Susceptibility_Type"": ""FRACTIONAL"",
+        ""Enable_Maternal_Protection"": 1,
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL""
+    }
+"
+"Transmission_Blocking_Immunity_Decay_Rate","float","0","1000","0.001","The rate at which transmission-blocking immunity decays after the base transmission-blocking immunity offset period. Used only when **Enable_Immunity** and **Enable_Immune_Decay** parameters are set to true (1).",".. code-block:: json
+
+    {
+        ""Transmission_Blocking_Immunity_Decay_Rate"": 0.01
+    }
+"
+"Transmission_Blocking_Immunity_Duration_Before_Decay","float","0","45000","0","The number of days after infection until transmission-blocking immunity begins to decay. Only used when **Enable_Immunity** and **Enable_Immune_Decay** parameters are set to true (1).",".. code-block:: json
+
+    {
+        ""Transmission_Blocking_Immunity_Duration_Before_Decay"": 90
+    }
+"

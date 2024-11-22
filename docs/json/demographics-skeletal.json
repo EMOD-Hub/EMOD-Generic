@@ -1,0 +1,28 @@
+{
+     "Metadata": {
+          "DateCreated": "dateTime",
+          "Tool": "scriptUsedToGenerate",
+          "Author": "author",
+          "IdReference": "Gridded world grump2.5arcmin",
+          "NodeCount": 2
+     },
+     "NodeProperties": [
+          {}
+     ],
+     "Defaults": {
+          "NodeAttributes": {},
+          "IndividualAttributes": {},
+          "IndividualProperties": {},
+     },
+     "Nodes": [{
+          "NodeID": 1,
+          "NodeAttributes": {},
+          "IndividualAttributes": {},
+          "IndividualProperties": {},
+     }, {
+          "NodeID": 2,
+          "NodeAttributes": {},
+          "IndividualAttributes": {},
+          "IndividualProperties": {},
+     }]
+}

@@ -1,0 +1,372 @@
+"Base_Infectivity","float","0","1000","0.3","The base infectiousness of individuals before accounting for transmission-blocking effects of acquired immunity and/or campaign interventions.
+
+.. only:: generic
+    
+    For generic simulations, this is the average number of individuals per time step who will be exposed to infection by one infectious individual. In the case of super-infection, the infectiousness is summed over all infections. 
+
+.. only:: vector or malaria
+
+    For vector and malaria simulations, this is the probability of infecting a mosquito during a successful blood meal (modulated by the vector parameter **Acquire_Modifier**). The sum infectiousness of an individual is not allowed to exceed 100%. 
+
+.. only:: sti or hiv
+
+    For STI or HIV simulations, this is the probability of transmission when none of the transmission multipliers apply to a particular coital act (or when all multipliers are set to 1). 
+
+.. only:: tbhiv
+
+    For TB simulations, this is the base infectivity in smear-positive individuals. This value is modified by **TB_Smear_Negative_Infectivity_Multiplier** for smear-negative individuals.
+
+.. only:: environmental 
+
+    For environmental simulations, this is the probability of infecting an individual through the contact and environmental routes.
+
+.. only:: typhoid 
+
+     This parameter is not used. ",".. code-block:: json
+
+    {
+        ""Base_Infectivity"": 0.5
+    }
+"
+"Enable_Heterogeneous_Intranode_Transmission","boolean","0","1","0","Controls whether or not individuals experience heterogeneous disease transmission within a node. When set to true (1), individual property definitions and the :math:`\beta` matrix must be specified in the demographics file (see :ref:`demo-properties` parameters). The :math:`\beta` values are multiplied with the :math:`\beta` :sub:`0` value configured by **Base_Infectivity**.
+
+This is used only in generic, environmental, and typhoid simulations, but must be set to false (0) for all other simulation types. Heterogeneous transmission for other diseases uses other mechanistic parameters included with the simulation type.",".. code-block:: json
+
+    {
+        ""Enable_Heterogeneous_Intranode_Transmission"": 1
+    }
+"
+"Enable_Infectivity_Reservoir","boolean","0","1","0","Controls whether or not an exogeneous reservoir of infectivity will be included in the simulation and allows for the infectivity in a node to be increased additively. When set to 1 (true), the demographics parameter **InfectivityReservoirSize** is expected in **NodeAtttributes** for each node.
+
+.. warning::
+
+    Do not set both **Enable_Infectivity_Reservoir** and  **Enable_Strain_Tracking** to true (1) - as this combination will cause an exception error.",".. code-block:: json
+
+    {
+        ""Enable_Infectivity_Reservoir"": 1
+    }
+"
+"Enable_Initial_Prevalence","boolean","0","1","0","Controls whether or not parameters in the demographics file are used to define a distribution for the number of infected people per node at the beginning of the simulation. Set the distribution under :ref:`demo-nodeattributes` using **PrevalenceDistributionFlag**, **PrevalenceDistribution1**, and **PrevalenceDistribution2**.
+
+
+    ",".. code-block:: json
+
+    {
+        ""Enable_Initial_Prevalence"": 1
+    }
+"
+"Enable_Maternal_Infection_Transmission","boolean","0","1","0","Controls whether or not infectious mothers infect infants at birth. **Enable_Birth** must be set to 1 (true).
+
+.. warning::
+
+    Do not set both **Enable_Maternal_Infection_Transmission** and  **Enable_Strain_Tracking** to true (1) - as this combination will cause an exception error.",".. code-block:: json
+
+    {
+        ""Enable_Birth"": 1,
+        ""Enable_Maternal_Infection_Transmission"": 1
+    }
+"
+"Enable_Skipping","boolean","0","1","0","Controls whether or not the simulation uses an optimization that can increase performance by up to 50% in some cases by probabilistically exposing individuals rather than exposing every single person. Useful in low-prevalence, high-population scenarios.
+",".. code-block:: json
+
+    {
+        ""Enable_Skipping"": 0
+    }
+"
+"Enable_Termination_On_Zero_Total_Infectivity","boolean","0","1","0","Controls whether or not the simulation should be ended when total infectivity falls to zero. Supported only in single-node simulations. ",".. code-block:: json
+
+    {
+        ""Enable_Termination_On_Zero_Total_Infectivity"": 1,
+        ""Minimum_End_Time"": 3650
+    }
+"
+"Infection_Updates_Per_Timestep","integer","0","144","1","The number of infection updates executed during each timestep; note that a timestep defaults to one day.",".. code-block:: json
+
+    {
+        ""Infection_Updates_Per_Timestep"": 1
+    }
+"
+"Infectious_Period_Constant","float","0","3.40282E+38","-1","The infectious period to use for all individuals, in days, when **Infectious_Period_Distribution** is set to CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Infectious_Period_Constant"": 8
+    }
+"
+"Infectious_Period_Distribution","enum","NA","NA","NOT_INITIALIZED","The distribution type to use for assigning the infectious period to each individual in the population. Each individual's value is a random draw from the distribution.
+
+Possible values are:
+
+NOT_INITIALIZED
+    No distribution set. 
+CONSTANT_DISTRIBUTION
+    Use the same value for each individual. Set **Infectious_Period_Constant**.
+UNIFORM_DISTRIBUTION
+    Use a `uniform`_ distribution with a given minimum and maximum. Set **Infectious_Period_Max** and **Infectious_Period_Min**.
+GAUSSIAN_DISTRIBUTION
+    The distribution is `Gaussian`_ (or normal). Values are resampled to ensure >= 0. Set **Infectious_Period_Gaussian_Mean** and **Infectious_Period_Gaussian_Std_Dev**.
+EXPONENTIAL_DISTRIBUTION
+    The distribution is `exponential`_ with a given mean. Set **Infectious_Period_Exponential**.
+WEIBULL_DISTRIBUTION
+    Use a `Weibull`_ distribution with a given shape and scale. Set **Infectious_Period_Kappa** and **Infectious_Period_Lambda**.
+LOG_NORMAL_DISTRIBUTION
+    Use a `log-normal`_ distribution with a given mean and standard deviation of the natural log. Set **Infectious_Period_Log_Normal_Mu** and **Infectious_Period_Log_Normal_Sigma**.
+POISSON_DISTRIBUTION
+    Use a `Poisson`_ distribution with a given mean. Set **Infectious_Period_Poisson_Mean**. 
+DUAL_CONSTANT_DISTRIBUTION
+    Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Infectious_Period_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
+DUAL_EXPONENTIAL_DISTRIBUTION
+    Use two `exponential`_ distributions with given means. Set **Infectious_Period_Mean_1**, **Infectious_Period_Mean_2**, and **Infectious_Period_Proportion_1**. This distribution does not use the parameters set for EXPONENTIAL_DISTRIBUTION.
+
+
+.. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
+
+.. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
+
+.. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
+
+.. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
+
+.. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
+
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
+
+",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Infectious_Period_Gaussian_Mean"": 4,
+        ""Infectious_Period_Gaussian_Std_Dev"": 1
+    }
+"
+"Infectious_Period_Exponential","float","0","3.40282E+38","-1","The mean infectious period, in days, when **Infectious_Period_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+        ""Infectious_Period_Exponential"": 4.25
+    }
+"
+"Infectious_Period_Gaussian_Mean","float","0","3.40282E+38","-1","The mean infectious period, in days, when **Infectious_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Infectious_Period_Gaussian_Mean"": 4,
+        ""Infectious_Period_Gaussian_Std_Dev"": 1
+    }
+"
+"Infectious_Period_Gaussian_Std_Dev","float","1.17549E-38","3.40282E+38","-1","The standard deviation of the infectious period, in days, when **Infectious_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Infectious_Period_Gaussian_Mean"": 4,
+        ""Infectious_Period_Gaussian_Std_Dev"": 1
+    }
+"
+"Infectious_Period_Kappa","float","1.17549E-38","3.40282E+38","-1","The shape value for the infectious period, in days, when **Infectious_Period_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Infectious_Period_Kappa"": 0.9,
+        ""Infectious_Period_Lambda"": 1.5
+    }
+"
+"Infectious_Period_Lambda","float","1.17549E-38","3.40282E+38","-1","The scale value for the infectious period, in days, when **Infectious_Period_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Infectious_Period_Kappa"": 0.9,
+        ""Infectious_Period_Lambda"": 1.5
+    }
+"
+"Infectious_Period_Log_Normal_Mu","float","-3.40282e+38","1.70141e+38","3.40282e+38","The mean of the natural log of the infectious period, in days, when **Infectious_Period_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Infectious_Period_Log_Normal_Mu"": 9,
+        ""Infectious_Period_Log_Normal_Sigma"": 2
+    }
+"
+"Infectious_Period_Log_Normal_Sigma","float","-3.40282e+38","1.70141e+38","3.40282e+38","The standard deviation of the natural log of the infectious period, in days, when **Infectious_Period_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Infectious_Period_Log_Normal_Mu"": 9,
+        ""Infectious_Period_Log_Normal_Sigma"": 2
+    }
+"
+"Infectious_Period_Max","float","0","3.40282E+38","-1","The maximum infectious period, in days, when **Infectious_Period_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Infectious_Period_Min"": 2,
+        ""Infectious_Period_Max"": 7
+    }
+"
+"Infectious_Period_Mean_1","float","1.17549E-38","3.4E+38","-1","The mean of the first exponential distribution, in days, when **Infectious_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Infectious_Period_Mean_1"": 4,
+        ""Infectious_Period_Mean_2"": 12,
+        ""Infectious_Period_Proportion_1"": 0.2
+    }
+"
+"Infectious_Period_Mean_2","float","1.17549E-38","3.40282E+38","-1","The mean of the second exponential distribution, in days, when **Infectious_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Infectious_Period_Mean_1"": 4,
+        ""Infectious_Period_Mean_2"": 12,
+        ""Infectious_Period_Proportion_1"": 0.2
+    }
+"
+"Infectious_Period_Min","float","0","3.40282E+38","-1","The minimum infectious period, in days, when **Infectious_Period_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Infectious_Period_Min"": 2,
+        ""Infectious_Period_Max"": 7
+    }
+"
+"Infectious_Period_Peak_2_Value","float","0","3.40282E+38","-1","The infectious period value, in days, to assign to the remaining individuals when **Infectious_Period_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Infectious_Period_Proportion_0"": 0.25,
+        ""Infectious_Period_Peak_2_Value"": 5
+    }
+"
+"Infectious_Period_Poisson_Mean","float","0","3.40282E+38","-1","The mean of the infectious period, in days, when **Infectious_Period_Distribution** is set to POISSON_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""POISSON_DISTRIBUTION"",
+        ""Infectious_Period_Poisson_Mean"": 5
+    }
+"
+"Infectious_Period_Proportion_0","float","0","1","-1","The proportion of individuals to assign a value of zero days infectiousness when **Infectious_Period_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Infectious_Period_Proportion_0"": 0.25,
+        ""Infectious_Period_Peak_2_Value"": 5
+    }
+"
+"Infectious_Period_Proportion_1","float","0","1","-1","The proportion of individuals in the first exponential distribution when **Infectious_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Infectious_Period_Mean_1"": 4,
+        ""Infectious_Period_Mean_2"": 12,
+        ""Infectious_Period_Proportion_1"": 0.2
+    }
+"
+"Infectivity_Exponential_Baseline","float","0","1","0","The scale factor applied to **Base_Infectivity** at the beginning of a simulation, before the infectivity begins to grow exponentially. **Infectivity_Scale_Type** must be set to EXPONENTIAL_FUNCTION_OF_TIME.",".. code-block:: json
+
+    {
+        ""Infectivity_Exponential_Baseline"": 0.1,
+        ""Infectivity_Exponential_Delay"": 90,
+        ""Infectivity_Exponential_Rate"": 45,
+        ""Infectivity_Scale_Type"": ""EXPONENTIAL_FUNCTION_OF_TIME""
+    }
+"
+"Infectivity_Exponential_Delay","float","0","3.40E+38","0","The number of days before infectivity begins to ramp up exponentially. When **Enable_Infectivity_Scaling_Exponential**  configuration parameter is enabled, **Infectivity_Exponential_Delay** is an expected parameter.",".. code-block:: json
+
+    {
+        ""INFECTIOUSNESS"": {
+            ""Base_Infectious_Period"": 7,
+            ""Base_Infectivity"": 0.3,
+            ""Enable_Infectivity_Scaling"": 0,
+            ""Infectious_Period_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+            ""Infectious_Period_Exponential"": 7,
+            ""Infectivity_Exponential_Baseline"": 0.5,
+            ""Infectivity_Exponential_Delay"": 60,
+            ""Infectivity_Exponential_Rate"": 60
+        }
+    }
+"
+"Infectivity_Exponential_Rate","float","0","3.40E+38","0","The daily rate of exponential growth to approach to full infectivity after the delay set by **Infectivity_Exponential_Delay** has passed. When **Enable_Infectivity_Scaling_Exponential**  configuration parameter is enabled, **Infectivity_Exponential_Rate** is an expected parameter.",".. code-block:: json
+
+    {
+        ""INFECTIOUSNESS"": {
+            ""Base_Infectious_Period"": 7,
+            ""Base_Infectivity"": 0.3,
+            ""Enable_Infectivity_Scaling"": 0,
+            ""Infectious_Period_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+            ""Infectious_Period_Exponential"": 7,
+            ""Infectivity_Exponential_Baseline"": 0.5,
+            ""Infectivity_Exponential_Delay"": 60,
+            ""Infectivity_Exponential_Rate"": 60
+        }
+    }
+"
+"Maternal_Infection_Transmission_Probability","float","0","1","0","The probability of transmission of infection from mother to infant at birth. **Enable_Maternal_Infection_Transmission** must be set to 1. 
+
+.. note::
+
+    For malaria and vector simulations, set this to 0. Instead, use the **Maternal_Antibody_Protection**, **Maternal_Antibody_Decay_Rate**, and **Maternal_Antibodies_Type** parameters.  ",".. code-block:: json
+
+    {
+        ""Maternal_Infection_Transmission_Probability"": 0.3
+    }
+"
+"Population_Density_C50","float","0","3.40E+38","10","The population density at which R0 for a 2.5-arc minute square reaches half of its initial value. **Population_Density_Infectivity_Correction** must be set to SATURATING_FUNCTION_OF_DENSITY.",".. code-block:: json
+
+    {
+        ""Population_Density_C50"": 30
+    }
+"
+"Population_Density_Infectivity_Correction","enum","NA","NA","CONSTANT_INFECTIVITY","Correction to alter infectivity by population density set in the **Population_Density_C50** parameter. Measured in people per square kilometer. 
+Possible values are:
+
+* CONSTANT_INFECTIVITY
+* SATURATING_FUNCTION_OF_DENSITY
+  
+.. note::
+
+   Sparsely populated areas have a lower infectivity, while densely populated areas have a higher infectivity, which rises to saturate at the **Base_Infectivity** value.",".. code-block:: json
+
+    {
+        ""Population_Density_Infectivity_Correction"": ""SATURATING_FUNCTION_OF_DENSITY""
+    }
+"
+"Relative_Sample_Rate_Immune","float","0.001","1","0.1","The relative sampling rate for people who have acquired immunity through recovery or vaccination. The immune threshold at which to downsample is set by **Immune_Threshold_For_Downsampling**. If set to 1, this will have no effect, even if the individual's immunity modifier is below threshold. This can be a useful sanity check while learning this feature. **Individual_Sampling_Type** must be set to ADAPTED_SAMPLING_BY_IMMUNE_STATE. ",".. code-block:: json
+
+    {
+        ""Relative_Sample_Rate_Immune"": 0.1,
+        ""Immune_Threshold_For_Downsampling"": 0.8,
+        ""Individual_Sampling_Type"": ""ADAPTED_SAMPLING_BY_IMMUNE_STATE""
+    }
+"
+"Susceptibility_Type","enum","NA","NA","FRACTIONAL","Controls implementation of an individual's susceptibility. Currently only relevant to **Maternal_Protection_Type** parameter. Possible values are:
+
+FRACTIONAL
+    All agents are assigned equal values between 0 and 1 according to a governing equation as specified by **Maternal_Protection_Type**.
+BINARY
+    Agents receive a value of either 0 or 1 (complete immunity or susceptibility) with the probability determined by a governing equation as specified by **Maternal_Protection_Type**. ",".. code-block:: json
+
+    {
+        ""Susceptibility_Type"": ""FRACTIONAL"",
+        ""Enable_Maternal_Protection"": 1,
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL""
+    }
+"
+"Symptomatic_Infectious_Offset","float","-3.40282e+38","3.40282e+38","3.40282e+38","Amount of time, in days, after the infectious period starts that symptoms appear. Negative values imply an individual is symptomatic before infectious. If this offset is greater than the infectious duration, the infection will not be symptomatic. For example, if **Incubation_Period_Constant** is set to 10 and **Symptomatic_Infectious_Offset** is set to 4, then an infected person would become symptomatic 14 days after transmission.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Symptomatic_Infectious_Offset"": 4,
+        ""Incubation_Period_Constant"": 10
+    }
+"
+"Transmission_Blocking_Immunity_Decay_Rate","float","0","1000","0.001","The rate at which transmission-blocking immunity decays after the base transmission-blocking immunity offset period. Used only when **Enable_Immunity** and **Enable_Immune_Decay** parameters are set to true (1).",".. code-block:: json
+
+    {
+        ""Transmission_Blocking_Immunity_Decay_Rate"": 0.01
+    }
+"
+"Transmission_Blocking_Immunity_Duration_Before_Decay","float","0","45000","0","The number of days after infection until transmission-blocking immunity begins to decay. Only used when **Enable_Immunity** and **Enable_Immune_Decay** parameters are set to true (1).",".. code-block:: json
+
+    {
+        ""Transmission_Blocking_Immunity_Duration_Before_Decay"": 90
+    }
+"

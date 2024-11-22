@@ -1,0 +1,259 @@
+"Age_Bin_Edges_In_Years","array","NA","NA","NA","An array of integers that represents the ages, in years, at which to demarcate the age groups for individuals. Used only with the **Age_Bin** property type. The first number must be 0, the last must be -1, and they must be listed in ascending order. Cannot be used with **NodeProperties**.
+
+|EMOD_s| automatically create the individual property **Age_Bin** with values based on the bin edges using the format **Age_Bin_Property_From_X_To_Y**. These appear in the property reports and can be used to target campaign interventions using **Property_Restrictions_Within_Node**. See :doc:`model-targeted-interventions` for more information.","The following example creates three age groups: 0 to 5, older than 5 to 13, and older than 13 to the maximum age.
+
+.. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""IndividualProperties"": [
+                {
+                    ""Property"": ""Age_Bin"",
+                    ""Age_Bin_Edges_In_Years"": [
+                        0,
+                        5,
+                        13,
+                        -1
+                    ]
+                }
+            ]
+        }
+    }
+"
+"IndividualProperties","array of objects","NA","NA","NA","An array that contains parameters that add properties to individuals in a simulation. For example, you can define values for accessibility, age, geography, risk, and other properties and assign values to different individuals. alues.",".. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""IndividualProperties"": [
+                {
+                    ""Property"": ""InterventionStatus"",
+                    ""Values"": [
+                        ""None"",
+                        ""ARTStaging""
+                    ],
+                    ""Initial_Distribution"": [
+                        1,
+                        0
+                    ]
+                },
+                {
+                    ""Property"": ""Risk"",
+                    ""Values"": [
+                        ""High"",
+                        ""Medium"",
+                        ""Low""
+                    ],
+                    ""Initial_Distribution"": [
+                        0.2,
+                        0.5,
+                        0.3
+                    ]
+                }
+            ]
+        }
+    }
+"
+"Initial_Distribution","array of floats","0","1","1","An array of floats that define the proportion of property values to assign to individuals or nodes at the beginning of the simulation and when new individuals are born. Their sum must equal 1 and the number of members in this array must match the number of members in **Values**. For Age_Bin property types, omit this parameter as the demographics file controls the age distribution.",".. code-block:: json
+
+    {
+        ""NodeProperties"": [
+            {
+                ""Property"": ""InterventionStatus"",
+                ""Values"": [
+                    ""NONE"",
+                    ""RECENT_SPRAY""
+                ],
+                ""Initial_Distribution"": [
+                    1.0,
+                    0.0
+                ]
+            }
+        ]
+    }
+.. code-block:: json
+
+    {
+        ""Nodes"": [
+            {
+                ""NodeID"": 25,
+                ""IndividualProperties"": [
+                    {
+                        ""Initial_Distribution"": [
+                            0.2,
+                            0.4,
+                            0.4
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+"
+"NodeProperties","array of objects","NA","NA","NA","An array that contains parameters that add properties to nodes in a simulation. Defined in the demographics file at the same level as **Nodes** and **Defaults**. For example, you can define values for intervention status, risk, and other properties and assign values to different nodes.",".. code-block:: json
+
+    {
+        ""NodeProperties"": [
+            {
+                ""Property"": ""Place"",
+                ""Values"": [
+                    ""RURAL"",
+                    ""URBAN""
+                ],
+                ""Initial_Distribution"": [
+                    0.85,
+                    0.15
+                ]
+            },
+            {
+                ""Property"": ""InterventionStatus"",
+                ""Values"": [
+                    ""NONE"",
+                    ""SPRAYED_A"",
+                    ""SPRAYED_B"",
+                    ""FENCE_AND_TRAP""
+                ],
+                ""Initial_Distribution"": [
+                    1,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        ""Nodes"": [
+            {
+                ""NodeID"": 1,
+                ""NodeAttributes"": {
+                    ""Latitude"": 0,
+                    ""Longitude"": 0,
+                    ""Altitude"": 0,
+                    ""Airport"": 0,
+                    ""Region"": 1,
+                    ""Seaport"": 0,
+                    ""InitialPopulation"": 10000,
+                    ""BirthRate"": 5.48e-05,
+                    ""NodePropertyValues"": [
+                        ""Place:URBAN""
+                    ]
+                }
+            }
+        ]
+    }
+"
+"Property","enum","NA","NA","NA","The individual or node property type for which you will assign values to create groups. You can then update the property values assigned to individuals or nodes or target interventions to particular groups. Note that these types, with the exception of Age_Bin, are merely labels that do not affect the simulation unless specified to do so. Possible values are:
+
+Age_Bin
+   Assign individuals to age bins. Use with **Age_Bin_Edges_In_Years**. Cannot be used with **NodeProperties**.
+Accessibility
+   Tag individuals or nodes based on their accessibility. 
+Geographic
+   Tag individuals or nodes based on geographic characteristics.
+HasActiveTB
+   Tag individuals or nodes based on active TB status. Typically used only with HIV ART staging interventions.
+InterventionStatus
+   Tag individuals or nodes based on intervention status, so that receiving an intervention can affect how other interventions are distributed. Use with **Disqualifying_Properties** and **New_Property_Value** in the campaign file. 
+Place
+   Tag individuals or nodes based on place.
+Risk
+   Tag individuals or nodes based on disease risk.
+QualityofCare
+   Tag individuals or nodes based on the quality of medical care.
+",".. code-block:: json
+
+    {
+        ""NodeProperties"": [
+            {
+                ""Property"": ""InterventionStatus"",
+                ""Values"": [
+                    ""NONE"",
+                    ""RECENT_SPRAY""
+                ],
+                ""Initial_Distribution"": [
+                    1.0,
+                    0.0
+                ]
+            }
+        ]
+    }
+.. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""IndividualProperties"": [
+                {
+                    ""Property"": ""Age_Bin"",
+                    ""Age_Bin_Edges_In_Years"": [
+                        0,
+                        6,
+                        10,
+                        20,
+                        -1
+                    ]
+                }
+            ]
+        }
+    }
+"
+"TransmissionMatrix","JSON object","NA","NA","NA","An object that contains **Route** and **Matrix** parameters that define how to scale the base infectivity from individuals with one property value to individuals with another. **Route** can be set to ""Contact"" or ""Environmental"" and **Matrix** contains a :term:`WAIFW matrix` of the disease transmission multipliers. The rows and columns are in the same order that the property values were defined in **Value**.
+The rows represent the infectious individuals (the ""whom""); the columns represent the susceptible individuals (the ""who"").
+
+This implements the |HINT_s| feature, which is available only in the generic, environmental, and typhoid simulation types. For more information, see :doc:`model-hint`.
+**Enable_Heterogeneous_Intranode_Transmission** in the configuration file must be set to 1 (see :doc:`parameter-configuration-infectivity` parameters). Cannot be used with **NodeProperties**.",".. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""IndividualProperties"": [
+                {
+                    ""TransmissionMatrix"": {
+                        ""Route"": ""Contact"",
+                        ""Matrix"": [
+                            [
+                                10,
+                                0.1
+                            ],
+                            [
+                                0.1,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+"
+"Values","array of strings","NA","NA","NA","An array of the user-defined values that can be assigned to individuals or nodes for this property. The order of the values corresponds to the order of the **Initial_Distribution** array.
+
+You can have up to 125 values for the Geographic and InterventionStatus property types and up to 5 values for all other types. For Age_Bin property types, omit this parameter and use **Age_Bin_Edges_In_Years** instead.",".. code-block:: json
+
+    {
+        ""NodeProperties"": [
+            {
+                ""Property"": ""InterventionStatus"",
+                ""Values"": [
+                    ""NONE"",
+                    ""RECENT_SPRAY""
+                ],
+                ""Initial_Distribution"": [
+                    1.0,
+                    0.0
+                ]
+            }
+        ]
+    }
+.. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""IndividualProperties"": [
+                {
+                    ""Values"": [
+                        ""Low"",
+                        ""Medium"",
+                        ""High""
+                    ]
+                }
+            ]
+        }
+    }
+"

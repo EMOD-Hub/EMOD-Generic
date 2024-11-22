@@ -1,0 +1,259 @@
+"Base_Sensitivity","float","0","1","1","The sensitivity of the diagnostic. This sets the proportion of the time that individuals with the condition being tested receive a positive diagnostic test. When set to zero, then individuals who have the condition always receive a false-negative diagnostic test.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Treatment_Fraction"": 1,
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Base_Specificity","float","0","1","1","The specificity of the diagnostic. This sets the proportion of the time that individuals without the condition being tested receive a negative diagnostic test. When set to 1, the diagnostic always accurately reflects the lack of having the condition. When set to zero, then individuals who do not have the condition always receive a false-positive diagnostic test.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Cost_To_Consumer","float","0","3.40282e+38","1","The unit 'cost' assigned to the diagnostic. Setting Cost_To_Consumer to zero for all other interventions, and to a non-zero amount for one intervention, provides a convenient way to track the number of times the intervention has been applied in a simulation.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Days_To_Diagnosis","float","0","3.40282e+38","0","The number of days from test until diagnosis.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of IndividualProperty key:value pairs that cause an intervention to be aborted. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Disqualifying_Properties"": [
+                    ""InterventionStatus:LostForever""
+                ],
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Dont_Allow_Duplicates"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Enable_IsSymptomatic","boolean","0","1","0","If true (1), requires an infection to be symptomatic to return a positive test.",".. code-block:: json
+
+    {
+        ""Enable_IsSymptomatic"": 1,
+        ""Base_Specificity"": 0.85,
+        ""Base_Sensitivity"": 0.92
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Intervention_Name"": ""Immunity Blood Test - Series 1"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Negative_Diagnosis_Event","enum","NA","NA","""""","If an individual tests negative (does not have immunity), then an individual type event is broadcast. This may trigger another intervention when the event occurs. Only used when **Event_Or_Config** is set to Event.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional IndividualProperty key:value pair that will be assigned when the intervention is distributed. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways.",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"Positive_Diagnosis_Config","JSON object","NA","NA","NA","The intervention distributed to individuals if they test positive. Only used when Event_Or_Config is set to Config.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Positive_Diagnosis_Event","enum","NA","NA","""""","If the test is positive (has immunity), then an individual type event is broadcast. This may trigger another intervention when the event occurs. Only used if Event_Or_Config is set to Event.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Positive_Threshold_AcquisitionImmunity","float","0","1","1","Specifies the threshold for acquired immunity, where 1 equals 100% immunity and 0 equals 100% susceptible.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"
+"Treatment_Fraction","float","0","1","1","The fraction of positive diagnoses that are treated.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Demographic_Coverage"": 1,
+            ""Intervention_Config"": {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Cost_To_Consumer"": 0,
+                ""Days_To_Diagnosis"": 0,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""TestedNegative_IamSusceptible"",
+                ""Positive_Diagnosis_Event"": ""TestedPositive_IamImmune"",
+                ""Positive_Threshold_AcquisitionImmunity"": 0.99,
+                ""Treatment_Fraction"": 1,
+                ""class"": ""ImmunityBloodTest""
+            }
+        }
+    }
+"

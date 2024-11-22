@@ -1,0 +1,17 @@
+Individual-level interventions determine *what* will be distributed to individuals to reduce the
+spread of a disease. For example, distributing vaccines or drugs are individual-level interventions.
+In the schema, these are labeled as **IndividualTargeted**.  
+
+It is also possible (but not required) to configure *why* a particular intervention is distributed
+by adding trigger conditions to the intervention. For example, interventions can be triggered by
+notifications broadcast after some an event, such as Births (the individual’s own
+birth), GaveBirth, NewInfectionEvent, and more. It's also possible to have one intervention trigger
+another intervention by asking the first intervention to broadcast a unique string, and having the
+second intervention be triggered upon receipt of that string. See :doc:`parameter-campaign-event-list`.
+
+Individual-level interventions can be used as part of configuring a cascade of care along with the individual
+properties set in the demographics file. Use **Disqualifying_Properties** to disqualify individuals
+who would otherwise receive the intervention and **New_Property_Value** to assign a new value when
+the intervention is received. For example, you can assign a property value after receiving the
+first-line treatment for a disease and prevent anyone from receiving the second-line treatment
+unless they have that property value and are still symptomatic.

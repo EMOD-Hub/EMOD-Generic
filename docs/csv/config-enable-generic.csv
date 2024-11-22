@@ -1,0 +1,242 @@
+"Enable_Aging","boolean","0","1","1","Controls whether or not individuals in a population age during the simulation. **Enable_Vital_Dynamics** must be set to true (1). ",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Aging"": 1
+    }
+"
+"Enable_Air_Migration","boolean","0","1","0","Controls whether or not migration by air travel will occur. **Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Air_Migration"": 1,
+        ""Air_Migration_Filename"": ""../inputs/air_migration.bin""
+    }
+"
+"Enable_Birth","boolean","0","1","1","Controls whether or not individuals will be added to the simulation by birth. **Enable_Vital_Dynamics** must be set to true (1). If you want new individuals to have the same intervention coverage as existing individuals, you must add a **BirthTriggeredIV** to the campaign file. ",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1
+    }
+"
+"Enable_Default_Reporting","boolean","0","1","1","Controls whether or not the default InsetChart.json report is created.",".. code-block:: json
+
+    {
+        ""Enable_Default_Reporting"": 1
+    }
+"
+"Enable_Demographics_Birth","boolean","0","1","0","Controls whether or not newborns have disease risk drawn from a distribution; uniform disease risk if false. **Enable_Birth**, **Enable_Demographics_Risk**, and **Enable_Vital_Dynamics** must be set to true (1).
+",".. code-block:: json
+
+    {
+        ""Enable_Birth"": 1,
+        ""Enable_Demographics_Birth"": 1,
+        ""Enable_Vital_Dynamics"": 1
+    }
+"
+"Enable_Demographics_Builtin","boolean","0","1","0","Controls whether or not built-in demographics for default geography will be used. Note that the built-in demographics feature does not represent a real geographical location and is mostly used for testing. Set to true (1) to define the initial population and number of nodes using **Default_Geography_Initial_Node_Population** and **Default_Geography_Torus_Size**. Set to false (0) to use demographics input files defined in **Demographics_Filenames**.",".. code-block:: json
+
+    {
+        ""Enable_Demographics_Builtin"": 1,
+        ""Default_Geography_Initial_Node_Population"": 1000,
+        ""Default_Geography_Torus_Size"": 3
+    }
+"
+"Enable_Demographics_Reporting","boolean","0","1","1","Controls whether or not demographic summary data and age-binned reports are outputted to file.",".. code-block:: json
+
+    {
+        ""Enable_Demographics_Reporting"": 1
+    }
+"
+"Enable_Disease_Mortality","boolean","0","1","1","Controls whether or not individuals are removed from the simulation due to disease deaths.
+
+.. only:: hiv
+
+    This parameter should always be set to 1 (true) for this simulation type. 
+
+",".. code-block:: json
+
+    {
+        ""Enable_Disease_Mortality"": 1
+    }
+"
+"Enable_Family_Migration","boolean","0","1","0","Controls whether or not all members of a household can migrate together when a MigrateFamily event occurs. All residents must be home before they can leave on the trip. **Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Enable_Migration"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Family_Migration"": 1,
+        ""Family_Migration_Filename"": ""../inputs/family_migration.bin""
+    }
+"
+"Enable_Heterogeneous_Intranode_Transmission","boolean","0","1","0","Controls whether or not individuals experience heterogeneous disease transmission within a node. When set to true (1), individual property definitions and the :math:`\beta` matrix must be specified in the demographics file (see :ref:`demo-properties` parameters). The :math:`\beta` values are multiplied with the :math:`\beta` :sub:`0` value configured by **Base_Infectivity**.
+
+This is used only in generic, environmental, and typhoid simulations, but must be set to false (0) for all other simulation types. Heterogeneous transmission for other diseases uses other mechanistic parameters included with the simulation type.",".. code-block:: json
+
+    {
+        ""Enable_Heterogeneous_Intranode_Transmission"": 1
+    }
+"
+"Enable_Immune_Decay","boolean","0","1","1","Controls whether or not immunity decays after an infection clears. Set to true (1) if immunity decays; set to false (0) if recovery from the disease confers complete immunity for life. **Enable_Immunity** must be set to true (1).
+
+.. only::  hiv or typhoid
+
+    This parameter should always be set to 0 (off) in this simulation type.
+
+.. only:: malaria or dengue
+
+    This parameter should always be set to 1 (on) in this simulation type.",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Immune_Decay"": 0
+    }
+"
+"Enable_Immunity","boolean","0","1","1","Controls whether or not an individual has protective immunity after an infection clears.
+",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1
+    }
+"
+"Enable_Infectivity_Reservoir","boolean","0","1","0","Controls whether or not an exogeneous reservoir of infectivity will be included in the simulation and allows for the infectivity in a node to be increased additively. When set to 1 (true), the demographics parameter **InfectivityReservoirSize** is expected in **NodeAtttributes** for each node.
+
+.. warning::
+
+    Do not set both **Enable_Infectivity_Reservoir** and  **Enable_Strain_Tracking** to true (1) - as this combination will cause an exception error.",".. code-block:: json
+
+    {
+        ""Enable_Infectivity_Reservoir"": 1
+    }
+"
+"Enable_Initial_Prevalence","boolean","0","1","0","Controls whether or not parameters in the demographics file are used to define a distribution for the number of infected people per node at the beginning of the simulation. Set the distribution under :ref:`demo-nodeattributes` using **PrevalenceDistributionFlag**, **PrevalenceDistribution1**, and **PrevalenceDistribution2**.
+
+
+    ",".. code-block:: json
+
+    {
+        ""Enable_Initial_Prevalence"": 1
+    }
+"
+"Enable_Initial_Susceptibility_Distribution","boolean","0","1","0","Controls whether or not individuals in the population have immunity at the beginning of the simulation. If set to 0, individuals are not initialized with immunity but may acquire immunity. If set to 1, you must indicate the type of distribution to use for immunity in the configuration parameter **Immunity_Initialization_Distribution_Type** and the distribution values in the demographics file. **Enable_Immunity** must be set to 1.",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Initial_Susceptibility_Distribution"": 1,
+        ""Immunity_Initialization_Distribution_Type"": ""DISTRIBUTION_SIMPLE""
+    }
+"
+"Enable_Interventions","boolean","0","1","0","Controls whether or not campaign interventions will be used in the simulation. Set **Campaign_Filename** to the path of the file that contains the campaign interventions.",".. code-block:: json
+
+    {
+        ""Enable_Interventions"": 1,
+        ""Campaign_Filename"": ""campaign.json""
+    }
+"
+"Enable_Local_Migration","boolean","0","1","0","Controls whether or not local migration (the diffusion of people in and out of nearby nodes by foot travel) occurs. **Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Local_Migration"": 1,
+        ""Local_Migration_Filename"": ""../inputs/local_migration.bin""
+    }
+"
+"Enable_Maternal_Infection_Transmission","boolean","0","1","0","Controls whether or not infectious mothers infect infants at birth. **Enable_Birth** must be set to 1 (true).
+
+.. warning::
+
+    Do not set both **Enable_Maternal_Infection_Transmission** and  **Enable_Strain_Tracking** to true (1) - as this combination will cause an exception error.",".. code-block:: json
+
+    {
+        ""Enable_Birth"": 1,
+        ""Enable_Maternal_Infection_Transmission"": 1
+    }
+"
+"Enable_Maternal_Protection","boolean","0","1","0","Controls whether or not mothers pass immunity on to their infants. Setting to 1 (true) enables maternal protection as defined by **Maternal_Protection_Type**. **Enable_Birth** must be set to 1 (true).",".. code-block:: json
+
+    {
+        ""Enable_Maternal_Protection"": 1,
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL""
+    }
+"
+"Enable_Migration_Heterogeneity","boolean","0","1","1","Controls whether or not migration rate is heterogeneous among individuals within each group that has a migration rate setting. Set to true (1) to apply a migration rate distribution (see :ref:`demo-nodeattributes` demographics parameters); set to false (0) to use the same migration rate applied to all individuals in the group. For example, if you are using a migration file that sets different migration rates for each age group in a node, you could apply an Gaussian distribution around a mean value in each age group or you could assign the same value to each individual in each age group. 
+
+**Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Migration_Heterogeneity"": 1
+    }
+"
+"Enable_Natural_Mortality","boolean","0","1","0","Controls whether or not individuals are removed from the simulation due to natural (non-disease) deaths. **Enable_Vital_Dynamics** must be set to 1 (true). Use **Death_Rate_Dependence** to set the natural death rate.",".. code-block:: json
+
+    {
+        ""Enable_Natural_Mortality"": 1,
+        ""Enable_Vital_Dynamics"": 1
+    }
+"
+"Enable_Property_Output","boolean","0","1","0","Controls whether or not to create property output reports, which detail groups as defined in **IndividualProperties** in the demographics file (see :ref:`demo-properties` parameters).  When there is more than one property type, the report will display the channel information for all combinations of the property type groups.",".. code-block:: json
+
+    {
+        ""Enable_Property_Output"": 1
+    }
+"
+"Enable_Regional_Migration","boolean","0","1","0","Controls whether or not there is migration by road or rail network into and out of nodes in the simulation. **Migration_Model** must be set to FIXED_RATE_MIGRATION. ",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Regional_Migration"": 1,
+        ""Regional_Migration_Filename"": ""../inputs/regional_migration.bin""
+    }
+"
+"Enable_Sea_Migration","boolean","0","1","0","Controls whether or not there is migration on ships into and out of coastal cities with seaports. **Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Sea_Migration"": 1,
+        ""Sea_Migration_Filename"": ""../inputs/sea_migration.bin""
+    }
+"
+"Enable_Spatial_Output","boolean","0","1","0","Controls whether or not spatial output reports are created. If set to true (1), spatial output reports include all channels listed in the parameter **Spatial_Output_Channels**. 
+
+.. note:: 
+
+    Spatial output files require significant processing time and disk space.",".. code-block:: json
+
+    {
+        ""Enable_Spatial_Output"": 1,
+        ""Spatial_Output_Channels"": [
+            ""Prevalence"",
+            ""New_Infections""
+        ]
+    }
+"
+"Enable_Strain_Tracking","boolean","0","1","0","Enable an association of an infection with a specified strain, defined by unique integers for a clade and a genome. 
+
+For infections distributed through interventions, you specify clade and genome values using the **Clade** and **Genome** parameters with the :doc:`parameter-campaign-node-outbreak` and :doc:`parameter-campaign-individual-outbreakindividual` intervention classes in the campaign file.
+
+When using an initial prevalence distribution, you specify clade and genome values using the **InitialPrevalenceStrains** parameter as part of :ref:`demo-individualattributes` in the demographics file.
+
+When **Enable_Strain_Tracking** is set to false (0) or absent, all infections are associated with a single strain that has clade and genome identity (0, 0).
+
+When **Enable_Strain_Tracking** is set to true (1) then both **Number_of_Clades** and **Log2_Number_of_Genomes_per_Clade** parameters must be specified.
+
+.. warning::
+
+    Do not set both **Enable_Strain_Tracking** and  **Enable_Infectivity_Reservoir** to true (1) or **Enable_Strain_Tracking** and  **Enable_Maternal_Infection_Transmission** to true (1) - as these combinations will cause an exception error.",".. code-block:: json
+
+    {
+        ""Enable_Strain_Tracking"": 1,
+        ""Log2_Number_of_Genomes_per_Clade"": 8,
+        ""Number_of_Clades"": 2
+    }
+"
+"Enable_Vital_Dynamics","boolean","0","1","1","Controls whether or not births and deaths occur in the simulation. Births and deaths must be individually enabled and set. ",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Death_Rate_Dependence"": ""NOT_INITIALIZED"",
+        ""Base_Mortality"": 0.002
+    }
+"

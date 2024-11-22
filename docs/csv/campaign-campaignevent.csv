@@ -1,0 +1,38 @@
+"Event_Coordinator_Config","JSON object","NA","NA","NA","An object that specifies how the event is handled by the simulation. It specifies which Event Coordinator class will handle the event, and then configures the coordinator. This description starts with specifying class, and then the other fields depend on the class.
+",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""class"": ""StandardInterventionDistributionEventCoordinator"",
+            ""Demographic_Coverage"": 1.0
+        }
+    }
+"
+"Event_Name","string","NA","NA","NA","The optional name used to refer to this event as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Events"": [
+            {
+                ""Event_Name"": ""Outbreak"",
+                ""class"": ""CampaignEvent"",
+                ""Nodeset_Config"": ""NodeSetAll""
+            }
+        ]
+    }
+"
+"Nodeset_Config","JSON object","NA","NA","NA","An object that specifies in which nodes the interventions will be distributed. Set to one of the :ref:`campaign-nodeset-config`.
+",".. code-block:: json
+
+    {
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        }
+    }
+"
+"Start_Day","float","-1","3.40282e+38","1","The day of the simulation to activate the event's event coordinator. Depending on the event coordinator and intervention, this may indicate when to distribute an intervention or when to begin listening for a trigger. ",".. code-block:: json
+
+    {
+        ""Start_Day"": 0,
+        ""End_Day"": 100
+    }
+"

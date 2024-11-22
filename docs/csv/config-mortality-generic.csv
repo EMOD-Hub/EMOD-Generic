@@ -1,0 +1,69 @@
+"Base_Mortality","float","0","1000","0.001","The base mortality of the infection before accounting for individual immune modification factors. Depending on the setting of **Mortality_Time_Course**, this is either the daily probability of the disease being fatal (DAILY_MORTALITY) or the probability of death at the end of the infection duration (MORTALITY_AFTER_INFECTIOUS). **Enable_Disease_Mortality** must be set to 1 (true).
+
+",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Mortality_Time_Course"": ""DAILY_MORTALITY"",
+        ""Base_Mortality"": 0.01
+    }
+"
+"Death_Rate_Dependence","enum","NA","NA","NOT_INITIALIZED","Determines how likely individuals are to die from natural, non-disease causes. **Enable_Natural_Mortality** must be set to 1. Possible values are:
+
+NOT_INITIALIZED
+    The daily mortality rate is 0, and no one dies from non-disease related causes.
+NONDISEASE_MORTALITY_BY_AGE_AND_GENDER
+    The individual's age and gender are taken into account to determine the daily mortality rate.
+NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER
+    Gender, age, and year, are all taken into account to determine the daily mortality rate. 
+
+Properties, rates, and bin sizes can be set for non-disease mortality for each gender in the demographics file (see :ref:`demo-complexdistro` parameters).",".. code-block:: json
+
+    {
+        ""Death_Rate_Dependence"": ""NONDISEASE_MORTALITY_BY_AGE_AND_GENDER""
+    }
+"
+"Enable_Disease_Mortality","boolean","0","1","1","Controls whether or not individuals are removed from the simulation due to disease deaths.
+
+.. only:: hiv
+
+    This parameter should always be set to 1 (true) for this simulation type. 
+
+",".. code-block:: json
+
+    {
+        ""Enable_Disease_Mortality"": 1
+    }
+"
+"Enable_Natural_Mortality","boolean","0","1","0","Controls whether or not individuals are removed from the simulation due to natural (non-disease) deaths. **Enable_Vital_Dynamics** must be set to 1 (true). Use **Death_Rate_Dependence** to set the natural death rate.",".. code-block:: json
+
+    {
+        ""Enable_Natural_Mortality"": 1,
+        ""Enable_Vital_Dynamics"": 1
+    }
+"
+"Mortality_Blocking_Immunity_Decay_Rate","float","0","1","0.001","The rate at which mortality-blocking immunity decays after the mortality-blocking immunity offset period. **Enable_Immune_Decay** must be set to 1.",".. code-block:: json
+
+    {
+        ""Mortality_Blocking_Immunity_Decay_Rate"": 0.1
+    }
+"
+"Mortality_Time_Course","enum","NA","NA","DAILY_MORTALITY","The method used to calculate disease deaths. **Enable_Disease_Mortality** must be set to 1.
+
+Possible values are: 
+
+DAILY_MORTALITY 
+    Calculated at every time step. 
+MORTALITY_AFTER_INFECTIOUS 
+    Calculated once at the end of the disease duration.",".. code-block:: json
+
+    {
+        ""Mortality_Time_Course"": ""MORTALITY_AFTER_INFECTIOUS""
+    }
+"
+"x_Other_Mortality","float","0","3.40E+38","1","Scale factor for mortality from causes other than the disease being simulated. Base mortality is provided by the demographics file (see :ref:`demo-complexdistro` parameters). **Enable_Natural_Mortality** must be set to 1. ",".. code-block:: json
+
+    {
+        ""x_Other_Mortality"": 1
+    }
+"

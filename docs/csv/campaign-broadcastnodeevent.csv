@@ -1,0 +1,42 @@
+"Broadcast_Event","string","NA","NA","""""","The name of the node event to broadcast. This event must be set in the **Custom_Node_Events** configuration parameter.",".. code-block:: json
+
+    {
+        ""class"": ""CampaignEvent"",
+        ""Start_Day"": 5,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetNodeList"",
+            ""Node_List"": [
+                1
+            ]
+        },
+        ""Event_Coordinator_Config"": {
+            ""class"": ""StandardInterventionDistributionEventCoordinator"",
+            ""Intervention_Config"": {
+                ""class"": ""BroadcastNodeEvent"",
+                ""Cost_To_Consumer"": 10,
+                ""Broadcast_Event"": ""Node_Event_1""
+            }
+        }
+    }
+"
+"Cost_To_Consumer","float","0","999999","0","The unit cost of the intervention campaign that will be assigned to the specified nodes, as configured under **Nodeset_Config**.",".. code-block:: json
+
+    {
+        ""class"": ""CampaignEvent"",
+        ""Start_Day"": 5,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetNodeList"",
+            ""Node_List"": [
+                1
+            ]
+        },
+        ""Event_Coordinator_Config"": {
+            ""class"": ""StandardInterventionDistributionEventCoordinator"",
+            ""Intervention_Config"": {
+                ""class"": ""BroadcastNodeEvent"",
+                ""Cost_To_Consumer"": 10,
+                ""Broadcast_Event"": ""Node_Event_1""
+            }
+        }
+    }
+"

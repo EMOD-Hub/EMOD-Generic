@@ -1,0 +1,49 @@
+{
+  "Events": [
+    {
+      "class": "CampaignEvent",
+      "Nodeset_Config": {
+        "class": "NodeSetAll"
+      },
+      "Start_Day": 0,
+      "Event_Coordinator_Config": {
+        "class": "CommunityHealthWorkerEventCoordinator",
+        "Demographic_Coverage": 1,
+        "Target_Demographic": "Everyone",
+        "Target_Residents_Only": 0,
+        "Trigger_Condition_List": [
+          "HappyBirthday"
+        ],
+        "Amount_In_Shipment": 1000,
+        "Days_Between_Shipments": 30,
+        "Max_Distributed_Per_Day": 50,
+        "Duration": 700,
+        "Waiting_Period": 7,
+        "Max_Stock": 1000,
+        "Initial_Amount": 500,
+        "Initial_Amount_Distribution_Type": "CONSTANT_DISTRIBUTION",
+        "Intervention_Config": {
+          "class": "MultiInterventionDistributor",
+          "Intervention_List": [
+            {
+              "class": "SimpleVaccine",
+              "Cost_To_Consumer": 1,
+              "Vaccine_Type": "AcquisitionBlocking",
+              "Vaccine_Take": 1,
+              "Efficacy_Is_Multiplicative": 1,
+              "Waning_Config": {
+                "class": "WaningEffectConstant",
+                "Initial_Effect": 0.9
+              }
+            },
+            {
+              "class": "BroadcastEvent",
+              "Broadcast_Event": "Received_Treatment"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "Use_Defaults": 1
+}

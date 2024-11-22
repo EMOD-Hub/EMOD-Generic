@@ -1,0 +1,40 @@
+"Enable_Strain_Tracking","boolean","0","1","0","Enable an association of an infection with a specified strain, defined by unique integers for a clade and a genome. 
+
+For infections distributed through interventions, you specify clade and genome values using the **Clade** and **Genome** parameters with the :doc:`parameter-campaign-node-outbreak` and :doc:`parameter-campaign-individual-outbreakindividual` intervention classes in the campaign file.
+
+When using an initial prevalence distribution, you specify clade and genome values using the **InitialPrevalenceStrains** parameter as part of :ref:`demo-individualattributes` in the demographics file.
+
+When **Enable_Strain_Tracking** is set to false (0) or absent, all infections are associated with a single strain that has clade and genome identity (0, 0).
+
+When **Enable_Strain_Tracking** is set to true (1) then both **Number_of_Clades** and **Log2_Number_of_Genomes_per_Clade** parameters must be specified.
+
+.. warning::
+
+    Do not set both **Enable_Strain_Tracking** and  **Enable_Infectivity_Reservoir** to true (1) or **Enable_Strain_Tracking** and  **Enable_Maternal_Infection_Transmission** to true (1) - as these combinations will cause an exception error.",".. code-block:: json
+
+    {
+        ""Enable_Strain_Tracking"": 1,
+        ""Log2_Number_of_Genomes_per_Clade"": 8,
+        ""Number_of_Clades"": 2
+    }
+"
+"Log2_Number_of_Genomes_per_Clade","integer","0","24","0","The maximum number of genome combinations per clades. Used with **Number_of_Clades** and dependent upon **Enable_Strain_Tracking** enabled, set to 1.
+
+.. note::
+
+    **Log2_Number_of_Genomes_per_Clade** is  internally fixed to 0 when using Typhoid and Malaria simulations.",".. code-block:: json
+
+    {
+        ""Enable_Strain_Tracking"": 1,
+        ""Log2_Number_of_Genomes_per_Clade"": 8,
+        ""Number_of_Clades"": 2
+    }
+"
+"Number_of_Clades","integer","1","10","1","The maximum number of distinct clades in the simulation. Used with **Log2_Number_of_Genomes_per_Clade** to define the strain associated with an infection. Dependent upon **Enable_Strain_Tracking** enabled, set to 1.",".. code-block:: json
+
+    {
+        ""Enable_Strain_Tracking"": 1,
+        ""Log2_Number_of_Genomes_per_Clade"": 8,
+        ""Number_of_Clades"": 2
+    }
+"

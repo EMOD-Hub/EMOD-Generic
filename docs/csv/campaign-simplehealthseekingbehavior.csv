@@ -1,0 +1,80 @@
+"Actual_IndividualIntervention_Config","JSON object","NA","NA","NA","The configuration of an actual intervention sought. Selects a class for the intervention and configures the parameters specific for that intervention class.",".. code-block:: json
+
+    {
+        ""Actual_IndividualIntervention_Config"": {
+            ""Cost_To_Consumer"": 1,
+            ""Drug_Type"": ""FirstLineCombo"",
+            ""Durability_Profile"": ""FIXED_DURATION_CONSTANT_EFFECT"",
+            ""Primary_Decay_Time_Constant"": 180,
+            ""Remaining_Doses"": 1,
+            ""Secondary_Decay_Time_Constant"": 0,
+            ""TB_Drug_Cure_Rate"": 0.2,
+            ""TB_Drug_Inactivation_Rate"": 1e-09,
+            ""class"": ""AntiTBDrug""
+        }
+    }
+"
+"Actual_IndividualIntervention_Event","enum","NA","NA","""""","The event of an actual intervention sought. Selects a class for the intervention and configures the parameters specific for that intervention class. See :doc:`parameter-campaign-event-list` for possible values.",".. code-block:: json
+
+    {
+        ""Actual_IndividualIntervention_Config"": {
+            ""Actual_IndividualIntervention_Event"": ""ProviderOrdersTBTest"",
+            ""Tendency"": 0.005,
+            ""Event_Or_Config"": ""Event"",
+            ""class"": ""SimpleHealthSeekingBehavior""
+        }
+    }
+"
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Dont_Allow_Duplicates"": 0
+    }
+"
+"Event_Or_Config","enum","NA","NA","Config","Specifies whether the current intervention (or a positive diagnosis, depending on the intervention class) distributes a nested intervention (the Config option) or an event will be broadcast which may trigger other interventions in the campaign file (the Event option). 
+Possible values are:
+
+* Event
+* Config
+
+",".. code-block:: json
+
+    {
+        ""Event_Or_Config"": ""Config""
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""SimpleHealthSeekingBehavior"",
+            ""Intervention_Name"": ""Return to clinic after treatment is unsuccessful""
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"Single_Use","boolean","0","1","1","If set to true (1), the health-seeking behavior gets used once and discarded. If set to false (0), it remains indefinitely.",".. code-block:: json
+
+    {
+        ""Single_Use"": 1
+    }
+"
+"Tendency","float","0","1","1","The probability of seeking healthcare.",".. code-block:: json
+
+    {
+        ""Tendency"": 0.01
+    }
+"

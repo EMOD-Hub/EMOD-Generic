@@ -1,0 +1,71 @@
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Dont_Allow_Duplicates"": 0
+    }
+"
+"Intervention_List","array of JSON objects","NA","NA","NA","The list of individual interventions that is distributed by **MultiInterventionDistributor**.",".. code-block:: json
+
+    {
+        ""Actual_IndividualIntervention_Config"": {
+            ""Intervention_List"": [
+                {
+                    ""Cost_To_Consumer"": 1,
+                    ""Dosing_Type"": ""FullTreatmentNewDetectionTech"",
+                    ""Drug_Type"": ""Artemether"",
+                    ""class"": ""AntimalarialDrug""
+                },
+                {
+                    ""Cost_To_Consumer"": 1,
+                    ""Dosing_Type"": ""FullTreatmentNewDetectionTech"",
+                    ""Drug_Type"": ""Lumefantrine"",
+                    ""class"": ""AntimalarialDrug""
+                }
+            ],
+            ""class"": ""MultiInterventionDistributor""
+        }
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""MultiInterventionDistributor"",
+            ""Intervention_Name"": ""Complete malaria campaign""
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"Number_Repetitions","integer","-1","1000","1","The number of times an intervention is given, used with **Timesteps_Between_Repetitions**.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Intervention_Config"": {
+                ""class"": ""Outbreak"",
+                ""Num_Cases"": 1
+            },
+            ""Number_Repetitions"": 10,
+            ""Timesteps_Between_Repetitions"": 50,
+            ""class"": ""StandardInterventionDistributionEventCoordinator""
+        }
+    }
+"
+"Timesteps_Between_Repetitions","integer","-1","10000","-1","The repetition interval.",".. code-block:: json
+
+    {
+        ""Timesteps_Between_Repetitions"": 50
+    }
+"

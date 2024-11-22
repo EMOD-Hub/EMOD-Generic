@@ -1,0 +1,16 @@
+"Box_Duration","float","0","100000","100","The box duration of the effect in days.",".. code-block:: json
+
+    {
+        ""Box_Duration"": 40
+    }
+"
+"Initial_Effect","float","0","1","1","Strength of the effect, which remains constant until the duration is complete, as specified with the **Box_Duration** parameter for the **WaningEffectBox** class.",".. code-block:: json
+
+    {
+        ""Waning_Config"": {
+            ""Box_Duration"": 10,
+            ""Initial_Effect"": 0.75,
+            ""class"": ""WaningEffectBox""
+        }
+    }
+"

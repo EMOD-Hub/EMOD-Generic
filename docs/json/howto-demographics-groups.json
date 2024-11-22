@@ -1,0 +1,17 @@
+{
+    "Defaults": {
+        "IndividualProperties": [{
+            "Property": "Risk",
+            "Values": ["Low", "Medium", "High"],
+            "Initial_Distribution": [0.7, 0.2, 0.1]
+        }, {
+            "Property": "Place",
+            "Values": ["Community", "School", "Work", "Vacation"],
+            "Initial_Distribution": [0.3, 0.2, 0.4, 0.1]
+        }, {
+            "Property": "Age_Bin",
+            "Age_Bin_Edges_In_Years": [0, 5, 13, -1],
+            "Transitions": []
+        }]
+    }
+}

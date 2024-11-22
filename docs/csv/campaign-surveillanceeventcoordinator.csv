@@ -1,0 +1,953 @@
+"Action_List","array of JSON objects","NA","NA","NA","A list of possible actions to take if a particular threshold is met. An action is taken when the specified threshold value is less than the number of incidence counted. If there are multiple actions listed then the action with the highest threshold value, that is also less than the number of incidence counted, is selected. The list cannot be empty.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Coordinator_Name","string","NA","NA","TriggeredEventCoordinator","The unique identifying coordinator name, which is useful with the output report, ReportSurveillanceEventRecorder.csv.",".. code-block:: json
+
+    {
+        ""class"": ""CampaignEvent"",
+        ""Start_Day"": 1,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Event_Coordinator_Config"": {
+            ""class"": ""SurveillanceEventCoordinator"",
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Type"": ""PERIODIC"",
+                ""Counter_Period"": 14,
+                ""Counter_Event_Type"": ""NODE"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ],
+                ""Target_Demographic"": ""Everyone"",
+                ""Demographic_Coverage"": 1
+            },
+            ""Responder"": {
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT"",
+                ""Action_List"": [
+                    {
+                        ""Threshold"": 5,
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2""
+                    },
+                    {
+                        ""Threshold"": 2,
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4""
+                    }
+                ]
+            }
+        }
+    }
+"
+"Counter_Event_Type","enum","NA","NA","INDIVIDUAL","Type of events that can be included in **Trigger_Condition_List**. Possible values are: 
+
+* COORDINATOR
+* INDIVIDUAL
+* NODE",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Counter_Period","float","1","10000","1","When **Counter_Type** is set to PERIODIC, this is the counter period (in days).",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Counter_Type","enum","NA","NA","PERIODIC","Counter type used for surveillance of events. The counter is triggered by events in **Start_Trigger_Condition_List** and the counter stops when it receives an event in **Stop_Trigger_Condition_List** or the listening duration expires. Possible values are: 
+
+PERIODIC
+    Once triggered, events are counted during the period (in days) as set in **Counter_Period**. At the end of the period, the counter will notify **Responder** with the data accumulated and then start listening again, continuing forever until it is stopped or the duration expires. For example, if the listening duration is 45 days, **Counter_Period** is 30, and the counter is triggered on day 20, it will never complete the counter period and trigger the responder.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Demographic_Coverage","float","0","1","1","The fraction of individuals in the target demographic that are counted.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Duration","float","-1","3.40282e+38","-1","The number of days from when the surveillance event coordinator was created by the campaign event. Once the number of days has passed, the delay event coordinator will unregister for events and expire. The default value of '-1' = never expire.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Event_Type","enum","NA","NA","INDIVIDUAL","The type of event to be broadcast.  Possible values are:
+
+* COORDINATOR
+* INDIVIDUAL
+* NODE",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Incidence_Counter","array of JSON objects","NA","NA","NA","List of JSON objects for specifying the conditions and parameters that must be met for an incidence to be counted. Some of the values are specified in the following parameters: **Counter_Type**, **Counter_Period**, **Counter_Event_Type**, **Trigger_Condition_List**, **Node_Property_Restrictions**, **Property_Restrictions_Within_Node**.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Node_Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See :ref:`demo-properties` parameters for more information.
+
+You can specify AND and OR combinations of key:value pairs with this parameter.","The following example restricts the intervention to nodes that are urban and medium risk or rural and low risk.
+
+.. code-block:: json
+
+    {
+        ""Node_Property_Restrictions"": [
+            {
+                ""Place"": ""URBAN"",
+                ""Risk"": ""MED""
+            },
+            {
+                ""Place"": ""RURAL"",
+                ""Risk"": ""LOW""
+            }
+        ]
+    }
+"
+"Percentage_Events_To_Count","array of strings","NA","NA","NA","When **Threshold_Type** equals PERCENTAGE_EVENTS then **Percentage_Events_To_Count** lists the events that will be counted for the denominator which will then be used with the specified event for **Trigger_Condition_List** counted for the numerator.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": -1,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 30,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Node_Property_Restrictions"": [],
+                ""Property_Restrictions_Within_Node"": [],
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Positive_Event_Node""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 0.5
+                    }
+                ],
+                ""Percentage_Events_To_Count"": [
+                    ""Negative_Event_Node"",
+                    ""Positive_Event_Node""
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""PERCENTAGE_EVENTS""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+To specify AND and OR combinations of key:value pairs, use **Property_Restrictions_Within_Node**. You cannot use both of these parameters in the same event coordinator.",".. code-block:: json
+
+    {
+        ""Property_Restrictions"": [
+            ""Risk:HIGH""
+        ]
+    }
+"
+"Property_Restrictions_Within_Node","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+This parameter allows you to specify AND and OR combinations of key:value pairs. You may specify individual property restrictions using either this parameter or **Property_Restrictions**, but not both. ","The following example restricts the intervention to individuals who are urban and high risk or urban and medium risk.
+
+.. code-block:: json
+
+    {
+        ""Property_Restrictions_Within_Node"": [
+            {
+                ""Geographic"": ""URBAN"",
+                ""Risk"": ""HIGH""
+            },
+            {
+                ""Geographic"": ""URBAN"",
+                ""Risk"": ""MEDIUM""
+            }
+        ]
+    }
+"
+"Responded_Event","string","NA","NA","""""","A coordinator event, defined in **Custom_Coordinator_Events**, that is broadcast if **Responder** responded. More specifically, at the completion of a counting period, if an action is selected, the action events are broadcast and then the **Responded_Event** is also broadcast.  This allows other event coordinators to react to the action events being broadcast.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Responder","array of JSON objects","NA","NA","NA","List of JSON objects for specifying the threshold type, values, and the actions to take when the specified conditions and parameters have been met, as configured in **Incidence_Counter**. Some of the values are specified in the following parameters:
+
+* **Action_List**
+* **Event_To_Broadcast**
+* **Threshold_Type**
+* **Threshold**",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Start_Trigger_Condition_List","array of strings","NA","NA","NA","The trigger event list, as specified in the **Custom_Coordinator_Events** config parameter, that will start **Incidence_Counter** counting events. The surveillance event coordinator will keep counting and responding until it gets a stop event, as defined in **Stop_Trigger_Condition_List**, or the duration of the surveillance event coordinator has expired, as defined in **Duration**. The list cannot be empty.",".. code-block:: json
+
+    {
+        ""class"": ""CampaignEvent"",
+        ""Start_Day"": 1,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Event_Coordinator_Config"": {
+            ""class"": ""SurveillanceEventCoordinator"",
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Type"": ""PERIODIC"",
+                ""Counter_Period"": 14,
+                ""Counter_Event_Type"": ""NODE"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ],
+                ""Target_Demographic"": ""Everyone"",
+                ""Demographic_Coverage"": 1
+            },
+            ""Responder"": {
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT"",
+                ""Action_List"": [
+                    {
+                        ""Threshold"": 5,
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2""
+                    },
+                    {
+                        ""Threshold"": 2,
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4""
+                    }
+                ]
+            }
+        }
+    }
+"
+"Stop_Trigger_Condition_List","array of strings","NA","NA","NA","The broadcast event list, as specified in the **Custom_Coordinator_Events** config parameter, that will stop **Incidence_Counter** counting events. The coordinator can start counting again if it receives a start trigger event. The list can be empty.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Target_Age_Max","float","0","9.3228e+35","9.3228e+35","The upper end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Age_Min","float","0","3.40282e+38","0","The lower end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Demographic","enum","NA","NA","Everyone","The target demographic group. Possible values are:
+
+* Everyone
+* ExplicitAgeRanges
+* ExplicitAgeRangesAndGender
+* ExplicitGender
+* ExplicitDiseaseState",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Gender","enum","NA","NA","All","Specifies the gender restriction for the intervention. Possible values are:
+
+* Male
+* Female
+* All",".. code-block:: json
+
+    {
+        ""Target_Gender"": ""Female""
+    }
+"
+"Target_Residents_Only","boolean","0","1","0","When set to true (1), only individuals that currently reside in their 'home' node will be counted.",".. code-block:: json
+
+    {
+        ""Target_Residents_Only"": 1
+    }
+"
+"Threshold","float","0","3.40282e+38","0","The COUNT or PERCENTAGE, as configured with **Threshold_Type**, threshold value that must be met before and action from **Action_List** will be considered.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Threshold_Type","enum","NA","NA","COUNT","Threshold type to indicate how **Responder** handles the count of events from **Incidence_Counter** and the thresholds in **Action_List**. Possible values are:
+ 
+COUNT
+    A raw count of events. Also, with COUNT, setting the **x_Base_Population** configuration parameter can affect the number count by changing the population but it could be very indirect. 
+PERCENTAGE
+    Counts the number of individuals that meet the restrictions and then to divide the total number of events by this number. Note that it is possible for an individual to emit an event that might not be counted in the denominator if their demographic restriction attributes changed between the time of the emitted event and the time the denominator was counted. 
+PERCENTAGE_EVENTS
+    **Percentage_Events_To_Count** lists the events that will be counted for the denominator, which will then be used with the specified event for **Trigger_Condition_List** to be counted for the numerator.
+
+",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"
+"Trigger_Condition_List","array of strings","NA","NA","NA","The list of events to count.The list cannot be empty. The type of events contained in the list is determined by **Counter_Event_Type**. Depending upon the type, the events must be defined in one of the following configuration parameters:
+
+* Custom_Coordinator_Events
+* Custom_Individual_Events
+* Custom_Node_Events",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""ACF_Counter"",
+            ""Duration"": 30,
+            ""Incidence_Counter"": {
+                ""Counter_Event_Type"": ""NODE"",
+                ""Counter_Period"": 14,
+                ""Counter_Type"": ""PERIODIC"",
+                ""Demographic_Coverage"": 1,
+                ""Target_Demographic"": ""Everyone"",
+                ""Trigger_Condition_List"": [
+                    ""Node_Event_1"",
+                    ""Node_Event_2""
+                ]
+            },
+            ""Responder"": {
+                ""Action_List"": [
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_2"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 5
+                    },
+                    {
+                        ""Event_To_Broadcast"": ""Ind_Start_SIA_4"",
+                        ""Event_Type"": ""COORDINATOR"",
+                        ""Threshold"": 2
+                    }
+                ],
+                ""Responded_Event"": ""Respond_To_Surveillance"",
+                ""Threshold_Type"": ""COUNT""
+            },
+            ""Start_Trigger_Condition_List"": [
+                ""Start_ACF""
+            ],
+            ""Stop_Trigger_Condition_List"": [
+                ""Start_SIA_2"",
+                ""Start_SIA_4""
+            ],
+            ""class"": ""SurveillanceEventCoordinator""
+        },
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""class"": ""CampaignEvent""
+    }
+"

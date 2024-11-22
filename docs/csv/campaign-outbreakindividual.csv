@@ -1,0 +1,31 @@
+"Clade","integer","0","9","0","The clade ID (**Clade**) of the outbreak infection. Together with the genome ID (**Genome**) they are a unitary object representing a strain of infection, which allows for differentiation among infections. Values for **Clade** may range from 0 to **Number_of_Clades**-1 (set in the configuration file).",".. code-block:: json
+
+    {
+        ""Clade"": 1
+    }
+"
+"Genome","integer","0","16777215","0","The genome ID (**Genome**) of the outbreak infection. Together with the clade ID (**Clade**) they represent an infection as a unitary object. Values for **Genome** may range from -1 to 2\ :sup:`Log2_Number_of_Genomes_per_Clade-1`","Intervention distribution example:
+
+.. code-block:: json
+
+    {
+        ""Genome"": 3
+    }
+"
+"Ignore_Immunity","boolean","0","1","1","Individuals will be force-infected (with a specific strain) regardless of actual immunity level when set to true (1).",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""Antigen"": 0,
+            ""Genome"": 0,
+            ""class"": ""OutbreakIndividual"",
+            ""Ignore_Immunity"": 0
+        }
+    }
+"
+"Incubation_Period_Override","integer","-1","2147480000.0","-1","The incubation period, in days, that infected individuals will go through before becoming infectious. This value overrides the incubation period set in the configuration file. Set to -1 to honor the configuration parameter settings.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Override"": 0
+    }
+"

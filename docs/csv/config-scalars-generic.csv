@@ -1,0 +1,138 @@
+"Birth_Rate_Time_Dependence","enum","NA","NA","NONE","A scale factor for **BirthRate** that allows it to be altered by time or season. **Enable_Birth** must be set to true (1). Possible values are:
+
+NONE
+    Birth rate does not vary by time.
+SINUSOIDAL_FUNCTION_OF_TIME
+    Allows birth rate to be time-dependent, following a sinusoidal shape defined by :math:`1 + \sin \text{Birth\_Rate\_Sinusoidal\_Forcing\_Amplitude} \times \sin(2 \pi \times (\text{day} - \sin \text{Birth\_Rate\_Sinusoidal\_Forcing\_Phase})/365)`. Set **Birth_Rate_Sinusoidal_Forcing_Amplitude** and **Birth_Rate_Sinusoidal_Forcing_Phase**. 
+ANNUAL_BOXCAR_FUNCTION
+    Allows birth rate to follow a boxcar function. The scale factor will be equal to 1 except for a single interval in which it is equal to a given constant equal to 1 + **Birth_Rate_Boxcar_Forcing_Amplitude**. Set **Birth_Rate_Boxcar_Forcing_Amplitude**, **Birth_Rate_Boxcar_Forcing_End_Time**, and **Birth_Rate_Boxcar_Forcing_Start_Time**.",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Birth_Rate_Time_Dependence"": ""ANNUAL_BOXCAR_FUNCTION""
+    }
+"
+"Infectivity_Exponential_Baseline","float","0","1","0","The scale factor applied to **Base_Infectivity** at the beginning of a simulation, before the infectivity begins to grow exponentially. **Infectivity_Scale_Type** must be set to EXPONENTIAL_FUNCTION_OF_TIME.",".. code-block:: json
+
+    {
+        ""Infectivity_Exponential_Baseline"": 0.1,
+        ""Infectivity_Exponential_Delay"": 90,
+        ""Infectivity_Exponential_Rate"": 45,
+        ""Infectivity_Scale_Type"": ""EXPONENTIAL_FUNCTION_OF_TIME""
+    }
+"
+"Infectivity_Exponential_Delay","float","0","3.40E+38","0","The number of days before infectivity begins to ramp up exponentially. When **Enable_Infectivity_Scaling_Exponential**  configuration parameter is enabled, **Infectivity_Exponential_Delay** is an expected parameter.",".. code-block:: json
+
+    {
+        ""INFECTIOUSNESS"": {
+            ""Base_Infectious_Period"": 7,
+            ""Base_Infectivity"": 0.3,
+            ""Enable_Infectivity_Scaling"": 0,
+            ""Infectious_Period_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+            ""Infectious_Period_Exponential"": 7,
+            ""Infectivity_Exponential_Baseline"": 0.5,
+            ""Infectivity_Exponential_Delay"": 60,
+            ""Infectivity_Exponential_Rate"": 60
+        }
+    }
+"
+"Infectivity_Exponential_Rate","float","0","3.40E+38","0","The daily rate of exponential growth to approach to full infectivity after the delay set by **Infectivity_Exponential_Delay** has passed. When **Enable_Infectivity_Scaling_Exponential**  configuration parameter is enabled, **Infectivity_Exponential_Rate** is an expected parameter.",".. code-block:: json
+
+    {
+        ""INFECTIOUSNESS"": {
+            ""Base_Infectious_Period"": 7,
+            ""Base_Infectivity"": 0.3,
+            ""Enable_Infectivity_Scaling"": 0,
+            ""Infectious_Period_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+            ""Infectious_Period_Exponential"": 7,
+            ""Infectivity_Exponential_Baseline"": 0.5,
+            ""Infectivity_Exponential_Delay"": 60,
+            ""Infectivity_Exponential_Rate"": 60
+        }
+    }
+"
+"Population_Scale_Type","enum","NA","NA","USE_INPUT_FILE","The method to use for scaling the initial population specified in the demographics input file.
+Possible values are:
+ 
+USE_INPUT_FILE
+    Turns off population scaling and uses **InitialPopulation** in the demographics file (see :ref:`demo-nodeattributes` parameters).  
+FIXED_SCALING
+    Enables **Base_Population_Scale_Factor**.",".. code-block:: json
+
+    {
+        ""Population_Scale_Type"": ""FIXED_SCALING""
+    }
+"
+"Post_Infection_Acquisition_Multiplier","float","0","1","0","The multiplicative reduction in the probability of reacquiring disease. At the time of recovery, the immunity against acquisition is multiplied by **Acquisition_Blocking_Immunity_Decay_Rate** x (1 - **Post_Infection_Acquisition_Multiplier**). **Enable_Immunity** must be set to 1 (true).",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Immune_Decay"": 1,
+        ""Post_Infection_Acquisition_Multiplier"": 0.9
+    }
+"
+"Post_Infection_Mortality_Multiplier","float","0","1","0","The multiplicative reduction in the probability of dying from infection after getting reinfected. At the time of recovery, the immunity against mortality is multiplied by **Mortality_Blocking_Immunity_Decay_Rate** x (1 - **Post_Infection_Mortality_Multiplier**). **Enable_Immunity** must be set to 1 (true).",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Immune_Decay"": 1,
+        ""Post_Infection_Mortality_Multiplier"": 0.5
+    }
+"
+"Post_Infection_Transmission_Multiplier","float","0","1","0","The multiplicative reduction in the probability of transmitting infection after getting reinfected. At the time of recovery, the immunity against transmission is multiplied by **Transmission_Blocking_Immunity_Decay_Rate** x (1 - **Post_Infection_Transmission_Multiplier**). **Enable_Immunity** must be set to 1 (true).",".. code-block:: json
+
+    {
+        ""Enable_Immunity"": 1,
+        ""Enable_Immunity_Decay"": 1,
+        ""Post_Infection_Transmission_Multiplier"": 0.9
+    }
+"
+"x_Air_Migration","float","0","3.40E+38","1","Scale factor for the rate of migration by air, as provided by the migration file. **Enable_Air_Migration** must be set to 1.",".. code-block:: json
+
+    {
+        ""Scale_Factor_Air_Migration"": 1
+    }
+"
+"x_Base_Population","float","0","3.40E+38","1","Scale factor for **InitialPopulation** in the demographics file (see :ref:`demo-nodeattributes` parameters). If **Population_Scale_Type** is set to FIXED_SCALING, the initial simulation population is uniformly scaled over the entire area to adjust for historical or future population density.",".. code-block:: json
+
+    {
+        ""x_Base_Population"": 0.0001
+    }
+"
+"x_Birth","float","0","3.40E+38","1","Scale factor for birth rate, as provided by the demographics file (see :ref:`demo-nodeattributes` parameters). **Enable_Birth** must be set to 1.",".. code-block:: json
+
+    {
+        ""x_Birth"": 1
+    }
+"
+"x_Family_Migration","float","0","3.40E+38","1","Scale factor for the rate of migration by families, as provided by the migration file. **Enable_Family_Migration** must be set to true (1).",".. code-block:: json
+
+    {
+        ""x_Family_Migration"": 1
+    }
+"
+"x_Local_Migration","float","0","3.40E+38","1","Scale factor for rate of migration by foot travel, as provided by the migration file. **Enable_Local_Migration** must be set to 1.",".. code-block:: json
+
+    {
+        ""x_Local_Migration"": 1
+    }
+"
+"x_Other_Mortality","float","0","3.40E+38","1","Scale factor for mortality from causes other than the disease being simulated. Base mortality is provided by the demographics file (see :ref:`demo-complexdistro` parameters). **Enable_Natural_Mortality** must be set to 1. ",".. code-block:: json
+
+    {
+        ""x_Other_Mortality"": 1
+    }
+"
+"x_Regional_Migration","float","0","3.40E+38","1","Scale factor for the rate of migration by road vehicle, as provided by the migration file. **Enable_Regional_Migration** must be set to 1.",".. code-block:: json
+
+    {
+        ""x_Regional_Migration"": 1
+    }
+"
+"x_Sea_Migration","float","0","3.40E+38","1","Scale factor for the rate of migration by sea, as provided by the migration file. **Enable_Sea_Migration** must be set to 1.",".. code-block:: json
+
+    {
+        ""x_Sea_Migration"": 1
+    }
+"

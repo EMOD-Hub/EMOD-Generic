@@ -1,0 +1,15 @@
+{
+    "Intervention_Config": {
+        "class": "SimpleVaccine",
+        "Waning_Config": {
+            "class": "WaningEffectMapPiecewise",
+            "Initial_Effect": 1.0,
+            "Reference_Timer": 0,
+            "Expire_At_Durability_Map_End": 0,
+            "Durability_Map": {
+                "Times": [10, 30, 50],
+                "Values": [0.9, 0.1, 0.6]
+            }
+        }
+    }
+}

@@ -1,0 +1,113 @@
+"Daily_Import_Pressures","array of floats","0","3.40282e+38","0","The rate of per-day importation for each node that the intervention is distributed to.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""Antigen"": 0,
+            ""Genome"": 0,
+            ""Durations"": [
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
+            ],
+            ""Daily_Import_Pressures"": [
+                0.1,
+                5.0,
+                0.2,
+                1.0,
+                2.0,
+                0.0,
+                10.0
+            ],
+            ""class"": ""ImportPressure""
+        }
+    }
+"
+"Durations","array of integers","0","2.14748e+09","1","The durations over which to apply import pressure.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""Antigen"": 0,
+            ""Genome"": 0,
+            ""Durations"": [
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
+            ],
+            ""Daily_Import_Pressures"": [
+                0.1,
+                5.0,
+                0.2,
+                1.0,
+                2.0,
+                0.0,
+                10.0
+            ],
+            ""class"": ""ImportPressure""
+        }
+    }
+"
+"Genome","integer","0","16777215","0","The genome ID (**Genome**) of the outbreak infection. Together with the clade ID (**Clade**) they are a unitary object representing a strain of infection, which allows for differentiation among infections. Values for **Genome** may range from -1 to 2\ :sup:`Log2_Number_of_Genomes_per_Clade-1`","Intervention distribution example:
+
+.. code-block:: json
+
+    {
+        ""Enable_Strain_Tracking"": 1,
+        ""Events"": [
+            {
+                ""Event_Coordinator_Config"": {
+                    ""Demographic_Coverage"": 0.001,
+                    ""Intervention_Config"": {
+                        ""Clade"": 1,
+                        ""Genome"": 3,
+                        ""IgnoreImmunity"": 1,
+                        ""class"": ""OutbreakIndividual""
+                    },
+                    ""Target_Demographic"": ""Everyone"",
+                    ""class"": ""StandardInterventionDistributionEventCoordinator""
+                },
+                ""Event_Name"": ""OutbreakIndividual"",
+                ""Nodeset_Config"": {
+                    ""class"": ""NodeSetAll""
+                },
+                ""Start_Day"": 30,
+                ""class"": ""CampaignEvent""
+            }
+        ]
+    }
+"
+"Import_Age","float","0","43800","365","The age (in days) of infected import cases.",".. code-block:: json
+
+    {
+        ""Import_Age"": 10000
+    }
+"
+"Incubation_Period_Override","integer","-1","2147480000.0","-1","The incubation period, in days, that infected individuals will go through before becoming infectious. This value overrides the incubation period set in the configuration file. Set to -1 to honor the configuration parameter settings.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Override"": 0
+    }
+"
+"Number_Cases_Per_Node","integer","0","2.14748e+09","1","The number of new cases of **Outbreak** to import (per node). 
+
+.. note::
+
+    This will increase the population and there is no control over demographics of these individuals.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""Antigen"": 0,
+            ""Genome"": 0,
+            ""Outbreak_Source"": ""ImportCases"",
+            ""Number_Cases_Per_Node"": 10,
+            ""class"": ""Outbreak""
+        }
+    }
+"

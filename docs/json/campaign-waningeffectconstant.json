@@ -1,0 +1,9 @@
+{
+    "Intervention_Config": {
+        "class": "SimpleBednet",
+        "Killing_Config": {
+            "class": "WaningEffectConstant",
+            "Initial_Effect": 1.0
+        }
+    }
+}
