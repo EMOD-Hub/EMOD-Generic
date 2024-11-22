@@ -7,7 +7,7 @@ code and run regression tests to be sure your changes didn't inadvertently chang
 You can run simulations directly from Visual Studio to step through the code, troubleshoot any build
 errors you encounter, and run the standard |EMOD_s| regression tests or create a new regression test.
 
-.. include:: ../reuse/warning-schema.txt
+.. include:: reuse/warning-schema.txt
 
 .. toctree::
    :maxdepth: 2

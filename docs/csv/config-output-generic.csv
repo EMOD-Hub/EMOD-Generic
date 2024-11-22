@@ -461,48 +461,6 @@ Rainfall
     Data related to the presence of rainfall.
 Relative_Humidity
     Data related to the presence of relative humidity.
-
-.. only:: malaria
-
-    Fever_Prevalence
-        Data related to the presence of fever.
-    Mean_Parasitemia
-        Data related to the presence of mean parasitemia.
-    New_Clinical_Cases
-        Data related to the presence of new clinical cases.
-    New_Diagnostic_Prevalence
-        Data related to the presence of a new diagnostic.
-    New_Severe_Cases
-        Data related to the presence of new severe cases.
-    Parasite_Prevalence
-        Data related to the presence of parasites.
-
-.. only:: vector or malaria 
-
-    Adult_Vectors
-        Data related to the presence of adult vectors.
-    Daily_EIR
-        Data related to entomological inoculation rate (EIR) for mosquitoes. 
-
-.. only:: tbhiv
-
-    Active_MDR_TB_Prevalence
-        Data related to the number of cases of active, multi-drug resistent TB. 
-    Active_TB_Prevalence
-        Data related to the number of active TB cases.
-    Latent_TB_Prevalence
-        Data related to the number of latent TB cases.
-    MDR_TB_Prevalence
-        Data related to the number of multi-drug resistant TB cases.
-    New_Active_TB_Infections
-        Data related to the number of new, active TB cases.
-    Newly_Cleared_TB_Infections
-        Data related to the number of newly cleared TB cases.
-    TB_Immune_Fraction
-        Data related to the fraction of people that are immune to TB.
-
-
-
        
 
 ",".. code-block:: json

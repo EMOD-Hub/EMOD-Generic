@@ -7,9 +7,6 @@ Glossary
 .. to use a singular term in the glossary, unless that term is almost always used in its plural form.
 
 
-.. contents:: Contents
-   :local:
-
 
 .. glossary::
     :sorted: 
@@ -27,7 +24,7 @@ Glossary
         production of one or more antibodies.
 
     antigens
-        See antigen.
+        See :term:`antigen`.
 
     Clausius-Clayperon relation
         A way of characterizing a transition between two phases of matter; provides a method to find

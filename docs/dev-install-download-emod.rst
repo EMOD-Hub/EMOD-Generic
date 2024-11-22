@@ -58,4 +58,4 @@ Verify that all directories on https://github.com/InstituteforDiseaseModeling/EM
 on your local clone of the repository.
 
 
-.. include:: ../reuse/install-inputdata.txt
+.. include:: reuse/install-inputdata.txt

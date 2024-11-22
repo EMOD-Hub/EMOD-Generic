@@ -1,6 +1,6 @@
-=====================
-|EMOD_s| installation
-=====================
+=======
+Install
+=======
 
 
 |EMOD_l| can be installed on computers running Windows (|Windows_supp|) or Linux (|Centos_supp|). For either operating

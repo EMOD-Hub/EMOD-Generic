@@ -12,9 +12,9 @@ in time, or a complex, adaptive, repetitive, and responsive combination of inter
 A Campaign is a collection of events that modify a simulation. An Event is a distribution within a
 campaign, and an Intervention is an item that is given out, such as a vaccine, a drug or a bednet.
 
-.. figure:: ../images/dev/ArchCampaignManagement.png
+.. figure:: images/dev/ArchCampaignManagement.png
 
-.. include:: ../reuse/warning-schema.txt
+.. include:: reuse/warning-schema.txt
 
 .. contents:: Contents
    :local:
@@ -228,6 +228,6 @@ parameters for filtering the distribution.
 The architectural diagram below illustrates how campaign file settings are processed by an
 |EMOD_s| simulation.
 
-.. figure:: ../images/dev/ArchCampaignFlow.png
+.. figure:: images/dev/ArchCampaignFlow.png
 
    |EMOD_s| campaign architecture

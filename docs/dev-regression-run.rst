@@ -82,7 +82,7 @@ produce output that should not be considered scientifically accurate.
     adjusting the scale of the plots, zooming or panning, and so forth, through the icons at the
     bottom of the chart window.
 
-    .. image:: ../images/dev/matplotlibPopupChart.png
+    .. image:: images/dev/matplotlibPopupChart.png
 
 If any of the regression tests fail and you have *not* made any changes to the |EMOD_s| source code,
 email support@idmod.org.

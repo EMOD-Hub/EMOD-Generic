@@ -117,10 +117,7 @@ first-line treatment. Then you can change the property value after the treatment
 The **NodeProperties** section is a top-level section at the same level as **Defaults** and **Nodes**
 that contains parameters that assign properties to nodes in a simulation. The
 **IndividualProperties** section is under either **Defaults** or **Nodes** and contains parameters
-that assign properties to individuals in a simulation.
-
-:doc:`model-properties` provides more guidance and :doc:`generic-scenarios` provides some example
-scenarios that use properties.
+that assign properties to individuals in a simulation. :doc:`model-properties` provides more guidance.
 
 
 

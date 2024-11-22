@@ -1,0 +1,11 @@
+{
+    "Metadata": {
+        "DateCreated": "Sun Sep 25 19:08:52 2011",
+        "Tool": "createclimateheader.py",
+        "Author": "authorName",
+        "IdReference": "Gridded world grump2.5arcmin",
+        "NodeCount": 2,
+        "DataProvenance": "Köppen-Geiger Classification System from http://koeppen-geiger.vu-wien.ac.at/"
+    },
+    "NodeOffsets": "157D075200000000157E07520000000"
+}

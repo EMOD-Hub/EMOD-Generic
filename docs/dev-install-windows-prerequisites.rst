@@ -10,7 +10,7 @@ installer for the prerequisite software should provide instructions. For example
 requires additional Visual C++ redistributable packages, the installer will display that
 information.
 
-.. include:: ../reuse/third-party-note.txt
+.. include:: reuse/third-party-note.txt
 
 .. contents::
    :local:
@@ -22,7 +22,7 @@ The following software packages are required to run simulations using |exe_s|. I
 installed the pre-built |exe_s| using the instructions in :doc:`install-overview`, you can skip
 this section.
 
-.. include:: ../reuse/windows-install-to-run.txt
+.. include:: reuse/windows-install-to-run.txt
 
 Install prerequisites for compiling from source code
 ====================================================
@@ -47,7 +47,7 @@ Python
 
 Python is required for building the disease-specific |exe_s| and running Python scripts.
 
-.. include:: ../reuse/python-install.txt
+.. include:: reuse/python-install.txt
 
 #.  From **Control Panel**, select **Advanced system settings**, and then click
     **Environment Variables**.
@@ -100,15 +100,15 @@ created a discrepancy in the regression test output. For more information, see
 NumPy
 -----
 
-.. include:: ../reuse/gohlke.txt
+.. include:: reuse/gohlke.txt
 
-.. include:: ../reuse/numpy-install.txt
+.. include:: reuse/numpy-install.txt
 
 
 Python packages
 ---------------
 
-.. include:: ../reuse/python-utility-install.txt
+.. include:: reuse/python-utility-install.txt
 
 
 (Optional) R
@@ -116,7 +116,7 @@ Python packages
 
 The |IDM_s| test team uses |R_supp| for regression testing, but it is considered optional.
 
-.. include:: ../reuse/r-install.txt
+.. include:: reuse/r-install.txt
 
 (Optional) MATLAB
 -----------------
@@ -124,4 +124,4 @@ The |IDM_s| test team uses |R_supp| for regression testing, but it is considered
 The |IDM_s| test team uses |MATLAB_supp| and the |stats_supp| for regression testing, but they are both
 considered optional.
 
-.. include:: ../reuse/matlab-install.txt
+.. include:: reuse/matlab-install.txt

@@ -1,6 +1,6 @@
-============================
-|EMOD_s| parameter reference
-============================
+==========
+Parameters
+==========
 
 The configurable parameters described in this reference section determine the behavior of a
 particular simulation and interventions. The parameter descriptions are intended to guide you in

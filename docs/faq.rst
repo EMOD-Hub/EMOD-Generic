@@ -1,6 +1,6 @@
-===========================
-Frequently asked questions
-===========================
+====
+FAQs
+====
 
 
 Why doesn't anything happen when I double-click |exe_s|?
@@ -57,3 +57,9 @@ Do you have a model for disease X?
 
 
 .. _EMOD scenarios: https://github.com/InstituteforDiseaseModeling/docs-emod-scenarios/releases
+
+.. toctree::
+   :maxdepth: 3
+   :titlesonly:
+
+   troubleshooting

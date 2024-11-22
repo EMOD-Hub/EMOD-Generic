@@ -11,7 +11,7 @@ simulation and reporters.
 The following figure shows a high-level view of the system components of |EMOD_s| and how they are
 related to each other.
 
-.. figure:: ../images/dev/ArchSystemComponents.png
+.. figure:: images/dev/ArchSystemComponents.png
 
     |EMOD_s| system components
 

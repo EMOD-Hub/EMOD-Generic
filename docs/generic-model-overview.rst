@@ -30,8 +30,7 @@ If you are familiar with compartmental models but new to agent-based models, we 
 the :doc:`model-compartments` section, which compares the mathematics of the
 differential equations that govern compartmental models with the mathematics of the |EMOD_s|
 agent-based model. It describes how to configure |EMOD_s| to model diseases like SI, SIR, or SEIR
-models. Additionally, review :doc:`tutorials` for hands-on experience running |EMOD_s|
-simulations.
+models. 
 
 The configuration of the model regarding infectivity, immune response, and other qualities is
 handled via several :term:`JSON (JavaScript Object Notation)` files. For more information, see

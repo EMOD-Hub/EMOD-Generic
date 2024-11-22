@@ -1,0 +1,4 @@
+.. note::
+
+    Because the |EMOD_s| model is :term:`stochastic`, graphs you produce from the scenarios may
+    appear slightly different from those included in the documentation.

@@ -1,0 +1,47 @@
+"NodeProperties","array of objects","NA","NA","NA","An array that contains parameters that add properties to nodes in a simulation. For example, you can define values for intervention status, risk, and other properties and assign values to different nodes.",".. code-block:: json
+
+    {
+        ""NodeProperties"": [{
+            ""Property"": ""Risk"",
+            ""Values"": [""HIGH"", ""MEDIUM"", ""LOW""],
+            ""Initial_Distribution"": [0.1, 0.4, 0.5]
+        }]
+    }"
+"Property","enum","NA","NA","NA","The individual or node property type for which you will assign arbitrary values to create groups. You can then move individuals or nodes into or out of different groups or target interventions to particular groups. Possible values are:
+
+Age_Bin
+   Assign individuals to age bins. Use with **Age_Bin_Edges_In_Years**. Cannot be used with **NodeProperties**.
+Accessibility
+   Tag individuals or nodes based on their accessibility. 
+Geographic
+   Tag individuals or nodes based on geographic characteristics.
+HasActiveTB
+   Tag individuals or nodes based on active TB status. Typically used only with HIV ART staging interventions.
+InterventionStatus
+   Tag individuals or nodes based on intervention status, so that receiving an intervention can affect how other interventions are distributed. Use with **Disqualifying_Properties** and **New_Property_Value** in the campaign file. 
+Place
+   Tag individuals or nodes based on place.
+Risk
+   Tag individuals or nodes based on disease risk.
+QualityofCare
+   Tag individuals or nodes based on the quality of medical care.
+",".. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""IndividualProperties"": [{
+                ""Property"": ""Age_Bin"",
+                ""Age_Bin_Edges_In_Years"": [ 0, 6, 10, 20, -1 ]
+            }]
+        }
+    }
+
+.. code-block:: json
+
+    {
+        ""NodeProperties"": [{
+            ""Property"": ""InterventionStatus"",
+            ""Values"": [""NONE"", ""RECENT_SPRAY""],
+            ""Initial_Distribution"": [1.0, 0.0]
+        }]
+    }"

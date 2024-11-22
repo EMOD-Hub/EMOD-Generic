@@ -15,7 +15,9 @@ are difficult to access. For more information on creating campaign interventions
 :doc:`model-campaign`.
 
 For some simulation types, you can also configure heterogeneous transmission between
-individuals with different property values. For more information, see :doc:`model-hint` and :doc:`model-mr-hint`. For other
+individuals with different property values. For more information, see :doc:`model-hint`.
+
+For other
 simulation types, transmission is configured using mechanistic parameter settings, such as parasite
 density, viral load, biting frequency, and other measures relevant to the disease being modeled. See
 :doc:`parameter-configuration-infectivity` for more information.

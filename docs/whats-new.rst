@@ -16,8 +16,6 @@ The |EMOD_s| v2.20 release includes support for typhoid disease modeling, includ
 
 **ImmunityBloodTest** was added for identifying whether an individual’s immunity meets a specified threshold and then broadcasts an event based on the results. This new campaign class can be used with all supported disease modeling sim types. 
 
-**InterventionForCurrentPartners** can be used with STI and HIV sim types and provides a mechanism for the partners of individuals in the care system to also seek care. 
-
 **OutbreakIndividualTBorHIV** extends **OutbreakIndividual** and allows for specifying HIV or a specific strain of infection for TB. 
 
 In addition, configuration and campaign parameters that set the type of distribution (uniform, Gaussian, etc.) of infectiousness, incubation period, and delivery of interventions have been refactored. The number of distributions available and naming conventions used are now consistent across the configuration and campaign files. This change does not affect the distributions used in the demographics files.
@@ -121,101 +119,6 @@ The **ImmunityBloodTest** intervention class identifies whether an individual’
     :widths: 10, 5, 5, 5, 5, 20, 5
     :file: csv/campaign-immunitybloodtest.csv
 
-InterventionForCurrentPartners (HIV, STI)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **InterventionForCurrentPartners** intervention class provides a mechanism for the partners of individuals in the care system to also seek care. Partners do not need to seek testing at the same time; a delay may occur between the initial test and the partner’s test. If a relationship has been paused, such as when a partner migrates to a different node, the partner will not be contacted.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-interventionforcurrentpartners.csv
-
-OutbreakIndividualTBorHIV (tuberculosis)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **OutbreakIndividualTBorHIV** class extends **OutbreakIndividual** class and allows for specifying HIV or a specific strain of infection for TB.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-outbreakindividualtborhiv.csv
-
-EnvironmentalDiagnostic (typhoid)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **EnvironmentalDiagnostic** intervention class identifies contaminated locations by sampling the environment, comparing the value to a threshold, and broadcasting either a positive or negative node event.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-environmentaldiagnostic.csv
-
-TyphoidCarrierDiagnostic (typhoid)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **TyphoidCarrierDiagnostic** class extends **SimpleDiagnostic** class and allows for positive test diagnostic when an individual is a chronic typhoid carrier.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-typhoidcarrierdiagnostic.csv
-
-TyphoidVaccine (typhoid)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **TyphoidVaccine** intervention class identifies contaminated locations by sampling the environment, comparing the value to a threshold, and broadcasting either a positive or negative node event.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-typhoidvaccine.csv
-
-TyphoidWASH (typhoid)
-~~~~~~~~~~~~~~~~~~~~~
-
-The **TyphoidWASH** intervention class acts on exposure through either the contact contagion population or the environmental contagion population in the simulation. The intervention can be configured to reduce either exposure dose or exposure frequency for each route, simulating effects of water, sanitation, and hygiene (WASH) interventions.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-typhoidwash.csv
 
 New campaign parameters (Beta)
 ------------------------------
@@ -424,79 +327,6 @@ The **WaningEffectCombo** class is used within individual-level interventions an
     :widths: 10, 5, 5, 5, 5, 20, 5
     :file: csv/campaign-waningeffectcombo.csv
 
-
-The following campaign classes are new for the Malaria model:
-
-AdherentDrug (malaria)
-~~~~~~~~~~~~~~~~~~~~~~
-
-The **AdherentDrug** class extends **AntiMalarialDrug** class and allows for incorporating different patterns of adherence to taking the drug.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-adherentdrug.csv
-
-
-BitingRisk (malaria, vector)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **BitingRisk** class is used with individual-level interventions and allows for adjusting the relative risk of being bitten by a vector.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-bitingrisk.csv
-
-OutbreakIndividualMalaria (malaria)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **OutbreakIndividualMalaria** class extends **OutbreakIndividual** class and allows for specifying a specific strain of infection.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-outbreakindividualmalaria.csv
-
-
-The following campaign class is new for the TBHIV model:
-
-TBHIVConfigurableTBdrug (tuberculosis)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **TBHIVConfigurableTBdrug** class is an individual level intervention for TB treatment. The intervention applies TB drug effects to the progression, associated mortality, transmission and acquisition of TB infections in HIV positive and negative individuals.
-
-.. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-.. rst-class:: toggle-table
-
-
-.. csv-table::
-    :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-    :widths: 10, 5, 5, 5, 5, 20, 5
-    :file: csv/campaign-tbhivconfigurabletbdrug.csv
 
 
 Deprecated demographics parameters
@@ -773,27 +603,3 @@ intended to mimic biological priming and boosting.
     :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
     :widths: 10, 5, 5, 5, 5, 20, 5
     :file: csv/campaign-simpleboostervaccine.csv
-
-
-UsageDependentBednet (malaria)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **UsageDependentBednet** intervention class is similar to **SimpleBednet**, as it
-distributes insecticide-treated nets to individuals in the simulation. However, bednet ownership
-and bednet usage are distinct in this intervention. As in **SimpleBednet**, net ownership is
-configured through the demographic coverage, and the blocking and killing rates of mosquitoes
-are time-dependent. Use of bednets is age-dependent and can vary seasonally. Once a net has
-been distributed to someone, the net usage is determined by the product of the seasonal and
-age-dependent usage probabilities until the net-retention counter runs out, and the net is
-discarded.
-
- .. raw:: html
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
- .. rst-class:: toggle-table
-
- .. csv-table::
-     :header: Parameter, Data type, Minimum, Maximum, Default, Description, Example
-     :widths: 10, 5, 5, 5, 5, 20, 5
-     :file: csv/campaign-usagedependentbednet.csv

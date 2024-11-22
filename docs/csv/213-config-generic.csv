@@ -1,0 +1,72 @@
+"Custom_Reports_Filename","string","NA","NA","UNINITIALIZED STRING","The name of the file containing custom report configuration parameters. Omitting this parameter or setting it to RunAllCustomReports will load all reporters found that are valid for the given simulation type. The file must be in JSON format.",".. code-block:: json
+
+    {  
+        ""Custom_Reports_Filename"": ""custom_reports.json""
+    }"
+"Incubation_Period_Log_Mean","float","0","3.40E+38","6","The mean of log normal for the incubation period distribution. **Incubation_Period_Distribution** must be set to LOG_NORMAL_DURATION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""LOG_NORMAL_DURATION"",
+        ""Incubation_Period_Log_Mean"": 5.758,
+        ""Incubation_Period_Log_Width"": 0.27
+    }"
+"Incubation_Period_Log_Width","float","0","3.40E+38","1","The log width of log normal for the incubation period distribution. **Incubation_Period_Distribution** must be set to LOG_NORMAL_DURATION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""LOG_NORMAL_DURATION"",
+        ""Incubation_Period_Log_Mean"": 5.758,
+        ""Incubation_Period_Log_Width"": 0.27
+    }"
+"Infectivity_Exponential_Baseline","float","0","1","0","The scale factor applied to **Base_Infectivity** at the beginning of a simulation, before the infectivity begins to grow exponentially. **Infectivity_Scale_Type** must be set to EXPONENTIAL_FUNCTION_OF_TIME.",".. code-block:: json
+
+    {
+        ""Infectivity_Exponential_Baseline"": 0.1, 
+        ""Infectivity_Exponential_Delay"": 90, 
+        ""Infectivity_Exponential_Rate"": 45, 
+        ""Infectivity_Scale_Type"": ""EXPONENTIAL_FUNCTION_OF_TIME""
+    }"
+"Infectivity_Exponential_Delay","float","0","3.40E+38","0","The number of days before infectivity begins to ramp up exponentially. **Infectivity_Scale_Type** must be set to EXPONENTIAL_FUNCTION_OF_TIME.",".. code-block:: json
+
+    {
+        ""Infectivity_Exponential_Baseline"": 0.1, 
+        ""Infectivity_Exponential_Delay"": 90, 
+        ""Infectivity_Exponential_Rate"": 45, 
+        ""Infectivity_Scale_Type"": ""EXPONENTIAL_FUNCTION_OF_TIME""
+    }"
+"Infectivity_Exponential_Rate","float","0","3.40E+38","0","The daily rate of exponential growth to approach to full infectivity after the delay set by **Infectivity_Exponential_Delay** has passed. **Infectivity_Scale_Type** must be set to EXPONENTIAL_FUNCTION_OF_TIME.",".. code-block:: json
+
+    {
+        ""Infectivity_Exponential_Rate"": 45
+    }"
+"Memory_Usage_Halting_Threshold_Working_Set_MB","integer","0","1.00E+06","8000","The maximum size (in MB) of working set memory before the system throws an exception and halts. ",".. code-block:: json
+
+    {
+        ""Memory_Usage_Halting_Threshold_Working_Set_MB"": 4000
+    }"
+"Memory_Usage_Warning_Threshold_Working_Set_MB","integer","0","1.00E+06","7000","The maximum size (in MB) of working set memory before memory usage statistics are written to the log regardless of log level.",".. code-block:: json
+
+    {
+        ""Memory_Usage_Warning_Threshold_Working_Set_MB"": 3500
+    }"
+"Serialization_Time_Steps","array of integers","0","2.15E+09",,"The list of time steps after which to save the serialized state. 0 (zero) indicates the initial state before simulation, n indicates after the nth time step. By default, no serialized state is saved.",".. code-block:: json
+
+    {
+        ""Serialization_Time_Steps"": [
+            0, 
+            10
+        ]
+    }"
+"Serialized_Population_Filenames","array of strings","NA","NA","NA","Array of filenames with serialized population data. The number of filenames must match the number of cores used for the simulation. The file must be in .dtk format.",".. code-block:: json
+
+    {
+        ""Serialized_Population_Filenames"": [
+            ""state-00010.dtk""
+        ]
+    }
+	"
+"Serialized_Population_Path","string ","NA","NA",".","The root path for the serialized population files.",".. code-block:: json
+
+    {
+        ""Serialized_Population_Path"": ""../00_Generic_Version_1_save/output""
+    }
+	"

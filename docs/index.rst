@@ -30,32 +30,14 @@ For example, this documentation set includes installation and usage instructions
 .. toctree::
    :maxdepth: 3
    :titlesonly:
-   :caption: Using the model
 
    whats-new
    install-overview
-   software-overview
-   tutorials
-   troubleshooting
-
-.. toctree::
-   :maxdepth: 3
-   :titlesonly:
-   :caption: Understanding the model
-
-   model-overview
+   overview
    parameter-overview
    faq
    glossary
-
-.. toctree::
-   :maxdepth: 3
-   :titlesonly:
-   :caption: Advancing the model
-
-   dev-install-overview
-   dev-architecture-overview
-   dev-debugging-overview
+   development
    
 .. toctree::
    :maxdepth: 3
@@ -67,4 +49,4 @@ For example, this documentation set includes installation and usage instructions
    emodpy-generic <https://docs.idmod.org/projects/emodpy-generic/en/latest/>
    emodpy <https://docs.idmod.org/projects/emodpy/en/latest/>
    emod-api <https://docs.idmod.org/projects/emod-api/en/latest/>
-   EMOD developer docs <https://docs.idmod.org/projects/emod/en/latest/>
+   EMOD-Generic-Scripts <https://docs.idmod.org/projects/emod-generic-scripts/en/latest/>

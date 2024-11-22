@@ -8,7 +8,7 @@ the |linux_binary| for |Centos_supp| using SCons.
 If you want full debugging support, you must build using Visual Studio. However, Visual Studio is
 only capable of a :term:`monolithic build` that includes all supported simulation types.
 
-.. include:: ../reuse/sim-types.txt
+.. include:: reuse/sim-types.txt
 
 If you want to create a disease-specific build, you must build using SCons. However, SCons builds
 build only the release version without extensive debugging information.

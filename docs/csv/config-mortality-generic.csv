@@ -25,10 +25,6 @@ Properties, rates, and bin sizes can be set for non-disease mortality for each g
 "
 "Enable_Disease_Mortality","boolean","0","1","1","Controls whether or not individuals are removed from the simulation due to disease deaths.
 
-.. only:: hiv
-
-    This parameter should always be set to 1 (true) for this simulation type. 
-
 ",".. code-block:: json
 
     {

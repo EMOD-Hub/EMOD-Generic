@@ -41,24 +41,6 @@ ImmunityDistribution
 AgeDistribution
     No axes. 
 
-
-.. only:: malaria
-
-    [""age""] is the only value accepted for all malaria-specific distributions:
-    
-    * MSP_mean_antibody_distribution
-    * MSP_variance_antibody_distribution
-    * nonspec_mean_antibody_distribution
-    * nonspec_variance_antibody_distribution
-    * PfEMP1_mean_antibody_distribution
-    * PfEMP1_variance_antibody_distribution
-
-.. only:: tbhiv
-
-    HIVCoinfectionDistribution
-        [""gender"", ""time"", ""age""]
-    HIVMortalityDistribution
-        [""gender"", ""time"", ""age""]
 ",".. code-block:: json
 
     {

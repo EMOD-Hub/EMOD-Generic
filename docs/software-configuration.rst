@@ -13,12 +13,6 @@ config.json. The configuration file controls many different aspects of the simul
 * The reports to output from the simulation
 
 
-Although you can create configuration files entirely from scratch, it is often easier to start from
-an existing configuration file and modify it to meet your needs. You can download sets of configuration
-and campaign files that illustrate how to model different disease scenarios at `EMOD scenarios`_. For more
-information, see :doc:`tutorials`. 
-
-
 The simplest method of working with the configuration files is to use a text editor to directly edit
 the parameters or parameter values in the JSON file. However, you may want to use Python or another
 scripting language to make large modifications. See :doc:`software-configuration-script` for more

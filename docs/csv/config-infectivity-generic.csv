@@ -1,28 +1,8 @@
 "Base_Infectivity","float","0","1000","0.3","The base infectiousness of individuals before accounting for transmission-blocking effects of acquired immunity and/or campaign interventions.
 
-.. only:: generic
-    
-    For generic simulations, this is the average number of individuals per time step who will be exposed to infection by one infectious individual. In the case of super-infection, the infectiousness is summed over all infections. 
+For generic simulations, this is the average number of individuals per time step who will be exposed to infection by one infectious individual. In the case of super-infection, the infectiousness is summed over all infections. 
 
-.. only:: vector or malaria
-
-    For vector and malaria simulations, this is the probability of infecting a mosquito during a successful blood meal (modulated by the vector parameter **Acquire_Modifier**). The sum infectiousness of an individual is not allowed to exceed 100%. 
-
-.. only:: sti or hiv
-
-    For STI or HIV simulations, this is the probability of transmission when none of the transmission multipliers apply to a particular coital act (or when all multipliers are set to 1). 
-
-.. only:: tbhiv
-
-    For TB simulations, this is the base infectivity in smear-positive individuals. This value is modified by **TB_Smear_Negative_Infectivity_Multiplier** for smear-negative individuals.
-
-.. only:: environmental 
-
-    For environmental simulations, this is the probability of infecting an individual through the contact and environmental routes.
-
-.. only:: typhoid 
-
-     This parameter is not used. ",".. code-block:: json
+",".. code-block:: json
 
     {
         ""Base_Infectivity"": 0.5

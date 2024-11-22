@@ -10,7 +10,7 @@ installer for the prerequisite software should provide instructions. For example
 requires additional Visual C++ redistributable packages, the installer will display that
 information.
 
-.. include:: ../reuse/third-party-note.txt
+.. include:: reuse/third-party-note.txt
 
 Install prerequisites for running simulations
 =============================================
@@ -19,7 +19,7 @@ The following software packages are required to run simulations using the |linux
 installed the pre-built |exe_s| using the instructions in :doc:`install-overview`, you can skip
 this section.
 
-.. include:: ../reuse/centos-install-to-run.txt
+.. include:: reuse/centos-install-to-run.txt
 
 
 
@@ -39,7 +39,7 @@ of model output are created both before and after source code changes are made t
 changes created a discrepancy in the regression test output. For more information, see
 :doc:`dev-regression`. You may want to install R or MATLAB, but both are optional.
 
-.. include:: ../reuse/gohlke.txt
+.. include:: reuse/gohlke.txt
 
 
 (Optional) R
@@ -47,7 +47,7 @@ changes created a discrepancy in the regression test output. For more informatio
 
 The |IDM_s| test team uses |R_supp| for regression testing, but it is considered optional.
 
-.. include:: ../reuse/r-install.txt
+.. include:: reuse/r-install.txt
 
 (Optional) MATLAB
 -----------------
@@ -55,4 +55,4 @@ The |IDM_s| test team uses |R_supp| for regression testing, but it is considered
 The |IDM_s| test team uses |MATLAB_supp| and the |stats_supp| for regression testing, but they are both
 considered optional.
 
-.. include:: ../reuse/matlab-install.txt
+.. include:: reuse/matlab-install.txt

@@ -7,7 +7,7 @@ interventions and extended functionality to include migration, climate, or other
 create a more realistic simulation. Disease transmission may be more or less complex depending on
 the disease being modeled.
 
-.. include:: ../reuse/warning-schema.txt
+.. include:: reuse/warning-schema.txt
 
 .. contents:: Content
    :local:
@@ -27,83 +27,16 @@ Susceptibility
 Infection
     Represents an individual's infection with a disease.
 
-.. only:: vector or malaria
 
-    For vector simulations, the following corresponding classes are derived from generic classes:
+For generic simulations, each node has a homogeneous contagion pool. Every individual in the
+node sheds disease into the pool and acquires disease from the pool. You can add heterogeneous
+disease transmission within a node by enabling and configuring the :term:`Heterogeneous Intra-Node
+Transmission (HINT)` feature. For more information, see :doc:`model-hint`.
 
-    SimulationVector
-        Creates **NodeVector** objects instead of generic **Node** objects.
-    NodeVector
-        Creates **IndividualHumanVector** objects instead of generic **IndividualHuman** objects and creates
-        and manages **VectorPopulation** objects to model the mosquito vectors.
-    IndividualHumanVector
-        Represents a human being and provides the additional layer of functionality for how vectors
-        interact with individual humans.
-    VectorPopulation
-        The mosquito species at each node, which can be represented by a collection of cohorts that
-        counts the population of a specific state of mosquitoes (**VectorCohort**) or by a collection
-        of individual agent mosquitoes (**VectorIndividual**).
-    SusceptibilityVector
-        Represents a human being's susceptibility to vector-borne disease.
-    InfectionVector
-        Represents a human being's infection with a vector-borne disease.
-
-    Substitute these classes wherever you see the generic base classes in the architecture documentation.
-
-.. only:: malaria
-
-    For malaria simulations, the following corresponding classes are derived from vector classes:
-
-    SimulationMalaria
-        Creates **NodeMalaria** objects instead of generic **Node** objects.
-    NodeMalaria
-        Creates **IndividualHumanMalaria** objects instead of generic **IndividualHuman** objects and provides
-        various malaria-specific counters for the purposes of reporting.
-    IndividualHumanMalaria
-        Represents a human being and provides the additional layer of functionality for how malaria
-        vectors interact with individual humans.
-    SusceptibilityMalaria
-        Represents a human being's susceptibility to malaria. It contains much of the intra-host model,
-        by modeling the specific details of an individual’s immune system in the context of the
-        malaria infection life cycle. It is highly configurable, and interacts closely with **InfectionMalaria**
-        objects and the **IndividualHumanMalaria** object, its parent. From a software point of view,
-        **SusceptibilityMalaria** derives from **SusceptibilityVector**, but in reality **SusceptibilityVector**
-        provides minimal epidemiological functionality.
-    InfectionMalaria
-        Represents a human being's infection with malaria. It is the other part of the detailed
-        intra-host malaria model. It models the progression of the malaria parasite through sporozoite,
-        schizont, hepatocyte, merozoite, and gametocyte stages. **InfectionMalaria** objects are
-        contained with **IndividualMalaria** objects. There can be multiple such objects. They all
-        interact closely with the **SusceptibilityMalaria** object. From a software point of view,
-        **InfectionMalaria** derives from **InfectionVector**, but in reality **InfectionVector**
-        provides minimal epidemiological functionality.
-
-.. TODO add the derived classes for HIV/STI/TB/airborne
-
-.. only:: generic
-
-    For generic simulations, each node has a homogeneous contagion pool. Every individual in the
-    node sheds disease into the pool and acquires disease from the pool. You can add heterogeneous
-    disease transmission within a node by enabling and configuring the :term:`Heterogeneous Intra-Node
-    Transmission (HINT)` feature. For more information, see :doc:`model-hint`.
-
-.. only:: tbhiv or airborne or hiv or sti
-
-    For generic simulations, human-to-human transmission uses a homogeneous contagion
-    pool for each node. Every individual in the node sheds disease into the pool and acquires
-    disease from the pool. For specific disease simulations, transmission is heterogeneous and based
-    on the disease biology.
-
-.. only:: vector or malaria
-
-    For generic simulations, human-to-human transmission uses a homogeneous contagion
-    pool for each node. Every individual in the node sheds disease into the pool and acquires
-    disease from the pool. For vector-borne diseases, disease transmission is more complex as it
-    must take into account the vector life cycle. See :ref:`arch-transmission`.
 
 The relationship between these classes is captured in the following figure.
 
-.. figure:: ../images/dev/ArchSimulation.png
+.. figure:: images/dev/ArchSimulation.png
 
    Simulation components
 
@@ -146,7 +79,7 @@ The **Simulation** class contains the following methods:
     * - Update()
       - Advances the state of nodes.
 
-.. figure:: ../images/dev/ArchSimulationTree.png
+.. figure:: images/dev/ArchSimulationTree.png
 
    Simulation object hierarchy
 
@@ -297,43 +230,3 @@ constant at present, but possibly from specified distributions in the future) an
 the full latency, which is possible when simulating individual particles. After the incubation
 period, the counter for the infectious period begins, during which time the infection contributes to
 the individual’s infectiousness :math:`X_i`.
-
-.. only:: vector or malaria
-
-    For vector-borne diseases, during an **Update()** for a node, the infectiousness of vectors is
-    calculated on the local human population regarding the vector life cycle, along with the effects
-    their interventions, such as bednets. Weather data from the **Climate** object is then used to
-    update the available larval habitat for each local vector species. Multiple local vector species
-    are supported, and after the weather updates, each vector species is advanced through a time
-    step with the **VectorPopulation::TimeStep()** method. This calculates the life cycle and vector
-    infection dynamics, along with the feeding cycle. It updates the indoor and outdoor bites, and
-    indoor and outdoor infectious bites on the local human population. Each Individual in the local
-    human population is then advanced in an **Update()**, propagating its infections forward in
-    time, updating its interventions and infectivity, and acquiring any new infections.
-
-    **NodeVector::updateInfectivity()** calls the **VectorPopulation::TimeStep()** method for mortality
-    adjustments due to weather and the human population and, when completed, processes each list.
-    The effects of the human population are accounted for in **VectorPopulation::Update_Host_Effects()**,
-    which determines the outcomes for indoor and outdoor attempted feeds on each individual human,
-    and then on the human population as a whole, weighting by any heterogeneous biting. The
-    processing order is:
-
-    #.  All infectious female mosquitoes
-    #.  All infected female mosquitoes
-    #.  All adult uninfected female mosquitoes
-    #.  All adult male mosquitoes
-    #.  Immature mosquitoes
-    #.  All mosquito larvae
-    #.  All mosquito eggs
-
-    After each list is updated, all indoor and outdoor bites, both infectious and non-infectious,
-    are tallied and updated within the **Node** infectivity objects.
-
-    Within a list update, each cohort of identical-state mosquitoes or each individual-agent
-    mosquito experiences risk of mortality, may progress through any stage of development, such as
-    sporogony (for infected) or larval maturation (for larval), and may attempt a blood feed (for
-    adult females). For mosquitoes attempting a blood feed, outcomes are governed by the calculated
-    host effects, with sequential conditional draws for choice of host type, choice of indoor or
-    outdoor feeding location, and feed outcome. The potential feed outcomes are die before feeding,
-    no host found, die during feeding, die post-feeding, and successful feed. Successful feeds
-    result in ovipositions, and eggs laid start the next generation of mosquitoes.

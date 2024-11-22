@@ -1,0 +1,134 @@
+{
+    "Header": {
+        "DateTime": "Mon Feb 15 21:49:24 2016",
+        "DTK_Version": "5538 trunk 2015/08/07 14:40:43",
+        "Report_Type": "InsetChart",
+        "Report_Version": "3.2",
+        "Start_Time": 0,
+        "Simulation_Timestep": 1,
+        "Timesteps": 10,
+        "Channels": 8
+    },
+    "Channels": {
+        "Disease Deaths:Accessibility:Easy": {
+            "Units": "",
+            "Data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "Disease Deaths:Accessibility:Hard": {
+            "Units": "",
+            "Data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "Infected:Accessibility:Easy": {
+            "Units": "",
+            "Data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "Infected:Accessibility:Hard": {
+            "Units": "",
+            "Data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "New Infections:Accessibility:Easy": {
+            "Units": "",
+            "Data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "New Infections:Accessibility:Hard": {
+            "Units": "",
+            "Data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "Statistical Population:Accessibility:Easy": {
+            "Units": "",
+            "Data": [
+                6946,
+                6946,
+                6946,
+                6946,
+                6946,
+                6946,
+                6946,
+                6946,
+                6946,
+                6946
+            ]
+        },
+        "Statistical Population:Accessibility:Hard": {
+            "Units": "",
+            "Data": [
+                3054,
+                3054,
+                3054,
+                3054,
+                3054,
+                3054,
+                3054,
+                3054,
+                3054,
+                3054
+            ]
+        }
+    }
+}

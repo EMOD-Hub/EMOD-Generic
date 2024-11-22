@@ -12,13 +12,7 @@
 "
 "Enable_Immune_Decay","boolean","0","1","1","Controls whether or not immunity decays after an infection clears. Set to true (1) if immunity decays; set to false (0) if recovery from the disease confers complete immunity for life. **Enable_Immunity** must be set to true (1).
 
-.. only::  hiv or typhoid
-
-    This parameter should always be set to 0 (off) in this simulation type.
-
-.. only:: malaria or dengue
-
-    This parameter should always be set to 1 (on) in this simulation type.",".. code-block:: json
+",".. code-block:: json
 
     {
         ""Enable_Immunity"": 1,

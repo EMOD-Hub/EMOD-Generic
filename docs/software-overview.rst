@@ -1,6 +1,6 @@
-=============================
-Overview of |EMOD_s| software
-=============================
+==================
+Software overview
+==================
 
 The |IDM_l| develops detailed simulations of disease transmission through the use of quantitative software modeling. The agent-based model, |EMOD_l|, helps determine the combination of health
 policies and intervention strategies that can lead to disease eradication. |EMOD_s| calculates how

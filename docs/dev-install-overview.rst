@@ -23,9 +23,9 @@ After that, we recommend running full regression tests to further verify that |E
 as expected and that none of the source code changes inadvertently changed the |EMOD_s|
 functionality. See :doc:`dev-regression` for more information.
 
-.. include:: ../reuse/testing-windows.txt
+.. include:: reuse/testing-windows.txt
 
-.. include:: ../reuse/testing-linux.txt
+.. include:: reuse/testing-linux.txt
 
 .. toctree::
    :maxdepth: 2

@@ -9,11 +9,11 @@ campaign management), and reporters that capture output data and create reports 
 The following figure shows a high-level view of the system components of |EMOD_s| and how they are
 related to each other.
 
-.. figure:: ../images/dev/ArchSystemComponents.png
+.. figure:: images/dev/ArchSystemComponents.png
 
     |EMOD_s| system components
 
-.. include:: ../reuse/warning-schema.txt
+.. include:: reuse/warning-schema.txt
 
 .. toctree::
    :maxdepth: 3
