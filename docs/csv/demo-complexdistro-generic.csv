@@ -1,0 +1,623 @@
+"AgeDistribution","JSON object","NA","NA","NA","The structure defining a complex age distribution. **Age_Initialization_Distribution_Type** in the configuration file must be set to DISTRIBUTION_COMPLEX.","The following example shows at age distribution in which 25% of individuals are under age 5, 50% are between 5 and 20, and 25% are between 20 and 35.
+
+.. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""AgeDistribution"": {
+                ""ResultUnits"": ""years"",
+                ""ResultScaleFactor"": 365,
+                ""ResultValues"": [
+                    0,
+                    0.25,
+                    0.75,
+                    1
+                ],
+                ""DistributionValues"": [
+                    0,
+                    5,
+                    20,
+                    35
+                ]
+            }
+        }
+    }
+"
+"AxisNames","array of strings","NA","NA","NA","An array of the names used for each axis of a complex distribution. The list below shows the axis names to use (in the order given) for each of the distribution types:
+
+MortalityDistribution
+    [""gender"", ""age""] **Death_Rate_Dependence** in the configuration file must be set to NONDISEASE_MORTALITY_BY_AGE_AND_GENDER (see :doc:`parameter-configuration-mortality` parameters). 
+MortalityDistributionMale
+    [""age"", ""year""] **Death_Rate_Dependence** must be set to NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER (see :doc:`parameter-configuration-mortality` parameters).
+MortalityDistributionFemale
+    [""age"", ""year""] **Death_Rate_Dependence** must be set to NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER (see :doc:`parameter-configuration-mortality` parameters).
+FertilityDistribution
+    Two options are available:
+
+    * [""urban"", ""age""] **Birth_Rate_Dependence** in the configuratIon file must be set to INDIVIDUAL_PREGNANCIES_BY_URBAN_AND_AGE (see :doc:`parameter-configuration-population` parameters).
+    * [""age"", ""year""] **Birth_Rate_Dependence** must be set to INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR (see :doc:`parameter-configuration-population` parameters).
+ImmunityDistribution
+    [""age""] 
+AgeDistribution
+    No axes. 
+
+",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""AxisNames"": [
+                    ""gender"",
+                    ""age""
+                ],
+                ""AxisUnits"": [
+                    ""male=0,female=1"",
+                    ""years""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    365
+                ],
+                ""NumPopulationGroups"": [
+                    2,
+                    1
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0
+                    ]
+                ],
+                ""ResultUnits"": ""annual deaths per 1000 individuals"",
+                ""ResultScaleFactor"": 2.739726027397e-06,
+                ""ResultValues"": [
+                    [
+                        0
+                    ],
+                    [
+                        0
+                    ]
+                ]
+            }
+        }
+    }
+"
+"AxisScaleFactors","array of floats","3.40282e+038","-3.40282e+038","1","A list of the scale factors used to convert axis units to data measurements in a complex distribution. For example, 365 to convert daily mortality to annual mortality. The array must contain one factor for each axis.",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""AxisNames"": [
+                    ""gender"",
+                    ""age""
+                ],
+                ""AxisUnits"": [
+                    ""male=0,female=1"",
+                    ""years""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    365
+                ],
+                ""NumPopulationGroups"": [
+                    2,
+                    1
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0
+                    ]
+                ],
+                ""ResultUnits"": ""annual deaths per 1000 individuals"",
+                ""ResultScaleFactor"": 2.739726027397e-06,
+                ""ResultValues"": [
+                    [
+                        0
+                    ],
+                    [
+                        0
+                    ]
+                ]
+            }
+        }
+    }
+"
+"AxisUnits","array of strings","NA","NA","NA","An array that describes the scale factors used to convert the units for the axes into the units expected by |EMOD_s|. For example, when age is provided in years but must be scaled to days. |EMOD_s| does not use this value; it is only informational.",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""AxisNames"": [
+                    ""gender"",
+                    ""age""
+                ],
+                ""AxisUnits"": [
+                    ""male=0,female=1"",
+                    ""years""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    365
+                ]
+            }
+        }
+    }
+"
+"DistributionValues","array of floats","0","1","1","An array of values between 0 and 1 listed in ascending order that defines a complex age distribution. Each value represents the proportion of the population below that age and the difference between two successive values is the proportion of the population in the age bin defined in **ResultValues**. **Age_Initialization_Distribution_Type** in the configuration file must be set to DISTRIBUTION_COMPLEX (see :doc:`parameter-configuration-population` parameters).
+","The following example shows at age distribution in which 25% of individuals are under age 5, 50% are between 5 and 20, and 25% are between 20 and 35.
+
+.. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""AgeDistribution"": {
+                ""ResultUnits"": ""years"",
+                ""ResultScaleFactor"": 365,
+                ""AxisScaleFactors"": 1,
+                ""DistributionValues"": [
+                    0,
+                    0.25,
+                    0.75,
+                    1
+                ],
+                ""ResultValues"": [
+                    0,
+                    5,
+                    20,
+                    35
+                ]
+            }
+        }
+    }
+"
+"FertilityDistribution","JSON object","NA","NA","NA","The distribution of the fertility rate in the population. **Enable_Birth** in the configuration file must be set to 1 (see :doc:`parameter-configuration-population` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""FertilityDistribution"": {
+                ""NumDistributionAxes"": 2,
+                ""AxisNames"": [
+                    ""urban"",
+                    ""XXX""
+                ],
+                ""AxisUnits"": [
+                    ""rural=0, urban=1"",
+                    ""years""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    365
+                ],
+                ""NumPopulationGroups"": [
+                    2,
+                    9
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0,
+                        15,
+                        20,
+                        25,
+                        30,
+                        35,
+                        40,
+                        45,
+                        49
+                    ]
+                ],
+                ""ResultUnits"": ""annual births per 1000 individuals"",
+                ""ResultScaleFactor"": 2.739726027397e-06,
+                ""ResultValues"": [
+                    [
+                        0,
+                        28.4,
+                        190.3,
+                        222.4,
+                        155.4,
+                        68,
+                        21.9,
+                        3.6,
+                        0
+                    ],
+                    [
+                        0,
+                        28.4,
+                        190.3,
+                        222.4,
+                        155.4,
+                        68,
+                        21.9,
+                        3.6,
+                        0
+                    ]
+                ]
+            }
+        }
+    }
+"
+"ImmunityDistribution","JSON object","NA","NA","NA","The structure defining a complex immunity distribution. **Immunity_Initialization_Distribution_Type** in the configuration file must be set to DISTRIBUTION_COMPLEX (see :doc:`parameter-configuration-immunity` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""ImmunityDistribution"": {
+                ""AxisNames"": [
+                    ""age""
+                ],
+                ""AxisUnits"": [
+                    ""years""
+                ],
+                ""AxisScaleFactors"": [
+                    365
+                ],
+                ""NumPopulationGroups"": [
+                    1
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0
+                    ]
+                ],
+                ""ResultScaleFactor"": 3.6952,
+                ""ResultValues"": [
+                    [
+                        0
+                    ]
+                ]
+            }
+        }
+    }
+"
+"MortalityDistribution","JSON object","NA","NA","NA","The distribution of non-disease mortality for a population. **Death_Rate_Dependence** in the configuration file must be set to NONDISEASE_MORTALITY_BY_AGE_AND_GENDER or NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER (see :doc:`parameter-configuration-mortality` parameters).
+
+.. warning::
+
+    Mortality is sampled every 30 days. To correctly attribute neonatal deaths to days 0-30, you must indicate that the threshold for the first age group in **PopulationGroups** is less than 30 days.",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""AxisNames"": [
+                    ""gender"",
+                    ""age""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    1
+                ],
+                ""NumDistributionAxes"": 2,
+                ""NumPopulationGroups"": [
+                    2,
+                    4
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0.0,
+                        29.99,
+                        365,
+                        1826
+                    ]
+                ],
+                ""ResultScaleFactor"": 1,
+                ""ResultValues"": [
+                    [
+                        0.0016,
+                        0.000107,
+                        6.3e-05,
+                        100.0
+                    ],
+                    [
+                        0.0016,
+                        0.000107,
+                        6.3e-05,
+                        100.0
+                    ]
+                ]
+            }
+        }
+    }
+"
+"NumDistributionAxes","integer","1","NA","NA","The number of axes to use for a complex distribution. |EMOD_s| does not use this value; it is only informational.",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""NumDistributionAxes"": 2,
+                ""AxisNames"": [
+                    ""gender"",
+                    ""age""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    365
+                ]
+            }
+        }
+    }
+"
+"NumPopulationGroups","array of integers","NA","NA","NA","An array of population groupings for each independent variable for a complex distribution. This variable defines the number of columns for each row in the population group table. The number of values in the array is often two, representing the values for gender and number of age bins. |EMOD_s| does not use this value; it is only informational.",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""AxisNames"": [
+                    ""gender"",
+                    ""age""
+                ],
+                ""AxisUnits"": [
+                    ""male=0,female=1"",
+                    ""years""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    365
+                ],
+                ""NumPopulationGroups"": [
+                    2,
+                    1
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0
+                    ]
+                ],
+                ""ResultUnits"": ""annual deaths per 1000 individuals"",
+                ""ResultScaleFactor"": 2.739726027397e-06,
+                ""ResultValues"": [
+                    [
+                        0
+                    ],
+                    [
+                        0
+                    ]
+                ]
+            }
+        }
+    }
+"
+"PopulationGroups","matrix of integers","NA","NA","NA","An array in which each row represents one of the distribution axes and contains the values that the independent variable can take. The values must be listed in ascending order and each defines the left edge of the bin.
+
+.. warning::
+
+    Mortality is sampled every 30 days. To correctly attribute neonatal deaths to days 0-30, you must indicate that the threshold for the first age group in **PopulationGroups** is less than 30 days.","The following example configures relatively high infant mortality and lower mortality at ages 10 and 40, with everyone dead by age 120.
+
+.. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""AxisNames"": [
+                    ""gender"",
+                    ""age""
+                ],
+                ""AxisUnits"": [
+                    ""male=0,female=1"",
+                    ""years""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    365
+                ],
+                ""NumPopulationGroups"": [
+                    2,
+                    1
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0,
+                        10,
+                        40,
+                        120
+                    ]
+                ],
+                ""ResultUnits"": ""annual deaths per 1000 individuals"",
+                ""ResultScaleFactor"": 2.739726027397e-06,
+                ""ResultValues"": [
+                    [
+                        51.6,
+                        3.7,
+                        5.3,
+                        1000
+                    ],
+                    [
+                        60.1,
+                        4.1,
+                        4.8,
+                        1000
+                    ]
+                ]
+            }
+        }
+    }
+"
+"ResultScaleFactor","float","-3.40282e+038","3.40282e+038","1","The scale factor used to convert **ResultUnits** to number of births, deaths, or another variable per individual per day. ",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""AgeDistribution"": {
+                ""AxisScaleFactors"": 1,
+                ""DistributionValues"": [
+                    0.99,
+                    1.0
+                ],
+                ""ResultScaleFactor"": 365,
+                ""ResultUnits"": ""years"",
+                ""ResultValues"": [
+                    0.0027,
+                    0.0027
+                ]
+            }
+        }
+    }
+"
+"ResultUnits","string","NA","NA","NA","A string that indicates the units used for the **ResultValues** parameter of a complex distribution. |EMOD_s| does not use this value; it is only informational. The values here are scaled by the value in **ResultScaleFactor** before being passed to |EMOD_s| as a daily rate.",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""NumPopulationGroups"": [
+                    2,
+                    1
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0
+                    ]
+                ],
+                ""ResultUnits"": ""annual deaths per 1000 individuals"",
+                ""ResultScaleFactor"": 2.739726027397e-06,
+                ""ResultValues"": [
+                    [
+                        0
+                    ],
+                    [
+                        0
+                    ]
+                ]
+            }
+        }
+    }
+"
+"ResultValues","array of floats","NA","NA","NA","An array in which each row represents one of the distribution axes and contains the dependent variable values. The units are configurable; the values are scaled by the value in **ResultScaleFactor** before being passed to |EMOD_s| in units of days.
+
+For age distributions, it lists in ascending order the ages at which to bin the population. The corresponding values in **DistributionValues** represent the proportion of the population that is below that age. If the first member of the array is non-zero, the first bin is defined as those with that exact value (|EMOD_s| does not assume the bins start at zero).
+
+For all other distributions, an array in which each row represents the values for a combination of axes. For example, a mortality distribution that includes both gender and age axes will have a row for males and a row for females that each contain the mortality rate at various ages set in **PopulationGroups**. 
+
+
+","The following example shows an age distribution in which 10% of individuals are newborn, 25% are under age 5, 50% are between 5 and 20, and 25% are between 20 and 35.
+
+.. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""AgeDistribution"": {
+                ""DistributionValues"": [
+                    0.1,
+                    0.25,
+                    0.75,
+                    1
+                ],
+                ""ResultValues"": [
+                    0,
+                    5,
+                    20,
+                    35
+                ]
+            }
+        }
+    }
+
+The following example configures relatively high infant mortality and lower mortality at ages 10 and 40, with everyone dead by age 120.
+
+.. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MortalityDistribution"": {
+                ""AxisNames"": [
+                    ""gender"",
+                    ""age""
+                ],
+                ""AxisUnits"": [
+                    ""male=0,female=1"",
+                    ""years""
+                ],
+                ""AxisScaleFactors"": [
+                    1,
+                    365
+                ],
+                ""NumPopulationGroups"": [
+                    2,
+                    1
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0,
+                        10,
+                        40,
+                        120
+                    ]
+                ],
+                ""ResultUnits"": ""annual deaths per 1000 individuals"",
+                ""ResultScaleFactor"": 2.739726027397e-06,
+                ""ResultValues"": [
+                    [
+                        51.6,
+                        3.7,
+                        5.3,
+                        1000
+                    ],
+                    [
+                        60.1,
+                        4.1,
+                        4.8,
+                        1000
+                    ]
+                ]
+            }
+        }
+    }
+"
+"SusceptibilityDistribution","JSON object","NA","NA","NA","The structure defining a complex immunity/susceptibility distribution. **Susceptibility_Initialization_Distribution_Type** in the configuration file must be set to DISTRIBUTION_COMPLEX (see :doc:`parameter-configuration-immunity` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""SusceptibilityDistribution"": {
+                ""AxisNames"": [
+                    ""age""
+                ],
+                ""AxisScaleFactors"": [
+                    365
+                ],
+                ""AxisUnits"": [
+                    ""years""
+                ],
+                ""NumPopulationGroups"": [
+                    1
+                ],
+                ""PopulationGroups"": [
+                    [
+                        0
+                    ]
+                ],
+                ""ResultScaleFactor"": 3.6952,
+                ""ResultValues"": [
+                    [
+                        0
+                    ]
+                ]
+            }
+        }
+    }
+"

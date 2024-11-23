@@ -1,0 +1,13 @@
+{
+    "IndividualProperties": [{
+        "Property": "Risk",
+        "Values": ["High", "Low"],
+        "TransmissionMatrix": {
+            "Route": "Contact",
+            "Matrix": [
+                [10, 0.1],
+                [0.1, 1]
+            ]
+        }
+    }]
+}

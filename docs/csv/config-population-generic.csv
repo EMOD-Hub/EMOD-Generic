@@ -1,0 +1,208 @@
+"Age_Initialization_Distribution_Type","enum","NA","NA","DISTRIBUTION_OFF","The method for initializing the age distribution in the simulated population. Possible values are: 
+
+DISTRIBUTION_OFF
+    All individuals default to age 20 years old. 
+DISTRIBUTION_SIMPLE
+    Individual ages are drawn from a distribution whose functional form is specified in the demographics file using the **IndividualAttributes** simple **Age** distribution parameters. 
+DISTRIBUTION_COMPLEX
+    Individual ages are drawn from a piecewise linear function specified in the demographics file complex distribution parameters.
+",".. code-block:: json
+
+    {
+        ""Age_Initialization_Distribution_Type"": ""DISTRIBUTION_SIMPLE""
+    }
+"
+"Birth_Rate_Boxcar_Forcing_Amplitude","float","0","3.40E+38","0","Fractional increase in birth rate during high birth season when **Birth_Rate_Time_Dependence** is set to ANNUAL_BOXCAR_FUNCTION.",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Birth_Rate_Time_Dependence"": ""ANNUAL_BOXCAR_FUNCTION"",
+        ""Birth_Rate_Boxcar_Forcing_Amplitude"": 0.1
+    }
+"
+"Birth_Rate_Boxcar_Forcing_End_Time","float","0","365","0","Day of the year when the high birth rate season ends when **Birth_Rate_Time_Dependence** is set to ANNUAL_BOXCAR_FUNCTION.",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Birth_Rate_Time_Dependence"": ""ANNUAL_BOXCAR_FUNCTION"",
+        ""Birth_Rate_Boxcar_Forcing_End_Time"": 220
+    }
+"
+"Birth_Rate_Boxcar_Forcing_Start_Time","float","0","365","0","Day of the year when the high birth rate season begins when **Birth_Rate_Time_Dependence** is set to ANNUAL_BOXCAR_FUNCTION.",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Birth_Rate_Time_Dependence"": ""ANNUAL_BOXCAR_FUNCTION"",
+        ""Birth_Rate_Boxcar_Forcing_Start_Time"": 130
+    }
+"
+"Birth_Rate_Dependence","enum","NA","NA","FIXED_BIRTH_RATE","The method used to modify the value set in **BirthRate** in the demographics file (see :ref:`demo-nodeattributes` parameters). Possible values are: 
+
+NONE
+    Births are not allowed during the simulation, even if **Enable_Birth** is set to true (1). 
+FIXED_BIRTH_RATE
+    The absolute rate at which new individuals are born, as set by **BirthRate**. 
+POPULATION_DEP_RATE
+    Scales the node population to determine the birth rate. If **BirthRate** is greater than 0.005, a value of 2% per year (0.02/365) is used instead.  
+DEMOGRAPHIC_DEP_RATE
+    Scales the female population within fertility age ranges (15-44 years) to determine the birth rate. If **BirthRate** is greater than 0.005, a value of 1 child every 8 years of fertility [1/8/365(~0.000342)] is used instead. 
+INDIVIDUAL_PREGNANCIES
+    Scales the female population within fertility age ranges (15-44 years) to determine the birth rate, but pregnancies are assigned on an individual basis and result in a 40-week pregnancy for a specific individual with a birth at the end.
+INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR
+    Similar to INDIVIDUAL_PREGNANCIES, but determines the rate based on the **FertilityDistribution** (in **IndividualAttributes**), using the individual's age and the year of the simulation. ",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Birth_Rate_Dependence"": ""POPULATION_DEP_RATE""
+    }
+"
+"Birth_Rate_Sinusoidal_Forcing_Amplitude","float","0","1","0","The amplitude of sinusoidal variations in birth rate when **Birth_Rate_Time_Dependence** is set to SINUSOIDAL_FUNCTION_OF_TIME.  ",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Birth_Rate_Time_Dependence"": ""SINUSOIDAL_FUNCTION_OF_TIME"",
+        ""Birth_Rate_Sinusoidal_Forcing_Amplitude"": 0.1
+    }
+"
+"Birth_Rate_Sinusoidal_Forcing_Phase","float","0","365","0","The phase of sinusoidal variations in birth rate. **Birth_Rate_Time_Dependence** must be set to SINUSOIDAL_FUNCTION_OF_TIME. ",".. code-block:: json
+
+    {
+        ""Birth_Rate_Sinusoidal_Forcing_Phase"": 20
+    }
+"
+"Birth_Rate_Time_Dependence","enum","NA","NA","NONE","A scale factor for **BirthRate** that allows it to be altered by time or season. **Enable_Birth** must be set to true (1). Possible values are:
+
+NONE
+    Birth rate does not vary by time.
+SINUSOIDAL_FUNCTION_OF_TIME
+    Allows birth rate to be time-dependent, following a sinusoidal shape defined by :math:`1 + \sin \text{Birth\_Rate\_Sinusoidal\_Forcing\_Amplitude} \times \sin(2 \pi \times (\text{day} - \sin \text{Birth\_Rate\_Sinusoidal\_Forcing\_Phase})/365)`. Set **Birth_Rate_Sinusoidal_Forcing_Amplitude** and **Birth_Rate_Sinusoidal_Forcing_Phase**. 
+ANNUAL_BOXCAR_FUNCTION
+    Allows birth rate to follow a boxcar function. The scale factor will be equal to 1 except for a single interval in which it is equal to a given constant equal to 1 + **Birth_Rate_Boxcar_Forcing_Amplitude**. Set **Birth_Rate_Boxcar_Forcing_Amplitude**, **Birth_Rate_Boxcar_Forcing_End_Time**, and **Birth_Rate_Boxcar_Forcing_Start_Time**.",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Birth_Rate_Time_Dependence"": ""ANNUAL_BOXCAR_FUNCTION""
+    }
+"
+"Death_Rate_Dependence","enum","NA","NA","NOT_INITIALIZED","Determines how likely individuals are to die from natural, non-disease causes. **Enable_Natural_Mortality** must be set to 1. Possible values are:
+
+NOT_INITIALIZED
+    The daily mortality rate is 0, and no one dies from non-disease related causes.
+NONDISEASE_MORTALITY_BY_AGE_AND_GENDER
+    The individual's age and gender are taken into account to determine the daily mortality rate.
+NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER
+    Gender, age, and year, are all taken into account to determine the daily mortality rate. 
+
+Properties, rates, and bin sizes can be set for non-disease mortality for each gender in the demographics file (see :ref:`demo-complexdistro` parameters).",".. code-block:: json
+
+    {
+        ""Death_Rate_Dependence"": ""NONDISEASE_MORTALITY_BY_AGE_AND_GENDER""
+    }
+"
+"Default_Geography_Initial_Node_Population","integer","0","1000000","1000","When using the built-in demographics for default geography, the initial number of individuals in each node. Note that the built-in demographics feature does not represent a real geographical location and is mostly used for testing. **Enable_Demographics_Builtin** must be set to true (1).",".. code-block:: json
+
+    {
+        ""Enable_Demographics_Builtin"": 1,
+        ""Default_Geography_Initial_Node_Population"": 1000,
+        ""Default_Geography_Torus_Size"": 3
+    }
+"
+"Demographics_Filenames","array of strings","NA","NA"," ","An array of the paths to demographics files containing information on the identity and demographics of the region to simulate. The files must be in .json format. Note that this parameter is only required when **Enable_Demographics_Builtin** is set to 0.",".. code-block:: json
+
+    {
+        ""Demographics_Filenames"": [
+            ""Namawala_single_node_demographics.json"",
+            ""Namawala_demographics_overlay.json""
+        ]
+    }
+"
+"Enable_Aging","boolean","0","1","1","Controls whether or not individuals in a population age during the simulation. **Enable_Vital_Dynamics** must be set to true (1). ",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Aging"": 1
+    }
+"
+"Enable_Birth","boolean","0","1","1","Controls whether or not individuals will be added to the simulation by birth. **Enable_Vital_Dynamics** must be set to true (1). If you want new individuals to have the same intervention coverage as existing individuals, you must add a **BirthTriggeredIV** to the campaign file. ",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1
+    }
+"
+"Enable_Demographics_Birth","boolean","0","1","0","Controls whether or not newborns have disease risk drawn from a distribution; uniform disease risk if false. **Enable_Birth**, **Enable_Demographics_Risk**, and **Enable_Vital_Dynamics** must be set to true (1).
+",".. code-block:: json
+
+    {
+        ""Enable_Birth"": 1,
+        ""Enable_Demographics_Birth"": 1,
+        ""Enable_Vital_Dynamics"": 1
+    }
+"
+"Enable_Demographics_Builtin","boolean","0","1","0","Controls whether or not built-in demographics for default geography will be used. Note that the built-in demographics feature does not represent a real geographical location and is mostly used for testing. Set to true (1) to define the initial population and number of nodes using **Default_Geography_Initial_Node_Population** and **Default_Geography_Torus_Size**. Set to false (0) to use demographics input files defined in **Demographics_Filenames**.",".. code-block:: json
+
+    {
+        ""Enable_Demographics_Builtin"": 1,
+        ""Default_Geography_Initial_Node_Population"": 1000,
+        ""Default_Geography_Torus_Size"": 3
+    }
+"
+"Enable_Vital_Dynamics","boolean","0","1","1","Controls whether or not births and deaths occur in the simulation. Births and deaths must be individually enabled and set. ",".. code-block:: json
+
+    {
+        ""Enable_Vital_Dynamics"": 1,
+        ""Enable_Birth"": 1,
+        ""Death_Rate_Dependence"": ""NOT_INITIALIZED"",
+        ""Base_Mortality"": 0.002
+    }
+"
+"Minimum_Adult_Age_Years","float","0","3.40E+38","15","The age, in years, after which an individual is considered an adult. **Individual_Sampling_Type** must be set to ADAPTED_SAMPLING_BY_AGE_GROUP.",".. code-block:: json
+
+    {
+        ""Minimum_Adult_Age_Years"": 17
+    }
+"
+"Population_Density_Infectivity_Correction","enum","NA","NA","CONSTANT_INFECTIVITY","Correction to alter infectivity by population density set in the **Population_Density_C50** parameter. Measured in people per square kilometer. 
+Possible values are:
+
+* CONSTANT_INFECTIVITY
+* SATURATING_FUNCTION_OF_DENSITY
+  
+.. note::
+
+   Sparsely populated areas have a lower infectivity, while densely populated areas have a higher infectivity, which rises to saturate at the **Base_Infectivity** value.",".. code-block:: json
+
+    {
+        ""Population_Density_Infectivity_Correction"": ""SATURATING_FUNCTION_OF_DENSITY""
+    }
+"
+"Population_Scale_Type","enum","NA","NA","USE_INPUT_FILE","The method to use for scaling the initial population specified in the demographics input file.
+Possible values are:
+ 
+USE_INPUT_FILE
+    Turns off population scaling and uses **InitialPopulation** in the demographics file (see :ref:`demo-nodeattributes` parameters).  
+FIXED_SCALING
+    Enables **Base_Population_Scale_Factor**.",".. code-block:: json
+
+    {
+        ""Population_Scale_Type"": ""FIXED_SCALING""
+    }
+"
+"x_Base_Population","float","0","3.40E+38","1","Scale factor for **InitialPopulation** in the demographics file (see :ref:`demo-nodeattributes` parameters). If **Population_Scale_Type** is set to FIXED_SCALING, the initial simulation population is uniformly scaled over the entire area to adjust for historical or future population density.",".. code-block:: json
+
+    {
+        ""x_Base_Population"": 0.0001
+    }
+"
+"x_Birth","float","0","3.40E+38","1","Scale factor for birth rate, as provided by the demographics file (see :ref:`demo-nodeattributes` parameters). **Enable_Birth** must be set to 1.",".. code-block:: json
+
+    {
+        ""x_Birth"": 1
+    }
+"

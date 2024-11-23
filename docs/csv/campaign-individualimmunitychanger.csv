@@ -1,0 +1,60 @@
+"Boost_Acquire","float","0","1","0","Specifies the boosting effect on acquisition immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine. This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
+
+    {
+        ""Boost_Acquire"": 0.7
+    }
+"
+"Boost_Mortality","float","0","1","0","Specifies the boosting effect on mortality immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine. This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
+
+    {
+        ""Boost_Mortality"": 1.0
+    }
+"
+"Boost_Threshold_Acquire","float","0","1","0","Specifies how much acquisition immunity is required before the vaccine changes from a prime to a boost.",".. code-block:: json
+
+    {
+        ""Boost_Threshold_Acquire"": 0.0
+    }
+"
+"Boost_Threshold_Mortality","float","0","1","0","Specifies how much mortality immunity is required before the vaccine changes from a prime to a boost.",".. code-block:: json
+
+    {
+        ""Boost_Threshold_Mortality"": 0.0
+    }
+"
+"Boost_Threshold_Transmit","float","0","1","0","Specifies how much transmission immunity is required before the vaccine changes from a prime to a boost.",".. code-block:: json
+
+    {
+        ""Boost_Threshold_Transmit"": 0.0
+    }
+"
+"Boost_Transmit","float","0","1","0","Specifies the boosting effect on transmission immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine. This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
+
+    {
+        ""Boost_Transmit"": 0.5
+    }
+"
+"Cost_To_Consumer","float","0","999999","10","The unit cost per vaccine (unamortized).",".. code-block:: json
+
+    {
+        ""Cost_To_Consumer"": 10.0
+    }
+"
+"Prime_Acquire","float","0","1","0","Specifies the priming effect on acquisition immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine.",".. code-block:: json
+
+    {
+        ""Prime_Acquire"": 0.1
+    }
+"
+"Prime_Mortality","float","0","1","0","Specifies the priming effect on mortality immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine.",".. code-block:: json
+
+    {
+        ""Prime_Mortality"": 0.3
+    }
+"
+"Prime_Transmit","float","0","1","0","Specifies the priming effect on transmission immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine.",".. code-block:: json
+
+    {
+        ""Prime_Transmit"": 0.2
+    }
+"

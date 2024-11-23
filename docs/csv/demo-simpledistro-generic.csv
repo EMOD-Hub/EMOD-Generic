@@ -1,0 +1,338 @@
+"AgeDistribution1","float","-3.40282e+038","3.40282e+038","0.000118","The first value in the age distribution, the meaning of which depends upon the value set in **AgeDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: AgeDistributionFlag, AgeDistribution1
+   :widths: 1, 3
+
+   0, ""Age, in days, to assign to all individuals.""
+   1, ""Minimum age, in days, for a uniform distribution.""
+   2, ""Mean age, in days, for a Gaussian distribution.""
+   3, ""Exponential decay rate.""
+   4, ""Mean age, in days, for a Poisson distribution.""
+   5, Mu (the mean of the natural log) for a log normal distribution.
+   6, ""Proportion of individuals in the second, user-defined age bin vs. the first age bin (1 day) for a bimodal distribution. Must be between 0 and 1.""
+   7, Scale parameter for a Weibull distribution.
+
+**Age_Initialization_Distribution_Type** in the configuration file must be set to DISTRIBUTION_SIMPLE (see :doc:`parameter-configuration-population` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""AgeDistributionFlag"": 0,
+            ""AgeDistribution1"": 25550,
+            ""AgeDistribution2"": 0
+        }
+    }
+"
+"AgeDistribution2","float","-3.40282e+038","3.40282e+038","0","The second value in the age distribution, the meaning of which depends upon the value set in **AgeDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: AgeDistributionFlag, AgeDistribution2
+   :widths: 1, 3
+
+   0, ""NA, set to 0.""
+   1, ""Maximum age, in days, for a uniform distribution.""
+   2, ""Standard deviation in age, in days, for a Gaussian distribution.""
+   3, ""NA, set to 0.""
+   4, ""NA, set to 0.""
+   5, Sigma (the standard deviation of the natural log) for a log normal distribution.
+   6, ""The age, in days, of individuals in the second age bin for a bimodal distribution.""
+   7, Shape parameter for a Weibull distribution.
+
+**Age_Initialization_Distribution_Type** in the configuration file must be set to DISTRIBUTION_SIMPLE (see :doc:`parameter-configuration-population` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""AgeDistributionFlag"": 0,
+            ""AgeDistribution1"": 25550,
+            ""AgeDistribution2"": 0
+        }
+    }
+"
+"AgeDistributionFlag","integer","0","7","3","The type of distribution to use for age. Possible values are:
+
+* 0 (Constant, everyone in the population is the same age.)
+* 1 (Uniform, ages are randomly drawn between a minimum and maximum value.)
+* 2 (Gaussian)
+* 3 (Exponential)
+* 4 (Poisson)
+* 5 (Log normal)
+* 6 (Bimodal, non-continuous with some individuals 1 day old and others a user-defined age.)
+* 7 (Weibull)
+
+**Age_Initialization_Distribution_Type** in the configuration file must be set to DISTRIBUTION_SIMPLE (see :doc:`parameter-configuration-population` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""AgeDistributionFlag"": 0,
+            ""AgeDistribution1"": 25550,
+            ""AgeDistribution2"": 0
+        }
+    }
+"
+"MigrationHeterogeneityDistribution1","float","-3.40282e+38","3.40282e+38","1","The first value in the migration heterogeneity distribution, the meaning of which depends upon the value set in **MigrationHeterogeneityFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: MigrationHeterogeneityDistributionFlag, MigrationHeterogeneityDistribution1
+   :widths: 1, 3
+
+   0, Migration heterogeneity value to assign.
+   1, Minimum migration heterogeneity for a uniform distribution.
+   2, Mean migration heterogeneity for a Gaussian distribution.
+   3, Exponential decay rate.
+   4, Mean migration heterogeneity for a Poisson distribution.
+   5, Mu (the mean of the natural log) for a log normal distribution.
+   6, ""Proportion of individuals in the second, user-defined migration heterogeneity bin vs. the first migration heterogeneity bin (value of 1 ) for a bimodal distribution. Must be between 0 and 1.""
+   7, Scale parameter for a Weibull distribution.
+
+**Enable_Migration_Heterogeneity** in the configuration file must be set to 1 (see :doc:`parameter-configuration-migration` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MigrationHeterogeneityDistributionFlag"": 0,
+            ""MigrationHeterogeneityDistribution1"": 1,
+            ""MigrationHeterogeneityDistribution2"": 0
+        }
+    }
+"
+"MigrationHeterogeneityDistribution2","float","-3.40282e+038","3.40282e+038","0","The second value in the distribution, the meaning of which depends upon the value set in **MigrationHeterogeneityDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: MigrationHeterogeneityDistributionFlag, MigrationHeterogeneityDistribution2
+   :widths: 1, 3
+
+   0, ""NA, set to 0.""
+   1, Maximum migration heterogeneity for a uniform distribution.
+   2, Standard deviation in migration heterogeneity for a Gaussian distribution.
+   3, ""NA, set to 0.""
+   4, ""NA, set to 0.""
+   5, Sigma (the standard deviation of the natural log) for a log normal distribution.
+   6, ""The migration heterogeniety of individuals in the second migration heterogeniety bin for a bimodal distribution.""
+   7, Shape parameter for a Weibull distribution.
+
+**Enable_Migration_Heterogeneity** in the configuration file must be set to 1 (see :doc:`parameter-configuration-migration` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MigrationHeterogeneityDistributionFlag"": 0,
+            ""MigrationHeterogeneityDistribution1"": 1,
+            ""MigrationHeterogeneityDistribution2"": 0
+        }
+    }
+"
+"MigrationHeterogeneityDistributionFlag","integer","0","7","0","The type of distribution to use for migration heterogeneity. Possible values are:
+
+* 0 (Constant, everyone in the population has the same migration value.)
+* 1 (Uniform, migration values are randomly drawn between a minimum and maximum value.)
+* 2 (Gaussian)
+* 3 (Exponential)
+* 4 (Poisson)
+* 5 (Log normal)
+* 6 (Bimodal, non-continuous with some individuals with a migration heterogeniety of 1 and others a user-defined value.)
+* 7 (Weibull)
+
+**Enable_Migration_Heterogeneity** in the configuration file must be set to 1 (see :doc:`parameter-configuration-migration` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""MigrationHeterogeneityDistributionFlag"": 0,
+            ""MigrationHeterogeneityDistribution1"": 1,
+            ""MigrationHeterogeneityDistribution2"": 0
+        }
+    }
+"
+"PrevalenceDistribution1","float","-3.40282e+038","3.40282e+038","1","The first value in the prevalence distribution, the meaning of which depends upon the value set in **PrevalenceDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: PrevalenceDistributionFlag, PrevalenceDistribution1
+   :widths: 1, 3
+
+   0, Prevalence value to assign.
+   1, Minimum prevalence for a uniform distribution.
+   2, Mean prevalence for a Gaussian distribution.
+   3, Exponential decay rate.
+   4, Mean prevalence for a Poisson distribution.
+   5, Mu (the mean of the natural log) for a log normal distribution.
+   6, ""Proportion of individuals in the second, user-defined prevalence bin vs. the first prevalence bin (value of 1) for a bimodal distribution. Must be between 0 and 1.""
+   7, Scale parameter for a Weibull distribution.
+
+",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""PrevalenceDistributionFlag"": 0,
+            ""PrevalenceDistribution1"": 0.0,
+            ""PrevalenceDistribution2"": 0.0
+        }
+    }
+"
+"PrevalenceDistribution2","float","-3.40282e+038","3.40282e+038","0","The second value in the distribution, the meaning of which depends upon the value set in **PrevalenceDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: PrevalenceDistributionFlag, PrevalenceDistribution2
+   :widths: 1, 3
+
+   0, ""NA, set to 0.""
+   1, Maximum prevalence for a uniform distribution.
+   2, Standard deviation in prevalence for a Gaussian distribution.
+   3, ""NA, set to 0.""
+   4, ""NA, set to 0.""
+   5, Sigma (the standard deviation of the natural log) for a log normal distribution.
+   6, ""The prevalence for individuals in the second prevalence bin for a bimodal distribution.""
+   7, Shape parameter for a Weibull distribution.
+
+",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""PrevalenceDistributionFlag"": 0,
+            ""PrevalenceDistribution1"": 0.0,
+            ""PrevalenceDistribution2"": 0.0
+        }
+    }
+"
+"PrevalenceDistributionFlag","integer","0","7","0","The type of distribution to use for prevalence.  Possible values are:
+
+* 0 (Constant, everyone in the population has the same prevalence.)
+* 1 (Uniform, prevalence is randomly drawn between a minimum and maximum value.)
+* 2 (Gaussian)
+* 3 (Exponential)
+* 4 (Poisson)
+* 5 (Log normal)
+* 6 (Bimodal, non-continuous with some individuals having a prevalence of 1 and others a user-defined prevalence.)
+* 7 (Weibull)
+",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""PrevalenceDistributionFlag"": 0,
+            ""PrevalenceDistribution1"": 0.0,
+            ""PrevalenceDistribution2"": 0.0
+        }
+    }
+"
+"RiskDistribution1","float","-3.40282e+038","3.40282e+038","0","The first value in the risk distribution, the meaning of which depends upon the value set in **RiskDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: RiskDistributionFlag, RiskDistribution1
+   :widths: 1, 3
+
+   0, Risk value to assign.
+   1, Minimum risk for a uniform distribution.
+   2, Mean risk for a Gaussian distribution.
+   3, Exponential decay rate.
+   4, Mean risk for a Poisson distribution.
+   5, Mu (the mean of the natural log) for a log normal distribution.
+   6, ""Proportion of individuals in the second, user-defined risk bin vs. the first risk bin (value of 1) for a bimodal distribution. Must be between 0 and 1.""
+   7, Scale parameter for a Weibull distribution.
+",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""RiskDistributionFlag"": 0,
+            ""RiskDistribution1"": 1,
+            ""RiskDistribution2"": 0
+        }
+    }
+"
+"RiskDistribution2","float","-3.40282e+038","3.40282e+038","0","The second value in the distribution, the meaning of which depends upon the value set in **RiskDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: RiskDistributionFlag, RiskDistribution2
+   :widths: 1, 3
+
+   0, ""NA, set to 0.""
+   1, Maximum risk for a uniform distribution.
+   2, Standard deviation in risk for a Gaussian distribution.
+   3, ""NA, set to 0.""
+   4, ""NA, set to 0.""
+   5, Sigma (the standard deviation of the natural log) for a log normal distribution.
+  6, ""The risk of individuals in the second risk bin for a bimodal distribution.""
+   7, Shape parameter for a Weibull distribution.
+
+",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""RiskDistributionFlag"": 0,
+            ""RiskDistribution1"": 1,
+            ""RiskDistribution2"": 0
+        }
+    }
+"
+"RiskDistributionFlag","integer","0","7","0","The type of distribution to use for risk.  Possible values are:
+
+* 0 (Constant, everyone in the population has the same risk.)
+* 1 (Uniform, risk is randomly drawn between a minimum and maximum value.)
+* 2 (Gaussian)
+* 3 (Exponential)
+* 4 (Poisson)
+* 5 (Log normal)
+* 6 (Bimodal, non-continuous with some individuals with a risk of 1 and others a user-defined risk.)
+* 7 (Weibull)
+
+**Enable_Demographics_Risk** must be set to 1 (see :doc:`parameter-configuration-population` parameters).",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""RiskDistributionFlag"": 0,
+            ""RiskDistribution1"": 1,
+            ""RiskDistribution2"": 0
+        }
+    }
+"
+"SusceptibilityDistribution1","float","-3.40282e+038","3.40282e+038","0","The first value in the susceptibility distribution, the meaning of which depends upon the value set in **SusceptibilityDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: SusceptibilityDistributionFlag, SusceptibilityDistribution1
+   :widths: 1, 3
+
+   0, Probability of full susceptibility.
+   1, Minimum probability of susceptibility for a uniform distribution.
+   6, ""Proportion of individuals in the second, user-defined susceptibility bin vs. the first susceptibility bin (value of 1) for a bimodal distribution. Must be between 0 and 1.""
+
+In the configuration file, **Enable_Immunity** must be set to 1 and **Susceptibility_Initialization_Distribution_Type** must be set to DISTRIBUTION_SIMPLE (see :doc:`parameter-configuration-immunity` parameters). ",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""SusceptibilityDistributionFlag"": 0,
+            ""SusceptibilityDistribution1"": 1,
+            ""SusceptibilityDistribution2"": 0
+        }
+    }
+"
+"SusceptibilityDistribution2","float","-3.40282e+038","3.40282e+038","0","The second value in the susceptibility distribution, the meaning of which depends upon the value set in **SusceptibilityDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
+
+.. csv-table::
+   :header: SusceptibilityDistributionFlag, SusceptibilityDistribution2
+   :widths: 1, 3
+
+   0, ""NA, set to 0.""
+   1, Maximum susceptibility for a uniform distribution.
+   6, ""The susceptibility values of individuals in the second susceptibility bin for a bimodal distribution.""
+
+In the configuration file, **Enable_Immunity** must be set to 1 and **Susceptibility_Initialization_Distribution_Type** must be set to DISTRIBUTION_SIMPLE (see :doc:`parameter-configuration-immunity` parameters). ",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""SusceptibilityDistributionFlag"": 0,
+            ""SusceptibilityDistribution1"": 1,
+            ""SusceptibilityDistribution2"": 0
+        }
+    }
+"
+"SusceptibilityDistributionFlag","integer","0","7","0","The type of distribution to use for determining an individual's probability of full susceptibility. Possible values are:
+
+* 0 (Constant, everyone in the population has the same probability of susceptibility.)
+* 1 (Uniform, the probability of susceptibility is randomly drawn between a minimum and maximum value.)
+* 6 (Bimodal, non-continuous with some individuals' probability of susceptibility at 1 and others with a user-defined probability.)
+
+In the configuration file, **Enable_Immunity** must be set to 1 and **Susceptibility_Initialization_Distribution_Type** must be set to DISTRIBUTION_SIMPLE (see :doc:`parameter-configuration-immunity` parameters). ",".. code-block:: json
+
+    {
+        ""IndividualAttributes"": {
+            ""SusceptibilityDistributionFlag"": 0,
+            ""SusceptibilityDistribution1"": 1,
+            ""SusceptibilityDistribution2"": 0
+        }
+    }
+"

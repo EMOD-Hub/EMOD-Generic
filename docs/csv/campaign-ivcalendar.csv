@@ -1,0 +1,161 @@
+"Actual_IndividualIntervention_Configs","array of JSON objects","NA","NA","NA","An array of interventions that will be distributed as specified in the calendar. This parameter selects a class for the intervention and configures the parameters specific for that intervention class.",".. code-block:: json
+
+    {
+        ""Actual_IndividualIntervention_Config"": {
+            ""class"": ""IVCalendar"",
+            ""Actual_IndividualIntervention_Configs"": [
+                {
+                    ""class"": ""BCGVaccine"",
+                    ""Cost_To_Consumer"": 10,
+                    ""Vaccine_Take"": 1,
+                    ""Vaccine_Take_Age_Decay_Rate"": 0,
+                    ""Waning_Config"": {
+                        ""Initial_Effect"": 1,
+                        ""Box_Duration"": 3650,
+                        ""Decay_Rate_Factor"": 3650,
+                        ""class"": ""WaningEffectBoxExponential""
+                    }
+                }
+            ]
+        }
+    }
+"
+"Age","float","0","45625","NA","An array of ages (in days). In **IVCalendar**, there is a list of actual interventions where the distribution is dependent on whether the individual's age matches the next date in the calendar.",".. code-block:: json
+
+    {
+        ""Calendar"": [
+            {
+                ""Age"": 60,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 120,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 180,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 510,
+                ""Probability"": 0.9
+            },
+            {
+                ""Age"": 1825,
+                ""Probability"": 0.95
+            },
+            {
+                ""Age"": 4200,
+                ""Probability"": 0.95
+            }
+        ]
+    }
+"
+"Calendar","array of JSON objects","NA","NA","NA","An array of ages, days and the probabilities of receiving the list of interventions at each age.
+Calendar has two parameters: **Probability** and **Age**.",".. code-block:: json
+
+    {
+        ""Calendar"": [
+            {
+                ""Age"": 60,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 120,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 180,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 510,
+                ""Probability"": 0.9
+            },
+            {
+                ""Age"": 1825,
+                ""Probability"": 0.95
+            },
+            {
+                ""Age"": 4200,
+                ""Probability"": 0.95
+            }
+        ]
+    }
+"
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Dont_Allow_Duplicates"": 0
+    }
+"
+"Dropout","boolean","0","1","0","If set to true (1), when an intervention distribution is missed, all subsequent interventions are also missed. If set to false (0), all calendar dates/doses are applied independently of each other.",".. code-block:: json
+
+    {
+        ""Actual_IndividualIntervention_Config"": {
+            ""class"": ""IVCalendar"",
+            ""Dont_Allow_Duplicates"": 0,
+            ""Dropout"": 0,
+            ""Calendar"": [
+                {
+                    ""Age"": 12045,
+                    ""Probability"": 1
+                }
+            ]
+        }
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""IVCalendar"",
+            ""Intervention_Name"": ""Routine measles vaccination schedule""
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"Probability","float","0","1","NA","The probability of an individual receiving the list of actual interventions at the corresponding age.",".. code-block:: json
+
+    {
+        ""Calendar"": [
+            {
+                ""Age"": 60,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 120,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 180,
+                ""Probability"": 1
+            },
+            {
+                ""Age"": 510,
+                ""Probability"": 0.9
+            },
+            {
+                ""Age"": 1825,
+                ""Probability"": 0.95
+            },
+            {
+                ""Age"": 4200,
+                ""Probability"": 0.95
+            }
+        ]
+    }
+"

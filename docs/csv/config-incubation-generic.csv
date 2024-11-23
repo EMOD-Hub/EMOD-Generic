@@ -1,0 +1,181 @@
+"Incubation_Period_Constant","float","0","3.40282E+38","-1","The incubation period, in days, to use for all individuals when **Incubation_Period_Distribution** is set to CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Incubation_Period_Constant"": 8
+    }
+"
+"Incubation_Period_Distribution","enum","NA","NA","NOT_INITIALIZED","The distribution type to use for assigning the incubation period to each individual in the population. Each individual's value is a random draw from the distribution.
+
+Possible values are:
+
+NOT_INITIALIZED
+    No distribution set. 
+CONSTANT_DISTRIBUTION
+    Use the same value for each individual. Set **Incubation_Period_Constant**.
+UNIFORM_DISTRIBUTION
+    Use a `uniform`_ distribution with a given minimum and maximum. Set **Incubation_Period_Max** and **Incubation_Period_Min**.
+GAUSSIAN_DISTRIBUTION
+    The distribution is `Gaussian`_ (or normal). Values are resampled to ensure >= 0. Set **Incubation_Period_Gaussian_Mean** and **Incubation_Period_Gaussian_Std_Dev**.
+EXPONENTIAL_DISTRIBUTION
+    The distribution is `exponential`_ with a given mean. Set **Incubation_Period_Exponential**.
+WEIBULL_DISTRIBUTION
+    Use a `Weibull`_ distribution with a given shape and scale. Set **Incubation_Period_Kappa** and **Incubation_Period_Lambda**.
+LOG_NORMAL_DISTRIBUTION
+    Use a `log-normal`_ distribution with a given mean and standard deviation of the natural log. Set **Incubation_Period_Log_Normal_Mu** and **Incubation_Period_Log_Normal_Sigma**.
+POISSON_DISTRIBUTION
+    Use a `Poisson`_ distribution with a given mean. Set **Incubation_Period_Poisson_Mean**. 
+DUAL_CONSTANT_DISTRIBUTION
+    Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Incubation_Period_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
+DUAL_EXPONENTIAL_DISTRIBUTION
+    Use two `exponential`_ distributions with given means. Set **Incubation_Period_Mean_1**, **Incubation_Period_Mean_2**, and **Incubation_Period_Proportion_1**. This distribution does not use the parameters set for DUAL_EXPONENTIAL_DISTRIBUTION.
+
+.. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
+
+.. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
+
+.. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
+
+.. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
+
+.. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
+
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
+
+",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Incubation_Period_Gaussian_Mean"": 8,
+        ""Incubation_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Incubation_Period_Exponential","float","0","3.40282E+38","-1","The mean incubation period, in days, when **Incubation_Period_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+        ""Incubation_Period_Exponential"": 4.25
+    }
+"
+"Incubation_Period_Gaussian_Mean","float","0","3.40282E+38","-1","The mean of the incubation period, in days, when **Incubation_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Incubation_Period_Gaussian_Mean"": 8,
+        ""Incubation_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Incubation_Period_Gaussian_Std_Dev","float","1.17549E-38","3.40282E+38","-1","The standard deviation of the incubation period, in days, when **Incubation_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Incubation_Period_Gaussian_Mean"": 8,
+        ""Incubation_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Incubation_Period_Kappa","float","1.17549E-38","3.40282E+38","-1","The shape value for the incubation period, in days, when **Incubation_Period_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Incubation_Period_Kappa"": 0.9,
+        ""Incubation_Period_Lambda"": 1.5
+    }
+"
+"Incubation_Period_Lambda","float","1.17549E-38","3.40282E+38","-1","The scale value for the incubation period, in days, when **Incubation_Period_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Incubation_Period_Kappa"": 0.9,
+        ""Incubation_Period_Lambda"": 1.5
+    }
+"
+"Incubation_Period_Log_Normal_Mu","float","-3.40282e+38","1.70141e+38","3.40282e+38","The mean of the natural log of the incubation period, in days, when **Incubation_Period_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Incubation_Period_Log_Normal_Mu"": 4,
+        ""Incubation_Period_Log_Normal_Sigma"": 1
+    }
+"
+"Incubation_Period_Log_Normal_Sigma","float","1.17549E-38","3.40282E+38","1","The standard deviation of the natural log of the incubation period, in days, when **Incubation_Period_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Incubation_Period_Log_Normal_Mu"": 4,
+        ""Incubation_Period_Log_Normal_Sigma"": 1
+    }
+"
+"Incubation_Period_Max","float","0","3.40282E+38","-1","The maximum incubation period, in days, when **Incubation_Period_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Incubation_Period_Min"": 2,
+        ""Incubation_Period_Max"": 7
+    }
+"
+"Incubation_Period_Mean_1","float","1.17549E-38","3.40282E+38","-1","The mean of the first exponential distribution, in days, when **Incubation_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Incubation_Period_Mean_1"": 4,
+        ""Incubation_Period_Mean_2"": 12,
+        ""Incubation_Period_Proportion_1"": 0.2
+    }
+"
+"Incubation_Period_Mean_2","float","1.17549E-38","3.40282E+38","-1","The mean of the second exponential distribution, in days, when **Incubation_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Incubation_Period_Mean_1"": 4,
+        ""Incubation_Period_Mean_2"": 12,
+        ""Incubation_Period_Proportion_1"": 0.2
+    }
+"
+"Incubation_Period_Min","float","0","3.40282E+38","-1","The minimum incubation period, in days, when **Incubation_Period_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Incubation_Period_Min"": 2,
+        ""Incubation_Period_Max"": 7
+    }
+"
+"Incubation_Period_Peak_2_Value","float","0","3.40282E+38","-1","The incubation period value, in days, to assign to the remaining individuals when **Incubation_Period_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Incubation_Period_Proportion_0"": 0.25,
+        ""Incubation_Period_Peak_2_Value"": 5
+    }
+"
+"Incubation_Period_Poisson_Mean","float","0","3.40282E+38","-1","The mean of the incubation period, in days, when **Incubation_Period_Distribution** is set to POISSON_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""POISSON_DISTRIBUTION"",
+        ""Incubation_Period_Poisson_Mean"": 5
+    }
+"
+"Incubation_Period_Proportion_0","float","0","1","-1","The proportion of individuals to assign a value of zero days incubation when **Incubation_Period_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Incubation_Period_Proportion_0"": 0.25,
+        ""Incubation_Period_Peak_2_Value"": 5
+    }
+"
+"Incubation_Period_Proportion_1","float","0","1","-1","The proportion of individuals in the first exponential distribution when **Incubation_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Incubation_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Incubation_Period_Mean_1"": 4,
+        ""Incubation_Period_Mean_2"": 12,
+        ""Incubation_Period_Proportion_1"": 0.2
+    }
+"
+"Symptomatic_Infectious_Offset","float","-3.40282e+38","3.40282e+38","3.40282e+38","Amount of time, in days, after the infectious period starts that symptoms appear. Negative values imply an individual is symptomatic before infectious. If this offset is greater than the infectious duration, the infection will not be symptomatic. For example, if **Incubation_Period_Constant** is set to 10 and **Symptomatic_Infectious_Offset** is set to 4, then an infected person would become symptomatic 14 days after transmission.",".. code-block:: json
+
+    {
+        ""Infectious_Period_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Symptomatic_Infectious_Offset"": 4,
+        ""Incubation_Period_Constant"": 10
+    }
+"

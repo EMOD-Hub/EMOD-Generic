@@ -1,0 +1,218 @@
+"Air_Migration_Filename","string","NA","NA","\_add-your-air-migration-file\_.json","The path to the input file that defines patterns of migration by airplane. **Enable_Air_Migration** must be set to true (1). See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Air_Migration"": 1,
+        ""Air_Migration_Filename"": ""../Global_1degree_air_migration.bin""
+    }
+"
+"Air_Migration_Roundtrip_Duration","float","0","10000","1","The average time spent (in days) at the destination node during a round-trip migration by airplane. **Migration_Pattern** must be set to SINGLE_ROUND_TRIPS.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Air_Migration"": 1,
+        ""Migration_Pattern"": ""SINGLE_ROUND_TRIPS"",
+        ""Air_Migration_Roundtrip_Duration"": 2
+    }
+"
+"Air_Migration_Roundtrip_Probability","float","0","1","0.8","The likelihood that an individual who flies to another node will return to the node of origin during the next migration. **Enable_Air_Migration** must be set to true (1).",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Air_Migration"": 1,
+        ""Air_Migration_Roundtrip_Probability"": 0.9
+    }
+"
+"Enable_Air_Migration","boolean","0","1","0","Controls whether or not migration by air travel will occur. **Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Air_Migration"": 1,
+        ""Air_Migration_Filename"": ""../inputs/air_migration.bin""
+    }
+"
+"Enable_Family_Migration","boolean","0","1","0","Controls whether or not all members of a household can migrate together when a MigrateFamily event occurs. All residents must be home before they can leave on the trip. **Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Enable_Migration"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Family_Migration"": 1,
+        ""Family_Migration_Filename"": ""../inputs/family_migration.bin""
+    }
+"
+"Enable_Local_Migration","boolean","0","1","0","Controls whether or not local migration (the diffusion of people in and out of nearby nodes by foot travel) occurs. **Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Local_Migration"": 1,
+        ""Local_Migration_Filename"": ""../inputs/local_migration.bin""
+    }
+"
+"Enable_Migration_Heterogeneity","boolean","0","1","1","Controls whether or not migration rate is heterogeneous among individuals within each group that has a migration rate setting. Set to true (1) to apply a migration rate distribution (see :ref:`demo-nodeattributes` demographics parameters); set to false (0) to use the same migration rate applied to all individuals in the group. For example, if you are using a migration file that sets different migration rates for each age group in a node, you could apply an Gaussian distribution around a mean value in each age group or you could assign the same value to each individual in each age group. 
+
+**Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Migration_Heterogeneity"": 1
+    }
+"
+"Enable_Regional_Migration","boolean","0","1","0","Controls whether or not there is migration by road or rail network into and out of nodes in the simulation. **Migration_Model** must be set to FIXED_RATE_MIGRATION. ",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Regional_Migration"": 1,
+        ""Regional_Migration_Filename"": ""../inputs/regional_migration.bin""
+    }
+"
+"Enable_Sea_Migration","boolean","0","1","0","Controls whether or not there is migration on ships into and out of coastal cities with seaports. **Migration_Model** must be set to FIXED_RATE_MIGRATION.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Sea_Migration"": 1,
+        ""Sea_Migration_Filename"": ""../inputs/sea_migration.bin""
+    }
+"
+"Family_Migration_Filename","string","NA","NA","\_add-your-family-migration-file\_.json","The name of the binary file to use to configure family migration. **Enable_Family_Migration** must be set to true (1). See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Family_Migration"": 1,
+        ""Family_Migration_Filename"": ""../inputs/family_migration.bin""
+    }
+"
+"Family_Migration_Roundtrip_Duration","float","0","10000","1","The number of days to complete the trip and return to the original node. **Migration_Pattern** must be set to SINGLE_ROUND_TRIPS.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Migration_Pattern"": ""SINGLE_ROUND_TRIPS"",
+        ""Enable_Family_Migration"": 1,
+        ""Family_Migration_Roundtrip_Duration"": 100
+    }
+"
+"Local_Migration_Filename","string","NA","NA","\_add-your-local-migration-file\_.json","The path of the input file which defines patterns of migration to adjacent nodes by foot travel. See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Local_Migration_Filename"": ""Local_Migration.bin""
+    }
+"
+"Local_Migration_Roundtrip_Duration","float","0","10000","1","The average time spent (in days) at the destination node during a round-trip migration by foot travel. **Migration_Pattern** must be set to SINGLE_ROUND_TRIPS.",".. code-block:: json
+
+    {
+        ""Enable_Local_Migration"": 1,
+        ""Migration_Pattern"": ""SINGLE_ROUND_TRIPS"",
+        ""Local_Migration_Roundtrip_Duration"": 1.0
+    }
+"
+"Local_Migration_Roundtrip_Probability","float","0","1","0.95","The likelihood that an individual who walks into a neighboring node will return to the node of origin during the next migration. Only used when **Enable_Local_Migration** is set to true (1).",".. code-block:: json
+
+    {
+        ""Local_Migration_Roundtrip_Probability"": 1.0
+    }
+"
+"Migration_Model","enum","NA","NA","NO_MIGRATION","Model to use for migration. Possible values are: 
+
+NO_MIGRATION
+   Migration into and out of nodes will not occur.
+FIXED_RATE_MIGRATION
+   Migration into and out of nodes will occur at a fixed rate as defined in the migration files. At the beginning of the simulation or whenever an individual has just moved, they pick their next destination and the time and type of the migration. If an individual is on an outbound leg of their journey, they will query the node's **MigrationInfo** object and, through probability, pick a new destination; if the individual is inbound, they will travel back to their previous location.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Local_Migration_Filename"": ""../inputs/local_migration.bin"",
+        ""Enable_Local_Migration"": 1
+    }
+"
+"Migration_Pattern","enum","NA","NA","RANDOM_WALK_DIFFUSION","Describes the pattern of travel used during migration. **Migration_Model** must be set to FIXED_RATE_MIGRATION.
+Possible values are: 
+
+RANDOM_WALK_DIFFUSION
+    Individuals retain no memory of where they came from; every move is to a new destination with no thought of returning home.
+SINGLE_ROUND_TRIPS
+   Individuals have a probability (determined **Local_Migration_Roundtrip_Probability**, **Air_Migration_Roundtrip_Probability**, etc.) that they will return to their original location after some duration of time. If they do not, the current location is the new departure point for migration, but their original location remains their home node.
+WAYPOINTS_HOME 
+    Individuals go on a multi-step journey along several waypoints and then retrace their steps back along their path once they have reached a maximum number of waypoints from their home node. For example, the path of travel would be 1 -> 2 -> 3 -> 4 -> 3 -> 2 -> 1 if their home is node 1. On the outbound journey, the duration at each waypoint is not set explicitly but is determined by each node's migration rate; on the return journey, one timestep is spent at each waypoint. ",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Migration_Pattern"": ""SINGLE_ROUND_TRIPS"",
+        ""Enable_Local_Migration"": 1,
+        ""Local_Migration_Roundtrip_Probability"": 0.05,
+        ""Local_Migration_Roundtrip_Duration"": 10
+    }
+"
+"Regional_Migration_Filename","string","NA","NA","\_add-your-regional-migration-file\_.json","The path of the input file which defines patterns of migration by vehicle via road or rail network. If the node is not on a road or rail network, regional migration focuses on the closest hub city in the network. The file must be in .bin format. See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Regional_Migration_Filename"": ""Regional_Migration.bin""
+    }
+"
+"Regional_Migration_Roundtrip_Duration","float","0","10000","1","The average time spent (in days) at the destination node during a round-trip migration by road network. **Migration_Pattern** must be set to SINGLE_ROUND_TRIPS.",".. code-block:: json
+
+    {
+        ""Enable_Regional_Migration"": 1,
+        ""Migration_Pattern"": ""SINGLE_ROUND_TRIPS"",
+        ""Regional_Migration_Roundtrip_Duration"": 1.0
+    }
+"
+"Regional_Migration_Roundtrip_Probability","float","0","1","0.1","The likelihood that an individual who travels by vehicle to another node will return to the node of origin during the next migration. **Migration_Pattern** must be set to SINGLE_ROUND_TRIPS.",".. code-block:: json
+
+    {
+        ""Regional_Migration_Roundtrip_Probability"": 1.0
+    }
+"
+"Roundtrip_Waypoints","integer","0","1000","10","The maximum number of points reached during a trip before steps are retraced on the return trip home. **Migration_Pattern** must be set to WAYPOINTS_HOME.",".. code-block:: json
+
+    {
+        ""Roundtrip_Waypoints"": 5
+    }
+"
+"Sea_Migration_Filename","string","NA","NA","\_add-your-sea-migration-file\_.json","The path of the input file which defines patterns of migration by ship. Only used when **Enable_Sea_Migration** is set to true (1). The file must be in .bin format. See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Sea_Migration_Filename"": ""5x5_Households_Work_Migration.bin""
+    }
+"
+"Sea_Migration_Roundtrip_Duration","float","0","10000","1","The average time spent at the destination node during a round-trip migration by ship. Used only when **Migration_Pattern** must be set to SINGLE_ROUND_TRIPS.",".. code-block:: json
+
+    {
+        ""Enable_Sea_Migration"": 1,
+        ""Migration_Pattern"": ""SINGLE_ROUND_TRIPS"",
+        ""Sea_Migration_Roundtrip_Duration"": 10000
+    }
+"
+"Sea_Migration_Roundtrip_Probability","float","0","1","0.25","The likelihood that an individual who travels by ship into a neighboring node will return to the node of origin during the next migration. Used only when **Enable_Sea_Migration** is set to true (1).",".. code-block:: json
+
+    {
+        ""Sea_Migration_Roundtrip_Probability"": 0
+    }
+"
+"x_Air_Migration","float","0","3.40E+38","1","Scale factor for the rate of migration by air, as provided by the migration file. **Enable_Air_Migration** must be set to 1.",".. code-block:: json
+
+    {
+        ""Scale_Factor_Air_Migration"": 1
+    }
+"
+"x_Family_Migration","float","0","3.40E+38","1","Scale factor for the rate of migration by families, as provided by the migration file. **Enable_Family_Migration** must be set to true (1).",".. code-block:: json
+
+    {
+        ""x_Family_Migration"": 1
+    }
+"
+"x_Local_Migration","float","0","3.40E+38","1","Scale factor for rate of migration by foot travel, as provided by the migration file. **Enable_Local_Migration** must be set to 1.",".. code-block:: json
+
+    {
+        ""x_Local_Migration"": 1
+    }
+"
+"x_Regional_Migration","float","0","3.40E+38","1","Scale factor for the rate of migration by road vehicle, as provided by the migration file. **Enable_Regional_Migration** must be set to 1.",".. code-block:: json
+
+    {
+        ""x_Regional_Migration"": 1
+    }
+"
+"x_Sea_Migration","float","0","3.40E+38","1","Scale factor for the rate of migration by sea, as provided by the migration file. **Enable_Sea_Migration** must be set to 1.",".. code-block:: json
+
+    {
+        ""x_Sea_Migration"": 1
+    }
+"

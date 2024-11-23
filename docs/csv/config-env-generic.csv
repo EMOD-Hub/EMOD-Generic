@@ -1,0 +1,53 @@
+"Base_Air_Temperature","float","-55","45","22","The air temperature, in degrees Celsius, where **Climate_Model** is set to CLIMATE_CONSTANT.",".. code-block:: json
+
+    {
+        ""Climate_Model"": ""CLIMATE_CONSTANT"",
+        ""Base_Air_Temperature"": 30
+    }
+"
+"Base_Land_Temperature","float","-55","60","26","The land temperature, in degrees Celsius, where **Climate_Model** is set to CLIMATE_CONSTANT.",".. code-block:: json
+
+    {
+        ""Climate_Model"": ""CLIMATE_CONSTANT"",
+        ""Base_Land_Temperature"": 20
+    }
+"
+"Base_Rainfall","float","0","150","10","The value of rainfall per day in millimeters when **Climate_Model** is set to CLIMATE_CONSTANT.",".. code-block:: json
+
+    {
+        ""Climate_Model"": ""CLIMATE_CONSTANT"",
+        ""Base_Rainfall"": 20
+    }
+"
+"Base_Relative_Humidity","float","0","1","0.75","The value of humidity where **Climate_Model** is set to CLIMATE_CONSTANT.",".. code-block:: json
+
+    {
+        ""Base_Relative_Humidity"": 0.1
+    }
+"
+"Default_Geography_Initial_Node_Population","integer","0","1000000","1000","When using the built-in demographics for default geography, the initial number of individuals in each node. Note that the built-in demographics feature does not represent a real geographical location and is mostly used for testing. **Enable_Demographics_Builtin** must be set to true (1).",".. code-block:: json
+
+    {
+        ""Enable_Demographics_Builtin"": 1,
+        ""Default_Geography_Initial_Node_Population"": 1000,
+        ""Default_Geography_Torus_Size"": 3
+    }
+"
+"Default_Geography_Torus_Size","integer","3","100","10","When using the built-in demographics for default geography, the square root of the number of nodes in the simulation. The simulation uses an N x N square grid of nodes with N specified by this parameter. If migration is enabled, the N x N nodes are assumed to be a torus and individuals can migrate from any node to all four adjacent nodes. 
+
+To enable migration, set **Migration_Model** to FIXED_RATE_MIGRATION. Built-in migration is a form of ""local"" migration where individuals only migrate to the adjacent nodes. You can use the **x_Local_Migration** parameter to control the rate of migration. The other migration parameters are ignored. Note that the built-in demographics feature does not represent a real geographical location and is mostly used for testing. 
+
+**Enable_Demographics_Builtin** must be set to true (1).",".. code-block:: json
+
+    {
+        ""Enable_Demographics_Builtin"": 1,
+        ""Default_Geography_Initial_Node_Population"": 1000,
+        ""Default_Geography_Torus_Size"": 3
+    }
+"
+"Node_Grid_Size","float","0.00416","90","0.004167","The spatial resolution indicating the node grid size for a simulation in degrees.",".. code-block:: json
+
+    {
+        ""Node_Grid_Size"": 0.042
+    }
+"

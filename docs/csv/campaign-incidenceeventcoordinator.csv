@@ -1,0 +1,202 @@
+"Action_List","array of JSON objects","NA","NA","NA","List (array) of JSON objects, including the values specified in the following parameters: **Threshold**, **Event_Type**, **Event_To_Broadcast**.",".. code-block:: json
+
+    {
+        ""Action_List"": [
+            {
+                ""Event_To_Broadcast"": ""Action_Event_1"",
+                ""Event_Type"": ""COORDINATOR"",
+                ""Threshold"": 20
+            },
+            {
+                ""Event_To_Broadcast"": ""Action_Event_2"",
+                ""Event_Type"": ""COORDINATOR"",
+                ""Threshold"": 30
+            }
+        ],
+        ""Threshold_Type"": ""COUNT""
+    }
+"
+"Count_Events_For_Num_Timesteps","integer","1","2.15E+00","1","If set to true (1), then the waning effect values, as specified in the **Effect_List** list of objects for the **WaningEffectCombo** classes, are added together. If set to false (0), the waning effect values are multiplied. The resulting waning effect value cannot be greater than 1.",".. code-block:: json
+
+    {
+        ""Incidence_Counter"": {
+            ""Count_Events_For_Num_Timesteps"": 5,
+            ""Trigger_Condition_List"": [
+                ""PropertyChange""
+            ],
+            ""Node_Property_Restrictions"": [
+                {
+                    ""Risk"": ""HIGH""
+                }
+            ],
+            ""Target_Demographic"": ""Everyone"",
+            ""Demographic_Coverage"": 0.6,
+            ""Property_Restrictions_Within_Node"": [
+                {
+                    ""Accessibility"": ""YES""
+                }
+            ]
+        }
+    }
+"
+"Event_To_Broadcast","string","NA","NA","NA","The action event to occur when the specified trigger value in the **Threshold** parameter is met. At least one action must be defined for **Event_To_Broadcast**. The events contained in the list can be built-in events (see :doc:`parameter-campaign-event-list` for possible events).",".. code-block:: json
+
+    {
+        ""Threshold_Type"": ""COUNT"",
+        ""Action_List"": [
+            {
+                ""Threshold"": 20,
+                ""Event_To_Broadcast"": ""Action_Event_1""
+            },
+            {
+                ""Threshold"": 30,
+                ""Event_To_Broadcast"": ""Action_Event_2""
+            }
+        ]
+    }
+"
+"Event_Type","enum","NA","NA","INDIVIDUAL","The type of event to be broadcast.  Possible values are:
+
+* COORDINATOR
+* INDIVIDUAL
+* NODE",".. code-block:: json
+
+    {
+        ""Action_List"": [
+            {
+                ""Event_To_Broadcast"": ""Action_Event_1"",
+                ""Event_Type"": ""COORDINATOR"",
+                ""Threshold"": 20
+            },
+            {
+                ""Event_To_Broadcast"": ""Action_Event_2"",
+                ""Event_Type"": ""COORDINATOR"",
+                ""Threshold"": 30
+            }
+        ],
+        ""Threshold_Type"": ""COUNT""
+    }
+"
+"Incidence_Counter","array of JSON objects","NA","NA","NA","List of JSON objects for specifying the conditions and parameters that must be met for an incidence to be counted. Some of the values are specified in the following parameters: **Count_Events_For_Num_Timesteps**, **Trigger_Condition_List**, **Node_Property_Restrictions**.
+",".. code-block:: json
+
+    {
+        ""Incidence_Counter"": {
+            ""Count_Events_For_Num_Timesteps"": 5,
+            ""Trigger_Condition_List"": [
+                ""PropertyChange""
+            ],
+            ""Node_Property_Restrictions"": [
+                {
+                    ""Risk"": ""HIGH""
+                }
+            ],
+            ""Target_Demographic"": ""Everyone"",
+            ""Demographic_Coverage"": 0.6,
+            ""Property_Restrictions_Within_Node"": [
+                {
+                    ""Accessibility"": ""YES""
+                }
+            ]
+        }
+    }
+"
+"Node_Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See :ref:`demo-properties` parameters for more information. You can specify AND and OR combinations of key:value pairs with this parameter.","The following example restricts the intervention to nodes that are urban and medium risk or rural and low risk.
+
+.. code-block:: json
+
+    {
+        ""Node_Property_Restrictions"": [
+            {
+                ""Place"": ""URBAN"",
+                ""Risk"": ""MED""
+            },
+            {
+                ""Place"": ""RURAL"",
+                ""Risk"": ""LOW""
+            }
+        ]
+    }
+"
+"Number_Repetitions","integer","-1","1000","1","The number of times an intervention is given, used with **Timesteps_Between_Repetitions**.",".. code-block:: json
+
+    {
+        ""class"": ""IncidenceEventCoordinator"",
+        ""Number_Repetitions"": 3
+    }
+"
+"Responder","array of JSON objects","NA","NA","NA","List of JSON objects for specifying the threshold type, values, and the actions to take when the specified conditions and parameters have been met, as configured in the **Incidence_Counter** parameter. Some of the values are specified in the following parameters:
+
+* **Threshold_Type**
+* **Action_List**
+* **Threshold**
+* **Event_To_Broadcast**",".. code-block:: json
+
+    {
+        ""Responder"": {
+            ""Threshold_Type"": ""COUNT"",
+            ""Action_List"": [
+                {
+                    ""Threshold"": 5,
+                    ""Event_To_Broadcast"": ""Action_Event_1""
+                },
+                {
+                    ""Threshold"": 10,
+                    ""Event_To_Broadcast"": ""Action_Event_2""
+                }
+            ]
+        }
+    }
+"
+"Threshold","float","0","3.40E+03","0","The threshold value that triggers the specified action for the **Event_To_Broadcast** parameter. When you use the **Threshold** parameter you must also use the **Event_To_Broadcast** parameter.",".. code-block:: json
+
+    {
+        ""Threshold_Type"": ""COUNT"",
+        ""Action_List"": [
+            {
+                ""Threshold"": 20,
+                ""Event_To_Broadcast"": ""Action_Event_1""
+            },
+            {
+                ""Threshold"": 30,
+                ""Event_To_Broadcast"": ""Action_Event_2""
+            }
+        ]
+    }
+"
+"Threshold_Type","enum","NA","NA","COUNT","Threshold type. Possible values are: 
+
+* COUNT
+* PERCENTAGE.",".. code-block:: json
+
+    {
+        ""Threshold_Type"": ""COUNT"",
+        ""Action_List"": [
+            {
+                ""Threshold"": 20,
+                ""Event_To_Broadcast"": ""Action_Event_1""
+            },
+            {
+                ""Threshold"": 30,
+                ""Event_To_Broadcast"": ""Action_Event_2""
+            }
+        ]
+    }
+"
+"Timesteps_Between_Repetitions","integer","-1","1000","-1","The repetition interval.",".. code-block:: json
+
+    {
+        ""class"": ""IncidenceEventCoordinator"",
+        ""Number_Repetitions"": 3,
+        ""Timesteps_Between_Repetitions"": 6
+    }
+"
+"Trigger_Condition_List","array of strings","NA","NA","NA","A list of events that will trigger an intervention.",".. code-block:: json
+
+    {
+        ""Trigger_Condition_List"": [
+            ""NewClinicalCase"",
+            ""NewSevereCase""
+        ]
+    }
+"

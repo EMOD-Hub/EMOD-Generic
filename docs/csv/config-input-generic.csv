@@ -1,0 +1,70 @@
+"Air_Migration_Filename","string","NA","NA","\_add-your-air-migration-file\_.json","The path to the input file that defines patterns of migration by airplane. **Enable_Air_Migration** must be set to true (1). See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Air_Migration"": 1,
+        ""Air_Migration_Filename"": ""../Global_1degree_air_migration.bin""
+    }
+"
+"Campaign_Filename","string","NA","NA"," ","The path to the campaign file. It is required when interventions are part of the simulation and **Enable_Interventions** is set to true (1). The file must be in .json format.",".. code-block:: json
+
+    {
+        ""Enable_Interventions"": 1,
+        ""Campaign_Filename"": ""campaign.json""
+    }
+"
+"Demographics_Filenames","array of strings","NA","NA"," ","An array of the paths to demographics files containing information on the identity and demographics of the region to simulate. The files must be in .json format. Note that this parameter is only required when **Enable_Demographics_Builtin** is set to 0.",".. code-block:: json
+
+    {
+        ""Demographics_Filenames"": [
+            ""Namawala_single_node_demographics.json"",
+            ""Namawala_demographics_overlay.json""
+        ]
+    }
+"
+"Family_Migration_Filename","string","NA","NA","\_add-your-family-migration-file\_.json","The name of the binary file to use to configure family migration. **Enable_Family_Migration** must be set to true (1). See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Migration_Model"": ""FIXED_RATE_MIGRATION"",
+        ""Enable_Family_Migration"": 1,
+        ""Family_Migration_Filename"": ""../inputs/family_migration.bin""
+    }
+"
+"Load_Balance_Filename","string","NA","NA","UNINITIALIZED STRING","The path to the input file used when a static load balancing scheme is selected. The file must be in .json format.",".. code-block:: json
+
+    {
+        ""Load_Balance_Filename"": ""GitHub_426_LoadBalance.json""
+    }
+"
+"Local_Migration_Filename","string","NA","NA","\_add-your-local-migration-file\_.json","The path of the input file which defines patterns of migration to adjacent nodes by foot travel. See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Local_Migration_Filename"": ""Local_Migration.bin""
+    }
+"
+"Regional_Migration_Filename","string","NA","NA","\_add-your-regional-migration-file\_.json","The path of the input file which defines patterns of migration by vehicle via road or rail network. If the node is not on a road or rail network, regional migration focuses on the closest hub city in the network. The file must be in .bin format. See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Regional_Migration_Filename"": ""Regional_Migration.bin""
+    }
+"
+"Sea_Migration_Filename","string","NA","NA","\_add-your-sea-migration-file\_.json","The path of the input file which defines patterns of migration by ship. Only used when **Enable_Sea_Migration** is set to true (1). The file must be in .bin format. See :doc:`software-migration` for information on migration files.",".. code-block:: json
+
+    {
+        ""Sea_Migration_Filename"": ""5x5_Households_Work_Migration.bin""
+    }
+"
+"Serialized_Population_Filenames","array of strings","NA","NA","NA","An array of filenames with serialized population data. The number of filenames must match the number of cores used for the simulation. The files must be in .dtk format. Serialized population files are created using **Serialization_Time_Steps**.",".. code-block:: json
+
+    {
+        ""Serialized_Population_Filenames"": [
+            ""state-00010.dtk""
+        ]
+    }
+"
+"Serialized_Population_Path","string","NA","NA",".","The root path for the serialized population files. Serialized population files are created using **Serialization_Time_Steps**.",".. code-block:: json
+
+    {
+        ""Serialized_Population_Path"": ""../00_Generic_Version_1_save/output""
+    }
+"

@@ -1,0 +1,131 @@
+"Demographic_Coverage","float","0","1","1","The fraction of individuals in the target demographic that will receive this intervention.",".. code-block:: json
+
+    {
+        ""Demographic_Coverage"": 1
+    }
+"
+"Intervention_Config","JSON object","NA","NA","NA","The nested JSON of the actual intervention to be distributed by this event coordinator.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""OutbreakIndividual"",
+            ""Incubation_Period_Override"": 1,
+            ""Outbreak_Source"": ""PrevalenceIncrease""
+        }
+    }
+"
+"Node_Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See :ref:`demo-properties` parameters for more information.
+
+You can specify AND and OR combinations of key:value pairs with this parameter.","The following example restricts the intervention to nodes that are urban and medium risk or rural and low risk.
+
+.. code-block:: json
+
+    {
+        ""Node_Property_Restrictions"": [
+            {
+                ""Place"": ""URBAN"",
+                ""Risk"": ""MED""
+            },
+            {
+                ""Place"": ""RURAL"",
+                ""Risk"": ""LOW""
+            }
+        ]
+    }
+"
+"Number_Repetitions","integer","-1","1000","1","The number of times an intervention is given, used with **Timesteps_Between_Repetitions**.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Intervention_Config"": {
+                ""class"": ""Outbreak"",
+                ""Num_Cases"": 1
+            },
+            ""Number_Repetitions"": 10,
+            ""Timesteps_Between_Repetitions"": 50,
+            ""class"": ""StandardInterventionDistributionEventCoordinator""
+        }
+    }
+"
+"Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+To specify AND and OR combinations of key:value pairs, use **Property_Restrictions_Within_Node**. You cannot use both of these parameters in the same event coordinator.",".. code-block:: json
+
+    {
+        ""Property_Restrictions"": [
+            ""Risk:HIGH""
+        ]
+    }
+"
+"Property_Restrictions_Within_Node","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+This parameter allows you to specify AND and OR combinations of key:value pairs. You may specify individual property restrictions using either this parameter or **Property_Restrictions**, but not both. ","The following example restricts the intervention to individuals who are urban and high risk or urban and medium risk.
+
+.. code-block:: json
+
+    {
+        ""Property_Restrictions_Within_Node"": [
+            {
+                ""Risk"": ""HIGH"",
+                ""Geographic"": ""URBAN""
+            },
+            {
+                ""Risk"": ""MEDIUM"",
+                ""Geographic"": ""URBAN""
+            }
+        ]
+    }
+"
+"Target_Age_Max","float","0","9.3228e+35","9.3228e+35","The upper end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Age_Min","float","0","3.40282e+38","0","The lower end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Demographic","enum","NA","NA","Everyone","The target demographic group. Possible values are:
+
+* Everyone
+* ExplicitAgeRanges
+* ExplicitAgeRangesAndGender
+* ExplicitGender
+* ExplicitDiseaseState",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Gender","enum","NA","NA","All","Specifies the gender restriction for the intervention. Possible values are:
+
+* Male
+* Female
+* All
+",".. code-block:: json
+
+    {
+        ""Target_Gender"": ""Male""
+    }
+"
+"Target_Residents_Only","boolean","0","1","0","When set to true (1), the intervention is only distributed to individuals that began the simulation in the node (i.e. those that claim the node as their residence).",".. code-block:: json
+
+    {
+        ""Target_Residents_Only"": 1
+    }
+"
+"Timesteps_Between_Repetitions","integer","-1","10000","-1","The repetition interval.",".. code-block:: json
+
+    {
+        ""Timesteps_Between_Repetitions"": 50
+    }
+"

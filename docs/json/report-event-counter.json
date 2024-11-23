@@ -1,0 +1,46 @@
+{
+    "Header": {
+        "Channels": 4,
+        "DTK_Version": "4148 Malaria-Ongoing (bb265ad) May 16 2019 09:39:35",
+        "DateTime": "Tue Mar 12 15:16:08 2019",
+        "Report_Type": "InsetChart",
+        "Report_Version": "3.2",
+        "Simulation_Timestep": 1,
+        "Start_Time": 0,
+        "Timesteps": 3
+    },
+    "Channels": {
+        "Births": {
+            "Data": [
+                0,
+                1,
+                1
+            ],
+            "Units": ""
+        },
+        "EveryUpdate": {
+            "Data": [
+                1000,
+                1001,
+                1002
+            ],
+            "Units": ""
+        },
+        "NewInfectionEvent": {
+            "Data": [
+                110,
+                0,
+                2
+            ],
+            "Units": ""
+        },
+        "NonDiseaseDeaths": {
+            "Data": [
+                0,
+                0,
+                0
+            ],
+            "Units": ""
+        }
+    }
+}

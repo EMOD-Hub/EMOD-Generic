@@ -1,0 +1,30 @@
+{
+    "Use_Defaults": 1,
+    "Campaign_Name": "Generic Seattle Regression Campaign",
+    "Events": [{
+        "class": "CampaignEvent",
+        "Nodeset_Config": {
+            "class": "NodeSetAll"
+        },
+        "Start_Day": 20,
+        "Event_Coordinator_Config": {
+            "class": "StandardInterventionDistributionEventCoordinator",
+            "Target_Demographic": "Everyone",
+            "Demographic_Coverage": 1.0,
+            "Intervention_Config": {
+                "class": "SimpleBoosterVaccine",
+                "Cost_To_Consumer": 10.0,
+                "Vaccine_Take": 1,
+                "Vaccine_Type": "MortalityBlocking",
+                "Prime_Effect": 0.25,
+                "Boost_Effect": 0.45,
+                "Boost_Threshold": 0.0,
+                "Waning_Config": {
+                    "Box_Duration": 10,
+                    "Initial_Effect": 1,
+                    "class": "WaningEffectBox"
+                }
+            }
+        }
+    }]
+}

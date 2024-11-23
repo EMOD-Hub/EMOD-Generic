@@ -1,0 +1,160 @@
+"Boost_Effect","float","0","1","1","Specifies the boosting effect on [acquisition/transmission/mortality] immunity for previously exposed individuals (either natural or vaccine-derived). This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""Cost_To_Consumer"": 10.0,
+            ""Vaccine_Take"": 1,
+            ""Vaccine_Type"": ""MortalityBlocking"",
+            ""Prime_Effect"": 0.25,
+            ""Boost_Effect"": 0.45,
+            ""Boost_Threshold"": 0.0,
+            ""Waning_Config"": {
+                ""Box_Duration"": 10,
+                ""Initial_Effect"": 1,
+                ""class"": ""WaningEffectBox""
+            },
+            ""class"": ""SimpleBoosterVaccine""
+        }
+    }
+"
+"Boost_Threshold","float","0","1","0","Specifies how much immunity is required before the vaccine changes from a priming effect to a boosting effect.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""Cost_To_Consumer"": 10.0,
+            ""Vaccine_Take"": 1,
+            ""Vaccine_Type"": ""MortalityBlocking"",
+            ""Prime_Effect"": 0.25,
+            ""Boost_Effect"": 0.45,
+            ""Boost_Threshold"": 0.0,
+            ""Waning_Config"": {
+                ""Box_Duration"": 10,
+                ""Initial_Effect"": 1,
+                ""class"": ""WaningEffectBox""
+            },
+            ""class"": ""SimpleBoosterVaccine""
+        }
+    }
+"
+"Cost_To_Consumer","float","0","999999","10","The unit cost per vaccine (unamortized).",".. code-block:: json
+
+    {
+        ""Cost_To_Consumer"": 10.0
+    }
+"
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Dont_Allow_Duplicates"": 0
+    }
+"
+"Efficacy_Is_Multiplicative","boolean","0","1","1","The overall vaccine efficacy when individuals receive more than one vaccine. When set to true (1), the vaccine efficacies are multiplied together; when set to false (0), the efficacies are additive.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""SimpleVaccine"",
+            ""Cost_To_Consumer"": 10,
+            ""Vaccine_Type"": ""AcquisitionBlocking"",
+            ""Vaccine_Take"": 1,
+            ""Efficacy_Is_Multiplicative"": 0,
+            ""Waning_Config"": {
+                ""class"": ""WaningEffectConstant"",
+                ""Initial_Effect"": 0.3
+            }
+        }
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""SimpleBoosterVaccine"",
+            ""Intervention_Name"": ""Tetanus booster shot""
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"Prime_Effect","float","0","1","1","Specifies the priming effect on [acquisition/transmission/mortality] immunity for naive individuals (without natural or vaccine-derived immunity).",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""Cost_To_Consumer"": 10.0,
+            ""Vaccine_Take"": 1,
+            ""Vaccine_Type"": ""MortalityBlocking"",
+            ""Prime_Effect"": 0.25,
+            ""Boost_Effect"": 0.45,
+            ""Boost_Threshold"": 0.0,
+            ""Waning_Config"": {
+                ""Box_Duration"": 10,
+                ""Initial_Effect"": 1,
+                ""class"": ""WaningEffectBox""
+            },
+            ""class"": ""SimpleBoosterVaccine""
+        }
+    }
+"
+"Vaccine_Take","float","0","1","1","The rate at which delivered vaccines will successfully stimulate an immune response and achieve the desired efficacy. For example, if it is set to 0.9, there will be a 90 percent chance that the vaccine will start with the specified efficacy, and a 10 percent chance that it will have no efficacy at all.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""SimpleVaccine"",
+            ""Cost_To_Consumer"": 10,
+            ""Vaccine_Type"": ""AcquisitionBlocking"",
+            ""Vaccine_Take"": 1,
+            ""Efficacy_Is_Multiplicative"": 0,
+            ""Waning_Config"": {
+                ""class"": ""WaningEffectConstant"",
+                ""Initial_Effect"": 0.3
+            }
+        }
+    }
+"
+"Vaccine_Type","enum","NA","NA","Generic","The type of vaccine to distribute in a vaccine intervention. 
+Possible values are:
+
+Generic
+    The vaccine can reduce transmission, acquisition, and mortality.
+TransmissionBlocking
+    The vaccine will reduce pathogen transmission.
+AcquisitionBlocking
+    The vaccine will reduce the acquisition of the pathogen by reducing the force of infection experienced by the vaccinated individual.
+MortalityBlocking
+    The vaccine reduces the disease-mortality rate of a vaccinated individual.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""SimpleVaccine"",
+            ""Cost_To_Consumer"": 10,
+            ""Vaccine_Type"": ""AcquisitionBlocking"",
+            ""Vaccine_Take"": 1,
+            ""Efficacy_Is_Multiplicative"": 0,
+            ""Waning_Config"": {
+                ""class"": ""WaningEffectConstant"",
+                ""Initial_Effect"": 0.3
+            }
+        }
+    }
+"
+"Waning_Config","JSON object","NA","NA","NA","The configuration of how the intervention efficacy wanes over time. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
+
+    {
+        ""Waning_Config"": {
+            ""Box_Duration"": 3650,
+            ""Initial_Effect"": 1,
+            ""class"": ""WaningEffectBox""
+        }
+    }
+"

@@ -1,0 +1,23 @@
+"IndividualAttributes","JSON object","NA","NA","NA","The structure that contains parameters that add or modify the distribution of attributes across individuals in a simulation. For example, the age or immunity distribution. An initial value for an individual is a randomly selected value from a distribution. For example, if you use a uniform distribution to initialize age, the initial ages of individuals in the simulation will be evenly distributed between some minimum and maximum value. These distributions can be set using :ref:`demo-simpledistro` or :ref:`demo-complexdistro`.",".. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""IndividualAttributes"": {
+                ""AgeDistributionFlag"": 0,
+                ""AgeDistribution1"": 25550,
+                ""AgeDistribution2"": 0
+            }
+        }
+    }
+"
+"PercentageChildren","float","0","1","NA","The percentage of individuals in the node that are children. Set **Minimum_Adult_Age_Years** to determine the age at which individuals transition to adults. ",".. code-block:: json
+
+    {
+        ""Nodes"": {
+            ""NodeID"": 45,
+            ""IndividualAttributes"": {
+                ""PercentageChildren"": 0.7
+            }
+        }
+    }
+"

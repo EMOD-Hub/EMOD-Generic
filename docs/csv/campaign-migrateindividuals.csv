@@ -1,0 +1,388 @@
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Dont_Allow_Duplicates"": 0
+    }
+"
+"Duration_At_Node_Constant","float","0","3.40282E+38","-1","The duration at node to use for all individuals, in days, when **Duration_At_Node_Distribution** is set to CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Duration_At_Node_Constant"": 8
+    }
+"
+"Duration_At_Node_Distribution","enum","NA","NA","NOT_INITIALIZED","The distribution type to use for assigning the duration of time an individual or family spends at a destination node after intervention-based migration. Each assigned value is a random draw from the distribution.
+
+Possible values are:
+
+NOT_INITIALIZED
+    No distribution set. 
+CONSTANT_DISTRIBUTION
+    Use the same value for each individual. Set **Duration_At_Node_Constant**.
+UNIFORM_DISTRIBUTION
+    Use a `uniform`_ distribution with a given minimum and maximum. Set **Duration_At_Node_Max** and **Duration_At_Node_Min**.
+GAUSSIAN_DISTRIBUTION
+    The distribution is `Gaussian`_ (or normal). Values are resampled to ensure >= 0. Set **Duration_At_Node_Gaussian_Mean** and **Duration_At_Node_Gaussian_Std_Dev**.
+EXPONENTIAL_DISTRIBUTION
+    The distribution is `exponential`_ with a given mean. Set **Duration_At_Node_Exponential**.
+WEIBULL_DISTRIBUTION
+    Use a `Weibull`_ distribution with a given shape and scale. Set **Duration_At_Node_Kappa** and **Duration_At_Node_Lambda**.
+LOG_NORMAL_DISTRIBUTION
+    Use a `log-normal`_ distribution with a given mean and standard deviation of the natural log. Set **Duration_At_Node_Log_Normal_Mu** and **Duration_At_Node_Log_Normal_Sigma**.
+POISSON_DISTRIBUTION
+    Use a `Poisson`_ distribution with a given mean. Set **Duration_At_Node_Poisson_Mean**. 
+DUAL_CONSTANT_DISTRIBUTION
+    Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Duration_At_Node_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
+DUAL_EXPONENTIAL_DISTRIBUTION
+    Use two `exponential`_ distributions with given means. Set **Duration_At_Node_Mean_1**, **Duration_At_Node_Mean_2**, and **Duration_At_Node_Proportion_1**. This distribution does not use the parameters set for EXPONENTIAL_DISTRIBUTION.
+
+
+.. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
+
+.. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
+
+.. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
+
+.. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
+
+.. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
+
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
+
+",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Duration_At_Node_Kappa"": 0.9,
+        ""Duration_At_Node_Lambda"": 1.5
+    }
+"
+"Duration_At_Node_Exponential","float","0","3.40282E+38","-1","The mean of the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+        ""Duration_At_Node_Exponential"": 4.25
+    }
+"
+"Duration_At_Node_Gaussian_Mean","float","0","3.40282E+38","-1","The mean of the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Duration_At_Node_Gaussian_Mean"": 8,
+        ""Duration_At_Node_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Duration_At_Node_Gaussian_Std_Dev","float","1.17549E-38","3.40282E+38","-1","The standard deviation of the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Duration_At_Node_Gaussian_Mean"": 8,
+        ""Duration_At_Node_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Duration_At_Node_Kappa","float","1.17549E-38","3.40282E+38","-1","The shape value for the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Duration_At_Node_Kappa"": 0.9,
+        ""Duration_At_Node_Lambda"": 1.5
+    }
+"
+"Duration_At_Node_Lambda","float","1.17549E-38","3.40282E+38","-1","The scale value for the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Duration_At_Node_Kappa"": 0.9,
+        ""Duration_At_Node_Lambda"": 1.5
+    }
+"
+"Duration_At_Node_Log_Normal_Mu","float","-3.40282e+38","1.70141e+38","3.40282E+38","The mean of the natural log of the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Duration_At_Node_Log_Normal_Mu"": 9,
+        ""Duration_At_Node_Log_Normal_Sigma"": 2
+    }
+"
+"Duration_At_Node_Log_Normal_Sigma","float","-3.40282e+38","1.70141e+38","3.40282E+38","The standard deviation of the natural log of the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Duration_At_Node_Log_Normal_Mu"": 9,
+        ""Duration_At_Node_Log_Normal_Sigma"": 2
+    }
+"
+"Duration_At_Node_Max","float","0","3.40282E+38","-1","The maximum duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Duration_At_Node_Min"": 2,
+        ""Duration_At_Node_Max"": 7
+    }
+"
+"Duration_At_Node_Mean_1","float","1.17549E-38","3.40282E+38","-1","The mean of the first exponential distribution, in days, when **Duration_At_Node_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Duration_At_Node_Mean_1"": 4,
+        ""Duration_At_Node_Mean_2"": 12,
+        ""Duration_At_Node_Proportion_1"": 0.2
+    }
+"
+"Duration_At_Node_Mean_2","float","1.17549E-38","3.40282E+38","-1","The mean of the second exponential distribution, in days, when **Duration_At_Node_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Duration_At_Node_Mean_1"": 4,
+        ""Duration_At_Node_Mean_2"": 12,
+        ""Duration_At_Node_Proportion_1"": 0.2
+    }
+"
+"Duration_At_Node_Min","float","0","3.40282E+38","-1","The minimum duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Duration_At_Node_Min"": 2,
+        ""Duration_At_Node_Max"": 7
+    }
+"
+"Duration_At_Node_Peak_2_Value","float","0","3.40282E+38","-1","The duration at node value, in days, to assign to the remaining individuals when **Duration_At_Node_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Duration_At_Node_Proportion_0"": 0.25,
+        ""Duration_At_Node_Peak_2_Value"": 5
+    }
+"
+"Duration_At_Node_Poisson_Mean","float","0","3.40282E+38","-1","The mean of the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to POISSON_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""POISSON_DISTRIBUTION"",
+        ""Duration_At_Node_Poisson_Mean"": 5
+    }
+"
+"Duration_At_Node_Proportion_0","float","0","1","-1","The proportion of individuals to assign a value of zero days at node when **Duration_At_Node_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Duration_At_Node_Proportion_0"": 0.25,
+        ""Duration_At_Node_Peak_2_Value"": 5
+    }
+"
+"Duration_At_Node_Proportion_1","float","0","1","-1","The proportion of individuals in the first exponential distribution  when **Duration_At_Node_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_At_Node_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Duration_At_Node_Mean_1"": 4,
+        ""Duration_At_Node_Mean_2"": 12,
+        ""Duration_At_Node_Proportion_1"": 0.2
+    }
+"
+"Duration_Before_Leaving_Constant","float","0","3.40282E+38","-1","The duration before leaving to use for every individual, in days, when **Duration_Before_Leaving_Distribution** is set to CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Constant"": 8
+    }
+"
+"Duration_Before_Leaving_Distribution","enum","NA","NA","NOT_INITIALIZED","The distribution type to use for assigning the duration of time an individual or family waits before migrating to the destination node after intervention-based migration. Each assigned value is a random draw from the distribution.
+
+Possible values are:
+
+NOT_INITIALIZED
+    No distribution set. 
+CONSTANT_DISTRIBUTION
+    Use the same value for each individual. Set **Duration_Before_Leaving_Constant**.
+UNIFORM_DISTRIBUTION
+    Use a `uniform`_ distribution with a given minimum and maximum. Set **Duration_Before_Leaving_Max** and **Duration_Before_Leaving_Min**.
+GAUSSIAN_DISTRIBUTION
+    The distribution is `Gaussian`_ (or normal). Values are resampled to ensure >= 0. Set **Duration_Before_Leaving_Gaussian_Mean** and **Duration_Before_Leaving_Gaussian_Std_Dev**.
+EXPONENTIAL_DISTRIBUTION
+    The distribution is `exponential`_ with a given mean. Set **Duration_Before_Leaving_Exponential**.
+WEIBULL_DISTRIBUTION
+    Use a `Weibull`_ distribution with a given shape and scale. Set **Duration_Before_Leaving_Kappa** and **Duration_Before_Leaving_Lambda**.
+LOG_NORMAL_DISTRIBUTION
+    Use a `log-normal`_ distribution with a given mean and standard deviation of the natural log. Set **Duration_Before_Leaving_Log_Normal_Mu** and **Duration_Before_Leaving_Log_Normal_Sigma**.
+POISSON_DISTRIBUTION
+    Use a `Poisson`_ distribution with a given mean. Set **Duration_Before_Leaving_Poisson_Mean**. 
+DUAL_CONSTANT_DISTRIBUTION
+    Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Duration_Before_Leaving_Proportion_0** and **Peak_2_Value**. This distribution does use the parameters set for CONSTANT_DISTRIBUTION.
+DUAL_EXPONENTIAL_DISTRIBUTION
+    Use two `exponential`_ distributions with given means. Set **Duration_Before_Leaving_Mean_1**, **Duration_Before_Leaving_Mean_2**, and **Duration_Before_Leaving_Proportion_1**. This distribution does not use the parameters set for EXPONENTIAL_DISTRIBUTION.
+
+.. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
+
+.. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
+
+.. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
+
+.. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
+
+.. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
+
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
+
+",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Min"": 2,
+        ""Duration_Before_Leaving_Max"": 7
+    }
+"
+"Duration_Before_Leaving_Exponential","float","0","3.40282E+38","-1","The mean of the duration before leaving node, in days, when **Duration_Before_Leaving_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Exponential"": 4.25
+    }
+"
+"Duration_Before_Leaving_Gaussian_Mean","float","0","3.40282E+38","-1","The mean of the duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Gaussian_Mean"": 8,
+        ""Duration_Before_Leaving_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Duration_Before_Leaving_Gaussian_Std_Dev","float","1.17549E-38","3.40282E+38","1","The standard deviation of the duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Gaussian_Mean"": 8,
+        ""Duration_Before_Leaving_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Duration_Before_Leaving_Kappa","float","1.17549E-38","3.40282E+38","-1","The shape value for the duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Kappa"": 0.9,
+        ""Duration_Before_Leaving_Lambda"": 1.5
+    }
+"
+"Duration_Before_Leaving_Lambda","float","1.17549E-38","3.40282E+38","-1","The scale value for the duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Kappa"": 0.9,
+        ""Duration_Before_Leaving_Lambda"": 1.5
+    }
+"
+"Duration_Before_Leaving_Log_Normal_Mu","float","-3.40282e+38","1.70141e+38","3.40282E+38","The mean of the natural log of the duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Log_Normal_Mu"": 9,
+        ""Duration_Before_Leaving_Log_Normal_Sigma"": 2
+    }
+"
+"Duration_Before_Leaving_Log_Normal_Sigma","float","-3.40282e+38","1.70141e+38","3.40282E+38","The standard deviation of the natural log of the duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Log_Normal_Mu"": 9,
+        ""Duration_Before_Leaving_Log_Normal_Sigma"": 2
+    }
+"
+"Duration_Before_Leaving_Max","float","0","3.40282E+38","-1","The maximum duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Min"": 2,
+        ""Duration_Before_Leaving_Max"": 7
+    }
+"
+"Duration_Before_Leaving_Mean_1","float","1.17549E-38","3.40282E+38","-1","The mean of the first exponential distribution, in days, when **Duration_Before_Leaving_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Mean_1"": 4,
+        ""Duration_Before_Leaving_Mean_2"": 12,
+        ""Duration_Before_Leaving_Proportion_1"": 0.2
+    }
+"
+"Duration_Before_Leaving_Mean_2","float","1.17549E-38","3.40282E+38","-1","The mean of the second exponential distribution, in days, when **Duration_Before_Leaving_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Mean_1"": 4,
+        ""Duration_Before_Leaving_Mean_2"": 12,
+        ""Duration_Before_Leaving_Proportion_1"": 0.2
+    }
+"
+"Duration_Before_Leaving_Min","float","0","3.40282E+38","-1","The minimum duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Min"": 2,
+        ""Duration_Before_Leaving_Max"": 7
+    }
+"
+"Duration_Before_Leaving_Peak_2_Value","float","0","3.40282E+38","-1","The duration before leaving the node, in days, to assign to the remaining individuals when **Duration_Before_Leaving_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Proportion_0"": 0.25,
+        ""Duration_Before_Leaving_Peak_2_Value"": 5
+    }
+"
+"Duration_Before_Leaving_Poisson_Mean","float","0","3.40282E+38","-1","The mean of the duration before leaving the node, in days, when **Duration_Before_Leaving** is set to POISSON_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""POISSON_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Poisson_Mean"": 5
+    }
+"
+"Duration_Before_Leaving_Proportion_0","float","0","1","-1","The proportion of individuals to assign a value of zero days before leaving the node when **Duration_Before_Leaving_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Proportion_0"": 0.25,
+        ""Duration_Before_Leaving_Peak_2_Value"": 5
+    }
+"
+"Duration_Before_Leaving_Proportion_1","float","0","1","-1","The proportion of individuals in the first exponential distribution when **Duration_Before_Leaving_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Duration_Before_Leaving_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Duration_Before_Leaving_Mean_1"": 4,
+        ""Duration_Before_Leaving_Mean_2"": 12,
+        ""Duration_Before_Leaving_Proportion_1"": 0.2
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""MigrateIndividuals"",
+            ""Intervention_Name"": ""Seasonal migration for agriculture""
+        }
+    }
+"
+"Is_Moving","boolean","0","1","0","Set to true (1) to indicate the individual is permanently moving to a new home node for intervention-based migration.",".. code-block:: json
+
+    {
+        ""Is_Moving"": 1
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"NodeID_To_Migrate_To","integer","0","4294970000.0","0","The destination node ID for intervention-based migration.",".. code-block:: json
+
+    {
+        ""NodeID_To_Migrate_To"": 26
+    }
+"

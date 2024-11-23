@@ -1,0 +1,30 @@
+InfectivityReservoirEndTime,float,InfectivityReservoirStartTime,3.40E+38,3.40E+38,"The ending of the exogeneous reservoir of infectivity. This parameter is conditional upon the configuration parameter, **Enable_Infectivity_Reservoir**, being enabled (set to 1).",".. code-block:: json
+
+    {
+        ""NodeAttributes"": {
+            ""InfectivityReservoirSize"": 0.1,
+            ""InfectivityReservoirStartTime"": 90,
+            ""InfectivityReservoirEndTime"": 365
+        }
+    }
+"
+InfectivityReservoirSize,float,0,3.40E+38,0,"The quantity-per-timestep added to the total infectivity present in a node; it is equivalent to the expected number of additional infections in a node, per timestep. For example, if timestep is equal to a day, then setting **InfectivityReservoirSize** to a value of 0.1 would introduce an infection every 10 days from the exogenous reservoir. This parameter is conditional upon the configuration parameter, **Enable_Infectivity_Reservoir**, being enabled (set to 1).",".. code-block:: json
+
+    {
+        ""NodeAttributes"": {
+            ""InfectivityReservoirSize"": 0.1,
+            ""InfectivityReservoirStartTime"": 90,
+            ""InfectivityReservoirEndTime"": 365
+        }
+    }
+"
+InfectivityReservoirStartTime,float,0,3.40E+38,0,"The beginning of the exogeneous reservoir of infectivity. This parameter is conditional upon the configuration parameter, **Enable_Infectivity_Reservoir**, being enabled (set to 1).",".. code-block:: json
+
+    {
+        ""NodeAttributes"": {
+            ""InfectivityReservoirSize"": 0.1,
+            ""InfectivityReservoirStartTime"": 90,
+            ""InfectivityReservoirEndTime"": 365
+        }
+    }
+"

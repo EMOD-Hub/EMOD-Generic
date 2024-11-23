@@ -1,0 +1,99 @@
+"Durability_Map","JSON object","NA","NA","NA","The time, in days, since the intervention was distributed and a multiplier for the **Initial_Effect**.",".. code-block:: json
+
+    {
+        ""Durability_Map"": {
+            ""Times"": [
+                0.0,
+                20.0,
+                21.0,
+                30.0,
+                31.0,
+                365.0
+            ],
+            ""Values"": [
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0
+            ]
+        }
+    }
+"
+"Expire_At_Durability_Map_End","boolean","0","1","0","Set to 1 to let the intervention expire when the end of the map is reached.",".. code-block:: json
+
+    {
+        ""Expire_At_Durability_Map_End"": 1
+    }
+"
+"Initial_Effect","float","0","1","1","The multiplier used to define the magnitude of the shape of the curve, as specified when using the parameters with the **WaningEffectMapLinear** class.",".. code-block:: json
+
+    {
+        ""Waning_Config"": {
+            ""Durability_Map"": {
+                ""Times"": [
+                    0,
+                    30,
+                    60,
+                    90,
+                    120
+                ],
+                ""Values"": [
+                    0.9,
+                    0.3,
+                    0.9,
+                    0.6,
+                    1
+                ]
+            },
+            ""Expire_At_Durability_Map_End"": 0,
+            ""Initial_Effect"": 1,
+            ""class"": ""WaningEffectMapLinear""
+        }
+    }
+"
+"Reference_Timer","integer","0","2147480000.0","0","The timestamp at which linear-map should be anchored.",".. code-block:: json
+
+    {
+        ""Reference_Timer"": 1
+    }
+"
+"Times","array of floats","0","999999","NA","An array of days.",".. code-block:: json
+
+    {
+        ""Durability_Map"": {
+            ""Times"": [
+                0,
+                385,
+                390,
+                10000
+            ],
+            ""Values"": [
+                0,
+                0.0,
+                0.5,
+                0.5
+            ]
+        }
+    }
+"
+"Values","array of floats","0","3.40282e+38","NA","An array of values to match the defined **Times**.",".. code-block:: json
+
+    {
+        ""Times"": [
+            1998,
+            2000,
+            2003,
+            2006,
+            2009
+        ],
+        ""Values"": [
+            0,
+            0.26,
+            0.08,
+            0.14,
+            0.54
+        ]
+    }
+"

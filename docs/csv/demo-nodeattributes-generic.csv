@@ -1,0 +1,144 @@
+"Airport","boolean","0","1","0","Indicates whether or not the node has an airport for air migration from (not to) the node. If set to 1, **Enable_Air_Migration** in the configuration file must be set to 1 or migration will not occur (see :doc:`parameter-configuration-migration` parameters). Primarily used to turn off migration in a particular node.",".. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""NodeAttributes"": {
+                ""Airport"": 0
+            }
+        }
+    }
+"
+"Altitude","float","-3.40282e+038","3.40282e+038","0","The altitude, in meters, for the node. Required, but only used when **Climate_Model** is set to CLIMATE_KOPPEN. ",".. code-block:: json
+
+    {
+        ""Defaults"": {
+            ""NodeAttributes"": {
+                ""Altitude"": 250
+            }
+        }
+    }
+"
+"BirthRate","double","0","1","0.00008715","The birth rate, in births per person per day. In the configuration file, **Enable_Birth** must be set to 1 and **Birth_Rate_Dependence** will affect how this rate is used (see :doc:`parameter-configuration-population` parameters).",".. code-block:: json
+
+    {
+        ""Nodes"": [
+            {
+                ""NodeID"": 21,
+                ""NodeAttributes"": {
+                    ""BirthRate"": 0.0001
+                }
+            }
+        ]
+    }
+"
+"InfectivityReservoirEndTime","float","InfectivityReservoirStartTime","3.40282e+038","3.40282e+038","The ending of the exogeneous reservoir of infectivity. This parameter is conditional upon the configuration parameter, **Enable_Infectivity_Reservoir**, being enabled (set to 1).",".. code-block:: json
+
+    {
+        ""NodeAttributes"": {
+            ""InfectivityReservoirSize"": 0.1,
+            ""InfectivityReservoirStartTime"": 90,
+            ""InfectivityReservoirEndTime"": 365
+        }
+    }
+"
+"InfectivityReservoirSize","float","0","3.40282e+038","0","The quantity-per-timestep added to the total infectivity present in a node; it is equivalent to the expected number of additional infections in a node, per timestep. For example, if timestep is equal to a day, then setting **InfectivityReservoirSize** to a value of 0.1 would introduce an infection every 10 days from the exogenous reservoir. This parameter is conditional upon the configuration parameter, **Enable_Infectivity_Reservoir**, being enabled (set to 1).",".. code-block:: json
+
+    {
+        ""NodeAttributes"": {
+            ""InfectivityReservoirSize"": 0.1,
+            ""InfectivityReservoirStartTime"": 90,
+            ""InfectivityReservoirEndTime"": 365
+        }
+    }
+"
+"InfectivityReservoirStartTime","float","0","3.40282e+038","0","The beginning of the exogeneous reservoir of infectivity. This parameter is conditional upon the configuration parameter, **Enable_Infectivity_Reservoir**, being enabled (set to 1).",".. code-block:: json
+
+    {
+        ""NodeAttributes"": {
+            ""InfectivityReservoirSize"": 0.1,
+            ""InfectivityReservoirStartTime"": 90,
+            ""InfectivityReservoirEndTime"": 365
+        }
+    }
+"
+"InitialPopulation","integer","0","2147480000","1000","The number of people that will be populated into the node at the beginning of the simulation. You can scale this number using **Base_Population_Scale_Factor** in the configuration file (see :doc:`parameter-configuration-population` parameters).",".. code-block:: json
+
+    {
+        ""Nodes"": [
+            {
+                ""NodeID"": 25,
+                ""NodeAttributes"": {
+                    ""InitialPopulation"": 1000
+                }
+            }
+        ]
+    }
+"
+"Latitude","float","3.40282e+038","-3.40282e+038","-1","Latitude of the node in decimal degrees. This can be used for several things, including determining infectiousness by latitude and defining the size of grid cells.",".. code-block:: json
+
+    {
+        ""Nodes"": [
+            {
+                ""NodeID"": 25,
+                ""NodeAttributes"": {
+                    ""Latitude"": 12.4,
+                    ""Longitude"": 9.35
+                }
+            }
+        ]
+    }
+"
+"Longitude","float","-3.40282e+38","3.40282e+38","-1","Longitude of the node in decimal degrees. This can be used for several things, including defining the size of grid cells.",".. code-block:: json
+
+    {
+        ""Nodes"": [
+            {
+                ""NodeID"": 254,
+                ""NodeAttributes"": {
+                    ""Latitude"": 25.4,
+                    ""Longitude"": 9.1
+                }
+            }
+        ]
+    }
+"
+"NodeAttributes","JSON object","NA","NA","NA","The structure that contains parameters that add or modify information regarding the location, migration, habitat, and population of a simulation. Some **NodeAttributes** depend on values set in the configuration parameters.",".. code-block:: json
+
+    {
+        ""Nodes"": [
+            {
+                ""NodeID"": 1487548419,
+                ""NodeAttributes"": {
+                    ""Latitude"": 12.4208,
+                    ""Longitude"": 9.15417
+                }
+            }
+        ]
+    }
+"
+"Region","boolean","0","1","0","Indicates whether or not the node has a road network for regional migration from (not to) the node. If set to 1, **Enable_Regional_Migration** in the configuration file must be set to 1 or migration will not occur (see :doc:`parameter-configuration-migration` parameters). Primarily used to turn off migration in particular nodes. ",".. code-block:: json
+
+    {
+        ""Nodes"": [
+            {
+                ""NodeID"": 12,
+                ""NodeAttributes"": {
+                    ""Region"": 1
+                }
+            }
+        ]
+    }
+"
+"Seaport","boolean","0","1","0","Indicates whether or not the node is connected by sea migration from (not to) the node. If set to 1, **Enable_Sea_Migration** in the configuration file must be set to 1 or migration will not occur (see :doc:`parameter-configuration-migration` parameters). Primarily used to turn off migration in particular nodes.",".. code-block:: json
+
+    {
+        ""Nodes"": [
+            {
+                ""NodeID"": 43,
+                ""NodeAttributes"": {
+                    ""Seaport"": 1
+                }
+            }
+        ]
+    }
+"

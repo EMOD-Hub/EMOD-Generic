@@ -1,0 +1,90 @@
+"Durability_Map","JSON object","NA","NA","NA","The time, in days, since the intervention was distributed and a multiplier for the **Initial_Effect**.",".. code-block:: json
+
+    {
+        ""Durability_Map"": {
+            ""Times"": [
+                0.0,
+                20.0,
+                21.0,
+                30.0,
+                31.0,
+                365.0
+            ],
+            ""Values"": [
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0
+            ]
+        }
+    }
+"
+"Initial_Effect","float","0","1","1","The multiplier used to define the magnitude of the shape of the curve, as specified when using the parameters with the **WaningEffectMapLinearSeasonal** class.",".. code-block:: json
+
+    {
+        ""class"": ""WaningEffectMapLinearSeasonal"",
+        ""Initial_Effect"": 1,
+        ""Durability_Map"": {
+            ""Times"": [
+                0,
+                20,
+                21,
+                30,
+                31,
+                365
+            ],
+            ""Values"": [
+                1,
+                1,
+                0,
+                0,
+                1,
+                1
+            ]
+        }
+    }
+"
+"Times","array of floats","0","365","NA","An array of days.",".. code-block:: json
+
+    {
+        ""Durability_Map"": {
+            ""Times"": [
+                0.0,
+                20.0,
+                21.0,
+                30.0,
+                31.0,
+                365.0
+            ],
+            ""Values"": [
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0
+            ]
+        }
+    }
+"
+"Values","array of floats","0","3.40282e+38","NA","An array of values to match the defined **Times**.",".. code-block:: json
+
+    {
+        ""Times"": [
+            1998,
+            2000,
+            2003,
+            2006,
+            2009
+        ],
+        ""Values"": [
+            0,
+            0.26,
+            0.08,
+            0.14,
+            0.54
+        ]
+    }
+"

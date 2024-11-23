@@ -1,0 +1,320 @@
+"Amount_In_Shipment","integer","1","2147480000.0","2147480000.0","The number of interventions (such as vaccine doses) that a health worker or clinic receives in a shipment. Interventions can only be distributed if they are in stock; stock is updated every **Days_Between_Shipments** with the **Amount_In_Shipment**.",".. code-block:: json
+
+    {
+        ""Amount_In_Shipment"": 10
+    }
+"
+"Days_Between_Shipments","float","1","3.40282e+38","3.40282e+38","The number of days to wait before a clinic or health worker receives a new shipment of interventions (such as vaccine doses). Interventions can only be distributed if they are in stock; stock is updated every **Days_Between_Shipments** with the **Amount_In_Shipment**.",".. code-block:: json
+
+    {
+        ""Days_Between_Shipments"": 30
+    }
+"
+"Demographic_Coverage","float","0","1","1","The fraction of individuals in the target demographic that will receive this intervention.",".. code-block:: json
+
+    {
+        ""Demographic_Coverage"": 1
+    }
+"
+"Duration","float","0","3.40282e+38","3.40282e+38","The number of days for an event coordinator to be active before it expires.",".. code-block:: json
+
+    {
+        ""Duration"": 65
+    }
+"
+"Initial_Amount_Constant","float","0","3.40282E+38","-1","The initial amount to use for all health workers when **Initial_Amount_Distribution** is set to CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Initial_Amount_Constant"": 8
+    }
+"
+"Initial_Amount_Distribution","enum","NA","NA","NOT_INITIALIZED","The distribution type to use for assigning the initial amount of interventions in stock. Each assigned value is a random draw from the distribution.
+
+Possible values are:
+
+NOT_INITIALIZED
+    No distribution set. 
+CONSTANT_DISTRIBUTION
+    Use the same value for each individual. Set **Initial_Amount_Constant**.
+UNIFORM_DISTRIBUTION
+    Use a `uniform`_ distribution with a given minimum and maximum. Set **Initial_Amount_Max** and **Initial_Amount_Min**.
+GAUSSIAN_DISTRIBUTION
+    The distribution is `Gaussian`_ (or normal). Values are resampled to ensure >= 0. Set **Initial_Amount_Gaussian_Mean** and **Initial_Amount_Gaussian_Std_Dev**.
+EXPONENTIAL_DISTRIBUTION
+    The distribution is `exponential`_ with a given mean. Set **Initial_Amount_Exponential**.
+WEIBULL_DISTRIBUTION
+    Use a `Weibull`_ distribution with a given shape and scale. Set **Initial_Amount_Kappa** and **Initial_Amount_Lambda**.
+LOG_NORMAL_DISTRIBUTION
+    Use a `log-normal`_ distribution with a given mean and standard deviation of the natural log. Set **Initial_Amount_Log_Normal_Mu** and **Initial_Amount_Log_Normal_Sigma**.
+POISSON_DISTRIBUTION
+    Use a `Poisson`_ distribution with a given mean. Set **Initial_Amount_Poisson_Mean**. 
+DUAL_CONSTANT_DISTRIBUTION
+    Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Initial_Amount_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
+DUAL_EXPONENTIAL_DISTRIBUTION
+    Use two `exponential`_ distributions with given means. Set **Initial_Amount_Mean_1**, **Initial_Amount_Mean_2**, and **Initial_Amount_Proportion_1**. This distribution does not use the parameters set for EXPONENTIAL_DISTRIBUTION.
+
+.. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
+
+.. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
+
+.. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
+
+.. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
+
+.. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
+
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
+
+",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Initial_Amount_Mean_1"": 4,
+        ""Initial_Amount_Mean_2"": 12,
+        ""Initial_Amount_Proportion_1"": 0.2
+    }
+"
+"Initial_Amount_Exponential","float","0","3.40282E+38","-1","The mean of the initial amount of intervention in stock when **Initial_Amount_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+        ""Initial_Amount_Exponential"": 4.25
+    }
+"
+"Initial_Amount_Gaussian_Mean","float","0","3.40282E+38","-1","The mean of the initial amount of intervention in stock when **Initial_Amount_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Initial_Amount_Gaussian_Mean"": 8,
+        ""Initial_Amount_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Initial_Amount_Gaussian_Std_Dev","float","1.17549E-38","3.40282E+38","-1","The standard deviation of the initial amount of intervention in stock when **Initial_Amount_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Initial_Amount_Gaussian_Mean"": 8,
+        ""Initial_Amount_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Initial_Amount_Kappa","float","1.17549E-38","3.40282E+38","-1","The shape value for the initial amount of intervention in stock when **Initial_Amount_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Initial_Amount_Kappa"": 0.9,
+        ""Initial_Amount_Lambda"": 1.5
+    }
+"
+"Initial_Amount_Lambda","float","1.17549E-38","3.40282E+38","-1","The scale value for the initial amount of intervention in stock when **Initial_Amount_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Initial_Amount_Kappa"": 0.9,
+        ""Initial_Amount_Lambda"": 1.5
+    }
+"
+"Initial_Amount_Log_Normal_Mu","float","-3.40282e+38","1.70141e+38","3.40282E+38","The mean of the natural log of the initial amount of intervention in stock when **Initial_Amount_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Initial_Amount_Log_Normal_Mu"": 9,
+        ""Initial_Amount_Log_Normal_Sigma"": 2
+    }
+"
+"Initial_Amount_Log_Normal_Sigma","float","-3.40282e+38","3.40282E+38","1","The standard deviation of the natural log of the initial amount of intervention in stock when **Initial_Amount_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Initial_Amount_Log_Normal_Mu"": 9,
+        ""Initial_Amount_Log_Normal_Sigma"": 2
+    }
+"
+"Initial_Amount_Max","float","0","3.40282E+38","-1","The maximum initial amount of intervention in stock when **Initial_Amount_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Initial_Amount_Min"": 2,
+        ""Initial_Amount_Max"": 7
+    }
+"
+"Initial_Amount_Mean_1","float","1.17549E-38","3.40282E+38","-1","The mean of the first exponential distribution when **Initial_Amount_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Initial_Amount_Mean_1"": 4,
+        ""Initial_Amount_Mean_2"": 12,
+        ""Initial_Amount_Proportion_1"": 0.2
+    }
+"
+"Initial_Amount_Mean_2","float","1.17549E-38","3.40282E+38","-1","The mean of the second exponential distribution when **Initial_Amount_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Initial_Amount_Mean_1"": 4,
+        ""Initial_Amount_Mean_2"": 12,
+        ""Initial_Amount_Proportion_1"": 0.2
+    }
+"
+"Initial_Amount_Min","float","0","3.40282E+38","-1","The minimum of initial amount of intervention in stock when **Initial_Amount_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Initial_Amount_Min"": 2,
+        ""Initial_Amount_Max"": 7
+    }
+"
+"Initial_Amount_Peak_2_Value","float","0","3.40282E+38","-1","The initial amount in stock to assign to the remaining health workers when **Initial_Amount_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Initial_Amount_Proportion_0"": 0.25,
+        ""Initial_Amount_Peak_2_Value"": 5
+    }
+"
+"Initial_Amount_Poisson_Mean","float","0","3.40282E+38","-1","The mean of the initial amount of intervention in stock when **Initial_Amount_Distribution** is set to the POISSON_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""POISSON_DISTRIBUTION"",
+        ""Initial_Amount_Poisson_Mean"": 5
+    }
+"
+"Initial_Amount_Proportion_0","float","0","1","-1","The proportion of health workers to assign a value of zero stock when **Initial_Amount_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Initial_Amount_Proportion_0"": 0.25,
+        ""Initial_Amount_Peak_2_Value"": 5
+    }
+"
+"Initial_Amount_Proportion_1","float","0","1","-1","The proportion of health workers in the first exponential distribution when **Initial_Amount_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Initial_Amount_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Initial_Amount_Mean_1"": 4,
+        ""Initial_Amount_Mean_2"": 12,
+        ""Initial_Amount_Proportion_1"": 0.2
+    }
+"
+"Intervention_Config","JSON object","NA","NA","NA","The nested JSON of the actual intervention to be distributed by this event coordinator.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""BroadcastEvent"",
+            ""Broadcast_Event"": ""EventFromIntervention""
+        }
+    }
+"
+"Max_Distributed_Per_Day","integer","1","2147480000.0","2147480000.0","The maximum number of interventions (such as vaccine doses) that can be distributed by health workers or clinics in a given day.",".. code-block:: json
+
+    {
+        ""Max_Distributed_Per_Day"": 1
+    }
+"
+"Max_Stock","integer","0","2147480000.0","2147480000.0","The maximum number of interventions (such as vaccine doses) that can be stored by a health worker or clinic. If the amount of interventions in a new shipment and current stock exceeds this value, only the number of interventions specified by this value will be stored.",".. code-block:: json
+
+    {
+        ""Max_Stock"": 12
+    }
+"
+"Node_Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See :ref:`demo-properties` parameters for more information.
+
+You can specify AND and OR combinations of key:value pairs with this parameter.","The following example restricts the intervention to nodes that are urban and medium risk or rural and low risk.
+
+.. code-block:: json
+
+    {
+        ""Node_Property_Restrictions"": [
+            {
+                ""Place"": ""URBAN"",
+                ""Risk"": ""MED""
+            },
+            {
+                ""Place"": ""RURAL"",
+                ""Risk"": ""LOW""
+            }
+        ]
+    }
+"
+"Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+To specify AND and OR combinations of key:value pairs, use **Property_Restrictions_Within_Node**. You cannot use both of these parameters in the same event coordinator.",".. code-block:: json
+
+    {
+        ""Property_Restrictions"": [
+            ""Risk:HIGH""
+        ]
+    }
+"
+"Property_Restrictions_Within_Node","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+This parameter allows you to specify AND and OR combinations of key:value pairs. You may specify individual property restrictions using either this parameter or **Property_Restrictions**, but not both. ","The following example restricts the intervention to individuals who are urban and high risk or urban and medium risk.
+
+.. code-block:: json
+
+    {
+        ""Property_Restrictions_Within_Node"": [
+            {
+                ""Risk"": ""HIGH"",
+                ""Geographic"": ""URBAN""
+            },
+            {
+                ""Risk"": ""MEDIUM"",
+                ""Geographic"": ""URBAN""
+            }
+        ]
+    }
+"
+"Target_Age_Min","float","0","3.40282e+38","0","The lower end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Demographic","enum","NA","NA","Everyone","The target demographic group. Possible values are:
+
+* Everyone
+* ExplicitAgeRanges
+* ExplicitAgeRangesAndGender
+* ExplicitGender
+* ExplicitDiseaseState",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Gender","enum","NA","NA","All","Specifies the gender restriction for the intervention. Possible values are:
+
+* Male
+* Female
+* All
+",".. code-block:: json
+
+    {
+        ""Target_Gender"": ""Male""
+    }
+"
+"Target_Residents_Only","boolean","0","1","0","When set to true (1), the intervention is only distributed to individuals that began the simulation in the node (i.e. those that claim the node as their residence).",".. code-block:: json
+
+    {
+        ""Target_Residents_Only"": 1
+    }
+"
+"Trigger_Condition_List","array of strings","NA","NA","NA","The list of events that are of interest to the community health worker (CHW). If one of these events occurs, the individual or node is put into a queue to receive the CHW's intervention. The CHW processes the queue when the event coordinator is updated. See :doc:`parameter-campaign-event-list` for possible values.",".. code-block:: json
+
+    {
+        ""Trigger_Condition_List"": [
+            ""ListenForEvent""
+        ]
+    }
+"
+"Waiting_Period","float","0","3.40282e+38","3.40282e+38","The number of days a person or node can be in the queue waiting to get the intervention from the community health worker (CHW). If a person or node is in the queue, they will not be re-added to the queue if the event that would add them to the queue occurs. This allows them to maintain their priority, however they could be removed from the queue due to this waiting period.",".. code-block:: json
+
+    {
+        ""Waiting_Period"": 15
+    }
+"

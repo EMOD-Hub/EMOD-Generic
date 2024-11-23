@@ -1,0 +1,236 @@
+"Config_Name","string","NA","NA","UNINITIALIZED STRING","The optional, user-supplied title naming a configuration file.",".. code-block:: json
+
+    {
+        ""Config_Name"": ""My_First_Config""
+    }
+"
+"Custom_Coordinator_Events","array of strings","NA","NA","NA","The list of valid, user-defined events for Event Coordinators that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ]
+    }
+"
+"Custom_Individual_Events","array of strings","NA","NA","NA","The list of valid, user-defined events that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
+
+.. note:: 
+
+    This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Individual_Events"": [
+            ""Individual_Event_1"",
+            ""Individual_Event_2"",
+            ""Individual_Event_3""
+        ]
+    }
+"
+"Custom_Node_Events","array of strings","NA","NA","NA","The list of valid, user-defined events for nodes that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
+
+.. note:: 
+
+    This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2"",
+            ""Node_Event_3""
+        ]
+    }
+"
+"Enable_Interventions","boolean","0","1","0","Controls whether or not campaign interventions will be used in the simulation. Set **Campaign_Filename** to the path of the file that contains the campaign interventions.",".. code-block:: json
+
+    {
+        ""Enable_Interventions"": 1,
+        ""Campaign_Filename"": ""campaign.json""
+    }
+"
+"Enable_Random_Generator_From_Serialized_Population","boolean","0","1","0","Determines if the random number generator(s) should be extracted from a serialized population file. Enabling this will start a simulation from this file with the exact same random number stream and location in that stream as when the file was serialized.",".. code-block:: json
+
+    {
+        ""Run_Number"": 12,
+        ""Random_Number_Generator_Type"": ""USE_AES_COUNTER"",
+        ""Random_Number_Generator_Policy"": ""ONE_PER_NODE"",
+        ""Enable_Random_Generator_From_Serialized_Population"": 1
+    }
+"
+"Enable_Skipping","boolean","0","1","0","Controls whether or not the simulation uses an optimization that can increase performance by up to 50% in some cases by probabilistically exposing individuals rather than exposing every single person. Useful in low-prevalence, high-population scenarios.
+",".. code-block:: json
+
+    {
+        ""Enable_Skipping"": 0
+    }
+"
+"Enable_Termination_On_Zero_Total_Infectivity","boolean","0","1","0","Controls whether or not the simulation should be ended when total infectivity falls to zero. Supported only in single-node simulations. ",".. code-block:: json
+
+    {
+        ""Enable_Termination_On_Zero_Total_Infectivity"": 1,
+        ""Minimum_End_Time"": 3650
+    }
+"
+"Listed_Events","array of strings","NA","NA","[]","The list of valid, user-defined events that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.",".. code-block:: json
+
+    {
+        ""Listed_Events"": [
+            ""Vaccinated"",
+            ""VaccineExpired""
+        ]
+    }
+"
+"Memory_Usage_Halting_Threshold_Working_Set_MB","integer","0","1.00E+06","8000","The maximum size (in MB) of working set memory before the system throws an exception and halts. ",".. code-block:: json
+
+    {
+        ""Memory_Usage_Halting_Threshold_Working_Set_MB"": 4000
+    }
+"
+"Memory_Usage_Warning_Threshold_Working_Set_MB","integer","0","1.00E+06","7000","The maximum size (in MB) of working set memory before memory usage statistics are written to the log regardless of log level.",".. code-block:: json
+
+    {
+        ""Memory_Usage_Warning_Threshold_Working_Set_MB"": 3500
+    }
+"
+"Node_Grid_Size","float","0.00416","90","0.004167","The spatial resolution indicating the node grid size for a simulation in degrees.",".. code-block:: json
+
+    {
+        ""Node_Grid_Size"": 0.042
+    }
+"
+"Random_Number_Generator_Policy","enum","NA","NA","ONE_PER_CORE","The policy that determines if random numbers are generated for objects in a simulation on a per-core or per-node basis.  The following values are available:
+
+ONE_PER_CORE
+    A random number generator (RNG) is created for each computing core running a simulation. When running a simulation on a single core, there will be only one RNG. If running the single simulation on multiple cores, each core will have its own RNG. The RNGs on the different cores start out such that they will not generate the same stream of random numbers. Prior to |EMOD_s| 2.19, all simulations used this policy. 
+ONE_PER_NODE
+   An RNG is created for each geographic node in the simulation. The advantages of this policy are that 1) an event that causes a random number to be drawn in one node does not cause things to change in another node and 2) changing a simulation from single core to multi-core will not change the results. The RNGs on the different nodesstart out such that they will not generate the same stream of random numbers.",".. code-block:: json
+
+    {
+        ""Run_Number"": 15,
+        ""Random_Number_Generator_Type"": ""USE_AES_COUNTER"",
+        ""Random_Number_Generator_Policy"": ""ONE_PER_NODE""
+    }
+"
+"Random_Number_Generator_Type","enum","NA","NA","USE_PSEUDO_DES","The type of random number generator to use for objects in a simulation. Must set the RNG seed in **Run_Number**. The following values are available:
+
+USE_PSEUDO_DES
+    Based on `Numerical Recipes in C. The Art of Scientific Computing <https://en.wikipedia.org/wiki/Numerical_Recipes>`_, 2nd ed. Press, William H. et. al, 1992. Prior to |EMOD_s| 2.19, this was the only generator available.
+USE_LINEAR_CONGRUENTIAL
+    Based on `The Structure of Linear Congruential Sequences <https://www.researchgate.net/publication/242477888_The_Structure_of_Linear_Congruential_Sequences>`_, Marsaglia, George, 1972. 
+USE_AES_COUNTER
+    Based on AES in CTR Mode encryption as implemented in `Intel (R) Advanced Encryption Standard (AES) New Instruction Set <https://software.intel.com/sites/default/files/article/165683/aes-wp-2012-09-22-v01.pdf>`_.",".. code-block:: json
+
+    {
+        ""Run_Number"": 15,
+        ""Random_Number_Generator_Type"": ""USE_LINEAR_CONGRUENTIAL"",
+        ""Random_Number_Generator_Policy"": ""ONE_PER_NODE"",
+        ""Enable_Random_Generator_From_Serialized_Population"": 1
+    }
+"
+"Run_Number","integer","0","65535","1","Sets the random number seed used with **Random_Number_Generator_Type** and **Random_Number_Generator_Policy** to assign random numbers to objects in a simulation. This value must be different for each simulation run to ensure model stochasticity. ",".. code-block:: json
+
+    {
+        ""Run_Number"": 15,
+        ""Random_Number_Generator_Type"": ""USE_PSEUDO_DES"",
+        ""Random_Number_Generator_Policy"": ""ONE_PER_NODE"",
+        ""Enable_Random_Generator_From_Serialized_Population"": 1
+    }
+"
+"Serialization_Times","array of floats","","","0","The list of times at which to save the serialized state to file. 0 indicates the initial state before simulation, n indicates the time to serialize in terms of start time and step size, and will be rounded up to the nearest time step. The serialized population files can then be loaded at the beginning of a simulation using **Serialized_Population_Filenames** and **Serialized_Population_Path**.",".. code-block:: json
+
+    {
+        ""Serialization_Type"": ""TIME"",
+        ""Serialization_Times"": [
+            40.5,
+            81
+        ]
+    }
+"
+"Serialization_Time_Steps","array of integers","0","2.15E+09","","The list of time steps after which to save the serialized state to file. 0 (zero) indicates the initial state before simulation, n indicates after the nth time step. **Serialization_Type** must be set to TIMESTEP. The serialized population files can then be loaded at the beginning of a simulation using **Serialized_Population_Filenames** and **Serialized_Population_Path**.",".. code-block:: json
+
+    {
+        ""Serialization_Type"": ""TIMESTEP"",
+        ""Serialization_Time_Steps"": [
+            0,
+            10
+        ]
+    }
+"
+"Serialization_Type","enum","NA","NA","NONE","The type of serialization to perform. Serialization saves the population state at particular times so you can start from that state in other simulations. Accepted values are:
+
+NONE
+    No serialization.
+TIME
+    Use the definition from **Serialization_Times**.
+TIMESTEP 
+    Use the definition from **Serialization_Timestep**.",".. code-block:: json
+
+    {
+        ""Serialization_Times"": [
+            365,
+            3650
+        ],
+        ""Serialization_Type"": ""TIMSTEP""
+    }
+
+j
+
+.. code-block:: json
+
+    {}
+"
+"Serialized_Population_Filenames","array of strings","NA","NA","NA","An array of filenames with serialized population data. The number of filenames must match the number of cores used for the simulation. The files must be in .dtk format. Serialized population files are created using **Serialization_Time_Steps**.",".. code-block:: json
+
+    {
+        ""Serialized_Population_Filenames"": [
+            ""state-00010.dtk""
+        ]
+    }
+"
+"Serialized_Population_Path","string","NA","NA",".","The root path for the serialized population files. Serialized population files are created using **Serialization_Time_Steps**.",".. code-block:: json
+
+    {
+        ""Serialized_Population_Path"": ""../00_Generic_Version_1_save/output""
+    }
+"
+"Simulation_Duration","float","0","1000000","1","The elapsed time (in days) from the start to the end of a simulation.",".. code-block:: json
+
+    {
+        ""Simulation_Duration"": 7300
+    }
+"
+"Simulation_Timestep","float","0","1000000","1","The duration of a simulation time step, in days.",".. code-block:: json
+
+    {
+        ""Simulation_Timestep"": 1
+    }
+"
+"Simulation_Type","enum","NA","NA","GENERIC_SIM","The type of disease being simulated. Possible IDM-supported values are:
+
+* GENERIC_SIM
+* VECTOR_SIM
+* MALARIA_SIM
+* TBHIV_SIM
+* STI_SIM
+* HIV_SIM
+* ENVIRONMENTAL_SIM
+* TYPHOID_SIM",".. code-block:: json
+
+    {
+        ""Simulation_Type"": ""STI_SIM""
+    }
+"
+"Start_Time","float","0","1000000","1","The time, in days, when the simulation begins. This time is used to identify the starting values of the temporal input data, such as specifying which day's climate values should be used for the first day of the simulation. 
+
+.. note::
+
+   The **Start_Day** of campaign events is in absolute time, so time relative to the beginning of the simulation depends on this parameter.
+",".. code-block:: json
+
+    {
+        ""Start_Time"": 365
+    }
+"

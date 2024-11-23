@@ -1,0 +1,78 @@
+"Durability_Map","JSON object","NA","NA","NA","The time, in days, since the intervention was distributed and a multiplier for the **Initial_Effect**.",".. code-block:: json
+
+    {
+        ""Durability_Map"": {
+            ""Times"": [
+                1,
+                2,
+                5,
+                7
+            ],
+            ""Values"": [
+                1,
+                0.75,
+                0.5,
+                0.25
+            ]
+        }
+    }
+"
+"Initial_Effect","float","0","1","1","The multiplier used to define the magnitude of the shape of the curve, as specified when using the parameters with the **WaningEffectMapLinearAge** class.",".. code-block:: json
+
+    {
+        ""class"": ""WaningEffectMapLinearAge"",
+        ""Initial_Effect"": 1,
+        ""Durability_Map"": {
+            ""Times"": [
+                1,
+                2,
+                5,
+                7
+            ],
+            ""Values"": [
+                1,
+                0.75,
+                0.5,
+                0.25
+            ]
+        }
+    }
+"
+"Times","array of floats","0","125","NA","An array of years.",".. code-block:: json
+
+    {
+        ""Durability_Map"": {
+            ""Times"": [
+                1,
+                2,
+                5,
+                7
+            ],
+            ""Values"": [
+                1,
+                0.75,
+                0.5,
+                0.25
+            ]
+        }
+    }
+"
+"Values","array of floats","0","3.40282e+38","NA","An array of values to match the defined **Times**.",".. code-block:: json
+
+    {
+        ""Durability_Map"": {
+            ""Times"": [
+                1,
+                2,
+                5,
+                7
+            ],
+            ""Values"": [
+                1,
+                0.75,
+                0.5,
+                0.25
+            ]
+        }
+    }
+"

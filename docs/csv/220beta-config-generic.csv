@@ -1,0 +1,238 @@
+Report_Coordinator_Event_Recorder,boolean,,,0,"Enables or disables the ReportCoordinatorEventRecorder.csv output report for coordinator events. When enabled (set to 1) reports will be generated for the broadcasted valid coordinator events, as specified in **Report_Coordinator_Event_Recorder_Events**.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ],
+        ""Report_Coordinator_Event_Recorder"": 1,
+        ""Report_Coordinator_Event_Recorder_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ]
+    }
+"
+Report_Coordinator_Event_Recorder_Events,array of strings,,,NA,"The list of events to include or exclude in the ReportCoordinatorEventRecorder.csv output report, based on how **Report_Coordinator_Event_Recorder_Ignore_Events_In_List** is set. This list must not be empty and is dependent upon **Report_Coordinator_Event_Recorder** being enabled. In addition, the events must be defined in **Customer_Coordinator_Events**.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ],
+        ""Report_Coordinator_Event_Recorder"": 1,
+        ""Report_Coordinator_Event_Recorder_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ]
+    }
+"
+Report_Coordinator_Event_Recorder_Ignore_Events_In_List,boolean,,,0,"If set to false (0), only the events listed in the **Report_Coordinator_Event_Recorder_Events** array will be included in the ReportCoordinatorEventRecorder.csv output report. If set to true (1), only the events listed in the array will be excluded, and all other events will be included. If you want to return all events from the simulation, leave the events array empty.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ],
+        ""Report_Coordinator_Event_Recorder"": 1,
+        ""Report_Coordinator_Event_Recorder_Events"": [
+            ""Coordinator_Event_1"",
+            ""Coordinator_Event_2"",
+            ""Coordinator_Event_3""
+        ],
+        ""Report_Coordinator_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+Report_Node_Event_Recorder,boolean,,,0,"Enables or disables the ReportNodeEventRecorder.csv output report. When enabled (set to 1) reports will be generated for the broadcasted valid node events, as specified in **Report_Node_Event_Recorder_Events**.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ]
+    }
+"
+Report_Node_Event_Recorder_Events,array of strings,,,NA,"The list of node events to include or exclude in the ReportNodeEventRecorder.csv output report, based on how **Report_Node_Event_Recorder_Ignore_Events_In_List** is set.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+Report_Node_Event_Recorder_Ignore_Events_In_List,boolean,,,0,"If set to false (0), only the node events listed in the **Report_Node_Event_Recorder_Events** array will be included in the ReportNodeEventRecorder.csv output report. If set to true (1), only the node events listed in the array will be excluded, and all other node events will be included. If you want to return all node events from the simulation, leave the node events array empty.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.
+
+.. csv-table::
+    :header: Value, Events array, Output file 
+    :widths: 1, 2, 2
+
+    0, No events, No events
+    0, One or more events, Only the listed events.
+    1, No events, All events occurring in the simulation.
+    1, One or more events, ""All simulation events occurring in the simulation, except for those listed.""",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+Report_Node_Event_Recorder_Node_Properties,array of strings,,,[],"Specifies an array of (optional) node property keys, as defined in **NodeProperties** in the demographics file, to be added as additional columns to the ReportNodeEventRecorder.csv output report.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder_Ignore_Events_In_List"": 0,
+        ""Report_Node_Event_Recorder_Node_Properties"": [
+            ""Geographic""
+        ]
+    }
+"
+Report_Node_Event_Recorder_Stats_By_IPs,array of strings,,,[],"Specifies an array of (optional) individual property keys, as defined in **IndividualProperties** in the demographics file, to be added to the ReportNodeEventRecorder.csv output report. For each key:value pair there will be two additional columns (Key:Value:NumIndividuals, Key:Value:NumInfected) added to the report. For example, with a Risk property key assigned the values of LOW and HIGH there would then be four additional columns (Risk:LOW:NumIndividuals, Risk:LOW:NumInfected, Risk:HIGH:NumIndividuals, Risk:HIGH:NumInfected). An empty array equals no additional columns added.",".. code-block:: json
+
+    {
+        ""Custom_Node_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder"": 1,
+        ""Report_Node_Event_Recorder_Events"": [
+            ""Node_Event_1"",
+            ""Node_Event_2""
+        ],
+        ""Report_Node_Event_Recorder_Ignore_Events_In_List"": 0,
+        ""Report_Node_Event_Recorder_Node_Properties"": [
+            ""Geographic""
+        ],
+        ""Report_Node_Event_Recorder_Stats_By_IPs"": [
+            ""Risk""
+        ]
+    }
+"
+Report_Surveillance_Event_Recorder,boolean,,,0,"Enables or disables the ReportSurveillanceEventRecorder.csv output report. When enabled (set to 1) reports will be generated for the broadcasted valid coordinator events, as specified in **Report_Surveillance_Event_Recorder_Events**.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Start_ACF"",
+            ""Start_SIA_2"",
+            ""Start_SIA_4"",
+            ""Ind_Start_SIA_2"",
+            ""Ind_Start_SIA_4"",
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder"": 1,
+        ""Report_Surveillance_Event_Recorder_Events"": [
+            ""Respond_To_Surveillance""
+        ]
+    }
+"
+Report_Surveillance_Event_Recorder_Events,array of strings,,,NA,"The list of events to include or exclude in the ReportSurveillanceEventRecorder.csv output report, based on how **Report_Surveillance_Event_Recorder_Ignore_Events_In_List** is set. This list must not be empty and is  dependent upon **Report_Surveillance_Event_Recorder** being enabled.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Start_ACF"",
+            ""Start_SIA_2"",
+            ""Start_SIA_4"",
+            ""Ind_Start_SIA_2"",
+            ""Ind_Start_SIA_4"",
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder"": 1,
+        ""Report_Surveillance_Event_Recorder_Events"": [
+            ""Respond_To_Surveillance""
+        ]
+    }
+"
+Report_Surveillance_Event_Recorder_Ignore_Events_In_List,boolean,,,0,"If set to false (0), only the events listed in the **Report_Surveillance_Event_Recorder_Events** array will be included in the ReportSurveillanceEventRecorder.csv output report. If set to true (1), only the events listed in the array will be excluded, and all other events will be included. If you want to return all events from the simulation, leave the events array empty.
+
+Note: This configuration parameter is currently in beta release and has not yet been fully tested. 
+
+.. csv-table::
+    :header: Value, Events array, Output file 
+    :widths: 1, 2, 2
+
+    0, No events, No events
+    0, One or more events, Only the listed events.
+    1, No events, All events occurring in the simulation.
+    1, One or more events, ""All simulation events occurring in the simulation, except for those listed.""",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Start_ACF"",
+            ""Start_SIA_2"",
+            ""Start_SIA_4"",
+            ""Ind_Start_SIA_2"",
+            ""Ind_Start_SIA_4"",
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder"": 1,
+        ""Report_Surveillance_Event_Recorder_Events"": [
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder_Ignore_Events_In_List"": 0
+    }
+"
+Report_Surveillance_Event_Recorder_Stats_By_IPs,array of strings,,,[],"Specifies an array of (optional) individual property keys, as defined in **IndividualProperties** in the demographics file, to be added to the ReportSurveillanceEventRecorder.csv output report. For each key:value pair there will be two additional columns (Key:Value:NumIndividuals, Key:Value:NumInfected) added to the report. For example, with a Risk property key assigned the values of LOW and HIGH there would then be four additional columns (Risk:LOW:NumIndividuals, Risk:LOW:NumInfected, Risk:HIGH:NumIndividuals, Risk:HIGH:NumInfected). An empty array equals no additional columns added.",".. code-block:: json
+
+    {
+        ""Custom_Coordinator_Events"": [
+            ""Start_ACF"",
+            ""Start_SIA_2"",
+            ""Start_SIA_4"",
+            ""Ind_Start_SIA_2"",
+            ""Ind_Start_SIA_4"",
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder"": 1,
+        ""Report_Surveillance_Event_Recorder_Events"": [
+            ""Respond_To_Surveillance""
+        ],
+        ""Report_Surveillance_Event_Recorder_Stats_By_IPs"": []
+    }
+"

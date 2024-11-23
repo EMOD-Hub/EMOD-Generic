@@ -1,0 +1,10 @@
+{
+    "Intervention_Config": {
+        "class": "SimpleBednet",
+        "Blocking_Config": {
+            "class": "WaningEffectExponential",            
+            "Decay_Time_Constant": 150,
+            "Initial_Effect": 0.5
+        }
+    }
+}

@@ -1,0 +1,17 @@
+Time, IndividualID, AgeYears, Gender, IsAdult, Home_NodeID, From_NodeID, To_NodeID, MigrationType, Event
+2,46,94.6986,F,T,1,1,4,local,Emigrating
+4,108,35.7116,M,T,2,2,5,local,Emigrating
+9,108,35.7253,M,T,2,5,2,regional,Emigrating
+12,46,94.726,F,T,1,4,9,regional,Emigrating
+13,46,94.7287,F,T,1,9,6,local,Emigrating
+17,108,35.7472,M,T,2,2,5,local,Emigrating
+22,46,94.7534,F,T,1,6,7,regional,Emigrating
+23,108,35.7637,M,T,2,5,2,regional,Emigrating
+25,108,35.7691,M,T,2,2,1,local,Emigrating
+28,46,94.7698,F,T,1,7,4,local,Emigrating
+35,46,94.789,F,T,1,4,7,regional,Emigrating
+37,46,94.7945,F,T,1,7,4,local,Emigrating
+44,46,94.8137,F,T,1,4,8,regional,Emigrating
+100,1,38.9821,M,T,1,1,1,home,SimulationEnd
+100,46,94.9643,F,T,1,8,8,regional,SimulationEnd
+100,108,35.9719,M,T,2,1,1,local,SimulationEnd

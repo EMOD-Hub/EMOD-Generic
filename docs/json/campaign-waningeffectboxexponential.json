@@ -1,0 +1,10 @@
+  {
+    "Intervention_Config": {
+        "Reduction_Config": {
+            "class": "WaningEffectBoxExponential",
+            "Box_Duration": 100,
+            "Decay_Time_Constant": 150,
+            "Initial_Effect": 0.1
+        }
+    }
+  }

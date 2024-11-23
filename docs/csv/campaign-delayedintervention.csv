@@ -1,0 +1,225 @@
+"Actual_IndividualIntervention_Configs","array of JSON objects","NA","NA","NA","An array of nested interventions to be distributed at the end of a delay period, to covered fraction of the population.",".. code-block:: json
+
+    {
+        ""Actual_IndividualIntervention_Configs"": [
+            {
+                ""Base_Sensitivity"": 1,
+                ""Base_Specificity"": 1,
+                ""Event_Or_Config"": ""Event"",
+                ""Negative_Diagnosis_Event"": ""HIVNeedsMaleCircumcision"",
+                ""New_Property_Value"": ""InterventionStatus:None"",
+                ""Positive_Diagnosis_Event"": ""NoTreatment"",
+                ""class"": ""HIVSimpleDiagnostic""
+            }
+        ]
+    }
+"
+"Coverage","float","0","1","1","The proportion of individuals who receive the **DelayedIntervention** that actually receive the configured interventions.",".. code-block:: json
+
+    {
+        ""Coverage"": 1.0
+    }
+"
+"Delay_Period_Constant","float","0","3.40282E+38","-1","The delay period, in days, to use for all interventions when **Delay_Period_Distribution** is set to CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Delay_Period_Constant"": 8
+    }
+"
+"Delay_Period_Distribution","enum","NA","NA","NOT_INITIALIZED","The distribution type to use for assigning the delay period for distributing interventions. Each assigned value is a random draw from the distribution.
+
+Possible values are:
+
+NOT_INITIALIZED
+    No distribution set. 
+CONSTANT_DISTRIBUTION
+    Use the same value for each individual. Set **Delay_Period_Constant**.
+UNIFORM_DISTRIBUTION
+    Use a `uniform`_ distribution with a given minimum and maximum. Set **Delay_Period_Max** and **Delay_Period_Min**.
+GAUSSIAN_DISTRIBUTION
+    The distribution is `Gaussian`_ (or normal). Values are resampled to ensure >= 0. Set **Delay_Period_Gaussian_Mean** and **Delay_Period_Gaussian_Std_Dev**.
+EXPONENTIAL_DISTRIBUTION
+    The distribution is `exponential`_ with a given mean. Set **Delay_Period_Exponential**.
+WEIBULL_DISTRIBUTION
+    Use a `Weibull`_ distribution with a given shape and scale. Set **Delay_Period_Kappa** and **Delay_Period_Lambda**.
+LOG_NORMAL_DISTRIBUTION
+    Use a `log-normal`_ distribution with a given mean and standard deviation of the natural log. Set **Delay_Period_Log_Normal_Mu** and **Delay_Period_Log_Normal_Sigma**.
+POISSON_DISTRIBUTION
+    Use a `Poisson`_ distribution with a given mean. Set **Delay_Period_Poisson_Mean**. 
+DUAL_CONSTANT_DISTRIBUTION
+    Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Delay_Period_Proportion_0** and **Peak_2_Value**.
+DUAL_EXPONENTIAL_DISTRIBUTION
+    Use two `exponential`_ distributions with given means. Set **Delay_Period_Mean_1**, **Delay_Period_Mean_2**, and **Delay_Period_Proportion_1**. 
+
+
+.. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
+
+.. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
+
+.. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
+
+.. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
+
+.. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
+
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
+
+",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Delay_Period_Gaussian_Mean"": 8,
+        ""Delay_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Delay_Period_Exponential","float","0","3.40282E+38","-1","The mean of the delay period, in days, when **Delay_Period_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+        ""Delay_Period_Exponential"": 4.25
+    }
+"
+"Delay_Period_Gaussian_Mean","float","0","3.40282E+38","-1","The mean of the delay period, in days, when **Delay_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Delay_Period_Gaussian_Mean"": 8,
+        ""Delay_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Delay_Period_Gaussian_Std_Dev","float","1.17549E-38","3.40282E+38","-1","The standard deviation of the delay period, in days, when **Delay_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Delay_Period_Gaussian_Mean"": 8,
+        ""Delay_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Delay_Period_Kappa","float","1.17549E-38","3.40282E+38","-1","The shape value for the delay period, in days, when **Delay_Period_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Delay_Period_Kappa"": 0.9,
+        ""Delay_Period_Lambda"": 1.5
+    }
+"
+"Delay_Period_Lambda","float","1.17549E-38","3.40282E+38","-1","The scale value for the delay period, in days, when **Delay_Period_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Delay_Period_Kappa"": 0.9,
+        ""Delay_Period_Lambda"": 1.5
+    }
+"
+"Delay_Period_Log_Normal_Mu","float","-3.40282e+38","1.70141e+38","3.40282e+38","The mean of the natural log of the delay period, in days, when **Delay_Period_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Delay_Period_Log_Normal_Mu"": 9,
+        ""Delay_Period_Log_Normal_Sigma"": 2
+    }
+"
+"Delay_Period_Log_Normal_Sigma","float","-3.40282e+38","1.70141e+38","3.40282E+38","The standard deviation of the natural log of the delay period, in days, when **Delay_Period_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Delay_Period_Log_Normal_Mu"": 9,
+        ""Delay_Period_Log_Normal_Sigma"": 2
+    }
+"
+"Delay_Period_Max","float","0","3.40282E+38","-1","The maximum delay period, in days, when **Delay_Period_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Delay_Period_Min"": 2,
+        ""Delay_Period_Max"": 7
+    }
+"
+"Delay_Period_Mean_1","float","1.17549E-38","3.40282E+38","-1","The mean of the first exponential distribution, in days, when **Delay_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Delay_Period_Mean_1"": 4,
+        ""Delay_Period_Mean_2"": 12,
+        ""Delay_Period_Proportion_1"": 0.2
+    }
+"
+"Delay_Period_Mean_2","float","1.17549E-38","3.40282E+38","-1","The mean of the second exponential distribution, in days, when **Delay_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Delay_Period_Mean_1"": 4,
+        ""Delay_Period_Mean_2"": 12,
+        ""Delay_Period_Proportion_1"": 0.2
+    }
+"
+"Delay_Period_Min","float","0","3.40282E+38","-1","The minimum delay period, in days, when **Delay_Period_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Delay_Period_Min"": 2,
+        ""Delay_Period_Max"": 7
+    }
+"
+"Delay_Period_Peak_2_Value","float","0","3.40282E+38","-1","The delay period value to assign to the remaining interventions when **Delay_Period_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Delay_Period_Proportion_0"": 0.25,
+        ""Delay_Period_Peak_2_Value"": 5
+    }
+"
+"Delay_Period_Poisson_Mean","float","0","3.40282E+38","-1","The mean of the delay period when **Delay_Period_Distribution** is set to POISSON_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""POISSON_DISTRIBUTION"",
+        ""Delay_Period_Poisson_Mean"": 5
+    }
+"
+"Delay_Period_Proportion_0","float","0","1","-1","The proportion of interventions to assign a value of zero delay when **Delay_Period_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Delay_Period_Proportion_0"": 0.25,
+        ""Delay_Period_Peak_2_Value"": 5
+    }
+"
+"Delay_Period_Proportion_1","float","0","1","-1","The proportion of interventions in the first exponential distribution when **Delay_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Delay_Period_Mean_1"": 4,
+        ""Delay_Period_Mean_2"": 12,
+        ""Delay_Period_Proportion_1"": 0.2
+    }
+"
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
+
+    {
+        ""Dont_Allow_Duplicates"": 0
+    }
+"
+"Intervention_Name","string","NA","NA","DelayedIntervention","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""DelayedIntervention"",
+            ""Intervention_Name"": ""Treatment one week after diagnostic test""
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"

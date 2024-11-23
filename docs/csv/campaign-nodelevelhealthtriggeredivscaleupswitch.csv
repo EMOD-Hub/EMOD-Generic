@@ -1,0 +1,229 @@
+"Actual_IndividualIntervention_Config","JSON object","NA","NA","NA","The configuration of an actual individual intervention sought. Selects a class for the intervention and configures the parameters specific for that intervention class.",".. code-block:: json
+
+    {
+        ""Actual_IndividualIntervention_Config"": {
+            ""class"": ""OutbreakIndividual"",
+            ""Antigen"": 0,
+            ""Genome"": 0,
+            ""Outbreak_Source"": ""PrevalenceIncrease""
+        }
+    }
+"
+"Actual_NodeIntervention_Config","JSON object","NA","NA","NA","The configuration of the actual node-level intervention sought. This parameter selects a class for the intervention and configures the parameters specific for that intervention class.",".. code-block:: json
+
+    {
+        ""Actual_NodeIntervention_Config"": {
+            ""class"": ""OutbreakIndividual"",
+            ""Antigen"": 0,
+            ""Genome"": 0,
+            ""Outbreak_Source"": ""PrevalenceIncrease""
+        }
+    }
+"
+"Blackout_Event_Trigger","enum","NA","NA","""""","The event to broadcast if an intervention cannot be distributed due to the **Blackout_Period**. See :doc:`parameter-campaign-event-list` for possible values.",".. code-block:: json
+
+    {
+        ""Blackout_Event_Trigger"": ""Blackout""
+    }
+"
+"Blackout_On_First_Occurrence","boolean","0","1","0","If set to true (1), individuals will enter the blackout period after the first occurrence of an event in the **Trigger_Condition_List**.",".. code-block:: json
+
+    {
+        ""Blackout_On_First_Occurrence"": 0
+    }
+"
+"Blackout_Period","float","0","3.40282e+38","0","After the initial intervention distribution, the time, in days, to wait before distributing the intervention again. If it cannot distribute due to the blackout period, it will broadcast the user-defined **Blackout_Event_Trigger**.",".. code-block:: json
+
+    {
+        ""Blackout_Period"": 0.0
+    }
+"
+"Demographic_Coverage","float","0","1","1","The fraction of individuals in the target demographic that will receive this intervention.",".. code-block:: json
+
+    {
+        ""Demographic_Coverage"": 1
+    }
+"
+"Demographic_Coverage_Time_Profile","enum","NA","NA","Immediate","The profile for the ramp-up time to demographic coverage.
+Possible values are: 
+
+* Immediate
+* Linear
+* Sigmoid",".. code-block:: json
+
+    {
+        ""Demographic_Coverage_Time_Profile"": ""Linear""
+    }
+"
+"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **NodeProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to nodes with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
+
+    {
+        ""Disqualifying_Properties"": [
+            ""InterventionStatus:LostForever""
+        ]
+    }
+"
+"Distribute_On_Return_Home","boolean","0","1","0","When set to true (1), individuals will receive an intervention upon returning home if that intervention was originally distributed while the individual was away.",".. code-block:: json
+
+    {
+        ""Distribute_On_Return_Home"": 1
+    }
+"
+"Duration","float","-1","3.40282e+38","-1","The number of days to continue this intervention. 
+
+.. Note::
+
+  For **BirthTriggeredIV**, specifying a value of -1 results in indefinite persistence of the birth-triggered intervention.",".. code-block:: json
+
+    {
+        ""Duration"": -1
+    }
+"
+"Initial_Demographic_Coverage","float","0","1","0","The initial level of demographic coverage when using linear scale-up.",".. code-block:: json
+
+    {
+        ""Initial_Demographic_Coverage"": 0
+    }
+"
+"Intervention_Name","string","NA","NA","NA","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""NodeLevelHealthTriggeredIVScaleUpSwitch"",
+            ""Intervention_Name"": ""Transition to CDC-recommended diagnostic""
+        }
+    }
+"
+"New_Property_Value","string","NA","NA","NA","An optional **NodeProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
+
+    {
+        ""New_Property_Value"": ""InterventionStatus:None""
+    }
+"
+"Node_Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See :ref:`demo-properties` parameters for more information.
+
+You can specify AND and OR combinations of key:value pairs with this parameter.","The following example restricts the intervention to nodes that are urban and medium risk or rural and low risk.
+
+.. code-block:: json
+
+    {
+        ""Node_Property_Restrictions"": [
+            {
+                ""Place"": ""URBAN"",
+                ""Risk"": ""MED""
+            },
+            {
+                ""Place"": ""RURAL"",
+                ""Risk"": ""LOW""
+            }
+        ]
+    }
+"
+"Not_Covered_IndividualIntervention_Configs","array of JSON objects","NA","NA","NA","The array of interventions that is distributed if an individual qualifies according to all parameters except **Demographic_Coverage**. Generally, this is used to specify a diagnostic tool that is being phased out.",".. code-block:: json
+
+    {
+        ""Not_Covered_IndividualIntervention_Configs"": [
+            {
+                ""class"": ""DelayedIntervention"",
+                ""Delay_Distribution"": ""FIXED_DURATION"",
+                ""Delay_Period"": 10,
+                ""Coverage"": 1,
+                ""Actual_IndividualIntervention_Configs"": [
+                    {
+                        ""class"": ""AntiTBDrug"",
+                        ""Cost_To_Consumer"": 90,
+                        ""Drug_Type"": ""FirstLineCombo"",
+                        ""Durability_Profile"": ""FIXED_DURATION_CONSTANT_EFFECT"",
+                        ""Primary_Decay_Time_Constant"": 180,
+                        ""Remaining_Doses"": 1,
+                        ""TB_Drug_Cure_Rate"": 5e-11,
+                        ""TB_Drug_Inactivation_Rate"": 0
+                    }
+                ]
+            }
+        ]
+    }
+"
+"Primary_Time_Constant","float","0","365000","1","The time to full scale-up demographic coverage. ",".. code-block:: json
+
+    {
+        ""Primary_Time_Constant"": 150
+    }
+"
+"Property_Restrictions","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+To specify AND and OR combinations of key:value pairs, use **Property_Restrictions_Within_Node**. You cannot use both of these parameters in the same event coordinator.",".. code-block:: json
+
+    {
+        ""Property_Restrictions"": [
+            ""Risk:HIGH""
+        ]
+    }
+"
+"Property_Restrictions_Within_Node","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+This parameter allows you to specify AND and OR combinations of key:value pairs. You may specify individual property restrictions using either this parameter or **Property_Restrictions**, but not both. ","The following example restricts the intervention to individuals who are urban and high risk or urban and medium risk.
+
+.. code-block:: json
+
+    {
+        ""Property_Restrictions_Within_Node"": [
+            {
+                ""Risk"": ""HIGH"",
+                ""Geographic"": ""URBAN""
+            },
+            {
+                ""Risk"": ""MEDIUM"",
+                ""Geographic"": ""URBAN""
+            }
+        ]
+    }
+"
+"Target_Age_Max","float","0","9.3228e+35","9.3228e+35","The upper end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Demographic","enum","NA","NA","Everyone","The target demographic group. Possible values are:
+
+* Everyone
+* ExplicitAgeRanges
+* ExplicitAgeRangesAndGender
+* ExplicitGender
+* ExplicitDiseaseState",".. code-block:: json
+
+    {
+        ""Target_Age_Max"": 20,
+        ""Target_Age_Min"": 10,
+        ""Target_Demographic"": ""ExplicitAgeRanges""
+    }
+"
+"Target_Gender","enum","NA","NA","All","Specifies the gender restriction for the intervention. Possible values are:
+
+* Male
+* Female
+* All
+",".. code-block:: json
+
+    {
+        ""Target_Gender"": ""Male""
+    }
+"
+"Target_Residents_Only","boolean","0","1","0","When set to true (1), the intervention is only distributed to individuals that began the simulation in the node (i.e. those that claim the node as their residence).",".. code-block:: json
+
+    {
+        ""Target_Residents_Only"": 1
+    }
+"
+"Trigger_Condition_List","array of strings","NA","NA","NA","An array of events that will trigger an intervention. The events contained in the list can be built-in events (see :doc:`parameter-campaign-event-list` for possible events) or the custom events defined in **Listed_Events** in the simulation configuration file.
+",".. code-block:: json
+
+    {
+        ""Trigger_Condition_List"": [
+            ""OnART3""
+        ]
+    }
+"

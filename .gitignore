@@ -292,3 +292,6 @@ Regression/Generic/SFTs/MeaslesVaccine/DistAge_NoEABM/touchfile
 Regression/Generic/SFTs/MeaslesVaccine/DistAge_EABM/scientific_feature_report.txt
 Regression/Generic/SFTs/MeaslesVaccine/DistAge_NoEABM/output/InsetChart.json
 Regression/Generic/SFTs/MeaslesVaccine/DistAge_NoEABM/test.txt
+
+# Sphinx docs
+docs/_build

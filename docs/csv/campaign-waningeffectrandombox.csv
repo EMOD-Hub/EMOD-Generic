@@ -1,0 +1,16 @@
+"Expected_Discard_Time","float","0","100000","100","The mean time, in days, of an exponential distribution of the duration of the effect of an intervention (such as a vaccine or bed net). Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
+
+    {
+        ""Expected_Discard_Time"": 60
+    }
+"
+"Initial_Effect","float","0","1","1","Strength of the effect, which remains constant until the duration is complete when using with the **WaningEffectRandomBox** class.",".. code-block:: json
+
+    {
+        ""Waning_Config"": {
+            ""Expected_Discard_Time"": 65,
+            ""Initial_Effect"": 0.85,
+            ""class"": ""WaningEffectRandomBox""
+        }
+    }
+"

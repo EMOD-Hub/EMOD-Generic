@@ -1,0 +1,24 @@
+"Box_Duration","float","0","100000","100","The box duration of the effect in days.",".. code-block:: json
+
+    {
+        ""Box_Duration"": 3650,
+        ""Initial_Effect"": 0.97,
+        ""Decay_Time_Constant"": 50
+    }
+"
+"Decay_Time_Constant","float","0","100000","100","The exponential decay length, in days, where the current effect is equal to **Initial_Effect** - dt/**Decay_Time_Constant** (dt equal to delta time). ",".. code-block:: json
+
+    {
+        ""Box_Duration"": 3650,
+        ""Initial_Effect"": 0.97,
+        ""Decay_Time_Constant"": 50
+    }
+"
+"Initial_Effect","float","0","1","1","The initial efficacy, held for a duration as specified with the **Box_Duration** parameter and then decaying at an exponential length (in days), where the current effect is equal to **Initial_Effect** - dt/**Decay_Time_Constant** (dt equal to delta time).",".. code-block:: json
+
+    {
+        ""Box_Duration"": 3650,
+        ""Initial_Effect"": 0.97,
+        ""Decay_Time_Constant"": 50
+    }
+"

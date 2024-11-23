@@ -1,0 +1,48 @@
+"Broadcast_Event","string","NA","NA","""""","The name of the event to be broadcast. This event must be set in the **Custom_Coordinator_Events** configuration parameter. This cannot be assigned an empty string for the event.",".. code-block:: json
+
+    {
+        ""class"": ""CampaignEvent"",
+        ""Start_Day"": 5,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Event_Coordinator_Config"": {
+            ""class"": ""BroadcastCoordinatorEvent"",
+            ""Coordinator_Name"": ""Coordnator_1"",
+            ""Cost_To_Consumer"": 10,
+            ""Broadcast_Event"": ""Coordinator_Event_1""
+        }
+    }
+"
+"Coordinator_Name","string","NA","NA","NA","The unique identifying coordinator name, which is useful with the output report, ReportCoordinatorEventRecorder.csv.",".. code-block:: json
+
+    {
+        ""class"": ""CampaignEvent"",
+        ""Start_Day"": 25,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Event_Coordinator_Config"": {
+            ""class"": ""BroadcastCoordinatorEvent"",
+            ""Coordinator_Name"": ""Coordinator_3"",
+            ""Cost_To_Consumer"": 30,
+            ""Broadcast_Event"": ""Coordinator_Event_3""
+        }
+    }
+"
+"Cost_To_Consumer","float","0","3.40282e+38","0","The unit cost of broadcasting the event.",".. code-block:: json
+
+    {
+        ""class"": ""CampaignEvent"",
+        ""Start_Day"": 15,
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Event_Coordinator_Config"": {
+            ""class"": ""BroadcastCoordinatorEvent"",
+            ""Coordinator_Name"": ""Coordnator_2"",
+            ""Cost_To_Consumer"": 20,
+            ""Broadcast_Event"": ""Coordinator_Event_2""
+        }
+    }
+"

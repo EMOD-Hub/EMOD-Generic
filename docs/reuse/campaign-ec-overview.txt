@@ -1,0 +1,3 @@
+Event coordinators are nested within the campaign event JSON object and determine *who* receives the
+intervention. "Who" is determined by filtering on age, gender, or on the individual properties
+configured in the demographics files, such as risk group or sociodemographic category. See :doc:`model-properties`.

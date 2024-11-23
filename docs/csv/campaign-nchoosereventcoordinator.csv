@@ -1,0 +1,205 @@
+"Age_Ranges_Years","array of JSON objects","NA","NA","NA","A list of age ranges that individuals must be in to qualify for an intervention. Each age range is a JSON object with a minimum and a maximum property. An individual is considered in range if their age is greater than or equal to the minimum age and less than the maximum age, in floating point years of age. It must have the same number of objects as **Num_Targeted_XXX** has elements.",".. code-block:: json
+
+    {
+        ""Age_Ranges_Years"": [
+            {
+                ""Min"": 10,
+                ""Max"": 19
+            },
+            {
+                ""Min"": 30,
+                ""Max"": 39
+            },
+            {
+                ""Min"": 50,
+                ""Max"": 59
+            }
+        ],
+        ""Num_Targeted_Males"": [
+            600000,
+            400000,
+            200000
+        ],
+        ""Num_Targeted_Females"": [
+            500000,
+            300000,
+            100000
+        ]
+    }
+"
+"Distributions","array of JSON objects","NA","NA","NA","The ordered list of elements defining when, to whom, and how many interventions to distribute.",".. code-block:: json
+
+    {
+        ""Distributions"": {
+            ""Start_Day"": 10,
+            ""End_Day"": 20,
+            ""Property_Restrictions_Within_Node"": [],
+            ""Age_Ranges_Years"": [
+                {
+                    ""Min"": 10,
+                    ""Max"": 19
+                },
+                {
+                    ""Min"": 40,
+                    ""Max"": 49
+                }
+            ],
+            ""Num_Targeted"": [
+                100,
+                300
+            ]
+        }
+    }
+"
+"End_Day","float","0","3.40282e+38","3.40282e+38","The day to stop distributing the intervention. No interventions are distributed on this day or going forward.",".. code-block:: json
+
+    {
+        ""Start_Day"": 10,
+        ""End_Day"": 20
+    }
+"
+"Intervention_Config","JSON object","NA","NA","NA","The nested JSON of the actual intervention to be distributed by this event coordinator.",".. code-block:: json
+
+    {
+        ""Intervention_Config"": {
+            ""class"": ""OutbreakIndividual"",
+            ""Antigen"": 0,
+            ""Genome"": 0,
+            ""Outbreak_Source"": ""PrevalenceIncrease"",
+            ""Incubation_Period_Override"": 1
+        }
+    }
+"
+"Max","float","0","125","125","This parameter determines the maximum age, in years for individuals to be included in the targeted population. An individual is considered in range if their age is greater than or equal to the minimum age and less than the maximum age, in floating point years of age.",".. code-block:: json
+
+    {
+        ""Age_Ranges_Years"": [
+            {
+                ""Min"": 20,
+                ""Max"": 29
+            },
+            {
+                ""Min"": 50,
+                ""Max"": 59
+            }
+        ]
+    }
+"
+"Min","float","0","125","0","This parameter determines the minimum age, in years for individuals to be included in the targeted population. An individual is considered in range if their age is greater than or equal to the minimum age and less than the maximum age, in floating point years of age.",".. code-block:: json
+
+    {
+        ""Age_Ranges_Years"": [
+            {
+                ""Min"": 20,
+                ""Max"": 29
+            },
+            {
+                ""Min"": 50,
+                ""Max"": 59
+            }
+        ]
+    }
+"
+"Num_Targeted","array of integers","0","2.14748e+09","0","The number of individuals to target with the intervention. Note that this value will be scaled up by the population scaling factor equal to **Base_Population_Scale_Factor**. If using this parameter, **Num_Targeted_Males** and **Num_Targeted_Females** must be empty.",".. code-block:: json
+
+    {
+        ""Age_Ranges_Years"": [
+            {
+                ""Min"": 10,
+                ""Max"": 19
+            },
+            {
+                ""Min"": 40,
+                ""Max"": 49
+            }
+        ],
+        ""Num_Targeted"": [
+            100,
+            300
+        ]
+    }
+"
+"Num_Targeted_Females","array of integers","0","2.14748e+09","0","The number of female individuals to distribute interventions to during this time period. If using this parameter with **Num_Targeted_Males** to target specific genders, they both must be the same length, and **Num_Targeted** must be empty.",".. code-block:: json
+
+    {
+        ""Age_Ranges_Years"": [
+            {
+                ""Min"": 10,
+                ""Max"": 19
+            },
+            {
+                ""Min"": 30,
+                ""Max"": 39
+            },
+            {
+                ""Min"": 50,
+                ""Max"": 59
+            }
+        ],
+        ""Num_Targeted_Males"": [
+            600000,
+            400000,
+            200000
+        ],
+        ""Num_Targeted_Females"": [
+            500000,
+            300000,
+            100000
+        ]
+    }
+"
+"Num_Targeted_Males","array of integers","0","2.14748e+09","0","The number of male individuals to distribute interventions to during this time period. If using this parameter with **Num_Targeted_Females** to target specific genders, they both must be the same length, and **Num_Targeted** must be empty.",".. code-block:: json
+
+    {
+        ""Age_Ranges_Years"": [
+            {
+                ""Min"": 10,
+                ""Max"": 19
+            },
+            {
+                ""Min"": 30,
+                ""Max"": 39
+            },
+            {
+                ""Min"": 50,
+                ""Max"": 59
+            }
+        ],
+        ""Num_Targeted_Males"": [
+            600000,
+            400000,
+            200000
+        ],
+        ""Num_Targeted_Females"": [
+            500000,
+            300000,
+            100000
+        ]
+    }
+"
+"Property_Restrictions_Within_Node","array of JSON objects","NA","NA","NA","A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
+
+This parameter allows you to specify AND and OR combinations of key:value pairs. You may specify individual property restrictions using either this parameter or **Property_Restrictions**, but not both. ","The following example restricts the intervention to individuals who are urban and high risk or urban and medium risk.
+
+.. code-block:: json
+
+    {
+        ""Property_Restrictions_Within_Node"": [
+            {
+                ""Risk"": ""HIGH"",
+                ""Geographic"": ""URBAN""
+            },
+            {
+                ""Risk"": ""MEDIUM"",
+                ""Geographic"": ""URBAN""
+            }
+        ]
+    }
+"
+"Start_Day","float","0","3.40282e+38","0","The day to start distributing the intervention.",".. code-block:: json
+
+    {
+        ""Start_Day"": 0,
+        ""End_Day"": 100
+    }
+"

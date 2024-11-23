@@ -1,0 +1,299 @@
+"Coordinator_Name","string","NA","NA","DelayEventCoordinator","The unique identifying coordinator name, which is useful with the output report, ReportCoordinatorEventRecorder.csv.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""DelayEventCoordinator_10"",
+            ""Delay_Complete_Event"": ""Completion_Delayed_Coordinator_Event_1"",
+            ""Delay_Period_Distribution"": ""FIXED_DURATION"",
+            ""Delay_Period_Fixed"": 25,
+            ""Duration"": 100,
+            ""Start_Trigger_Condition_List"": [
+                ""Coordinator_Event_1""
+            ],
+            ""Stop_Trigger_Condition_List"": [],
+            ""class"": ""DelayEventCoordinator""
+        },
+        ""Event_Name"": ""Delay"",
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""Target_Demographic"": ""Everyone"",
+        ""class"": ""CampaignEvent"",
+        ""comment"": ""Delay""
+    }
+"
+"Delay_Complete_Event","string","NA","NA","NA","The delay completion event to be included in the ReportCoordinatorEventRecorder.csv output report, upon completion of the delay period.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""DelayEventCoordinator_10"",
+            ""Delay_Complete_Event"": ""Completion_Delayed_Coordinator_Event_1"",
+            ""Delay_Distribution"": ""GAUSSIAN_DURATION"",
+            ""Delay_Period_Mean"": 25,
+            ""Delay_Period_Std_Dev"": 5,
+            ""Duration"": 100,
+            ""Start_Trigger_Condition_List"": [
+                ""Coordinator_Event_1""
+            ],
+            ""Stop_Trigger_Condition_List"": [],
+            ""class"": ""DelayEventCoordinator""
+        },
+        ""Event_Name"": ""Delay"",
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""Target_Demographic"": ""Everyone"",
+        ""class"": ""CampaignEvent"",
+        ""comment"": ""Delay""
+    }
+"
+"Delay_Period_Constant","float","0","3.40282E+38","-1","The delay period to use for all interventions, in days, when **Delay_Period_Distribution** is set to CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""CONSTANT_DISTRIBUTION"",
+        ""Delay_Period_Constant"": 8
+    }
+"
+"Delay_Period_Distribution","enum","NA","NA","NOT_INITIALIZED","The distribution type to use for assigning the delay period for distributing interventions. Each assigned value is a random draw from the distribution.
+
+Possible values are:
+
+NOT_INITIALIZED
+    No distribution set. 
+CONSTANT_DISTRIBUTION
+    Use the same value for each individual. Set **Delay_Period_Constant**.
+UNIFORM_DISTRIBUTION
+    Use a `uniform`_ distribution with a given minimum and maximum. Set **Delay_Period_Max** and **Delay_Period_Min**.
+GAUSSIAN_DISTRIBUTION
+    The distribution is `Gaussian`_ (or normal). Values are resampled to ensure >= 0. Set **Delay_Period_Gaussian_Mean** and **Delay_Period_Gaussian_Std_Dev**.
+EXPONENTIAL_DISTRIBUTION
+    The distribution is `exponential`_ with a given mean. Set **Delay_Period_Exponential**.
+WEIBULL_DISTRIBUTION
+    Use a `Weibull`_ distribution with a given shape and scale. Set **Delay_Period_Kappa** and **Delay_Period_Lambda**.
+LOG_NORMAL_DISTRIBUTION
+    Use a `log-normal`_ distribution with a given mean and standard deviation of the natural log. Set **Delay_Period_Log_Normal_Mu** and **Delay_Period_Log_Normal_Sigma**.
+POISSON_DISTRIBUTION
+    Use a `Poisson`_ distribution with a given mean. Set **Delay_Period_Poisson_Mean**. 
+DUAL_CONSTANT_DISTRIBUTION
+    Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Delay_Period_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
+DUAL_EXPONENTIAL_DISTRIBUTION
+    Use two `exponential`_ distributions with given means. Set **Delay_Period_Mean_1**, **Delay_Period_Mean_2**, and **Delay_Period_Proportion_1**. This distribution does not use the parameters set for EXPONENTIAL_DISTRIBUTION.
+
+
+.. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
+
+.. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
+
+.. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
+
+.. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
+
+.. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
+
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
+
+",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Delay_Period_Gaussian_Mean"": 8,
+        ""Delay_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Delay_Period_Exponential","float","0","3.40282E+38","-1","The mean of the delay period, in days, when **Delay_Period_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""EXPONENTIAL_DISTRIBUTION"",
+        ""Delay_Period_Exponential"": 4.25
+    }
+"
+"Delay_Period_Gaussian_Mean","float","0","3.40282E+38","-1","The mean of the delay period, in days, when **Delay_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Delay_Period_Gaussian_Mean"": 8,
+        ""Delay_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Delay_Period_Gaussian_Std_Dev","float","1.17549E-38","3.40282E+38","-1","The standard deviation of the delay period, in days, when **Delay_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""GAUSSIAN_DISTRIBUTION"",
+        ""Delay_Period_Gaussian_Mean"": 8,
+        ""Delay_Period_Gaussian_Std_Dev"": 1.5
+    }
+"
+"Delay_Period_Kappa","float","1.17549E-38","3.40282E+38","-1","The shape value for the delay period, in days, when **Delay_Period_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Delay_Period_Kappa"": 0.9,
+        ""Delay_Period_Lambda"": 1.5
+    }
+"
+"Delay_Period_Lambda","float","1.17549E-38","3.40282E+38","-1","The scale value for the delay period, in days, when **Delay_Period_Distribution** is set to WEIBULL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""WEIBULL_DISTRIBUTION"",
+        ""Delay_Period_Kappa"": 0.9,
+        ""Delay_Period_Lambda"": 1.5
+    }
+"
+"Delay_Period_Log_Normal_Mu","float","-3.40282e+38","1.70141e+38","3.40282e+38","The mean of the natural log of the delay period, in days, when **Delay_Period_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Delay_Period_Log_Normal_Mu"": 9,
+        ""Delay_Period_Log_Normal_Sigma"": 2
+    }
+"
+"Delay_Period_Log_Normal_Sigma","float","-3.40282e+38","1.70141e+38","3.40282E+38","The standard deviation of the natural log of the delay period, in days, when **Delay_Period_Distribution** is set to LOG_NORMAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""LOG_NORMAL_DISTRIBUTION"",
+        ""Delay_Period_Log_Normal_Mu"": 9,
+        ""Delay_Period_Log_Normal_Sigma"": 2
+    }
+"
+"Delay_Period_Max","float","0","3.40282E+38","-1","The maximum delay period, in days, when **Delay_Period_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Delay_Period_Min"": 2,
+        ""Delay_Period_Max"": 7
+    }
+"
+"Delay_Period_Mean_1","float","1.17549E-38","3.40282E+38","-1","The mean of the first exponential distribution, in days, when **Delay_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Delay_Period_Mean_1"": 4,
+        ""Delay_Period_Mean_2"": 12,
+        ""Delay_Period_Proportion_1"": 0.2
+    }
+"
+"Delay_Period_Mean_2","float","1.17549E-38","3.40282E+38","-1","The mean of the second exponential distribution, in days, when **Delay_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Delay_Period_Mean_1"": 4,
+        ""Delay_Period_Mean_2"": 12,
+        ""Delay_Period_Proportion_1"": 0.2
+    }
+"
+"Delay_Period_Min","float","0","3.40282E+38","-1","The minimum delay period, in days, when **Delay_Period_Distribution** is set to UNIFORM_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""UNIFORM_DISTRIBUTION"",
+        ""Delay_Period_Min"": 2,
+        ""Delay_Period_Max"": 7
+    }
+"
+"Delay_Period_Peak_2_Value","float","0","3.40282E+38","-1","The delay period value, in days, to assign to the remaining interventions when **Delay_Period_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Delay_Period_Proportion_0"": 0.25,
+        ""Delay_Period_Peak_2_Value"": 5
+    }
+"
+"Delay_Period_Poisson_Mean","float","0","3.40282E+38","-1","The mean of the delay period, in days, when **Delay_Period_Distribution** is set to POISSON_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""POISSON_DISTRIBUTION"",
+        ""Delay_Period_Poisson_Mean"": 5
+    }
+"
+"Delay_Period_Proportion_0","float","0","1","-1","The proportion of interventions to assign a value of zero delay when **Delay_Period_Distribution** is set to DUAL_CONSTANT_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_CONSTANT_DISTRIBUTION"",
+        ""Delay_Period_Proportion_0"": 0.25,
+        ""Delay_Period_Peak_2_Value"": 5
+    }
+"
+"Delay_Period_Proportion_1","float","0","1","-1","The proportion of interventions in the first exponential distribution when **Delay_Period_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.",".. code-block:: json
+
+    {
+        ""Delay_Period_Distribution"": ""DUAL_EXPONENTIAL_DISTRIBUTION"",
+        ""Delay_Period_Mean_1"": 4,
+        ""Delay_Period_Mean_2"": 12,
+        ""Delay_Period_Proportion_1"": 0.2
+    }
+"
+"Duration","float","-1","3.40282e+38","-1","The number of days from when the delay event coordinator was created by the campaign event. Once the number of days has passed, the delay event coordinator will unregister for events and expire. The default value of '-1' = never expire.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""DelayEventCoordinator_10"",
+            ""Delay_Complete_Event"": ""Completion_Delayed_Coordinator_Event_1"",
+            ""Delay_Period_Distribution"": ""FIXED_DURATION"",
+            ""Delay_Period_Fixed"": 25,
+            ""Duration"": 100,
+            ""Start_Trigger_Condition_List"": [
+                ""Coordinator_Event_1""
+            ],
+            ""Stop_Trigger_Condition_List"": [],
+            ""class"": ""DelayEventCoordinator""
+        },
+        ""Event_Name"": ""Delay"",
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""Target_Demographic"": ""Everyone"",
+        ""class"": ""CampaignEvent""
+    }
+"
+"Start_Trigger_Condition_List","array of strings","NA","NA","NA","The start trigger event condition list contains events defined in the **Custom_Coordinator_Events** config parameter that will trigger to start a new delay. If the delay event coordinator has already been triggered and is currently waiting for the duration of a delay, it will then ignore a new delay event. The list cannot be empty.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""DelayEventCoordinator_10"",
+            ""Delay_Complete_Event"": ""Completion_Delayed_Coordinator_Event_1"",
+            ""Delay_Period_Distribution"": ""FIXED_DURATION"",
+            ""Delay_Period_Fixed"": 25,
+            ""Duration"": 100,
+            ""Start_Trigger_Condition_List"": [
+                ""Coordinator_Event_1""
+            ],
+            ""Stop_Trigger_Condition_List"": [],
+            ""class"": ""DelayEventCoordinator""
+        },
+        ""Event_Name"": ""Delay"",
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""Target_Demographic"": ""Everyone"",
+        ""class"": ""CampaignEvent"",
+        ""comment"": ""Delay""
+    }
+"
+"Stop_Trigger_Condition_List","array of strings","NA","NA","NA","The stop trigger event condition list contains events defined in the **Custom_Coordinator_Events** config parameter that will trigger to stop a delay period, but does not stop the delay event coordinator. The event is not broadcast.",".. code-block:: json
+
+    {
+        ""Event_Coordinator_Config"": {
+            ""Coordinator_Name"": ""DelayEventCoordinator_10"",
+            ""Delay_Complete_Event"": ""Completion_Delayed_Coordinator_Event_1"",
+            ""Delay_Period_Distribution"": ""FIXED_DURATION"",
+            ""Delay_Period_Fixed"": 25,
+            ""Duration"": 100,
+            ""Start_Trigger_Condition_List"": [
+                ""Coordinator_Event_1""
+            ],
+            ""Stop_Trigger_Condition_List"": [],
+            ""class"": ""DelayEventCoordinator""
+        },
+        ""Event_Name"": ""Delay"",
+        ""Nodeset_Config"": {
+            ""class"": ""NodeSetAll""
+        },
+        ""Start_Day"": 1,
+        ""Target_Demographic"": ""Everyone"",
+        ""class"": ""CampaignEvent"",
+        ""comment"": ""Delay""
+    }
+"

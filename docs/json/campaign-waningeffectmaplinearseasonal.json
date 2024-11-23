@@ -1,0 +1,13 @@
+{
+    "Intervention_Config": {
+        "class": "UsageDependentBednet",
+        "Usage_Config_List": [{
+            "class": "WaningEffectMapLinearSeasonal",
+            "Initial_Effect": 1.0,
+            "Durability_Map": {
+                "Times": [0.0, 20.0, 21.0, 30.0, 31.0, 365.0],
+                "Values": [1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+            }
+        }]
+    }
+}

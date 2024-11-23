@@ -1,0 +1,103 @@
+Enable_Maternal_Antibodies_Transmission,boolean,0,1,0,Controls whether or not mothers pass antibodies to their infants.,".. code-block:: json
+
+    {
+        ""Enable_Maternal_Antibodies_Transmission"": 1,
+        ""Maternal_Antibodies_Type"": ""SIMPLE_WANING"",
+        ""Maternal_Antibody_Protection"": 0.23,
+        ""Maternal_Antibody_Decay_Rate"": 0.03
+    }"
+Enable_Maternal_Protection,boolean,0,1,0,Controls whether or not mothers pass immunity on to their infants. Setting to 1 (true) enables maternal protection as defined by **Maternal_Protection_Type**. **Enable_Birth** must be set to 1 (true).,".. code-block:: json
+
+    {
+        ""Enable_Maternal_Protection"": 1,
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL""
+    }"
+Enable_Natural_Mortality,boolean,0,1,0,Controls whether or not individuals are removed from the simulation due to natural (non-disease) deaths.,".. code-block:: json
+
+    {
+        ""Enable_Natural_Mortality"": 1,
+        ""Enable_Vital_Dynamics"": 1
+    }"
+Enable_Skipping,boolean,0,1,0,"Controls whether or not the simulation uses an optimization that can increase performance by up to 50% in some cases by probablistically exposing individuals rather than exposing every single person. Useful in low-prevalence, high-population scenarios.",".. code-block:: json
+
+    {
+        ""Exposure_Skipping"": 1
+    }"
+Enable_Susceptibility_Scaling,boolean,0,1,0,Controls whether or not susceptibility is scaled by time as defined by **Susceptibility_Scaling_Type**.,".. code-block:: json
+
+    {
+        ""Enable_Susceptibility_Scaling"": 1,
+        ""Susceptibility_Scaling_Type"": ""LOG_LINEAR_FUNCTION_OF_TIME""
+    }"
+Maternal_Linear_Slope,float,0.0001,1,0.01,"Slope parameter describing the rate of waning for maternal protection, must be positive. The per-day increase in susceptibility.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL"",
+        ""Maternal_Linear_SusZero"": 0.45,
+        ""Maternal_Linear_Slope"": 0.02
+    }
+"
+Maternal_Linear_SusZero,float,0,1,0.2,"The initial level of maternal protection at age 0, given as susceptibility. A value of 0.0 implies total protection, a value of 1.0 implies no protection.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL"",
+        ""Maternal_Linear_SusZero"": 0.45,
+        ""Maternal_Linear_Slope"": 0.02
+    }
+"
+Maternal_Protection_Type,enum,NA,NA,NONE,The type of maternal protection afforded to infants.,".. code-block:: json
+
+    {
+        ""Enable_Maternal_Protection"": 1,
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL""
+    }
+"
+Maternal_Sigmoid_HalfMaxAge,float,-270,3650,180,The age in days that the level of maternal protection is half of its initial value.,".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""SIGMOID_BINARY"",
+        ""Maternal_Sigmoid_SteepFac"": 30,
+        ""Maternal_Sigmoid_HalfMaxAge"": 365,
+        ""Maternal_Sigmoid_SusInit"": 0.0002
+    }"
+Maternal_Sigmoid_SteepFac,float,0.1,1000,30,"The steepness factor describing the rate of waning for maternal protection, must be positive. Small values imply rapid waning.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""SIGMOID_BINARY"",
+        ""Maternal_Sigmoid_SteepFac"": 30,
+        ""Maternal_Sigmoid_HalfMaxAge"": 365,
+        ""Maternal_Sigmoid_SusInit"": 0.0002
+    }"
+Maternal_Sigmoid_SusInit,float,0,1,0,"The initial level of maternal protection at age -INF, given as susceptibility. A value of 0.0 implies total protection, a value of 1.0 implies no protection.",".. code-block:: json
+
+    {
+        ""Maternal_Protection_Type"": ""SIGMOID_BINARY"",
+        ""Maternal_Sigmoid_SteepFac"": 30,
+        ""Maternal_Sigmoid_HalfMaxAge"": 365,
+        ""Maternal_Sigmoid_SusInit"": 0.0002
+    }"
+Node_Contagion_Decay_Rate,float,0,1,1,The fraction of contagion not carried over to the next time step.,".. code-block:: json
+
+    {
+        ""Node_Contagion_Decay_Rate"": 0.3
+    }"
+Susceptibility_Scaling_Rate,float,0,3.40E+38,0,The scaling rate for the variation in time of the log-linear susceptibility scaling. **Susceptibility_Scaling_Type** must be set to LOG_LINEAR_FUNCTION_OF_TIME.,".. code-block:: json
+
+    {
+        ""Susceptibility_Scaling_Type"": ""LOG_LINEAR_FUNCTION_OF_TIME"",
+        ""Susceptibility_Scaling_Rate"": 1.58
+    }
+"
+Susceptibility_Scaling_Type,enum,NA,NA,CONSTANT_SUSCEPTIBILITY,The effect of time on susceptibility.,".. code-block:: json
+
+    {
+        ""Susceptibility_Scaling_Type"": ""CONSTANT_SUSCEPTIBILITY""
+    }	
+	"
+Susceptibility_Type,enum,NA,NA,FRACTIONAL,Controls implementation of an individual's susceptibility.,".. code-block:: json
+
+    {
+        ""Susceptibility_Type"": ""FRACTIONAL"",
+        ""Enable_Maternal_Protection"": 1,
+        ""Maternal_Protection_Type"": ""LINEAR_FRACTIONAL""
+    }"

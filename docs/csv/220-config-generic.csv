@@ -1,0 +1,58 @@
+Enable_Infectivity_Reservoir,boolean,0,1,0,"Controls whether or not an exogeneous reservoir of infectivity will be included in the simulation and allows for the infectivity in a node to be increased additively. When set to 1 (true), the demographics parameter **InfectivityReservoirSize** is expected in **NodeAtttributes** for each node.",".. code-block:: json
+
+    {
+        ""Enable_Infectivity_Reservoir"": 1
+    }
+"
+Enable_Abort_Zero_Infectivity,boolean,,,0,Controls whether or not the simulation should be ended when total infectivity falls to zero. Supported only in single-node simulations. ,".. code-block:: json
+
+    {
+        ""Enable_Abort_Zero_Infectivity"": 1,
+        ""Minimum_End_Time"": 3650
+    }
+"
+Enable_Random_Generator_From_Serialized_Population,boolean,,,0,Determines if the random number generator(s) should be extracted from a serialized population file. Enabling this will start a simulation from this file with the exact same random number stream and location in that stream as when the file was serialized.,".. code-block:: json
+
+    {
+        ""Run_Number"": 12,
+        ""Random_Number_Generator_Type"": ""USE_AES_COUNTER"",
+        ""Random_Number_Generator_Policy"": ""ONE_PER_NODE"",
+        ""Enable_Random_Generator_From_Serialized_Population"": 1
+    }
+"
+Minimum_End_Time,float,0,1000000,0,The minimum time step the simulation must reach before checking for early termination conditions. **Enable_Abort_Zero_Infectivity** must be set to 1 (true).,".. code-block:: json
+
+    {
+        ""Enable_Abort_Zero_Infectivity"": 1,
+        ""Minimum_End_Time"": 3650
+    }
+"
+Random_Number_Generator_Policy,enum,,,ONE_PER_CORE,"The policy that determines if random numbers are generated for objects in a simulation on a per-core or per-node basis.  The following values are available:
+
+ONE_PER_CORE
+    A random number generator (RNG) is created for each computing core running a simulation. When running a simulation on a single core, there will be only one RNG. If running the single simulation on multiple cores, each core will have its own RNG. The RNGs on the different cores start out such that they will not generate the same stream of random numbers. Prior to |EMOD_s| 2.19, all simulations used this policy. 
+ONE_PER_NODE
+   An RNG is created for each geographic node in the simulation. The advantages of this policy are that 1) an event that causes a random number to be drawn in one node does not cause things to change in another node and 2) changing a simulation from single core to multi-core will not change the results. The RNGs on the different nodesstart out such that they will not generate the same stream of random numbers.",".. code-block:: json
+
+    {
+        ""Run_Number"": 15,
+        ""Random_Number_Generator_Type"": ""USE_AES_COUNTER"",
+        ""Random_Number_Generator_Policy"": ""ONE_PER_NODE""
+    }
+"
+Random_Number_Generator_Type,enum,,,USE_PSEUDO_DES,"The type of random number generator to use for objects in a simulation. Must set the RNG seed in **Run_Number**. The following values are available:
+
+USE_PSEUDO_DES
+    Based on `Numerical Recipes in C. The Art of Scientific Computing <https://en.wikipedia.org/wiki/Numerical_Recipes>`_, 2nd ed. Press, William H. et. al, 1992. Prior to |EMOD_s| 2.19, this was the only generator available.
+USE_LINEAR_CONGRUENTIAL
+    Based on `The Structure of Linear Congruential Sequences <https://www.researchgate.net/publication/242477888_The_Structure_of_Linear_Congruential_Sequences>`_, Marsaglia, George, 1972. 
+USE_AES_COUNTER
+    Based on AES in CTR Mode encryption as implemented in `Intel (R) Advanced Encryption Standard (AES) New Instruction Set <https://software.intel.com/sites/default/files/article/165683/aes-wp-2012-09-22-v01.pdf>`_.",".. code-block:: json
+
+    {
+        ""Run_Number"": 15,
+        ""Random_Number_Generator_Type"": ""USE_LINEAR_CONGRUENTIAL"",
+        ""Random_Number_Generator_Policy"": ""ONE_PER_NODE"",
+        ""Enable_Random_Generator_From_Serialized_Population"": 1
+    }
+"

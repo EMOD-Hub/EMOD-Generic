@@ -1,0 +1,27 @@
+{
+    "IndividualProperties": [{
+        "Property": "Risk",
+        "Values": ["High", "Low"],
+        "Initial_Distribution": [0.2, 0.8],
+        "TransmissionMatrix": {
+            "Route": "Contact",
+            "Matrix": [
+                [10, 0.1],
+                [0.1, 1]
+            ]
+        }
+    }, {
+        "Property": "Place",
+        "Values": ["Urban", "Suburban", "Rural"],
+        "Initial_Distribution": [0.55, 0.35, 0.1],
+        "TransmissionMatrix": {
+            "Route": "Contact",
+            "Matrix": [
+                [2.5, 1.0, 0.1],
+                [1.0, 1.4, 0.2],
+                [0.2, 0.4, 0.8]
+            ]
+
+        }
+    }]
+}
