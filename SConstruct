@@ -285,6 +285,9 @@ else:
     elif(sys.version_info.minor == 12):
         env.Append( LIBS=["python3.12"] )
         env.Append( EXTRACPPPATH=["/usr/include/python3.12"] )
+    elif(sys.version_info.minor == 13):
+        env.Append( LIBS=["python3.13"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.13"] )
     else:
         raise RuntimeError("Unsupported python version")
 
