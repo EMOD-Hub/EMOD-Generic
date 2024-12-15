@@ -191,7 +191,7 @@ html_theme_options = {
         {"name": "IDM docs", "url": "https://docs.idmod.org", "icon": "fas fa-home"},
         {
             "name": "GitHub",
-            "url": "https://github.com/institutefordiseasemodeling/EMOD_Generic",
+            "url": "https://github.com/institutefordiseasemodeling/EMOD-Generic",
             "icon": "fab fa-github-square",
         },
     ],
@@ -207,9 +207,9 @@ html_sidebars = {
 html_logo = "images/idm-logo-transparent.png"
 html_favicon = "images/favicon.ico"
 html_static_path = ['_static']
-html_baseurl = "https://docs.idmod.org/projects/EMOD_Generic/en/latest"
+html_baseurl = "https://docs.idmod.org/projects/EMOD-Generic/en/latest"
 html_context = {
-    'rtd_url': 'https://docs.idmod.org/projects/EMOD_Generic/en/latest',
+    'rtd_url': 'https://docs.idmod.org/projects/EMOD-Generic/en/latest',
     "versions_dropdown": {
         "latest": "devel (latest)",
         "stable": "current (stable)",
