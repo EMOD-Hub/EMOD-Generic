@@ -97,7 +97,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = u'emodpy-malaria'
+project = u'EMOD-Generic'
 copyright = f'1999 - {datetime.today().year}, Bill & Melinda Gates Foundation. All rights reserved.'
 author = u'Institute for Disease Modeling'
 
@@ -191,7 +191,7 @@ html_theme_options = {
         {"name": "IDM docs", "url": "https://docs.idmod.org", "icon": "fas fa-home"},
         {
             "name": "GitHub",
-            "url": "https://github.com/institutefordiseasemodeling/emodpy-malaria",
+            "url": "https://github.com/institutefordiseasemodeling/EMOD_Generic",
             "icon": "fab fa-github-square",
         },
     ],
@@ -207,9 +207,9 @@ html_sidebars = {
 html_logo = "images/idm-logo-transparent.png"
 html_favicon = "images/favicon.ico"
 html_static_path = ['_static']
-html_baseurl = "https://docs.idmod.org/projects/emodpy-malaria/en/latest"
+html_baseurl = "https://docs.idmod.org/projects/EMOD_Generic/en/latest"
 html_context = {
-    'rtd_url': 'https://docs.idmod.org/projects/emodpy-malaria/en/latest',
+    'rtd_url': 'https://docs.idmod.org/projects/EMOD_Generic/en/latest',
     "versions_dropdown": {
         "latest": "devel (latest)",
         "stable": "current (stable)",
@@ -347,7 +347,7 @@ html_use_opensearch = 'www.idmod.org/docs/'
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'emodpy-malaria'
+htmlhelp_basename = 'EMOD-Generic'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -373,7 +373,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'emodpy-malaria-docs.tex', u'emodpy-malaria',
+    (master_doc, 'EMOD-Generic-docs.tex', u'EMOD-Generic',
      u'Institute for Disease Modeling', 'manual'),
 ]
 
@@ -415,7 +415,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'emodpy-malaria-docs', u'emodpy-malaria',
+    (master_doc, 'EMOD-Generic-docs', u'EMOD-Generic',
      [author], 1)
 ]
 
@@ -429,8 +429,8 @@ man_show_urls = True
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'emodpy-malaria-docs', u'emodpy-malaria',
-     author, 'Institute for Disease Modeling', 'How to use emodpy for malaria simulations.',
+    (master_doc, 'EMOD-Generic-docs', u'EMOD-Generic',
+     author, 'Institute for Disease Modeling', 'How to use EMOD for generic simulations.',
      'Miscellaneous'),
 ]
 
