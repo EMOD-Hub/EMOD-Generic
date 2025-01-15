@@ -57,7 +57,7 @@ namespace Kernel
         virtual void WriteData( const std::string& rStringData );
 
         // make protected so derived classes can set in Configure()
-        bool write_every_time_step ;
+        bool write_every_time_step;
         bool write_header_newline;
 
     private:

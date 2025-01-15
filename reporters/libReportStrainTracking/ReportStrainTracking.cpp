@@ -19,10 +19,11 @@
 
 //******************************************************************************
 
-#define DEFAULT_REP_NAME       ("ReportStrainTracking.csv")
-#define DESC_TEXT_REPORT_NAME  ("Output file name.")
-#define DESC_TEXT_TIME_START   ("No output prior to this timestep.")
-#define DESC_TEXT_TIME_END     ("No output after this timestep.")
+#define DEFAULT_REP_NAME                 ("ReportStrainTracking.csv")
+#define DESC_TEXT_REPORT_NAME            ("Output file name.")
+#define DESC_TEXT_TIME_START             ("No output prior to this timestep.")
+#define DESC_TEXT_TIME_END               ("No output after this timestep.")
+#define DESC_TEXT_OUTPUT_EVERY_TIMESTEP  ("Write after every timestep.")
 
 //******************************************************************************
 
@@ -96,6 +97,8 @@ namespace Kernel
         initConfigTypeMap("Report_Name", &fName,        DESC_TEXT_REPORT_NAME, DEFAULT_REP_NAME);
         initConfigTypeMap("Time_Start",  &m_time_start, DESC_TEXT_TIME_START,  0.0f, FLT_MAX, 0.0f);
         initConfigTypeMap("Time_End",    &m_time_end,   DESC_TEXT_TIME_END,    0.0f, FLT_MAX, FLT_MAX);
+
+        initConfigTypeMap("Ouput_Every_Timestep", &write_every_time_step, DESC_TEXT_OUTPUT_EVERY_TIMESTEP, false);
 
         bool retVal = JsonConfigurable::Configure( inputJson );
 
