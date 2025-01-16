@@ -113,7 +113,8 @@ namespace Kernel {
             return ;
         }
 
-        outfile << rStringData ;
+        outfile << rStringData;
+        outfile.flush();
     }
 
     void BaseTextReport::SetReportName(const std::string& new_name)
