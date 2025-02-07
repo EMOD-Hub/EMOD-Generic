@@ -44,7 +44,7 @@ namespace Kernel
         initConfigTypeMap( "Import_Female_Prob",      &female_prob,       Import_Female_Prob_DESC_TEXT,         0.0f,                       1.0f,        0.5f );
         initConfigTypeMap( "Import_Agent_MC_Weight",  &mc_weight,         Import_Agent_MC_Weight_DESC_TEXT,  FLT_MIN,                    FLT_MAX,        1.0f );
 
-        initConfigTypeMap( "Probability_of_Infection", &inf_prob,         Probability_of_Infection_DESC_TEXT,   0.0f,                       1.0f,        1.0f );
+        initConfigTypeMap( "Probability_Of_Infection", &inf_prob,         Probability_Of_Infection_DESC_TEXT,   0.0f,                       1.0f,        1.0f );
 
 
         // --------------------------------------------------------------
