@@ -19,6 +19,8 @@ const float ImmuneThreshold = 1.0f; //threshold to be considered immune
 
 namespace Kernel
 {
+    IMPLEMENT_FACTORY_REGISTERED(ImmunityBloodTest)
+
     bool ImmunityBloodTest::Configure(const Configuration * inputJson)
     {
         initConfig( "Negative_Diagnosis_Event", negative_diagnosis_event, inputJson, MetadataDescriptor::Enum("Negative_Diagnosis_Event", IBT_Negative_Diagnosis_Config_Event_DESC_TEXT, MDD_ENUM_ARGS( EventTrigger ) ) );
