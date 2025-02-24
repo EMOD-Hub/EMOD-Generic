@@ -460,4 +460,3 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3', None),
                        'pycomps': ('https://docs.idmod.org/projects/pycomps/en/latest/', None),
                        'emod': ('https://docs.idmod.org/projects/emod/en/latest/', None)
                        }
-                       
