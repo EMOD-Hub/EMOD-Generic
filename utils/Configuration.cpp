@@ -53,6 +53,7 @@ Configuration::Configuration()
     : QuickInterpreter( json::Element() )
     , pElement( nullptr )
     , data_location("serialization")
+    , extendedConfig{}
 {
     // this ctor only for serialization, the base class will be initialized to an invalid state which deserialization must repair
 }
@@ -83,11 +84,6 @@ QuickInterpreter Configuration::operator[] (const std::string& key) const {
         return extendedConfig.at(key);
     }
     return QuickInterpreter::operator[](key);
-}
-
-bool Configuration::CheckElementByName(const std::string& elementName) const
-{
-    return QuickInterpreter::Exist(elementName);
 }
 
 Configuration* Configuration::LoadFromPython(
@@ -199,20 +195,6 @@ Configuration *Configuration_Load( const std::string& rFilename )
 {
     return Configuration::Load( rFilename );
 }
-
-
-/*
-Configuration* Configuration::Load( istream &config_file )
-{    
-    return loadInternal(config_file);
-}
-
-Configuration* Configuration::loadInternalWrapper( std::istream &config_file )
-{
-    return loadInternal(config_file);
-}
-*/
-
 
 Configuration* Configuration::loadInternal( istream &is_config_file, const std::string& rDataLocation )
 {

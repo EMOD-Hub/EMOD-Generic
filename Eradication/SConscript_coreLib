@@ -1,6 +1,4 @@
-# -*- mode: python; -*-
 # This Python script, SConscript, invoked by the SConscript in the upper directory,
-#
 # 1. builds coreLib static library
 
 SConscript('SConscript_flags')

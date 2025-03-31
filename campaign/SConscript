@@ -1,24 +1,17 @@
-# -*- mode: python; -*-
 # This Python script, SConscript, invoked by the SConscript in the upper directory,
-#
 # 1. builds campaign static library
 
 Import("env")
 
-campaignSrcFiles = ["EventCoordinator.cpp",
-                    'InterventionEnums.cpp',
-                    "InterventionFactory.cpp",
-                    "Interventions.cpp",
-                    "NodeSetAll.cpp",
-                    "NodeSetNodeList.cpp",
-                    "NodeSetFactory.cpp",
-                    "stdafx.cpp"
-                    ]
-campaignIncFiles = ['EventCoordinator.h',
-                    'InterventionEnums.h',
-                    'InterventionFactory.h',
-                    'Interventions.h',
-                    'NodeSet.h']
-campaignLocalInc = ['stdafx.h']
+campaignSrcFiles = [
+    "EventCoordinator.cpp",
+    "InterventionEnums.cpp",
+    "InterventionFactory.cpp",
+    "Interventions.cpp",
+    "NodeSetAll.cpp",
+    "NodeSetNodeList.cpp",
+    "NodeSetFactory.cpp",
+    "stdafx.cpp",
+    ]
 
 campaignLib = env.StaticLibrary('campaign', campaignSrcFiles)

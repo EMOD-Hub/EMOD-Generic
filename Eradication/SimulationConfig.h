@@ -81,7 +81,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED(SimulationConfigFactory, SimulationConfig, IConfigurable)
 
     public:
-        DECLARE_CONFIGURED(SimulationConfig)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
         VectorParameters*  vector_params;
@@ -91,6 +90,7 @@ namespace Kernel
         SimulationConfig();
         virtual ~SimulationConfig();
 
+        virtual bool Configure(const Configuration* config);
         virtual QuickBuilder SimulationConfig::GetSchema() override;
 
         const Configuration* GetJsonConfigObj() const { return m_jsonConfig; }

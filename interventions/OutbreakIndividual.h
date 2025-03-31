@@ -36,13 +36,13 @@ namespace Kernel
     class OutbreakIndividual : public IOutbreakIndividual, public BaseIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_CONFIGURED(OutbreakIndividual)
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, OutbreakIndividual, IDistributableIntervention)
 
     public:
         OutbreakIndividual();
         virtual ~OutbreakIndividual() { }
 
+        virtual bool Configure(const Configuration* config) override;
         virtual bool Distribute( IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO );
         virtual void SetContextTo(IIndividualHumanContext *context) { /* not needed for this intervention */ }
         virtual void Update(float dt);

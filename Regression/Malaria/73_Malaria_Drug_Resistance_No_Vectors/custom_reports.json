@@ -1,13 +1,11 @@
 {
-    "Custom_Reports" : 
-    {
-        "Use_Explicit_Dlls" : 1,
+    "Custom_Reports": {
         "ReportNodeDemographicsMalaria": {
             "Enabled": 1,
             "Reports": [
                 {
-                    "Stratify_By_Gender" : 0,
-                    "Age_Bins" : []
+                    "Age_Bins": [],
+                    "Stratify_By_Gender": 0
                 }
             ]
         }

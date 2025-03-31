@@ -370,7 +370,6 @@ class MyRegressionRunner(object):
 
         reporters = list(reports_json["Custom_Reports"])
         reporters_set = set(reporters)
-        reporters_set.discard("Use_Explicit_Dlls")
 
         # Re-build the list of reporter DLL paths in the emodules map based on the reporters appearing above
         for reporter in reporters_set:

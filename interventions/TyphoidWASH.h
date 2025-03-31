@@ -20,7 +20,6 @@ namespace Kernel
     {
         DECLARE_FACTORY_REGISTERED(NodeIVFactory, TyphoidWASH, INodeDistributableIntervention)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_CONFIGURED(Outbreak)
 
     public:
         TyphoidWASH ();
@@ -28,6 +27,7 @@ namespace Kernel
         virtual ~TyphoidWASH();
         
         // INodeDistributableIntervention 
+        virtual bool Configure(const Configuration* config) override;
         virtual void SetContextTo(INodeEventContext *context) override;
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC = nullptr ) override;
 

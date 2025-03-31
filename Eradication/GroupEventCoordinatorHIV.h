@@ -30,14 +30,14 @@ namespace Kernel
     // Within that group, only delivers to a fraction of people (specified by the coverage parameter)
     class GroupInterventionDistributionEventCoordinatorHIV : public StandardInterventionDistributionEventCoordinator
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, GroupInterventionDistributionEventCoordinatorHIV, IEventCoordinator)    
+        DECLARE_FACTORY_REGISTERED(EventCoordinatorFactory, GroupInterventionDistributionEventCoordinatorHIV, IEventCoordinator)    
     public:
-        DECLARE_CONFIGURED(GroupInterventionDistributionEventCoordinatorHIV)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-    public:
+
         GroupInterventionDistributionEventCoordinatorHIV();
-        
-         virtual bool visitIndividualCallback(IIndividualHumanEventContext *ihec, float &incrementalCostOut, ICampaignCostObserver * pICCO );
+
+        virtual bool Configure(const Configuration* config) override;
+        virtual bool visitIndividualCallback(IIndividualHumanEventContext *ihec, float &incrementalCostOut, ICampaignCostObserver * pICCO );
 
     protected:   
         float time_offset; //time used in demographic file matrix is simulation_time - time_offset

@@ -11,9 +11,12 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include <string>
 #include <functional>
-#include "IdmApi.h"
+
 #include "Configure.h"
 #include "ExternalNodeId.h"
+#include "FactorySupport.h"
+#include "IdmApi.h"
+#include "ObjectFactory.h"
 
 namespace Kernel
 {
@@ -28,18 +31,10 @@ namespace Kernel
     public:
         virtual ~IReport() {} ;
 
-        // ----------------------------
-        // --- JsonConfigurable Methods 
-        // ----------------------------
-        // make public from JsonConfigurable
         virtual bool Configure( const Configuration* inputJson ) = 0;
 
-        // ------------------
-        // --- Public Methods
-        // ------------------
         virtual void Initialize(unsigned int nrmSize) = 0;
         virtual bool Validate(const ISimulationContext* parent_sim)  = 0;
-        virtual void CheckForValidNodeIDs(const std::vector<ExternalNodeId_t>& demographicNodeIds) = 0;
 
         virtual void UpdateEventRegistration( float currentTime, 
                                               float dt, 
@@ -57,6 +52,10 @@ namespace Kernel
         virtual void Finalize() = 0;
 
         virtual std::string GetReportName() const = 0;
+    };
+
+    class ReportFactory : public ObjectFactory<IReport, ReportFactory>
+    {
     };
 
     // This abstract class provides a default implementation to some of pure virtual methods
@@ -78,7 +77,6 @@ namespace Kernel
         // -------------------
         // --- IReport Methods
         // -------------------
-        virtual void CheckForValidNodeIDs(const std::vector<ExternalNodeId_t>& demographicNodeIds) {};
         virtual void UpdateEventRegistration( float currentTime, 
                                               float dt, 
                                               std::vector<INodeEventContext*>& rNodeEventContextList,

@@ -34,7 +34,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 SETUP_LOGGING( "Schema" )
 
-#define CAMP_Use_Defaults_DESC_TEXT "Set to true (1) if you don't want to have to specify all params for event coordinators and interventions. Use at own risk." 
+#define Use_Defaults_DESC_TEXT "Set to 1 to apply default values to unspecified parameters." 
 
 const std::vector<std::string> getSimTypeList()
 {
@@ -99,18 +99,6 @@ void writeInputSchemas( const char* dll_path, const char* output_path, const cha
 
     total_schema["Version"]         = versionSchema.As<json::Object>();
 
-    // ---------------------
-    // --- Create DLL Schema
-    // ---------------------
-    DllLoader dllLoader;
-    std::map< std::string, createSim > createSimFuncPtrMap;
-
-    if( dllLoader.LoadDiseaseDlls(createSimFuncPtrMap) )
-    {
-        json::Object diseaseSchemas = dllLoader.GetDiseaseDllSchemas();
-        total_schema[ "config:emodules" ] = diseaseSchemas;
-    }
-
     // ------------------------
     // --- Create Config Schema
     // ------------------------
@@ -143,20 +131,38 @@ void writeInputSchemas( const char* dll_path, const char* output_path, const cha
     // --------------------------
     // --- Create Campaign Schema
     // --------------------------
-    json::Object useDefaultsRoot;
-    json::QuickBuilder udSchema( useDefaultsRoot );
+    json::Object camp_defaults_root;
+    json::QuickBuilder camp_ud_schema( camp_defaults_root );
 
-    udSchema["type"]        = json::String( "bool" );
-    udSchema["default"]     = json::Number( 0 );
-    udSchema["description"] = json::String( CAMP_Use_Defaults_DESC_TEXT );
+    camp_ud_schema["type"]        = json::String( "bool" );
+    camp_ud_schema["default"]     = json::Number( 0 );
+    camp_ud_schema["description"] = json::String( Use_Defaults_DESC_TEXT );
 
-    json::Object objRoot;
-    json::QuickBuilder camp_schema( objRoot );
+    json::Object camp_root;
+    json::QuickBuilder camp_schema( camp_root );
 
-    camp_schema["Events"][0]    = json::String( "idmType:CampaignEvent" );
-    camp_schema["Use_Defaults"] = udSchema.As<json::Object>();
+    camp_schema["Events"][0]    = json::String( "idmAbstractType:CampaignEvent" );
+    camp_schema["Use_Defaults"] = camp_ud_schema.As<json::Object>();
 
-    total_schema[ "interventions" ] = camp_schema.As<json::Object>();
+    total_schema["interventions"] = camp_schema.As<json::Object>();
+
+    // --------------------------
+    // --- Create Reports Schema
+    // --------------------------
+    json::Object report_defaults_root;
+    json::QuickBuilder report_ud_schema( report_defaults_root );
+
+    report_ud_schema["type"]        = json::String( "bool" );
+    report_ud_schema["default"]     = json::Number( 0 );
+    report_ud_schema["description"] = json::String( Use_Defaults_DESC_TEXT );
+
+    json::Object report_root;
+    json::QuickBuilder report_schema( report_root );
+
+    report_schema["Reports"][0]   = json::String( "idmType:IReport" );
+    report_schema["Use_Defaults"] = report_ud_schema.As<json::Object>();
+
+    total_schema["reports"] = report_schema.As<json::Object>();
 
     // --------------------------
     // --- Create idmTypes Schema
@@ -175,12 +181,14 @@ void writeInputSchemas( const char* dll_path, const char* output_path, const cha
     
     json::QuickBuilder ces_schema = Kernel::CampaignEventFactory::getInstance()->GetSchema();
     json::QuickBuilder ecs_schema = Kernel::EventCoordinatorFactory::getInstance()->GetSchema();
-    json::QuickBuilder nds_schema  = Kernel::NodeSetFactory::getInstance()->GetSchema();
+    json::QuickBuilder nds_schema = Kernel::NodeSetFactory::getInstance()->GetSchema();
+    json::QuickBuilder rpt_schema = Kernel::ReportFactory::getInstance()->GetSchema();
 
     idmtypes_schema["idmAbstractType:CampaignEvent"]    = ces_schema.As<json::Object>();
     idmtypes_schema["idmAbstractType:Intervention"]     = ivt_schema.As<json::Object>();
     idmtypes_schema["idmAbstractType:EventCoordinator"] = ecs_schema.As<json::Object>();
     idmtypes_schema["idmAbstractType:NodeSet"]          = nds_schema.As<json::Object>();
+    idmtypes_schema["idmType:IReport"]                  = rpt_schema.As<json::Object>();
 
     total_schema[ "idmTypes" ] = idmtypes_schema.As<json::Object>();
 
@@ -196,15 +204,7 @@ void writeInputSchemas( const char* dll_path, const char* output_path, const cha
 
     while (it != itEnd)
     {
-        if( it->element.Type() == json::ElementType::OBJECT_ELEMENT &&
-            (json::QuickInterpreter(it->element)).As<json::Object>().Exist("base") )
-        {
-            // Don't add element
-        }
-        else
-        {
-            total_schema["idmTypes"][it->name] = it->element;
-        }
+        total_schema["idmTypes"][it->name] = it->element;
         it++;
     }
 
@@ -280,39 +280,7 @@ namespace json
 
     void SchemaUpdater::Visit(String& stringElement)
     {
-        std::string in_val = stringElement;
-
-        // Replace "Type" with "AbstractType" as needed
-        if (in_val == "idmType:Intervention")
-        {
-            json::QuickBuilder type_str(stringElement);
-            type_str = json::String("idmAbstractType:Intervention");
-        }
-        else if (in_val == "idmType:IndividualIntervention")
-        {
-            json::QuickBuilder type_str(stringElement);
-            type_str = json::String("idmAbstractType:IndividualIntervention");
-        }
-        else if (in_val == "idmType:NodeIntervention")
-        {
-            json::QuickBuilder type_str(stringElement);
-            type_str = json::String("idmAbstractType:NodeIntervention");
-        }
-        else if (in_val == "idmType:EventCoordinator")
-        {
-            json::QuickBuilder type_str(stringElement);
-            type_str = json::String("idmAbstractType:EventCoordinator");
-        }
-        else if (in_val == "idmType:CampaignEvent")
-        {
-            json::QuickBuilder type_str(stringElement);
-            type_str = json::String("idmAbstractType:CampaignEvent");
-        }
-        else if (in_val == "idmType:NodeSet")
-        {
-            json::QuickBuilder type_str(stringElement);
-            type_str = json::String("idmAbstractType:NodeSet");
-        }
+        // No action;
     }
 
     void SchemaUpdater::Visit(Number& number)

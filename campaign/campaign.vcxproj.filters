@@ -21,12 +21,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InterventionFactory.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventCoordinator.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Eradication\Climate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -159,20 +153,26 @@
     <ClInclude Include="..\utils\suids.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NodeSet.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InterventionEnums.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interventions.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\utils\Properties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BroadcasterObserver.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterventionFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interventions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterventionEnums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventCoordinator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeSet.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

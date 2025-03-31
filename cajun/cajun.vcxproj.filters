@@ -26,29 +26,29 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\cast.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="src\stdafx.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\writer.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="include\cast.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\elements.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\exception.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\quick.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\exception.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\reader.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\visitor.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\stdafx.h">
-    	<Filter>Header Files</Filter>
+    <ClInclude Include="include\writer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

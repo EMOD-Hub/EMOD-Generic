@@ -49,11 +49,12 @@ namespace Kernel
 
     public:
         friend class CampaignEventFactory;
-        DECLARE_CONFIGURED(CampaignEvent)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
 
         CampaignEvent();
         virtual ~CampaignEvent();
+
+        virtual bool Configure(const Configuration* config);
         virtual bool Validate( const ISimulationContext* parent_sim );
         float GetStartDay() const;
         int   GetEventIndex() const;

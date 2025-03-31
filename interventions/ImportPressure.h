@@ -26,13 +26,13 @@ namespace Kernel
     class ImportPressure : public Outbreak
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_CONFIGURED(Outbreak)
         DECLARE_FACTORY_REGISTERED(NodeIVFactory, ImportPressure, INodeDistributableIntervention)
 
     public:
         ImportPressure();
         virtual ~ImportPressure();
 
+        virtual bool Configure(const Configuration* config) override;
         virtual void Update(float dt);
         virtual void SetContextTo(INodeEventContext *context);
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC);

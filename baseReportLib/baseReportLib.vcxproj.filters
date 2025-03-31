@@ -197,5 +197,8 @@
     <ClCompile Include="ReportUtilitiesMalaria.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReportFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -146,6 +146,7 @@
     <ClCompile Include="BaseTextReportEvents.cpp" />
     <ClCompile Include="BinnedReport.cpp" />
     <ClCompile Include="ChannelDataMap.cpp" />
+    <ClCompile Include="ReportFactory.cpp" />
     <ClCompile Include="ReportUtilities.cpp" />
     <ClCompile Include="ReportUtilitiesMalaria.cpp" />
     <ClCompile Include="stdafx.cpp">

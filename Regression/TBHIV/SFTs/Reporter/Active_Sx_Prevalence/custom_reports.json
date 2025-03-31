@@ -1,17 +1,16 @@
-{	
-   "Custom_Reports": {	
-      "Report_TBHIV_ByAge": {	
-         "Enabled": 1,	
-         "Reports": [	
-            {	
-               "Additional_Events": [],
-               "Max_Age_Yrs": 200,	
-               "Min_Age_Yrs": 0,	
-               "Start_Year": 0,	
-               "Stop_Year": 200	
-            }	
-         ]	
-      },	
-      "Use_Explicit_Dlls": 1	
-   }	
+{
+    "Custom_Reports": {
+        "Report_TBHIV_ByAge": {
+            "Enabled": 1,
+            "Reports": [
+                {
+                    "Additional_Events": [],
+                    "Max_Age_Yrs": 200,
+                    "Min_Age_Yrs": 0,
+                    "Start_Year": 0,
+                    "Stop_Year": 200
+                }
+            ]
+        }
+    }
 }

@@ -20,16 +20,13 @@ namespace Kernel
 
     class GroupInterventionDistributionEventCoordinator : public StandardInterventionDistributionEventCoordinator
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, GroupInterventionDistributionEventCoordinator, IEventCoordinator)    
+        DECLARE_FACTORY_REGISTERED(EventCoordinatorFactory, GroupInterventionDistributionEventCoordinator, IEventCoordinator)    
     public:
-        DECLARE_CONFIGURED(GroupInterventionDistributionEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-    public:
         GroupInterventionDistributionEventCoordinator();
-        // IEventCoordinator
 
+        virtual bool Configure(const Configuration* config) override;
         virtual bool qualifiesDemographically( IIndividualHumanEventContext* pIndividual ) override;
-
 
     protected:
 

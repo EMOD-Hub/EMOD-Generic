@@ -25,15 +25,15 @@ namespace Kernel
     // Standard distribution ec that just gives out the intervention once to the fraction of people specified by the coverage parameter
     class StandardInterventionDistributionEventCoordinator : public IEventCoordinator, public ITravelLinkedDistributionSource, public IVisitIndividual, public IEventCoordinator2, public JsonConfigurable
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, StandardInterventionDistributionEventCoordinator, IEventCoordinator)
+        DECLARE_FACTORY_REGISTERED(EventCoordinatorFactory, StandardInterventionDistributionEventCoordinator, IEventCoordinator)
 
     public:
-        DECLARE_CONFIGURED(StandardInterventionDistributionEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
         StandardInterventionDistributionEventCoordinator( bool useDemographicCoverage = true );
         virtual ~StandardInterventionDistributionEventCoordinator();
 
+        virtual bool Configure(const Configuration* config);
         virtual IConfigurable* GetConfigurable() override { return JsonConfigurable::GetConfigurable(); }
 
         // IEventCoordinator

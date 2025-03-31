@@ -15,15 +15,15 @@ namespace Kernel
 {
     class ReferenceTrackingEventCoordinator : public StandardInterventionDistributionEventCoordinator 
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, ReferenceTrackingEventCoordinator, IEventCoordinator)    
+        DECLARE_FACTORY_REGISTERED(EventCoordinatorFactory, ReferenceTrackingEventCoordinator, IEventCoordinator)    
 
     public:
-        DECLARE_CONFIGURED(ReferenceTrackingEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
         ReferenceTrackingEventCoordinator();
         virtual ~ReferenceTrackingEventCoordinator() { } 
 
+        virtual bool Configure(const Configuration* config) override;
         virtual void Update(float dt) override;
         virtual void preDistribute() override;
         virtual void CheckStartDay( float campaignStartDay ) const override;

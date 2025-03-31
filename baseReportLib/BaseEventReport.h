@@ -38,7 +38,6 @@ namespace Kernel
         virtual std::string GetReportName() const override;
         virtual void Initialize( unsigned int nrmSize ) override;
 
-        virtual void CheckForValidNodeIDs(const std::vector<ExternalNodeId_t>& nodeIds_demographics);
         virtual void UpdateEventRegistration( float currentTime, 
                                               float dt, 
                                               std::vector<INodeEventContext*>& rNodeEventContextList,

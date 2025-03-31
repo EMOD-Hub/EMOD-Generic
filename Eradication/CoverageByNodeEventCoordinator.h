@@ -15,7 +15,7 @@ namespace Kernel
 {
     class CoverageByNodeEventCoordinator : public StandardInterventionDistributionEventCoordinator
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, CoverageByNodeEventCoordinator, IEventCoordinator)
+        DECLARE_FACTORY_REGISTERED(EventCoordinatorFactory, CoverageByNodeEventCoordinator, IEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
     public:

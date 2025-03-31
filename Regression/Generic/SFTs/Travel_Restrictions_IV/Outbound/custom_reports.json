@@ -1,12 +1,10 @@
 {
-  "Reports": [],
-  "Custom_Reports": {
-    "Use_Explicit_Dlls": 1,
-    "ReportHumanMigrationTracking": {
-      "Enabled": 1,
-      "Reports": [
-        {}
-      ]
+    "Custom_Reports": {
+        "ReportHumanMigrationTracking": {
+            "Enabled": 1,
+            "Reports": [
+                {}
+            ]
+        }
     }
-  }
 }

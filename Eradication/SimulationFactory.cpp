@@ -98,23 +98,6 @@ namespace Kernel
 
         try
         {
-#ifdef _DLLS_
-            // Look through disease dll directory, do LoadLibrary on each .dll,
-            // do GetProcAddress on GetMimeType() and CreateSimulation
-            typedef ISimulation* (*createSim)(const Environment *);
-            std::map< std::string, createSim > createSimFuncPtrMap;
-
-            // Note map operator [] will automatically initialize the pointer to NULL if not found
-            DllLoader dllLoader;         
-            if (!dllLoader.LoadDiseaseDlls(createSimFuncPtrMap) || !createSimFuncPtrMap[sSimType])
-            {
-                std::ostringstream msg;
-                msg << "Failed to load disease emodules for SimType: " << sSimType << " from path: " << dllLoader.GetEModulePath(DISEASE_EMODULES).c_str() << std::endl;
-                throw Kernel::DllLoadingException( __FILE__, __LINE__, __FUNCTION__, msg.str().c_str());
-                return newsim;
-            }
-            newsim = createSimFuncPtrMap[sSimType](EnvPtr);
-#else // _DLLS_
             switch (SimConfig::GetSimParams()->sim_type)
             {
                 case SimType::GENERIC_SIM:
@@ -180,7 +163,6 @@ namespace Kernel
                     throw Kernel::GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, msg.str().c_str() );
                 break;
             }
-#endif
             release_assert(newsim);
         }
         catch ( GeneralConfigurationException& e ) {

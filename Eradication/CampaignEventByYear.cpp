@@ -25,7 +25,7 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(CampaignEventByYear)
 
     CampaignEventByYear::CampaignEventByYear()
-    : start_year(0.0f)
+        : start_year(0.0f)
     { }
 
     CampaignEventByYear::~CampaignEventByYear()

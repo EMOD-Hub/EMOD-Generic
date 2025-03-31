@@ -17,13 +17,14 @@ namespace Kernel
     class TriggeredEventCoordinator : public StandardInterventionDistributionEventCoordinator
         , public ICoordinatorEventObserver, public IEventCoordinatorEventContext
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT( EventCoordinatorFactory, TriggeredEventCoordinator, IEventCoordinator )
-        DECLARE_CONFIGURED( TriggeredEventCoordinator )
+        DECLARE_FACTORY_REGISTERED( EventCoordinatorFactory, TriggeredEventCoordinator, IEventCoordinator )
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
     public:
         TriggeredEventCoordinator();
         ~TriggeredEventCoordinator();
+
+        virtual bool Configure(const Configuration* config) override;
         virtual bool notifyOnEvent( IEventCoordinatorEventContext *pEntity, const EventTriggerCoordinator& trigger ) override;
         virtual void SetContextTo( ISimulationEventContext *isec ) override;
         void Register();

@@ -1,29 +1,34 @@
 {
-    "Custom_Reports" : 
-    {
-        "Use_Explicit_Dlls" : 1,
-        "ReportMalariaFiltered" :
-        {
-            "Enabled" : 1,
-            "Reports" :
-            [
+    "Custom_Reports": {
+        "ReportMalariaFiltered": {
+            "Enabled": 1,
+            "Reports": [
                 {
-                    "Start_Day": 0,
                     "End_Day": 100,
-                    "Report_File_Name" : "Rank0_Nodes1n2.json",
-                    "Node_IDs_Of_Interest" : [1,2]
+                    "Node_IDs_Of_Interest": [
+                        1,
+                        2
+                    ],
+                    "Report_File_Name": "Rank0_Nodes1n2.json",
+                    "Start_Day": 0
                 },
                 {
-                    "Start_Day" : 20,
                     "End_Day": 100,
-                    "Report_File_Name" : "Rank1_Nodes3n4.json",
-                    "Node_IDs_Of_Interest" : [3,4]
+                    "Node_IDs_Of_Interest": [
+                        3,
+                        4
+                    ],
+                    "Report_File_Name": "Rank1_Nodes3n4.json",
+                    "Start_Day": 20
                 },
                 {
-                    "Start_Day" : 0,
                     "End_Day": 100,
-                    "Report_File_Name" : "Rank2_Nodes5n6.json",
-                    "Node_IDs_Of_Interest" : [5,6]
+                    "Node_IDs_Of_Interest": [
+                        5,
+                        6
+                    ],
+                    "Report_File_Name": "Rank2_Nodes5n6.json",
+                    "Start_Day": 0
                 }
             ]
         }

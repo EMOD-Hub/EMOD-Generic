@@ -13,15 +13,15 @@ namespace Kernel
 {
     class ReferenceTrackingEventCoordinatorHIV : public ReferenceTrackingEventCoordinator 
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, ReferenceTrackingEventCoordinatorHIV, IEventCoordinator)    
+        DECLARE_FACTORY_REGISTERED(EventCoordinatorFactory, ReferenceTrackingEventCoordinatorHIV, IEventCoordinator)    
 
     public:
-        DECLARE_CONFIGURED(ReferenceTrackingEventCoordinatorHIV)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
         ReferenceTrackingEventCoordinatorHIV();
         virtual ~ReferenceTrackingEventCoordinatorHIV() { } 
 
+        virtual bool Configure(const Configuration* config) override;
         virtual bool qualifiesDemographically( IIndividualHumanEventContext* pIndividual );
 
     protected:

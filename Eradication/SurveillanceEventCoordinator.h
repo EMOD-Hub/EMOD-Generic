@@ -47,7 +47,7 @@ namespace Kernel
                                        , public IEventCoordinatorEventContext
                                        , public ISurveillanceReporting
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, SurveillanceEventCoordinator, IEventCoordinator)
+        DECLARE_FACTORY_REGISTERED(EventCoordinatorFactory, SurveillanceEventCoordinator, IEventCoordinator)
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 

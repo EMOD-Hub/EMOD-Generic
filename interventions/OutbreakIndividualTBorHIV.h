@@ -15,17 +15,20 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 namespace Kernel
 {
     class IndividualHumanCoInfection;
+
     class OutbreakIndividualTBorHIV : public OutbreakIndividual
     {
-
-        DECLARE_CONFIGURED(OutbreakIndividualTBorHIV)
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, OutbreakIndividualTBorHIV, IDistributableIntervention)
-    protected:
-        int infection_type;
+
     public:
         OutbreakIndividualTBorHIV();
         virtual ~OutbreakIndividualTBorHIV() { }
+
+        virtual bool Configure(const Configuration* config) override;
         QuickBuilder GetSchema();
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO);
+
+    protected:
+        int infection_type;
     };
 }

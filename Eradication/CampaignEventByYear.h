@@ -17,11 +17,12 @@ namespace Kernel
 
     public:
         friend class CampaignEventFactory;
-        DECLARE_CONFIGURED(CampaignEventByYear)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
 
         CampaignEventByYear();
         virtual ~CampaignEventByYear();
+
+        virtual bool Configure(const Configuration* config) override;
         virtual bool Validate( const ISimulationContext* parent_sim );
 
     protected:

@@ -1,11 +1,10 @@
 {
-    "Custom_Reports" : 
-    {
-        "Use_Explicit_Dlls" : 1,
-        "ReportNodeDemographics" :
-        {
-            "Enabled" : 1,
-            "Reports" : [ {} ]
+    "Custom_Reports": {
+        "ReportNodeDemographics": {
+            "Enabled": 1,
+            "Reports": [
+                {}
+            ]
         }
     }
 }

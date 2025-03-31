@@ -41,7 +41,6 @@ public:
 
     virtual ~DllLoader ();
 
-    bool LoadDiseaseDlls(std::map< std::string, createSim>& createSimFuncPtrMap, const char* dllName=nullptr);
     json::Object GetDiseaseDllSchemas();
     bool LoadReportDlls( std::unordered_map< std::string, Kernel::report_instantiator_function_t >& reportInstantiators,
                          const char* dllName = nullptr );

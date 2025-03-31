@@ -19,7 +19,6 @@ namespace Kernel
     class ModifyStiCoInfectionStatus : public BaseIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_CONFIGURED(ModifyStiCoInfectionStatus)
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, ModifyStiCoInfectionStatus, IDistributableIntervention)
 
     public:
@@ -27,6 +26,7 @@ namespace Kernel
         virtual ~ModifyStiCoInfectionStatus() { }
 
         // INodeDistributableIntervention
+        virtual bool Configure(const Configuration* config) override;
         virtual bool Distribute( IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pCCO ) override;
         virtual void Update(float dt) override;
 

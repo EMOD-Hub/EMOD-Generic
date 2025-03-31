@@ -197,10 +197,8 @@ namespace Kernel
     {
         json::QuickBuilder schema( jsonSchemaBase );
         auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[ tn ] = json::String( "idmType:NodeSet" );
-        schema[ ts ]= json::Object();
-        schema[ ts ][ "base" ] = json::String( "interventions.idmType.NodeSet" );
+        schema[ tn ] = json::String( "idmAbstractType:NodeSet" );
+
         return schema;
     }
 
@@ -238,10 +236,8 @@ namespace Kernel
     {
         json::QuickBuilder schema( jsonSchemaBase );
         auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[ tn ] = json::String( "idmType:EventCoordinator" );
-        schema[ ts ]= json::Object();
-        schema[ ts ][ "base" ] = json::String( "interventions.idmType.EventCoordinator" );
+        schema[ tn ] = json::String( "idmAbstractType:EventCoordinator" );
+
         return schema;
     }
 
@@ -268,10 +264,7 @@ namespace Kernel
     {
         json::QuickBuilder schema(jsonSchemaBase);
         auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[tn] = json::String("idmType:Intervention");
-        schema[ts] = json::Object();
-        schema[ts]["base"] = json::String( "interventions.idmAbstractType.Intervention" );
+        schema[tn] = json::String("idmAbstractType:Intervention");
 
         return schema;
     }
@@ -306,9 +299,7 @@ namespace Kernel
     {
         json::QuickBuilder schema = InterventionConfig::GetSchema();
         auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[tn] = json::String("idmType:IndividualIntervention");
-        schema[ts]["base"] = json::String("interventions.idmAbstractType.IndividualIntervention");
+        schema[tn] = json::String("idmAbstractType:IndividualIntervention");
 
         return schema;
     }
@@ -349,9 +340,7 @@ namespace Kernel
     {
         json::QuickBuilder schema = InterventionConfig::GetSchema();
         auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[tn] = json::String("idmType:NodeIntervention");
-        schema[ts]["base"] = json::String("interventions.idmAbstractType.NodeIntervention");
+        schema[tn] = json::String("idmAbstractType:NodeIntervention");
 
         return schema;
     }
@@ -1430,7 +1419,14 @@ namespace Kernel
         //  }
         std::string custom_type_label = (std::string) custom_schema[ _typename_label() ].As<json::String>();
         json::String custom_type_label_as_json_string = json::String( custom_type_label );
-        jsonSchemaBase[ custom_type_label ] = custom_schema[ _typeschema_label() ];
+
+        // Do not update with a null object
+        json::QuickInterpreter s_check(custom_schema);
+        if( s_check.Exist(_typeschema_label()) )
+        {
+            jsonSchemaBase[ custom_type_label ] = custom_schema[ _typeschema_label() ];
+        }
+
         json::Object newParamSchema;
         newParamSchema["description"] = json::String( description );
         newParamSchema["type"] = json::String( custom_type_label_as_json_string );

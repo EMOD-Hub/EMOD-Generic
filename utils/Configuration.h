@@ -27,8 +27,10 @@ public:
     // creates a Configuration object representing a copy of the subtree rooted at the element passed in
     static Configuration* CopyFromElement( const json::Element &elem, const std::string& rDataLocation = "Unknown" );
 
-    bool CheckElementByName(const std::string& elementName) const;
     const std::string& GetDataLocation() const { return data_location; }
+
+    bool IsObject() const { return (pElement->Type() == json::ElementType::OBJECT_ELEMENT); }
+    bool IsArray() const { return (pElement->Type() == json::ElementType::ARRAY_ELEMENT); }
 
     static Configuration* Load(std::string configFileName);
     static Configuration* Load(std::istream& rInputStream, const std::string& rDataLocation);
@@ -149,26 +151,14 @@ inline bool GET_CONFIG_BOOLEAN(const json::QuickInterpreter* parameter_source, c
 #define GET_CONFIG_NUMBER(_cfg, _name)    (float)GET_CONFIG_DOUBLE(_cfg, _name)
 
 
-//////////////////////////////////////////////////////////////////////////
-// Declarations for Configurable object functionality
-
 namespace Kernel
 {
     using namespace std;
     using namespace json;
-
-    //////////////////////////////////////////////////////////////////////
-    // Configuration Mechanism
 
     struct IDMAPI IConfigurable : ISupports
     {
         virtual bool Configure(const Configuration *config) = 0;
         virtual QuickBuilder GetSchema() = 0;
     };
-
-#define DECLARE_CONFIGURED(classname) \
-protected: \
-    template<class Mode> void common_configured_dispatch(const Configuration *config, /*caller supplies base object, out param*/ QuickBuilder *schema);\
-public: \
-    virtual bool Configure(const Configuration *config);
 }

@@ -8,15 +8,10 @@
 #
 # Simply type scons to build everything in DTK
 #
-#
-import datetime
+
 import os
 import re
-import shutil
-import stat
 import sys
-import types
-import pdb
 import platform
 
 import SCons.Tool.MSCommon.vc  as  scons_vc
@@ -326,7 +321,7 @@ if os.sys.platform.startswith("linux"):
         nixLibPrefix = "lib64"
         env.Append( EXTRALIBPATH=["/usr/lib64" , "/lib64" ] )
 
-    env.Append( LIBS=["pthread", "dl", "m" ] )
+    env.Append( LIBS=["pthread", "dl", "m", "sqlite3"] )
     env.Append( EXTRALIBPATH=[ "/usr/local/lib", "/usr/lib64/mpich/lib" ] )
 
     if static:

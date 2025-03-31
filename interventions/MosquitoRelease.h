@@ -39,7 +39,6 @@ namespace Kernel
     class MosquitoRelease : public BaseNodeIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_CONFIGURED(MosquitoRelease)
         DECLARE_FACTORY_REGISTERED(NodeIVFactory, MosquitoRelease, INodeDistributableIntervention)
 
     public:
@@ -48,6 +47,7 @@ namespace Kernel
         virtual ~MosquitoRelease() { }
 
         // INodeDistributableIntervention
+        virtual bool Configure(const Configuration* config) override;
         virtual bool Distribute(INodeEventContext *context, IEventCoordinator2* pEC);
         virtual void SetContextTo(INodeEventContext *context) { } // not needed for this intervention
         virtual void Update(float dt);

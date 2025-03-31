@@ -171,7 +171,7 @@ namespace Kernel
 
     class IncidenceEventCoordinator : public IEventCoordinator, public JsonConfigurable
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT( EventCoordinatorFactory, IncidenceEventCoordinator, IEventCoordinator )
+        DECLARE_FACTORY_REGISTERED( EventCoordinatorFactory, IncidenceEventCoordinator, IEventCoordinator )
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 

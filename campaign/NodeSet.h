@@ -36,11 +36,12 @@ namespace Kernel
     // class defines a simple set of nodes...either by id, 
     class IDMAPI NodeSetAll : public INodeSet, public JsonConfigurable
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(NodeSetFactory, NodeSetAll, INodeSet)
+        DECLARE_FACTORY_REGISTERED(NodeSetFactory, NodeSetAll, INodeSet)
 
     public:
-        DECLARE_CONFIGURED(NodeSetAll)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
+
+        virtual bool Configure(const Configuration* config);
 
         virtual bool Contains(INodeEventContext *ndc);
         virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);
@@ -71,11 +72,12 @@ namespace Kernel
 
     class IDMAPI NodeSetNodeList : public INodeSet, public JsonConfigurable
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(NodeSetFactory, NodeSetNodeList, INodeSet)
+        DECLARE_FACTORY_REGISTERED(NodeSetFactory, NodeSetNodeList, INodeSet)
 
     public:
-        DECLARE_CONFIGURED(NodeSetNodeList)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
+
+        virtual bool Configure(const Configuration* config);
 
         virtual bool Contains(INodeEventContext *ndc);
         virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);

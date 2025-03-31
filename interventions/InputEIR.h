@@ -26,7 +26,6 @@ namespace Kernel
     class InputEIR : public BaseNodeIntervention
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_CONFIGURED(Outbreak)
         DECLARE_FACTORY_REGISTERED(NodeIVFactory, InputEIR, INodeDistributableIntervention)
 
     public:
@@ -34,6 +33,7 @@ namespace Kernel
         InputEIR( const InputEIR& master );
         virtual ~InputEIR() { }
 
+        virtual bool Configure(const Configuration* config) override;
         virtual void Update(float dt) override;
 
         // IBaseIntervention

@@ -15,12 +15,13 @@ namespace Kernel
 {
     class CalendarEventCoordinator : public StandardInterventionDistributionEventCoordinator
     {
-        DECLARE_FACTORY_REGISTERED_EXPORT(EventCoordinatorFactory, CalendarEventCoordinator, IEventCoordinator)
-        DECLARE_CONFIGURED(CalendarEventCoordinator)
+        DECLARE_FACTORY_REGISTERED(EventCoordinatorFactory, CalendarEventCoordinator, IEventCoordinator)
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
     public:
         CalendarEventCoordinator();
+
+        virtual bool Configure(const Configuration* config) override;
         virtual void UpdateNodes(float dt) override;
         virtual bool TargetedIndividualIsCovered( IIndividualHumanEventContext *ihec ) override;
 

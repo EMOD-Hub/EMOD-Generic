@@ -78,10 +78,6 @@ namespace Kernel
     {
     }
 
-    void BaseEventReport::CheckForValidNodeIDs(const std::vector<ExternalNodeId_t>& nodeIds_demographics)
-    {
-    }
-
     void BaseEventReport::UpdateEventRegistration( float currentTime,
                                                    float dt,
                                                    std::vector<INodeEventContext*>& rNodeEventContextList,

@@ -595,13 +595,70 @@ namespace Kernel
 
     void Simulation::Reports_CreateCustom()
     {
-        // -------------------------------------------------------------
-        // --- Allow the user to indicate that they do not want to use
-        // --- any custom reports even if DLL's are present.
-        // -------------------------------------------------------------
         if( (GetParams()->custom_reports_filename).empty() )
         {
-            return ;
+            return;
+        }
+
+        Configuration* p_cr_config = nullptr;
+        std::string cr_file = GetParams()->custom_reports_filename;
+        bool cached_defaults = JsonConfigurable::_useDefaults;
+
+        LOG_INFO_F("Looking for custom reports file = %s\n", cr_file.c_str());
+        if( FileSystem::FileExists(cr_file) )
+        {
+            LOG_INFO_F("Found custom reports file = %s\n", cr_file.c_str());
+            Configuration* p_config = Configuration::Load(cr_file);
+            if( !p_config )
+            {
+                throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, cr_file.c_str() );
+            }
+
+            if( !p_config->Exist("Reports") )
+            {
+                // Old style file format; will eventually be an error 
+                // std::stringstream ss;
+                // ss << "Error occured reading json file " << cr_file << ". Error: No \"Reports\" key." << std::endl;
+                // throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
+            }
+            else
+            {
+                p_cr_config = Configuration::CopyFromElement( (*p_config)["Reports"], p_config->GetDataLocation() );
+                if( p_config->Exist("Use_Defaults") )
+                {
+                    JsonConfigurable::_useDefaults = ((*p_config)["Use_Defaults"].As<json::Number>() != 0);
+                }
+
+            }
+            delete p_config;
+            p_config = nullptr;
+        }
+
+        if( p_cr_config )
+        {
+            // Should be an array of json objects
+            if( !p_cr_config->IsArray() )
+            {
+                std::stringstream ss;
+                ss << "Error occured reading json file " << cr_file << ". Error: \"Reports\" should be an array." << std::endl;
+                throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
+            }
+            json::Array report_list = p_cr_config->As<json::Array>();
+
+            for( int k1 = 0; k1 < report_list.Size(); k1++  )
+            {
+                std::stringstream rep_name;
+                rep_name << "Reports[" << k1 << "]";
+                IReport* rep_obj = ReportFactory::getInstance()->CreateInstance( report_list[k1], p_cr_config->GetDataLocation(), rep_name.str().c_str() );
+                reports.push_back( rep_obj );
+            }
+            JsonConfigurable::_useDefaults = cached_defaults;
+
+            delete p_cr_config;
+            p_cr_config = nullptr;
+
+            // Return here for now to only support 1 format of the custom reports file`
+            return;
         }
 
         ReportInstantiatorMap report_instantiator_map ;
@@ -672,11 +729,20 @@ namespace Kernel
             for( auto it = custom_reports_config.Begin(); it != custom_reports_config.End(); ++it )
             {
                 std::string reportname(it->name);
-                if( reportname != "Use_Explicit_Dlls" &&  rReportInstantiatorMap.find( reportname ) == rReportInstantiatorMap.end() )
+                if( rReportInstantiatorMap.find( reportname ) == rReportInstantiatorMap.end() )
                 {
                     //check if report is enabled
-                    json::QuickInterpreter dll_data = p_cr_config->operator[]( reportname ).As<json::Object>();
-                    if( int( dll_data["Enabled"].As<json::Number>() ) != 0 )
+                    json::QuickInterpreter dll_data = (*p_cr_config)[reportname];
+                    if (dll_data.operator const json::Element &().Type() != json::OBJECT_ELEMENT)
+                    {
+                        // Badly formatted reports file
+                        std::stringstream ss;
+                        ss << "Error reading reports file: " << reportname << " should be a configuration (json object)." << std::endl;
+                        throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
+                    }
+
+                    json::QuickInterpreter conf_data = dll_data.As<json::Object>();
+                    if( int( conf_data["Enabled"].As<json::Number>() ) != 0 )
                     {
                         //Dll not found
                         std::stringstream ss;
@@ -1096,7 +1162,6 @@ namespace Kernel
         {
             LOG_DEBUG( "Initializing report...\n" );
             report->Initialize( nodeRankMap.Size());
-            report->CheckForValidNodeIDs(demographics_factory->GetNodeIDs());
             LOG_INFO_F( "Initialized '%s' reporter\n", report->GetReportName().c_str() );
         }
 

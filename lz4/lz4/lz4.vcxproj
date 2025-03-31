@@ -135,9 +135,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\lib\lz4.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
