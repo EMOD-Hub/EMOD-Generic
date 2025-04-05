@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #pragma once
 
@@ -19,13 +11,11 @@ namespace Kernel
     class InterventionFactory
     {
     public:
-
         // returns NULL if could not create a distributable intervention with the specified definition
         static IDistributableIntervention* CreateIntervention( const json::Element& rJsonElement,
                                                                const std::string& rDataLocation,
                                                                const char* parameterName,
                                                                bool throwIfNull=false );
-
         static void CreateInterventionList( const json::Element& rJsonElement,
                                             const std::string& rDataLocation,
                                             const char* parameterName,
@@ -36,7 +26,6 @@ namespace Kernel
                                                                       const std::string& rDataLocation,
                                                                       const char* parameterName,
                                                                       bool throwIfNull=false );
-
         static void CreateNDIInterventionList( const json::Element& rJsonElement,
                                                const std::string& rDataLocation,
                                                const char* parameterName,
@@ -68,5 +57,4 @@ namespace Kernel
         template<class IObject, class Factory> friend class Kernel::ObjectFactory;
         NodeIVFactory();
     };
-
 }

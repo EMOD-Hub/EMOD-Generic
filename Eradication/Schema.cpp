@@ -2,7 +2,6 @@
 #include "stdafx.h"
 
 #include <iostream>
-#include <iomanip>
 #include <fstream>
 #include <sstream> // ostringstream
 
@@ -169,7 +168,7 @@ void writeInputSchemas( const char* dll_path, const char* output_path )
     idmtypes_schema["idmAbstractType:Intervention"] = ivt_schema.As<json::Object>();
     idmtypes_schema["idmAbstractType:EventCoordinator"] = ecs_schema.As<json::Object>();
     idmtypes_schema["idmAbstractType:NodeSet"] = nds_schema.As<json::Object>();
-    idmtypes_schema["idmType:IReport"] = rpt_schema.As<json::Object>();
+    idmtypes_schema["idmType:IReport"] = rpt_schema.As<json::Object>();  // Should be abstract type!
 
     total_schema[ "idmTypes" ] = idmtypes_schema.As<json::Object>();
 
@@ -196,7 +195,6 @@ void writeInputSchemas( const char* dll_path, const char* output_path )
         FileSystem::OpenFileForWriting( schema_ostream_file, output_path );
     }
     std::ostream &schema_ostream = ( ( szOutputPath == "stdout" ) ? std::cout : schema_ostream_file );
-    schema_ostream << std::setprecision(10);
 
     json::Writer::Write( total_schema, schema_ostream, "    ", true, true );
     schema_ostream_file.close();
