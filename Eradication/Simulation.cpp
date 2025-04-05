@@ -733,7 +733,7 @@ namespace Kernel
                 {
                     //check if report is enabled
                     json::QuickInterpreter dll_data = (*p_cr_config)[reportname];
-                    if (dll_data.operator const json::Element &().Type() != json::OBJECT_ELEMENT)
+                    if (dll_data.GetElement().Type() != json::OBJECT_ELEMENT)
                     {
                         // Badly formatted reports file
                         std::stringstream ss;
