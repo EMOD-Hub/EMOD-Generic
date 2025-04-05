@@ -16,12 +16,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apt-get install python3-dev -y
-          apt-get install libmpich-dev -y
-          apt-get install libsqlite3-dev -y
-          apt-get install g++ -y
-          apt-get install libc-dev -y
-          apt-get install scons -y
+          sudo apt-get install python3-dev -y
+          sudo apt-get install libmpich-dev -y
+          sudo apt-get install libsqlite3-dev -y
+          sudo apt-get install g++ -y
+          sudo apt-get install libc-dev -y
+          sudo apt-get install scons -y
 
       - name: Build
         run: scons --Release --jobs=4 --Disease=Generic
