@@ -1,0 +1,42 @@
+name: Build executable with Ubuntu
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    env:
+      USER: GHA-Workflow
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          apt-get install python3-dev -y
+          apt-get install libmpich-dev -y
+          apt-get install libsqlite3-dev -y
+          apt-get install g++ -y
+          apt-get install libc-dev -y
+          apt-get install scons -y
+
+      - name: Build
+        run: scons --Release --jobs=4 --Disease=Generic
+
+      - name: Generate schema
+        run: build/x64/Release/Eradication/Eradication --get-schema --schema-path schema.json
+
+      - name: Archive outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: Eradication
+          path: build/x64/Release/Eradication/Eradication
+
+      - name: Archive schema
+        uses: actions/upload-artifact@v4
+        with:
+          name: schema.json
+          path: schema.json
