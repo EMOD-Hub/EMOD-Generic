@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 
@@ -79,29 +71,24 @@ const std::vector<std::string> getSimTypeList()
     return simTypeList;
 }
 
-void writeInputSchemas( const char* dll_path, const char* output_path, const char* exe_name )
+void writeInputSchemas( const char* dll_path, const char* output_path )
 {
     json::Object jsonRoot;
     json::QuickBuilder total_schema( jsonRoot );
 
     Kernel::JsonConfigurable::_dryrun = true;
 
-    // --------------------------
     // --- Create Metadata Schema
-    // --------------------------
     json::Object vsRoot;
     json::QuickBuilder versionSchema( vsRoot );
     ProgDllVersion pv;
-    versionSchema["DTK_Version"]    = json::String( pv.getVersion() );
-    versionSchema["DTK_Branch"]     = json::String( pv.getSccsBranch() );
+    versionSchema["DTK_Version"] = json::String( pv.getVersion() );
+    versionSchema["DTK_Branch"] = json::String( pv.getSccsBranch() );
     versionSchema["DTK_Build_Date"] = json::String( pv.getBuildDate() );
-    versionSchema["Creator"]        = json::String( exe_name );
 
-    total_schema["Version"]         = versionSchema.As<json::Object>();
+    total_schema["Version"] = versionSchema.As<json::Object>();
 
-    // ------------------------
     // --- Create Config Schema
-    // ------------------------
     json::Object configSchemaAll;
 
     for (auto& sim_type : getSimTypeList())
@@ -128,45 +115,39 @@ void writeInputSchemas( const char* dll_path, const char* output_path, const cha
 
     total_schema[ "config" ] = configSchemaAll;
 
-    // --------------------------
     // --- Create Campaign Schema
-    // --------------------------
     json::Object camp_defaults_root;
     json::QuickBuilder camp_ud_schema( camp_defaults_root );
 
-    camp_ud_schema["type"]        = json::String( "bool" );
-    camp_ud_schema["default"]     = json::Number( 0 );
+    camp_ud_schema["type"] = json::String( "bool" );
+    camp_ud_schema["default"] = json::Number( 0 );
     camp_ud_schema["description"] = json::String( Use_Defaults_DESC_TEXT );
 
     json::Object camp_root;
     json::QuickBuilder camp_schema( camp_root );
 
-    camp_schema["Events"][0]    = json::String( "idmAbstractType:CampaignEvent" );
+    camp_schema["Events"][0] = json::String( "idmAbstractType:CampaignEvent" );
     camp_schema["Use_Defaults"] = camp_ud_schema.As<json::Object>();
 
     total_schema["interventions"] = camp_schema.As<json::Object>();
 
-    // --------------------------
     // --- Create Reports Schema
-    // --------------------------
-    json::Object report_defaults_root;
-    json::QuickBuilder report_ud_schema( report_defaults_root );
+    json::Object reports_defaults_root;
+    json::QuickBuilder report_ud_schema( reports_defaults_root );
 
-    report_ud_schema["type"]        = json::String( "bool" );
-    report_ud_schema["default"]     = json::Number( 0 );
+    report_ud_schema["type"] = json::String( "bool" );
+    report_ud_schema["default"] = json::Number( 0 );
     report_ud_schema["description"] = json::String( Use_Defaults_DESC_TEXT );
 
-    json::Object report_root;
-    json::QuickBuilder report_schema( report_root );
+    json::Object reports_root;
+    json::QuickBuilder reports_schema( reports_root );
 
-    report_schema["Reports"][0]   = json::String( "idmType:IReport" );
-    report_schema["Use_Defaults"] = report_ud_schema.As<json::Object>();
+    reports_schema["Reports"][0] = json::String( "idmType:IReport" );
+    reports_schema["Use_Defaults"] = report_ud_schema.As<json::Object>();
 
-    total_schema["reports"] = report_schema.As<json::Object>();
+    total_schema["reports"] = reports_schema.As<json::Object>();
 
-    // --------------------------
     // --- Create idmTypes Schema
-    // --------------------------
     json::Object ivtypes_root;
     json::QuickBuilder ivt_schema( ivtypes_root );
 
@@ -178,23 +159,21 @@ void writeInputSchemas( const char* dll_path, const char* output_path, const cha
 
     json::Object idmtypes_root;
     json::QuickBuilder idmtypes_schema( idmtypes_root );
-    
+
     json::QuickBuilder ces_schema = Kernel::CampaignEventFactory::getInstance()->GetSchema();
     json::QuickBuilder ecs_schema = Kernel::EventCoordinatorFactory::getInstance()->GetSchema();
     json::QuickBuilder nds_schema = Kernel::NodeSetFactory::getInstance()->GetSchema();
     json::QuickBuilder rpt_schema = Kernel::ReportFactory::getInstance()->GetSchema();
 
-    idmtypes_schema["idmAbstractType:CampaignEvent"]    = ces_schema.As<json::Object>();
-    idmtypes_schema["idmAbstractType:Intervention"]     = ivt_schema.As<json::Object>();
+    idmtypes_schema["idmAbstractType:CampaignEvent"] = ces_schema.As<json::Object>();
+    idmtypes_schema["idmAbstractType:Intervention"] = ivt_schema.As<json::Object>();
     idmtypes_schema["idmAbstractType:EventCoordinator"] = ecs_schema.As<json::Object>();
-    idmtypes_schema["idmAbstractType:NodeSet"]          = nds_schema.As<json::Object>();
-    idmtypes_schema["idmType:IReport"]                  = rpt_schema.As<json::Object>();
+    idmtypes_schema["idmAbstractType:NodeSet"] = nds_schema.As<json::Object>();
+    idmtypes_schema["idmType:IReport"] = rpt_schema.As<json::Object>();
 
     total_schema[ "idmTypes" ] = idmtypes_schema.As<json::Object>();
 
-    // --------------------------
     // --- Post-processing schema
-    // --------------------------
     json::Object idmtypes_addl;
     json::SchemaUpdater updater(idmtypes_addl);
     jsonRoot.Accept(updater);
@@ -208,11 +187,8 @@ void writeInputSchemas( const char* dll_path, const char* output_path, const cha
         it++;
     }
 
-    // --------------------------
     // --- Write Schema to output
-    // --------------------------
     std::ofstream schema_ostream_file;
-    
     std::string szOutputPath = std::string( output_path );
     if( szOutputPath != "stdout" )
     {
@@ -221,7 +197,7 @@ void writeInputSchemas( const char* dll_path, const char* output_path, const cha
     }
     std::ostream &schema_ostream = ( ( szOutputPath == "stdout" ) ? std::cout : schema_ostream_file );
     schema_ostream << std::setprecision(10);
-    
+
     json::Writer::Write( total_schema, schema_ostream, "    ", true, true );
     schema_ostream_file.close();
 
