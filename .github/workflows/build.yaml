@@ -1,0 +1,15 @@
+name: Build executable with Ubuntu
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    env:
+      USER: GHA-Workflow
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
