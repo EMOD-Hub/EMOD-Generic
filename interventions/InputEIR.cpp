@@ -96,14 +96,4 @@ namespace Kernel
         release_assert(inmie);
         inmie->ChallengeWithInfectiousBites(1, daily_EIR, risk_function);
     }
-
-    float InputEIR::GetCostPerUnit() const
-    {
-        // -------------------------------------------------------------------------------
-        // --- Since this intervention is used to infect people in absence of mosquitos,
-        // --- it doesn't have a cost associated with it.
-        // -------------------------------------------------------------------------------
-        return 0.0;
-    }
-
 }

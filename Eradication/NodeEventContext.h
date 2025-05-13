@@ -51,7 +51,7 @@ namespace Kernel
 
     struct IVisitIndividual
     {
-        virtual bool visitIndividualCallback(IIndividualHumanEventContext* ihec, float& incrementalCostOut, ICampaignCostObserver* pICCO ) = 0;
+        virtual bool visitIndividualCallback(IIndividualHumanEventContext* ihec, ICampaignCostObserver* pICCO ) = 0;
         virtual int  GetMaxEvents() const = 0;
     };
 

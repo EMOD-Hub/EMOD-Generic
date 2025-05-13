@@ -141,11 +141,10 @@ public:
 
     virtual int VisitIndividuals(IVisitIndividual* pIndividualVisitImpl)
     { 
-        float cost = 0.0;
         int count = 0;
         for( auto p_human : m_HumanList )
         {
-            if( pIndividualVisitImpl->visitIndividualCallback( p_human->GetEventContext(), cost, nullptr ) )
+            if( pIndividualVisitImpl->visitIndividualCallback( p_human->GetEventContext(), nullptr ) )
             {
                 ++count;
             }

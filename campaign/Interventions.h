@@ -65,6 +65,8 @@ namespace Kernel
         virtual bool NeedsInfectiousLoopUpdate() const = 0;
         virtual bool NeedsPreInfectivityUpdate() const = 0;
 
+        virtual float GetCostPerUnit() const = 0;
+
         virtual IDrug*                     GetDrug()             = 0;
         virtual IMalariaDrugEffects*       GetMalariaDrug()      = 0;
         virtual IHealthSeekingBehavior*    GetHSB()              = 0;
@@ -130,13 +132,8 @@ namespace Kernel
         virtual bool GiveIntervention( INodeDistributableIntervention * pIV ) = 0;
     };
 
-    struct IDMAPI IBaseIntervention : ISupports
-    {
-        virtual float GetCostPerUnit() const = 0;
-    };
-
     // TODO - BaseInterventions looks concrete, but can't be instantiated. :(
-    struct IDMAPI BaseIntervention : IDistributableIntervention, IBaseIntervention, JsonConfigurable
+    struct IDMAPI BaseIntervention : IDistributableIntervention, JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
@@ -181,14 +178,13 @@ namespace Kernel
         EventTrigger::Enum event_trigger_expired;
     };
 
-    struct BaseNodeIntervention : INodeDistributableIntervention, IBaseIntervention, JsonConfigurable
+    struct BaseNodeIntervention : INodeDistributableIntervention, JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
     public:
         virtual bool Configure( const Configuration* inputJson ) override;
         virtual const std::string& GetName() const override { return name; };
-        virtual float GetCostPerUnit() const override { return cost_per_unit; }
         virtual bool Expired() override;
         virtual void SetExpired( bool isExpired ) override;
         virtual void OnExpiration() override;

@@ -190,7 +190,7 @@ namespace Kernel
         return INT_MAX;
     }
 
-    bool Responder::visitIndividualCallback( IIndividualHumanEventContext *ihec, float & incrementalCostOut, ICampaignCostObserver * pICCO )
+    bool Responder::visitIndividualCallback( IIndividualHumanEventContext *ihec, ICampaignCostObserver * pICCO )
     {
         release_assert( m_pCurrentAction != nullptr );
 

@@ -86,8 +86,7 @@ namespace Kernel
     {
         int   retTotal    = 0;
         int   retMax      = pEventCoordinator->GetMaxEvents();
-        float unusedVal = 0.0f;
-        
+
         std::vector<IIndividualHuman*>::iterator iter01, iterBegin, iterMid, iterEnd;
         iterBegin = node->individualHumans.begin();
         iterMid   = iterBegin;
@@ -106,7 +105,7 @@ namespace Kernel
             {
                 break;
             }
-            if(pEventCoordinator->visitIndividualCallback((*iter01)->GetEventContext(), unusedVal, this))
+            if(pEventCoordinator->visitIndividualCallback((*iter01)->GetEventContext(), this))
             {
                 retTotal++;
             }
@@ -119,7 +118,7 @@ namespace Kernel
             {
                 break;
             }
-            if(pEventCoordinator->visitIndividualCallback((*iter01)->GetEventContext(), unusedVal, this))
+            if(pEventCoordinator->visitIndividualCallback((*iter01)->GetEventContext(), this))
             {
                 retTotal++;
             }

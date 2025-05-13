@@ -44,7 +44,7 @@ namespace Kernel
 
         virtual void Update(float dt);
         virtual void UpdateNodes(float dt);
-        virtual bool visitIndividualCallback(IIndividualHumanEventContext *ihec, float &incrementalCostOut, ICampaignCostObserver * pICCO );
+        virtual bool visitIndividualCallback(IIndividualHumanEventContext *ihec, ICampaignCostObserver * pICCO );
 
         virtual bool IsFinished(); // returns true when the EC requires no further updates and can be disposed of
 
@@ -71,7 +71,6 @@ namespace Kernel
         virtual void DistributeInterventionsToNodes( INodeEventContext* event_context );
         virtual void DistributeInterventionsToIndividuals( INodeEventContext* event_context );
         virtual bool DistributeInterventionsToIndividual( IIndividualHumanEventContext *ihec,
-                                                          float & incrementalCostOut,
                                                           ICampaignCostObserver * pICCO );
         // helpers
         void regenerateCachedNodeContextPointers();
@@ -79,6 +78,7 @@ namespace Kernel
 
         ISimulationEventContext  *parent;
         bool distribution_complete;
+        bool m_cost_for_everybody;
         int num_repetitions;
         int tsteps_between_reps;
         int tsteps_since_last;

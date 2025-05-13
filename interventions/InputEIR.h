@@ -36,8 +36,6 @@ namespace Kernel
         virtual bool Configure(const Configuration* config) override;
         virtual void Update(float dt) override;
 
-        // IBaseIntervention
-        virtual float GetCostPerUnit() const override;
     protected:
         AgeDependentBitingRisk::Enum age_dependence;
         std::vector<float> monthly_EIR; // 12 values of EIR by month

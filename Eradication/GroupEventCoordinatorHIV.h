@@ -37,7 +37,7 @@ namespace Kernel
         GroupInterventionDistributionEventCoordinatorHIV();
 
         virtual bool Configure(const Configuration* config) override;
-        virtual bool visitIndividualCallback(IIndividualHumanEventContext *ihec, float &incrementalCostOut, ICampaignCostObserver * pICCO );
+        virtual bool visitIndividualCallback(IIndividualHumanEventContext *ihec, ICampaignCostObserver * pICCO );
 
     protected:   
         float time_offset; //time used in demographic file matrix is simulation_time - time_offset
