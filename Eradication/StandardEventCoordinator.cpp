@@ -41,6 +41,7 @@ namespace Kernel
     StandardInterventionDistributionEventCoordinator::StandardInterventionDistributionEventCoordinator( bool useDemographicCoverage ) 
         : parent(nullptr)
         , distribution_complete(false)
+        , m_cost_for_everybody(false)
         , num_repetitions(1)
         , tsteps_between_reps(-1)
         , tsteps_since_last(0)
@@ -73,6 +74,8 @@ namespace Kernel
         demographic_restrictions.ConfigureRestrictions( this, inputJson );
 
         initConfigComplexType( "Node_Property_Restrictions", &node_property_restrictions, SEC_Node_Property_Restriction_DESC_TEXT );
+
+        initConfigTypeMap( "Cost_Assumes_Total_Coverage", &m_cost_for_everybody, SEC_Cost_Assumes_Total_Coverage_DESC_TEXT, false );
 
         bool retValue = JsonConfigurable::Configure( inputJson );
         if( retValue && !JsonConfigurable::_dryrun)
@@ -230,9 +233,9 @@ namespace Kernel
         return ihec->GetInterventionsContext()->GetParent()->GetRng()->SmartDraw( demographic_coverage );
     }
 
-    bool StandardInterventionDistributionEventCoordinator::visitIndividualCallback( IIndividualHumanEventContext* ihec, float& incrementalCostOut, ICampaignCostObserver* pICCO )
+    bool StandardInterventionDistributionEventCoordinator::visitIndividualCallback( IIndividualHumanEventContext* ihec, ICampaignCostObserver* pICCO )
     {
-        bool distributed = true;
+        bool distributed = false;
 
         // Add real checks on demographics based on intervention demographic targetting. 
         // Return immediately if we hit a non-distribute condition
@@ -245,13 +248,14 @@ namespace Kernel
 
         if (!TargetedIndividualIsCovered(ihec))
         {
-            incrementalCostOut = 0;
-            return false;
+            if (m_cost_for_everybody && pICCO)
+            {
+                pICCO->notifyCampaignExpenseIncurred( m_pInterventionIndividual->GetCostPerUnit(), ihec );
+            }
         }
         else
         {
-            incrementalCostOut = 0;
-            distributed = DistributeInterventionsToIndividual( ihec, incrementalCostOut, pICCO );
+            distributed = DistributeInterventionsToIndividual( ihec, pICCO );
         }
 
         return distributed;
@@ -304,23 +308,16 @@ namespace Kernel
         return demographic_restrictions.GetMaximumAge();
     }
 
-    void StandardInterventionDistributionEventCoordinator::ProcessDeparting(
-        IIndividualHumanEventContext *pInd
-    )
+    void StandardInterventionDistributionEventCoordinator::ProcessDeparting( IIndividualHumanEventContext *pInd )
     {
         LOG_INFO("Individual departing from node receiving intervention. TODO: enforce demographic and other qualifiers.\n");
-        float incrementalCostOut = 0.0f;
-        visitIndividualCallback( pInd, incrementalCostOut, nullptr /* campaign cost observer */ );
+        visitIndividualCallback( pInd, nullptr /* campaign cost observer */ );
     } // these do nothing for now
 
-    void
-    StandardInterventionDistributionEventCoordinator::ProcessArriving(
-        IIndividualHumanEventContext *pInd
-    )
+    void StandardInterventionDistributionEventCoordinator::ProcessArriving( IIndividualHumanEventContext *pInd )
     {
         LOG_INFO("Individual arriving at node receiving intervention. TODO: enforce demographic and other qualifiers.\n");
-        float incrementalCostOut = 0.0f; 
-        visitIndividualCallback( pInd, incrementalCostOut, nullptr /* campaign cost observer */ );
+        visitIndividualCallback( pInd, nullptr /* campaign cost observer */ );
     }
 
     void StandardInterventionDistributionEventCoordinator::DistributeInterventionsToNodes( INodeEventContext* event_context )
@@ -353,9 +350,7 @@ namespace Kernel
         }
     }
 
-    bool StandardInterventionDistributionEventCoordinator::DistributeInterventionsToIndividual( IIndividualHumanEventContext *ihec,
-                                                                                                float & incrementalCostOut,
-                                                                                                ICampaignCostObserver * pICCO )
+    bool StandardInterventionDistributionEventCoordinator::DistributeInterventionsToIndividual( IIndividualHumanEventContext *ihec, ICampaignCostObserver *pICCO )
     {
         // instantiate and distribute intervention
         LOG_DEBUG_F( "Attempting to instantiate intervention of class %s\n", log_intervention_name.c_str());
@@ -368,8 +363,7 @@ namespace Kernel
 
         if( distributed )
         {
-            LOG_DEBUG_F( "Distributed an intervention (%p) to individual %d at a cost of %f\n",
-                    di->GetName().c_str(), ihec->GetSuid().data, incrementalCostOut );
+            LOG_DEBUG_F( "Distributed an intervention (%p) to individual %d\n", di->GetName().c_str(), ihec->GetSuid().data);
         }
         return distributed;
     }

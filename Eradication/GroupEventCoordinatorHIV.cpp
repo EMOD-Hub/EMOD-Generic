@@ -48,7 +48,7 @@ namespace Kernel
         LOG_DEBUG("GroupInterventionDistributionEventCoordinatorHIV ctor\n"); 
     } 
    
-   bool GroupInterventionDistributionEventCoordinatorHIV::visitIndividualCallback( IIndividualHumanEventContext *ihec, float& incrementalCostOut, ICampaignCostObserver* pICCO )
+   bool GroupInterventionDistributionEventCoordinatorHIV::visitIndividualCallback( IIndividualHumanEventContext *ihec, ICampaignCostObserver* pICCO )
    {
         bool retValue = true;
 
@@ -60,7 +60,7 @@ namespace Kernel
         
         demographic_restrictions.SetDemographicCoverage( dc );
         
-        retValue = StandardInterventionDistributionEventCoordinator::visitIndividualCallback( ihec, incrementalCostOut, pICCO);
+        retValue = StandardInterventionDistributionEventCoordinator::visitIndividualCallback( ihec, pICCO);
         
         return retValue;
     }

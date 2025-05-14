@@ -444,6 +444,7 @@
 #define SD_Positive_Diagnosis_Config_Event_DESC_TEXT "If the test is positive, this specifies an event that can trigger another intervention when the event occurs. Only used if Event_Or_Config is set to Event."
 #define SD_Treatment_Fraction_DESC_TEXT "The fraction of positive diagnoses that are treated."
 #define SEC_Coordinator_Name_DESC_TEXT "The unique identifying coordinator name, which is useful with the output report, ReportSurveillanceEventRecorder.csv."
+#define SEC_Cost_Assumes_Total_Coverage_DESC_TEXT "Individual intervention cost applies to all individuals in target demographic and ignores coverage."
 #define SEC_Demographic_Coverage_DESC_TEXT "The fraction of individuals in the target demographic that are counted."
 #define SEC_Duration_DESC_TEXT "The number of days from when the surveillance event coordinator was created by the campaign event. Once the number of days has passed, the delay event coordinator will unregister for events and expire. The default value of '-1' = never expire."
 #define SEC_Incidence_Counter_DESC_TEXT "List of JSON objects for specifying the conditions and parameters that must be met for an incidence to be counted."

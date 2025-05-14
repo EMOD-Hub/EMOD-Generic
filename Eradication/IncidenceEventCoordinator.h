@@ -96,7 +96,7 @@ namespace Kernel
         virtual void CheckConfiguration( const Configuration * inputJson );
 
         // IVisitIndividual methods
-        virtual bool visitIndividualCallback( IIndividualHumanEventContext *ihec, float & incrementalCostOut, ICampaignCostObserver * pICCO );
+        virtual bool visitIndividualCallback( IIndividualHumanEventContext *ihec, ICampaignCostObserver * pICCO );
         virtual int GetMaxEvents() const;
 
         // Other methods
