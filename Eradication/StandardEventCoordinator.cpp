@@ -251,7 +251,6 @@ namespace Kernel
             if (m_cost_for_everybody && pICCO)
             {
                 pICCO->notifyCampaignExpenseIncurred( m_pInterventionIndividual->GetCostPerUnit(), ihec );
-                ihec->GetInterventionsContext();
             }
         }
         else
