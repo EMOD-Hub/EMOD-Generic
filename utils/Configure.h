@@ -1,14 +1,6 @@
 
-/***************************************************************************************************
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
-
 #pragma once
 
-#include "IdmApi.h"
 #include "CajunIncludes.h"
 #include "Configuration.h"      // for MetadataDescriptor namespace
 #include "ConfigurationImpl.h"  // for MetadataDescriptor namespace
@@ -37,7 +29,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 #include "Environment.h"
 #include "Log.h"
-#include "EventTrigger.h" // just a simple enum
 
 namespace Kernel
 {
@@ -46,7 +37,7 @@ namespace Kernel
     class NPKey;
     class NPKeyValue;
 
-    struct IDMAPI IComplexJsonConfigurable
+    struct IComplexJsonConfigurable
     {
         virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) = 0;
         virtual json::QuickBuilder GetSchema() = 0;
@@ -137,12 +128,9 @@ namespace Kernel
     bool ignoreParameter( const json::QuickInterpreter& schema, const json::QuickInterpreter * pJson );
     bool ignoreParameter( const json::QuickInterpreter * pJson, const char * condition_key, const char * condition_value = nullptr );
 
-    std::pair<std::string, std::string> getCondition( const json::QuickInterpreter jsonObj );
-
     void updateSchemaWithCondition( json::Object& schema, const char* condition_key, const char* condition_value );
 
-
-    class IDMAPI JsonConfigurable : public IConfigurable
+    class JsonConfigurable : public IConfigurable
     {
         friend class InterventionFactory;
         friend class DemographicRestrictions;
@@ -201,7 +189,7 @@ namespace Kernel
         typedef std::map< std::string, NPKeyValue * > tNPKeyValueMapType;
 
     public:
-        virtual json::QuickBuilder GetSchema();
+        virtual json::QuickBuilder GetSchema() override;
 
         virtual std::string GetTypeName() const;
 
@@ -212,13 +200,11 @@ namespace Kernel
         typedef std::map< std::string, get_schema_funcptr_t > name2CreatorMapType;
         static name2CreatorMapType &get_registration_map();
 
-        struct IDMAPI Registrator
+        struct Registrator
         {
             Registrator( const char* class_name, get_schema_funcptr_t gs_callback );
         };
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         static jsonConfigurable::tStringSet missing_parameters_set;
 
         bool MatchesDependency(const json::QuickInterpreter*              pJson,
@@ -264,7 +250,7 @@ namespace Kernel
             tIPKeyValueMapType ipKeyValueTypeMap;
             tIPKeyValueVectorMapType iPKeyValueVectorMapType;
             tNPKeyMapType npKeyTypeMap ;
-            tNPKeyValueMapType npKeyValueTypeMap; 
+            tNPKeyValueMapType npKeyValueTypeMap;
         };
     private:
         // make this private so subclasses have to call GetConfigData()
@@ -277,7 +263,6 @@ namespace Kernel
         json::Object& GetSchemaBase();
 
         static std::set< std::string > empty_set;
-#pragma warning( pop )
 
         JsonConfigurable();
         JsonConfigurable( const JsonConfigurable& rConfig );

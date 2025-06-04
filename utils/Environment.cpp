@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include "StatusReporter.h"
@@ -147,8 +139,8 @@ bool Environment::Initialize(
 
 Environment::~Environment()
 {
-    if (Config)
-        delete Config;
+    delete Config;
+    Config = nullptr;
 
     delete pIPFactory ;
     pIPFactory = nullptr ;
@@ -229,9 +221,10 @@ Environment* Environment::getInstance()
 
 void Environment::setInstance(Environment* env)
 {
-    if( localEnv != env )
+    if( localEnv && (localEnv != env) )
     {
         delete localEnv ;
+        localEnv = nullptr;
     }
     localEnv = env ;
 }
