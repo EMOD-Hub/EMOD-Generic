@@ -44,7 +44,7 @@ namespace Kernel
         , dim_age_bins()
         , dim_is_circumcised(false)
         , dim_has_hiv(false)
-        , dim_on_art(false)
+        , dim_on_art( false )
         , dim_ip_key_list()
         , dim_intervention_name_list()
         , data_has_transmitters(false)

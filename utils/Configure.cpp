@@ -1366,47 +1366,43 @@ namespace Kernel
 
     void JsonConfigurable::initConfigComplexType(
         const char* paramName,
-        IComplexJsonConfigurable * pVariable,
+        IComplexJsonConfigurable* pVariable,
         const char* description,
         const char* condition_key, const char* condition_value,
         const std::map<std::string, std::string>* depends_list
     )
     {
-        json::QuickBuilder custom_schema = pVariable->GetSchema();
         GetConfigData()->complexTypeMap[ paramName ] = pVariable;
 
-        // going to get something back like : {
-        //  "type_name" : "idmType:VectorAlleleEnumPair",
-        //  "type_schema" : {
-        //      "first" : ...,
-        //      "second" : ...
-        //      }
-        //  }
-        std::string custom_type_label = (std::string) custom_schema[ _typename_label() ].As<json::String>();
-        json::String custom_type_label_as_json_string = json::String( custom_type_label );
-
-        // Do not update with a null object
-        json::QuickInterpreter s_check(custom_schema);
-        if( s_check.Exist(_typeschema_label()) )
-        {
-            jsonSchemaBase[ custom_type_label ] = custom_schema[ _typeschema_label() ];
-        }
-
         json::Object newParamSchema;
-        newParamSchema["description"] = json::String( description );
-        newParamSchema["type"] = json::String( custom_type_label_as_json_string );
-
-        if(pVariable->HasValidDefault())
-        {
-            newParamSchema["default"] = custom_schema["default"];
-        }
-
         updateSchemaWithCondition( newParamSchema, condition_key, condition_value );
         if(depends_list)
         {
             for(auto const pair: *depends_list)
             {
                 updateSchemaWithCondition(newParamSchema, (pair.first).c_str(), (pair.second).c_str());
+            }
+        }
+
+        json::QuickBuilder custom_schema = pVariable->GetSchema();
+        if(pVariable->HasValidDefault())
+        {
+            newParamSchema["default"] = custom_schema["default"];
+        }
+
+        if( _dryrun )
+        {
+            std::string custom_type_label = (std::string) custom_schema[ _typename_label() ].As<json::String>();
+            json::String custom_type_label_as_json_string = json::String( custom_type_label );
+
+            newParamSchema["type"] = json::String( custom_type_label_as_json_string );
+            newParamSchema["description"] = json::String( description );
+
+            // Do not update with a null object
+            json::QuickInterpreter s_check(custom_schema);
+            if( s_check.Exist(_typeschema_label()) )
+            {
+                jsonSchemaBase[ custom_type_label ] = custom_schema[ _typeschema_label() ];
             }
         }
 
