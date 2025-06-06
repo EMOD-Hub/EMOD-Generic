@@ -55,7 +55,7 @@ public:
     virtual ITBInterventionsContainer*    GetContainerTB()         { return nullptr; }
     virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()    { return nullptr; }
     virtual IVectorInterventionsEffects*  GetContainerVector()     { return nullptr; }
-    virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()    { return nullptr; }
+    virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()    { return static_cast<IMalariaDrugEffectsApply*>(this); }
     virtual IMalariaDrugEffects*          GetMalariaDrugStats()    { return nullptr; }
 
     virtual IHIVInterventionsContainer* GetContainerHIV()

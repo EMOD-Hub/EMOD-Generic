@@ -76,7 +76,9 @@ SUITE( DelayedInterventionTest )
 
     TEST_FIXTURE( DelayedFixture, TestIllegalNodeLevelIntervention )
     {
-        TestHelper_Exception( __LINE__, "testdata/DelayedInterventionTest/TestIllegalNodeLevelIntervention.json",
-                              "Error loading 'MigrateFamily' via 'InterventionFactory' for 'Actual_IndividualIntervention_Configs[1]'" );
+        std::string exp_msg;
+        exp_msg += "'IndividualIVFactory' could not find class 'MigrateFamily'.\n";
+
+        TestHelper_Exception( __LINE__, "testdata/DelayedInterventionTest/TestIllegalNodeLevelIntervention.json", exp_msg.c_str() );
     }
 }
