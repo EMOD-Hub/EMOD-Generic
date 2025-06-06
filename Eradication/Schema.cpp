@@ -2,6 +2,7 @@
 #include "stdafx.h"
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream> // ostringstream
 
@@ -195,6 +196,7 @@ void writeInputSchemas( const char* output_path )
         FileSystem::OpenFileForWriting( schema_ostream_file, output_path );
     }
     std::ostream &schema_ostream = ( ( szOutputPath == "stdout" ) ? std::cout : schema_ostream_file );
+    schema_ostream << std::setprecision(10);
 
     json::Writer::Write( total_schema, schema_ostream, "    ", true, true );
     schema_ostream_file.close();
