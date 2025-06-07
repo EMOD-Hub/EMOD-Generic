@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #pragma once
 
@@ -63,7 +55,7 @@ public:
     virtual ITBInterventionsContainer*    GetContainerTB()         { return nullptr; }
     virtual ITyphoidVaccineEffectsApply*  GetContainerTyphoid()    { return nullptr; }
     virtual IVectorInterventionsEffects*  GetContainerVector()     { return nullptr; }
-    virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()    { return nullptr; }
+    virtual IMalariaDrugEffectsApply*     GetMalariaDrugApply()    { return static_cast<IMalariaDrugEffectsApply*>(this); }
     virtual IMalariaDrugEffects*          GetMalariaDrugStats()    { return nullptr; }
 
     virtual IHIVInterventionsContainer* GetContainerHIV()

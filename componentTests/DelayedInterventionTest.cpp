@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include "UnitTest++.h"
@@ -84,7 +76,9 @@ SUITE( DelayedInterventionTest )
 
     TEST_FIXTURE( DelayedFixture, TestIllegalNodeLevelIntervention )
     {
-        TestHelper_Exception( __LINE__, "testdata/DelayedInterventionTest/TestIllegalNodeLevelIntervention.json",
-                              "Error loading 'MigrateFamily' via 'InterventionFactory' for 'Actual_IndividualIntervention_Configs[1]'" );
+        std::string exp_msg;
+        exp_msg += "'IndividualIVFactory' could not find class 'MigrateFamily'.\n";
+
+        TestHelper_Exception( __LINE__, "testdata/DelayedInterventionTest/TestIllegalNodeLevelIntervention.json", exp_msg.c_str() );
     }
 }

@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include "Simulation.h"
@@ -733,7 +725,7 @@ namespace Kernel
                 {
                     //check if report is enabled
                     json::QuickInterpreter dll_data = (*p_cr_config)[reportname];
-                    if (dll_data.operator const json::Element &().Type() != json::OBJECT_ELEMENT)
+                    if (dll_data.GetElement().Type() != json::OBJECT_ELEMENT)
                     {
                         // Badly formatted reports file
                         std::stringstream ss;

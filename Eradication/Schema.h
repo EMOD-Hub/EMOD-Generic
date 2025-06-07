@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #pragma once
 
@@ -15,7 +7,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 const std::vector<std::string> getSimTypeList();
 
-void writeInputSchemas( const char* dll_path, const char* output_path, const char* exe_name );
+void writeInputSchemas( const char* output_path );
 
 namespace json
 {

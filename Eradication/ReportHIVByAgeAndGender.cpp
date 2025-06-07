@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include "ConfigParams.h"
@@ -52,7 +44,7 @@ namespace Kernel
         , dim_age_bins()
         , dim_is_circumcised(false)
         , dim_has_hiv(false)
-        , dim_on_art(false)
+        , dim_on_art( false )
         , dim_ip_key_list()
         , dim_intervention_name_list()
         , data_has_transmitters(false)

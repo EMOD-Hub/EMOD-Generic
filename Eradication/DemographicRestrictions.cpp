@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 
@@ -74,7 +66,7 @@ namespace Kernel
                 throw GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, msg.str().c_str() );
             }
 
-            pParent->initConfigTypeMap( "Target_Age_Min", &target_age_min_years, Target_Age_Min_DESC_TEXT, 0.0f, FLT_MAX,    0.0f, "Target_Demographic", "ExplicitAgeRanges,ExplicitAgeRangesAndGender" );
+            pParent->initConfigTypeMap( "Target_Age_Min", &target_age_min_years, Target_Age_Min_DESC_TEXT, 0.0f, FLT_MAX/DAYSPERYEAR,                0.0f, "Target_Demographic", "ExplicitAgeRanges,ExplicitAgeRangesAndGender" );
             pParent->initConfigTypeMap( "Target_Age_Max", &target_age_max_years, Target_Age_Max_DESC_TEXT, 0.0f, FLT_MAX/DAYSPERYEAR, FLT_MAX/DAYSPERYEAR, "Target_Demographic", "ExplicitAgeRanges,ExplicitAgeRangesAndGender" );
 
             if( (target_demographic == TargetDemographicType::ExplicitAgeRangesAndGender) || JsonConfigurable::_dryrun)

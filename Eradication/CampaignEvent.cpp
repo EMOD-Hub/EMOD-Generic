@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include <string>
@@ -25,14 +17,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "SimulationEventContext.h"
 #include "ObjectFactoryTemplates.h"
 
-// Note: These includes appear to be necessary for EMODule build to be aware
-// of thse ECs. Need to move away from prior knowledge of specific ECs.
-#include "GroupEventCoordinator.h"
-#include "StandardEventCoordinator.h"
-#include "CoverageByNodeEventCoordinator.h"
-//#include "CalendarEventCoordinator.h"
-#include "NodeSet.h"
-
 SETUP_LOGGING( "CampaignEvent" )
 
 using namespace std;
@@ -50,13 +34,11 @@ namespace Kernel
 
     CampaignEvent* CampaignEventFactory::CreateInstance( const json::Element& rJsonElement,
                                                          const std::string& rDataLocation,
-                                                         const char* parameterName,
-                                                         bool nullOrEmptyOrNoClassNotError )
+                                                         const char* parameterName )
     {
         CampaignEvent *ce = ObjectFactory<CampaignEvent, CampaignEventFactory>::CreateInstance( rJsonElement,
                                                                                                 rDataLocation,
-                                                                                                parameterName,
-                                                                                                nullOrEmptyOrNoClassNotError );
+                                                                                                parameterName );
         release_assert(ce);
 
         if (ce && !JsonConfigurable::_dryrun)

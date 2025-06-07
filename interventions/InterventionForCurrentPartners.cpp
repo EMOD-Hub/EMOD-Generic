@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include "InterventionForCurrentPartners.h"
@@ -98,7 +90,7 @@ namespace Kernel
                 }
                 else
                 {
-                    m_di = InterventionFactory::CreateIntervention( intervention_config._json, inputJson->GetDataLocation(), "Intervention_Config", true );
+                    m_di = InterventionFactory::CreateIntervention( intervention_config._json, inputJson->GetDataLocation(), "Intervention_Config" );
                 }
             }
             m_RelationshipTypes = ConvertStringsToRelationshipTypes( "Relationship_Types", rel_type_strings );

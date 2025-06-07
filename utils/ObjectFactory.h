@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #pragma once
 
@@ -44,21 +36,19 @@ namespace Kernel
         virtual json::QuickBuilder GetSchema();
 
         // Return a new configured instance of the object defined by 'pConfig'
-        virtual IObject* CreateInstance( const Configuration *pConfig,
-                                         const char* parameterName,
-                                         bool nullOrEmptyOrNoClassNotError =false );
         virtual IObject* CreateInstance( const json::Element& rJsonElement,
                                          const std::string& rDataLocation,
-                                         const char* parameterName,
-                                         bool nullOrEmptyOrNoClassNotError =false );
+                                         const char* parameterName );
+
+        // check that the input JSON ('pConfig') is valid
+        // skip_exceptions ignores no-class-def and wrong-class-def; does not ignore bad formatting
+        bool ElementIsValid( const json::Element& rJsonElement,
+                             const std::string& rDataLocation,
+                             const char* parameterName,
+                             bool skip_exceptions=true );
 
     protected:
         ObjectFactory();
-
-        // check that the input JSON ('pConfig') is valid
-        bool CheckElement( const Configuration* pConfig,
-                           const char* parameterName,
-                           bool nullOrEmptyNotError );
 
         // Provides a hook for the factory to add other stuff to the schema for an object
         virtual void ModifySchema( json::QuickBuilder& rSchema, ISupports* pObject ){};

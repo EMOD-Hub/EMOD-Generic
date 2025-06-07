@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 
@@ -50,8 +42,7 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 
 using namespace std;
 
-
-int  MPIInitWrapper(int argc, char* argv[]);
+int MPIInitWrapper(int argc, char* argv[]);
 bool ControllerInitWrapper(int argc, char *argv[], IdmMpi::MessageInterface* pMpi ); // returns false if something broke
 
 
@@ -60,7 +51,6 @@ void setStackSize();
 #define sprintf_s sprintf
 void setStackSize();
 #endif
-
 
 SETUP_LOGGING( "Eradication" )
 
@@ -86,7 +76,6 @@ void FPE_SignalHandler( int signal )
     exit(-1);
 }
 
-
 void SetFloatingPointSignalHandler()
 {
 #ifdef WIN32
@@ -107,7 +96,6 @@ void SetFloatingPointSignalHandler()
     }
 }
 
-
 void DisableFloatingPointSignalHandler()
 {
 #ifdef WIN32
@@ -119,7 +107,6 @@ void DisableFloatingPointSignalHandler()
 #endif
     std::signal(SIGFPE, SIG_DFL);   //set default signal handler for SIGFPE
 }
-
 
 int main(int argc, char* argv[])
 {    
@@ -179,7 +166,6 @@ int main(int argc, char* argv[])
 */
     return ret;
 }
-
 
 #ifndef WIN32
 
@@ -455,7 +441,7 @@ bool ControllerInitWrapper( int argc, char *argv[], IdmMpi::MessageInterface* pM
 
         if( is_getting_schema )
         {
-            writeInputSchemas( po.GetCommandLineValueString( "dll-path" ).c_str(), po.GetCommandLineValueString( "schema-path" ).c_str(), argv[0] );
+            writeInputSchemas( po.GetCommandLineValueString( "schema-path" ).c_str() );
             return true;
         }
 
@@ -564,7 +550,7 @@ bool ControllerInitWrapper( int argc, char *argv[], IdmMpi::MessageInterface* pM
     {
         exceptionErrorReport << std::endl << std::endl;
         exceptionErrorReport << e.GetMsg() << std::endl << std::endl;
-        exceptionErrorReport << e.GetStackTrace() << std::endl;
+        exceptionErrorReport << std::endl << e.GetStackTrace() << std::endl;
     }
     catch( Kernel::DetailedException &e )
     {

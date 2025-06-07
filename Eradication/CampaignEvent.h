@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #pragma once
 
@@ -31,8 +23,7 @@ namespace Kernel
     public:
         virtual CampaignEvent* CreateInstance( const json::Element& rJsonElement,
                                                const std::string& rDataLocation,
-                                               const char* parameterName,
-                                               bool nullOrEmptyOrNoClassNotError = false ) override;
+                                               const char* parameterName ) override;
 
     protected:
         template<class IObject, class Factory> friend class Kernel::ObjectFactory;

@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include <cmath>
@@ -54,7 +46,7 @@ namespace Kernel
 
             if( use_event_or_config == EventOrConfig::Config )
             {
-                m_di = InterventionFactory::CreateIntervention( actual_intervention_config._json, inputJson->GetDataLocation(), "Actual_IndividualIntervention_Config", true ); 
+                m_di = InterventionFactory::CreateIntervention( actual_intervention_config._json, inputJson->GetDataLocation(), "Actual_IndividualIntervention_Config" ); 
             }
         }
         return ret ;

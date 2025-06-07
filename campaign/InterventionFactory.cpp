@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include "InterventionFactory.h"
@@ -27,12 +19,17 @@ namespace Kernel
         bool reset = JsonConfigurable::_useDefaults;
         JsonConfigurable::_useDefaults = m_UseDefaults;
 
-        bool ignore_null = !throwIfNull;
+        bool valid_input = IndividualIVFactory::getInstance()->ElementIsValid( rJsonElement, rDataLocation, parameterName );
+        if(!valid_input && !throwIfNull)
+        {
+            return nullptr;
+        }
+
         IDistributableIntervention* p_di = nullptr;
-        p_di = IndividualIVFactory::getInstance()->CreateInstance( rJsonElement, rDataLocation, parameterName, ignore_null );
+        p_di = IndividualIVFactory::getInstance()->CreateInstance( rJsonElement, rDataLocation, parameterName );
         if( p_di )
         {
-            IndividualIVFactory::getInstance()->ValidateSimType( p_di );
+            IndividualIVFactory::getInstance()->CheckSimType( p_di );
         }
 
         JsonConfigurable::_useDefaults = reset;
@@ -98,12 +95,17 @@ namespace Kernel
         bool reset = JsonConfigurable::_useDefaults;
         JsonConfigurable::_useDefaults = m_UseDefaults;
 
-        bool ignore_null = !throwIfNull;
+        bool valid_input = NodeIVFactory::getInstance()->ElementIsValid( rJsonElement, rDataLocation, parameterName );
+        if(!valid_input && !throwIfNull)
+        {
+            return nullptr;
+        }
+
         INodeDistributableIntervention* p_ndi = nullptr;
-        p_ndi = NodeIVFactory::getInstance()->CreateInstance( rJsonElement, rDataLocation, parameterName, ignore_null );
+        p_ndi = NodeIVFactory::getInstance()->CreateInstance( rJsonElement, rDataLocation, parameterName );
         if( p_ndi )
         {
-            NodeIVFactory::getInstance()->ValidateSimType( p_ndi );
+            NodeIVFactory::getInstance()->CheckSimType( p_ndi );
         }
 
         JsonConfigurable::_useDefaults = reset;
@@ -181,11 +183,6 @@ namespace Kernel
 
     template IndividualIVFactory* ObjectFactory<IDistributableIntervention, IndividualIVFactory>::getInstance();
 
-    void IndividualIVFactory::ValidateSimType( IDistributableIntervention* pObject)
-    {
-        CheckSimType(pObject);
-    }
-
     // Node IV Factory
     NodeIVFactory::NodeIVFactory()
         : ObjectFactory<INodeDistributableIntervention, NodeIVFactory>()
@@ -195,9 +192,4 @@ namespace Kernel
     NodeIVFactory* NodeIVFactory::_instance = nullptr;
 
     template NodeIVFactory* ObjectFactory<INodeDistributableIntervention, NodeIVFactory>::getInstance();
-
-    void NodeIVFactory::ValidateSimType( INodeDistributableIntervention* pObject)
-    {
-        CheckSimType(pObject);
-    }
 }

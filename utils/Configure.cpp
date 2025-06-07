@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 #include "Configuration.h"
@@ -71,7 +63,7 @@ namespace Kernel
                     }
                 }
                 else
-                { 
+                {
                     // condition_value is not null, so it's a string (enum); let's read it.
                     auto c_value_from_config = GET_CONFIG_STRING(pJson, condition_key);
                     LOG_DEBUG_F( "string/enum condition_value (from config.json) = %s. Will check if matches schema condition_value (raw) = %s\n", c_value_from_config.c_str(), condition_value );
@@ -160,30 +152,6 @@ namespace Kernel
         return false;
     }
 
-    std::pair<std::string, std::string> getCondition( const json::QuickInterpreter jsonObj )
-    {
-        std::string condition_value_str = "";
-        std::string condition_key;
-
-        if( jsonObj.Exist( "depends-on" ) )
-        {
-            auto condition = json_cast<const json::Object&>(jsonObj["depends-on"]);
-            condition_key = condition.Begin()->name;
-            const char * condition_value = nullptr;
-            try {
-                condition_value_str = (std::string) (json::QuickInterpreter( condition )[condition_key]).As<json::String>();
-                condition_value = condition_value_str.c_str();
-                LOG_DEBUG_F( "schema condition value appears to be string/enum: %s.\n", condition_value );
-            }
-            catch( ... )
-            {
-                //condition_value = std::to_string( (int) (json::QuickInterpreter( condition )[ condition_key ]).As<json::Number>() );
-                LOG_DEBUG_F( "schema condition value appears to be bool, not string.\n" );
-            }
-        }
-        return std::make_pair( condition_key, condition_value_str );
-    }
-
     /// NodeSetConfig
     NodeSetConfig::NodeSetConfig()
     {}
@@ -250,31 +218,30 @@ namespace Kernel
         : _json(*qi)
     { }
 
-    void InterventionConfig::ConfigureFromJsonAndKey(const Configuration* inputJson, const std::string& key)
+    void InterventionConfig::ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key )
     {
-        if(!inputJson->Exist(key))
+        if( !inputJson->Exist( key ) )
         {
             throw MissingParameterFromConfigurationException(__FILE__, __LINE__, __FUNCTION__, inputJson->GetDataLocation().c_str(), key.c_str());
         }
-
         _json = (*inputJson)[key];
     }
 
     json::QuickBuilder InterventionConfig::GetSchema()
     {
-        json::QuickBuilder schema(jsonSchemaBase);
+        json::QuickBuilder schema( jsonSchemaBase );
         auto tn = JsonConfigurable::_typename_label();
-        schema[tn] = json::String("idmAbstractType:Intervention");
+        schema[tn] = json::String( "idmAbstractType:Intervention" );
 
         return schema;
     }
 
     void InterventionConfig::serialize(IArchive& ar, InterventionConfig& config)
     {
-        if (ar.IsWriter())
+        if ( ar.IsWriter() )
         {
             std::ostringstream string_stream;
-            json::Writer::Write(config._json, string_stream);
+            json::Writer::Write( config._json, string_stream );
             std::string tmp = string_stream.str();
             ar & tmp;
         }
@@ -282,8 +249,8 @@ namespace Kernel
         {
             std::string json;
             ar & json;
-            std::istringstream string_stream(json);
-            json::Reader::Read(config._json, string_stream);
+            std::istringstream string_stream( json );
+            json::Reader::Read( config._json, string_stream );
         }
     }
 
@@ -299,7 +266,7 @@ namespace Kernel
     {
         json::QuickBuilder schema = InterventionConfig::GetSchema();
         auto tn = JsonConfigurable::_typename_label();
-        schema[tn] = json::String("idmAbstractType:IndividualIntervention");
+        schema[tn] = json::String( "idmAbstractType:IndividualIntervention" );
 
         return schema;
     }
@@ -319,7 +286,7 @@ namespace Kernel
         json::QuickBuilder schema = IndividualInterventionConfig::GetSchema();
         auto tn = JsonConfigurable::_typename_label();
         auto ts = JsonConfigurable::_typeschema_label();
-        schema[tn] = json::String("idmType:IndividualInterventionList");
+        schema[tn] = json::String( "idmType:IndividualInterventionList" );
         IndividualInterventionConfig i_i_config;
         schema[ts] = json::Array();
         schema[ts][0] = i_i_config.GetSchema();
@@ -340,7 +307,7 @@ namespace Kernel
     {
         json::QuickBuilder schema = InterventionConfig::GetSchema();
         auto tn = JsonConfigurable::_typename_label();
-        schema[tn] = json::String("idmAbstractType:NodeIntervention");
+        schema[tn] = json::String( "idmAbstractType:NodeIntervention" );
 
         return schema;
     }
@@ -405,9 +372,9 @@ namespace Kernel
                 {
                     msg << " (" << parameter_name << ")" ;
                 }
-                msg << " with specified value "
+                msg << " with specified value '"
                     << new_value
-                    << " invalid. Possible values are: " << std::endl ;
+                    << "' invalid. Possible values are: " << std::endl ;
                 for( auto value : (*constraint_param) )
                 {
                     msg << value << std::endl;
@@ -428,7 +395,6 @@ namespace Kernel
     void updateSchemaWithCondition( json::Object& schema, const char* condition_key, const char* condition_value )
     {
         LOG_DEBUG_F( "Setting condition in schema for key %s (value=%s).\n", condition_key, ( condition_value ? condition_value : "1") );
-
         if( condition_key )
         {
             if(!schema.Exist("depends-on"))
@@ -440,7 +406,6 @@ namespace Kernel
             {
                 // condition_value is null, so condition_key is a bool and condition_value is implicitly true
                 json_cast<json::Object&>(schema["depends-on"])[ condition_key ] = json::Number( 1 );
-
             }
             else if( (std::string(condition_key)).rfind("Enable_", 0) == 0 )
             {
@@ -1401,47 +1366,43 @@ namespace Kernel
 
     void JsonConfigurable::initConfigComplexType(
         const char* paramName,
-        IComplexJsonConfigurable * pVariable,
+        IComplexJsonConfigurable* pVariable,
         const char* description,
         const char* condition_key, const char* condition_value,
         const std::map<std::string, std::string>* depends_list
     )
     {
-        json::QuickBuilder custom_schema = pVariable->GetSchema();
         GetConfigData()->complexTypeMap[ paramName ] = pVariable;
 
-        // going to get something back like : {
-        //  "type_name" : "idmType:VectorAlleleEnumPair",
-        //  "type_schema" : {
-        //      "first" : ...,
-        //      "second" : ...
-        //      }
-        //  }
-        std::string custom_type_label = (std::string) custom_schema[ _typename_label() ].As<json::String>();
-        json::String custom_type_label_as_json_string = json::String( custom_type_label );
-
-        // Do not update with a null object
-        json::QuickInterpreter s_check(custom_schema);
-        if( s_check.Exist(_typeschema_label()) )
-        {
-            jsonSchemaBase[ custom_type_label ] = custom_schema[ _typeschema_label() ];
-        }
-
         json::Object newParamSchema;
-        newParamSchema["description"] = json::String( description );
-        newParamSchema["type"] = json::String( custom_type_label_as_json_string );
-
-        if(pVariable->HasValidDefault())
-        {
-            newParamSchema["default"] = custom_schema["default"];
-        }
-
         updateSchemaWithCondition( newParamSchema, condition_key, condition_value );
         if(depends_list)
         {
             for(auto const pair: *depends_list)
             {
                 updateSchemaWithCondition(newParamSchema, (pair.first).c_str(), (pair.second).c_str());
+            }
+        }
+
+        json::QuickBuilder custom_schema = pVariable->GetSchema();
+        if(pVariable->HasValidDefault())
+        {
+            newParamSchema["default"] = custom_schema["default"];
+        }
+
+        if( _dryrun )
+        {
+            std::string custom_type_label = (std::string) custom_schema[ _typename_label() ].As<json::String>();
+            json::String custom_type_label_as_json_string = json::String( custom_type_label );
+
+            newParamSchema["type"] = json::String( custom_type_label_as_json_string );
+            newParamSchema["description"] = json::String( description );
+
+            // Do not update with a null object
+            json::QuickInterpreter s_check(custom_schema);
+            if( s_check.Exist(_typeschema_label()) )
+            {
+                jsonSchemaBase[ custom_type_label ] = custom_schema[ _typeschema_label() ];
             }
         }
 
@@ -2120,18 +2081,9 @@ namespace Kernel
             {
                 *(entry.second) = GET_CONFIG_STRING_SET( inputJson, (entry.first).c_str() );
             }
-            else
-            { 
-                if( _useDefaults )
-                {
-                    //auto val = schema["default"].As<json::Array>();
-                    //LOG_DEBUG_F( "Using the default value ( \"%s\" : <empty string set> ) for unspecified string set parameter.\n", key.c_str() );
-                    //*(entry.second) = val;
-                }
-                else
-                {
-                    handleMissingParam( key, inputJson->GetDataLocation() );
-                }
+            else if( !_useDefaults )
+            {
+                handleMissingParam( key, inputJson->GetDataLocation() );
             }
         }
 
@@ -2149,14 +2101,8 @@ namespace Kernel
             {
                 *(entry.second) = GET_CONFIG_VECTOR_STRING( inputJson, (entry.first).c_str() );
             }
-            else
+            else if( !_useDefaults )
             {
-                if( _useDefaults )
-                {
-                    // using the default value
-                    LOG_DEBUG_F( "Using the default value ( \"%s\" : <empty string vector> ) for unspecified string vector parameter.\n", key.c_str() );
-                }
-
                 handleMissingParam( key, inputJson->GetDataLocation() );
             }
 
@@ -2192,16 +2138,11 @@ namespace Kernel
             {
                 *(entry.second) = GET_CONFIG_VECTOR2D_STRING( inputJson, (entry.first).c_str() );
             }
-            else
+            else if( !_useDefaults )
             {
-                if( _useDefaults )
-                {
-                    // using the default value
-                    LOG_DEBUG_F( "Using the default value ( \"%s\" : <empty string Vector2D> ) for unspecified string Vector2D parameter.\n", key.c_str() );
-                }
-
                 handleMissingParam( key, inputJson->GetDataLocation() );
             }
+
             auto allowed_values = GetConfigData()->vector2dStringConstraintsTypeMap[ key ];
             for( auto &candidate_vector : *(entry.second) )
             {
@@ -2346,6 +2287,7 @@ namespace Kernel
         for (auto& entry : GetConfigData()->complexTypeMap)
         {
             const auto & key = entry.first;
+
             json::QuickInterpreter schema = jsonSchemaBase[key];
             if ( ignoreParameter( schema, inputJson ) )
             {
@@ -2405,7 +2347,6 @@ namespace Kernel
         for (auto& entry : GetConfigData()->jcTypeMap)
         {
             const std::string& key = entry.first;
-            JsonConfigurable* pJc = entry.second;
             json::QuickInterpreter schema = jsonSchemaBase[key];
 
             if ( ignoreParameter( schema, inputJson ) )
@@ -2414,9 +2355,11 @@ namespace Kernel
                continue;
             }
 
-            if( inputJson->Exist(key) )
+            JsonConfigurable* pJc = entry.second;
+            if( inputJson->Exist( key ) )
             {
                 Configuration* p_config = Configuration::CopyFromElement( (*inputJson)[key], inputJson->GetDataLocation() );
+
                 pJc->Configure( p_config );
 
                 delete p_config ;

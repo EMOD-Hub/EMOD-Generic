@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2018 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 /////////////////////////////////////////////////////////////////////////////
 // Dll export and loading platform implementation
@@ -731,36 +723,4 @@ bool DllLoader::GetDllsVersion(const char* dllPath, emodulewstr& wsPluginDir,lis
 
 }
 
-json::Object
-DllLoader::GetDiseaseDllSchemas()
-{
-    LOG_INFO_F( "GetDiseaseDllSchemas: # of GetSchema func pointers = %d\n", getSchemaFuncPtrMap.size() );
-
-    json::Object configSchemaAllJson;
-    std::ostringstream configSchemaAllString;
-    for (auto& entry : getSchemaFuncPtrMap)
-    {
-        const std::string& sim_type = entry.first;
-        LOG_DEBUG_F( "sim_type = %s\n", sim_type.c_str() );
-        getSchema fpGetSchema = entry.second;
-
-        // We get the schema serialized (as a string) and then deserialize. A bit of arguably unnecessary
-        // overhead, but I'd rather transfer strings over the dll 'boundary' than json objects.
-        (*fpGetSchema)();
-        const char * config_schema = getenv( "GET_SCHEMA_RESULT" );
-        std::stringstream sim_schema( config_schema, std::ios::in);
-        json::Object simSchemaJson;
-        json::Reader::Read( simSchemaJson, sim_schema );
-        LOG_DEBUG_F( "config_schema = %s\n", config_schema );
-        simSchemaJson[ "version" ] = json::String(dll2VersionStringMap[ sim_type ]);
-        configSchemaAllJson[ std::string( sim_type ) + ":emodule" ] = simSchemaJson;
-    }
-    json::Writer::Write( configSchemaAllJson, configSchemaAllString );
-    return configSchemaAllJson;
-}
-#else
-json::Object
-DllLoader::GetDiseaseDllSchemas()
-{
-}
 #endif // End of WIN32
