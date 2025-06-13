@@ -659,10 +659,10 @@ namespace Kernel
                 {
                     std::ostringstream errorMsgFullList;
                     errorMsgFullList << "Failed to find enum match for value "
-                                     << GET_CONFIG_STRING(pJson, key)
+                                     << "'" << GET_CONFIG_STRING(pJson, key) << "'"
                                      << " and key "
-                                     << key
-                                     << ". Possible values are: ";
+                                     << "'" << key << "'.\n"
+                                     << "Possible values are:\n";
                     std::vector< std::string > enum_key_list;
 
                     for (auto& vs : enum_md.enum_value_specs)
