@@ -2,8 +2,6 @@
 #pragma once
 #include "stdafx.h"
 
-#include "IdmApi.h"
-
 #include <map>
 #include <cstring>
 
@@ -65,7 +63,6 @@ struct LogTimeInfo
     time_t secs;
 };
 
-
 // DummyLogger was created so the SETUP_LOGGING macro records a list of module names and the
 // module names can be included in the schema. The static vector of module names in SimpleLogger
 // is a pointer to avoid initialization order conflicts. Customs reporters are loaded after
@@ -81,7 +78,7 @@ protected:
 };
 
 
-class IDMAPI SimpleLogger
+class SimpleLogger
 {
 public:
     static inline bool IsLoggingEnabled( Logger::tLevel log_level, const char* module, bool*& logLevelEnabledArray )
