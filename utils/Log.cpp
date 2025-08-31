@@ -28,11 +28,6 @@ static std::map< std::string,    std::string > _logShortHistory;
 
 DummyLogger::DummyLogger( std::string module_name )
 {
-    AddModuleName(module_name);
-}
-
-void DummyLogger::AddModuleName( std::string module_name )
-{
     SimpleLogger::AddModuleName(module_name);
 }
 
@@ -83,9 +78,9 @@ void SimpleLogger::Init()
     _throttle                = lp->enable_log_throttling;
     _flush_all               = lp->enable_continuous_log_flushing;
     _warnings_are_fatal      = lp->enable_warnings_are_fatal;
-    _systemLogLevel          = logLevelLookup[lp->log_levels.at(DEFAULT_LOG_NAME)];
+    _systemLogLevel          = logLevelLookup[lp->module_name_to_level_map.at(DEFAULT_LOG_NAME)];
 
-    for(auto log_module : lp->log_levels)
+    for(auto log_module : lp->module_name_to_level_map)
     {
         if(logLevelLookup[log_module.second] != _systemLogLevel)
         {
@@ -94,11 +89,11 @@ void SimpleLogger::Init()
     }
 
     std::cout << "Log-levels:" << std::endl;
-    std::cout << "    Default -> " << lp->log_levels.at(DEFAULT_LOG_NAME) << std::endl;
+    std::cout << "    Default -> " << lp->module_name_to_level_map.at(DEFAULT_LOG_NAME) << std::endl;
     for(auto loglevelpair : _logLevelMap)
     {
         std::cout << "    " << loglevelpair.first << " -> " 
-                  << lp->log_levels.at(loglevelpair.first) << std::endl;
+                  << lp->module_name_to_level_map.at(loglevelpair.first) << std::endl;
     }
 
     _initialized = true;
