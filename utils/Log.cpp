@@ -10,15 +10,9 @@
 #include <map>
 
 using namespace std;
-#pragma warning(disable : 4996)
 
 SETUP_LOGGING("Log")
 
-static std::map< Logger::tLevel, std::string > logLevelStrMap   = {{Logger::VALIDATION, "V"},
-                                                                   {Logger::DEBUG,      "D"},
-                                                                   {Logger::INFO,       "I"},
-                                                                   {Logger::WARNING,    "W"},
-                                                                   {Logger::_ERROR,     "E"}};
 static std::map< std::string, Logger::tLevel > logLevelLookup   = {{"VALID",   Logger::VALIDATION},
                                                                    {"DEBUG",   Logger::DEBUG     },
                                                                    {"INFO",    Logger::INFO      },
@@ -119,7 +113,7 @@ bool SimpleLogger::CheckLogLevel( Logger::tLevel log_level, const char* module )
     return true;
 }
 
-// Either we have a log_level for this module in the map (intialized at init time), or we use the system log level.
+// A log_level for this module is in the map (intialized at init time), or use the system log level.
 // Either way, if the requested level is >= the setting (in terms of criticality), log it.
 void SimpleLogger::Log( Logger::tLevel log_level, const char* module, const char* msg, ...)
 {
@@ -138,15 +132,42 @@ void SimpleLogger::Log( Logger::tLevel log_level, const char* module, const char
         LogTimeInfo tInfo;
         GetLogInfo(tInfo);
 
-        fprintf(stdout, "%02d:%02d:%02d [%d] [%s] [%s] ", static_cast<int>(tInfo.hours), static_cast<int>(tInfo.mins), static_cast<int>(tInfo.secs), _rank, logLevelStrMap[log_level].c_str(), module);
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // !!! GH-2693 - Don't write warning messages to StdErr until the issue with how
-        // !!! MPI causes the sim to slow down when writing to StdErr is resolved.
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (log_level == Logger::_ERROR /*|| log_level == Logger::WARNING*/)
+        int t_hrs = static_cast<int>(tInfo.hours);
+        int t_min = static_cast<int>(tInfo.mins);
+        int t_sec = static_cast<int>(tInfo.secs);
+
+        const char* log_char;
+        switch(log_level)
         {
-            // Yes, this line is mostly copy-pasted from above. Yes, I'm comfortable with that. :)
-            fprintf(stderr, "%02d:%02d:%02d [%d] [%s] [%s] ", static_cast<int>(tInfo.hours), static_cast<int>(tInfo.mins), static_cast<int>(tInfo.secs), _rank, logLevelStrMap[log_level].c_str(), module);
+            case Logger::VALIDATION:
+                log_char = "V";
+                break;
+            case Logger::DEBUG:
+                log_char = "D";
+                break;
+            case Logger::INFO:
+                log_char = "I";
+                break;
+            case Logger::WARNING:
+                log_char = "W";
+                break;
+            case Logger::_ERROR:
+                log_char = "E";
+                break;
+            default:
+                release_assert(false);
+                break;
+        }
+
+        fprintf(stdout, "%02d:%02d:%02d [%d] [%s] [%s] ", t_hrs, t_min, t_sec, _rank, log_char, module);
+        va_list args;
+        va_start(args,msg);
+        vfprintf(stdout, msg, args);
+        va_end(args);
+
+        if(log_level == Logger::_ERROR)
+        {
+            fprintf(stderr, "%02d:%02d:%02d [%d] [%s] [%s] ", t_hrs, t_min, t_sec, _rank, log_char, module);
             va_list args;
             va_start(args, msg);
             vfprintf(stderr, msg, args);
@@ -154,13 +175,10 @@ void SimpleLogger::Log( Logger::tLevel log_level, const char* module, const char
         }
     }
 
-    va_list args;
-    va_start(args,msg);
-    vfprintf(stdout, msg, args);
-    va_end(args);
-
     if(_flush_all)
+    {
         Flush();
+    }
 
     if( log_level == Logger::WARNING && _warnings_are_fatal )
     {
