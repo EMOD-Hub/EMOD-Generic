@@ -955,7 +955,7 @@ namespace Kernel
         const std::map<std::string, std::string> dset_netinf01  {{"Simulation_Type","GENERIC_SIM"}};
         const std::map<std::string, std::string> dset_netinf02  {{"Simulation_Type","GENERIC_SIM"},{"Enable_Network_Infectivity","1"}};
         const std::map<std::string, std::string> dset_report01  {{"Enable_Demographics_Reporting","1"}};
-        const std::map<std::string, std::string> dset_time01    {{"Simulation_Type","STI_SIM,HIV_SIM,TYPHOID_SIM"}};
+        const std::map<std::string, std::string> dset_time01    {{"Simulation_Type","GENERIC_SIM,STI_SIM,HIV_SIM,TYPHOID_SIM"}};
 
 
         // Sim parameters
