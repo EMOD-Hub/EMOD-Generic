@@ -3,6 +3,7 @@
         "Age_Initialization_Distribution_Type": "DISTRIBUTION_SIMPLE",
         "Base_Infectivity_Constant": 0.3,
         "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
+        "Base_Year": 1900.0,
         "Climate_Model": "CLIMATE_OFF",
         "Config_Name": "",
         "Custom_Reports_Filename": "",

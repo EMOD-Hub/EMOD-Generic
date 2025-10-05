@@ -177,6 +177,7 @@
         },
         "POLIO": {},
         "PRIMARY": {
+            "Base_Year": 1900.0,
             "Config_Name": "DEFAULT_CONFIG_NAME_SHOULD_BE_SET",
             "Enable_Network_Infectivity": 0,
             "ENUMS": {
