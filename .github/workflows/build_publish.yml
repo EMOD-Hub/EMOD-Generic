@@ -66,6 +66,6 @@ jobs:
       - name: Validate
         run: |
           cat EMOD-Generic/src/version.py
-          ls EMOD-Generic/src/gemod_generic
+          ls EMOD-Generic/src/emod_generic
       # - name: Upload files to PyPI
       #   uses: pypa/gh-action-pypi-publish@release/v1
