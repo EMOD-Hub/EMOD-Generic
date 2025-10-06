@@ -1,0 +1,71 @@
+name: Build and publish to PyPI using Docker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/emod-generic
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+    container:
+      image: docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
+    env:
+      USER: GHA-Workflow
+    steps:
+      # Can't use checkout action because container version of GLIBC is EOL
+      # - name: Checkout repo
+      #   uses: actions/checkout@v4
+      #   with:
+      #     fetch-depth: 0
+      - name: Checkout repo
+        run: |
+          git clone https://github.com/EMOD-Hub/EMOD-Generic
+          git --git-dir=EMOD-Generic/.git fetch
+          git --git-dir=EMOD-Generic/.git checkout Generic-Ongoing
+      - name: Check python version and update packages
+        run: |
+          python3 --version
+          python3 -m pip install pip -U
+          python3 -m pip install build
+          python3 -m pip list
+      - name: Build executable
+        run: |
+          scons --Release --jobs=4 --Disease=Generic --directory=EMOD-Generic/
+      - name: Strip symbols and generate schema
+        run: |
+          cp EMOD-Generic/build/x64/Release/Eradication/Eradication Eradication
+          strip Eradication
+          ./Eradication --get-schema --schema-path schema.json
+      # Can't use artifact action because container version of GLIBC is EOL
+      # - name: Archive executable
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: Eradication
+      #     path: Eradication
+      # Can't use artifact action because container version of GLIBC is EOL
+      # - name: Archive schema
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: schema.json
+      #     path: schema.json
+      - name: Update version file in src directory
+        run : |
+          grep DTK_Version schema.json | sed 's/^[^:]*://g' >> EMOD-Generic/src/version.py
+      - name: Create archives for src directory
+        run: |
+          zip EMOD-Generic/src/emod_generic/Eradication.zip Eradication
+          zip EMOD-Generic/src/emod_generic/schema.zip schema.json
+      - name: Build PyPI distribution
+        run: |
+          python3 -m build EMOD-Generic/
+      - name: Validate
+        run: |
+          cat EMOD-Generic/src/version.py
+          ls EMOD-Generic/src/gemod_generic
+      # - name: Upload files to PyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
