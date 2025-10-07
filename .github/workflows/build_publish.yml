@@ -66,5 +66,5 @@ jobs:
       - name: Upload files to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: EMOD-Generic/dist/
+          packages_dir: EMOD-Generic/dist/
           verbose: true
