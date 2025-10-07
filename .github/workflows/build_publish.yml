@@ -53,9 +53,9 @@ jobs:
       #   with:
       #     name: schema.json
       #     path: schema.json
-      - name: Update version file in src directory
+      - name: Create version file in src directory
         run : |
-          grep DTK_Version schema.json | sed 's/^[^:]*://g' >> EMOD-Generic/src/version.py
+          grep DTK_Version schema.json | sed 's/[^0-9.]//g' > EMOD-Generic/src/version
       - name: Create archives for src directory
         run: |
           zip EMOD-Generic/src/emod_generic/Eradication.zip Eradication
@@ -65,7 +65,7 @@ jobs:
           python3 -m build EMOD-Generic/
       - name: Validate
         run: |
-          cat EMOD-Generic/src/version.py
+          cat EMOD-Generic/src/version
           ls EMOD-Generic/src/emod_generic
       # - name: Upload files to PyPI
       #   uses: pypa/gh-action-pypi-publish@release/v1

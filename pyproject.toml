@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -35,5 +35,5 @@ Issues = "https://github.com/EMOD-Hub/EMOD-Generic/issues"
 [tool.setuptools.package-data]
 "*" = ["*.zip"]
 
-[tool.setuptools_scm]
-version_file = "src/version.py"
+[tool.setuptools.dynamic]
+version = {file = ["src/version"]}
