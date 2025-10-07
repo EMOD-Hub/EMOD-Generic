@@ -63,8 +63,10 @@ jobs:
       - name: Build PyPI distribution
         run: |
           python3 -m build EMOD-Generic/
+      - name: Change working directory
+        run: |
+          cd EMOD-Generic/
       - name: Upload files to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages_dir: EMOD-Generic/dist/
           verbose: true
