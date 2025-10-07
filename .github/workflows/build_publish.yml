@@ -65,3 +65,6 @@ jobs:
           python3 -m build EMOD-Generic/
       - name: Upload files to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: EMOD-Generic/dist/
+          verbose: true
