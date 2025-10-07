@@ -63,9 +63,5 @@ jobs:
       - name: Build PyPI distribution
         run: |
           python3 -m build EMOD-Generic/
-      - name: Validate
-        run: |
-          cat EMOD-Generic/src/version
-          ls EMOD-Generic/src/emod_generic
-      # - name: Upload files to PyPI
-      #   uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Upload files to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
