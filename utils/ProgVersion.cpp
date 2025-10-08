@@ -19,9 +19,8 @@ ProgDllVersion::ProgDllVersion()
 {
     m_nMajor = MAJOR_VERSION;
     m_nMinor = MINOR_VERSION;
-    m_nRevision = REVISION_NUMBER; 
+    m_nRevision = REVISION_NUMBER;
 
-    m_nBuild = BUILD_NUMBER;
     strncpy( m_builderName, BUILDER_NAME, VER_LEN );
     strncpy( m_sSccsBranch, SCCS_BRANCH, VER_LEN );
     strncpy( m_sSccsDate, SCCS_DATE, VER_LEN );
@@ -33,12 +32,11 @@ ProgDllVersion::ProgDllVersion()
 
     m_nVersion = COMBINE_VER(m_nMajor, m_nMinor, m_nRevision);
 
-    sprintf(m_sVersion, "%d.%d.%d.%d", m_nMajor, m_nMinor, m_nRevision, m_nBuild);
+    sprintf(m_sVersion, "%d.%d.%d", m_nMajor, m_nMinor, m_nRevision);
 }
 
 const char* ProgDllVersion::getBuildDate()
 {
-    // on windows this is a (global) static; on linux it's a #define
     return BUILD_DATE;
 }
 
