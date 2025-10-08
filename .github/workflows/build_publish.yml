@@ -64,28 +64,29 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: Eradication
-          path: src/eradication_dir
+          path: pypi_generic/src/eradication_dir
       - name: Download schema
         uses: actions/download-artifact@v5
         with:
           name: schema.json
-          path: src/schema_dir
+          path: pypi_generic/src/schema_dir
       - name: Download version
         uses: actions/download-artifact@v5
         with:
           name: version
-          path: src/version_dir
+          path: pypi_generic/src/version_dir
       - name: Prep files
         run: |
-          mv src/version_dir/version src/version
-          zip src/emod_generic/Eradication.zip src/eradication_dir/Eradication
-          zip src/emod_generic/schema.zip src/schema_dir/schema.json
-          rm -r src/version_dir
-          rm -r src/eradication_dir
-          rm -r src/schema_dir
+          mv  pypi_generic/src/version_dir/version          pypi_generic/src/version
+          zip pypi_generic/src/emod_generic/Eradication.zip pypi_generic/src/eradication_dir/Eradication
+          zip pypi_generic/src/emod_generic/schema.zip      pypi_generic/src/schema_dir/schema.json
+          rm -r pypi_generic/src/version_dir
+          rm -r pypi_generic/src/eradication_dir
+          rm -r pypi_generic/src/schema_dir
       - name: Build PyPI distribution
         run: |
           python3 -m pip install build
+          cd pypi_generic
           python3 -m build
       - name: Validate
         run: |
