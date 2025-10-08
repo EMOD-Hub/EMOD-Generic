@@ -14,31 +14,34 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Check python and build executable in container
+      - name: Check python; build executable; strip symbols; make schema; extract version
         uses: addnab/docker-run-action@v3
         with:
-          username: anonymous
-          registry: docker-production.packages.idmod.org:443
-          image: idm/dtk-centos-buildenv:3.0
+          image: docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
+          options: --mount type=bind,src=/home/runner/work/EMOD-Generic/EMOD-Generic,dst=/EMOD-Generic
           run: |
             python3 --version
             python3 -m pip list
-            scons --Release --jobs=4 --Disease=Generic --directory=EMOD-Generic/
-      - name: Strip symbols and generate schema
-        run: |
-          cp EMOD-Generic/build/x64/Release/Eradication/Eradication Eradication
-          strip Eradication
-          ./Eradication --get-schema --schema-path schema.json
+            cd EMOD-Generic
+            scons --Release --jobs=4 --Disease=Generic
+            strip build/x64/Release/Eradication/Eradication
+            ./build/x64/Release/Eradication/Eradication --get-schema --schema-path schema.json
+            grep DTK_Version schema.json | sed 's/[^0-9.]//g' > version
       - name: Archive executable
         uses: actions/upload-artifact@v4
         with:
           name: Eradication
-          path: Eradication
+          path: ./build/x64/Release/Eradication/Eradication
       - name: Archive schema
         uses: actions/upload-artifact@v4
         with:
           name: schema.json
           path: schema.json
+      - name: Archive version
+        uses: actions/upload-artifact@v4
+        with:
+          name: version
+          path: version
 
   publish:
     name: Publish distribution to PyPI
@@ -58,22 +61,28 @@ jobs:
         with:
           python-version: "3.x"
       - name: Download executable
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: Eradication
-          path: Eradication
-      - name: Download executable
-        uses: actions/download-artifact@v4
+          path: src/eradication_dir
+      - name: Download schema
+        uses: actions/download-artifact@v5
         with:
           name: schema.json
-          path: schema.json
-      - name: Create version file in src directory
-        run : |
-          grep DTK_Version schema.json | sed 's/[^0-9.]//g' > src/version
-      - name: Create archives for src directory
+          path: src/schema_dir
+      - name: Download version
+        uses: actions/download-artifact@v5
+        with:
+          name: version
+          path: src/version_dir
+      - name: Prep files
         run: |
-          zip src/emod_generic/Eradication.zip Eradication
-          zip src/emod_generic/schema.zip schema.json
+          mv src/version_dir/version src/version
+          zip src/emod_generic/Eradication.zip src/eradication_dir/Eradication
+          zip src/emod_generic/schema.zip src/schema_dir/schema.json
+          rm -r src/version_dir
+          rm -r src/eradication_dir
+          rm -r src/schema_dir
       - name: Build PyPI distribution
         run: |
           python3 -m pip install build
