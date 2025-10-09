@@ -162,6 +162,6 @@ namespace Kernel
     void SimulationHIV::AddDataToHeader( json::Object& root )
     {
         json::QuickBuilder json_doc(root);
-        json_doc["Base_Year"] = json::Number(GetParams()->sim_time_base_year);
+        json_doc["Base_Year"] = json::Number(GetSimParams().sim_time_base_year);
     }
 }

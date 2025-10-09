@@ -97,9 +97,9 @@ namespace Kernel
 
     bool SimulationVector::ValidateConfiguration(const ::Configuration *config)
     {
-        if ( ClimateConfig::GetClimateParams()->climate_structure == ClimateStructure::CLIMATE_OFF )
+        if ( ClimateConfig::GetClimateParams().climate_structure == ClimateStructure::CLIMATE_OFF )
         {
-            throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", "ClimateStructure::CLIMATE_OFF", "Simulation_Type", SimType::pairs::lookup_key(GetParams()->sim_type).c_str() );
+            throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", "ClimateStructure::CLIMATE_OFF", "Simulation_Type", SimType::pairs::lookup_key(GetSimParams().sim_type).c_str() );
         }
 
         return Simulation::ValidateConfiguration(config);

@@ -132,7 +132,7 @@ namespace Kernel
     {
         float temp_susceptibility = 1.0;
 
-        switch(GetParams()->initial_sus_dist_type)
+        switch(GetNodeParams().initial_sus_dist_type)
         {
         case DistributionType::DISTRIBUTION_COMPLEX:
             temp_susceptibility = distribution_susceptibility->Calculate( GetRng() );
@@ -148,7 +148,7 @@ namespace Kernel
         default:
             if( !JsonConfigurable::_dryrun )
             {
-                throw BadEnumInSwitchStatementException(__FILE__, __LINE__, __FUNCTION__, "Susceptibility_Initialization_Distribution_Type", GetParams()->initial_sus_dist_type, DistributionType::pairs::lookup_key(GetParams()->initial_sus_dist_type));
+                throw BadEnumInSwitchStatementException(__FILE__, __LINE__, __FUNCTION__, "Susceptibility_Initialization_Distribution_Type", GetNodeParams().initial_sus_dist_type, DistributionType::pairs::lookup_key(GetNodeParams().initial_sus_dist_type));
             }
         }
 

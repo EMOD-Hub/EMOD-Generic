@@ -100,7 +100,7 @@ namespace Kernel
         // --- from a subclass like SimulationHIV.  SimulationHIV will only be calling
         // --- this if the simulation type is HIV_SIM
         // ---------------------------------------------------------------------------
-        if (report_relationship_start && (GetParams()->sim_type == SimType::STI_SIM))
+        if (report_relationship_start && (GetSimParams().sim_type == SimType::STI_SIM))
         {
             LOG_INFO( "Using STI RelationshipStartReporter.\n" );
             reports.push_back(StiObjectFactory::CreateRelationshipStartReporter(this));
@@ -118,7 +118,7 @@ namespace Kernel
             reports.push_back(StiObjectFactory::CreateRelationshipConsummatedReporter(this));
         }
 
-        if (report_transmission && (GetParams()->sim_type == SimType::STI_SIM))
+        if (report_transmission && (GetSimParams().sim_type == SimType::STI_SIM))
         {
             LOG_INFO( "Using STI TransmissionReporter.\n" );
             reports.push_back(StiObjectFactory::CreateTransmissionReporter(this));

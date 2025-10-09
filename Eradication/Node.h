@@ -67,7 +67,7 @@ namespace Kernel
         virtual void SetRng( RANDOMBASE* prng ) override; 
         virtual void AddEventsFromOtherNodes( const std::vector<EventTrigger::Enum>& rTriggerList ) override;
 
-        virtual const NodeParams* GetParams() const;
+        virtual const NodeParams& GetNodeParams() const;
 
         virtual IMigrationInfo*   GetMigrationInfo() override;
         virtual NPKeyValueContainer& GetNodeProperties() override;

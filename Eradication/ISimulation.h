@@ -20,7 +20,7 @@ namespace Kernel
         virtual bool Populate() = 0;
         virtual void Update() = 0;
 
-        virtual const SimParams* GetParams() const = 0;
+        virtual const SimParams& GetSimParams() const = 0;
 
         virtual int  GetSimulationTimestep() const = 0;
         virtual const IdmDateTime& GetSimulationTime() const = 0;

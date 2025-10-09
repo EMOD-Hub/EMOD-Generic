@@ -57,9 +57,9 @@ bool PropertyReportTyphoid::Configure( const Configuration* inputJson )
 
 bool PropertyReportTyphoid::Validate( const ISimulationContext* parent_sim )
 {
-    if( start_year < parent_sim->GetParams()->sim_time_base_year )
+    if( start_year < parent_sim->GetSimParams().sim_time_base_year )
     {
-        start_year = parent_sim->GetParams()->sim_time_base_year;
+        start_year = parent_sim->GetSimParams().sim_time_base_year;
     }
     if( start_year >= stop_year )
     {

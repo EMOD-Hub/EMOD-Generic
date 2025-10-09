@@ -451,9 +451,9 @@ namespace Kernel
         return bRet;
     }
 
-    const AgentParams* AgentConfig::GetAgentParams()
+    const AgentParams& AgentConfig::GetAgentParams()
     {
-        return &agent_params;
+        return agent_params;
     }
 
     // *****************************************************************************
@@ -506,9 +506,9 @@ namespace Kernel
         return bRet;
     }
 
-    const ClimateParams* ClimateConfig::GetClimateParams()
+    const ClimateParams& ClimateConfig::GetClimateParams()
     {
-        return &climate_params;
+        return climate_params;
     }
 
     // *****************************************************************************
@@ -560,9 +560,9 @@ namespace Kernel
         return bRet;
     }
 
-    const LoggingParams* LoggingConfig::GetLoggingParams()
+    const LoggingParams& LoggingConfig::GetLoggingParams()
     {
-        return &logging_params;
+        return logging_params;
     }
 
     // *****************************************************************************
@@ -668,9 +668,9 @@ namespace Kernel
         return bRet;
     }
 
-    const MigrationParams* MigrationConfig::GetMigrationParams()
+    const MigrationParams& MigrationConfig::GetMigrationParams()
     {
-        return &migration_params;
+        return migration_params;
     }
 
     // *****************************************************************************
@@ -776,9 +776,9 @@ namespace Kernel
         return bRet;
     }
 
-    const NodeParams* NodeConfig::GetNodeParams()
+    const NodeParams& NodeConfig::GetNodeParams()
     {
-        return &node_params;
+        return node_params;
     }
 
     // *****************************************************************************
@@ -907,9 +907,9 @@ namespace Kernel
         return bRet;
     }
 
-    const PolioParams* PolioConfig::GetPolioParams()
+    const PolioParams& PolioConfig::GetPolioParams()
     {
-        return &polio_params;
+        return polio_params;
     }
 
     // *****************************************************************************
@@ -969,9 +969,9 @@ namespace Kernel
         return bRet;
     }
 
-    const SimParams* SimConfig::GetSimParams()
+    const SimParams& SimConfig::GetSimParams()
     {
-        return &sim_params;
+        return sim_params;
     }
 
     // *****************************************************************************
@@ -993,9 +993,9 @@ namespace Kernel
         return bRet;
     }
 
-    const TBHIVParams* TBHIVConfig::GetTBHIVParams()
+    const TBHIVParams& TBHIVConfig::GetTBHIVParams()
     {
-        return &tbhiv_params;
+        return tbhiv_params;
     }
 
 }

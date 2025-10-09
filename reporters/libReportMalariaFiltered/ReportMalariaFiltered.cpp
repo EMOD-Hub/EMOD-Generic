@@ -111,7 +111,7 @@ namespace Kernel
             throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Start_Day", m_StartDay, "End_Day", m_EndDay );
         }
 
-        float sim_time_end = parent_sim->GetParams()->sim_time_start + parent_sim->GetParams()->sim_time_total;
+        float sim_time_end = parent_sim->GetSimParams().sim_time_start + parent_sim->GetSimParams().sim_time_total;
         if (m_StartDay > sim_time_end)
         {
             throw IncoherentConfigurationException(__FILE__, __LINE__, __FUNCTION__, "Start_Day", m_StartDay, "Start_Time + Simulation_Duration", sim_time_end);

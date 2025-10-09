@@ -70,7 +70,7 @@ namespace Kernel
         virtual ~MigrationInfoNull();
 
         // IMigrationInfo methods
-        virtual const MigrationParams* GetParams() const;
+        virtual const MigrationParams& GetMigrationParams() const;
 
         virtual void PickMigrationStep( RANDOMBASE* pRNG,
                                         IIndividualHumanContext * traveler, 
@@ -111,7 +111,7 @@ namespace Kernel
         virtual ~MigrationInfoFixedRate();
 
         // IMigrationInfo methods
-        virtual const MigrationParams* GetParams() const;
+        virtual const MigrationParams& GetMigrationParams() const;
 
         virtual void PickMigrationStep( RANDOMBASE* pRNG,
                                         IIndividualHumanContext * traveler, 
@@ -249,7 +249,7 @@ namespace Kernel
         virtual ~MigrationInfoFactoryFile();
 
         // IMigrationInfoFactory methods
-        virtual const MigrationParams* GetParams() const;
+        virtual const MigrationParams& GetMigrationParams() const;
 
         virtual void Initialize( const std::string& idreference ) override;
         virtual IMigrationInfo* CreateMigrationInfo( INodeContext *parent_node ) override;
@@ -281,7 +281,7 @@ namespace Kernel
         virtual ~MigrationInfoFactoryDefault();
 
         // IMigrationInfoFactory methods
-        virtual const MigrationParams* GetParams() const;
+        virtual const MigrationParams& GetMigrationParams() const;
 
         virtual void Initialize( const std::string& idreference ) override;
         virtual IMigrationInfo* CreateMigrationInfo( INodeContext *parent_node ) override;

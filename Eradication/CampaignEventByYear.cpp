@@ -37,14 +37,14 @@ namespace Kernel
 
     bool CampaignEventByYear::Validate( const ISimulationContext* parent_sim )
     {
-        if( parent_sim->GetParams()->sim_type != SimType::STI_SIM    &&
-            parent_sim->GetParams()->sim_type != SimType::HIV_SIM    &&
-            parent_sim->GetParams()->sim_type != SimType::TYPHOID_SIM  )
+        if( parent_sim->GetSimParams().sim_type != SimType::STI_SIM    &&
+            parent_sim->GetSimParams().sim_type != SimType::HIV_SIM    &&
+            parent_sim->GetSimParams().sim_type != SimType::TYPHOID_SIM  )
         {
             throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "CampainEventByYear can only be used in TYPHOID, STI, and HIV simulations." );
         }
 
-        start_day = (start_year - parent_sim->GetParams()->sim_time_base_year) * DAYSPERYEAR;
+        start_day = (start_year - parent_sim->GetSimParams().sim_time_base_year) * DAYSPERYEAR;
 
         return true;
     }

@@ -21,7 +21,7 @@ namespace Kernel
     // Interface for controlling objects (e.g. Node)
     struct IIndividualHuman : ISerializable
     {
-        virtual const AgentParams* GetParams() const = 0;
+        virtual const AgentParams& GetAgentParams() const = 0;
 
         // Setup
         virtual void setupMaternalAntibodies(IIndividualHumanContext* mother, INodeContext* node) = 0;

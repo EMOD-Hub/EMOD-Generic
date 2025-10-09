@@ -38,7 +38,7 @@ namespace Kernel
         auto ret = StandardInterventionDistributionEventCoordinator::Configure( inputJson );
         num_repetitions = -1; // unlimited
 
-        tsteps_between_reps = update_period / SimConfig::GetSimParams()->sim_time_delta; // this won't be precise, depending on math
+        tsteps_between_reps = update_period / SimConfig::GetSimParams().sim_time_delta; // this won't be precise, depending on math
         if( tsteps_between_reps <= 0 ) // don't allow zero or it will only update once
         {
             tsteps_between_reps = 1;
@@ -51,7 +51,7 @@ namespace Kernel
 
     void ReferenceTrackingEventCoordinator::CheckStartDay( float campaignStartDay ) const
     {
-        float campaign_start_year = campaignStartDay / DAYSPERYEAR + SimConfig::GetSimParams()->sim_time_base_year;
+        float campaign_start_year = campaignStartDay / DAYSPERYEAR + SimConfig::GetSimParams().sim_time_base_year;
         if( m_EndYear <= campaign_start_year )
         {
             LOG_WARN_F( "Campaign starts on year %f (day=%f). A ReferenceTrackingEventCoordinator ends on End_Year %f.  It will not distribute any interventions.\n",

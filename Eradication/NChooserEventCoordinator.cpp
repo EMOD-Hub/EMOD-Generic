@@ -794,7 +794,7 @@ namespace Kernel
         INodeEventContext* pNEC = m_Parent->GetNodeEventContext( node_suid );
         if( !m_HasBeenScaled )
         {
-            m_TargetedDistributionList.ScaleTargets( pNEC->GetNodeContext()->GetParams()->population_scaling_factor );
+            m_TargetedDistributionList.ScaleTargets( pNEC->GetNodeContext()->GetNodeParams().population_scaling_factor );
             m_HasBeenScaled = true;
         }
         m_CachedNodes.push_back( pNEC );

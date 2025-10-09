@@ -64,7 +64,7 @@ namespace Kernel
         }
 
         IMigrationInfo* p_minfo = pNodeEventContext->GetNodeContext()->GetMigrationInfo();
-        if( !p_minfo ||  p_minfo->GetParams()->migration_structure == MigrationStructure::NO_MIGRATION )
+        if( !p_minfo ||  p_minfo->GetMigrationParams().migration_structure == MigrationStructure::NO_MIGRATION )
         {
             std::stringstream msg;
             msg << _module << " cannot be used when 'Migration_Model' = 'NO_MIGRATION'.";

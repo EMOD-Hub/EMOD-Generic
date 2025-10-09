@@ -19,17 +19,17 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(TBHIVConfigurableTBdrug)
 
     TBHIVConfigurableTBdrug::TBHIVConfigurableTBdrug()
-    : AntiTBDrug()
-    , TB_drug_inactivation_rate_mdr(0)
-    , TB_drug_inactivation_rate_hiv(0)
-    , TB_drug_cure_rate_mdr(0)
-    , TB_drug_cure_rate_hiv(0)
-    , TB_drug_mortality_rate_mdr(0)
-    , TB_drug_relapse_rate_mdr(0)
-    , TB_drug_relapse_rate_hiv(0)
-    , TB_drug_resistance_rate_hiv(0)
-    , latent_efficacy_multiplier(1.0)
-    , active_efficacy_multiplier(1.0)
+        : AntiTBDrug()
+        , TB_drug_inactivation_rate_mdr(0)
+        , TB_drug_inactivation_rate_hiv(0)
+        , TB_drug_cure_rate_mdr(0)
+        , TB_drug_cure_rate_hiv(0)
+        , TB_drug_mortality_rate_mdr(0)
+        , TB_drug_relapse_rate_mdr(0)
+        , TB_drug_relapse_rate_hiv(0)
+        , TB_drug_resistance_rate_hiv(0)
+        , latent_efficacy_multiplier(1.0)
+        , active_efficacy_multiplier(1.0)
     {
         initSimTypes( 1, "TBHIV_SIM" );
         current_efficacy = 1.0; //
@@ -215,7 +215,7 @@ namespace Kernel
     {
         current_efficacy = 1;
 
-        auto tbdtMap = TBHIVConfig::GetTBHIVParams()->drugs_map;
+        auto tbdtMap = TBHIVConfig::GetTBHIVParams().drugs_map;
 
         LOG_DEBUG_F("Read in the tbdt map, the drug type is %s \n", drug_name_string.c_str());
 

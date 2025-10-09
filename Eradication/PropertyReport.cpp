@@ -102,7 +102,7 @@ void PropertyReport::LogNodeData( Kernel::INodeContext * pNC)
         Accumulate("New Infections:" + reportingBucket, new_infections[reportingBucket]);
         new_infections[reportingBucket] = 0.0f;
 
-        if(pNC->GetParams()->enable_environmental_route)
+        if(pNC->GetNodeParams().enable_environmental_route)
         {
             Accumulate( "New Infections By Route (ENVIRONMENT):" + reportingBucket, new_enviro_infections[ reportingBucket ] );
             new_enviro_infections[ reportingBucket ] = 0;
@@ -120,7 +120,7 @@ void PropertyReport::LogNodeData( Kernel::INodeContext * pNC)
         infected[ reportingBucket ] = 0.0f;
     }
 
-    if ( IPFactory::GetInstance() && IPFactory::GetInstance()->HasIPs() && pNC->GetParams()->enable_environmental_route )
+    if ( IPFactory::GetInstance() && IPFactory::GetInstance()->HasIPs() && pNC->GetNodeParams().enable_environmental_route )
     {
         for ( auto property : IPFactory::GetInstance()->GetIPList() )
         {

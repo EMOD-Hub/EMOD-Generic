@@ -159,9 +159,9 @@ namespace Kernel
 
     bool ReportHIVByAgeAndGender::Validate( const ISimulationContext* parent_sim )
     {
-        if( start_year < parent_sim->GetParams()->sim_time_base_year )
+        if( start_year < parent_sim->GetSimParams().sim_time_base_year )
         {
-            start_year = parent_sim->GetParams()->sim_time_base_year;
+            start_year = parent_sim->GetSimParams().sim_time_base_year;
         }
 
         if( start_year >= stop_year )
@@ -213,7 +213,7 @@ namespace Kernel
         // not enforcing simulation to be not null in constructor so one can create schema with it null
         release_assert( _parent );
 
-        float base_year    = _parent->GetParams()->sim_time_base_year;
+        float base_year    = _parent->GetSimParams().sim_time_base_year;
         float current_year = _parent->GetSimulationTime().Year();
         if( !is_collecting_data && (start_year <= current_year) && (current_year < stop_year) )
         {

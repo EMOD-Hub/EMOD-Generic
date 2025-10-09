@@ -48,7 +48,7 @@ namespace Kernel
         static const float max_landtemp;
         static const float max_rainfall;
 
-        INodeContext * parent;
+        INodeContext* parent;
 
     public:
         virtual ~Climate();
@@ -76,7 +76,7 @@ namespace Kernel
         static ClimateFactory* CreateClimateFactory(const std::string idreference, ISimulationContext* parent_sim);
         ~ClimateFactory();
 
-        const ClimateParams* GetParams();
+        const ClimateParams& GetClimateParams();
 
         Climate* CreateClimate( INodeContext *parent_node, float altitude, float latitude, RANDOMBASE* pRNG );
 

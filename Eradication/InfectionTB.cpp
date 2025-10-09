@@ -429,7 +429,7 @@ namespace Kernel
         duration = 0.0f;
 
         // Set infectiousness
-        infectiousness = parent->GetParams()->infectivity_distribution->Calculate( GetParent()->GetRng() ) * InfectionTBConfig::TB_active_presymptomatic_infectivity_multiplier * immunityTB->GetCoughInfectiousness();
+        infectiousness = parent->GetAgentParams().infectivity_distribution->Calculate( GetParent()->GetRng() ) * InfectionTBConfig::TB_active_presymptomatic_infectivity_multiplier * immunityTB->GetCoughInfectiousness();
 
         //fitness penalty for MDR
         if ( infection_strain->GetGeneticID() == FirstLineResistant ) 
@@ -502,7 +502,7 @@ namespace Kernel
         //       so that we aren't picking the death rate based on the efficacy of a vaccine at the beginning of the infection alone.
         float death_rate = InfectionTBConfig::TB_active_mortality_rate * immunity->getModMortality() * parent->GetVaccineContext()->GetInterventionReducedMortality(m_source_route);
 
-        infectiousness = parent->GetParams()->infectivity_distribution->Calculate( GetParent()->GetRng() ) * immunityTB->GetCoughInfectiousness();
+        infectiousness = parent->GetAgentParams().infectivity_distribution->Calculate( GetParent()->GetRng() ) * immunityTB->GetCoughInfectiousness();
 
         //fitness penalty for MDR
         if ( infection_strain->GetGeneticID() == FirstLineResistant ) 

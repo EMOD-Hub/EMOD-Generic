@@ -117,7 +117,7 @@ namespace Kernel
         m_demographic_risk = riskmod;
 
         // Maternal immunity; waning effect is initialized by SetContextTo
-        effect_mat_acquire = parent->GetParams()->effect_mat_acquire->Clone();
+        effect_mat_acquire = parent->GetAgentParams().effect_mat_acquire->Clone();
         effect_mat_acquire->SetContextTo(parent);
         effect_mat_acquire->Update(parent->GetAge());
         if(effect_mat_acquire->Expired())

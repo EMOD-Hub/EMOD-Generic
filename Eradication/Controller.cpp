@@ -62,8 +62,8 @@ template <class SimulationT> void RunSimulation(SimulationT &sim, int steps)
 
     bool use_full_precision = (SerializationParameters::GetInstance()->GetPrecision() == SerializationPrecision::FULL);
 
-    float start_time = sim.GetParams()->sim_time_start;
-    float step_size  = sim.GetParams()->sim_time_delta;
+    float start_time = sim.GetSimParams().sim_time_start;
+    float step_size  = sim.GetSimParams().sim_time_delta;
 
     // Calculate the sorted set of time steps to serialize
     std::deque< int32_t > serialization_time_steps = SerializationParameters::GetInstance()->GetSerializedTimeSteps(steps, start_time, step_size);
@@ -136,7 +136,7 @@ bool DefaultController::execute_internal()
         CheckMissingParameters();
         // now try to run it
         // divide the simulation into stages according to requesting number of serialization test cycles
-        int simulation_steps = static_cast<int>( sim->GetParams()->sim_time_total / sim->GetParams()->sim_time_delta );
+        int simulation_steps = static_cast<int>( sim->GetSimParams().sim_time_total / sim->GetSimParams().sim_time_delta );
 
 #ifndef _DLLS_
         int remaining_steps = simulation_steps;

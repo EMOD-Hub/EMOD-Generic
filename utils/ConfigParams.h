@@ -369,7 +369,7 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const AgentParams*     GetAgentParams();
+        static const AgentParams&     GetAgentParams();
 
     protected:
         static       AgentParams      agent_params;
@@ -383,7 +383,7 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const ClimateParams*     GetClimateParams();
+        static const ClimateParams&     GetClimateParams();
 
     protected:
         static       ClimateParams      climate_params;
@@ -397,7 +397,7 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const LoggingParams*   GetLoggingParams();
+        static const LoggingParams&   GetLoggingParams();
 
     protected:
         static       LoggingParams    logging_params;
@@ -411,7 +411,7 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const MigrationParams*   GetMigrationParams();
+        static const MigrationParams&   GetMigrationParams();
 
     protected:
         static       MigrationParams    migration_params;
@@ -425,7 +425,7 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const NodeParams*        GetNodeParams();
+        static const NodeParams&        GetNodeParams();
 
     protected:
         static       NodeParams         node_params;
@@ -439,10 +439,10 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const PolioParams*       GetPolioParams();
+        static const PolioParams&       GetPolioParams();
 
     protected:
-        static       PolioParams         polio_params;
+        static       PolioParams        polio_params;
     };
 
     class SimConfig : public JsonConfigurable
@@ -453,7 +453,7 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const SimParams*   GetSimParams();
+        static const SimParams&   GetSimParams();
 
     protected:
         static       SimParams    sim_params;
@@ -467,7 +467,7 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const TBHIVParams*   GetTBHIVParams();
+        static const TBHIVParams&   GetTBHIVParams();
 
     protected:
         static       TBHIVParams    tbhiv_params;

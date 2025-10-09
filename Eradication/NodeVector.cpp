@@ -197,18 +197,18 @@ namespace Kernel
 
         VectorSamplingType::Enum vector_sampling_type = GET_CONFIGURABLE( SimulationConfig )->vector_params->vector_sampling_type;
         if ( (vector_sampling_type == VectorSamplingType::VECTOR_COMPARTMENTS_NUMBER || vector_sampling_type == VectorSamplingType::VECTOR_COMPARTMENTS_PERCENT) &&
-              GetParams()->number_clades > 1 && GetTotalGenomes() > 1 )
+              GetNodeParams().number_clades > 1 && GetTotalGenomes() > 1 )
         {
             // Ideally error messages would all be in Exceptions.cpp
             std::ostringstream msg;
             msg << "Strain tracking is only fully supported for the individual (not cohort) vector model."
                 << " Simulations will run for cohort models, but all vector-to-human transmission defaults to strain=(0,0)." 
-                << " Specified values for InfectionConfig::number_clades = " << GetParams()->number_clades << " and number_genomes = " << GetTotalGenomes()
+                << " Specified values for InfectionConfig::number_clades = " << GetNodeParams().number_clades << " and number_genomes = " << GetTotalGenomes()
                 << " are not allowed. They may only be set to 1 for the cohort model.  To use the individual vector model, switch vector sampling type to TRACK_ALL_VECTORS or SAMPLE_IND_VECTORS."
                 << std::endl;
             LOG_ERR( msg.str().c_str() );
             std::ostringstream err_msg;
-            err_msg << GetParams()->number_clades << " and " << GetTotalGenomes();
+            err_msg << GetNodeParams().number_clades << " and " << GetTotalGenomes();
             throw IncoherentConfigurationException(
                 __FILE__, __LINE__, __FUNCTION__,
                 "number_clades > 1 and number_genomes > 1",
@@ -552,7 +552,7 @@ namespace Kernel
         // and keep a list of pointers so the node can update it with new rainfall, etc.
         vp->SetupLarvalHabitat(getContextPointer());
 
-        vp->SetVectorMortality( GetParams()->vector_mortality );
+        vp->SetVectorMortality( GetNodeParams().vector_mortality );
 
         // Add this new vector population to the list
         m_vectorpopulations.push_front(vp);
@@ -581,8 +581,8 @@ namespace Kernel
 
     void NodeVector::BuildTransmissionRoutes()
     {
-        transmissionGroups->Build( 1.0f, GetParams()->number_clades, GetTotalGenomes() );
-        txOutdoor->Build( 1.0f,          GetParams()->number_clades, GetTotalGenomes() );
+        transmissionGroups->Build( 1.0f, GetNodeParams().number_clades, GetTotalGenomes() );
+        txOutdoor->Build( 1.0f,          GetNodeParams().number_clades, GetTotalGenomes() );
     }
 
     void NodeVector::DepositFromIndividual(

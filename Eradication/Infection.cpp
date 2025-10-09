@@ -104,9 +104,9 @@ namespace Kernel
         {
             incubation_timer = incubation_period_override - FLT_MIN;
         }
-        else if(parent->GetParams()->incubation_distribution)
+        else if(parent->GetAgentParams().incubation_distribution)
         {
-            incubation_timer = parent->GetParams()->incubation_distribution->Calculate( GetParent()->GetRng() ) - FLT_MIN;
+            incubation_timer = parent->GetAgentParams().incubation_distribution->Calculate( GetParent()->GetRng() ) - FLT_MIN;
         }
         else
         {
@@ -116,9 +116,9 @@ namespace Kernel
         LOG_DEBUG_F( "incubation_timer initialized to %f for individual %d\n", incubation_timer, GetParent()->GetSuid().data );
 
         // Infection duration
-        if(parent->GetParams()->infectious_distribution)
+        if(parent->GetAgentParams().infectious_distribution)
         {
-            infectious_timer = parent->GetParams()->infectious_distribution->Calculate( GetParent()->GetRng() );
+            infectious_timer = parent->GetAgentParams().infectious_distribution->Calculate( GetParent()->GetRng() );
         }
         else
         {
@@ -128,12 +128,12 @@ namespace Kernel
         LOG_DEBUG_F( "infectious_timer = %f\n", infectious_timer );
 
         // Infectiousness
-        if(parent->GetParams()->infectivity_distribution)
+        if(parent->GetAgentParams().infectivity_distribution)
         {
-            infectiousness = parent->GetParams()->infectivity_distribution->Calculate( GetParent()->GetRng() );
+            infectiousness = parent->GetAgentParams().infectivity_distribution->Calculate( GetParent()->GetRng() );
 
             // Apply correlation modifier
-            infectiousness *= 1 + (parent->GetParams()->correlation_acq_trans)*
+            infectiousness *= 1 + (parent->GetAgentParams().correlation_acq_trans)*
                                   (parent->GetSusceptibilityContext()->getModRisk()-1.0f);
         }
         else
@@ -159,7 +159,7 @@ namespace Kernel
         duration += dt;
 
         // if disease has a daily mortality rate, and disease mortality is on, then check for death. mortality_time_course depends-on enable_disease_mortality BUT DAILY_MORTALITY is default
-        if (InfectionConfig::enable_disease_mortality && (parent->GetParams()->mortality_time_course == MortalityTimeCourse::DAILY_MORTALITY) && (duration > incubation_timer))
+        if (InfectionConfig::enable_disease_mortality && (parent->GetAgentParams().mortality_time_course == MortalityTimeCourse::DAILY_MORTALITY) && (duration > incubation_timer))
         {
             float prob = InfectionConfig::base_mortality * dt * immunity->getModMortality() * parent->GetVaccineContext()->GetInterventionReducedMortality(m_source_route);
             if( GetParent()->GetRng()->SmartDraw( prob ) )
@@ -171,7 +171,7 @@ namespace Kernel
         if (duration > total_duration)
         {
             // disease mortality active and is accounted for at end of infectious period. mortality_time_course depends-on enable_disease_mortality
-            if (InfectionConfig::enable_disease_mortality && parent->GetParams()->mortality_time_course == MortalityTimeCourse::MORTALITY_AFTER_INFECTIOUS )
+            if (InfectionConfig::enable_disease_mortality && parent->GetAgentParams().mortality_time_course == MortalityTimeCourse::MORTALITY_AFTER_INFECTIOUS )
             {
                 float prob = InfectionConfig::base_mortality * immunity->getModMortality() * parent->GetVaccineContext()->GetInterventionReducedMortality(m_source_route);
                 if( GetParent()->GetRng()->SmartDraw( prob ) )
@@ -211,7 +211,7 @@ namespace Kernel
 
     void Infection::EvolveStrain(ISusceptibilityContext* immunity, float dt)
     {
-        if(parent->GetParams()->enable_genome_mutation)
+        if(parent->GetAgentParams().enable_genome_mutation)
         {
             // Only use first 24 bits of genome val for mutation
             uint64_t rate_mult_idx = (infection_strain->GetGeneticID() & MAX_24BIT);
@@ -220,23 +220,23 @@ namespace Kernel
             {
                 float rate_mult = -1.0f*dt;
 
-                if(rate_mult_idx >= parent->GetParams()->genome_mutation_rates.size())
+                if(rate_mult_idx >= parent->GetAgentParams().genome_mutation_rates.size())
                 {
-                    rate_mult_idx = parent->GetParams()->genome_mutation_rates.size()-1;
+                    rate_mult_idx = parent->GetAgentParams().genome_mutation_rates.size()-1;
                 }
-                rate_mult *= parent->GetParams()->genome_mutation_rates.at(rate_mult_idx);
+                rate_mult *= parent->GetAgentParams().genome_mutation_rates.at(rate_mult_idx);
  
                 if (parent->GetRng()->SmartDraw(EXPCDF(rate_mult)))
                 {
                     uint64_t new_genome = (infection_strain->GetGeneticID() & MAX_24BIT) + 1;
-                    if(parent->GetParams()->enable_label_mutator)
+                    if(parent->GetAgentParams().enable_label_mutator)
                     {
                         uint64_t new_genome_idx = new_genome;
-                        if(new_genome_idx >= parent->GetParams()->genome_mutations_labeled.size())
+                        if(new_genome_idx >= parent->GetAgentParams().genome_mutations_labeled.size())
                         {
-                            new_genome_idx = parent->GetParams()->genome_mutations_labeled.size()-1;
+                            new_genome_idx = parent->GetAgentParams().genome_mutations_labeled.size()-1;
                         }
-                        if(parent->GetParams()->genome_mutations_labeled.at(new_genome_idx))
+                        if(parent->GetAgentParams().genome_mutations_labeled.at(new_genome_idx))
                         {
                             new_genome += static_cast<uint64_t>(GetSuid().data) << SHIFT_BIT;
                         }
@@ -295,7 +295,7 @@ namespace Kernel
     {
         float inf_val = infectiousness;
 
-        if(parent->GetParams()->enable_nonuniform_shedding && duration > incubation_timer)
+        if(parent->GetAgentParams().enable_nonuniform_shedding && duration > incubation_timer)
         {
             // Calculate index into hashed lookup of beta pdf values for shedding multiplier
             int shed_hash_idx = static_cast<int>(std::round((SHEDDING_HASH_SIZE-1)*(duration-incubation_timer)/infectious_timer));
@@ -304,19 +304,19 @@ namespace Kernel
             {
                 shed_hash_idx = SHEDDING_HASH_SIZE-1;
             }
-            inf_val *= parent->GetParams()->shedding_beta_pdf_hash.at(shed_hash_idx);
+            inf_val *= parent->GetAgentParams().shedding_beta_pdf_hash.at(shed_hash_idx);
         }
 
-        if(parent->GetParams()->enable_genome_dependent_infectivity)
+        if(parent->GetAgentParams().enable_genome_dependent_infectivity)
         {
             // Only use first 24 bits of genome val for variable infectivity
             uint64_t strain_mult_idx = (infection_strain->GetGeneticID() & MAX_24BIT);
 
-            if(strain_mult_idx >= parent->GetParams()->genome_infectivity_multipliers.size())
+            if(strain_mult_idx >= parent->GetAgentParams().genome_infectivity_multipliers.size())
             {
-                strain_mult_idx = parent->GetParams()->genome_infectivity_multipliers.size()-1;
+                strain_mult_idx = parent->GetAgentParams().genome_infectivity_multipliers.size()-1;
             }
-            inf_val *= parent->GetParams()->genome_infectivity_multipliers.at(strain_mult_idx);
+            inf_val *= parent->GetAgentParams().genome_infectivity_multipliers.at(strain_mult_idx);
         }
 
         return duration > incubation_timer ? inf_val : 0.0f;
@@ -357,7 +357,7 @@ namespace Kernel
 
     bool Infection::DetermineSymptomatology( float const duration, float const incubation_timer )
     {
-        return ( ( duration - incubation_timer ) > parent->GetParams()->symptomatic_infectious_offset );
+        return ( ( duration - incubation_timer ) > parent->GetAgentParams().symptomatic_infectious_offset );
     }
 
     REGISTER_SERIALIZABLE(Infection);

@@ -35,22 +35,22 @@ namespace Kernel {
 
     bool ClimateConstant::IsPlausible()
     {
-        const ClimateParams* cp = ClimateConfig::GetClimateParams();
+        const ClimateParams cp = ClimateConfig::GetClimateParams();
 
-        if( cp->base_airtemperature + (2 * cp->airtemperature_variance) > max_airtemp ||
-            cp->base_airtemperature - (2 * cp->airtemperature_variance) < min_airtemp ||
-            cp->base_landtemperature + (2 * cp->landtemperature_variance) > max_landtemp ||
-            cp->base_landtemperature - (2 * cp->landtemperature_variance) < min_landtemp ||
-            cp->base_rainfall < 0.0 ||
-            cp->base_humidity > 1.0 ||
-            cp->base_humidity < 0.0 )
+        if( cp.base_airtemperature + (2 * cp.airtemperature_variance) > max_airtemp ||
+            cp.base_airtemperature - (2 * cp.airtemperature_variance) < min_airtemp ||
+            cp.base_landtemperature + (2 * cp.landtemperature_variance) > max_landtemp ||
+            cp.base_landtemperature - (2 * cp.landtemperature_variance) < min_landtemp ||
+            cp.base_rainfall < 0.0 ||
+            cp.base_humidity > 1.0 ||
+            cp.base_humidity < 0.0 )
         {
             LOG_DEBUG( "IsPlausible returning false\n" );
             return false;
         }
 
-        if((cp->rainfall_variance_enabled && (EXPCDF(-1 /cp->base_rainfall * max_rainfall) < 0.975)) ||
-            (!cp->rainfall_variance_enabled && cp->base_rainfall > max_rainfall))
+        if((cp.rainfall_variance_enabled && (EXPCDF(-1 /cp.base_rainfall * max_rainfall) < 0.975)) ||
+            (!cp.rainfall_variance_enabled && cp.base_rainfall > max_rainfall))
         {
             LOG_DEBUG( "IsPlausible returning false\n" );
             return false;
@@ -61,12 +61,12 @@ namespace Kernel {
 
     void ClimateConstant::UpdateWeather( float time, float dt, RANDOMBASE* pRNG )
     {
-        const ClimateParams* cp = ClimateConfig::GetClimateParams();
+        const ClimateParams cp = ClimateConfig::GetClimateParams();
 
-        m_airtemperature       =      cp->base_airtemperature;
-        m_landtemperature      =      cp->base_landtemperature;
-        m_accumulated_rainfall = dt * cp->base_rainfall;
-        m_humidity             =      cp->base_humidity;
+        m_airtemperature       =      cp.base_airtemperature;
+        m_landtemperature      =      cp.base_landtemperature;
+        m_accumulated_rainfall = dt * cp.base_rainfall;
+        m_humidity             =      cp.base_humidity;
 
         Climate::UpdateWeather( time, dt, pRNG ); // call base-class UpdateWeather() to add stochasticity and check values are within valid bounds
     }

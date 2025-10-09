@@ -29,7 +29,7 @@ namespace Kernel
         virtual const DemographicsContext* GetDemographicsContext() const = 0;
 
         // parameters
-        virtual const SimParams* GetParams() const = 0;
+        virtual const SimParams& GetSimParams() const = 0;
         virtual const std::vector<std::string> GetRelationshipTypes() const = 0;
 
         // time services

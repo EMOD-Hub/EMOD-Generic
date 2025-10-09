@@ -815,7 +815,7 @@ namespace Kernel
             // --- development of parasitologic and clinical immunity during primary infection." Am J Trop Med Hyg 61(1 Suppl): 4-19.
             // --- process start of asexual phase if the incubation period is over and there are still hepatocytes
             // ----------------------------------------------------------------------------------------------------------------------
-            float incubation_period = parent->GetParams()->incubation_distribution->GetParam1();
+            float incubation_period = parent->GetAgentParams().incubation_distribution->GetParam1();
             if (m_asexual_phase == AsexualCycleStatus::NoAsexualCycle && duration >= incubation_period)
             {
                 m_IRBC_count.assign(CLONAL_PfEMP1_VARIANTS, 0);

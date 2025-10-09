@@ -143,7 +143,7 @@ void Report::LogNodeData( Kernel::INodeContext * pNC )
         Accumulate("Relative Humidity", pNC->GetLocalWeather()->humidity());
     }
 
-    if(pNC->GetParams()->enable_environmental_route)
+    if(pNC->GetNodeParams().enable_environmental_route)
     {
         env_rep = true;
         auto contagionPop = pNC->GetContagionByRoute();

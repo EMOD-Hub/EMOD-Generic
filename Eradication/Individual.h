@@ -78,7 +78,7 @@ namespace Kernel
         static IndividualHuman *CreateHuman(INodeContext *context, suids::suid id, float MCweight = 1.0f, float init_age = 0.0f, int gender = 0);
         virtual ~IndividualHuman();
 
-        virtual const AgentParams* GetParams() const;
+        virtual const AgentParams& GetAgentParams() const;
 
         virtual void InitializeHuman() override;
 
