@@ -109,7 +109,7 @@ namespace Kernel
     {
     }
 
-    const MigrationParams* MigrationInfoNull::GetParams() const
+    const MigrationParams& MigrationInfoNull::GetMigrationParams() const
     {
         return MigrationConfig::GetMigrationParams();
     }
@@ -165,7 +165,7 @@ namespace Kernel
     {
     }
 
-    const MigrationParams* MigrationInfoFixedRate::GetParams() const
+    const MigrationParams& MigrationInfoFixedRate::GetMigrationParams() const
     {
         return MigrationConfig::GetMigrationParams();
     }
@@ -804,7 +804,7 @@ static const char* NODE_OFFSETS          = "NodeOffsets";            // required
         m_InfoFileList.clear();
     }
 
-    const MigrationParams* MigrationInfoFactoryFile::GetParams() const
+    const MigrationParams& MigrationInfoFactoryFile::GetMigrationParams() const
     {
         return MigrationConfig::GetMigrationParams();
     }
@@ -831,13 +831,13 @@ static const char* NODE_OFFSETS          = "NodeOffsets";            // required
 
     void MigrationInfoFactoryFile::Initialize( const string& idreference )
     {
-        const MigrationParams* mp = MigrationConfig::GetMigrationParams();
+        const MigrationParams mp = MigrationConfig::GetMigrationParams();
 
-        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::LOCAL_MIGRATION,    MAX_LOCAL_MIGRATION_DESTINATIONS,    mp->enable_mig_local,    mp->mig_file_local,    mp->mig_mult_local ) );
-        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::AIR_MIGRATION,      MAX_AIR_MIGRATION_DESTINATIONS,      mp->enable_mig_air,      mp->mig_file_air,      mp->mig_mult_air ) );
-        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::REGIONAL_MIGRATION, MAX_REGIONAL_MIGRATION_DESTINATIONS, mp->enable_mig_regional, mp->mig_file_regional, mp->mig_mult_regional ) );
-        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::SEA_MIGRATION,      MAX_SEA_MIGRATION_DESTINATIONS,      mp->enable_mig_sea,      mp->mig_file_sea,      mp->mig_mult_sea ) );
-        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::FAMILY_MIGRATION,   MAX_FAMILY_MIGRATION_DESTINATIONS,   mp->enable_mig_family,   mp->mig_file_family,   mp->mig_mult_family ) );
+        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::LOCAL_MIGRATION,    MAX_LOCAL_MIGRATION_DESTINATIONS,    mp.enable_mig_local,    mp.mig_file_local,    mp.mig_mult_local ) );
+        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::AIR_MIGRATION,      MAX_AIR_MIGRATION_DESTINATIONS,      mp.enable_mig_air,      mp.mig_file_air,      mp.mig_mult_air ) );
+        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::REGIONAL_MIGRATION, MAX_REGIONAL_MIGRATION_DESTINATIONS, mp.enable_mig_regional, mp.mig_file_regional, mp.mig_mult_regional ) );
+        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::SEA_MIGRATION,      MAX_SEA_MIGRATION_DESTINATIONS,      mp.enable_mig_sea,      mp.mig_file_sea,      mp.mig_mult_sea ) );
+        m_InfoFileList.push_back( new MigrationInfoFile( MigrationType::FAMILY_MIGRATION,   MAX_FAMILY_MIGRATION_DESTINATIONS,   mp.enable_mig_family,   mp.mig_file_family,   mp.mig_mult_family ) );
 
         for( int i = 0; i < m_InfoFileList.size(); i++ )
         {
@@ -922,7 +922,7 @@ static const char* NODE_OFFSETS          = "NodeOffsets";            // required
     MigrationInfoFactoryDefault::~MigrationInfoFactoryDefault()
     { }
 
-    const MigrationParams* MigrationInfoFactoryDefault::GetParams() const
+    const MigrationParams& MigrationInfoFactoryDefault::GetMigrationParams() const
     {
         return MigrationConfig::GetMigrationParams();
     }
@@ -942,11 +942,11 @@ static const char* NODE_OFFSETS          = "NodeOffsets";            // required
 
     IMigrationInfo* MigrationInfoFactoryDefault::CreateMigrationInfo( INodeContext *pParentNode )
     {
-        std::vector<std::vector<MigrationRateData>> rate_data = GetRateData( pParentNode, GetParams()->mig_mult_local );
+        std::vector<std::vector<MigrationRateData>> rate_data = GetRateData( pParentNode, GetMigrationParams().mig_mult_local );
 
         IMigrationInfo* p_new_migration_info;
 
-        if( GetParams()->enable_mig_local)
+        if( GetMigrationParams().enable_mig_local)
         {
             MigrationInfoFixedRate* p_mifr = _new_ MigrationInfoFixedRate( pParentNode );
             p_mifr->Initialize( rate_data );

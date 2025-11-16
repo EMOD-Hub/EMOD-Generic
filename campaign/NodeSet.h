@@ -31,7 +31,7 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED(NodeSetFactory, NodeSetAll, INodeSet)
 
     public:
-        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
+        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
         virtual bool Configure(const Configuration* config);
 
@@ -41,25 +41,7 @@ namespace Kernel
         virtual IConfigurable*  GetConfigurable()  override  { return JsonConfigurable::GetConfigurable(); }
 
     protected:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         DECLARE_SERIALIZABLE(NodeSetAll);
-#pragma warning( pop )
-    };
-
-    class IDMAPI NodeListConfig : public JsonConfigurable, public IComplexJsonConfigurable
-    {
-        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-
-        public:
-            NodeListConfig() {}
-            virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
-            virtual json::QuickBuilder GetSchema() override;
-            virtual bool  HasValidDefault() const override { return false; }
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
-            std::list< ExternalNodeId_t > nodelist;
-#pragma warning( pop )
     };
 
     class IDMAPI NodeSetNodeList : public INodeSet, public JsonConfigurable
@@ -67,7 +49,7 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED(NodeSetFactory, NodeSetNodeList, INodeSet)
 
     public:
-        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()  
+        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
         virtual bool Configure(const Configuration* config);
 
@@ -77,6 +59,6 @@ namespace Kernel
         virtual IConfigurable*  GetConfigurable()  override  { return JsonConfigurable::GetConfigurable(); }
 
     protected:
-        NodeListConfig nodelist_config;
+        std::vector<ExternalNodeId_t> nodelist;
     };
 };

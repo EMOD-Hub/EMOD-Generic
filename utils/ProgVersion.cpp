@@ -7,10 +7,9 @@
 
 // See the definition of version info
 #include "version_info.h"
+#include "Log.h"
 
-
-#define COMBINE_VER(maj,min,rev) \
-    (((maj) << 24) | ((min) << 16) | (rev) << 8)
+SETUP_LOGGING( "ProgVersion" )
 
 // for unsafe usage of sprintf
 #pragma warning(disable: 4996)
@@ -21,6 +20,7 @@ ProgDllVersion::ProgDllVersion()
     m_nMinor = MINOR_VERSION;
     m_nRevision = REVISION_NUMBER;
 
+    strncpy( m_sBuildDate, BUILD_DATE, VER_LEN );
     strncpy( m_builderName, BUILDER_NAME, VER_LEN );
     strncpy( m_sSccsBranch, SCCS_BRANCH, VER_LEN );
     strncpy( m_sSccsDate, SCCS_DATE, VER_LEN );
@@ -30,29 +30,29 @@ ProgDllVersion::ProgDllVersion()
             m_sSccsDate[i] = ' ';
     }
 
-    m_nVersion = COMBINE_VER(m_nMajor, m_nMinor, m_nRevision);
-
-    sprintf(m_sVersion, "%d.%d.%d", m_nMajor, m_nMinor, m_nRevision);
+    updateVersionString();
 }
 
-const char* ProgDllVersion::getBuildDate()
+void ProgDllVersion::updateVersionString()
 {
-    return BUILD_DATE;
+    sprintf( m_sVersion, "%Iu.%Iu.%Iu", m_nMajor, m_nMinor, m_nRevision);
 }
 
-int ProgDllVersion::checkProgVersion(uint8_t nMajor, uint8_t nMinor, uint16_t nRevision)
+int ProgDllVersion::checkProgVersion(uint8_t nMajor, uint8_t nMinor, uint16_t nRevision) const
 {
     int ret = 0;
-    
-    uint32_t num = COMBINE_VER(nMajor, nMinor, nRevision);
-    if (num < m_nVersion) 
+
+    uint32_t num = ProgDllVersion::combineVersion( nMajor, nMinor, nRevision );
+    uint32_t nVersion = ProgDllVersion::combineVersion( static_cast<uint8_t>( m_nMajor ), static_cast<uint8_t>( m_nMinor ), static_cast<uint16_t>( m_nRevision ) );
+
+    if (num < nVersion)
         ret = -1;
-    else if (num > m_nVersion) 
+    else if (num > nVersion)
         ret = 1;
      return ret;
 }
 
-int ProgDllVersion::checkProgVersion(const char* sVersion)
+int ProgDllVersion::checkProgVersion(const char* sVersion) const
 {
     // -2 for error
     int ret = -2;
@@ -65,32 +65,37 @@ int ProgDllVersion::checkProgVersion(const char* sVersion)
     return ret;
 }
 
-bool ProgDllVersion::parseProgVersion(const char* sVersion, uint8_t& maj, uint8_t& min, uint16_t& rev)
+uint32_t ProgDllVersion::combineVersion( uint8_t nMajor, uint8_t nMinor, uint16_t nRevision )
+{
+    return (((nMajor) << 24) | ((nMinor) << 16) | (nRevision) << 8);
+}
+
+bool ProgDllVersion::parseProgVersion(const char* sVersion, uint8_t& maj, uint8_t& min, uint16_t& rev) const
 {
     maj = 0;
     min = 0;
     rev = 0;
-    
+
     char sTemp[VER_LEN];
     strncpy(sTemp, sVersion, VER_LEN);
     char* str = strchr(sTemp, '.');
     if (!str) return false;
-    
+
     str[0] = '\0';
     maj = atoi(sTemp);
-    
+
     char* str1 = strchr(str+1, '.');
     if (!str1) return false;
-    
+
     str1[0] = '\0';
     min = atoi(str+1);
-    
+
     char* str2 = strchr(str1+1, '.');
     if (!str2) return false;
-    
+
     str2[0] = '\0';
     rev = atoi(str1+1);
-    
+
     return true;
 }
 

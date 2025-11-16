@@ -6,7 +6,6 @@
 #include "DistributionFactory.h"
 
 
-
 namespace Kernel
 {
     // Static param structures
@@ -18,8 +17,6 @@ namespace Kernel
     PolioParams      PolioConfig::polio_params;
     SimParams        SimConfig::sim_params;
     TBHIVParams      TBHIVConfig::tbhiv_params;
-
-
 
     // ConfigParams Methods
     bool ConfigParams::Configure(Configuration* config)
@@ -33,7 +30,6 @@ namespace Kernel
         PolioConfig        polio_config_obj;
         SimConfig          sim_config_obj;
         TBHIVConfig        tbhiv_config_obj;
-
 
         // Set fixed parameters; would love to not need this section (KF)
         if(sim_config_obj.MatchesDependency(config, "Simulation_Type", "DENGUE_SIM"))
@@ -64,7 +60,6 @@ namespace Kernel
             config->Add("Enable_Superinfection",                        1);
         }
 
-
         // Process configuration
         bool bRet = true;
 
@@ -80,7 +75,7 @@ namespace Kernel
         return bRet;
     }
 
-
+    // *****************************************************************************
 
     AgentParams::AgentParams()
         : mortality_time_course(MortalityTimeCourse::DAILY_MORTALITY)
@@ -131,7 +126,7 @@ namespace Kernel
         : enable_continuous_log_flushing(false)
         , enable_log_throttling(false)
         , enable_warnings_are_fatal(false)
-        , log_levels()
+        , module_name_to_level_map()
     {}
 
     MigrationParams::MigrationParams()
@@ -361,11 +356,7 @@ namespace Kernel
         : drugs_map()
     {}
 
-
-
-// *****************************************************************************
-
-
+    // *****************************************************************************
 
     // AgentConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(AgentConfig,AgentConfig)
@@ -376,7 +367,6 @@ namespace Kernel
         DistributionFunction::Enum  incubation_period_function(DistributionFunction::NOT_INITIALIZED);
         DistributionFunction::Enum  infectious_distribution_function(DistributionFunction::NOT_INITIALIZED);
         BaseInfectDist::Enum        infect_dist_func(BaseInfectDist::NOT_INITIALIZED);
-
 
         // Agent parameter dependencies
         const std::map<std::string, std::string> dset_agent00  {{"Simulation_Type","GENERIC_SIM"}};
@@ -391,7 +381,6 @@ namespace Kernel
         const std::map<std::string, std::string> dset_enums02  {{"Simulation_Type","GENERIC_SIM,STI_SIM,VECTOR_SIM,DENGUE_SIM,MALARIA_SIM,AIRBORNE_SIM,ENVIRONMENTAL_SIM,POLIO_SIM,TYPHOID_SIM,PY_SIM"}};
         const std::map<std::string, std::string> dset_enums03  {{"Simulation_Type","GENERIC_SIM,STI_SIM,VECTOR_SIM,AIRBORNE_SIM,ENVIRONMENTAL_SIM,POLIO_SIM,PY_SIM"}};
         const std::map<std::string, std::string> dset_enums04  {{"Enable_Disease_Mortality","1"}};
-
 
         // Agent parameters
         initConfig("Base_Infectivity_Distribution",   infect_dist_func,                     config,  MetadataDescriptor::Enum("Base_Infectivity_Distribution",  Base_Infectivity_Distribution_DESC_TEXT,  MDD_ENUM_ARGS(BaseInfectDist)),        nullptr, nullptr, &dset_enums01);
@@ -426,10 +415,8 @@ namespace Kernel
         initConfigTypeMap("Genome_Infectivity_Multipliers",        &agent_params.genome_infectivity_multipliers,       Genome_Infectivity_Multipliers_DESC_TEXT,           0.0f,  FLT_MAX,  false,  nullptr, nullptr, &dset_agent03);
         initConfigTypeMap("Genome_Mutation_Rates",                 &agent_params.genome_mutation_rates,                Genome_Mutation_Rates_DESC_TEXT,                    0.0f,  FLT_MAX,  false,  nullptr, nullptr, &dset_agent04);
 
-
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);
-
 
         // Post-process values
         if(agent_params.enable_nonuniform_shedding)
@@ -461,16 +448,15 @@ namespace Kernel
             }
         }
 
-
         return bRet;
     }
 
-    const AgentParams* AgentConfig::GetAgentParams()
+    const AgentParams& AgentConfig::GetAgentParams()
     {
-        return &agent_params;
+        return agent_params;
     }
 
-
+    // *****************************************************************************
 
     // ClimateConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(ClimateConfig,ClimateConfig)
@@ -511,43 +497,40 @@ namespace Kernel
         initConfigTypeMap("Relative_Humidity_Scale_Factor", &climate_params.humidity_scale_factor,     Relative_Humidity_Scale_Factor_DESC_TEXT,    0.1f,   10.0f,    1.0f,   nullptr, nullptr, &dset_clim06);
         initConfigTypeMap("Relative_Humidity_Variance",     &climate_params.humidity_variance,         Relative_Humidity_Variance_DESC_TEXT,        0.0f,    0.12f,   0.05f,  nullptr, nullptr, &dset_clim04);
 
-
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);
-
 
         // Set fixed values; config param in mm, need m for calculations
         climate_params.base_rainfall /= MILLIMETERS_PER_METER;
 
-
         return bRet;
     }
 
-    const ClimateParams* ClimateConfig::GetClimateParams()
+    const ClimateParams& ClimateConfig::GetClimateParams()
     {
-        return &climate_params;
+        return climate_params;
     }
 
-
+    // *****************************************************************************
 
     // LoggingConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(LoggingConfig,LoggingConfig)
 
     bool LoggingConfig::Configure(const Configuration* config)
     {
-        //Enable defaults
+        // Logging parameters have historically not been required in the config file. In emod-api (2.0.28), as part of the
+        // finalize method for the config file, all logLevel_<module_name> parameters are removed if they are equal to
+        // the value of logLevel_default. This process simplifies the config file, but requires that absent parameters for
+        // logging do not cause an exception.
         JsonConfigurable::_useDefaults = true;
-
 
         // Logging parameters
         initConfigTypeMap("Enable_Continuous_Log_Flushing",  &logging_params.enable_continuous_log_flushing,  Enable_Continuous_Log_Flushing_DESC_TEXT,  false);
         initConfigTypeMap("Enable_Log_Throttling",           &logging_params.enable_log_throttling,           Enable_Log_Throttling_DESC_TEXT,           false);
         initConfigTypeMap("Enable_Warnings_Are_Fatal",       &logging_params.enable_warnings_are_fatal,       Enable_Warnings_Are_Fatal_DESC_TEXT,       false);
 
-
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);
-
 
         // Logging levels; constrained string because "ERROR" cannot be enumerated
         jsonConfigurable::ConstrainedString  log_config_str("INFO");
@@ -563,27 +546,26 @@ namespace Kernel
         initConfigTypeMap(log_name_param.c_str(), &log_config_str, logLevel_default_DESC_TEXT, log_default_val);
         bRet &= JsonConfigurable::Configure(config);
         log_default_val = static_cast<std::string>(log_config_str);
-        logging_params.log_levels[default_log_name] = log_default_val;
+        logging_params.module_name_to_level_map[default_log_name] = log_default_val;
 
         for (auto& mod_name : SimpleLogger::GetModuleNames())
         {
             log_name_param = LOG_NAME_PREFIX+mod_name;
             initConfigTypeMap(log_name_param.c_str(), &log_config_str, logLevel_MODULE_DESC_TEXT, log_default_val);
             bRet &= JsonConfigurable::Configure(config);
-            logging_params.log_levels[mod_name] = static_cast<std::string>(log_config_str);
+            logging_params.module_name_to_level_map[mod_name] = static_cast<std::string>(log_config_str);
         }
-
 
         JsonConfigurable::_useDefaults = false;
         return bRet;
     }
 
-    const LoggingParams* LoggingConfig::GetLoggingParams()
+    const LoggingParams& LoggingConfig::GetLoggingParams()
     {
-        return &logging_params;
+        return logging_params;
     }
 
-
+    // *****************************************************************************
 
     // MigrationConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(MigrationConfig,MigrationConfig)
@@ -658,10 +640,8 @@ namespace Kernel
 
         initConfigTypeMap("Roundtrip_Waypoints", &migration_params.roundtrip_waypoints, Roundtrip_Waypoints_DESC_TEXT, 0, 1000, 10, nullptr, nullptr, &dset_mig12);
 
-
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);
-
 
         // Set fixed values
         if(migration_params.migration_pattern == MigrationPattern::RANDOM_WALK_DIFFUSION)
@@ -685,16 +665,15 @@ namespace Kernel
             migration_params.sea_roundtrip_prob        = 1.0f;
         }
 
-
         return bRet;
     }
 
-    const MigrationParams* MigrationConfig::GetMigrationParams()
+    const MigrationParams& MigrationConfig::GetMigrationParams()
     {
-        return &migration_params;
+        return migration_params;
     }
 
-
+    // *****************************************************************************
 
     // NodeConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(NodeConfig,NodeConfig)
@@ -703,7 +682,6 @@ namespace Kernel
     {
         // Local variables
         uint32_t log2genomes = 0;
-
 
         // Node parameter dependencies
         const std::map<std::string, std::string> dset_env01    {{"Simulation_Type","GENERIC_SIM,ENVIRONMENTAL_SIM,POLIO_SIM,TYPHOID_SIM"}};
@@ -741,7 +719,6 @@ namespace Kernel
         const std::map<std::string, std::string> dset_birth04  {{"Simulation_Type","STI_SIM,HIV_SIM,AIRBORNE_SIM,TBHIV_SIM,VECTOR_SIM,MALARIA_SIM,DENGUE_SIM,PY_SIM"},{"Enable_Vital_Dynamics","1"},{"Enable_Birth","1"},{"Enable_Maternal_Infection_Transmission","1"}};
         const std::map<std::string, std::string> dset_death01  {{"Enable_Demographics_Builtin","0"},{"Enable_Vital_Dynamics","1"}};
         const std::map<std::string, std::string> dset_death02  {{"Enable_Demographics_Builtin","0"},{"Enable_Vital_Dynamics","1"},{"Enable_Natural_Mortality","1"}};
-
 
         // Node parameters
         initConfig("Age_Initialization_Distribution_Type",             node_params.age_init_dist_type,     config,  MetadataDescriptor::Enum("Age_Initialization_Distribution_Type",            Age_Initialization_Distribution_Type_DESC_TEXT,            MDD_ENUM_ARGS(DistributionType)));
@@ -790,24 +767,21 @@ namespace Kernel
         initConfigTypeMap("Log2_Number_of_Genomes_per_Clade",  &log2genomes,                  Log2_Number_of_Genomes_per_Clade_DESC_TEXT,   0, SHIFT_BIT,     0,  nullptr,  nullptr,  &dset_strain02);
         initConfigTypeMap("Number_of_Clades",                  &node_params.number_clades,    Number_of_Clades_DESC_TEXT,                   1,        10,     1,  nullptr,  nullptr,  &dset_strain01);
 
-
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);
-
 
         // Post-process values
         node_params.number_genomes = static_cast<uint64_t>(1) << log2genomes;
 
-
         return bRet;
     }
 
-    const NodeParams* NodeConfig::GetNodeParams()
+    const NodeParams& NodeConfig::GetNodeParams()
     {
-        return &node_params;
+        return node_params;
     }
 
-
+    // *****************************************************************************
 
     // PolioConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(PolioConfig,PolioConfig)
@@ -923,25 +897,22 @@ namespace Kernel
         initConfigTypeMap("Vaccine_Genome_OPV1",     &polio_params.vaccine_genome_OPV1,    Vaccine_Genome_OPV1_DESC_TEXT,      0, 1023,  1,  nullptr,  nullptr,  &dset_polio01);
         initConfigTypeMap("Vaccine_Genome_OPV2",     &polio_params.vaccine_genome_OPV2,    Vaccine_Genome_OPV2_DESC_TEXT,      0, 1023,  1,  nullptr,  nullptr,  &dset_polio01);
         initConfigTypeMap("Vaccine_Genome_OPV3",     &polio_params.vaccine_genome_OPV3,    Vaccine_Genome_OPV3_DESC_TEXT,      0, 1023,  1,  nullptr,  nullptr,  &dset_polio01);
- 
 
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);
 
-
         // Set fixed values; Ogra 1968, Warren 1964, Dexiang1956, Plotkin 1959
         polio_params.decayRatePassiveImmunity = log(2.0f)/(polio_params.maternalAbHalfLife+FLT_MIN);
-
 
         return bRet;
     }
 
-    const PolioParams* PolioConfig::GetPolioParams()
+    const PolioParams& PolioConfig::GetPolioParams()
     {
-        return &polio_params;
+        return polio_params;
     }
 
-
+    // *****************************************************************************
 
     // SimConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(SimConfig,SimConfig)
@@ -956,7 +927,6 @@ namespace Kernel
         const std::map<std::string, std::string> dset_netinf02  {{"Simulation_Type","GENERIC_SIM"},{"Enable_Network_Infectivity","1"}};
         const std::map<std::string, std::string> dset_report01  {{"Enable_Demographics_Reporting","1"}};
         const std::map<std::string, std::string> dset_time01    {{"Simulation_Type","GENERIC_SIM,STI_SIM,HIV_SIM,TYPHOID_SIM"}};
-
 
         // Sim parameters
         initConfig("Simulation_Type",   sim_params.sim_type, config, MetadataDescriptor::Enum("Simulation_Type", Simulation_Type_DESC_TEXT, MDD_ENUM_ARGS(SimType)));
@@ -993,20 +963,18 @@ namespace Kernel
         initConfigTypeMap("Network_Infectivity_Coefficient",       &sim_params.net_infect_grav_coeff,    Network_Infectivity_Coefficient_DESC_TEXT,           0.0f,   FLT_MAX,     false,  nullptr,  nullptr,  &dset_netinf02);
         initConfigTypeMap("Network_Infectivity_Exponent",          &sim_params.net_infect_grav_dpow,     Network_Infectivity_Exponent_DESC_TEXT,              0.0f,   FLT_MAX,     false,  nullptr,  nullptr,  &dset_netinf02);
 
-
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);
-
 
         return bRet;
     }
 
-    const SimParams* SimConfig::GetSimParams()
+    const SimParams& SimConfig::GetSimParams()
     {
-        return &sim_params;
+        return sim_params;
     }
 
-
+    // *****************************************************************************
 
     // TBHIVConfig Methods
     GET_SCHEMA_STATIC_WRAPPER_IMPL(TBHIVConfig,TBHIVConfig)
@@ -1019,18 +987,15 @@ namespace Kernel
         // TBHIV parameters
         initConfigComplexType("TBHIV_Drug_Params",     &tbhiv_params.drugs_map,      TBHIV_Drug_Params_DESC_TEXT,  nullptr,  nullptr,  &dset_tbhiv01);
 
-
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);
-
 
         return bRet;
     }
 
-    const TBHIVParams* TBHIVConfig::GetTBHIVParams()
+    const TBHIVParams& TBHIVConfig::GetTBHIVParams()
     {
-        return &tbhiv_params;
+        return tbhiv_params;
     }
-}
 
-// *****************************************************************************
+}

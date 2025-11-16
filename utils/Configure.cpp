@@ -2230,6 +2230,33 @@ namespace Kernel
             }
         }
 
+        //----------------------------------- VECTOR of UINT32s ------------------------------
+        for( auto& entry : GetConfigData()->vectorUint32ConfigTypeMap )
+        {
+            const std::string& key = entry.first;
+            json::QuickInterpreter schema = jsonSchemaBase[ key ];
+            if( ignoreParameter( schema, inputJson ) )
+            {
+                continue; // param is missing and that's ok.
+            }
+
+            if( inputJson->Exist( key ) )
+            {
+                std::vector<int> configValues = GET_CONFIG_VECTOR_INT( inputJson, (entry.first).c_str() );
+                entry.second->clear();
+                for( auto val : configValues )
+                {
+                    entry.second->push_back( uint32_t( val ) );
+                }
+
+                EnforceVectorParameterRanges<uint32_t>( key, *(entry.second), schema );
+            }
+            else if( !_useDefaults )
+            {
+                handleMissingParam( key, inputJson->GetDataLocation() );
+            }
+        }
+
         //----------------------------------- VECTOR VECTOR of FLOATs ------------------------------
         for (auto& entry : GetConfigData()->vector2dFloatConfigTypeMap)
         {

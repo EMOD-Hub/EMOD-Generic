@@ -21,7 +21,7 @@ namespace Kernel
         bool Configure(Configuration* config);
     };
 
-
+    // *****************************************************************************
 
     struct AgentParams
     {
@@ -55,8 +55,6 @@ namespace Kernel
         std::vector<float>  shedding_beta_pdf_hash;
     };
 
-
-
     struct ClimateParams
     {
     public:
@@ -87,8 +85,6 @@ namespace Kernel
         float rainfall_scale_factor;
     };
 
-
-
     struct LoggingParams
     {
     public:
@@ -98,10 +94,8 @@ namespace Kernel
         bool enable_log_throttling;
         bool enable_warnings_are_fatal;
 
-        std::map<std::string, std::string> log_levels;
+        std::map<std::string, std::string> module_name_to_level_map;
     };
-
-
 
     struct MigrationParams
     {
@@ -151,8 +145,6 @@ namespace Kernel
 
         int roundtrip_waypoints;
     };
-
-
 
     struct NodeParams
     {
@@ -205,8 +197,6 @@ namespace Kernel
         uint32_t number_clades;
         uint64_t number_genomes;
     };
-
-
 
     struct PolioParams
     {
@@ -321,8 +311,6 @@ namespace Kernel
         int vaccine_genome_OPV3;
     };
 
-
-
     struct SimParams
     {
     public:
@@ -363,8 +351,6 @@ namespace Kernel
         std::vector<float> net_infect_grav_dpow;
     };
 
-
-
     struct TBHIVParams
     {
     public:
@@ -373,11 +359,7 @@ namespace Kernel
         TBHIVDrugCollection   drugs_map;
     };
 
-
-
-// *****************************************************************************
-
-
+    // *****************************************************************************
 
     class AgentConfig : public JsonConfigurable
     {
@@ -387,13 +369,11 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const AgentParams*     GetAgentParams();
+        static const AgentParams&     GetAgentParams();
 
     protected:
         static       AgentParams      agent_params;
     };
-
-
 
     class ClimateConfig : public JsonConfigurable
     {
@@ -403,13 +383,11 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const ClimateParams*     GetClimateParams();
+        static const ClimateParams&     GetClimateParams();
 
     protected:
         static       ClimateParams      climate_params;
     };
-
-
 
     class LoggingConfig : public JsonConfigurable
     {
@@ -419,13 +397,11 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const LoggingParams*   GetLoggingParams();
+        static const LoggingParams&   GetLoggingParams();
 
     protected:
         static       LoggingParams    logging_params;
     };
-
-
 
     class MigrationConfig : public JsonConfigurable
     {
@@ -435,12 +411,11 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const MigrationParams*   GetMigrationParams();
+        static const MigrationParams&   GetMigrationParams();
 
     protected:
         static       MigrationParams    migration_params;
     };
-
 
     class NodeConfig : public JsonConfigurable
     {
@@ -450,13 +425,11 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const NodeParams*        GetNodeParams();
+        static const NodeParams&        GetNodeParams();
 
     protected:
         static       NodeParams         node_params;
     };
-
-
 
     class PolioConfig : public JsonConfigurable
     {
@@ -466,13 +439,11 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const PolioParams*       GetPolioParams();
+        static const PolioParams&       GetPolioParams();
 
     protected:
-        static       PolioParams         polio_params;
+        static       PolioParams        polio_params;
     };
-
-
 
     class SimConfig : public JsonConfigurable
     {
@@ -482,13 +453,11 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const SimParams*   GetSimParams();
+        static const SimParams&   GetSimParams();
 
     protected:
         static       SimParams    sim_params;
     };
-
-
 
     class TBHIVConfig : public JsonConfigurable
     {
@@ -498,11 +467,10 @@ namespace Kernel
     public:
         virtual bool Configure(const Configuration* config) override;
 
-        static const TBHIVParams*   GetTBHIVParams();
+        static const TBHIVParams&   GetTBHIVParams();
 
     protected:
         static       TBHIVParams    tbhiv_params;
     };
-}
 
-// *****************************************************************************
+}

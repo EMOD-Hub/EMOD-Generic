@@ -1,7 +1,6 @@
 
 #pragma once
 
-#include "IdmApi.h"
 #include <string>
 #include <fstream>
 #include <map>
@@ -23,7 +22,7 @@ namespace IdmMpi
 }
 
 
-class IDMAPI Environment
+class Environment
 {
 public:
     struct _MPI
@@ -42,13 +41,10 @@ public:
     std::vector<void*> event_trigger_factories;
     StatusReporter * Status_Reporter;
     
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
     std::list< std::string > InputPaths;
     std::string OutputPath;
     std::string StatePath;
     std::string DllPath;
-#pragma warning( pop )
 
     // Sets up the environment for this process. Returns false if something went wrong
     static bool Initialize(

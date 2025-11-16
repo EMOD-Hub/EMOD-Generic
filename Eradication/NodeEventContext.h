@@ -79,7 +79,7 @@ namespace Kernel
 
         virtual bool IsInPolygon(float* vertex_coords, int numcoords) = 0;
         virtual bool IsInPolygon( const json::Array &poly ) = 0;
-        virtual bool IsInExternalIdSet( const std::list<ExternalNodeId_t>& nodelist ) = 0;
+        virtual bool IsInExternalIdSet( const std::vector<ExternalNodeId_t>& nodelist ) = 0;
         virtual RANDOMBASE* GetRng() = 0;
 
         virtual int GetIndividualHumanCount() const = 0;

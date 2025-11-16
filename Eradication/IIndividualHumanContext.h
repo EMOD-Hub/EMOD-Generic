@@ -36,7 +36,7 @@ namespace Kernel
 
     struct IIndividualHumanContext : ISupports
     {
-        virtual const AgentParams* GetParams() const = 0;
+        virtual const AgentParams& GetAgentParams() const = 0;
 
         virtual suids::suid GetSuid() const = 0;
         virtual float GetAge() const = 0;

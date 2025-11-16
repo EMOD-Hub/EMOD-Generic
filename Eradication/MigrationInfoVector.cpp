@@ -259,11 +259,11 @@ namespace Kernel
     {
         MigrationInfoFactoryFile::Initialize( idreference );
 
-        const MigrationParams* mp = MigrationConfig::GetMigrationParams();
+        const MigrationParams mp = MigrationConfig::GetMigrationParams();
 
-        m_InfoFileListVector.push_back( new MigrationInfoFile( MigrationType::LOCAL_MIGRATION,    MAX_LOCAL_MIGRATION_DESTINATIONS,    mp->enable_mig_vec_local,    mp->mig_file_vec_local,    mp->mig_mult_vec_local ) );
+        m_InfoFileListVector.push_back( new MigrationInfoFile( MigrationType::LOCAL_MIGRATION,    MAX_LOCAL_MIGRATION_DESTINATIONS,    mp.enable_mig_vec_local,    mp.mig_file_vec_local,    mp.mig_mult_vec_local ) );
         m_InfoFileListVector.push_back( nullptr );
-        m_InfoFileListVector.push_back( new MigrationInfoFile( MigrationType::REGIONAL_MIGRATION, MAX_REGIONAL_MIGRATION_DESTINATIONS, mp->enable_mig_vec_regional, mp->mig_file_vec_regional, mp->mig_mult_vec_regional ) );
+        m_InfoFileListVector.push_back( new MigrationInfoFile( MigrationType::REGIONAL_MIGRATION, MAX_REGIONAL_MIGRATION_DESTINATIONS, mp.enable_mig_vec_regional, mp.mig_file_vec_regional, mp.mig_mult_vec_regional ) );
         m_InfoFileListVector.push_back( nullptr );
         m_InfoFileListVector.push_back( nullptr );
 
@@ -284,11 +284,11 @@ namespace Kernel
 
         IMigrationInfoVector* p_new_migration_info;
 
-        const MigrationParams* mp = MigrationConfig::GetMigrationParams();
+        const MigrationParams mp = MigrationConfig::GetMigrationParams();
 
         if( rate_data.size() > 0 )
         {
-            MigrationInfoVector* p_miv = _new_ MigrationInfoVector( pParentNode, mp->vec_mod_equ, mp->vec_mod_habitat, mp->vec_mod_food, mp->vec_mod_stayput);
+            MigrationInfoVector* p_miv = _new_ MigrationInfoVector( pParentNode, mp.vec_mod_equ, mp.vec_mod_habitat, mp.vec_mod_food, mp.vec_mod_stayput);
             p_miv->Initialize( rate_data ); 
             p_new_migration_info = p_miv;
         }
@@ -319,11 +319,11 @@ namespace Kernel
     {
         IMigrationInfoVector* p_new_migration_info_vec;
 
-        const MigrationParams* mp = MigrationConfig::GetMigrationParams();
+        const MigrationParams mp = MigrationConfig::GetMigrationParams();
 
-        if( mp->enable_mig_vec_local)
+        if( mp.enable_mig_vec_local)
         {
-            std::vector<std::vector<MigrationRateData>> rate_data = GetRateData( pParentNode, mp->mig_mult_vec_local );
+            std::vector<std::vector<MigrationRateData>> rate_data = GetRateData( pParentNode, mp.mig_mult_vec_local );
 
             MigrationInfoVector* p_miv = _new_ MigrationInfoVector( pParentNode, ModiferEquationType::LINEAR, 1.0f, 1.0f, 1.0f );
             p_miv->Initialize( rate_data );

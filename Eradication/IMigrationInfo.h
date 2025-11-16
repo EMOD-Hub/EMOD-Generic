@@ -25,7 +25,7 @@ namespace Kernel
     {
         virtual ~IMigrationInfo() {};
 
-        virtual const MigrationParams* GetParams() const = 0;
+        virtual const MigrationParams& GetMigrationParams() const = 0;
 
         virtual void PickMigrationStep( RANDOMBASE* pRNG,
                                         IIndividualHumanContext * traveler, 
@@ -47,7 +47,7 @@ namespace Kernel
     {
         virtual ~IMigrationInfoFactory() {};
 
-        virtual const MigrationParams* GetParams() const = 0;
+        virtual const MigrationParams& GetMigrationParams() const = 0;
 
         virtual void Initialize( const std::string& idreference ) = 0;
         virtual IMigrationInfo* CreateMigrationInfo( INodeContext *parent_node ) = 0;

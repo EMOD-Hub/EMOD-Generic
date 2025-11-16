@@ -18,7 +18,7 @@ SETUP_LOGGING( "ClimateByData" )
 
 namespace Kernel {
 
-    ClimateByData * ClimateByData::CreateClimate( ClimateUpdateResolution::Enum update_resolution,
+    ClimateByData* ClimateByData::CreateClimate( ClimateUpdateResolution::Enum update_resolution,
                                                   INodeContext * _parent,
                                                   int datapoints,
                                                   std::ifstream& airtemperature_file,
@@ -28,7 +28,7 @@ namespace Kernel {
                                                   float start_time,
                                                   RANDOMBASE* pRNG )
     {
-        ClimateByData * new_climate = _new_ ClimateByData(update_resolution, _parent);
+        ClimateByData* new_climate = _new_ ClimateByData(update_resolution, _parent);
 
         new_climate->ReadDataFromFiles(datapoints, airtemperature_file, landtemperature_file, rainfall_file, humidity_file);
 
@@ -38,12 +38,15 @@ namespace Kernel {
         return new_climate;
     }
 
-    ClimateByData::ClimateByData() { }
-    ClimateByData::ClimateByData(ClimateUpdateResolution::Enum update_resolution, INodeContext * _parent) : Climate(update_resolution, _parent) { }
+    ClimateByData::ClimateByData()
+    { }
+
+    ClimateByData::ClimateByData(ClimateUpdateResolution::Enum update_resolution, INodeContext * _parent) : Climate(update_resolution, _parent)
+    { }
 
     bool ClimateByData::IsPlausible()
     {
-        const ClimateParams* cp = ClimateConfig::GetClimateParams();
+        const ClimateParams cp = ClimateConfig::GetClimateParams();
         // check to see whether fewer than 2.5% of the values will exceed the upper- and lower-bounds
 
         int low_index = int(num_datapoints * 0.025);
@@ -52,8 +55,8 @@ namespace Kernel {
         std::vector<float> sorted = airtemperature_data;
         sort(sorted.begin(), sorted.end());
 
-        if( sorted[high_index] + (2 * cp->airtemperature_variance) > max_airtemp ||
-            sorted[low_index] - (2 * cp->airtemperature_variance) < min_airtemp )
+        if( sorted[high_index] + (2 * cp.airtemperature_variance) > max_airtemp ||
+            sorted[low_index] - (2 * cp.airtemperature_variance) < min_airtemp )
         {
             return false;
         }
@@ -61,8 +64,8 @@ namespace Kernel {
         sorted = landtemperature_data;
         sort(sorted.begin(), sorted.end());
 
-        if( sorted[high_index] + (2 * cp->landtemperature_variance) > max_landtemp ||
-            sorted[low_index] - (2 * cp->landtemperature_variance) < min_landtemp )
+        if( sorted[high_index] + (2 * cp.landtemperature_variance) > max_landtemp ||
+            sorted[low_index] - (2 * cp.landtemperature_variance) < min_landtemp )
         {
             return false;
         }
@@ -79,8 +82,8 @@ namespace Kernel {
         if(sorted[low_index] < 0)
             return false;
 
-        if((cp->rainfall_variance_enabled && (EXPCDF(-1 / sorted[high_index] * resolution_correction * max_rainfall) < 0.975)) ||
-           (!cp->rainfall_variance_enabled && sorted[high_index] * resolution_correction > max_rainfall))
+        if((cp.rainfall_variance_enabled && (EXPCDF(-1 / sorted[high_index] * resolution_correction * max_rainfall) < 0.975)) ||
+           (!cp.rainfall_variance_enabled && sorted[high_index] * resolution_correction > max_rainfall))
         {
             return false;
         }
@@ -129,7 +132,7 @@ namespace Kernel {
         rainfall_data.resize(datapoints);
         humidity_data.resize(datapoints);
 
-        const ClimateParams* cp = ClimateConfig::GetClimateParams();
+        const ClimateParams cp = ClimateConfig::GetClimateParams();
 
         num_datapoints = datapoints;
         num_years = int((float(num_datapoints) / (resolution_correction * DAYSPERYEAR)) + 0.01 /* compensate for rounding errors */);
@@ -150,25 +153,25 @@ namespace Kernel {
         CheckForNanOrInf( humidity_data, "relative humidity data" );
 
         // apply scaling factors to data
-        if(cp->airtemperature_offset != 0.0f)
+        if(cp.airtemperature_offset != 0.0f)
             for(int i = 0; i < datapoints; i++)
-                airtemperature_data[i] += cp->airtemperature_offset;
+                airtemperature_data[i] += cp.airtemperature_offset;
 
-        if(cp->landtemperature_offset != 0.0f)
+        if(cp.landtemperature_offset != 0.0f)
             for(int i = 0; i < datapoints; i++)
-                landtemperature_data[i] += cp->landtemperature_offset;
+                landtemperature_data[i] += cp.landtemperature_offset;
 
         // correct rainfall from mm to m
         float scale = 1.0f / MILLIMETERS_PER_METER;
-        if(cp->rainfall_scale_factor != 1.0f)
-            scale *= cp->rainfall_scale_factor;
+        if(cp.rainfall_scale_factor != 1.0f)
+            scale *= cp.rainfall_scale_factor;
 
         for(int i = 0; i < datapoints; i++)
             rainfall_data[i] *= scale;
 
-        if(cp->humidity_scale_factor != 1.0f)
+        if(cp.humidity_scale_factor != 1.0f)
             for(int i = 0; i < datapoints; i++)
-                humidity_data[i] *= cp->humidity_scale_factor;
+                humidity_data[i] *= cp.humidity_scale_factor;
     }
 
     void ClimateByData::UpdateWeather( float time, float dt, RANDOMBASE* pRNG )

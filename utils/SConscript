@@ -27,16 +27,26 @@ if os.path.exists(version_info_path):
     os.remove(version_info_path)
 shutil.copy(version_tmpl_path, version_info_path )
 
+# Extract major and minor versions from version info file
 with open(version_info_path) as fid01:
-    ver_num = [lval.strip().split()[-1] for lval in fid01.readlines()[:2]]
-ver_tag = "v{:s}.{:s}".format(*ver_num)
+    def_lines = [lval.strip().split() for lval in fid01.readlines() if lval.startswith('#define')]
+
+for lval in def_lines:
+    if (lval[1] == 'MAJOR_VERSION'):
+        ver_maj = lval[2]
+    if (lval[1] == 'MINOR_VERSION'):
+        ver_min = lval[2]
+
+ver_tag = "v{:s}.{:s}".format(ver_maj, ver_min)
 
 # commit/branch info
-
-git_rev_handle = Popen(["git","rev-list","{:s}..HEAD".format(ver_tag),"--count"], stdout=PIPE )
+git_rev_handle = Popen(["git","rev-list","{:s}..HEAD".format(ver_tag),"--count"], stdout=PIPE, stderr=PIPE)
 rev = git_rev_handle.stdout.read().decode().strip().strip( '"\'' ).replace(" ","_")
-if rev == "":
-    rev = "0"
+git_err = git_rev_handle.stderr.read().decode()
+if git_err:
+    # Raising an error breaks the Jenkins build; should be an error once off of Jenkins
+    # raise Exception(git_err)
+    rev = '0'
 
 git_branch_handle = Popen( "git rev-parse --abbrev-ref HEAD".split(), stdout=PIPE )
 branch = git_branch_handle.stdout.read().decode().strip().strip( '"\'' ).replace(" ","_")

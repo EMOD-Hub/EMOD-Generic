@@ -63,7 +63,7 @@ namespace Kernel {
 
     void Climate::UpdateWeather( float time, float dt, RANDOMBASE* pRNG )
     {
-        if(ClimateConfig::GetClimateParams()->enable_climate_stochasticity)
+        if(ClimateConfig::GetClimateParams().enable_climate_stochasticity)
         {
             AddStochasticity( pRNG );
         }
@@ -80,24 +80,24 @@ namespace Kernel {
 
     void Climate::AddStochasticity( RANDOMBASE* pRNG )
     {
-        const ClimateParams* cp = ClimateConfig::GetClimateParams();
+        const ClimateParams cp = ClimateConfig::GetClimateParams();
 
         // air-temp
-        if(cp->airtemperature_variance != 0.0)
-            m_airtemperature += float( pRNG->eGauss() * cp->airtemperature_variance ); // varies as a Gaussian with stdev as specified in degree C
+        if(cp.airtemperature_variance != 0.0)
+            m_airtemperature += float( pRNG->eGauss() * cp.airtemperature_variance ); // varies as a Gaussian with stdev as specified in degree C
 
         // land-temp
-        if(cp->landtemperature_variance != 0.0)
-            m_landtemperature += float( pRNG->eGauss() * cp->landtemperature_variance ); // varies as a Gaussian with stdev as specified in degree C
+        if(cp.landtemperature_variance != 0.0)
+            m_landtemperature += float( pRNG->eGauss() * cp.landtemperature_variance ); // varies as a Gaussian with stdev as specified in degree C
 
         //rainfall
-        if(cp->rainfall_variance_enabled)
+        if(cp.rainfall_variance_enabled)
             if(m_accumulated_rainfall > 0.0)
                 m_accumulated_rainfall = float( pRNG->expdist(1.0 / m_accumulated_rainfall) ); // varies over exponential distribution with mean of calculated rainfall value
 
         // humidity
-        if(cp->humidity_variance != 0.0)
-            m_humidity += float( pRNG->eGauss() * cp->humidity_variance ); // varies as a Gaussian with stdev as specified in %
+        if(cp.humidity_variance != 0.0)
+            m_humidity += float( pRNG->eGauss() * cp.humidity_variance ); // varies as a Gaussian with stdev as specified in %
     }
 
     ClimateFactory* ClimateFactory::CreateClimateFactory(const string idreference, ISimulationContext* parent_sim)
@@ -119,7 +119,7 @@ namespace Kernel {
         , parent(parent_sim)
     { }
 
-    const ClimateParams* ClimateFactory::GetParams()
+    const ClimateParams& ClimateFactory::GetClimateParams()
     {
         return ClimateConfig::GetClimateParams();
     }
@@ -128,16 +128,16 @@ namespace Kernel {
     {
         LOG_INFO( "Initialize\n" );
 
-        const ClimateParams* cp = GetParams();
+        const ClimateParams cp = GetClimateParams();
 
         try
         {
-            if(cp->climate_structure == ClimateStructure::CLIMATE_OFF)
+            if(cp.climate_structure == ClimateStructure::CLIMATE_OFF)
                 return true;
 
             // prepare any input files, etc
 
-            switch( cp->climate_structure )
+            switch( cp.climate_structure )
             {
                 case ClimateStructure::CLIMATE_CONSTANT:
                 // nothing to do here...
@@ -147,11 +147,11 @@ namespace Kernel {
                 {
                 num_nodes = -1;
 
-                if( cp->climate_koppen_filename == "" )
+                if( cp.climate_koppen_filename == "" )
                 {
                     throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", "ClimateStructure::CLIMATE_KOPPEN:", "climate_koppen_filename", "<empty>" );
                 }
-                std::string koppen_filepath = Environment::FindFileOnPath( cp->climate_koppen_filename  );
+                std::string koppen_filepath = Environment::FindFileOnPath( cp.climate_koppen_filename  );
                 ParseMetadataForFile(koppen_filepath, idreference, nullptr, &num_nodes, koppentype_offsets);
 
                 if(!OpenClimateFile(koppen_filepath, num_nodes * sizeof(int), climate_koppentype_file))
@@ -177,32 +177,32 @@ namespace Kernel {
                 int32_t num_rainfall_entries = -1;
                 int32_t num_humidity_entries = -1;
 
-                if( cp->climate_airtemperature_filename == "" )
+                if( cp.climate_airtemperature_filename == "" )
                 {
                     throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", "ClimateStructure::CLIMATE_BY_DATA:", "climate_airtemperature_filename", "<empty>" );
                 }
-                std::string airtemp_filepath = Environment::FindFileOnPath( cp->climate_airtemperature_filename );
+                std::string airtemp_filepath = Environment::FindFileOnPath( cp.climate_airtemperature_filename );
                 ParseMetadataForFile(airtemp_filepath, idreference, &num_datavalues, &num_airtemp_entries, airtemperature_offsets);
 
-                if( cp->climate_landtemperature_filename == "" )
+                if( cp.climate_landtemperature_filename == "" )
                 {
                     throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", "ClimateStructure::CLIMATE_BY_DATA:", "climate_landtemperature_filename", "<empty>" );
                 }
-                std::string landtemp_filepath = Environment::FindFileOnPath( cp->climate_landtemperature_filename );
+                std::string landtemp_filepath = Environment::FindFileOnPath( cp.climate_landtemperature_filename );
                 ParseMetadataForFile(landtemp_filepath, idreference, &num_datavalues, &num_landtemp_entries, landtemperature_offsets);
 
-                if( cp->climate_rainfall_filename == "" )
+                if( cp.climate_rainfall_filename == "" )
                 {
                     throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", "ClimateStructure::CLIMATE_BY_DATA:", "climate_rainfall_filename", "<empty>" );
                 }
-                std::string rainfall_filepath = Environment::FindFileOnPath( cp->climate_rainfall_filename );
+                std::string rainfall_filepath = Environment::FindFileOnPath( cp.climate_rainfall_filename );
                 ParseMetadataForFile(rainfall_filepath, idreference, &num_datavalues, &num_rainfall_entries, rainfall_offsets);
 
-                if( cp->climate_relativehumidity_filename == "" )
+                if( cp.climate_relativehumidity_filename == "" )
                 {
                     throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", "ClimateStructure::CLIMATE_BY_DATA:", "climate_relativehumidity_filename", "<empty>" );
                 }
-                std::string humidity_filepath = Environment::FindFileOnPath( cp->climate_relativehumidity_filename );
+                std::string humidity_filepath = Environment::FindFileOnPath( cp.climate_relativehumidity_filename );
                 ParseMetadataForFile(humidity_filepath, idreference, &num_datavalues, &num_humidity_entries, humidity_offsets);
 
                 // open all input files
@@ -219,7 +219,7 @@ namespace Kernel {
                 break;
 
                 default:
-                    throw BadEnumInSwitchStatementException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", cp->climate_structure, ClimateStructure::pairs::lookup_key( cp->climate_structure ) );
+                    throw BadEnumInSwitchStatementException( __FILE__, __LINE__, __FUNCTION__, "Climate_Model", cp.climate_structure, ClimateStructure::pairs::lookup_key( cp.climate_structure ) );
             }
         }
         catch (Exception &e)
@@ -319,15 +319,15 @@ namespace Kernel {
             throw InvalidInputDataException( __FILE__, __LINE__, __FUNCTION__, msg.str().c_str() );
         }
 
-        if(GetParams()->climate_structure != ClimateStructure::CLIMATE_KOPPEN)
+        if(GetClimateParams().climate_structure != ClimateStructure::CLIMATE_KOPPEN)
         {
             string str_clim_res( ReadStringFromConfig( metadata, UPDATE_RESOLUTION, metadata_filepath ));
             int md_updateres = ClimateUpdateResolution::pairs::lookup_value(str_clim_res.c_str());
 
-            if(md_updateres == -1 || (GetParams()->climate_update_resolution != ClimateUpdateResolution::Enum(md_updateres)))
+            if(md_updateres == -1 || (GetClimateParams().climate_update_resolution != ClimateUpdateResolution::Enum(md_updateres)))
             {
                 throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Climate_Update_Resolution", 
-                                                        ClimateUpdateResolution::pairs::lookup_key(GetParams()->climate_update_resolution).c_str(),
+                                                        ClimateUpdateResolution::pairs::lookup_key(GetClimateParams().climate_update_resolution).c_str(),
                                                         (std::string("metadata from ") + metadata_filepath).c_str(), str_clim_res.c_str() );
             }
         }
@@ -443,12 +443,12 @@ namespace Kernel {
 
         release_assert(parent_node);
 
-        float start_time = parent->GetParams()->sim_time_start;
+        float start_time = parent->GetSimParams().sim_time_start;
         uint32_t nodeid  = parent_node->GetExternalID();
 
         LOG_DEBUG_F( "Processing nodeid %d\n", nodeid );
 
-        switch(GetParams()->climate_structure )
+        switch(GetClimateParams().climate_structure )
         {
             case ClimateStructure::CLIMATE_CONSTANT:
                 new_climate = ClimateConstant::CreateClimate( ClimateUpdateResolution::CLIMATE_UPDATE_DAY, parent_node, start_time, pRNG );
@@ -508,7 +508,7 @@ namespace Kernel {
                 climate_rainfall_file.seekg(rainfall_offsets[nodeid], std::ios::beg);
                 climate_humidity_file.seekg(humidity_offsets[nodeid], std::ios::beg);
 
-                new_climate = ClimateByData::CreateClimate( GetParams()->climate_update_resolution,
+                new_climate = ClimateByData::CreateClimate( GetClimateParams().climate_update_resolution,
                                                             parent_node,
                                                             num_datavalues,
                                                             climate_airtemperature_file,

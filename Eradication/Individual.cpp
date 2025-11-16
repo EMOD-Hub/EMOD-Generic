@@ -462,12 +462,12 @@ namespace Kernel
         m_is_infected = (infections.size() > 0);
 
         // Check if died of natural causes
-        if( parent->GetParams()->enable_natural_mortality && StateChange == HumanStateChange::None )
+        if( parent->GetNodeParams().enable_natural_mortality && StateChange == HumanStateChange::None )
         {
             CheckVitalDynamics(currenttime, dt);
         }
 
-        if (StateChange == HumanStateChange::None && parent->GetMigrationInfo() && parent->GetMigrationInfo()->GetParams()->migration_structure) // Individual can't migrate if they're already dead
+        if (StateChange == HumanStateChange::None && parent->GetMigrationInfo() && parent->GetMigrationInfo()->GetMigrationParams().migration_structure) // Individual can't migrate if they're already dead
         {
             CheckForMigration(currenttime, dt);
         }
@@ -604,7 +604,7 @@ namespace Kernel
     void IndividualHuman::CheckForMigration(float currenttime, float dt)
     {
         //  Determine if individual moves during this time step
-        switch (parent->GetMigrationInfo()->GetParams()->migration_structure)
+        switch (parent->GetMigrationInfo()->GetMigrationParams().migration_structure)
         {
         case MigrationStructure::FIXED_RATE_MIGRATION:
             if( leave_on_family_trip )
@@ -660,7 +660,7 @@ namespace Kernel
         case MigrationStructure::NO_MIGRATION:
         default:
             std::stringstream msg;
-            msg << "Invalid migration_structure=" << parent->GetMigrationInfo()->GetParams()->migration_structure;
+            msg << "Invalid migration_structure=" << parent->GetMigrationInfo()->GetMigrationParams().migration_structure;
             throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, msg.str().c_str() );
             // break;
         }
@@ -676,11 +676,11 @@ namespace Kernel
         // --- That is, I should be able to travel to a node and return from it, even if the
         // --- residents of the node do not migrate.
         // ----------------------------------------------------------------------------------------
-        if( migration_info->GetParams()->migration_structure != MigrationStructure::NO_MIGRATION )
+        if( migration_info->GetMigrationParams().migration_structure != MigrationStructure::NO_MIGRATION )
         {
             if(waypoints.size() == 0)
                 migration_outbound = true;
-            else if(waypoints.size() == migration_info->GetParams()->roundtrip_waypoints)
+            else if(waypoints.size() == migration_info->GetMigrationParams().roundtrip_waypoints)
                 migration_outbound = false;
 
             if( migration_outbound && (migration_info->GetReachableNodes().size() > 0) )
@@ -712,10 +712,10 @@ namespace Kernel
                     float return_prob;
                     switch(migration_type)
                     {
-                        case MigrationType::LOCAL_MIGRATION:    return_prob = migration_info->GetParams()->local_roundtrip_prob;  break;
-                        case MigrationType::AIR_MIGRATION:      return_prob = migration_info->GetParams()->air_roundtrip_prob;    break;
-                        case MigrationType::REGIONAL_MIGRATION: return_prob = migration_info->GetParams()->region_roundtrip_prob; break;
-                        case MigrationType::SEA_MIGRATION:      return_prob = migration_info->GetParams()->sea_roundtrip_prob;    break;
+                        case MigrationType::LOCAL_MIGRATION:    return_prob = migration_info->GetMigrationParams().local_roundtrip_prob;  break;
+                        case MigrationType::AIR_MIGRATION:      return_prob = migration_info->GetMigrationParams().air_roundtrip_prob;    break;
+                        case MigrationType::REGIONAL_MIGRATION: return_prob = migration_info->GetMigrationParams().region_roundtrip_prob; break;
+                        case MigrationType::SEA_MIGRATION:      return_prob = migration_info->GetMigrationParams().sea_roundtrip_prob;    break;
                         default:
                             throw BadEnumInSwitchStatementException( __FILE__, __LINE__, __FUNCTION__, "migration_type", migration_type, MigrationType::pairs::lookup_key(migration_type) );
                     }
@@ -750,11 +750,11 @@ namespace Kernel
 
         switch(trip_type)
         {
-            case MigrationType::LOCAL_MIGRATION:    duration_value = migration_info->GetParams()->local_roundtrip_duration;  break;
-            case MigrationType::AIR_MIGRATION:      duration_value = migration_info->GetParams()->air_roundtrip_duration;    break;
-            case MigrationType::REGIONAL_MIGRATION: duration_value = migration_info->GetParams()->region_roundtrip_duration; break;
-            case MigrationType::SEA_MIGRATION:      duration_value = migration_info->GetParams()->sea_roundtrip_duration;    break;
-            case MigrationType::FAMILY_MIGRATION:   duration_value = migration_info->GetParams()->family_roundtrip_duration; break;
+            case MigrationType::LOCAL_MIGRATION:    duration_value = migration_info->GetMigrationParams().local_roundtrip_duration;  break;
+            case MigrationType::AIR_MIGRATION:      duration_value = migration_info->GetMigrationParams().air_roundtrip_duration;    break;
+            case MigrationType::REGIONAL_MIGRATION: duration_value = migration_info->GetMigrationParams().region_roundtrip_duration; break;
+            case MigrationType::SEA_MIGRATION:      duration_value = migration_info->GetMigrationParams().sea_roundtrip_duration;    break;
+            case MigrationType::FAMILY_MIGRATION:   duration_value = migration_info->GetMigrationParams().family_roundtrip_duration; break;
             default:
                 throw BadEnumInSwitchStatementException( __FILE__, __LINE__, __FUNCTION__, "trip_type", trip_type, MigrationType::pairs::lookup_key( migration_type ) );
         }
@@ -982,7 +982,7 @@ namespace Kernel
             StrainIdentity tmp_strainIDs;
             infection->GetInfectiousStrainID(&tmp_strainIDs);
 
-            if(GetParams()->enable_label_infector)
+            if(GetAgentParams().enable_label_infector)
             {
                 uint64_t new_genome = (static_cast<uint64_t>(GetSuid().data) << SHIFT_BIT) + (tmp_strainIDs.GetGeneticID() & MAX_24BIT);
                 tmp_strainIDs.SetGeneticID(new_genome);
@@ -1047,7 +1047,7 @@ namespace Kernel
     //------------------------------------------------------------------
 
     // IIndividualHumanContext methods
-    const AgentParams* IndividualHuman::GetParams() const
+    const AgentParams& IndividualHuman::GetAgentParams() const
     {
         return AgentConfig::GetAgentParams();
     }
@@ -1209,7 +1209,7 @@ namespace Kernel
 
     ProbabilityNumber IndividualHuman::getProbMaternalTransmission() const
     {
-        return parent->GetParams()->prob_maternal_infection_trans;
+        return parent->GetNodeParams().prob_maternal_infection_trans;
     }
 
     void serialize_waypoint_types( IArchive& ar, std::vector<MigrationType::Enum>& waypointTripTypes )

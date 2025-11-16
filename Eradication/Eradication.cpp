@@ -123,14 +123,15 @@ int main(int argc, char* argv[])
 #endif
 
     ProgDllVersion pv;
-    auto sims = getSimTypeList();
+
     std::stringstream output;
     output << "EMOD Disease Transmission Kernel " << pv.getVersion() << std::endl
-           << "Built on " << pv.getBuildDate() <<
-           " by " << pv.getBuilderName() <<
-           " from " << pv.getSccsBranch() <<
-           " checked in on " << pv.getSccsDate() << std::endl;
+           << "Built on " << pv.getBuildDate() 
+           << " by " <<      pv.getBuilderName() 
+           << " from " <<    pv.getSccsBranch() 
+           << " checked in on " << pv.getSccsDate() << std::endl;
     
+    auto sims = getSimTypeList();
     std::string sim_types_str = "Supports sim_types: ";
     for( auto sim_type: sims  )
     {
@@ -438,6 +439,10 @@ bool ControllerInitWrapper( int argc, char *argv[], IdmMpi::MessageInterface* pM
             LOG_ERR("Failed to initialize environment, exiting\n");
             return false;
         }
+        else
+        {
+            LOG_INFO( "Environment initialized successfully.\n" );
+        }
 
         if( is_getting_schema )
         {
@@ -477,6 +482,7 @@ bool ControllerInitWrapper( int argc, char *argv[], IdmMpi::MessageInterface* pM
 #endif 
 
 #ifdef WIN32
+
     #ifdef DEBUG_MEMORY_LEAKS
         _CrtMemState initial_state;
 
@@ -492,6 +498,7 @@ bool ControllerInitWrapper( int argc, char *argv[], IdmMpi::MessageInterface* pM
             //    _crtBreakAlloc = 106768; // break on this alloc number; get this from the object dump
             }
     #endif
+
 #endif
 
         LOG_INFO( "Loaded Configuration...\n" ); 
@@ -537,11 +544,13 @@ bool ControllerInitWrapper( int argc, char *argv[], IdmMpi::MessageInterface* pM
         Kernel::PythonSupport::RunPyFunction( EnvPtr->OutputPath, Kernel::PythonSupport::SCRIPT_POST_PROCESS );
 
 #ifdef WIN32
+
     #ifdef DEBUG_MEMORY_LEAKS
         if (run == 1)
             _CrtMemDumpAllObjectsSince(&initial_state);
     }
     #endif
+
 #endif
         // Reaching this statement indicates successful completion
         ret_val = true;

@@ -67,7 +67,7 @@ namespace Kernel
         virtual void SetRng( RANDOMBASE* prng ) override; 
         virtual void AddEventsFromOtherNodes( const std::vector<EventTrigger::Enum>& rTriggerList ) override;
 
-        virtual const NodeParams* GetParams() const;
+        virtual const NodeParams& GetNodeParams() const;
 
         virtual IMigrationInfo*   GetMigrationInfo() override;
         virtual NPKeyValueContainer& GetNodeProperties() override;
@@ -97,7 +97,7 @@ namespace Kernel
         // Campaign event-related
         bool IsInPolygon(float* vertex_coords, int numcoords); // might want to create a real polygon object at some point
         bool IsInPolygon( const json::Array &poly );
-        bool IsInExternalIdSet( const std::list<ExternalNodeId_t>& nodelist );
+        bool IsInExternalIdSet( const std::vector<ExternalNodeId_t>& nodelist );
 
         // Reporting to higher levels (intermediate form)
         // Possible TODO: refactor into common interfaces if there is demand
@@ -166,8 +166,6 @@ namespace Kernel
         virtual void  resetNodeStateCounters(void);
 
     protected:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
 
         SerializationBitMask_t serializationFlags;
         static SerializationBitMask_t serializationFlagsDefault;
@@ -349,7 +347,5 @@ namespace Kernel
         suids::distributed_generator m_IndividualHumanSuidGenerator;
 
         DECLARE_SERIALIZABLE(Node);
-
-#pragma warning( pop )
     };
 }

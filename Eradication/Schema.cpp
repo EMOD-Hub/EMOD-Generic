@@ -30,45 +30,63 @@ SETUP_LOGGING( "Schema" )
 
 const std::vector<std::string> getSimTypeList()
 {
-    const char * simTypeListC[] = { "GENERIC_SIM"
+    std::vector<std::string> simTypeList;
+
+    simTypeList.push_back("GENERIC_SIM");
+
 #ifndef DISABLE_VECTOR
-        , "VECTOR_SIM"
+    simTypeList.push_back("VECTOR_SIM");
 #endif
 #ifndef DISABLE_MALARIA
-        , "MALARIA_SIM"
+    simTypeList.push_back("MALARIA_SIM");
 #endif
 #ifndef DISABLE_AIRBORNE
-        , "AIRBORNE_SIM"
+    simTypeList.push_back("AIRBORNE_SIM");
 #endif
 #ifdef ENABLE_POLIO
-        , "POLIO_SIM"
+    simTypeList.push_back("POLIO_SIM");
 #endif
 #ifndef DISABLE_TBHIV
-        , "TBHIV_SIM"
+    simTypeList.push_back("TBHIV_SIM");
 #endif
 #ifndef DISABLE_STI
-        , "STI_SIM"
+    simTypeList.push_back("STI_SIM");
 #endif
 #ifndef DISABLE_HIV
-        , "HIV_SIM"
+    simTypeList.push_back("HIV_SIM");
 #endif
 #ifdef ENABLE_DENGUE
-        , "DENGUE_SIM"
+    simTypeList.push_back("DENGUE_SIM");
 #endif
 #ifdef ENABLE_PYTHON_FEVER
-        , "PY_SIM"
+    simTypeList.push_back("PY_SIM");
 #endif
 #ifdef ENABLE_TYPHOID
-        , "TYPHOID_SIM"
+    simTypeList.push_back("TYPHOID_SIM");
 #endif
 #ifdef ENABLE_ENVIRONMENTAL
-        , "ENVIRONMENTAL_SIM"
+    simTypeList.push_back("ENVIRONMENTAL_SIM");
 #endif
-    };
 
-#define KNOWN_SIM_COUNT (sizeof(simTypeListC)/sizeof(simTypeListC[0]))
-    std::vector<std::string> simTypeList( simTypeListC, simTypeListC + KNOWN_SIM_COUNT );
     return simTypeList;
+}
+
+
+const std::string getSupportedSimsString()
+{
+    const auto sims = getSimTypeList();
+    std::string sim_types_str;
+
+    for( size_t i = 0; i < sims.size(); ++i )
+    {
+        sim_types_str += sims[i].substr(0, sims[i].find("_"));
+        sim_types_str += ", ";
+    }
+
+    sim_types_str.pop_back();  // Remove last comma and space
+    sim_types_str.pop_back();
+
+    return sim_types_str;
 }
 
 void writeInputSchemas( const char* output_path )
@@ -81,11 +99,12 @@ void writeInputSchemas( const char* output_path )
     // --- Create Metadata Schema
     json::Object vsRoot;
     json::QuickBuilder versionSchema( vsRoot );
+
     ProgDllVersion pv;
     versionSchema["DTK_Version"] = json::String( pv.getVersion() );
     versionSchema["DTK_Branch"] = json::String( pv.getSccsBranch() );
     versionSchema["DTK_Build_Date"] = json::String( pv.getBuildDate() );
-
+    versionSchema["Supported_Simulation_Types"] = json::String( getSupportedSimsString() );
     total_schema["Version"] = versionSchema.As<json::Object>();
 
     // --- Create Config Schema
@@ -204,8 +223,8 @@ void writeInputSchemas( const char* output_path )
     // PythonSupportPtr can be null during componentTests
     if( szOutputPath != "stdout" )
     {
-        std::cout << "Successfully created schema in file " << output_path << ". Attempting to post-process." << std::endl;
         Kernel::PythonSupport::RunPyFunction( output_path, Kernel::PythonSupport::SCRIPT_POST_PROCESS_SCHEMA );
+        std::cout << "Created schema file " << output_path << ". " << std::endl;
     }
 }
 

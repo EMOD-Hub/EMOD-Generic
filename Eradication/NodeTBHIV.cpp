@@ -110,7 +110,7 @@ namespace Kernel
             RegisterObservers();
         }
 
-        if(GetParams()->enable_demographics_risk && IndividualHumanCoInfectionConfig::enable_coinfection)
+        if(GetNodeParams().enable_demographics_risk && IndividualHumanCoInfectionConfig::enable_coinfection)
         {
             HIVCoinfectionDistribution = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["HIVCoinfectionDistribution"], "gender", "time", "age");
             HIVMortalityDistribution   = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["HIVTBCoinfMortalityDistribution"], "age", "year");

@@ -396,7 +396,7 @@ namespace Kernel
             CheckHIVVitalDynamics(dt);
         }
 
-        if (StateChange == HumanStateChange::None && parent->GetMigrationInfo() && parent->GetMigrationInfo()->GetParams()->migration_structure) // Individual can't migrate if they're already dead
+        if (StateChange == HumanStateChange::None && parent->GetMigrationInfo() && parent->GetMigrationInfo()->GetMigrationParams().migration_structure) // Individual can't migrate if they're already dead
         {
             CheckForMigration(currenttime, dt);
         }
@@ -470,7 +470,7 @@ namespace Kernel
                 HasLatentInfection() &&
                 !(GetTBInfection()->IsFastProgressor() || GetTBInfection()->IsPendingRelapse()) )
             {
-                float dt_true = parent->GetParent()->GetParams()->sim_time_delta;
+                float dt_true = parent->GetParent()->GetSimParams().sim_time_delta;
                 float prob = EXPCDF( -cp->GetTotalContagion()*dt_true*suscept_mod*interventions->GetInterventionReducedAcquire(tx_route) );
                 if ( GetRng()->SmartDraw( prob ) ) // infection results from this strain?
                 {

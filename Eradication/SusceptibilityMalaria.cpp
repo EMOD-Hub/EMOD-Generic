@@ -230,7 +230,7 @@ namespace Kernel
         // New births during the simulation can stop here.
         if (GetParent()->GetAge() == 0) return;
 
-        if(GetParent()->GetParent()->GetParams()->initial_sus_dist_type == DistributionType::DISTRIBUTION_COMPLEX )
+        if(GetParent()->GetParent()->GetNodeParams().initial_sus_dist_type == DistributionType::DISTRIBUTION_COMPLEX )
         {
             INodeMalaria* p_node_malaria = parent->GetEventContext()->GetNodeEventContext()->GetNodeContext()->GetNodeMalaria();
             release_assert(p_node_malaria);

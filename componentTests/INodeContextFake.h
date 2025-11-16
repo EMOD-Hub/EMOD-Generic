@@ -24,7 +24,7 @@ public:
     }
 
     virtual const                        DemographicsContext* GetDemographicsContext() const override                                                   { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
-    virtual const                        SimParams* GetParams() const override                                                                          { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual const                        SimParams& GetSimParams() const override                                                                       { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual ISimulation*                 GetSimulation() override                                                                                       { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual IVectorSimulationContext*    GetSimulationVector() override                                                                                 { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
     virtual const                        std::vector<std::string> GetRelationshipTypes() const override                                                 { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
@@ -97,7 +97,7 @@ public:
         return m_suid ;
     }
 
-    virtual const NodeParams* GetParams() const override
+    virtual const NodeParams& GetNodeParams() const override
     {
         throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented.");
     }

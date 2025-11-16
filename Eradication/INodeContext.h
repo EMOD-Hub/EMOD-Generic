@@ -62,7 +62,7 @@ namespace Kernel
         virtual INodeTBHIV*         GetNodeTBHIV()     = 0;
         virtual INodePolio*         GetNodePolio()     = 0;
 
-        virtual const NodeParams* GetParams() const = 0;
+        virtual const NodeParams& GetNodeParams() const = 0;
 
         //individual can get an id of their parent to compare against, for instance, their home node id
         virtual suids::suid GetSuid() const = 0;

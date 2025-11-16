@@ -227,7 +227,7 @@ namespace Kernel
 
         total_duration = HIV_duration_until_mortality_without_TB;
         // now we have 3 variables doing the same thing?
-        infectiousness = parent->GetParams()->infectivity_distribution->Calculate( GetParent()->GetRng() );
+        infectiousness = parent->GetAgentParams().infectivity_distribution->Calculate( GetParent()->GetRng() );
         StateChange    = InfectionStateChange::None;
     }
 

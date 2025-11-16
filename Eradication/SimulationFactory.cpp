@@ -86,11 +86,11 @@ namespace Kernel
             return newsim;
         }
 
-        std::string sSimType = SimType::pairs::lookup_key(SimConfig::GetSimParams()->sim_type);
+        std::string sSimType = SimType::pairs::lookup_key(SimConfig::GetSimParams().sim_type);
 
         try
         {
-            switch (SimConfig::GetSimParams()->sim_type)
+            switch (SimConfig::GetSimParams().sim_type)
             {
                 case SimType::GENERIC_SIM:
                     newsim = Simulation::CreateSimulation(EnvPtr->Config);
