@@ -21,6 +21,21 @@ namespace Kernel
 
     IMPLEMENT_FACTORY_REGISTERED(AntimalarialDrug)
 
+    AntimalarialDrug::AntimalarialDrug()
+        : GenericDrug()
+        , dosing_type( DrugUsageType::SingleDose )
+        , drug_IRBC_killrate(0)
+        , drug_hepatocyte(0)
+        , drug_gametocyte02(0)
+        , drug_gametocyte34(0)
+        , drug_gametocyteM(0)
+        , pMalariaDrugTypeParameters(nullptr)
+        , pDrugResistantModifiers(nullptr)
+        , imda(nullptr)
+    {
+        initSimTypes( 1, "MALARIA_SIM" );
+    }
+
     AntimalarialDrug::~AntimalarialDrug()
     {
     }
@@ -108,21 +123,6 @@ namespace Kernel
             pMalariaDrugTypeParameters = mdtMap.at( drug_name );
         }
         return ret;
-    }
-
-    AntimalarialDrug::AntimalarialDrug()
-        : GenericDrug()
-        , dosing_type( DrugUsageType::SingleDose )
-        , drug_IRBC_killrate(0)
-        , drug_hepatocyte(0)
-        , drug_gametocyte02(0)
-        , drug_gametocyte34(0)
-        , drug_gametocyteM(0)
-        , pMalariaDrugTypeParameters(nullptr)
-        , pDrugResistantModifiers(nullptr)
-        , imda(nullptr)
-    {
-        initSimTypes( 1, "MALARIA_SIM" );
     }
 
     bool AntimalarialDrug::Distribute( IIndividualHumanInterventionsContext* context, ICampaignCostObserver* pCCO )
@@ -214,27 +214,20 @@ namespace Kernel
         return num_doses;
     }
 
-    void AntimalarialDrug::ConfigureDrugTreatment( IIndividualHumanInterventionsContext * ivc )
+    void AntimalarialDrug::ConfigureDrugTreatment( IIndividualHumanInterventionsContext* ivc )
     {
         remaining_doses = GetNumDoses();
         time_between_doses = pMalariaDrugTypeParameters->GetDoseInterval();
         Cmax = pMalariaDrugTypeParameters->GetCMax();
 
         // Optional age-dependent dosing
+        float age_in_days = ivc->GetParent()->GetEventContext()->GetAge();
+        float bodyweight = BodyWeightByAge(age_in_days);
         float bodyweight_exponent = pMalariaDrugTypeParameters->GetBodyWeightExponent();
-        DoseMap::dose_map_t fractional_dose_by_upper_age = pMalariaDrugTypeParameters->GetDoseMap().fractional_dose_by_upper_age;
-        if ( bodyweight_exponent > 0 || !fractional_dose_by_upper_age.empty() )
+        float fractional_dose = pMalariaDrugTypeParameters->GetDoseMap().GetFractionalDose(age_in_days);
+
+        if (bodyweight_exponent > 0)
         {
-            float age_in_days = ivc->GetParent()->GetEventContext()->GetAge();
-            float bodyweight = BodyWeightByAge(age_in_days);
-
-            auto it = fractional_dose_by_upper_age.upper_bound(age_in_days/DAYSPERYEAR);
-            float fractional_dose = 1.0f;
-            if (it != fractional_dose_by_upper_age.end())
-            {
-                fractional_dose = it->second;
-            }
-
             float Cmax_multiplier = pow(_adult_bodyweight_kg/bodyweight, bodyweight_exponent) * fractional_dose;
             LOG_DEBUG_F("Age=%d yr, weight=%d kg, dosing=%0.2f, Cmax_mult=%0.2f\n", int(age_in_days/DAYSPERYEAR), int(bodyweight), fractional_dose, Cmax_multiplier);
             Cmax *= Cmax_multiplier;

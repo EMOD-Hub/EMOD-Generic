@@ -2,26 +2,45 @@
 #pragma once
 
 #include "Configure.h"
+#include "JsonConfigurableCollection.h"
 
 namespace Kernel 
 {
     struct IStrainIdentity;
     struct IGenomeMarkers;
 
-    class DoseMap : public JsonConfigurable, public IComplexJsonConfigurable
+    class DoseFractionByAge : public JsonConfigurable
     {
-        // We need the following two lines because we inherit from JsonConfigurable
-        // which provides a little more functionality than is needed by these little
-        // "class types".
+        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
+    public:
+        DoseFractionByAge();
+        virtual ~DoseFractionByAge();
+
+        // JsonConfigurable methods
+        virtual bool Configure( const Configuration * inputJson ) override;
+
+        float GetAgeDays() const;
+        float GetDoseFraction() const;
+
+    protected:
+        float m_AgeDays;
+        float m_DoseFraction;
+    };
+
+    class DoseMap : public JsonConfigurableCollection<DoseFractionByAge>
+    {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
-        public:
-            DoseMap() {}
-            typedef std::map<float,float> dose_map_t;
-            dose_map_t fractional_dose_by_upper_age;
-            virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
-            virtual json::QuickBuilder GetSchema() override;
-            virtual bool  HasValidDefault() const override { return false; }
+    public:
+        DoseMap();
+        virtual ~DoseMap();
+
+        virtual void CheckConfiguration() override;
+
+        float GetFractionalDose( float ageInDays ) const;
+
+    protected:
+        virtual DoseFractionByAge* CreateObject() override;
     };
 
     class GenomeMarkerModifiers : public JsonConfigurable
@@ -123,7 +142,6 @@ namespace Kernel
         float drug_decay_T2;
         int   drug_fulltreatment_doses;
         float drug_dose_interval;
-
         float bodyweight_exponent;
         DoseMap dose_map;
 

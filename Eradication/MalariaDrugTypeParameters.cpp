@@ -1,103 +1,101 @@
 
 #include "stdafx.h"
 #include "MalariaDrugTypeParameters.h"
-#include "MalariaEnums.h"
-
-#include "IGenomeMarkers.h"
 #include "IStrainIdentity.h"
+#include "MalariaEnums.h"
+#include "IGenomeMarkers.h"
 #include "Debug.h"
 #include "Common.h"
 #include "Exceptions.h"
-
 #include "Log.h"
 
-SETUP_LOGGING( "DTP" )
+SETUP_LOGGING( "MalariaDrugTypeParameters" )
 
-#if !defined( DISABLE_MALARIA )
 namespace Kernel
 {
     // ------------------------------------------------------------------------
-    // --- DoseMap
+    // --- DoseFractionByAge
     // ------------------------------------------------------------------------
-    void
-    DoseMap::ConfigureFromJsonAndKey(
-        const Configuration * inputJson,
-        const std::string& key
-    )
+
+    DoseFractionByAge::DoseFractionByAge()
+        : JsonConfigurable()
+        , m_AgeDays( 0.0 )
+        , m_DoseFraction( 1.0 )
     {
-        try {
-            const Array dose_by_age = (*inputJson)[key].As<Array>();
-            std::ostringstream oss;
-            oss << "<drugType>" << ": fraction of adult dose\n";
-            for( int i=0; i<dose_by_age.Size(); i++)
-            {
-                QuickInterpreter dosing(dose_by_age[i]);
-                float upper_age_in_years = 0.0f;
-                float fractional_dose = 0.0f; 
-                try {
-                    upper_age_in_years = dosing["Upper_Age_In_Years"].As<Number>();
-                }
-                catch( const json::Exception & )
-                {
-                    throw Kernel::JsonTypeConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Upper_Age_In_Years", dosing, "Expected NUMBER" );
-                }
-                try {
-                    fractional_dose = dosing["Fraction_Of_Adult_Dose"].As<Number>();
-                }
-                catch( const json::Exception & )
-                {
-                    throw Kernel::JsonTypeConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Fraction_Of_Adult_Dose", dosing, "Expected NUMBER" );
-                }
-
-                if( upper_age_in_years < 0.0f )
-                {
-                    throw Kernel::OutOfRangeException( __FILE__, __LINE__, __FUNCTION__, "Upper_Age_In_Years", upper_age_in_years, 0.0f );
-                }
-                else if( upper_age_in_years > MAX_HUMAN_AGE )
-                {
-                    throw Kernel::OutOfRangeException( __FILE__, __LINE__, __FUNCTION__, "Upper_Age_In_Years", upper_age_in_years, MAX_HUMAN_AGE );
-                }
-                if( fractional_dose < 0.0f )
-                {
-                    throw Kernel::OutOfRangeException( __FILE__, __LINE__, __FUNCTION__, "Fraction_Of_Adult_Dose", fractional_dose, 0.0f );
-                }
-                else if( fractional_dose > 1.0f )
-                {
-                    throw Kernel::OutOfRangeException( __FILE__, __LINE__, __FUNCTION__, "Fraction_Of_Adult_Dose", fractional_dose, 1.0f );
-                }
-
-                fractional_dose_by_upper_age[upper_age_in_years] = fractional_dose;
-                oss << "under " << int(upper_age_in_years) << ", " << fractional_dose << "\n";
-                LOG_DEBUG_F(oss.str().c_str()); 
-            }
-        }
-        catch( const json::Exception & )
-        {
-            throw Kernel::JsonTypeConfigurationException( __FILE__, __LINE__, __FUNCTION__, key.c_str(), (*inputJson), "Expected ARRAY" );
-        }
     }
 
-    json::QuickBuilder
-    DoseMap::GetSchema()
+    DoseFractionByAge::~DoseFractionByAge()
     {
-        // maybe put this type into central "complex-types" section and define variable as this type?
-        json::QuickBuilder schema( GetSchemaBase() );
-        auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[ tn ] = json::String( "idmType:DoseMap" );
-        schema[ ts ] = json::Array();
-        schema[ ts ][0] = json::Object();
-        schema[ ts ][0][ "Upper_Age_In_Years" ] = json::Object();
-        schema[ ts ][0][ "Upper_Age_In_Years" ][ "type" ] = json::String( "float" );
-        schema[ ts ][0][ "Upper_Age_In_Years" ][ "min" ] = json::Number( 0 );
-        schema[ ts ][0][ "Upper_Age_In_Years" ][ "max" ] = json::Number( MAX_HUMAN_AGE );
-        schema[ ts ][0][ "Upper_Age_In_Years" ][ "description" ] = json::String( Upper_Age_In_Years_DESC_TEXT );
-        schema[ ts ][0][ "Fraction_Of_Adult_Dose"] = json::Object();
-        schema[ ts ][0][ "Fraction_Of_Adult_Dose" ][ "type" ] = json::String( "float" );
-        schema[ ts ][0][ "Fraction_Of_Adult_Dose" ][ "min" ] = json::Number( 0 );
-        schema[ ts ][0][ "Fraction_Of_Adult_Dose" ][ "max" ] = json::Number( 1.0 );
-        schema[ ts ][0][ "Fraction_Of_Adult_Dose" ][ "description" ] = json::String( Fraction_Of_Adult_Dose_DESC_TEXT );
-        return schema;
+    }
+
+    bool DoseFractionByAge::Configure( const Configuration * inputJson )
+    {
+        float years = 0.0;
+
+        initConfigTypeMap( "Upper_Age_In_Years",     &years,          Upper_Age_In_Years_DESC_TEXT,     0.0f, MAX_HUMAN_AGE, 0.0f );
+        initConfigTypeMap( "Fraction_Of_Adult_Dose", &m_DoseFraction, Fraction_Of_Adult_Dose_DESC_TEXT, 0.0f,           1.0, 1.0f );
+
+        bool is_configured = JsonConfigurable::Configure( inputJson );
+        if( is_configured && !JsonConfigurable::_dryrun )
+        {
+            m_AgeDays = years * DAYSPERYEAR;
+        }
+        return is_configured;
+    }
+
+    float DoseFractionByAge::GetAgeDays() const
+    {
+        return m_AgeDays;
+    }
+
+    float DoseFractionByAge::GetDoseFraction() const
+    {
+        return m_DoseFraction;
+    }
+
+    // ------------------------------------------------------------------------
+    // --- DoseMap
+    // ------------------------------------------------------------------------
+
+    DoseMap::DoseMap()
+        : JsonConfigurableCollection( "Fractional_Dose_By_Upper_Age" )
+    {
+    }
+
+    DoseMap::~DoseMap()
+    {
+    }
+
+    bool CheckAge( const DoseFractionByAge* pLeft, const DoseFractionByAge* pRight )
+    {
+        return (pLeft->GetAgeDays() < pRight->GetAgeDays());
+    }
+
+    bool FindAge( const float leftAgeDays, const DoseFractionByAge* pRight )
+    {
+        return (leftAgeDays < pRight->GetAgeDays());
+    }
+
+    void DoseMap::CheckConfiguration()
+    {
+        std::sort( m_Collection.begin(), m_Collection.end(), CheckAge );
+    }
+
+    float DoseMap::GetFractionalDose( float ageInDays ) const
+    {
+        auto it = std::upper_bound( m_Collection.begin(), m_Collection.end(), ageInDays, FindAge );
+
+        float fractional_dose = 1.0;
+        if( it != m_Collection.end() )
+        {
+            fractional_dose = (*it)->GetDoseFraction();
+        }
+        return fractional_dose;
+    }
+
+    DoseFractionByAge* DoseMap::CreateObject()
+    {
+        return new DoseFractionByAge();
     }
 
     // ------------------------------------------------------------------------
@@ -429,4 +427,3 @@ namespace Kernel
         return m_Modifiers;
     }
 }
-#endif
