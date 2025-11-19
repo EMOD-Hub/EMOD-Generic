@@ -250,22 +250,6 @@ namespace Kernel
         , m_Modifiers( rGenomeMarkers )
         , _drugType( drugType )
     {
-        LOG_DEBUG_F( "ctor: drugType = %s\n", drugType.c_str() );
-        initConfigTypeMap( "Max_Drug_IRBC_Kill",         &max_drug_IRBC_kill,         Max_Drug_IRBC_Kill_DESC_TEXT,         0.0f, 100000.0f, 5.0f );
-        initConfigTypeMap( "Drug_Hepatocyte_Killrate",   &drug_hepatocyte_killrate,   Drug_Hepatocyte_Killrate_DESC_TEXT,   0.0f, 100000.0f, 0.0f );
-        initConfigTypeMap( "Drug_Gametocyte02_Killrate", &drug_gametocyte02_killrate, Drug_Gametocyte02_Killrate_DESC_TEXT, 0.0f, 100000.0f, 0.0f );
-        initConfigTypeMap( "Drug_Gametocyte34_Killrate", &drug_gametocyte34_killrate, Drug_Gametocyte34_Killrate_DESC_TEXT, 0.0f, 100000.0f, 0.0f );
-        initConfigTypeMap( "Drug_GametocyteM_Killrate",  &drug_gametocyteM_killrate,  Drug_GametocyteM_Killrate_DESC_TEXT,  0.0f, 100000.0f, 0.0f );
-        initConfigTypeMap( "Drug_PKPD_C50",              &drug_pkpd_c50,              Drug_PKPD_C50_DESC_TEXT,              0.0f, 100000.0f, 100.0f );
-        initConfigTypeMap( "Drug_Cmax",                  &drug_Cmax,                  Drug_Cmax_DESC_TEXT,                  0.0f, 100000.0f, 1000.0f );
-        initConfigTypeMap( "Drug_Vd",                    &drug_Vd,                    Drug_Vd_DESC_TEXT,                    0.0f, 100000.0f, 10.0f );
-        initConfigTypeMap( "Drug_Decay_T1",              &drug_decay_T1,              Drug_Decay_T1_DESC_TEXT,              0.0f, 100000.0f, 1.0f );
-        initConfigTypeMap( "Drug_Decay_T2",              &drug_decay_T2,              Drug_Decay_T2_DESC_TEXT,              0.0f, 100000.0f, 1.0f );
-        initConfigTypeMap( "Drug_Fulltreatment_Doses",   &drug_fulltreatment_doses,   Drug_Fulltreatment_Doses_DESC_TEXT,   1,    100000,    3 );
-        initConfigTypeMap( "Drug_Dose_Interval",         &drug_dose_interval,         Drug_Dose_Interval_DESC_TEXT,         0.0f, 100000.0f, 1.0f );
-
-        // was optionally parsed, but that was a little heterodox: age-dependent dosing specifications
-        initConfigTypeMap( "Bodyweight_Exponent",        &bodyweight_exponent,        DRUG_Bodyweight_Exponent_DESC_TEXT,   0.0f, 100000.0f, 0.0f );
     }
 
     MalariaDrugTypeParameters::~MalariaDrugTypeParameters()
@@ -319,23 +303,40 @@ namespace Kernel
         return params;
     }
 
-    bool
-    MalariaDrugTypeParameters::Configure(
-        const ::Configuration *config
-    )
+    bool MalariaDrugTypeParameters::Configure(const ::Configuration* config)
     {
         LOG_DEBUG( "Configure\n" );
 
-        if( config->Exist( "Resistance" ) || JsonConfigurable::_dryrun )
+        initConfigTypeMap( "Max_Drug_IRBC_Kill",         &max_drug_IRBC_kill,         Max_Drug_IRBC_Kill_DESC_TEXT,         0.0f, 100000.0f, 5.0f );
+        initConfigTypeMap( "Drug_Hepatocyte_Killrate",   &drug_hepatocyte_killrate,   Drug_Hepatocyte_Killrate_DESC_TEXT,   0.0f, 100000.0f, 0.0f );
+        initConfigTypeMap( "Drug_Gametocyte02_Killrate", &drug_gametocyte02_killrate, Drug_Gametocyte02_Killrate_DESC_TEXT, 0.0f, 100000.0f, 0.0f );
+        initConfigTypeMap( "Drug_Gametocyte34_Killrate", &drug_gametocyte34_killrate, Drug_Gametocyte34_Killrate_DESC_TEXT, 0.0f, 100000.0f, 0.0f );
+        initConfigTypeMap( "Drug_GametocyteM_Killrate",  &drug_gametocyteM_killrate,  Drug_GametocyteM_Killrate_DESC_TEXT,  0.0f, 100000.0f, 0.0f );
+        initConfigTypeMap( "Drug_PKPD_C50",              &drug_pkpd_c50,              Drug_PKPD_C50_DESC_TEXT,              0.0f, 100000.0f, 100.0f );
+        initConfigTypeMap( "Drug_Cmax",                  &drug_Cmax,                  Drug_Cmax_DESC_TEXT,                  0.0f, 100000.0f, 1000.0f );
+        initConfigTypeMap( "Drug_Vd",                    &drug_Vd,                    Drug_Vd_DESC_TEXT,                    0.0f, 100000.0f, 10.0f );
+        initConfigTypeMap( "Drug_Decay_T1",              &drug_decay_T1,              Drug_Decay_T1_DESC_TEXT,              0.0f, 100000.0f, 1.0f );
+        initConfigTypeMap( "Drug_Decay_T2",              &drug_decay_T2,              Drug_Decay_T2_DESC_TEXT,              0.0f, 100000.0f, 1.0f );
+        initConfigTypeMap( "Drug_Fulltreatment_Doses",   &drug_fulltreatment_doses,   Drug_Fulltreatment_Doses_DESC_TEXT,   1,    100000,    3 );
+        initConfigTypeMap( "Drug_Dose_Interval",         &drug_dose_interval,         Drug_Dose_Interval_DESC_TEXT,         0.0f, 100000.0f, 1.0f );
+        initConfigTypeMap( "Bodyweight_Exponent",        &bodyweight_exponent,        DRUG_Bodyweight_Exponent_DESC_TEXT,   0.0f, 100000.0f, 0.0f );
+
+        if(JsonConfigurable::_dryrun || config->Exist( "Resistance" ))
         {
             initConfigComplexType( "Resistance", &m_Modifiers, Resistance_DESC_TEXT );
         }
-        if( config->Exist( "Fractional_Dose_By_Upper_Age" ) || JsonConfigurable::_dryrun ) // :(
+        if(JsonConfigurable::_dryrun || config->Exist("Fractional_Dose_By_Upper_Age")) // :(
         {
-            initConfigComplexType( "Fractional_Dose_By_Upper_Age", &dose_map, Fraction_Of_Adult_Dose_DESC_TEXT ); // not sure this is right desc_text
+            initConfigComplexCollectionType( "Fractional_Dose_By_Upper_Age", &dose_map, Fractional_Dose_By_Upper_Age_DESC_TEXT );
         }
 
-        return JsonConfigurable::Configure( config );
+        bool is_configured = JsonConfigurable::Configure( config );
+
+        if( is_configured && !JsonConfigurable::_dryrun )
+        {
+        }
+
+        return is_configured;
     }
 
     void MalariaDrugTypeParameters::Initialize(const std::string &drugType)
