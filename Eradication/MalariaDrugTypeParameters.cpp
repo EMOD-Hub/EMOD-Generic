@@ -99,133 +99,95 @@ namespace Kernel
     }
 
     // ------------------------------------------------------------------------
-    // --- DrugResistanceModifiers
+    // --- DrugModifier
     // ------------------------------------------------------------------------
 
-#define GMM_PKPD_C50_Modifier_DESC_TEXT "TBD"
-#define GMM_Max_IRBC_Kill_Modifier_DESC_TEXT "TBD"
-
-    GenomeMarkerModifiers::GenomeMarkerModifiers( const std::string& rMarkerName, uint64_t genomeBitMask )
+    DrugModifier::DrugModifier()
         : JsonConfigurable()
-        , m_MarkerName( rMarkerName )
+        , m_DrugString()
         , m_C50(1.0f)
         , m_MaxKilling(1.0f)
-        , m_GenomeBitMask( genomeBitMask )
     {
     }
 
-    GenomeMarkerModifiers::~GenomeMarkerModifiers()
+    DrugModifier::~DrugModifier()
     {
     }
 
-    bool GenomeMarkerModifiers::Configure( const Configuration * inputJson )
+    bool DrugModifier::Configure(const Configuration* inputJson)
     {
-        initConfigTypeMap( "PKPD_C50_Modifier",      &m_C50,        GMM_PKPD_C50_Modifier_DESC_TEXT,      0.0f, 1000.0f, 1.0f );
-        initConfigTypeMap( "Max_IRBC_Kill_Modifier", &m_MaxKilling, GMM_Max_IRBC_Kill_Modifier_DESC_TEXT, 0.0f, 1000.0f, 1.0f );
+        initConfigTypeMap( "Drug_Resistant_String",  &m_DrugString, DM_Drug_Resistant_String_DESC_TEXT,  "" );
+        initConfigTypeMap( "PKPD_C50_Modifier",      &m_C50,        DM_PKPD_C50_Modifier_DESC_TEXT,      0.0f, 1000.0f, 1.0f );
+        initConfigTypeMap( "Max_IRBC_Kill_Modifier", &m_MaxKilling, DM_Max_IRBC_Kill_Modifier_DESC_TEXT, 0.0f, 1000.0f, 1.0f );
 
-        return JsonConfigurable::Configure( inputJson );
+        bool is_configured = JsonConfigurable::Configure( inputJson );
+        if( !JsonConfigurable::_dryrun && is_configured )
+        {
+        }
+        return is_configured;
+    }
+
+    const std::string& DrugModifier::GetDrugResistantString() const
+    {
+        return m_DrugString;
+    }
+
+    float DrugModifier::GetC50() const
+    {
+        return m_C50;
+    }
+
+    float DrugModifier::GetMaxKilling() const
+    {
+        return m_MaxKilling;
     }
 
     // ------------------------------------------------------------------------
-    // --- DrugResistanceModifiers
+    // --- DrugResistanceModifierCollection
     // ------------------------------------------------------------------------
 
-    DrugResistantModifiers::DrugResistantModifiers( const IGenomeMarkers& rGenomeMarkers )
-        : JsonConfigurable()
-        , m_ModifierCollection()
-    {
-        const std::set<std::string>& r_marker_names = rGenomeMarkers.GetNameSet();
-        for( auto& r_name : r_marker_names )
-        {
-            uint64_t bits = rGenomeMarkers.GetBits( r_name );
-            m_ModifierCollection.push_back( GenomeMarkerModifiers( r_name,  bits ) );
-        }
-    }
-
-    DrugResistantModifiers::~DrugResistantModifiers()
+    DrugResistanceModifierCollection::DrugResistanceModifierCollection()
+        : JsonConfigurableCollection( "Resistances" )
     {
     }
 
-    json::QuickBuilder DrugResistantModifiers::GetSchema()
+    DrugResistanceModifierCollection::~DrugResistanceModifierCollection()
     {
-        GenomeMarkerModifiers mods(std::string(""),0);
-        if( JsonConfigurable::_dryrun )
-        {
-            mods.Configure( nullptr );
-        }
-
-        json::QuickBuilder schema( GetSchemaBase() );
-        auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[ tn ] = json::String( "idmType:DrugResistantModifiers" );
-
-        schema[ ts ] = json::Array();
-        schema[ ts ][ 0 ] = json::Object();
-        schema[ ts ][ 0 ][ "<genome marker name>" ] = json::Object();
-        schema[ ts ][ 0 ][ "<genome marker name>" ][ "type" ] = json::String( "String" );
-        schema[ ts ][ 0 ][ "<genome marker name>" ][ "constraints" ] = json::String( "Genome_Markers" );
-        schema[ ts ][ 0 ][ "<GenomeMarkerModifiers>" ] = mods.GetSchema().As<Object>();
-
-        return schema;
     }
 
-    void DrugResistantModifiers::ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key )
+    void DrugResistanceModifierCollection::CheckConfiguration()
     {
-        // Temporary object created so we can 'operate' on json with the desired tools
-        auto p_config = Configuration::CopyFromElement( (*inputJson)[ key ], inputJson->GetDataLocation() );
-
-        for( GenomeMarkerModifiers& r_mods : m_ModifierCollection )
-        {
-            if( !p_config->Exist( r_mods.GetMarkerName() ) )
-            {
-                std::stringstream ss;
-                ss << "Cannot find GenomeMarkerModifiers for genome marker = " << r_mods.GetMarkerName();
-                throw InvalidInputDataException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
-            }
-            Configuration* p_element_config = Configuration::CopyFromElement( (*p_config)[ r_mods.GetMarkerName().c_str() ], inputJson->GetDataLocation() );
-
-            r_mods.Configure( p_element_config );
-
-            delete p_element_config;
-        }
-        delete p_config;
-
     }
 
-    int DrugResistantModifiers::Size() const
-    {
-        return m_ModifierCollection.size();
-    }
-
-    const GenomeMarkerModifiers& DrugResistantModifiers::operator[]( int index ) const
-    {
-        return m_ModifierCollection[ index ];
-    }
-
-    float DrugResistantModifiers::GetC50( const IStrainIdentity& rStrain ) const
+    float DrugResistanceModifierCollection::GetC50( const IStrainIdentity& rStrain ) const
     {
         float c50 = 1.0;
-        for( const GenomeMarkerModifiers& r_mods : m_ModifierCollection )
+        for( DrugModifier* p_mods : m_Collection )
         {
-            if( r_mods.HasGenomeBit( rStrain.GetGeneticID() )  )
+            if( p_mods )
             {
-                c50 *= r_mods.GetC50();
+                c50 *= p_mods->GetC50();
             }
         }
         return c50;
     }
 
-    float DrugResistantModifiers::GetMaxKilling( const IStrainIdentity& rStrain ) const
+    float DrugResistanceModifierCollection::GetMaxKilling( const IStrainIdentity& rStrain ) const
     {
         float max_killing = 1.0;
-        for( const GenomeMarkerModifiers& r_mods : m_ModifierCollection )
+        for( DrugModifier* p_mods : m_Collection )
         {
-            if( r_mods.HasGenomeBit( rStrain.GetGeneticID() ) )
+            if( p_mods )
             {
-                max_killing *= r_mods.GetMaxKilling();
+                max_killing *= p_mods->GetMaxKilling();
             }
         }
         return max_killing;
+    }
+
+    DrugModifier* DrugResistanceModifierCollection::CreateObject()
+    {
+        return new DrugModifier();
     }
 
     // ------------------------------------------------------------------------
@@ -247,7 +209,7 @@ namespace Kernel
         , drug_dose_interval(1.0f)
         , bodyweight_exponent(0.0f)
         , dose_map()
-        , m_Modifiers( rGenomeMarkers )
+        , m_Modifiers()
         , _drugType( drugType )
     {
     }
@@ -321,10 +283,11 @@ namespace Kernel
         initConfigTypeMap( "Drug_Dose_Interval",         &drug_dose_interval,         Drug_Dose_Interval_DESC_TEXT,         0.0f, 100000.0f, 1.0f );
         initConfigTypeMap( "Bodyweight_Exponent",        &bodyweight_exponent,        DRUG_Bodyweight_Exponent_DESC_TEXT,   0.0f, 100000.0f, 0.0f );
 
-        if(JsonConfigurable::_dryrun || config->Exist( "Resistance" ))
+        if(JsonConfigurable::_dryrun || config->Exist("Resistances")) // :(
         {
-            initConfigComplexType( "Resistance", &m_Modifiers, Resistance_DESC_TEXT );
+            initConfigComplexCollectionType( "Resistances", &m_Modifiers, Resistance_DESC_TEXT );
         }
+
         if(JsonConfigurable::_dryrun || config->Exist("Fractional_Dose_By_Upper_Age")) // :(
         {
             initConfigComplexCollectionType( "Fractional_Dose_By_Upper_Age", &dose_map, Fractional_Dose_By_Upper_Age_DESC_TEXT );
@@ -423,7 +386,7 @@ namespace Kernel
         return dose_map;
     }
 
-    const DrugResistantModifiers& MalariaDrugTypeParameters::GetResistantModifiers() const
+    const DrugResistanceModifierCollection& MalariaDrugTypeParameters::GetResistantModifiers() const
     {
         return m_Modifiers;
     }
