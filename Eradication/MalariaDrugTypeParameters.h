@@ -11,7 +11,6 @@ namespace Kernel
 
 
 
-
     class DoseFractionByAge : public JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
@@ -99,6 +98,7 @@ namespace Kernel
 
         typedef map< std::string, MalariaDrugTypeParameters* > tMDTPMap;
 
+        const std::string& GetName()    const;
         float GetMaxDrugIRBCKill()      const;
         float GetKillRateHepatocyte()   const;
         float GetKillRateGametocyte02() const;
@@ -117,9 +117,11 @@ namespace Kernel
         const DrugResistanceModifierCollection& GetResistantModifiers() const;
 
     protected:
-        MalariaDrugTypeParameters( const std::string& drugType, const IGenomeMarkers& rGenomeMarkers );
+        friend class MalariaDrugTypeCollection;
+        MalariaDrugTypeParameters();
         void Initialize(const std::string& drugType);
 
+        std::string drug_name;
         float max_drug_IRBC_kill;
         float drug_hepatocyte_killrate;
         float drug_gametocyte02_killrate;
@@ -136,8 +138,28 @@ namespace Kernel
         DoseMap dose_map;
 
         DrugResistanceModifierCollection m_Modifiers;
+    };
 
-    private:
-        std::string _drugType;
+    class MalariaDrugTypeCollection : public JsonConfigurableCollection<MalariaDrugTypeParameters>
+    {
+    public:
+        static MalariaDrugTypeCollection* GetInstanceNonConst();
+        static const MalariaDrugTypeCollection* GetInstance();
+        static void DeleteInstance();
+
+        virtual ~MalariaDrugTypeCollection();
+
+        virtual void CheckConfiguration() override;
+        const jsonConfigurable::tDynamicStringSet& GetDrugNames() const;
+        const MalariaDrugTypeParameters& GetDrug( const std::string& rName ) const;
+
+    protected:
+        static MalariaDrugTypeCollection* m_pInstance;
+
+        MalariaDrugTypeCollection();
+
+        virtual MalariaDrugTypeParameters* CreateObject() override;
+
+        jsonConfigurable::tDynamicStringSet m_DrugNames;
     };
 }

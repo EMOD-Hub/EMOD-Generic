@@ -1,8 +1,9 @@
 {
     "Infection_Updates_Per_Timestep": 8,
     "Simulation_Timestep": 1,
-    "Malaria_Drug_Params": {
-        "Chloroquine": {
+    "Malaria_Drug_Params": [
+        {
+            "Name": "Chloroquine",
             "Bodyweight_Exponent": 1,
             "Drug_Cmax": 2,
             "Drug_Decay_T1": 3,
@@ -48,5 +49,5 @@
                 }
             ]
         }
-    }
+    ]
 }

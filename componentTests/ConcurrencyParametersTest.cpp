@@ -268,7 +268,7 @@ SUITE(ConcurrencyParametersTest)
     TEST_FIXTURE(ConcurrencyParametersFixture, TestBadConfigInvalidExtraRelFlag)
     {
         TestHelper_Exception( __LINE__, "testdata/ConcurrencyParametersTest/TestBadConfigInvalidExtraRelFlag.json",
-            "Failed to find enum match for value Independent_XXX and key Extra_Relational_Flag_Type. Possible values are: Independent, Correlated, COUNT\n Occured while reading 'Concurrency_Configuration' from the demographics." );
+            "Failed to find enum match for value 'Independent_XXX' and key 'Extra_Relational_Flag_Type'.\nPossible values are:\nIndependent, Correlated, COUNT\n Occured while reading 'Concurrency_Configuration' from the demographics." );
     }
 
     TEST_FIXTURE(ConcurrencyParametersFixture, TestBadConfigRelTypeOrderInvalidValue)

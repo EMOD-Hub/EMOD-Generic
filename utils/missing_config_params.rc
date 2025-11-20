@@ -67,3 +67,8 @@
 #define logLevel_MODULE_DESC_TEXT                                 "Logging level to be used for indicated module."
 
 #define Maternal_Acquire_Config_DESC_TEXT                         "Waning effect configuration for on-birth acquisition immunity."
+
+#define Drug_Name_DESC_TEXT                                       "The unique name of the drug."
+#define DM_Drug_Resistant_String_DESC_TEXT                        "A series of nucleotide base letters (A, C, G, T) that represent the drug resistant values at locations in the genome.  There must be one character for each location defined in 'Parasite_Genetics.Drug_Resistant_Genome_Locations'."
+#define DM_PKPD_C50_Modifier_DESC_TEXT                            "If the parasite has this drug resistant string, this value will be multiplied times the 'Drug_PKPD_C50' value of the drug.  Genomes with multiple matching strings will be simply multiplied together."
+#define DM_Max_IRBC_Kill_Modifier_DESC_TEXT                       "If the parasite has this drug resistant string, this value will be multiplied times the 'Max_Drug_IRBC_Kill' value of the drug.  Genomes with multiple matching strings will be simply multiplied together."

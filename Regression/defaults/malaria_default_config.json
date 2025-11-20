@@ -161,6 +161,7 @@
         "MSP1_Merozoite_Kill_Fraction": 0.5,
         "Malaria_Drug_Params": {
             "Artemether_Lumefantrine": {
+                "Name": "Artemether_Lumefantrine",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 1,
@@ -176,6 +177,7 @@
                 "Max_Drug_IRBC_Kill": 4.61
             },
             "Artemisinin": {
+                "Name": "Artemisinin",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 1,
@@ -191,6 +193,7 @@
                 "Max_Drug_IRBC_Kill": 4.61
             },
             "Chloroquine": {
+                "Name": "Chloroquine",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 4,
@@ -206,6 +209,7 @@
                 "Max_Drug_IRBC_Kill": 3.45
             },
             "GenPreerythrocytic": {
+                "Name": "GenPreerythrocytic",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 1,
@@ -221,6 +225,7 @@
                 "Max_Drug_IRBC_Kill": 0
             },
             "GenTransBlocking": {
+                "Name": "GenTransBlocking",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 1,
@@ -236,6 +241,7 @@
                 "Max_Drug_IRBC_Kill": 0
             },
             "Primaquine": {
+                "Name": "Primaquine",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 1,
@@ -251,6 +257,7 @@
                 "Max_Drug_IRBC_Kill": 3.45
             },
             "Quinine": {
+                "Name": "Quinine",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 7,
@@ -266,6 +273,7 @@
                 "Max_Drug_IRBC_Kill": 2.3
             },
             "SP": {
+                "Name": "SP",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 1,
@@ -281,6 +289,7 @@
                 "Max_Drug_IRBC_Kill": 2.3
             },
             "Tafenoquine": {
+                "Name": "Tafenoquine",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 1,

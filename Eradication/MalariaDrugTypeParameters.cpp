@@ -194,8 +194,10 @@ namespace Kernel
     // --- MalariaDrugTypeParameters
     // ------------------------------------------------------------------------
 
-    MalariaDrugTypeParameters::MalariaDrugTypeParameters( const std::string &drugType, const IGenomeMarkers& rGenomeMarkers )
-        : max_drug_IRBC_kill(5.0f)
+    MalariaDrugTypeParameters::MalariaDrugTypeParameters()
+        : JsonConfigurable()
+        , drug_name()
+        , max_drug_IRBC_kill(5.0f)
         , drug_hepatocyte_killrate(0.0f)
         , drug_gametocyte02_killrate( 0.0f )
         , drug_gametocyte34_killrate( 0.0f )
@@ -210,7 +212,6 @@ namespace Kernel
         , bodyweight_exponent(0.0f)
         , dose_map()
         , m_Modifiers()
-        , _drugType( drugType )
     {
     }
 
@@ -233,7 +234,7 @@ namespace Kernel
 
         // There used to be code to check for and retrieve the existing instance for a given drugType from the map
         // but there was no use case for that and function name suggests creation.
-        auto * params = _new_ MalariaDrugTypeParameters( drugType, rGenomeMarkers );
+        auto * params = _new_ MalariaDrugTypeParameters();
         release_assert( params );
         params->Initialize(drugType);
         if( !JsonConfigurable::_dryrun )
@@ -269,6 +270,7 @@ namespace Kernel
     {
         LOG_DEBUG( "Configure\n" );
 
+        initConfigTypeMap( "Name",                       &drug_name,                  Drug_Name_DESC_TEXT,                  std::string("") );
         initConfigTypeMap( "Max_Drug_IRBC_Kill",         &max_drug_IRBC_kill,         Max_Drug_IRBC_Kill_DESC_TEXT,         0.0f, 100000.0f, 5.0f );
         initConfigTypeMap( "Drug_Hepatocyte_Killrate",   &drug_hepatocyte_killrate,   Drug_Hepatocyte_Killrate_DESC_TEXT,   0.0f, 100000.0f, 0.0f );
         initConfigTypeMap( "Drug_Gametocyte02_Killrate", &drug_gametocyte02_killrate, Drug_Gametocyte02_Killrate_DESC_TEXT, 0.0f, 100000.0f, 0.0f );
@@ -302,6 +304,11 @@ namespace Kernel
         return is_configured;
     }
 
+    const std::string& MalariaDrugTypeParameters::GetName() const
+    {
+        return drug_name;
+    }
+
     void MalariaDrugTypeParameters::Initialize(const std::string &drugType)
     {
         LOG_DEBUG_F( "MalariaDrugTypeParameters::Initialize: drug type = %s\n", drugType.c_str() );
@@ -313,7 +320,7 @@ namespace Kernel
             LOG_WARN_F("Anti-malarial drug name in Malaria_Drug_Params block (%s) is not one of the standard cases.\n", drugType.c_str());
         }
 
-        _drugType = drugType;
+        drug_name = drugType;
     }
 
     float MalariaDrugTypeParameters::GetMaxDrugIRBCKill() const
@@ -389,5 +396,96 @@ namespace Kernel
     const DrugResistanceModifierCollection& MalariaDrugTypeParameters::GetResistantModifiers() const
     {
         return m_Modifiers;
+    }
+
+    // ------------------------------------------------------------------------
+    // --- MalariaDrugTypeCollection
+    // ------------------------------------------------------------------------
+
+    MalariaDrugTypeCollection* MalariaDrugTypeCollection::m_pInstance = nullptr;
+
+    MalariaDrugTypeCollection* MalariaDrugTypeCollection::GetInstanceNonConst()
+    {
+        if( m_pInstance == nullptr )
+        {
+            m_pInstance = new MalariaDrugTypeCollection();
+        }
+        return m_pInstance;
+    }
+
+    const MalariaDrugTypeCollection* MalariaDrugTypeCollection::GetInstance()
+    {
+        return GetInstanceNonConst();
+    }
+
+    void MalariaDrugTypeCollection::DeleteInstance()
+    {
+        delete m_pInstance;
+        m_pInstance = nullptr;
+    }
+
+    MalariaDrugTypeCollection::MalariaDrugTypeCollection()
+        : JsonConfigurableCollection( "Malaria_Drug_Params" )
+        , m_DrugNames()
+    {
+    }
+
+    MalariaDrugTypeCollection::~MalariaDrugTypeCollection()
+    {
+    }
+
+    void MalariaDrugTypeCollection::CheckConfiguration()
+    {
+        for( auto p_drug : m_Collection )
+        {
+            m_DrugNames.insert( p_drug->GetName() );
+        }
+
+        if( m_DrugNames.size() != m_Collection.size() )
+        {
+            std::stringstream ss;
+            ss << "Duplicate drug name.\n";
+            ss << "The names of the species in 'Vector_Species_Params' must be unique.\n";
+            ss << "The following names are defined:\n";
+            for( auto p_drug : m_Collection )
+            {
+                ss << p_drug->GetName() << "\n";
+            }
+            throw GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
+        }
+    }
+
+    const jsonConfigurable::tDynamicStringSet& MalariaDrugTypeCollection::GetDrugNames() const
+    {
+        return m_DrugNames;
+    }
+
+    const MalariaDrugTypeParameters& MalariaDrugTypeCollection::GetDrug( const std::string& rName ) const
+    {
+        MalariaDrugTypeParameters* p_found = nullptr;
+        for( auto p_drug : m_Collection )
+        {
+            if( p_drug->GetName() == rName )
+            {
+                p_found = p_drug;
+            }
+        }
+        if( p_found == nullptr )
+        {
+            std::stringstream ss;
+            ss << "'" << rName << "' is an unknown drug.\n";
+            ss << "Valid drug names are:\n";
+            for( auto p_drug : m_Collection )
+            {
+                ss << p_drug->GetName() << "\n";
+            }
+            throw GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
+        }
+        return *p_found;
+    }
+
+    MalariaDrugTypeParameters* MalariaDrugTypeCollection::CreateObject()
+    {
+        return new MalariaDrugTypeParameters();
     }
 }
