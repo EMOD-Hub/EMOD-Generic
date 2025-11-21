@@ -27,7 +27,8 @@
                 "Incubation_Period_Constant": 7
             },
             "INFECTIOUSNESS": {
-                "Base_Infectivity": 0.6,
+                "Base_Infectivity_Constant": 0.6,
+                "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
                 "Infectious_Period_Exponential": 22
             }
         },

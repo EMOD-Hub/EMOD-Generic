@@ -33,7 +33,8 @@
                 "Incubation_Period_Constant": 5
             },
             "INFECTIOUSNESS": {
-                "Base_Infectivity": 4,
+                "Base_Infectivity_Constant": 4,
+                "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
                 "Infectious_Period_Exponential": 5
             },
             "Max_Individual_Infections": 5

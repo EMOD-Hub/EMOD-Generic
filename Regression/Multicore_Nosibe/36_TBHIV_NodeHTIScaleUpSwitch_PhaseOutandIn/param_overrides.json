@@ -36,7 +36,8 @@
             },
             "INFECTIOUSNESS": {
                 "Base_Infectious_Period": 2433.33,
-                "Base_Infectivity": 0,
+                "Base_Infectivity_Constant": 0,
+                "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
                 "TB_Active_Presymptomatic_Infectivity_Multiplier": 0.0
             },
             "Max_Individual_Infections": 3,
