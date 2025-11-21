@@ -11,14 +11,14 @@ import scipy.stats as stats
 
 class Param_keys:
     LOGNORMAL_SCALE = "Heterogeneous_Infectiousness_LogNormal_Scale"
-    BASE_INFECTIVITY = "Base_Infectivity"
+    BASE_INFECTIVITY_CONSTANT = "Base_Infectivity_Constant"
     SIMULATION_TIMESTEPS = "Simulation_Duration"
 
 matches = ["heterogeneity multiplier = ", "infectiousness from HIV = "]
 
 """
 Scale parameter of a LogNormal distribution that governs an infectiousness multiplier.
-The multiplier represents heterogeneity in infectivity, and adjusts Base_Infectivity.
+The multiplier represents heterogeneity in infectivity, and adjusts Base_Infectivity_Constant.
 
 Based on information from Dan K, this Heterogeneous_Infectiousness_LogNormal_Scale is the
 sigma(standard deviation) of the original normal distribution, when it's given, we determine
@@ -36,7 +36,7 @@ def load_emod_parameters(config_filename="config.json", debug = False):
         cdj = json.load(infile)["parameters"]
     param_obj = {}
     param_obj[Param_keys.LOGNORMAL_SCALE] = cdj[Param_keys.LOGNORMAL_SCALE]
-    param_obj[Param_keys.BASE_INFECTIVITY] = cdj[Param_keys.BASE_INFECTIVITY]
+    param_obj[Param_keys.BASE_INFECTIVITY_CONSTANT] = cdj[Param_keys.BASE_INFECTIVITY_CONSTANT]
     param_obj[Param_keys.SIMULATION_TIMESTEPS] = cdj[Param_keys.SIMULATION_TIMESTEPS]
     if debug:
         print( param_obj )
@@ -84,7 +84,7 @@ def create_report_file(param_obj, multipliers, infectiousness, report_name, debu
         if not multipliers:
             outfile.write(sft.sft_no_test_data)
         sigma = param_obj[Param_keys.LOGNORMAL_SCALE]
-        base_infectivity = param_obj[Param_keys.BASE_INFECTIVITY]
+        base_infectivity = param_obj[Param_keys.BASE_INFECTIVITY_CONSTANT]
         if sigma > 0:
             mu = - sigma**2 / 2.0
             # test log_normal distribution
