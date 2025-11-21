@@ -25,13 +25,14 @@
                 "Incubation_Period_Constant": 1
             },
             "INFECTIOUSNESS": {
-                "Base_Infectivity": 10.0,
+                "Base_Infectivity_Constant": 10.0,
+                "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
                 "Infectious_Period_Gaussian_Mean": 120
             }
         },
         "PRIMARY": {
             "Config_Name": "85_STI_EnterExitRelationship",
-	    "Python_Script_Path": "LOCAL", 
+            "Python_Script_Path": "LOCAL",
             "Simulation_Duration": 50
         }
     }
