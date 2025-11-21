@@ -1,0 +1,33 @@
+{
+    "tests" : [
+        { "path": "Dengue/101" },
+        { "path": "Dengue/102" },
+        { "path": "Dengue/103" },
+        { "path": "Dengue/104" },
+        { "path": "Dengue/105" },
+        { "path": "Dengue/106" },
+        { "path": "Dengue/107" },
+        { "path": "Dengue/108" },
+        { "path": "Dengue/109" },
+        { "path": "Dengue/110" },
+        { "path": "Dengue/111" },
+        { "path": "Dengue/112" },
+        { "path": "Dengue/113" },
+        { "path": "Dengue/114" },
+        { "path": "Dengue/115" },
+        { "path": "Dengue/116_InfectAll" },
+        { "path": "Dengue/117_InfectNone" },
+        { "path": "Dengue/118_FirstCycleDuration" }, 
+        { "path": "Dengue/119_backgroundtodifstrain" },
+        { "path": "Dengue/120_BackgroundToSameStrain" }, 
+        { "path": "Dengue/121_2StrainIntroduction" }, 
+        { "path": "Dengue/122_2StrainIntroAsymInf" }, 
+        { "path": "Dengue/123_2StrainIntroAsymInfNoCI" }, 
+        { "path": "Dengue/124_NoAsymInf" }, 
+        { "path": "Dengue/125_NoAsymInf_OnlySyms" },
+        { "path": "Dengue/126_NoDelays" },
+        { "path": "Dengue/127_NoReportDelay" }
+    ],
+    "skipped": [
+    ]
+}

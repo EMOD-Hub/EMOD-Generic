@@ -1,0 +1,36 @@
+{
+    "science": [
+        { "path": "Dengue/SFTs/AsymptomaticNaiveInfectiousness" },
+        { "path": "Dengue/SFTs/AsymptomaticReinfectedInfectiousness" },
+        { "path": "Dengue/SFTs/ImmuneInitialization" },
+        { "path": "Dengue/SFTs/Immunity/SameStrain" },
+        { "path": "Dengue/SFTs/Immunity/CrossStrains" },
+        { "path": "Dengue/SFTs/Immunity/CrossStrains_Default" },
+        { "path": "Dengue/SFTs/ImmunityPermanentSameStrain" },
+        { "path": "Dengue/SFTs/InfectiousnessProbabilityThreshold" },
+        { "path": "Dengue/SFTs/ReportingDelay" },
+        { "path": "Dengue/SFTs/StrainInfectiousnessMultiplier" },
+        { "path": "Dengue/SFTs/SymptomaticNaiveInfectiousness" },
+        { "path": "Dengue/SFTs/SymptomaticOnset" },
+        { "path": "Dengue/SFTs/SymptomaticProbability/SymptomaticProbabilityNaive_0" },
+        { "path": "Dengue/SFTs/SymptomaticProbability/SymptomaticProbabilityNaive_1" },
+        { "path": "Dengue/SFTs/SymptomaticProbability/SymptomaticProbabilityPostsecondary_0" },
+        { "path": "Dengue/SFTs/SymptomaticProbability/SymptomaticProbabilityPostsecondary_1" },
+        { "path": "Dengue/SFTs/SymptomaticProbability/SymptomaticProbabilityReinfected_0" },
+        { "path": "Dengue/SFTs/SymptomaticProbability/SymptomaticProbabilityReinfected_1" },
+        { "path": "Dengue/SFTs/SymptomaticReinfInfectiousness" },
+        { "path": "Dengue/SFTs/SymptomaticReporting/SymptomaticReportingRate_0" },
+        { "path": "Dengue/SFTs/SymptomaticReporting/SymptomaticReportingRate_1" },
+        { "path": "Dengue/SFTs/TransmissionHumanToMosquito" },
+        { "path": "Dengue/SFTs/TransmissionMosquitoToHuman" },
+        { "path": "Dengue/SFTs/VectorEggDevelopment_DroughtHatching" },
+        { "path": "Dengue/SFTs/VectorEggDevelopment_DroughtSurvival" },
+        { "path": "Dengue/SFTs/VectorEggDevelopmentCycle" },
+        { "path": "Dengue/SFTs/VectorEggOvercrowding_NaturalMortality" },
+        { "path": "Dengue/SFTs/VectorFeedingCycle" },
+        { "path": "Dengue/SFTs/VectorLarvalDevelopmentProgress" },
+        { "path": "Dengue/SFTs/VectorLarvalOvercrowding_AquaticMortality" }
+    ],
+    "skipped": [
+    ]
+}
