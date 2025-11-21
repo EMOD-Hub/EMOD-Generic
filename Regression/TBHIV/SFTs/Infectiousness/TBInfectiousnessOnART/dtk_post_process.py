@@ -13,7 +13,7 @@ TB_CD4_STRATA_I_S = "TB_CD4_Strata_Infectiousness_Susceptibility"
 TB_CD4_S = "TB_CD4_Susceptibility"
 TB_CD4_I = "TB_CD4_Infectiousness"
 TB_ACTIVE_PS_INF_MULT = "TB_Active_Presymptomatic_Infectivity_Multiplier"
-BASE_INF = "Base_Infectivity"
+BASE_INF = "Base_Infectivity_Constant"
 TB_SMEAR_NEG_MULT = "TB_Smear_Negative_Infectivity_Multiplier"
 
 

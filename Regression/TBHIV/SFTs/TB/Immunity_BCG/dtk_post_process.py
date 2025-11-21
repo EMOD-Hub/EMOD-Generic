@@ -19,11 +19,11 @@ Give out perfect transmission blocking vaccine to everyone over the course of 1 
 Also give BCG vaccine with 'Initial_Effect' = 0.8 with no decay.  At the end of 1 year outbreak via importation 1 case
 of active Smear Positive TB.
 
-Infectivity is set at 200 per year ('Base_Infectivity' = 200/365.  With this setup only the index person should
+Infectivity is set at 200 per year ('Base_Infectivity_Constant' = 200/365.  With this setup only the index person should
 transmitting, though others can be infected (due to the transmission blocking vaccine)
 
 Statistical Test: Cut up time into discrete intervals of length T (in years).  For each of these bins the expected
-number of infections resulting in the interval is Base_Infectivity*T*Initial_Effect*1 (technically scaled by
+number of infections resulting in the interval is Base_Infectivity_Constant*T*Initial_Effect*1 (technically scaled by
 (N - number infected)/N, but this will approach 1 for a large enough population and 1 index case)
 
 Use a chi-squared test with number of time bins - 1, and the expected value on the number of infections resulting in
@@ -35,7 +35,7 @@ KEY_START_DAY = "Start_Day"
 # config parameter
 KEY_CONFIG_NAME = "Config_Name"
 KEY_SIMULATION_TIMESTEP = "Simulation_Timestep"
-KEY_BASE_INFECTIVITY = "Base_Infectivity"
+KEY_BASE_INFECTIVITY_CONSTANT = "Base_Infectivity_Constant"
 # insetchart constant
 KEY_NEW_INFECTION = "New Infections"
 
@@ -49,7 +49,7 @@ def load_emod_parameters(config_filename="config.json", debug=False):
         cdj = json.load(infile)["parameters"]
     param_obj = {}
     param_obj[KEY_CONFIG_NAME] = cdj[KEY_CONFIG_NAME]
-    param_obj[KEY_BASE_INFECTIVITY] = cdj[KEY_BASE_INFECTIVITY]
+    param_obj[KEY_BASE_INFECTIVITY_CONSTANT] = cdj[KEY_BASE_INFECTIVITY_CONSTANT]
     if debug:
         with open("DEBUG_param_object.json", 'w') as outfile:
             json.dump(param_obj, outfile, indent=4)
@@ -103,7 +103,7 @@ def create_report_file(param_obj, campaign_obj, report_data_obj, report_name, de
         config_name = param_obj[KEY_CONFIG_NAME]
         outfile.write("Config_name = {}\n".format(config_name))
         success = True
-        base_infectivity = param_obj[KEY_BASE_INFECTIVITY]
+        base_infectivity = param_obj[KEY_BASE_INFECTIVITY_CONSTANT]
         initial_effect = campaign_obj[KEY_INITIAL_EFFECT]
         start_day = campaign_obj[KEY_START_DAY]
         new_infection = report_data_obj[KEY_NEW_INFECTION]

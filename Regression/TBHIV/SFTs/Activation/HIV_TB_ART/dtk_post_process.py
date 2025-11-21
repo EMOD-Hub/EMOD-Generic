@@ -2,9 +2,11 @@
 
 
 import os.path as path
-import dtk_test.dtk_sft as sft
+import dtk_test.dtk_sft as dtk_sft
 import json
 import numpy as np
+from statistics import mean
+
 with open("config.json") as infile:
     run_number=json.load(infile)['parameters']['Run_Number']
 np.random.seed(run_number)
@@ -52,46 +54,19 @@ def parse_stdout_file(curr_timestep=0, stdout_filename="test.txt", debug=False):
             if update_time in line:
                 time += 1
             elif incubation_timer_update in line:
-                new_line = sft.add_time_stamp(time, line)
+                new_line = dtk_sft.add_time_stamp(time, line)
                 filtered_lines.append(new_line)
             elif initial_incubation_timer in line:
-                new_line = sft.add_time_stamp(time, line)
+                new_line = dtk_sft.add_time_stamp(time, line)
                 filtered_lines.append(new_line)
+            elif "CD4_future" in line:
+                filtered_lines.append(line)
 
     if debug:
         with open("filtered_lines.txt", "w") as outfile:
             outfile.writelines(filtered_lines)
 
     return filtered_lines
-
-
-def parse_json_report(start_time=0, output_folder="output", insetchart_name="InsetChart.json", debug=False):
-    """creates inset_days structure
-
-    :param debug: Whether or not we're doing this in debug mode, writes out the data we got if True
-    :param output_folder: folder in which json report resides
-    :param start_time: start time of the json report
-    :param insetchart_name: InsetChart.json file with location (output/InsetChart.json)
-
-    :returns: inset_days structure
-    """
-    # This is not used in this test
-
-    insetchart_path = path.join(output_folder, insetchart_name)
-    with open(insetchart_path) as infile:
-        icj = json.load(infile)["Channels"]
-
-    prevalence = icj["Infected"]["Data"]
-    end_time = start_time + len(prevalence)
-    inset_days = {}
-    for x in range(start_time, end_time):
-        inset_days[x] = x
-
-    if debug:
-        with open("inset_days.json", "w") as outfile:
-            json.dump(inset_days, outfile, indent=4)
-
-    return inset_days
 
 
 def create_report_file(data):
@@ -108,47 +83,67 @@ def create_report_file(data):
             success = False
         for line in lines:
             if "Incubation_timer calculated as" in line:
-                incubation_timer = float(sft.get_val("as ", line))
+                incubation_timer = float(dtk_sft.get_val("as ", line))
                 original_latency_data.append(incubation_timer)
             if "LifeCourseLatencyTimerUpdate" in line:
-                new_incubation_timer = float(sft.get_val("timer ", line))
+                new_incubation_timer = float(dtk_sft.get_val("timer ", line))
                 latency_update_data.append(new_incubation_timer)
 
-        # expecting the original distribution to NOT match the art-triggered update distribution
-        if sft.test_exponential(original_latency_data, tb_cd4_activation_vector[2], integers=True, roundup=True,
-                                    round_nearest=False):
-            outfile.write("BAD: The updated latency data matches the original distribution.\n")
-            success = False
-        expected_update_data = np.random.exponential(1/tb_cd4_activation_vector[2], len(latency_update_data))
-        if not sft.test_exponential(latency_update_data, tb_cd4_activation_vector[2], outfile, integers=True,
+        expected_update_data = np.random.exponential(1 / tb_cd4_activation_vector[2], len(latency_update_data))
+        if not dtk_sft.test_exponential(latency_update_data, tb_cd4_activation_vector[2], outfile, integers=True,
                                         roundup=True, round_nearest=False):
             # as it should fail , success = bad.
             outfile.write("BAD: The updated latency data does not match the expected distribution.\n")
             success = False
+
+        original_latency_data_mean = mean(original_latency_data)
+        big_number = 1000000  # we expect the average orignally-calculated latency to be bigger than this
+        latency_update_data_mean = mean(latency_update_data)
+        small_number = 300  # we expect the re-calculated latency to be smaller than this
+        if original_latency_data_mean < big_number:
+            success = False
+            outfile.write(f"BAD: Original latency calculation (tb with hiv) should have a large mean, at least "
+                          f"bigger than {big_number}, but it was {original_latency_data_mean}. Please check the data.\n")
+        else:
+            outfile.write(f"GOOD: Original latency calculation (tb with hiv) should have a large mean, at least "
+                          f"bigger than {big_number}, and it was {original_latency_data_mean}.\n")
+        if latency_update_data_mean > small_number:
+            success = False
+            outfile.write(f"BAD: Update latency calculation (tb/hiv with art) should have a small mean, at most "
+                          f"smaller than {small_number}, but it was {latency_update_data_mean}. Please check the data.\n")
+        else:
+            outfile.write(f"GOOD: Update latency calculation (tb/hiv with art) should have a small mean, at most "
+                          f"smaller than {small_number}, and it was {latency_update_data_mean}.\n")
+
         outfile.write("Data points checked = {}.\n".format(len(latency_update_data)))
         outfile.write("SUMMARY: Success={0}\n".format(success))
 
-        sft.plot_data(sorted(latency_update_data), sorted(expected_update_data), label1="Actual", label2="Expected",
+        dtk_sft.plot_data(sorted(latency_update_data), sorted(expected_update_data), label1="Actual", label2="Expected",
                           title="Latency Duration recalculated for ART", xlabel="Data Points", ylabel="Days",
-                          category="tb_activation_and_cd4_hiv_first_on_art", line = True, overlap=True)
+                          category="tb_activation_hiv_tb_art", line=True, overlap=True)
+        dtk_sft.plot_data(sorted(original_latency_data), sorted(expected_update_data), label1="Actual",
+                          label2="Expected",
+                          title="Original Latency", xlabel="Data Points", ylabel="Days",
+                          category="tb_activation_hiv_tb", line=True, overlap=True)
+
 
 def application(output_folder="output", stdout_filename="test.txt",
                 config_filename="config.json",
                 insetchart_name="InsetChart.json",
-                report_name=sft.sft_output_filename,
+                report_name=dtk_sft.sft_output_filename,
                 debug=False):
     if debug:
-        print( "output_folder: " + output_folder )
-        print( "stdout_filename: " + stdout_filename+ "\n" )
-        print( "config_filename: " + config_filename + "\n" )
-        print( "insetchart_name: " + insetchart_name + "\n" )
-        print( "report_name: " + report_name + "\n" )
-        print( "debug: " + str(debug) + "\n" )
-    sft.wait_for_done()
+        print("output_folder: " + output_folder)
+        print("stdout_filename: " + stdout_filename + "\n")
+        print("config_filename: " + config_filename + "\n")
+        print("insetchart_name: " + insetchart_name + "\n")
+        print("report_name: " + report_name + "\n")
+        print("debug: " + str(debug) + "\n")
+    dtk_sft.wait_for_done()
     param_obj = load_emod_parameters(config_filename)
     parsed_data = parse_stdout_file()
-    inset_days = parse_json_report()
     create_report_file([report_name, parsed_data, param_obj.get(TB_CD4_ACTIVATION_VECTOR)])
+
 
 if __name__ == "__main__":
     # execute only if run as a script

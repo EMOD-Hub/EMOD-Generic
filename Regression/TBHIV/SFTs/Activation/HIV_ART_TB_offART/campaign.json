@@ -6,16 +6,8 @@
                 "Demographic_Coverage": 1,
                 "Intervention_Config": {
                     "Infection_Type": "HIV",
-                    "Outbreak_Source": "PrevalenceIncrease",
                     "class": "OutbreakIndividualTBorHIV"
                 },
-                "Number_Distributions": -1,
-                "Number_Repetitions": 1,
-                "Target_Age_Max": 100,
-                "Target_Age_Min": 10,
-                "Target_Group": "Everyone",
-                "Time_Offset": 0,
-                "Timesteps_Between_Repetitions": 1,
                 "class": "StandardInterventionDistributionEventCoordinator"
             },
             "Event_Name": "Seeding the HIV epidemic at time 1",
@@ -38,11 +30,6 @@
                     ],
                     "class": "NodeLevelHealthTriggeredIV"
                 },
-                "Number_Distributions": -1,
-                "Number_Repetitions": 1,
-                "Property_Restrictions": [],
-                "Target_Group": "Everyone",
-                "Timesteps_Between_Repetitions": 1,
                 "class": "StandardInterventionDistributionEventCoordinator"
             },
             "Event_Name": "ART to everyone",
@@ -83,7 +70,6 @@
                         "Actual_IndividualIntervention_Configs": [
                             {
                                 "Infection_Type": "TB",
-                                "Outbreak_Source": "PrevalenceIncrease",
                                 "class": "OutbreakIndividualTBorHIV"
                             }
                         ],
@@ -97,11 +83,6 @@
                     ],
                     "class": "NodeLevelHealthTriggeredIV"
                 },
-                "Number_Distributions": -1,
-                "Number_Repetitions": 1,
-                "Property_Restrictions": [],
-                "Target_Group": "Everyone",
-                "Timesteps_Between_Repetitions": 1,
                 "class": "StandardInterventionDistributionEventCoordinator"
             },
             "Event_Name": "Gets TB 3 days after starting ART",
@@ -131,11 +112,6 @@
                     ],
                     "class": "NodeLevelHealthTriggeredIV"
                 },
-                "Number_Distributions": -1,
-                "Number_Repetitions": 1,
-                "Property_Restrictions": [],
-                "Target_Group": "Everyone",
-                "Timesteps_Between_Repetitions": 1,
                 "class": "StandardInterventionDistributionEventCoordinator"
             },
             "Event_Name": "Drop out of ART 5 days after starting, 2 days after getting TB",

@@ -39,7 +39,7 @@ This test also make sure that the following test conditions are met:
 KEY_START_DAY = "Start_Day"
 # config parameter
 KEY_CONFIG_NAME = "Config_Name"
-KEY_BASE_INFECTIVITY = "Base_Infectivity"
+KEY_BASE_INFECTIVITY_CONSTANT = "Base_Infectivity_Constant"
 KEY_IMMUNITY_ACQUISITION_FACTOR = "Post_Infection_Acquisition_Multiplier"
 KEY_DECAY_RATE = "Acquisition_Blocking_Immunity_Decay_Rate"
 KEY_DEMOGRAPHICS_FILENAMES = "Demographics_Filenames"
@@ -112,7 +112,7 @@ def create_report_file(param_obj, node_list, campaign_obj, migration_df, report_
         config_name = param_obj[KEY_CONFIG_NAME]
         outfile.write("Config_name = {}\n".format(config_name))
         success = True
-        base_infectivity = param_obj[KEY_BASE_INFECTIVITY]
+        base_infectivity = param_obj[KEY_BASE_INFECTIVITY_CONSTANT]
         start_day = campaign_obj[KEY_START_DAY]
         new_infection = report_data_obj[KEY_NEW_INFECTION]
         immunity_acquisition_factor = param_obj[KEY_IMMUNITY_ACQUISITION_FACTOR]
@@ -203,7 +203,7 @@ def application( output_folder="output", stdout_filename="test.txt", insetchart_
         print( "debug: " + str(debug) + "\n" )
 
     sft.wait_for_done()
-    param_obj = tms.load_emod_parameters([KEY_CONFIG_NAME, KEY_BASE_INFECTIVITY, KEY_IMMUNITY_ACQUISITION_FACTOR, KEY_DECAY_RATE,
+    param_obj = tms.load_emod_parameters([KEY_CONFIG_NAME, KEY_BASE_INFECTIVITY_CONSTANT, KEY_IMMUNITY_ACQUISITION_FACTOR, KEY_DECAY_RATE,
                              KEY_DEMOGRAPHICS_FILENAMES, KEY_NUM_CORES, KEY_SIMULATION_TIMESTEP], config_filename, debug)
 
     demog_filename = param_obj[KEY_DEMOGRAPHICS_FILENAMES][-1]

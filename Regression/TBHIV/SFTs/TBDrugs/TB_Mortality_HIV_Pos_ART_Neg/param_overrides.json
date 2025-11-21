@@ -1,6 +1,8 @@
 {
+    "Default_Config_Path": "defaults/tbhiv_science_default_config.json",
     "parameters": {
-        "Base_Infectivity": 0.03,
+        "Base_Infectivity_Constant": 0.03,
+        "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "CoInfection_Mortality_Rate_Off_ART": 0.0001,
         "CoInfection_Mortality_Rate_On_ART": 0.0001,
         "Config_Name": "TBHIV:SFTs:Drugs:Mortality",
@@ -59,6 +61,5 @@
         "TB_Extrapulmonary_Fraction_Child": 0.4,
         "logLevel_InfectionTB": "VALID",
         "x_Base_Population": 2000
-    },
-    "Default_Config_Path": "defaults/tbhiv_science_default_config.json"
+    }
 }

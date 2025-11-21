@@ -33,7 +33,7 @@ KEY_SLOW_PROGRESSOR_RATE = "TB_Slow_Progressor_Rate"
 KEY_LATENT_CURE_RATE = "TB_Latent_Cure_Rate"
 KEY_PRESYMPTOMATIC_CURE_RATE = "TB_Presymptomatic_Cure_Rate"
 KEY_PRESYMPTOMATIC_RATE = "TB_Presymptomatic_Rate"
-KEY_BASE_INFECTIVITY = "Base_Infectivity"
+KEY_BASE_INFECTIVITY_CONSTANT = "Base_Infectivity_Constant"
 KEY_INDIVIDUAL = "Individual "
 KEY_TIMER = "timer "
 
@@ -57,7 +57,7 @@ def load_emod_parameters(config_filename="config.json", debug=False):
     param_obj[KEY_SIMULATION_TIMESTEP] = cdj[KEY_SIMULATION_TIMESTEP]
     param_obj[KEY_PRESYMPTOMATIC_CURE_RATE] = cdj[KEY_PRESYMPTOMATIC_CURE_RATE]
     param_obj[KEY_PRESYMPTOMATIC_RATE] = cdj[KEY_PRESYMPTOMATIC_RATE]
-    param_obj[KEY_BASE_INFECTIVITY] = cdj[KEY_BASE_INFECTIVITY]
+    param_obj[KEY_BASE_INFECTIVITY_CONSTANT] = cdj[KEY_BASE_INFECTIVITY_CONSTANT]
     param_obj[KEY_DURATION] = cdj[KEY_DURATION]
     if debug:
         with open("DEBUG_param_object.json", 'w') as outfile:
@@ -114,7 +114,7 @@ def create_report_file(param_obj, output_dict, report_name, debug):
         latent_cure_rate = param_obj[KEY_LATENT_CURE_RATE]
         presymptomatic_cure_rate = param_obj[KEY_PRESYMPTOMATIC_CURE_RATE]
         presymptomatic_rate = param_obj[KEY_PRESYMPTOMATIC_RATE]
-        base_infectivity = param_obj[KEY_BASE_INFECTIVITY]
+        base_infectivity = param_obj[KEY_BASE_INFECTIVITY_CONSTANT]
         simulation_duration = param_obj[KEY_DURATION]
         if not len(output_dict):
             success = False
@@ -142,7 +142,7 @@ def create_report_file(param_obj, output_dict, report_name, debug):
         if base_infectivity:
             success = False
             outfile.write("BAD: expected {0} = 0 to look only at progression, got {1} from config.json. Please fix"
-                          "the test.\n".format( KEY_BASE_INFECTIVITY, base_infectivity))
+                          "the test.\n".format( KEY_BASE_INFECTIVITY_CONSTANT, base_infectivity))
         outfile.write("conditional check result is {}.\n".format(success))
 
         actual_timer = []
