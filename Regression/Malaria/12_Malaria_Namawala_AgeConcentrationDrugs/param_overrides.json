@@ -30,6 +30,7 @@
     },
     "Malaria_Drug_Params": {
         "Artemether": {
+            "Name": "Artemether",
             "Bodyweight_Exponent": 1.0,
             "Drug_Cmax": 114,
             "Drug_Decay_T1": 0.12,

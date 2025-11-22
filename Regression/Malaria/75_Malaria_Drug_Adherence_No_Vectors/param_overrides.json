@@ -11,6 +11,7 @@
     "DRUGS": {
         "Malaria_Drug_Params": {
             "TestDrug": {
+                "Name": "TestDrug",
                 "Bodyweight_Exponent": 0,
                 "Drug_Cmax": 1000,
                 "Drug_Decay_T1": 1,
