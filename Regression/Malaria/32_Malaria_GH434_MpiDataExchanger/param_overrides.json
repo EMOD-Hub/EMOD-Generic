@@ -29,7 +29,8 @@
         "Base_Gametocyte_Mosquito_Survival_Rate": 0.00088,
         "Base_Gametocyte_Production_Rate": 0.044,
         "Base_Individual_Sample_Rate": 1,
-        "Base_Infectivity": 1,
+        "Base_Infectivity_Constant": 1,
+        "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Base_Land_Temperature": 26.0,
         "Base_Mortality": 0,
         "Base_Population_Scale_Factor": 0.5,
@@ -44,7 +45,7 @@
         "Climate_Update_Resolution": "CLIMATE_UPDATE_DAY",
         "Clinical_Fever_Threshold_High": 1.5,
         "Clinical_Fever_Threshold_Low": 0.5,
-        "Config_Name": "32_Malaria_GH434_MpiDataExchanger", 
+        "Config_Name": "32_Malaria_GH434_MpiDataExchanger",
         "Custom_Reports_Filename": "",
         "Cytokine_Gametocyte_Inactivation": 0.01667,
         "DEMOGRAPHICS": {
@@ -526,12 +527,12 @@
         "x_Air_Migration": 1,
         "x_Birth": 1,
         "x_Family_Migration": 1,
+        "x_Larval_Habitats": 1,
         "x_Local_Migration": 0.1,
         "x_Other_Mortality": 1,
         "x_Regional_Migration": 0.0,
         "x_Sea_Migration": 0.15,
         "x_Vector_Migration_Local": 100,
-        "x_Vector_Migration_Regional": 0.1,
-        "x_Larval_Habitats": 1
+        "x_Vector_Migration_Regional": 0.1
     }
 }

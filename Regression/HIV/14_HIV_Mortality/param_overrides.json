@@ -1,7 +1,8 @@
 {
     "Default_Config_Path": "../../defaults/hiv_default_config.json",
     "parameters": {
-        "Base_Infectivity": 0.00135663958503783,
+        "Base_Infectivity_Constant": 0.00135663958503783,
+        "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Config_Name": "14_HIV_Mortality",
         "Custom_Individual_Events": [
             "ARTStaging0",
@@ -56,6 +57,7 @@
             1.5
         ],
         "Maternal_Transmission_ART_Multiplier": 0.03,
+        "Python_Script_Path": "LOCAL",
         "Report_HIV_ART": 1,
         "Report_HIV_Event_Channels_List": [
             "StartedART",
@@ -74,7 +76,6 @@
         "alpha_____________REPORTING___________": "",
         "alpha_____________SIMULATION___________": "",
         "alpha_____________TRANSMISSION___________": "",
-        "x_Base_Population": 0.002,
-        "Python_Script_Path": "LOCAL"
+        "x_Base_Population": 0.002
     }
 }

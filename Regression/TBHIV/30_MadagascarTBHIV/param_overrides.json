@@ -1,7 +1,8 @@
 {
     "Default_Config_Path": "../../defaults/tbhiv_default_config.json",
     "parameters": {
-        "Base_Infectivity": 0.3,
+        "Base_Infectivity_Constant": 0.3,
+        "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Birth_Rate_Dependence": "INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR",
         "Config_Name": "30_MadagascarTBHIV",
         "Demographics_Filenames": [

@@ -1,7 +1,9 @@
 {
+    "Default_Config_Path": "defaults/tbhiv_science_default_config.json",
     "parameters": {
         "AIDS_Duration_In_Months": 9,
-        "Base_Infectivity": 0.0,
+        "Base_Infectivity_Constant": 0.0,
+        "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Birth_Rate_Dependence": "INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR",
         "CD4_At_Death_LogLogistic_Heterogeneity": 0.7,
         "CD4_At_Death_LogLogistic_Scale": 2.96,
@@ -75,6 +77,5 @@
         "x_Base_Population": 500,
         "x_Birth": 0,
         "x_Other_Mortality": 0
-    },
-    "Default_Config_Path": "defaults/tbhiv_science_default_config.json"
+    }
 }

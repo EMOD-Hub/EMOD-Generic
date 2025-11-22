@@ -3,7 +3,7 @@
     "parameters": {
         "Base_Year": 1995,
         "Config_Name": "12_HIV_CascadeOfCare",
-        "Custom_Reports_Filename": "custom_reports.json",
+        "Custom_Reports_Filename": "",
         "Demographics_Filenames": [
             "../input/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
             "../input/InterventionStatus_Accessibility_overlay.json",

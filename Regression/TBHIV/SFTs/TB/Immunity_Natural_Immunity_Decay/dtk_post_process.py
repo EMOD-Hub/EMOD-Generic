@@ -30,7 +30,7 @@ Where A is the 'Acquisition_Blocking_Immunity_Decay_Rate' represented in 1/years
 KEY_START_DAY = "Start_Day"
 # config parameter
 KEY_CONFIG_NAME = "Config_Name"
-KEY_BASE_INFECTIVITY = "Base_Infectivity"
+KEY_BASE_INFECTIVITY_CONSTANT = "Base_Infectivity_Constant"
 KEY_IMMUNITY_ACQUISITION_FACTOR = "Post_Infection_Acquisition_Multiplier"
 KEY_DECAY_RATE = "Acquisition_Blocking_Immunity_Decay_Rate"
 # insetchart constant
@@ -46,7 +46,7 @@ def load_emod_parameters(config_filename="config.json", debug=False):
         cdj = json.load(infile)["parameters"]
     param_obj = {}
     param_obj[KEY_CONFIG_NAME] = cdj[KEY_CONFIG_NAME]
-    param_obj[KEY_BASE_INFECTIVITY] = cdj[KEY_BASE_INFECTIVITY]
+    param_obj[KEY_BASE_INFECTIVITY_CONSTANT] = cdj[KEY_BASE_INFECTIVITY_CONSTANT]
     param_obj[KEY_IMMUNITY_ACQUISITION_FACTOR] = cdj[KEY_IMMUNITY_ACQUISITION_FACTOR]
     param_obj[KEY_DECAY_RATE] = cdj[KEY_DECAY_RATE]
     if debug:
@@ -103,7 +103,7 @@ def create_report_file(param_obj, campaign_obj, report_data_obj, report_name, de
         config_name = param_obj[KEY_CONFIG_NAME]
         outfile.write("Config_name = {}\n".format(config_name))
         success = True
-        base_infectivity = param_obj[KEY_BASE_INFECTIVITY]
+        base_infectivity = param_obj[KEY_BASE_INFECTIVITY_CONSTANT]
         start_day = campaign_obj[KEY_START_DAY]
         new_infection = report_data_obj[KEY_NEW_INFECTION]
         immunity_acquisition_factor = param_obj[KEY_IMMUNITY_ACQUISITION_FACTOR]

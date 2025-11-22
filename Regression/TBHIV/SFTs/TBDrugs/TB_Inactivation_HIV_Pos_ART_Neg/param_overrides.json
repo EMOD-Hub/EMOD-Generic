@@ -1,6 +1,8 @@
 {
+    "Default_Config_Path": "defaults/tbhiv_science_default_config.json",
     "parameters": {
-        "Base_Infectivity": 0.03,
+        "Base_Infectivity_Constant": 0.03,
+        "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Config_Name": "TBHIV:SFTs:Drugs:Inactivation",
         "Days_Between_Symptomatic_And_Death_Weibull_Heterogeneity": 0.2756,
         "Demographics_Filenames": [
@@ -62,10 +64,9 @@
         "TB_Extrapulmonary_Mortality_Multiplier": 0,
         "TB_Slow_Progressor_Rate": 1,
         "TB_Smear_Negative_Mortality_Multiplier": 0,
-        "logLevel_InfectionTB": "DEBUG",
         "logLevel_IndividualCoInfection": "DEBUG",
+        "logLevel_InfectionTB": "DEBUG",
         "x_Base_Population": 1000,
         "x_Other_Mortality": 0
-    },
-    "Default_Config_Path": "defaults/tbhiv_science_default_config.json"
+    }
 }

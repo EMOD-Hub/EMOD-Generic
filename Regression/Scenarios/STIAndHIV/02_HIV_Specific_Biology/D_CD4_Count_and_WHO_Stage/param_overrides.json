@@ -14,7 +14,8 @@
             "x_Base_Population": 0.01
         },
         "____________INTRAHOST___________": {
-            "Base_Infectivity": 0,
+            "Base_Infectivity_Constant": 0,
+            "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
             "CD4_At_Death_LogLogistic_Scale": 50,
             "CD4_Post_Infection_Weibull_Scale": 550,
             "Male_To_Female_Relative_Infectivity_Ages": [

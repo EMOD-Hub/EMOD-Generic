@@ -24,7 +24,7 @@ Following clearance introduce via importation 1 case of active Smear Positive TB
 The 'Post_Infection_Acquisition_Multiplier' = 0.5. Therefore individuals should be half as susceptible as previously
 
 Statistical Test: Cut up time into discrete intervals of length T.  For each of these time bins the expected number of
-infections resulting in the interval is Base_Infectivity*T*Post_Infection_Acquisition_Multiplier
+infections resulting in the interval is Base_Infectivity_Constant*T*Post_Infection_Acquisition_Multiplier
 
 Use a chi-squared test with number of time bins - 1, and the expected value on the number of infections resulting in
 each bin. (Test is the same as for BCG above).
@@ -34,7 +34,7 @@ each bin. (Test is the same as for BCG above).
 KEY_START_DAY = "Start_Day"
 # config parameter
 KEY_CONFIG_NAME = "Config_Name"
-KEY_BASE_INFECTIVITY = "Base_Infectivity"
+KEY_BASE_INFECTIVITY_CONSTANT = "Base_Infectivity_Constant"
 KEY_IMMUNITY_ACQUISITION_FACTOR = "Post_Infection_Acquisition_Multiplier"
 # insetchart constant
 KEY_NEW_INFECTION = "New Infections"
@@ -49,7 +49,7 @@ def load_emod_parameters(config_filename="config.json", debug=False):
         cdj = json.load(infile)["parameters"]
     param_obj = {}
     param_obj[KEY_CONFIG_NAME] = cdj[KEY_CONFIG_NAME]
-    param_obj[KEY_BASE_INFECTIVITY] = cdj[KEY_BASE_INFECTIVITY]
+    param_obj[KEY_BASE_INFECTIVITY_CONSTANT] = cdj[KEY_BASE_INFECTIVITY_CONSTANT]
     param_obj[KEY_IMMUNITY_ACQUISITION_FACTOR] = cdj[KEY_IMMUNITY_ACQUISITION_FACTOR]
     if debug:
         with open("DEBUG_param_object.json", 'w') as outfile:
@@ -100,7 +100,7 @@ def create_report_file(param_obj, campaign_obj, report_data_obj, report_name, de
         config_name = param_obj[KEY_CONFIG_NAME]
         outfile.write("Config_name = {}\n".format(config_name))
         success = True
-        base_infectivity = param_obj[KEY_BASE_INFECTIVITY]
+        base_infectivity = param_obj[KEY_BASE_INFECTIVITY_CONSTANT]
         start_day = campaign_obj[KEY_START_DAY]
         new_infection = report_data_obj[KEY_NEW_INFECTION]
         immunity_acquisition_factor = param_obj[KEY_IMMUNITY_ACQUISITION_FACTOR]

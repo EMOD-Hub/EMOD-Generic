@@ -6,10 +6,11 @@
         "CD4_Post_Infection_Weibull_Scale": 1000,
         "CD4_Strata_Activation": [
             1,
-            200,
+            300,
             700,
             2000
         ],
+        "CD4_Time_Step": 3,
         "Config_Name": "TBHIV_SFT_ACTIVATION_HIV_TB_ART",
         "Days_Between_Symptomatic_And_Death_Weibull_Heterogeneity": 0.1,
         "Demographics_Filenames": [
@@ -44,10 +45,10 @@
         "TB_Active_Mortality_Rate": 0,
         "TB_Active_Period_Gaussian_Std_Dev": 20,
         "TB_CD4_Activation_Vector": [
-            0.0001,
-            0.0001,
-            0.013,
-            0.0001
+            0.000000001,
+            0.01,
+            0.01,
+            0.01
         ],
         "TB_CD4_Infectiousness": [
             1,

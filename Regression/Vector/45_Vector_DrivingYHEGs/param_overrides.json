@@ -35,7 +35,8 @@
     },
     "Default_Config_Path": "../../defaults/vector_default_config.json",
     "GENERAL_DISEASE": {
-        "Base_Infectivity": 1,
+        "Base_Infectivity_Constant": 1,
+        "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Incubation_Period_Constant": 25,
         "Infection_Updates_Per_Timestep": 1,
         "Infectious_Period_Distribution": "EXPONENTIAL_DISTRIBUTION",

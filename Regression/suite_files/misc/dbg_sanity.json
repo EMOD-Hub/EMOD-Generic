@@ -1,0 +1,12 @@
+{
+    "tests": [
+        { "path": "Airborne/1_Airborne_Namawala" },
+        { "path": "Environmental/1_Environmental_Namawala" },
+        { "path": "Generic/1_Generic_MinimalConfig" },
+        { "path": "HIV/1_HIV_ARTBasic" },
+        { "path": "Malaria/1_Malaria_Sandbox" },
+        { "path": "Polio/1_Polio_Trivial" },
+        { "path": "STI/1_STI_Trivial" },
+        { "path": "Vector/1_Vector_Sandbox" }
+    ]
+}
