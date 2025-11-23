@@ -21,9 +21,9 @@ namespace Kernel
     // ------------------------------------------------------------------------
 
     AgeRange::AgeRange( float minYears, float maxYears )
-    : JsonConfigurable()
-    , m_MinYears(minYears)
-    , m_MaxYears(maxYears)
+        : JsonConfigurable()
+        , m_MinYears(minYears)
+        , m_MaxYears(maxYears)
     {
     }
 
@@ -125,12 +125,12 @@ namespace Kernel
                                                     int numTargeted, 
                                                     int numTimeSteps, 
                                                     int initialTimeStep )
-    : m_AgeRange( rar )
-    , m_Gender( gender )
-    , m_NumTargeted( numTargeted )
-    , m_TimeStep( initialTimeStep )
-    , m_NumTargetedPerTimeStep()
-    , m_QualifyingIndividuals()
+        : m_AgeRange( rar )
+        , m_Gender( gender )
+        , m_NumTargeted( numTargeted )
+        , m_TimeStep( initialTimeStep )
+        , m_NumTargetedPerTimeStep()
+        , m_QualifyingIndividuals()
     {
         release_assert( initialTimeStep < numTimeSteps );
 
@@ -235,16 +235,16 @@ namespace Kernel
     }
 
     TargetedDistribution::TargetedDistribution( NChooserObjectFactory* pObjectFactory )
-    : JsonConfigurable()
-    , m_pObjectFactory( pObjectFactory )
-    , m_pDiseaseQualifications( nullptr )
-    , m_StartDay(0.0)
-    , m_EndDay(FLT_MAX)
-    , m_PropertyRestrictions()
-    , m_AgeRangeList()
-    , m_NumTargeted()
-    , m_NumTargetedMales()
-    , m_NumTargetedFemales()
+        : JsonConfigurable()
+        , m_pObjectFactory( pObjectFactory )
+        , m_pDiseaseQualifications( nullptr )
+        , m_StartDay(0.0)
+        , m_EndDay(FLT_MAX)
+        , m_PropertyRestrictions()
+        , m_AgeRangeList()
+        , m_NumTargeted()
+        , m_NumTargetedMales()
+        , m_NumTargetedFemales()
     {
     }
 
@@ -592,10 +592,10 @@ namespace Kernel
     // ------------------------------------------------------------------------
 
     TargetedDistributionList::TargetedDistributionList( NChooserObjectFactory* pObjectFactory )
-    : JsonConfigurableCollection( "TargetedDistributionList" )
-    , m_pObjectFactory( pObjectFactory )
-    , m_CurrentIndex(0)
-    , m_pCurrentTargets(nullptr)
+        : JsonConfigurableCollection( "TargetedDistributionList" )
+        , m_pObjectFactory( pObjectFactory )
+        , m_CurrentIndex(0)
+        , m_pCurrentTargets(nullptr)
     {
         release_assert( m_pObjectFactory );
     }
@@ -725,29 +725,29 @@ namespace Kernel
     IMPLEMENT_FACTORY_REGISTERED(NChooserEventCoordinator)
 
     NChooserEventCoordinator::NChooserEventCoordinator()
-    : m_Parent( nullptr )
-    , m_pObjectFactory( new NChooserObjectFactory() )
-    , m_CachedNodes()
-    , m_InterventionName()
-    , m_pIntervention( nullptr )
-    , m_TargetedDistributionList( m_pObjectFactory )
-    , m_DistributionIndex(0)
-    , m_IsFinished(false)
-    , m_HasBeenScaled(false)
+        : m_Parent( nullptr )
+        , m_pObjectFactory( new NChooserObjectFactory() )
+        , m_CachedNodes()
+        , m_InterventionName()
+        , m_pIntervention( nullptr )
+        , m_TargetedDistributionList( m_pObjectFactory )
+        , m_DistributionIndex(0)
+        , m_IsFinished(false)
+        , m_HasBeenScaled(false)
     {
         release_assert( m_pObjectFactory );
     }
 
     NChooserEventCoordinator::NChooserEventCoordinator( NChooserObjectFactory* pObjectFactory )
-    : m_Parent( nullptr )
-    , m_pObjectFactory( pObjectFactory )
-    , m_CachedNodes()
-    , m_InterventionName()
-    , m_pIntervention( nullptr )
-    , m_TargetedDistributionList( m_pObjectFactory )
-    , m_DistributionIndex(0)
-    , m_IsFinished(false)
-    , m_HasBeenScaled(false)
+        : m_Parent( nullptr )
+        , m_pObjectFactory( pObjectFactory )
+        , m_CachedNodes()
+        , m_InterventionName()
+        , m_pIntervention( nullptr )
+        , m_TargetedDistributionList( m_pObjectFactory )
+        , m_DistributionIndex(0)
+        , m_IsFinished(false)
+        , m_HasBeenScaled(false)
     {
         release_assert( m_pObjectFactory );
     }

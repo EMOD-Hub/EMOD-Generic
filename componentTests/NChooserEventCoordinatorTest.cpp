@@ -13,6 +13,7 @@
 #include "IdmMpi.h"
 #include "EventTrigger.h"
 #include "Simulation.h"
+#include "InterventionFactory.h"
 #include "FakeLogger.h"
 
 using namespace std; 
@@ -31,6 +32,8 @@ SUITE(NChooserEventCoordinatorTest)
         NChooserEventCoordinatorFixture()
         {
             JsonConfigurable::ClearMissingParameters();
+            JsonConfigurable::_useDefaults = true;
+            InterventionFactory::SetUseDefaults(JsonConfigurable::_useDefaults);
             Environment::Finalize();
             Environment::setLogger( new SimpleLogger( Logger::tLevel::WARNING ) );
 
@@ -46,7 +49,6 @@ SUITE(NChooserEventCoordinatorTest)
             string dllPath("testdata/NChooserEventCoordinatorTest");
 
             Environment::Initialize( m_pMpi, configFilename, inputPath, outputPath, /*statePath, */dllPath, false);
-
             m_pRNG = new PSEUDO_DES(0);
 
             IPFactory::DeleteFactory();
@@ -180,6 +182,7 @@ SUITE(NChooserEventCoordinatorTest)
 
         TargetedByAgeAndGender ag1( AgeRange( 15.0, 30.0 ), Gender::COUNT, 10, 3, 0 );
 
+        ag1.ClearQualifyingIndividuals();
         ag1.FindQualifyingIndividuals( &nec, disease_qual, pr );
 
         std::vector<IIndividualHumanEventContext*> selected_list_1 = ag1.SelectIndividuals( m_pRNG );
@@ -189,9 +192,9 @@ SUITE(NChooserEventCoordinatorTest)
         CHECK_EQUAL( 13, selected_list_1[2]->GetSuid().data );
         CHECK_EQUAL( 15, selected_list_1[3]->GetSuid().data );
 
-        ag1.ClearQualifyingIndividuals();
         ag1.IncrementNextNumTargets();
 
+        ag1.ClearQualifyingIndividuals();
         ag1.FindQualifyingIndividuals( &nec, disease_qual, pr );
 
         std::vector<IIndividualHumanEventContext*> selected_list_2 = ag1.SelectIndividuals( m_pRNG );
@@ -200,9 +203,9 @@ SUITE(NChooserEventCoordinatorTest)
         CHECK_EQUAL( 15, selected_list_2[1]->GetSuid().data );
         CHECK_EQUAL( 16, selected_list_2[2]->GetSuid().data );
 
-        ag1.ClearQualifyingIndividuals();
         ag1.IncrementNextNumTargets();
 
+        ag1.ClearQualifyingIndividuals();
         ag1.FindQualifyingIndividuals( &nec, disease_qual, pr );
 
         std::vector<IIndividualHumanEventContext*> selected_list_3 = ag1.SelectIndividuals( m_pRNG );

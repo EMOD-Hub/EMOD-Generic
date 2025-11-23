@@ -30,7 +30,7 @@
     },
     "MALARIA": {
         "Antibody_Memory_Level": 0.3,
-        "Antigen_Switch_Rate": 5e-09,
+        "Antigen_Switch_Rate": 5e-9,
         "Base_Gametocyte_Production_Rate": 0.1,
         "Falciparum_MSP_Variants": 100,
         "Falciparum_Nonspecific_Types": 20,
@@ -38,6 +38,7 @@
     },
     "Malaria_Drug_Params": {
         "DHA": {
+            "Name": "DHA",
             "Bodyweight_Exponent": 1,
             "Drug_Cmax": 200,
             "Drug_Decay_T1": 0.12,
@@ -67,6 +68,7 @@
             "Max_Drug_IRBC_Kill": 9.2
         },
         "Piperaquine": {
+            "Name": "Piperaquine",
             "Bodyweight_Exponent": 0,
             "Drug_Cmax": 30,
             "Drug_Decay_T1": 0.17,

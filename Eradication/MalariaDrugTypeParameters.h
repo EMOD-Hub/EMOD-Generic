@@ -2,78 +2,86 @@
 #pragma once
 
 #include "Configure.h"
+#include "JsonConfigurableCollection.h"
 
 namespace Kernel 
 {
-    struct IStrainIdentity;
     struct IGenomeMarkers;
+    struct IStrainIdentity;
 
-    class DoseMap : public JsonConfigurable, public IComplexJsonConfigurable
+
+
+    class DoseFractionByAge : public JsonConfigurable
     {
-        // We need the following two lines because we inherit from JsonConfigurable
-        // which provides a little more functionality than is needed by these little
-        // "class types".
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-
-        public:
-            DoseMap() {}
-            typedef std::map<float,float> dose_map_t;
-            dose_map_t fractional_dose_by_upper_age;
-            virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
-            virtual json::QuickBuilder GetSchema() override;
-            virtual bool  HasValidDefault() const override { return false; }
-    };
-
-    class GenomeMarkerModifiers : public JsonConfigurable
-    {
     public:
-        IMPLEMENT_NO_REFERENCE_COUNTING()
-
-        GenomeMarkerModifiers( const std::string& rMarkerName = "", uint64_t genomeBitMask = 0 );
-        virtual ~GenomeMarkerModifiers();
+        DoseFractionByAge();
+        virtual ~DoseFractionByAge();
 
         // JsonConfigurable methods
         virtual bool Configure( const Configuration * inputJson ) override;
 
-        // other methods
-        inline const std::string& GetMarkerName() const { return m_MarkerName; }
-        inline float              GetC50()        const { return m_C50; }
-        inline float              GetMaxKilling() const { return m_MaxKilling; }
+        float GetAgeDays() const;
+        float GetDoseFraction() const;
 
-        inline bool HasGenomeBit( uint64_t genomeBits ) const
-        { 
-            return ((genomeBits & m_GenomeBitMask) != 0);
-        }
-
-    private:
-        std::string m_MarkerName;
-        float m_C50;
-        float m_MaxKilling;
-        uint64_t m_GenomeBitMask;
+    protected:
+        float m_AgeDays;
+        float m_DoseFraction;
     };
 
-    class DrugResistantModifiers : public JsonConfigurable, public IComplexJsonConfigurable
+    class DoseMap : public JsonConfigurableCollection<DoseFractionByAge>
+    {
+        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
+
+    public:
+        DoseMap();
+        virtual ~DoseMap();
+
+        virtual void CheckConfiguration() override;
+
+        float GetFractionalDose( float ageInDays ) const;
+
+    protected:
+        virtual DoseFractionByAge* CreateObject() override;
+    };
+
+    class DrugModifier : public JsonConfigurable
+    {
+    public:
+        DrugModifier();
+        virtual ~DrugModifier();
+
+        IMPLEMENT_NO_REFERENCE_COUNTING()
+
+        // JsonConfigurable methods
+        virtual bool Configure( const Configuration* inputJson ) override;
+
+        // other methods
+        const std::string& GetDrugResistantString() const;
+        float GetC50()        const;
+        float GetMaxKilling() const;
+
+    private:
+        std::string m_DrugString;
+        float m_C50;
+        float m_MaxKilling;
+    };
+
+    class DrugResistanceModifierCollection : public JsonConfigurableCollection<DrugModifier>
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
 
-        DrugResistantModifiers( const IGenomeMarkers& rGenomeMarkers );
-        virtual ~DrugResistantModifiers();
+        DrugResistanceModifierCollection();
+        virtual ~DrugResistanceModifierCollection();
 
-        // IComplexJsonConfigurable methods
-        virtual bool  HasValidDefault() const override { return false; }
-        virtual json::QuickBuilder GetSchema() override;
-        virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
-
-        // Other methods
-        int Size() const;
-        const GenomeMarkerModifiers& operator[]( int index ) const;
+        virtual void CheckConfiguration() override;
 
         float GetC50( const IStrainIdentity& rStrain ) const;
         float GetMaxKilling( const IStrainIdentity& rStrain ) const;
 
-    private:
-        std::vector<GenomeMarkerModifiers> m_ModifierCollection;
+    protected:
+        virtual DrugModifier* CreateObject() override;
     };
 
     class MalariaDrugTypeParameters : public JsonConfigurable
@@ -81,15 +89,16 @@ namespace Kernel
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
     public:
-        static MalariaDrugTypeParameters* CreateMalariaDrugTypeParameters( const Configuration* inputJson, 
-                                                                           const std::string& drugType,
-                                                                           const IGenomeMarkers& rGenomeMarkers );
+        static MalariaDrugTypeParameters* CreateMalariaDrugTypeParameters(const Configuration* inputJson,
+                                                                          const std::string& drugType,
+                                                                          const IGenomeMarkers& rGenomeMarkers);
 
         virtual ~MalariaDrugTypeParameters();
         virtual bool Configure( const ::Configuration *json );
 
         typedef map< std::string, MalariaDrugTypeParameters* > tMDTPMap;
 
+        const std::string& GetName()    const;
         float GetMaxDrugIRBCKill()      const;
         float GetKillRateHepatocyte()   const;
         float GetKillRateGametocyte02() const;
@@ -105,12 +114,14 @@ namespace Kernel
         float GetBodyWeightExponent()   const;
 
         const DoseMap& GetDoseMap() const;
-        const DrugResistantModifiers& GetResistantModifiers() const;
+        const DrugResistanceModifierCollection& GetResistantModifiers() const;
 
     protected:
-        MalariaDrugTypeParameters( const std::string& drugType, const IGenomeMarkers& rGenomeMarkers );
+        friend class MalariaDrugTypeCollection;
+        MalariaDrugTypeParameters();
         void Initialize(const std::string& drugType);
 
+        std::string drug_name;
         float max_drug_IRBC_kill;
         float drug_hepatocyte_killrate;
         float drug_gametocyte02_killrate;
@@ -123,13 +134,32 @@ namespace Kernel
         float drug_decay_T2;
         int   drug_fulltreatment_doses;
         float drug_dose_interval;
-
         float bodyweight_exponent;
         DoseMap dose_map;
 
-        DrugResistantModifiers m_Modifiers;
+        DrugResistanceModifierCollection m_Modifiers;
+    };
 
-    private:
-        std::string _drugType;
+    class MalariaDrugTypeCollection : public JsonConfigurableCollection<MalariaDrugTypeParameters>
+    {
+    public:
+        static MalariaDrugTypeCollection* GetInstanceNonConst();
+        static const MalariaDrugTypeCollection* GetInstance();
+        static void DeleteInstance();
+
+        virtual ~MalariaDrugTypeCollection();
+
+        virtual void CheckConfiguration() override;
+        const jsonConfigurable::tDynamicStringSet& GetDrugNames() const;
+        const MalariaDrugTypeParameters& GetDrug( const std::string& rName ) const;
+
+    protected:
+        static MalariaDrugTypeCollection* m_pInstance;
+
+        MalariaDrugTypeCollection();
+
+        virtual MalariaDrugTypeParameters* CreateObject() override;
+
+        jsonConfigurable::tDynamicStringSet m_DrugNames;
     };
 }

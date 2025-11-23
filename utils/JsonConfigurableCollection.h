@@ -67,9 +67,7 @@ namespace Kernel
             schema[ "item_type" ] = json::String( object_schema_name );
 
             // Add the schema for the objects to be retrieved by JsonConfigurable::Configure()
-            // Also add the "class" parameter so the python classes will be generated
             schema[ ts ] = p_jcc->GetSchema();
-            schema[ ts ][ "class" ] = json::String( object_schema_name );
 
             delete p_jcc;
 
@@ -78,8 +76,13 @@ namespace Kernel
 
         virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override
         {
-            // Temporary object created so we can 'operate' on json with the desired tools
-            auto p_config = Configuration::CopyFromElement( (*inputJson)[ key ], inputJson->GetDataLocation() );
+            // Exist(key) should have been called before calling this
+            Configuration* p_config = Configuration::CopyFromElement( (*inputJson)[ key ], inputJson->GetDataLocation() );
+
+            if( p_config->GetElement().Type() != json::ARRAY_ELEMENT )
+            {
+                throw Kernel::JsonTypeConfigurationException( __FILE__, __LINE__, __FUNCTION__, key.c_str(), (*inputJson)[key], "Expected ARRAY of OBJECTs" );
+            }
 
             const auto& json_array = json_cast<const json::Array&>((*p_config));
             for( auto data = json_array.Begin(); data != json_array.End(); ++data )
@@ -87,8 +90,24 @@ namespace Kernel
                 Configuration* p_object_config = Configuration::CopyFromElement( *data, inputJson->GetDataLocation() );
 
                 JsonConfigurableClass* p_jcc = CreateObject();
-                p_jcc->Configure( p_object_config );
 
+                if( p_object_config->GetElement().Type() != json::OBJECT_ELEMENT )
+                {
+                    std::stringstream ss;
+                    ss << "Expected ARRAY of OBJECTs of type '" << p_jcc->GetTypeName() << "'";
+                    throw Kernel::JsonTypeConfigurationException( __FILE__, __LINE__, __FUNCTION__, key.c_str(), (*inputJson)[key], ss.str().c_str() );
+                }
+
+                try
+                {
+                    p_jcc->Configure( p_object_config );
+                }
+                catch( json::Exception& )
+                {
+                    std::stringstream ss;
+                    ss << "JSON Error while reading OBECT of type '" << p_jcc->GetTypeName() << "'";
+                    throw Kernel::JsonTypeConfigurationException( __FILE__, __LINE__, __FUNCTION__, key.c_str(), (*p_object_config), ss.str().c_str() );
+                }
                 Add( p_jcc );
 
                 delete p_object_config;
@@ -101,6 +120,11 @@ namespace Kernel
         {
         }
 
+        const std::string& GetCollectionName() const
+        {
+            return m_IdmTypeName;
+        }
+
         virtual void Add( JsonConfigurableClass* pJcc )
         {
             m_Collection.push_back( pJcc );
@@ -111,7 +135,17 @@ namespace Kernel
             return m_Collection.size();
         }
 
+        void Clear()
+        {
+            m_Collection.clear();
+        }
+
         JsonConfigurableClass* operator[]( int index )
+        {
+            return m_Collection[ index ];
+        }
+
+        const JsonConfigurableClass* operator[]( int index ) const
         {
             return m_Collection[ index ];
         }

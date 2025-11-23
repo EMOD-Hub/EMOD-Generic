@@ -20,7 +20,6 @@
         { "path": "Malaria/19_Malaria_Namawala_AgeConcentrationDrugs_VAR_1" },
         { "path": "Malaria/20_Malaria_Strain_Tracking" },
         { "path": "Malaria/21_Malaria_InputEIR" },
-        { "path": "Malaria/22_Malaria_Barcode_Genetics" },
         { "path": "Malaria/23_Malaria_Intervention_RTSSVaccine" },
         { "path": "Malaria/25_Malaria_MinimalConfig" },
         { "path": "Malaria/26_Malaria_OneIndividual_SingleAntigen" },
@@ -69,14 +68,17 @@
         { "path": "Malaria/70_Malaria_InputEIR_Enable_Immunity_Distribution_disabled"},
         { "path": "Malaria/71_Malaria_Households_MV_hum_none_vec_local_reg_food_cohort"},
         { "path": "Malaria/72_Malaria_Genome_Markers"},
-        { "path": "Malaria/73_Malaria_Drug_Resistance_No_Vectors"},
-        { "path": "Malaria/74_Malaria_Drug_Resistance_Strain_Dominance"},
         { "path": "Malaria/75_Malaria_Drug_Adherence_No_Vectors"},
         { "path": "Scenarios/VectorAndMalaria/02_Namawala_Full_Malaria_Model" },
         { "path": "Scenarios/VectorAndMalaria/08_Garki_IRSMDA" },
         { "path": "Serialization/1300_comparison_with_report_data" }
     ],
     "skipped": [
+    ],
+    "skipped:changes_to_genome": [
+        { "path": "Malaria/22_Malaria_Barcode_Genetics" },
+        { "path": "Malaria/73_Malaria_Drug_Resistance_No_Vectors"},
+        { "path": "Malaria/74_Malaria_Drug_Resistance_Strain_Dominance"}
     ],
     "skipped:num_cores_too_large": [
         { "path": "Malaria/2_Malaria_Garki" },

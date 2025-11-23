@@ -7,6 +7,7 @@
 
 #include "componentTests.h"
 #include "MigrateIndividuals.h"
+#include "Individual.h"
 
 #include "FileSystem.h"
 #include "Configuration.h"
@@ -23,6 +24,7 @@ SUITE(MigrateIndividualsTest)
         MigrateFixture()
             : m_MigrateIndividuals()
         {
+            JsonConfigurable::_useDefaults = true;
             Environment::Finalize();
             Environment::setLogger( new SimpleLogger( Logger::tLevel::WARNING ) );
         }

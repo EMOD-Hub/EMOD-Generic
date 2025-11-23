@@ -60,7 +60,7 @@ namespace Kernel
         float drug_gametocyte34;
         float drug_gametocyteM;
         MalariaDrugTypeParameters* pMalariaDrugTypeParameters;
-        const DrugResistantModifiers* pDrugResistantModifiers;
+        const DrugResistanceModifierCollection* pDrugResistantModifiers;
         IMalariaDrugEffectsApply* imda;
 
         static bodyweight_map_t create_bodyweight_map();

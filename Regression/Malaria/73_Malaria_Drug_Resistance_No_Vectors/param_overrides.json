@@ -10,16 +10,6 @@
     "DRUGS": {
         "Malaria_Drug_Params": {
             "Chloroquine": {
-                ".Resistance": {
-                    "A": {
-                        "Max_IRBC_Kill_Modifier": 1.0,
-                        "PKPD_C50_Modifier": 8.0
-                    },
-                    "B": {
-                        "Max_IRBC_Kill_Modifier": 1.0,
-                        "PKPD_C50_Modifier": 16.0
-                    }
-                },
                 "Resistance": {
                     "A": {
                         "Max_IRBC_Kill_Modifier": 0.5,
