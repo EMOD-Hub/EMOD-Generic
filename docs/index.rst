@@ -46,7 +46,6 @@ For example, this documentation set includes installation and usage instructions
 
    idmtools <https://docs.idmod.org/projects/idmtools/en/latest/>
    idmtools-calibra <https://docs.idmod.org/projects/idmtools_calibra/en/latest/>
-   emodpy-generic <https://docs.idmod.org/projects/emodpy-generic/en/latest/>
-   emodpy <https://docs.idmod.org/projects/emodpy/en/latest/>
-   emod-api <https://docs.idmod.org/projects/emod-api/en/latest/>
-   EMOD-Generic-Scripts <https://docs.idmod.org/projects/emod-generic-scripts/en/latest/>
+   emodpy <https://emod-hub.github.io/emodpy/>
+   emod-api <https://emod-hub.github.io/emod-api/>
+   EMOD-Generic-Scripts <https://emod-hub.github.io/EMOD-Generic-Scripts/>
