@@ -18,7 +18,8 @@ namespace Kernel
 
     void DelayedIntervention::PreConfigure( const Configuration * inputJson )
     {
-        initConfigTypeMap("Coverage", &coverage, DI_Coverage_DESC_TEXT, 0.0f, 1.0f, 1.0f);
+        initConfigTypeMap("Coverage",          &coverage,       DI_Coverage_DESC_TEXT,            0.0f,     1.0f, 1.0f);
+        initConfigTypeMap("Cost_To_Consumer",  &cost_per_unit,  IV_Cost_To_Consumer_DESC_TEXT,    0.0f,  FLT_MAX, 0.0f);
     }
 
     void DelayedIntervention::DistributionConfigure( const Configuration * inputJson )
