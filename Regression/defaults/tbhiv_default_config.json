@@ -18,7 +18,7 @@
         "Air_Temperature_Variance": 2,
         "Base_Air_Temperature": 30,
         "Base_Individual_Sample_Rate": 1.0,
-        "Base_Infectivity_Constant": 1e-07,
+        "Base_Infectivity_Constant": 1e-7,
         "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Base_Land_Temperature": 30,
         "Base_Mortality": 0,
@@ -165,33 +165,35 @@
         "Simulation_Type": "TBHIV_SIM",
         "Start_Time": 0,
         "Susceptibility_Initialization_Distribution_Type": "DISTRIBUTION_OFF",
-        "TBHIV_Drug_Params": {
-            "ACFDOTS": {
+        "TBHIV_Drug_Params": [
+            {
+                "TB_Drug_Name": "ACFDOTS",
                 "TB_Drug_Cure_Rate": 0.25,
                 "TB_Drug_Cure_Rate_HIV": 0,
                 "TB_Drug_Cure_Rate_MDR": 0,
-                "TB_Drug_Inactivation_Rate": 1e-09,
-                "TB_Drug_Inactivation_Rate_HIV": 1e-09,
-                "TB_Drug_Inactivation_Rate_MDR": 1e-09,
-                "TB_Drug_Mortality_Rate": 1e-09,
-                "TB_Drug_Mortality_Rate_HIV": 1e-09,
-                "TB_Drug_Mortality_Rate_MDR": 1e-09,
+                "TB_Drug_Inactivation_Rate": 1e-9,
+                "TB_Drug_Inactivation_Rate_HIV": 1e-9,
+                "TB_Drug_Inactivation_Rate_MDR": 1e-9,
+                "TB_Drug_Mortality_Rate": 1e-9,
+                "TB_Drug_Mortality_Rate_HIV": 1e-9,
+                "TB_Drug_Mortality_Rate_MDR": 1e-9,
                 "TB_Drug_Primary_Decay_Time_Constant": 179,
-                "TB_Drug_Relapse_Rate": 1e-09,
-                "TB_Drug_Relapse_Rate_HIV": 1e-09,
-                "TB_Drug_Relapse_Rate_MDR": 1e-09,
-                "TB_Drug_Resistance_Rate": 1e-09,
-                "TB_Drug_Resistance_Rate_HIV": 1e-09,
+                "TB_Drug_Relapse_Rate": 1e-9,
+                "TB_Drug_Relapse_Rate_HIV": 1e-9,
+                "TB_Drug_Relapse_Rate_MDR": 1e-9,
+                "TB_Drug_Resistance_Rate": 1e-9,
+                "TB_Drug_Resistance_Rate_HIV": 1e-9,
                 "TB_Reduced_Acquire": 1,
                 "TB_Reduced_Transmit": 1
             },
-            "DOTSHQ": {
+            {
+                "TB_Drug_Name": "DOTSHQ",
                 "TB_Drug_Cure_Rate": 0.008,
                 "TB_Drug_Cure_Rate_HIV": 0.0004,
                 "TB_Drug_Cure_Rate_MDR": 0.0004,
-                "TB_Drug_Inactivation_Rate": 1e-09,
-                "TB_Drug_Inactivation_Rate_HIV": 1e-09,
-                "TB_Drug_Inactivation_Rate_MDR": 1e-09,
+                "TB_Drug_Inactivation_Rate": 1e-9,
+                "TB_Drug_Inactivation_Rate_HIV": 1e-9,
+                "TB_Drug_Inactivation_Rate_MDR": 1e-9,
                 "TB_Drug_Mortality_Rate": 0.00038,
                 "TB_Drug_Mortality_Rate_HIV": 0.00038,
                 "TB_Drug_Mortality_Rate_MDR": 0.0008,
@@ -204,7 +206,7 @@
                 "TB_Reduced_Acquire": 1,
                 "TB_Reduced_Transmit": 0.5
             }
-        },
+        ],
         "TBHIV_Drug_Types": [
             "ACFDOTS",
             "DOTSHQ"
@@ -219,8 +221,8 @@
             0.00026,
             0.00026,
             0.00026,
-            2.6e-05,
-            2e-06
+            0.000026,
+            0.000002
         ],
         "TB_CD4_Infectiousness": [
             1,
@@ -241,7 +243,7 @@
             1
         ],
         "TB_CD4_Strata_Infectiousness_Susceptibility": [
-            1e-09,
+            1e-9,
             250,
             300,
             350,
@@ -271,12 +273,12 @@
         "TB_Fast_Progressor_Rate": 1,
         "TB_Immune_Loss_Fraction": 0,
         "TB_Inactivation_Rate": 0,
-        "TB_Latent_Cure_Rate": 1e-09,
+        "TB_Latent_Cure_Rate": 1e-9,
         "TB_MDR_Fitness_Multiplier": 0.5,
         "TB_Presymptomatic_Cure_Rate": 0,
         "TB_Presymptomatic_Rate": 1,
         "TB_Relapsed_to_Active_Rate": 0.012,
-        "TB_Slow_Progressor_Rate": 2.054e-06,
+        "TB_Slow_Progressor_Rate": 0.000002054,
         "TB_Smear_Negative_Infectivity_Multiplier": 0.001,
         "TB_Smear_Negative_Mortality_Multiplier": 0.15,
         "TB_Smear_Positive_Fraction_Adult": 0.65,

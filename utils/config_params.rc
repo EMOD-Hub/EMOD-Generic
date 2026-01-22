@@ -377,7 +377,6 @@
 #define Newborn_Biting_Risk_Multiplier_DESC_TEXT "Scale factor that defines the y-intercept of the linear portion of the biting risk curve when Age_Dependent_Biting_Risk_Type is set to LINEAR."
 #define Nighttime_Feeding_Fraction_DESC_TEXT "Fraction of feeds on humans that occur during the nighttime. Thus the fraction of feeds on humans that occur during the day equals 1 - (value of this parameter)."
 #define NodeAttributes_DESC_TEXT "The structure that contains parameters that add or modify information regarding the location, migration, habitat, and population of a simulation. Some NodeAttributes depend on values set in the configuration parameters."
-#define NodeCount_DESC_TEXT "The number of nodes to expect in the input files."
 #define NodeID_DESC_TEXT "The identifier for a particular node."
 #define NodeProperties_DESC_TEXT "An array that contains parameters that add properties to nodes in a simulation. For example, you can define values for intervention status, risk, and other properties and assign values to different nodes."
 #define Node_Contagion_Decay_Rate_DESC_TEXT "The fraction of contagion not carried over to the next time step."

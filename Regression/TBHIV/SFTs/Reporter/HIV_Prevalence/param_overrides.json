@@ -46,18 +46,28 @@
         "Mortality_Blocking_Immunity_Decay_Rate": 0,
         "Post_Infection_Acquisition_Multiplier": 0.5,
         "Simulation_Duration": 730,
-        "TBHIV_Drug_Params": {
-            "ACFDOTS": {
+        "TBHIV_Drug_Params": [
+            {
+                "TB_Drug_Name": "ACFDOTS",
+                "TB_Drug_Cure_Rate": 0.25,
                 "TB_Drug_Cure_Rate_HIV": 0.0007701635339554948,
                 "TB_Drug_Cure_Rate_MDR": 0.0007701635339554948,
                 "TB_Drug_Inactivation_Rate": 0.0007701635339554948,
+                "TB_Drug_Inactivation_Rate_HIV": 0,
                 "TB_Drug_Inactivation_Rate_MDR": 0.0007701635339554948,
+                "TB_Drug_Mortality_Rate": 0,
+                "TB_Drug_Mortality_Rate_HIV": 0.05,
                 "TB_Drug_Mortality_Rate_MDR": 0.0007701635339554948,
-                "TB_Drug_Relapse_Rate": 0.0015403270679109895,
-                "TB_Drug_Relapse_Rate_MDR": 0.0015403270679109895,
-                "TB_Drug_Resistance_Rate": 0.0011706723961980698
+                "TB_Drug_Primary_Decay_Time_Constant": 160,
+                "TB_Drug_Relapse_Rate": 0.0015403270679109896,
+                "TB_Drug_Relapse_Rate_HIV": 0,
+                "TB_Drug_Relapse_Rate_MDR": 0.0015403270679109896,
+                "TB_Drug_Resistance_Rate": 0.0011706723961980698,
+                "TB_Drug_Resistance_Rate_HIV": 0,
+                "TB_Reduced_Acquire": 1,
+                "TB_Reduced_Transmit": 1
             }
-        },
+        ],
         "TBHIV_Drug_Types": [
             "ACFDOTS"
         ],
@@ -70,7 +80,7 @@
         "TB_Fast_Progressor_Fraction_Adult": 0.1,
         "TB_Fast_Progressor_Fraction_Child": 0.03,
         "TB_Fast_Progressor_Rate": 0.006,
-        "TB_Inactivation_Rate": 1e-09,
+        "TB_Inactivation_Rate": 1e-9,
         "TB_Presymptomatic_Cure_Rate": 0.007,
         "TB_Presymptomatic_Rate": 0.1165,
         "TB_Slow_Progressor_Rate": 0.5,

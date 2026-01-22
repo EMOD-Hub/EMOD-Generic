@@ -16,6 +16,7 @@
         "Enable_Event_DB": 1,
         "SQL_Busy_Timeout": 3000.0,
         "SQL_Events": [],
+        "SQL_Report_Name": "simulation_events.db",
         "SQL_Start_Time": 0.0,
         "Geography": "NONE",
         "Config_Name": "ExplicitID_TargetsExactlyOne",

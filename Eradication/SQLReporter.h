@@ -43,6 +43,8 @@ namespace Kernel
 
         sqlite3* db;
 
+        std::string sql_rep_name;
+
         float busy_timeout;
         float start_time;
 

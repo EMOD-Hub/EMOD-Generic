@@ -54,18 +54,28 @@
             "TBTestDefault"
         ],
         "Simulation_Duration": 30,
-        "TBHIV_Drug_Params": {
-            "ACFDOTS": {
+        "TBHIV_Drug_Params": [
+            {
+                "TB_Drug_Name": "ACFDOTS",
+                "TB_Drug_Cure_Rate": 0.25,
                 "TB_Drug_Cure_Rate_HIV": 0.0007701635339554948,
                 "TB_Drug_Cure_Rate_MDR": 0.0007701635339554948,
                 "TB_Drug_Inactivation_Rate": 0.0007701635339554948,
+                "TB_Drug_Inactivation_Rate_HIV": 0,
                 "TB_Drug_Inactivation_Rate_MDR": 0.0007701635339554948,
+                "TB_Drug_Mortality_Rate": 0,
+                "TB_Drug_Mortality_Rate_HIV": 0.05,
                 "TB_Drug_Mortality_Rate_MDR": 0.0007701635339554948,
-                "TB_Drug_Relapse_Rate": 0.0015403270679109895,
-                "TB_Drug_Relapse_Rate_MDR": 0.0015403270679109895,
-                "TB_Drug_Resistance_Rate": 0.0011706723961980698
+                "TB_Drug_Primary_Decay_Time_Constant": 160,
+                "TB_Drug_Relapse_Rate": 0.0015403270679109896,
+                "TB_Drug_Relapse_Rate_HIV": 0,
+                "TB_Drug_Relapse_Rate_MDR": 0.0015403270679109896,
+                "TB_Drug_Resistance_Rate": 0.0011706723961980698,
+                "TB_Drug_Resistance_Rate_HIV": 0,
+                "TB_Reduced_Acquire": 1,
+                "TB_Reduced_Transmit": 1
             }
-        },
+        ],
         "TBHIV_Drug_Types": [
             "ACFDOTS"
         ],
@@ -73,8 +83,8 @@
         "TB_Active_Mortality_Rate": 0.000445,
         "TB_Active_Period_Distribution": "EXPONENTIAL_DISTRIBUTION",
         "TB_Active_Presymptomatic_Infectivity_Multiplier": 1,
-        "TB_Inactivation_Rate": 1e-09,
-        "TB_Slow_Progressor_Rate": 2.8e-05,
+        "TB_Inactivation_Rate": 1e-9,
+        "TB_Slow_Progressor_Rate": 0.000028,
         "TB_Smear_Negative_Infectivity_Multiplier": 1.0,
         "TB_Smear_Negative_Mortality_Multiplier": 0.3,
         "TB_Smear_Positive_Fraction_Adult": 1.0,

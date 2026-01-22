@@ -68,8 +68,9 @@
         ],
         "Serialized_Population_Writing_Type": "TIMESTEP",
         "Simulation_Duration": 400,
-        "TBHIV_Drug_Params": {
-            "ACFDOTS": {
+        "TBHIV_Drug_Params": [
+            {
+                "TB_Drug_Name": "ACFDOTS",
                 "TB_Drug_Cure_Rate": 0.0007701635339554948,
                 "TB_Drug_Cure_Rate_HIV": 0.0007701635339554948,
                 "TB_Drug_Cure_Rate_MDR": 0.0007701635339554948,
@@ -80,34 +81,36 @@
                 "TB_Drug_Mortality_Rate_HIV": 0.0007701635339554948,
                 "TB_Drug_Mortality_Rate_MDR": 0.0007701635339554948,
                 "TB_Drug_Primary_Decay_Time_Constant": 90,
-                "TB_Drug_Relapse_Rate": 0.0015403270679109895,
-                "TB_Drug_Relapse_Rate_HIV": 0.0015403270679109895,
-                "TB_Drug_Relapse_Rate_MDR": 0.0015403270679109895,
+                "TB_Drug_Relapse_Rate": 0.0015403270679109896,
+                "TB_Drug_Relapse_Rate_HIV": 0.0015403270679109896,
+                "TB_Drug_Relapse_Rate_MDR": 0.0015403270679109896,
                 "TB_Drug_Resistance_Rate": 0.0011706723961980698,
                 "TB_Drug_Resistance_Rate_HIV": 0.0011706723961980698,
                 "TB_Reduced_Acquire": 1,
                 "TB_Reduced_Transmit": 1
             },
-            "DOTSHQ": {
+            {
+                "TB_Drug_Name": "DOTSHQ",
                 "TB_Drug_Cure_Rate": 0.013314365660239967,
                 "TB_Drug_Cure_Rate_HIV": 0.013314365660239967,
                 "TB_Drug_Cure_Rate_MDR": 0.00015982337358432273,
-                "TB_Drug_Inactivation_Rate": 0.0016642957075299958,
-                "TB_Drug_Inactivation_Rate_HIV": 0.0016642957075299958,
+                "TB_Drug_Inactivation_Rate": 0.0016642957075299959,
+                "TB_Drug_Inactivation_Rate_HIV": 0.0016642957075299959,
                 "TB_Drug_Inactivation_Rate_MDR": 0.00015982337358432273,
                 "TB_Drug_Mortality_Rate": 0.0004992887122589987,
                 "TB_Drug_Mortality_Rate_HIV": 0.0004992887122589987,
-                "TB_Drug_Mortality_Rate_MDR": 4.794701207529681e-05,
+                "TB_Drug_Mortality_Rate_MDR": 0.00004794701207529681,
                 "TB_Drug_Primary_Decay_Time_Constant": 180.0,
                 "TB_Drug_Relapse_Rate": 0.00033285914150599916,
                 "TB_Drug_Relapse_Rate_HIV": 0.00033285914150599916,
-                "TB_Drug_Relapse_Rate_MDR": 3.196467471686455e-05,
+                "TB_Drug_Relapse_Rate_MDR": 0.00003196467471686455,
                 "TB_Drug_Resistance_Rate": -0.0,
                 "TB_Drug_Resistance_Rate_HIV": -0.0,
                 "TB_Reduced_Acquire": 1,
                 "TB_Reduced_Transmit": 1
             },
-            "DOTSHQC": {
+            {
+                "TB_Drug_Name": "DOTSHQC",
                 "TB_Drug_Cure_Rate": 0.011370854263078285,
                 "TB_Drug_Cure_Rate_HIV": 0.011370854263078285,
                 "TB_Drug_Cure_Rate_MDR": 0.011370854263078285,
@@ -126,26 +129,28 @@
                 "TB_Reduced_Acquire": 1,
                 "TB_Reduced_Transmit": 1
             },
-            "DOTSLQ": {
-                "TB_Drug_Cure_Rate": 0.0029161725680518827,
-                "TB_Drug_Cure_Rate_HIV": 0.0029161725680518827,
+            {
+                "TB_Drug_Name": "DOTSLQ",
+                "TB_Drug_Cure_Rate": 0.0029161725680518829,
+                "TB_Drug_Cure_Rate_HIV": 0.0029161725680518829,
                 "TB_Drug_Cure_Rate_MDR": 0.00015982337358432273,
                 "TB_Drug_Inactivation_Rate": 0.0005832345136103765,
                 "TB_Drug_Inactivation_Rate_HIV": 0.0005832345136103765,
                 "TB_Drug_Inactivation_Rate_MDR": 0.00015982337358432273,
                 "TB_Drug_Mortality_Rate": 0.00017497035408311297,
                 "TB_Drug_Mortality_Rate_HIV": 0.00017497035408311297,
-                "TB_Drug_Mortality_Rate_MDR": 4.794701207529681e-05,
+                "TB_Drug_Mortality_Rate_MDR": 0.00004794701207529681,
                 "TB_Drug_Primary_Decay_Time_Constant": 180.0,
                 "TB_Drug_Relapse_Rate": 0.00011664690272207531,
                 "TB_Drug_Relapse_Rate_HIV": 0.00011664690272207531,
-                "TB_Drug_Relapse_Rate_MDR": 3.196467471686455e-05,
+                "TB_Drug_Relapse_Rate_MDR": 0.00003196467471686455,
                 "TB_Drug_Resistance_Rate": -0.0,
                 "TB_Drug_Resistance_Rate_HIV": -0.0,
                 "TB_Reduced_Acquire": 1,
                 "TB_Reduced_Transmit": 1
             },
-            "DOTSLQC": {
+            {
+                "TB_Drug_Name": "DOTSLQC",
                 "TB_Drug_Cure_Rate": 0.011370854263078285,
                 "TB_Drug_Cure_Rate_HIV": 0.011370854263078285,
                 "TB_Drug_Cure_Rate_MDR": 0.011370854263078285,
@@ -164,13 +169,14 @@
                 "TB_Reduced_Acquire": 1,
                 "TB_Reduced_Transmit": 1
             },
-            "DOTSMDRC": {
+            {
+                "TB_Drug_Name": "DOTSMDRC",
                 "TB_Drug_Cure_Rate": 0.007580569508718857,
                 "TB_Drug_Cure_Rate_HIV": 0.007580569508718857,
                 "TB_Drug_Cure_Rate_MDR": 0.007580569508718857,
-                "TB_Drug_Inactivation_Rate": 8.918317069081008e-05,
-                "TB_Drug_Inactivation_Rate_HIV": 8.918317069081008e-05,
-                "TB_Drug_Inactivation_Rate_MDR": 8.918317069081008e-05,
+                "TB_Drug_Inactivation_Rate": 0.00008918317069081008,
+                "TB_Drug_Inactivation_Rate_HIV": 0.00008918317069081008,
+                "TB_Drug_Inactivation_Rate_MDR": 0.00008918317069081008,
                 "TB_Drug_Mortality_Rate": 0.00026754951207243026,
                 "TB_Drug_Mortality_Rate_HIV": 0.00026754951207243026,
                 "TB_Drug_Mortality_Rate_MDR": 0.00026754951207243026,
@@ -183,7 +189,7 @@
                 "TB_Reduced_Acquire": 1,
                 "TB_Reduced_Transmit": 1
             }
-        },
+        ],
         "TBHIV_Drug_Types": [
             "ACFDOTS",
             "DOTSHQC",
@@ -202,19 +208,19 @@
             0.0005,
             0.00026,
             0.00017,
-            2.8e-05,
-            2.8e-05,
-            2.8e-05
+            0.000028,
+            0.000028,
+            0.000028
         ],
         "TB_Extrapulmonary_Fraction_Adult": 0.1,
         "TB_Extrapulmonary_Fraction_Child": 0.4,
         "TB_Fast_Progressor_Fraction_Adult": 0.1,
         "TB_Fast_Progressor_Fraction_Child": 0.03,
         "TB_Fast_Progressor_Rate": 0.006,
-        "TB_Inactivation_Rate": 1e-09,
+        "TB_Inactivation_Rate": 1e-9,
         "TB_MDR_Fitness_Multiplier": 1.0,
         "TB_Presymptomatic_Rate": 0.01165,
-        "TB_Slow_Progressor_Rate": 2.8e-05,
+        "TB_Slow_Progressor_Rate": 0.000028,
         "TB_Smear_Negative_Infectivity_Multiplier": 0.34604,
         "TB_Smear_Negative_Mortality_Multiplier": 0.3,
         "logLevel_default": "INFO",

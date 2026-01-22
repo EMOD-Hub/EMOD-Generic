@@ -986,7 +986,7 @@ namespace Kernel
         const std::map<std::string, std::string> dset_tbhiv01    {{"Simulation_Type","TBHIV_SIM"}};
 
         // TBHIV parameters
-        initConfigComplexType("TBHIV_Drug_Params",     &tbhiv_params.drugs_map,      TBHIV_Drug_Params_DESC_TEXT,  nullptr,  nullptr,  &dset_tbhiv01);
+        initConfigComplexCollectionType("TBHIV_Drug_Params",   &tbhiv_params.drugs_map,   TBHIV_Drug_Params_DESC_TEXT,  nullptr,  nullptr,  &dset_tbhiv01);
 
         // Process configuration
         bool bRet = JsonConfigurable::Configure(config);

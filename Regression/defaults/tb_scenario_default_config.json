@@ -123,35 +123,38 @@
         },
         "TB": {
             "Enable_Maternal_Protection": 0,
-            "TBHIV_Drug_Params": {
-                "CDCDrug": {
+            "TBHIV_Drug_Params": [
+                {
+                    "TB_Drug_Name": "CDCDrug",
                     "TB_Drug_Cure_Rate": 0.1,
-                    "TB_Drug_Inactivation_Rate": 1e-09,
-                    "TB_Drug_Mortality_Rate": 1e-09,
+                    "TB_Drug_Inactivation_Rate": 1e-9,
+                    "TB_Drug_Mortality_Rate": 1e-9,
                     "TB_Drug_Primary_Decay_Time_Constant": 180.0,
-                    "TB_Drug_Relapse_Rate": 1e-09,
-                    "TB_Drug_Resistance_Rate": 1e-09
+                    "TB_Drug_Relapse_Rate": 1e-9,
+                    "TB_Drug_Resistance_Rate": 1e-9
                 },
-                "CDCDrugMDR": {
-                    "TB_Drug_Cure_Rate": 1e-09,
-                    "TB_Drug_Inactivation_Rate": 1e-09,
-                    "TB_Drug_Mortality_Rate": 1e-09,
+                {
+                    "TB_Drug_Name": "CDCDrugMDR",
+                    "TB_Drug_Cure_Rate": 1e-9,
+                    "TB_Drug_Inactivation_Rate": 1e-9,
+                    "TB_Drug_Mortality_Rate": 1e-9,
                     "TB_Drug_Primary_Decay_Time_Constant": 180.0,
-                    "TB_Drug_Relapse_Rate": 1e-09,
-                    "TB_Drug_Resistance_Rate": 1e-09
+                    "TB_Drug_Relapse_Rate": 1e-9,
+                    "TB_Drug_Resistance_Rate": 1e-9
                 },
-                "CDCDrugRetx": {
+                {
+                    "TB_Drug_Name": "CDCDrugRetx",
                     "TB_Drug_Cure_Rate": 0.1,
-                    "TB_Drug_Inactivation_Rate": 1e-09,
-                    "TB_Drug_Mortality_Rate": 1e-09,
+                    "TB_Drug_Inactivation_Rate": 1e-9,
+                    "TB_Drug_Mortality_Rate": 1e-9,
                     "TB_Drug_Primary_Decay_Time_Constant": 180.0,
-                    "TB_Drug_Relapse_Rate": 1e-09,
-                    "TB_Drug_Resistance_Rate": 1e-09
+                    "TB_Drug_Relapse_Rate": 1e-9,
+                    "TB_Drug_Resistance_Rate": 1e-9
                 }
-            },
+            ],
             "TBHIV_Drug_Types": [],
             "TB_Active_Cure_Rate": 0.03,
-            "TB_Active_Mortality_Rate": 1e-09,
+            "TB_Active_Mortality_Rate": 1e-9,
             "TB_Active_Period_Distribution": "EXPONENTIAL_DISTRIBUTION",
             "TB_Active_Presymptomatic_Infectivity_Multiplier": 0.0,
             "TB_Drug_Efficacy_Multiplier_Failed": 1.0,
@@ -171,7 +174,7 @@
             "TB_Presymptomatic_Cure_Rate": 0,
             "TB_Presymptomatic_Rate": 1,
             "TB_Relapsed_to_Active_Rate": 1,
-            "TB_Slow_Progressor_Rate": 2.054e-06,
+            "TB_Slow_Progressor_Rate": 0.000002054,
             "TB_Smear_Negative_Infectivity_Multiplier": 1,
             "TB_Smear_Negative_Mortality_Multiplier": 1,
             "TB_Smear_Positive_Fraction_Adult": 1,

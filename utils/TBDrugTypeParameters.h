@@ -12,12 +12,16 @@ namespace Kernel
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
     public:
-        TBDrugTypeParameters(const std::string& tb_drug_name);
+        TBDrugTypeParameters();
         virtual ~TBDrugTypeParameters();
 
         bool Configure( const ::Configuration *json );
 
+        const std::string& GetName() const;
+
     protected:
+        std::string TB_drug_name;
+
         float TB_drug_inactivation_rate;
         float TB_drug_cure_rate;
         float TB_drug_resistance_rate;
