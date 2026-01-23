@@ -41,12 +41,17 @@ def load_emod_parameters(config_filename="config.json", campaign_file="campaign.
     test_event = dts.get_test_event(cadj)
     drug_type = dts.get_drug_type(test_event)
 
-    param_obj[dts.ConfigKeys.DrugParams.KEY_TbDrugInactivationRateHIV] = \
-        codj[dts.ConfigKeys.KEY_DrugParams][drug_type][dts.ConfigKeys.DrugParams.KEY_TbDrugInactivationRateHIV]
+    drug_params = dict()
+    for drug_obj in codj[dts.ConfigKeys.KEY_DrugParams]:
+        if (drug_obj[dts.ConfigKeys.DrugParams.KEY_DrugName] == drug_type):
+            drug_params = drug_obj
+            break
+
+    param_obj[dts.ConfigKeys.DrugParams.KEY_TbDrugInactivationRateHIV] = drug_params[dts.ConfigKeys.DrugParams.KEY_TbDrugInactivationRateHIV]
     param_obj[dts.ParamKeys.KEY_DrugStartTime] = test_event[dts.CampaignKeys.Start_Day]
-    param_obj[dts.ParamKeys.KEY_DrugRegimenLength] = \
-        codj[dts.ConfigKeys.KEY_DrugParams][drug_type][dts.ConfigKeys.DrugParams.KEY_PrimaryDecayConstant]
+    param_obj[dts.ParamKeys.KEY_DrugRegimenLength] = drug_params[dts.ConfigKeys.DrugParams.KEY_PrimaryDecayConstant]
     param_obj[dts.ConfigKeys.KEY_StartTime] = codj[dts.ConfigKeys.KEY_StartTime]
+
     return param_obj
 
 def parse_stdout_file(drug_start_time, start_timestep, stdout_filename="test.txt", debug=False):

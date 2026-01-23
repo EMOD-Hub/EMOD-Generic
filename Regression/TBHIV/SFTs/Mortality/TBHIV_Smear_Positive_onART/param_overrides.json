@@ -17,17 +17,6 @@
         "Mortality_Blocking_Immunity_Decay_Rate": 1,
         "Mortality_Blocking_Immunity_Duration_Before_Decay": 0,
         "Simulation_Duration": 500,
-        "TBHIV_Drug_Params": {
-            "ACFDOTS": {
-                "TB_Drug_Cure_Rate": 0.25,
-                "TB_Drug_Inactivation_Rate_HIV": 1e-09,
-                "TB_Drug_Mortality_Rate": 1e-09,
-                "TB_Drug_Mortality_Rate_HIV": 1e-09,
-                "TB_Drug_Primary_Decay_Time_Constant": 179,
-                "TB_Drug_Relapse_Rate_HIV": 1e-09,
-                "TB_Drug_Resistance_Rate_HIV": 1e-09
-            }
-        },
         "TBHIV_Drug_Types": [
             "ACFDOTS",
             "DOTSHQ"

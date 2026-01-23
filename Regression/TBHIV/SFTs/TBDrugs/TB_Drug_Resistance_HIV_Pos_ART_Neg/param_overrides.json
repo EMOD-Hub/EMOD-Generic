@@ -17,18 +17,28 @@
         "Enable_Regional_Migration": 1,
         "Enable_Vital_Dynamics": 0,
         "Simulation_Duration": 180,
-        "TBHIV_Drug_Params": {
-            "ACFDOTS": {
+        "TBHIV_Drug_Params": [
+            {
+                "TB_Drug_Name": "ACFDOTS",
                 "TB_Drug_Cure_Rate": 0.25,
                 "TB_Drug_Cure_Rate_HIV": 0.001,
-                "TB_Drug_Inactivation_Rate_HIV": 0,
-                "TB_Drug_Mortality_Rate": 1e-09,
-                "TB_Drug_Mortality_Rate_HIV": 1e-09,
+                "TB_Drug_Cure_Rate_MDR": 0,
+                "TB_Drug_Inactivation_Rate": 1e-9,
+                "TB_Drug_Inactivation_Rate_HIV": 0.0,
+                "TB_Drug_Inactivation_Rate_MDR": 1e-9,
+                "TB_Drug_Mortality_Rate": 1e-9,
+                "TB_Drug_Mortality_Rate_HIV": 1e-9,
+                "TB_Drug_Mortality_Rate_MDR": 1e-9,
                 "TB_Drug_Primary_Decay_Time_Constant": 180,
-                "TB_Drug_Relapse_Rate_HIV": 1e-09,
-                "TB_Drug_Resistance_Rate_HIV": 0.05
+                "TB_Drug_Relapse_Rate": 1e-9,
+                "TB_Drug_Relapse_Rate_HIV": 1e-9,
+                "TB_Drug_Relapse_Rate_MDR": 1e-9,
+                "TB_Drug_Resistance_Rate": 1e-9,
+                "TB_Drug_Resistance_Rate_HIV": 0.05,
+                "TB_Reduced_Acquire": 1,
+                "TB_Reduced_Transmit": 1
             }
-        },
+        ],
         "TBHIV_Drug_Types": [
             "ACFDOTS",
             "DOTSHQ"
@@ -38,8 +48,8 @@
             0.00026,
             0.00026,
             0.00026,
-            2.6e-05,
-            2e-06
+            0.000026,
+            0.000002
         ],
         "TB_CD4_Infectiousness": [
             1,

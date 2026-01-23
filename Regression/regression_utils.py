@@ -25,7 +25,6 @@ nested_config_objects = ["Vector_Species_Params",
                          "Malaria_Drug_Params",
                          "TB_Drug_Params",
                          "HIV_Drug_Params",
-                         "STI_Network_Params_By_Property",
                          "TBHIV_Drug_Params",
                          "Maternal_Acquire_Config"]
 
@@ -35,9 +34,41 @@ def recursive_json_overrider( ref_json, flat_input_json ):
 
         if key_str01 in nested_config_objects:
             if key_str01 not in flat_input_json:
-                flat_input_json[key_str01] = dict()
-            elif key_str01 == "STI_Network_Params_By_Property" and not("NONE" in flat_input_json[key_str01].keys()):
+                if isinstance(ref_json[key_str01], list):
+                    flat_input_json[key_str01] = list()
+                else:
+                    flat_input_json[key_str01] = dict()
+
+            # Only add objects not already present in list; (overrides file processed first)
+            # Assumes the object has a key with an object name
+            if isinstance(ref_json[key_str01], list):
+                cnames = list()
+                for cur_item in flat_input_json[key_str01]:
+                    obj_name = None
+                    if isinstance(cur_item, dict):
+                        for key_str in cur_item:
+                            if 'Name' in key_str:
+                                obj_name = cur_item[key_str]
+                                break
+                        if obj_name:
+                            cnames.append(obj_name)
+
+                for new_item in ref_json[key_str01]:
+                    obj_name = None
+                    if isinstance(new_item, dict):
+                        for key_str in new_item:
+                            if 'Name' in key_str:
+                                obj_name = new_item[key_str]
+                                break
+                        if obj_name in cnames:
+                            # Trying to add an object already present
+                            continue
+
+                    flat_input_json[key_str01].append(new_item)
+
+                # Done with list processing
                 continue
+
             for key_str02 in ref_json[key_str01]:
                 if isinstance(ref_json[key_str01][key_str02], dict):
                     if key_str02 not in flat_input_json[key_str01]:
@@ -62,7 +93,6 @@ def flattenConfig( configjson_path, new_config_name="config" ):
 
     configjson_flat = {}
     configjson = load_json(configjson_path)
-
     recursive_json_overrider( configjson, configjson_flat )
 
     # get defaults from config.json and synthesize output from default and overrides
@@ -81,10 +111,17 @@ def flattenConfig( configjson_path, new_config_name="config" ):
             simdir = Path( configjson_path ).parent
             default_config_json = None
             if Path( os.path.join( str( simdir ), default_config_path) ).exists():
-                default_config_json = load_json(os.path.join( str(simdir), default_config_path))
+                default_config_path = os.path.join( str(simdir), default_config_path)
             else:
-                default_config_json = load_json(os.path.join( '.', default_config_path))
+                default_config_path = os.path.join( '.', default_config_path)
+
+            if os.path.exists( default_config_path ) == False:
+                print( "Didn't find file at 'Default_Config_Path' = '{0}'".format( default_config_path ) )
+                raise Exception( "Bad Default_Config_Path!!!" )
+
+            default_config_json = load_json( default_config_path )
             recursive_json_overrider( default_config_json, configjson_flat ) 
+
         except Exception as ex:
             print( "Exception opening default config: " + str( ex ) )
             raise ex

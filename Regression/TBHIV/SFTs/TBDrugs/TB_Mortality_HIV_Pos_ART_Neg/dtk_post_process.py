@@ -45,11 +45,16 @@ def load_emod_parameters(config_filename="config.json", campaign_filename="campa
     test_event = dts.get_test_event(cadj)
     drug_type = dts.get_drug_type(test_event)
 
-    param_obj[dts.ConfigKeys.DrugParams.KEY_TbDrugMortalityRateHIV] = \
-        codj[dts.ConfigKeys.KEY_DrugParams][drug_type][dts.ConfigKeys.DrugParams.KEY_TbDrugMortalityRateHIV]
+    drug_params = dict()
+    for drug_obj in codj[dts.ConfigKeys.KEY_DrugParams]:
+        if (drug_obj[dts.ConfigKeys.DrugParams.KEY_DrugName] == drug_type):
+            drug_params = drug_obj
+            break
+
+    param_obj[dts.ConfigKeys.DrugParams.KEY_TbDrugMortalityRateHIV] = drug_params[dts.ConfigKeys.DrugParams.KEY_TbDrugMortalityRateHIV]
     param_obj[dts.ParamKeys.KEY_DrugStartTime] = test_event[dts.CampaignKeys.Start_Day]
-    param_obj[dts.ParamKeys.KEY_DrugRegimenLength] = \
-        codj[dts.ConfigKeys.KEY_DrugParams][drug_type][dts.ConfigKeys.DrugParams.KEY_TbDrugPrimaryDecayConstant]
+    param_obj[dts.ParamKeys.KEY_DrugRegimenLength] = drug_params[dts.ConfigKeys.DrugParams.KEY_TbDrugPrimaryDecayConstant]
+
     return param_obj
 
 

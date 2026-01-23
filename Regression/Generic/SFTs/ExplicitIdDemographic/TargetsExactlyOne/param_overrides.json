@@ -18,6 +18,7 @@
         "SQL_Events": [
             "NewInfection"
         ],
+        "SQL_Report_Name": "simulation_events.db",
         "SQL_Start_Time": 0.0,
         "Geography": "NONE",
         "Config_Name": "ExplicitID_TargetsExactlyOne",

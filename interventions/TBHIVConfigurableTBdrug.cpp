@@ -215,36 +215,36 @@ namespace Kernel
     {
         current_efficacy = 1;
 
-        auto tbdtMap = TBHIVConfig::GetTBHIVParams().drugs_map;
+        auto tbdt_drug = TBHIVConfig::GetTBHIVParams().drugs_map.GetDrug(drug_name_string);
 
         LOG_DEBUG_F("Read in the tbdt map, the drug type is %s \n", drug_name_string.c_str());
 
-        fast_decay_time_constant = tbdtMap[drug_name_string]->TB_drug_primary_decay_time_constant;
+        fast_decay_time_constant = tbdt_drug.TB_drug_primary_decay_time_constant;
 
         LOG_DEBUG_F( "Using fast_decay_time_constant value of %f\n", fast_decay_time_constant );
 
-        TB_drug_inactivation_rate = tbdtMap[drug_name_string]->TB_drug_inactivation_rate;
-        TB_drug_cure_rate = tbdtMap[drug_name_string]->TB_drug_cure_rate;
-        TB_drug_resistance_rate = tbdtMap[drug_name_string]->TB_drug_resistance_rate;
-        TB_drug_relapse_rate = tbdtMap[drug_name_string]->TB_drug_relapse_rate;
-        TB_drug_mortality_rate = tbdtMap[drug_name_string]->TB_drug_mortality_rate;
+        TB_drug_inactivation_rate = tbdt_drug.TB_drug_inactivation_rate;
+        TB_drug_cure_rate = tbdt_drug.TB_drug_cure_rate;
+        TB_drug_resistance_rate = tbdt_drug.TB_drug_resistance_rate;
+        TB_drug_relapse_rate = tbdt_drug.TB_drug_relapse_rate;
+        TB_drug_mortality_rate = tbdt_drug.TB_drug_mortality_rate;
 
-        TB_drug_cure_rate_hiv = tbdtMap[drug_name_string]->TB_drug_cure_rate_hiv;
-        TB_drug_cure_rate_mdr = tbdtMap[drug_name_string]->TB_drug_cure_rate_mdr;
+        TB_drug_cure_rate_hiv = tbdt_drug.TB_drug_cure_rate_hiv;
+        TB_drug_cure_rate_mdr = tbdt_drug.TB_drug_cure_rate_mdr;
 
-        TB_drug_inactivation_rate_mdr = tbdtMap[drug_name_string]->TB_drug_inactivation_rate_mdr;
-        TB_drug_inactivation_rate_hiv = tbdtMap[drug_name_string]->TB_drug_inactivation_rate_hiv;
+        TB_drug_inactivation_rate_mdr = tbdt_drug.TB_drug_inactivation_rate_mdr;
+        TB_drug_inactivation_rate_hiv = tbdt_drug.TB_drug_inactivation_rate_hiv;
 
-        TB_drug_relapse_rate_hiv = tbdtMap[drug_name_string]->TB_drug_relapse_rate_hiv;
-        TB_drug_relapse_rate_mdr = tbdtMap[drug_name_string]->TB_drug_relapse_rate_mdr;
+        TB_drug_relapse_rate_hiv = tbdt_drug.TB_drug_relapse_rate_hiv;
+        TB_drug_relapse_rate_mdr = tbdt_drug.TB_drug_relapse_rate_mdr;
 
-        TB_drug_mortality_rate_hiv = tbdtMap[drug_name_string]->TB_drug_mortality_rate_hiv;
-        TB_drug_mortality_rate_mdr = tbdtMap[drug_name_string]->TB_drug_inactivation_rate_mdr;
+        TB_drug_mortality_rate_hiv = tbdt_drug.TB_drug_mortality_rate_hiv;
+        TB_drug_mortality_rate_mdr = tbdt_drug.TB_drug_inactivation_rate_mdr;
 
-        TB_drug_resistance_rate_hiv = tbdtMap[drug_name_string]->TB_drug_resistance_rate_hiv;
+        TB_drug_resistance_rate_hiv = tbdt_drug.TB_drug_resistance_rate_hiv;
 
-        current_reducedacquire = tbdtMap[drug_name_string]->TB_reduced_acquire;
-        current_reducedtransmit = tbdtMap[drug_name_string]->TB_reduced_transmit;
+        current_reducedacquire = tbdt_drug.TB_reduced_acquire;
+        current_reducedtransmit = tbdt_drug.TB_reduced_transmit;
 
         LOG_DEBUG_F("Finished reading in the map: TB_drug_cure_rate = %f.\n", TB_drug_cure_rate );
 

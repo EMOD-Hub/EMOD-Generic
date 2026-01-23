@@ -10,8 +10,8 @@ SETUP_LOGGING("TBHIVDTP")
 
 namespace Kernel
 {
-    TBHIVDrugTypeParameters::TBHIVDrugTypeParameters(const std::string& tb_drug_name)
-        : TBDrugTypeParameters(tb_drug_name)
+    TBHIVDrugTypeParameters::TBHIVDrugTypeParameters()
+        : TBDrugTypeParameters()
         , TB_drug_inactivation_rate_mdr(0.0f)
         , TB_drug_inactivation_rate_hiv(0.0f)
         , TB_drug_cure_rate_mdr(0.0f)
@@ -45,63 +45,43 @@ namespace Kernel
     TBHIVDrugTypeParameters::~TBHIVDrugTypeParameters()
     { }
 
+
     // ***** TBHIVDrugCollection is a container for 0 or more TBHIVDrugTypeParameters *****
     TBHIVDrugCollection::TBHIVDrugCollection()
-        : JsonConfigurable()
-        , tbhiv_drug_map()
-    { }
+        : JsonConfigurableCollection("TBHIV_Drug_Params")
+    {
+    }
 
     TBHIVDrugCollection::~TBHIVDrugCollection()
-    { }
-
-    json::QuickBuilder TBHIVDrugCollection::GetSchema()
     {
-        std::string idm_type_schema    = "idmType:TBHIVDrugCollection";
-        std::string object_schema_name = "<TBHIVDrugName>";
-
-        TBHIVDrugTypeParameters tbhivdp(object_schema_name);
-
-        json::QuickBuilder schema(GetSchemaBase());
-        auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[tn] = json::String(idm_type_schema);
-        schema[ts] = json::Object();
-        schema[ts][object_schema_name] = tbhivdp.GetSchema().As<Object>();
-        schema["default"] = json::Object();
-
-        return schema;
     }
 
-    void TBHIVDrugCollection::ConfigureFromJsonAndKey(const Configuration* inputJson, const std::string& key)
+    TBHIVDrugTypeParameters* TBHIVDrugCollection::CreateObject()
     {
-        const auto& json_object = json_cast<const json::Object&>((*inputJson)[key]);
+        return new TBHIVDrugTypeParameters();
+    }
 
-        for(auto obj_member = json_object.Begin(); obj_member != json_object.End(); ++obj_member)
+    const TBHIVDrugTypeParameters& TBHIVDrugCollection::GetDrug( const std::string& rName ) const
+    {
+        TBHIVDrugTypeParameters* p_found = nullptr;
+        for( auto p_drug : m_Collection )
         {
-            std::string     tbhiv_drug_name = (*obj_member).name;
-            Configuration*  p_config_params = Configuration::CopyFromElement((*obj_member).element, inputJson->GetDataLocation());
-
-            tbhiv_drug_map[tbhiv_drug_name] = _new_ TBHIVDrugTypeParameters(tbhiv_drug_name);
-            tbhiv_drug_map[tbhiv_drug_name]->Configure(p_config_params);
-
-            delete p_config_params;
+            if( p_drug->GetName() == rName )
+            {
+                p_found = p_drug;
+            }
         }
-    }
-
-    size_t TBHIVDrugCollection::size() const
-    {
-        return tbhiv_drug_map.size();
-    }
-
-    TBHIVDrugTypeParameters* TBHIVDrugCollection::operator[](const std::string& drug_name) const
-    {
-        if(!tbhiv_drug_map.count(drug_name))
+        if( p_found == nullptr )
         {
-            std::ostringstream msg;
-            msg << "Drug name " << drug_name << " not in TBHIV_Drug_Params.";
-            throw IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, msg.str().c_str() );
+            std::stringstream ss;
+            ss << "'" << rName << "' is an unknown drug.\n";
+            ss << "Valid drug names are:\n";
+            for( auto p_drug : m_Collection )
+            {
+                ss << p_drug->GetName() << "\n";
+            }
+            throw GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
         }
-
-        return tbhiv_drug_map.at(drug_name);
+        return *p_found;
     }
 }

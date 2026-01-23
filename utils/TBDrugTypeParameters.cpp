@@ -9,13 +9,16 @@ SETUP_LOGGING("TBDTP")
 
 namespace Kernel
 {
-    TBDrugTypeParameters::TBDrugTypeParameters(const std::string& tb_drug_name)
-        : TB_drug_inactivation_rate(0.0f)
+    TBDrugTypeParameters::TBDrugTypeParameters()
+        : TB_drug_name()
+        , TB_drug_inactivation_rate(0.0f)
         , TB_drug_cure_rate(0.0f)
         , TB_drug_resistance_rate(0.0f)
         , TB_drug_relapse_rate(0.0f)
         , TB_drug_mortality_rate(0.0f)
     {
+        initConfigTypeMap("TB_Drug_Name",                         &TB_drug_name,                         Drug_Name_DESC_TEXT,                            "");
+
         initConfigTypeMap("TB_Drug_Inactivation_Rate",            &TB_drug_inactivation_rate,            TB_Drug_Inactivation_Rate_DESC_TEXT,            0.0f,      1.0f, 1.0f);
         initConfigTypeMap("TB_Drug_Cure_Rate",                    &TB_drug_cure_rate,                    TB_Drug_Cure_Rate_DESC_TEXT,                    0.0f,      1.0f, 1.0f);
         initConfigTypeMap("TB_Drug_Resistance_Rate",              &TB_drug_resistance_rate,              TB_Drug_Resistance_Rate_DESC_TEXT,              0.0f,      1.0f, 0.0f); // 0.0 means no resistance
@@ -30,6 +33,11 @@ namespace Kernel
     bool TBDrugTypeParameters::Configure(const ::Configuration *config)
     {
         return JsonConfigurable::Configure( config );
+    }
+
+    const std::string& TBDrugTypeParameters::GetName() const
+    {
+        return TB_drug_name;
     }
 }
 

@@ -817,7 +817,6 @@ void NodeDemographicsFactory::WriteDefaultDemographicsFile( const std::string& r
     json_metadata["Tool"]           = json::String("Eradication.exe");
     json_metadata["Author"]         = json::String("DTK");
     json_metadata["IdReference"]    = json::String(idreference.c_str());
-    json_metadata["NodeCount"]      = json::Number(nodeIDs.size());
 
     json_doc["Metadata"] = obj_metadata;
 

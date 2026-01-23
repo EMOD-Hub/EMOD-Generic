@@ -40,6 +40,7 @@
                 "DiseaseDeaths",
                 "NonDiseaseDeaths"
             ],
+            "SQL_Report_Name": "simulation_events.db",
             "SQL_Start_Time": 0.0
         },
         "PRIMARY": {

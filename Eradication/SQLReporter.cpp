@@ -14,7 +14,6 @@
 
 SETUP_LOGGING( "SQLReporter" )
 
-#define SQL_FILE "simulation_events.db"
 
 namespace Kernel
 {
@@ -50,6 +49,7 @@ namespace Kernel
         , start_time(0.0f)
         , event_list()
         , sql_properties_to_report()
+        , sql_rep_name()
     { }
 
 
@@ -59,25 +59,28 @@ namespace Kernel
 
     void SQLReporter::Initialize( unsigned int nrmSize )
     {
-        SetReportName(SQL_FILE);
+        SetReportName(sql_rep_name);
+
         if(JsonConfigurable::_dryrun )
         {
             return;
         }
 
+        std::string file_path = FileSystem::Concat(std::string(), sql_rep_name);
+
         if(EnvPtr->MPI.Rank == 0)
         {
             // Remove old file if present
-            FileSystem::RemoveFile(SQL_FILE);
+            FileSystem::RemoveFile(file_path);
 
             // Open/create database; leave open for read/write
             int rc = 0;
-            rc = sqlite3_open(SQL_FILE, &db);
+            rc = sqlite3_open(file_path.c_str(), &db);
             if( rc != SQLITE_OK )
             {
                 std::stringstream ss;
                 ss << "Received error '" << sqlite3_errmsg(db) << "' while creating database.";
-                throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, SQL_FILE, ss.str().c_str() );
+                throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, sql_rep_name.c_str(), ss.str().c_str() );
             }
             LOG_INFO("Database created\n");
 
@@ -100,7 +103,7 @@ namespace Kernel
             {
                 std::stringstream ss;
                 ss << "Received error '" << zErrMsg << "' while creating table.";
-                throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, SQL_FILE, ss.str().c_str() );
+                throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, sql_rep_name.c_str(), ss.str().c_str() );
             }
             LOG_INFO("Table created\n");
         }
@@ -111,12 +114,12 @@ namespace Kernel
         // Open database in other processes; leave open for read/write
         if(!db)
         {
-            int rc = sqlite3_open_v2(SQL_FILE, &db, SQLITE_OPEN_READWRITE, nullptr);
+            int rc = sqlite3_open_v2(file_path.c_str(), &db, SQLITE_OPEN_READWRITE, nullptr);
             if( rc != SQLITE_OK )
             {
                 std::stringstream ss;
-                ss << "Received error '" << sqlite3_errmsg(db) << "' while creating database.";
-                throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, SQL_FILE, ss.str().c_str() );
+                ss << "Received error '" << sqlite3_errmsg(db) << "' while opening database.";
+                throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, sql_rep_name.c_str(), ss.str().c_str() );
             }
             LOG_INFO("Database opened\n");
         }
@@ -128,10 +131,10 @@ namespace Kernel
         {
             std::stringstream ss;
             ss << "Received error '" << zErrMsg << "' while configuring database.";
-            throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, SQL_FILE, ss.str().c_str() );
+            throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, sql_rep_name.c_str(), ss.str().c_str() );
         }
 
-        // Set 3 second busy timeout
+        // Set adjustable busy timeout
         sqlite3_busy_timeout(db, busy_timeout);
 
         return;
@@ -144,6 +147,7 @@ namespace Kernel
 
         initConfigTypeMap("SQL_Busy_Timeout",     &busy_timeout,     SQL_Busy_Timeout_DESC_TEXT,     0.0f,  FLT_MAX,  3000.0f, "Enable_Event_DB");
         initConfigTypeMap("SQL_Start_Time",       &start_time,       SQL_Start_Time_DESC_TEXT,       0.0f,  FLT_MAX,     0.0f, "Enable_Event_DB");
+        initConfigTypeMap("SQL_Report_Name",      &sql_rep_name,     "Output file name for SQL report.", "simulation_events.db", "Enable_Event_DB");
 
         initVectorConfig("SQL_Events", eventTriggerList, inputJson, MetadataDescriptor::VectorOfEnum("SQL_Events", SQL_Events_DESC_TEXT, MDD_ENUM_ARGS(EventTrigger)), "Enable_Event_DB");
 
@@ -245,7 +249,7 @@ namespace Kernel
         {
             std::stringstream ss;
             ss << "Received error '" << zErrMsg << "' while writing to database.";
-            throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, SQL_FILE, ss.str().c_str() );
+            throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, sql_rep_name.c_str(), ss.str().c_str() );
         }
 
         return;
@@ -260,7 +264,7 @@ namespace Kernel
         {
             std::stringstream ss;
             ss << "Received error '" << sqlite3_errmsg(db) << "' while closing database.";
-            throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, SQL_FILE, ss.str().c_str() );
+            throw Kernel::FileIOException( __FILE__, __LINE__, __FUNCTION__, sql_rep_name.c_str(), ss.str().c_str() );
         }
         LOG_INFO("Database closed\n");
 

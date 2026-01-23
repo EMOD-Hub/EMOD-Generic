@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Configure.h"
+#include "JsonConfigurableCollection.h"
 #include "TBDrugTypeParameters.h"
 
 namespace Kernel 
@@ -15,9 +16,7 @@ namespace Kernel
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
     public:
-        static TBHIVDrugTypeParameters* CreateTBHIVDrugTypeParameters( const Configuration * inputJson, const std::string& tb_drug_name );
-
-        TBHIVDrugTypeParameters( const std::string& tb_drug_name );
+        TBHIVDrugTypeParameters();
         virtual ~TBHIVDrugTypeParameters();
 
     protected:
@@ -39,7 +38,7 @@ namespace Kernel
         float TB_reduced_acquire;
     };
 
-    class TBHIVDrugCollection : public JsonConfigurable, public IComplexJsonConfigurable
+    class TBHIVDrugCollection : public JsonConfigurableCollection<TBHIVDrugTypeParameters>
     {
     public:
         IMPLEMENT_NO_REFERENCE_COUNTING()
@@ -47,15 +46,9 @@ namespace Kernel
         TBHIVDrugCollection();
         virtual ~TBHIVDrugCollection();
 
-        // IComplexJsonConfigurable methods
-        virtual bool                HasValidDefault() const override { return true; }
-        virtual json::QuickBuilder  GetSchema()             override;
-        virtual void                ConfigureFromJsonAndKey(const Configuration*, const std::string& key) override;
-
-        virtual size_t size()                                   const;
-        TBHIVDrugTypeParameters* operator[](const std::string&) const;
+        const TBHIVDrugTypeParameters& GetDrug( const std::string& rName ) const;
 
     protected:
-        std::map<std::string, TBHIVDrugTypeParameters*> tbhiv_drug_map;
+        virtual TBHIVDrugTypeParameters* CreateObject() override;
     };
 }

@@ -1,13 +1,7 @@
-# -*- mode: python; -*-
-# This Python script, SConstruct, requires
-# 1. python V3.6 or above. you can get from http://www.python.org
-# 2. scons V2.1 or above. you can get from  http://www.scons.org
-#
 # This file configures the build environment, and then delegates to
 # several subordinate SConscript files, which describe specific build rules.
 #
 # Simply type scons to build everything in DTK
-#
 
 import os
 import re
@@ -15,9 +9,6 @@ import sys
 import platform
 
 import SCons.Tool.MSCommon.vc  as  scons_vc
-
-#later
-#import libdeps
 
 def findSettingsSetup():
     sys.path.append( "." )
@@ -116,9 +107,6 @@ def get_build_var():
     else:
         bv = "Release"
 
-    #if has_option( "Dlls" ):
-        #bv = bv + "Dll"
-
     return bv
 
 # compiling options
@@ -126,12 +114,9 @@ add_option( "Release" , "release build" , 0 , True)
 add_option( "Debug" , "debug build" , 0 , True )
 
 # module/linking options
-#add_option( "Dlls" , "build all dlls" , 0 , True )
-#add_option( "Interventions" , "build all intervention dlls" , 0 , True )
 add_option( "DllDisease" , "build disease target dll" , 1 , True) #, Disease="Generic" )
 add_option( "Disease" , "build only files for disease target " , 1 , True) #, Disease="Generic" )
 add_option( "Report" , "build report target dll" , 1 , True) #, Report="Spatial" )
-#add_option( "Campaign" , "build all campaign target dll" , 1 , True) #, Campaign=Bednet
  
 # installation options
 add_option( "Install" , "install target dll into given directory" , 1 , True) #, Install="install dir" )
@@ -142,13 +127,8 @@ add_option( "TestSugar" , "Build in additional logging for scientific or other v
 Dbg = has_option( "Debug" )
 Rel = has_option( "Release" )
 
-# print "Release = {0}".format(release)
-# print "Debug = {0}".format(debug)
-
 
 # --- environment setup ---
-
-#variantDir = get_variant_dir()
 
 s = "#build/${PYSYSPLATFORM}/"
 bvar = get_build_var()
@@ -157,7 +137,6 @@ buildDir = s + bvar + "/"
 def printLocalInfo():
     import sys, SCons
     print( "scons version: " + SCons.__version__ )
-    #print( sys.version_info )
     print( "python version: " + " ".join( [ str(i) for i in sys.version_info ] ) )
 
 printLocalInfo()
@@ -167,10 +146,12 @@ MSVC_ver = None
 if os.sys.platform == 'win32':
     msvc_list = scons_vc.get_installed_vcs()
 
-    if('14.3' in msvc_list):
+    if('14.5' in msvc_list):
+        MSVC_ver = '14.5'
+    elif('14.3' in msvc_list):
         MSVC_ver = '14.3'
     else:
-        raise RuntimeError("Only supports MSVC 14.3")
+        raise RuntimeError("No compatable version of MSVC Build Tools found.")
 
 pa = platform.architecture()
 pi = os.sys.platform
@@ -246,7 +227,6 @@ else:
     env.Append( CCFLAGS=["-w"] )
     env.Append( CCFLAGS=["-ffloat-store"] )
     env.Append( CCFLAGS=["-Wno-unknown-pragmas"] )
-    #env.Append( CCFLAGS=["-save-temps"] )
     env.Append( EXTRACPPPATH=[
                           "#/Eradication",
                           "#/interventions",
@@ -259,16 +239,8 @@ else:
                           "#/snappy",
                           "#/lz4/lib"])
 
-    if(sys.version_info.minor == 6):
-        env.Append( LIBS=["python3.6m"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.6m"] )
-    elif(sys.version_info.minor == 7):
-        env.Append( LIBS=["python3.7m"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.7m"] )
-    elif(sys.version_info.minor == 8):
-        env.Append( LIBS=["python3.8"] )
-        env.Append( EXTRACPPPATH=["/usr/include/python3.8"] )
-    elif(sys.version_info.minor == 9):
+    # Python
+    if(sys.version_info.minor == 9):
         env.Append( LIBS=["python3.9"] )
         env.Append( EXTRACPPPATH=["/usr/include/python3.9"] )
     elif(sys.version_info.minor == 10):
@@ -292,7 +264,6 @@ platform = os.sys.platform
 if "uname" in dir(os):
     processor = os.uname()[4]
 else:
-#    processor = "i386"
     processor = "x86_64"
 
 env['PROCESSOR_ARCHITECTURE'] = processor
@@ -487,15 +458,6 @@ def setEnvAttrs(myenv):
     else:
         myenv['Report'] = ""
 
-    #if dllcampaign:
-    #    myenv['Campaign'] = get_option( 'Campaign' )
-    #    print "Campaign=" + myenv['Campaign']
-    #    if myenv['Campaign'] not in campaigndlls:
-    #        print "Unknown campaign type: " + myenv['Campaign']
-    #        exit(1)
-    #else:
-    #    myenv['Campaign'] = ""
-    
     if has_option('Install'):
         myenv['Install'] = get_option( 'Install' )
     else:
