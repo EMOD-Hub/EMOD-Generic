@@ -46,7 +46,6 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinxext.remoteliteralinclude',
     'myst_parser',
-    'sphinx_search.extension',
     'sphinx.ext.viewcode', # link to view source code
     'myst_parser', # source files written in MD or RST
 ]
