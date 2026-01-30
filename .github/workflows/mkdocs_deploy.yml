@@ -3,7 +3,7 @@ name: Build docs and deploy to GH Pages
 on:
   push:
     branches:
-      - main
+      - Generic-Ongoing
 
   # Allows manual run from the Actions tab
   workflow_dispatch:

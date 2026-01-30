@@ -3,7 +3,7 @@ name: Build docs
 on:
   pull_request:
     branches:
-      - main
+      - Generic-Ongoing
 
   # Allows manual run from the Actions tab
   workflow_dispatch:
