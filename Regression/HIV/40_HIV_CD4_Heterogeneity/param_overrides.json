@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/hiv_default_config.json",
+    "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
         "CD4_At_Death_LogLogistic_Heterogeneity": 0.7,
         "CD4_At_Death_LogLogistic_Scale": 2.96,
@@ -134,15 +134,7 @@
         "Run_Number": 40,
         "Simulation_Duration": 10000,
         "Simulation_Timestep": 7,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
         "logLevel_SimulationConfig": "DEBUG",
-        "x_Base_Population": 5e-06
+        "x_Base_Population": 0.000005
     }
 }

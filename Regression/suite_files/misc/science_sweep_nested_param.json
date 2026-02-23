@@ -1,8 +1,0 @@
-{
-    "science_sweep": 
-        {
-            "path": "Dengue/SFTs/SymptomaticNaiveInfectiousness",
-            "param_names": ["Vector_Species_Params:aegypti:Adult_Life_Expectancy"],
-            "Vector_Species_Params:aegypti:Adult_Life_Expectancy_values": [1, 5, 14, 28]
-        }
-}

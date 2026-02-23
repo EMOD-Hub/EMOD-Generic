@@ -26,14 +26,6 @@
         "Report_HIV_Infection_Stop_Year": 2100,
         "Run_Number": 3,
         "Simulation_Duration": 5,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
         "logLevel_SimulationConfig": "INFO"
     }
 }

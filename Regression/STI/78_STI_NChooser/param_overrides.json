@@ -1,11 +1,11 @@
 {
-    "Default_Config_Path": "../.././defaults/sti_default_config.json",
+    "Default_Config_Path": "defaults/sti_default_config.json",
     "parameters": {
         "Base_Year": 1960,
         "Config_Name": "78_STI_NChooser",
         "Demographics_Filenames": [
-            "../../HIV/input/SA_UN_demographics.json",
-            "../../HIV/input/PFA_overlay.json"
+            "../inputs/SA_UN_demographics.json",
+            "../inputs/PFA_overlay.json"
         ],
         "Enable_Report_Event_Recorder": 1,
         "Enable_Strain_Tracking": 0,

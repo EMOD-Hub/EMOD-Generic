@@ -22,8 +22,8 @@
         "Default_Geography_Initial_Node_Population": 1000,
         "Default_Geography_Torus_Size": 10,
         "Demographics_Filenames": [
-            "../../HIV/input/SA_UN_demographics.json",
-            "../../HIV/input/PFA_overlay.json"
+            "../inputs/SA_UN_demographics.json",
+            "../inputs/PFA_overlay.json"
         ],
         "Enable_Aging": 1,
         "Enable_Birth": 1,
@@ -56,7 +56,6 @@
         "Enable_Termination_On_Total_Wall_Time": 0,
         "Enable_Termination_On_Zero_Total_Infectivity": 0,
         "Enable_Vital_Dynamics": 1,
-        "Geography": "SouthAfrica",
         "Incubation_Period_Constant": 0,
         "Incubation_Period_Distribution": "CONSTANT_DISTRIBUTION",
         "Individual_Sampling_Type": "TRACK_ALL",

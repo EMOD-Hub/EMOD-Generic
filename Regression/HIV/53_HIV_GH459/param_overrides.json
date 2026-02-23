@@ -77,7 +77,6 @@
         "Enable_Timestep_Channel_In_Report": 0,
         "Family_Migration_Filename": "",
         "Family_Migration_Roundtrip_Duration": 0.0,
-        "Geography": "Test",
         "HIV_Adult_Survival_Scale_Parameter_Intercept": 21.182,
         "HIV_Adult_Survival_Scale_Parameter_Slope": -0.2717,
         "HIV_Adult_Survival_Shape_Parameter": 2,
@@ -106,8 +105,8 @@
             25
         ],
         "Male_To_Female_Relative_Infectivity_Multipliers": [
-            1.0295746213767871,
-            1.0295746213767871,
+            1.0295746213767872,
+            1.0295746213767872,
             2.587797572392192
         ],
         "Maternal_Infection_Transmission_Probability": 0.3,
@@ -135,7 +134,7 @@
         "Python_Script_Path": "LOCAL",
         "RARELY_CHANGED": "",
         "REPORTING": "",
-        "Regional_Migration_Filename": "Kenya_Regional_Migration_from_Census.bin",
+        "Regional_Migration_Filename": "../inputs/Kenya_Regional_Migration_from_Census.bin",
         "Regional_Migration_Roundtrip_Duration": 0.0,
         "Regional_Migration_Roundtrip_Probability": 0.0,
         "Report_Coital_Acts": 0,

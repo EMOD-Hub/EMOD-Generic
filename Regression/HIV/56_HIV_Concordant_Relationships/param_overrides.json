@@ -1,13 +1,13 @@
 {
-    "Default_Config_Path": "../../defaults/hiv_default_config.json",
+    "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
         "Base_Year": 1990,
         "Config_Name": "56_HIV_Concordant_Relationships",
         "Demographics_Filenames": [
-            "../input/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
-            "../input/PFA_overlay.json",
-            "../input/InterventionStatus_overlay.json",
-            "../input/PFA_overlay_marital_10_only.json"
+            "../inputs/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
+            "../inputs/PFA_overlay.json",
+            "../inputs/InterventionStatus_overlay.json",
+            "../inputs/PFA_overlay_marital_10_only.json"
         ],
         "Enable_Birth": 0,
         "Enable_Demographics_Reporting": 0,
@@ -32,9 +32,6 @@
         "Report_HIV_Period": 30,
         "Simulation_Duration": 730,
         "Simulation_Timestep": 1,
-        "____________DEMOGRAPHICS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
         "x_Base_Population": 0.0001
     }
 }

@@ -422,7 +422,6 @@
     },
     "PRIMARY": {
         "Config_Name": "NO_DEFAULT_NAME",
-        "Geography": "NO_DEFAULT_GEOGRAPHY",
         "Memory_Usage_Halting_Threshold_Working_Set_MB": 4000,
         "Memory_Usage_Warning_Threshold_Working_Set_MB": 3500,
         "Node_Grid_Size": 0.042,

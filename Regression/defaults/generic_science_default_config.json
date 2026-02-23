@@ -183,7 +183,6 @@
             "ENUMS": {
                 "Simulation_Type": "GENERIC_SIM"
             },
-            "Geography": "DEFAULT_GEOGRAPHY_SHOULD_BE_SET",
             "Memory_Usage_Halting_Threshold_Working_Set_MB": 4000,
             "Memory_Usage_Warning_Threshold_Working_Set_MB": 3500,
             "Python_Script_Path": "SHARED",

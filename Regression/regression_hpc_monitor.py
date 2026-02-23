@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import subprocess
 import datetime
 import json
@@ -31,15 +29,10 @@ class HpcMonitor(regression_local_monitor.Monitor):
         self.options['/nodegroup:'] = self.params.hpc_node_group
         if self.params.hpc_user != '':
             self.options['/user:'] = self.params.hpc_user
-        # if self.params.hpc_password != '':
-        #    self.options['/password:'] = self.params.hpc_password
         if self.params.measure_perf:
             self.options['/exclusive'] = ' '
         if self.scenario_type == 'tests':
             self.options['/stdout:'] = 'StdOut.txt'
-        # else:
-        #    print( "Going to redirect stdout, not using parameter." )
-        #    self.options['/stdout:'] = 'Test.txt'
         self.options['/stderr:'] = 'StdErr.txt'
 
     def test_submission(self):
@@ -53,7 +46,6 @@ class HpcMonitor(regression_local_monitor.Monitor):
         assert p.returncode == 0, hpc_command_line
 
     def run(self):
-    
         self.__class__.sems.acquire()
         self.sim_dir = self.sim_root + "\\" + self.sim_timestamp   # can't use os.path.join() here because on linux it'll give us the wrong dir-separator...
         if self.suffix is not None:
@@ -69,33 +61,15 @@ class HpcMonitor(regression_local_monitor.Monitor):
         mpi_core_option = None
         mpi_core_count  = ''
 
-        if self.params.measure_perf:
-            if numcores % self.params.cores_per_node == 0:
-                hpc_resource_option = '/numnodes:'
-                hpc_resource_count  = str(numcores / self.params.cores_per_node)
-                mpi_core_option = '-c'
-                mpi_core_count  = str(self.params.cores_per_node)
-            elif numcores == self.params.cores_per_socket:
-                hpc_resource_option = '/numsockets:'
-                hpc_resource_count  = '1'
-                mpi_core_option = '-c'
-                mpi_core_count  = str(self.params.cores_per_socket)
-            # "bail" here, we don't have a multiple of cores per node nor can we fit on a single socket
-
         #eradication.exe commandline
         eradication_bin = self.config_json['bin_path']
         eradication_options = {}
         if "Eradication" in eradication_bin:
             eradication_options = { '--config':'config.json', '--progress':' ' }
-        input_dir = self.get_input_path_from_geog( self.params.input_root )
-        if input_dir:
-            eradication_options[ "--input-path" ] = input_dir
 
         # python-script-path is optional parameter.
         if "PSP" in self.config_json:
             eradication_options[ "--python-script-path" ] = self.config_json["PSP"]
-        #if params.dll_root is not None and params.use_dlls is True:
-        #    eradication_options['--dll-path'] = params.dll_root
         eradication_params = []
         eradication_command = clg.CommandlineGenerator(eradication_bin, eradication_options, eradication_params)
 
@@ -104,7 +78,6 @@ class HpcMonitor(regression_local_monitor.Monitor):
         mpi_options = {}
         if mpi_core_option is not None:
             mpi_options[mpi_core_option] = mpi_core_count
-        #print( str( eradication_command ) )
         mpi_params = [eradication_command.Commandline]
         mpi_command = clg.CommandlineGenerator(mpi_bin, mpi_options, mpi_params)
         
@@ -116,10 +89,6 @@ class HpcMonitor(regression_local_monitor.Monitor):
         jobsubmit_params = [mpi_command.Commandline]
         jobsubmit_command = clg.CommandlineGenerator(jobsubmit_bin, self.options, jobsubmit_params)
 
-        # print( 'simulation command line:', eradication_command.Commandline )
-        # print( 'mpiexec command line:   ', mpi_command.Commandline )
-        # print( 'job submit command line:', jobsubmit_command.Commandline )
-
         hpc_command_line = jobsubmit_command.Commandline
         if self.scenario_type != 'tests':
             hpc_command_line = hpc_command_line  + " ^> Test.txt"
@@ -129,14 +98,8 @@ class HpcMonitor(regression_local_monitor.Monitor):
 
         while job_id == -1:
             num_retries += 1
-            #print( "executing hpc_command_line: " + hpc_command_line + "\n")
-
-            #p = subprocess.Popen( hpc_command_line.split(), shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-            #p = subprocess.Popen( hpc_command_line.split(), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
             p = subprocess.Popen( hpc_command_line, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
             [hpc_pipe_stdout, hpc_pipe_stderr] = p.communicate()
-            #print "Trying to read hpc response..."
-            #print hpc_pipe_stdout
             line = hpc_pipe_stdout
 
             if p.returncode == 0:
@@ -162,17 +125,11 @@ class HpcMonitor(regression_local_monitor.Monitor):
 
         check_status = True
         while check_status:
-            #print "executing hpc_command_line: " + monitor_cmd_line
-            #print "Checking status of job " + str(job_id)
-            #hpc_pipe = os.popen( monitor_cmd_line )
             hpc_pipe = subprocess.Popen( monitor_cmd_line.split(), shell=False, stdout=subprocess.PIPE )
             [hpc_pipe_stdout, hpc_pipe_stderr] = hpc_pipe.communicate()
             lines = hpc_pipe_stdout
-            #for line in hpc_pipe.readlines():
-            #print lines
             for line in lines.decode().split('\n'):
                 res = line.split( ':' )
-                #print "DEBUG: " + str(res[0])
                 if res[0].strip() == "State":
                     state = res[1].strip()
                     if state == "Failed":
@@ -180,12 +137,10 @@ class HpcMonitor(regression_local_monitor.Monitor):
                         print( self.scenario_path + " FAILED!" )
                         check_status = False
                         self.report.addErroringTest( self.scenario_path, "", self.sim_dir, self.scenario_type )
-                        #self.finish(sim_dir, False)
                     if state == "Canceled":
                         self.__class__.completed = self.__class__.completed + 1
                         print( "Canceled!" )
                         check_status = False
-                        #self.finish(sim_dir, False)
                     elif state == "Completed" or state == "Finished":
                         self.__class__.completed = self.__class__.completed + 1
                         print( str(self.__class__.completed) + " out of " + str(len(ru.reg_threads)) + " completed." )
@@ -210,11 +165,10 @@ class HpcMonitor(regression_local_monitor.Monitor):
                                         self.verify( self.sim_dir, file, "Channels" )
                         elif self.scenario_type == 'science':   # self.report <> None:
                             self.science_verify( self.sim_dir )
+
                         elif self.scenario_type == 'pymod':   # self.report <> None:
                             self.pymod_verify( self.sim_dir )
 
                     break
             time.sleep(5)
         self.__class__.sems.release()
-
-

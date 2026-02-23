@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/typhoid_default_config.json",
+    "Default_Config_Path": "defaults/typhoid_default_config.json",
     "parameters": {
         "Base_Population_Scale_Factor": 10,
         "Config_Name": "Typhoid_15",

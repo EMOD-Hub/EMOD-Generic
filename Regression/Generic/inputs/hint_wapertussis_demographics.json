@@ -1,0 +1,416 @@
+{
+    "Metadata": {
+        "Author": "ewenger", 
+        "NodeCount": 39, 
+        "Tool": "table_to_demographics.py", 
+        "IdReference": "SampleContent", 
+        "DateCreated": "2013-08-01 15:37:16.853000"
+    },
+    "Defaults": {
+        "NodeAttributes": {
+            "BirthRate_DESCRIPTION": "Replacement of stable age distribution: Birth_Rate_Dependence=DEMOGRAPHIC_DEP_RATE (i.e. 14-45 year-old PossibleMothers)",
+            "BirthRate": 0.00017675, 
+
+            "Airport": 0, 
+            "Region": 1, 
+            "Altitude": 0, 
+            "Seaport": 0
+        }, 
+        "IndividualAttributes": {
+
+            "AgeDistribution_DESCRIPTION": "Box between age 0 and 60 years: Age_Initialization_Distribution_Type=DISTRIBUTION_SIMPLE", 
+            "AgeDistributionFlag": 1,
+            "AgeDistribution1": 0, 
+            "AgeDistribution2": 21900, 
+
+            "PrevalenceDistribution_DESCRIPTION": "No initial infections", 
+            "PrevalenceDistributionFlag": 0, 
+            "PrevalenceDistribution1": 0, 
+            "PrevalenceDistribution2": 0, 
+
+            "RiskDistributionFlag": 0, 
+            "RiskDistribution1": 1, 
+            "RiskDistribution2": 0, 
+
+            "SusceptibilityDistributionFlag": 0, 
+            "SusceptibilityDistribution1": 1, 
+            "SusceptibilityDistribution2": 0, 
+
+            "MigrationHeterogeneityDistributionFlag": 0, 
+            "MigrationHeterogeneityDistribution1": 1, 
+            "MigrationHeterogeneityDistribution2": 0, 
+
+            "MortalityDistribution_DESCRIPTION": "WA state (1999-2010).  Source: wonder.cdc.gov",
+            "MortalityDistribution": {
+                "NumDistributionAxes": 2,
+                "AxisNames": [ "gender", "age" ],
+                "AxisUnits": [ "male=0,female=1", "years" ],
+                "AxisScaleFactors": [ 1, 365 ],
+                "NumPopulationGroups": [ 2, 15 ],
+                "PopulationGroups": [
+                    [ 0, 1 ],
+                    [ 0, 1, 2.5, 7.5, 12.5, 17.5, 22.5, 30, 40, 50, 60, 70, 80, 90, 120 ]
+                ],
+                "ResultUnits": "annual deaths per 1000 individuals",
+                "ResultScaleFactor": 0.00000273972602739726027397260273973,
+                "ResultValues": [
+                    [ 4.8, 0.2, 0.1, 0.2, 0.5, 1.1, 1.1, 1.7, 4.1, 9.2, 19.8, 53.7, 154.2, 1000, 1000 ],
+                    [ 4.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.5, 1.1, 2.6, 5.5, 14.3, 40.1, 129.3, 1000, 1000 ]
+                ]
+            }
+        }
+    }, 
+    "Nodes": [
+        {
+            "County": "Adams", 
+            "NodeAttributes": {
+                "Latitude": 47.1274, 
+                "InitialPopulation": 19200, 
+                "Longitude": -118.38
+            }, 
+            "NodeID": 1
+        }, 
+        {
+            "County": "Asotin", 
+            "NodeAttributes": {
+                "Latitude": 46.3393, 
+                "InitialPopulation": 21800, 
+                "Longitude": -117.0482
+            }, 
+            "NodeID": 3
+        }, 
+        {
+            "County": "Benton", 
+            "NodeAttributes": {
+                "Latitude": 46.2068, 
+                "InitialPopulation": 183400, 
+                "Longitude": -119.7689
+            }, 
+            "NodeID": 5
+        }, 
+        {
+            "County": "Chelan", 
+            "NodeAttributes": {
+                "Latitude": 47.4235, 
+                "InitialPopulation": 73600, 
+                "Longitude": -120.3103
+            }, 
+            "NodeID": 7
+        }, 
+        {
+            "County": "Clallam", 
+            "NodeAttributes": {
+                "Latitude": 48.1181, 
+                "InitialPopulation": 72350, 
+                "Longitude": -123.4307
+            }, 
+            "NodeID": 9
+        }, 
+        {
+            "County": "Clark", 
+            "NodeAttributes": {
+                "Latitude": 45.6387, 
+                "InitialPopulation": 435500, 
+                "Longitude": -122.6615
+            }, 
+            "NodeID": 11
+        }, 
+        {
+            "County": "Columbia", 
+            "NodeAttributes": {
+                "Latitude": 46.3238, 
+                "InitialPopulation": 4100, 
+                "Longitude": -117.9724
+            }, 
+            "NodeID": 13
+        }, 
+        {
+            "County": "Cowlitz", 
+            "NodeAttributes": {
+                "Latitude": 46.1468, 
+                "InitialPopulation": 103300, 
+                "Longitude": -122.9084
+            }, 
+            "NodeID": 15
+        }, 
+        {
+            "County": "Douglas", 
+            "NodeAttributes": {
+                "Latitude": 47.6471, 
+                "InitialPopulation": 39280, 
+                "Longitude": -120.0712
+            }, 
+            "NodeID": 17
+        }, 
+        {
+            "County": "Ferry", 
+            "NodeAttributes": {
+                "Latitude": 48.6482, 
+                "InitialPopulation": 7650, 
+                "Longitude": -118.7378
+            }, 
+            "NodeID": 19
+        }, 
+        {
+            "County": "Franklin", 
+            "NodeAttributes": {
+                "Latitude": 46.2396, 
+                "InitialPopulation": 84800, 
+                "Longitude": -119.1006
+            }, 
+            "NodeID": 21
+        }, 
+        {
+            "County": "Garfield", 
+            "NodeAttributes": {
+                "Latitude": 46.4749, 
+                "InitialPopulation": 2250, 
+                "Longitude": -117.6027
+            }, 
+            "NodeID": 23
+        }, 
+        {
+            "County": "Grant", 
+            "NodeAttributes": {
+                "Latitude": 47.3176, 
+                "InitialPopulation": 91800, 
+                "Longitude": -119.5536
+            }, 
+            "NodeID": 25
+        }, 
+        {
+            "County": "Grays Harbor", 
+            "NodeAttributes": {
+                "Latitude": 46.9812, 
+                "InitialPopulation": 73200, 
+                "Longitude": -123.6027
+            }, 
+            "NodeID": 27
+        }, 
+        {
+            "County": "Island", 
+            "NodeAttributes": {
+                "Latitude": 48.2198, 
+                "InitialPopulation": 79700, 
+                "Longitude": -122.6863
+            }, 
+            "NodeID": 29
+        }, 
+        {
+            "County": "Jefferson", 
+            "NodeAttributes": {
+                "Latitude": 48.117, 
+                "InitialPopulation": 30275, 
+                "Longitude": -122.7604
+            }, 
+            "NodeID": 31
+        }, 
+        {
+            "County": "King", 
+            "NodeAttributes": {
+                "Latitude": 47.6062, 
+                "InitialPopulation": 1981900, 
+                "Longitude": -122.3321
+            }, 
+            "NodeID": 33
+        }, 
+        {
+            "County": "Kitsap", 
+            "NodeAttributes": {
+                "Latitude": 47.5404, 
+                "InitialPopulation": 254000, 
+                "Longitude": -122.6362
+            }, 
+            "NodeID": 35
+        }, 
+        {
+            "County": "Kittitas", 
+            "NodeAttributes": {
+                "Latitude": 46.9965, 
+                "InitialPopulation": 41900, 
+                "Longitude": -120.5478
+            }, 
+            "NodeID": 37
+        }, 
+        {
+            "County": "Klickitat", 
+            "NodeAttributes": {
+                "Latitude": 45.8207, 
+                "InitialPopulation": 20700, 
+                "Longitude": -120.8217
+            }, 
+            "NodeID": 39
+        }, 
+        {
+            "County": "Lewis", 
+            "NodeAttributes": {
+                "Latitude": 46.662, 
+                "InitialPopulation": 76200, 
+                "Longitude": -122.964
+            }, 
+            "NodeID": 41
+        }, 
+        {
+            "County": "Lincoln", 
+            "NodeAttributes": {
+                "Latitude": 47.654, 
+                "InitialPopulation": 10675, 
+                "Longitude": -118.15
+            }, 
+            "NodeID": 43
+        }, 
+        {
+            "County": "Mason", 
+            "NodeAttributes": {
+                "Latitude": 47.2151, 
+                "InitialPopulation": 61800, 
+                "Longitude": -123.1007
+            }, 
+            "NodeID": 45
+        }, 
+        {
+            "County": "Okanogan", 
+            "NodeAttributes": {
+                "Latitude": 48.3613, 
+                "InitialPopulation": 41500, 
+                "Longitude": -119.5834
+            }, 
+            "NodeID": 47
+        }, 
+        {
+            "County": "Pacific", 
+            "NodeAttributes": {
+                "Latitude": 46.6632, 
+                "InitialPopulation": 21000, 
+                "Longitude": -123.8046
+            }, 
+            "NodeID": 49
+        }, 
+        {
+            "County": "Pend Oreille", 
+            "NodeAttributes": {
+                "Latitude": 48.1796, 
+                "InitialPopulation": 13150, 
+                "Longitude": -117.0433
+            }, 
+            "NodeID": 51
+        }, 
+        {
+            "County": "Pierce", 
+            "NodeAttributes": {
+                "Latitude": 47.2529, 
+                "InitialPopulation": 814500, 
+                "Longitude": -122.4443
+            }, 
+            "NodeID": 53
+        }, 
+        {
+            "County": "San Juan", 
+            "NodeAttributes": {
+                "Latitude": 48.5343, 
+                "InitialPopulation": 16000, 
+                "Longitude": -123.0171
+            }, 
+            "NodeID": 55
+        }, 
+        {
+            "County": "Skagit", 
+            "NodeAttributes": {
+                "Latitude": 48.4212, 
+                "InitialPopulation": 118600, 
+                "Longitude": -122.334
+            }, 
+            "NodeID": 57
+        }, 
+        {
+            "County": "Skamania", 
+            "NodeAttributes": {
+                "Latitude": 45.6957, 
+                "InitialPopulation": 11300, 
+                "Longitude": -121.8845
+            }, 
+            "NodeID": 59
+        }, 
+        {
+            "County": "Snohomish", 
+            "NodeAttributes": {
+                "Latitude": 47.979, 
+                "InitialPopulation": 730500, 
+                "Longitude": -122.2021
+            }, 
+            "NodeID": 61
+        }, 
+        {
+            "County": "Spokane", 
+            "NodeAttributes": {
+                "Latitude": 47.6588, 
+                "InitialPopulation": 480000, 
+                "Longitude": -117.426
+            }, 
+            "NodeID": 63
+        }, 
+        {
+            "County": "Stevens", 
+            "NodeAttributes": {
+                "Latitude": 48.545, 
+                "InitialPopulation": 43800, 
+                "Longitude": -117.901
+            }, 
+            "NodeID": 65
+        }, 
+        {
+            "County": "Thurston", 
+            "NodeAttributes": {
+                "Latitude": 47.0379, 
+                "InitialPopulation": 260100, 
+                "Longitude": -122.9007
+            }, 
+            "NodeID": 67
+        }, 
+        {
+            "County": "Wahkiakum", 
+            "NodeAttributes": {
+                "Latitude": 46.2032, 
+                "InitialPopulation": 4020, 
+                "Longitude": -123.3832
+            }, 
+            "NodeID": 69
+        }, 
+        {
+            "County": "Walla Walla", 
+            "NodeAttributes": {
+                "Latitude": 46.0646, 
+                "InitialPopulation": 59500, 
+                "Longitude": -118.343
+            }, 
+            "NodeID": 71
+        }, 
+        {
+            "County": "Whatcom", 
+            "NodeAttributes": {
+                "Latitude": 48.7596, 
+                "InitialPopulation": 205800, 
+                "Longitude": -122.4882
+            }, 
+            "NodeID": 73
+        }, 
+        {
+            "County": "Whitman", 
+            "NodeAttributes": {
+                "Latitude": 46.8802, 
+                "InitialPopulation": 46000, 
+                "Longitude": -117.3643
+            }, 
+            "NodeID": 75
+        }, 
+        {
+            "County": "Yakima", 
+            "NodeAttributes": {
+                "Latitude": 46.6021, 
+                "InitialPopulation": 247250, 
+                "Longitude": -120.5059
+            }, 
+            "NodeID": 77
+        }
+    ]
+}

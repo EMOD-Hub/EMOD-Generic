@@ -1,0 +1,65 @@
+{
+    "Default_Config_Path": "defaults/generic_scenario_default_config.json",
+    "parameters": {
+        "DEMOGRAPHICS": {
+            "Birth_Rate_Dependence": "POPULATION_DEP_RATE",
+            "Demographics_Filenames": [
+                "../inputs/Madagascar_Nosibe_2.5arcmin_demographics.json",
+                "demographics_overlay_initial_prevalence.json"
+            ],
+            "Enable_Demographics_Birth": 1,
+            "Enable_Initial_Prevalence": 1,
+            "IMMUNITY": {
+                "Acquisition_Blocking_Immunity_Decay_Rate": 0.01,
+                "Acquisition_Blocking_Immunity_Duration_Before_Decay": 90,
+                "Enable_Immune_Decay": 0,
+                "Transmission_Blocking_Immunity_Decay_Rate": 0.01,
+                "Transmission_Blocking_Immunity_Duration_Before_Decay": 90
+            },
+            "MORTALITY": {
+                "Mortality_Blocking_Immunity_Duration_Before_Decay": 90,
+                "Mortality_Time_Course": "MORTALITY_AFTER_INFECTIOUS"
+            },
+            "SAMPLING": {
+                "Sample_Rate_Birth": 1
+            }
+        },
+        "DISEASE": {
+            "INCUBATION": {
+                "Incubation_Period_Distribution": "EXPONENTIAL_DISTRIBUTION",
+                "Incubation_Period_Exponential": 3
+            },
+            "INFECTIOUSNESS": {
+                "Base_Infectivity_Constant": 2.5,
+                "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION"
+            }
+        },
+        "EXECUTION": {
+            "CLUSTER": {
+                "Load_Balance_Filename": "../inputs/Madagascar_Nosibe_2.5arcmin_load_balancing_8procs.bin",
+                "Num_Cores": 8
+            }
+        },
+        "FUDGE_FACTORS": {
+            "x_Birth": 10,
+            "x_Other_Mortality": 10
+        },
+        "MIGRATION": {
+            "Enable_Migration_Heterogeneity": 0,
+            "LOCAL": {
+                "Enable_Local_Migration": 1,
+                "Local_Migration_Filename": "../inputs/Madagascar_Nosibe_2.5arcmin_local_migration.bin"
+            },
+            "Migration_Model": "FIXED_RATE_MIGRATION",
+            "Migration_Pattern": "WAYPOINTS_HOME",
+            "Roundtrip_Waypoints": 5
+        },
+        "PRIMARY": {
+            "Config_Name": "04_SEIR_VitalDynamics -- multicore -- Madagascar_Nosibe",
+            "Enable_Strain_Tracking": 0,
+            "Enable_Termination_On_Zero_Total_Infectivity": 0,
+            "Run_Number": 1,
+            "Simulation_Duration": 365
+        }
+    }
+}

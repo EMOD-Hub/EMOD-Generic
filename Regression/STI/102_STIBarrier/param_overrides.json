@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/sti_default_config.json",
+    "Default_Config_Path": "defaults/sti_default_config.json",
     "parameters": {
         "Base_Infectivity_Constant": 10,
         "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
@@ -8,30 +8,20 @@
         "Condom_Transmission_Blocking_Probability": 1.0,
         "Config_Name": "102_STIBarrier",
         "Demographics_Filenames": [
-            "../../HIV/input/SA_UN_demographics.json",
-            "../../HIV/input/PFA_overlay.json",
+            "../inputs/SA_UN_demographics.json",
+            "../inputs/PFA_overlay.json",
             "PFA_Concurrency.json"
         ],
         "Enable_Maternal_Infection_Transmission": 1,
         "Enable_Natural_Mortality": 0,
         "Enable_Strain_Tracking": 0,
         "Enable_Termination_On_Zero_Total_Infectivity": 0,
-        "Geography": "SouthAfrica",
         "Infectious_Period_Gaussian_Mean": 120,
         "Num_Cores": 1,
         "PFA_Burnin_Duration_In_Days": 5475,
         "Run_Number": 1,
         "Simulation_Duration": 7300,
         "Simulation_Timestep": 30,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________MIGRATION___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
         "logLevel_default": "WARNING",
         "x_Base_Population": 0.0001
     }

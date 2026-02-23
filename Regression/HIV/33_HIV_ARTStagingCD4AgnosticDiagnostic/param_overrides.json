@@ -1,17 +1,13 @@
 {
     "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
-        ".logLevel_HIVARTStagingByCD4Diagnostic": "DEBUG",
-        ".logLevel_Simulation": "WARNING",
-        ".logLevel_StandardEventCoordinator": "DEBUG",
-        ".logLevel_default": "DEBUG",
-        "Base_Population_Scale_Factor": 1e-05,
+        "Base_Population_Scale_Factor": 0.00001,
         "Base_Year": 1990,
         "Config_Name": "33_HIV_ARTStagingCD4AgnosticDiagnostic",
         "Demographics_Filenames": [
-            "../input/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
-            "../input/InterventionStatus_HasActiveTB_overlay.json",
-            "../input/PFA_overlay.json"
+            "../inputs/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
+            "../inputs/InterventionStatus_HasActiveTB_overlay.json",
+            "../inputs/PFA_overlay.json"
         ],
         "Enable_Birth": 0,
         "Enable_Report_Event_Recorder": 1,
@@ -41,14 +37,6 @@
         "Run_Number": 210,
         "Simulation_Duration": 30,
         "Simulation_Timestep": 1,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
         "x_Birth": 20.025
     }
 }

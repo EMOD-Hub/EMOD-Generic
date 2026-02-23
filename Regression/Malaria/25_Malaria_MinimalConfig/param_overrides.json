@@ -1,6 +1,6 @@
 {
     "parameters": {
-        "Default_Config_Path": "../../defaults/minimum_default_config.json",
+        "Default_Config_Path": "defaults/minimum_default_config.json",
         "Config_Name": "25_Malaria_MinimalConfig",
         "Simulation_Type": "MALARIA_SIM",
         "Base_Relative_Humidity": 0.75,
@@ -103,8 +103,6 @@
         "Fever_Severe_Threshold": 1.5,
         "Innate_Immune_Variation_Type": "NONE",
         "Maternal_Antibodies_Type": "OFF",
-        "Maternal_Antibody_Decay_Rate": null,
-        "Maternal_Antibody_Protection": null,
         "Max_MSP1_Antibody_Growthrate": 0.02,
         "Min_Adapted_Response": 0.02,
         "Min_Days_Between_Clinical_Incidents": 3,
@@ -120,7 +118,7 @@
         "Antibody_Capacity_Growth_Rate": 0.1,
         "Antibody_IRBC_Kill_Rate": 2,
         "Antibody_Stimulation_C50": 10,
-        "Antigen_Switch_Rate": 2e-09,
+        "Antigen_Switch_Rate": 2e-9,
         "Base_Gametocyte_Fraction_Male": 0.2,
         "Base_Gametocyte_Mosquito_Survival_Rate": 0.01,
         "Base_Gametocyte_Production_Rate": 0.02,

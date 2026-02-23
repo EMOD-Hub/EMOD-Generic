@@ -37,8 +37,8 @@
         "Default_Geography_Initial_Node_Population": 1000,
         "Default_Geography_Torus_Size": 10,
         "Demographics_Filenames": [
-            "../input/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
-            "../input/PFA_overlay.json"
+            "../inputs/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
+            "../inputs/PFA_overlay.json"
         ],
         "Enable_Aging": 1,
         "Enable_Birth": 1,
@@ -57,7 +57,6 @@
         "Enable_Timestep_Channel_In_Report": 0,
         "Extra_Relational_Rate_Ratio_Female": 1,
         "Extra_Relational_Rate_Ratio_Male": 1,
-        "Geography": "SouthAfrica",
         "HIV_Adult_Survival_Scale_Parameter_Intercept": 21.182,
         "HIV_Adult_Survival_Scale_Parameter_Slope": -0.2717,
         "HIV_Adult_Survival_Shape_Parameter": 2.0,
@@ -280,14 +279,6 @@
         "Viral_Replication_Latent_Reservoir_Exit_Rate": 3000,
         "Viral_Replication_R0": 10,
         "Viral_Replication_Residual_VL": 2,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
         "logLevel_Simulation": "INFO",
         "logLevel_default": "WARNING",
         "x_Birth": 1.025,

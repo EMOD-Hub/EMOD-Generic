@@ -31,7 +31,6 @@
         "Enable_Coital_Dilution": 0,
         "Enable_Demographics_Reporting": 1,
         "Enable_Report_Event_Recorder": 1,
-        "Geography": "SamplesInput",
         "Individual_Sampling_Type": "TRACK_ALL",
         "Listed_Events": [
             "Vaccinated",

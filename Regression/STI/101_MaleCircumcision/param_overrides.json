@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/sti_default_config.json",
+    "Default_Config_Path": "defaults/sti_default_config.json",
     "parameters": {
         "Birth_Rate_Dependence": "POPULATION_DEP_RATE",
         "Config_Name": "101_MaleCircumcision",
@@ -11,14 +11,13 @@
         ],
         "Demographics_Filenames": [
             "generic_scenarios_complexAgeDistribution_demographics.json",
-            "../../HIV/input/PFA_overlay.json",
+            "../inputs/PFA_overlay.json",
             "property_demographics.json"
         ],
         "Enable_Natural_Mortality": 0,
         "Enable_Report_Event_Recorder": 1,
         "Enable_Strain_Tracking": 0,
         "Enable_Termination_On_Zero_Total_Infectivity": 0,
-        "Geography": "SouthAfrica",
         "Individual_Sampling_Type": "FIXED_SAMPLING",
         "Num_Cores": 1,
         "PFA_Burnin_Duration_In_Days": 5475,
@@ -34,15 +33,6 @@
         "Run_Number": 34,
         "Simulation_Duration": 7300,
         "Simulation_Timestep": 30,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________MIGRATION___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
         "logLevel_default": "WARNING",
         "x_Base_Population": 1
     }

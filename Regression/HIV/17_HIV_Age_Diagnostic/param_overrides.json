@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/hiv_default_config.json",
+    "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
         "Base_Year": 1990,
         "Config_Name": "17_HIV_Age_Diagnostic",
@@ -29,15 +29,7 @@
         "Report_HIV_Infection_Stop_Year": 2100,
         "Simulation_Duration": 365,
         "Simulation_Timestep": 1,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
-        "x_Base_Population": 1e-05,
+        "x_Base_Population": 0.00001,
         "x_Birth": 20.025
     }
 }

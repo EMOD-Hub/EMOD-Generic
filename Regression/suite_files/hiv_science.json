@@ -1,6 +1,6 @@
 {
     "science": [
-        { "path" : "HIV/SFT/Heterogeneous_Infectiousness_LogNormal" }
+        { "path" : "HIV_Science/Heterogeneous_Infectiousness_LogNormal" }
     ],
     "skipped": [
     ]

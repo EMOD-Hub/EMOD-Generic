@@ -1,5 +1,0 @@
-{
-    "tests": [
-        { "path": "Serialization/Generic_Seattle_Multinode" }
-    ]
-}

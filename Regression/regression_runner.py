@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import os
 import json
 import threading
@@ -164,10 +162,14 @@ class MyRegressionRunner(object):
                     simulation_file = os.path.join(simulation_path, os.path.basename(filename))
                     source = scenario_file
                     dest = simulation_file
+                    config_json["parameters"][key] = os.path.basename(filename)
 
+                # Copy main file
                 if not self.update_file(source, dest):
                     print("Could not find input file '{0}' to copy to '{1}' for scenario '{2}'".format(source, dest,
                                                                                                        scenario))
+
+                # Copy secondary file (Climate and Migration only)
                 if key != "Load_Balance_Filename":
                     source = source + ".json"
                     dest = dest + ".json"
@@ -221,19 +223,9 @@ class MyRegressionRunner(object):
         return
 
     def copy_input_files_to_user_input(self, simulation_directory, scenario_path, config_json):
-        # Copy local demographics/input file(s) and remote base input file into user-local input directory 
-        # E.g., //diamonds-hn/EMOD/home/jbloedow/input/Bihar, where "//diamonds-hn/EMOD/home/jbloedow/input/"
-        # is gotten from config["home"] and "Bihar" is from config_json["Geography"]
-        # Then use that directory as the input.
+        # Copy local demographics/input file(s) 
         source_input_directory = "."
         working_input_directory = self.params.user_input
-        if "parameters" in config_json and "Geography" in config_json["parameters"]:
-            source_input_directory = os.path.join(self.params.shared_input, config_json["parameters"]["Geography"])
-            working_input_directory = os.path.join(self.params.user_input, config_json["parameters"]["Geography"])
-
-            if not os.path.exists(working_input_directory):
-                print("Creating " + working_input_directory)
-                os.makedirs(working_input_directory)
 
         # Harmonizing these to do the same thing
         self.copy_demographics_files_to_user_input(simulation_directory, config_json, working_input_directory, scenario_path, source_input_directory) 

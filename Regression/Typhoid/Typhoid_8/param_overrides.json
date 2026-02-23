@@ -4,5 +4,5 @@
         "Typhoid_Acute_Infectiousness": 100000.0,
         "Typhoid_Contact_Exposure_Rate": 0
     },
-    "Default_Config_Path": "../../defaults/typhoid_default_config.json"
+    "Default_Config_Path": "defaults/typhoid_default_config.json"
 }

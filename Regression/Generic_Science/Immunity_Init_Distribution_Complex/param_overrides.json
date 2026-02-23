@@ -1,0 +1,35 @@
+{
+    "Default_Config_Path": "defaults/generic_science_default_config.json",
+    "parameters": {
+        "CAMPAIGNS": {
+            "Enable_Interventions": 0
+        },
+        "DEMOGRAPHICS": {
+            "Demographics_Filenames": [
+                "../inputs/demographics.json",
+                "complex_immunity_overlay.json"
+            ],
+            "IMMUNITY": {
+                "Enable_Initial_Susceptibility_Distribution": 1,
+                "Susceptibility_Initialization_Distribution_Type": "DISTRIBUTION_COMPLEX"
+            }
+        },
+        "DISEASE": {
+            "INFECTIOUSNESS": {
+                "Base_Infectivity_Constant": 1e-10,
+                "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
+                "Infectious_Period_Exponential": 4
+            }
+        },
+        "OUTPUT": {},
+        "PRIMARY": {
+            "Campaign_Filename": "campaign.json",
+            "Config_Name": "Immune Initialization Distribution Complex",
+            "Python_Script_Path": "LOCAL",
+            "Simulation_Duration": 1
+        },
+        "Temporary_MaternalProtection": {
+            "logLevel_Susceptibility": "VALID"
+        }
+    }
+}
