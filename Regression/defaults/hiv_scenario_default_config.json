@@ -9,9 +9,9 @@
             "Default_Geography_Initial_Node_Population": 1000,
             "Default_Geography_Torus_Size": 10,
             "Demographics_Filenames": [
-                "SSA_Demographics_With_Properties.json",
-                "pfa_overlay.json",
-                "PFA_overlay_scenario_rates.json"
+                "../inputs/SSA_Demographics_With_Properties.json",
+                "../inputs/pfa_overlay_lc.json",
+                "../inputs/PFA_overlay_scenario_rates.json"
             ],
             "Enable_Birth": 1,
             "Enable_Demographics_Birth": 0,
@@ -86,7 +86,6 @@
             "Enable_Infection_Rate_Overdispersion": 0,
             "Enable_Infectivity_Reservoir": 0,
             "Enable_Superinfection": 0,
-            "Geography": "SamplesInput",
             "Incubation_Period_Constant": 0,
             "Incubation_Period_Distribution": "CONSTANT_DISTRIBUTION",
             "Individual_Sampling_Type": "FIXED_SAMPLING",

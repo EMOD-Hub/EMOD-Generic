@@ -223,7 +223,6 @@ class Parameters:
 class Demographics:
     input_dir = ""
     demo_fn_array = []
-    geo_name = ""
     society_json = {}
 
     def __init__( self, inputPath ):
@@ -233,7 +232,6 @@ class Demographics:
         config_file = open( config_fn, "r" )
         config_json = json.loads( config_file.read() )
         self.demo_fn_array = config_json["parameters"]["Demographics_Filenames"]
-        self.geo_name = config_json["parameters"]["Geography"]
         config_file.close()
     
     def ReadSocietyData( self ):
@@ -241,9 +239,6 @@ class Demographics:
         overlayed_json = {}
         for demo_fn in self.demo_fn_array:
             filename = demo_fn
-            if os.path.isfile( filename ) == False :
-                filename = os.path.join( os.path.join( self.input_dir, self.geo_name ), filename )
-            #print( "filename = " + filename + "\n" )
             demo_file = open( filename, "r" )
             demo_json = json.loads( demo_file.read() )
             overlayed_json = merge( overlayed_json, demo_json )

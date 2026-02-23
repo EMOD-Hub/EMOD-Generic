@@ -1,8 +1,6 @@
 {
-    "Default_Config_Path": "../../defaults/hiv_default_config.json",
+    "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
-        ".logLevel_StandardEventCoordinator": "DEBUG",
-        ".logLevel_default": "DEBUG",
         "Config_Name": "7_HIV_RandomChoice",
         "Enable_Birth": 0,
         "Enable_Report_Event_Recorder": 1,
@@ -21,14 +19,6 @@
         "Report_HIV_Infection_Start_Year": 1900,
         "Report_HIV_Infection_Stop_Year": 2100,
         "Simulation_Duration": 7,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
         "logLevel_HIVRandomChoice": "DEBUG",
         "x_Base_Population": 0.0001
     }

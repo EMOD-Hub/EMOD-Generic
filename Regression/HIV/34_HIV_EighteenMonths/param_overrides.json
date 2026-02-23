@@ -1,12 +1,12 @@
 {
-    "Default_Config_Path": "../../defaults/hiv_default_config.json",
+    "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
         "Base_Infectivity_Constant": 0.00135663958503783,
         "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Config_Name": "34_HIV_EighteenMonths",
         "Demographics_Filenames": [
-            "../input/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
-            "../input/PFA_overlay.json",
+            "../inputs/SA_UN_demographics_extrapolated_WithProperties_Smoothed.json",
+            "../inputs/PFA_overlay.json",
             "PFA_overlay_rates.json"
         ],
         "Enable_Nondisease_Mortality": 0,
@@ -31,13 +31,6 @@
         "Run_Number": 254,
         "Simulation_Duration": 900,
         "Simulation_Timestep": 30,
-        "alpha_____________DEMOGRAPHICS___________": "",
-        "alpha_____________INTRAHOST___________": "",
-        "alpha_____________RARELY_CHANGED___________": "",
-        "alpha_____________REPLICATION_AND_DRUGS___________": "",
-        "alpha_____________REPORTING___________": "",
-        "alpha_____________SIMULATION___________": "",
-        "alpha_____________TRANSMISSION___________": "",
         "x_Base_Population": 0.002,
         "x_Other_Mortality": 0
     }

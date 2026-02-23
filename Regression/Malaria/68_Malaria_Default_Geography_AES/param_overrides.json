@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/malaria_default_config.json",
+    "Default_Config_Path": "defaults/malaria_default_config.json",
     "parameters": {
         "CLIMATE": {
             "AIR_TEMPERATURE": {
@@ -40,7 +40,6 @@
             "Config_Name": "68_Malaria_Default_Geography_AES",
             "Enable_Strain_Tracking": 0,
             "Enable_Termination_On_Zero_Total_Infectivity": 0,
-            "Geography": "auto-generated",
             "Node_Grid_Size": 0.009,
             "Random_Number_Generator_Type": "USE_AES_COUNTER",
             "Run_Number": 33,

@@ -18,7 +18,6 @@
           "PRIMARY": {
                "Config_Name": "00_Generic_DEFAULT",
                "Demographics_Filenames": ["demographics.json"],
-               "Geography": "",
                "Run_Number": 1,
                "Simulation_Duration": 90
           }

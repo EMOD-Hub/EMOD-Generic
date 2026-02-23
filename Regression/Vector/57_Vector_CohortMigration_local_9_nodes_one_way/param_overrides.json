@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/vector_default_config.json",
+    "Default_Config_Path": "defaults/vector_default_config.json",
     "parameters": {
         "CLIMATE": {
             "Base_Air_Temperature": 25.0,
@@ -20,7 +20,6 @@
             "Custom_Reports_Filename": "custom_reports.json",
             "Enable_Strain_Tracking": 0,
             "Enable_Termination_On_Zero_Total_Infectivity": 0,
-            "Geography": "MigrationTest",
             "Node_Grid_Size": 0.005,
             "Run_Number": 1,
             "Simulation_Duration": 200,
@@ -30,7 +29,7 @@
             "Enable_Vector_Migration": 1,
             "Enable_Vector_Migration_Local": 1,
             "Enable_Vector_Migration_Regional": 0,
-            "Vector_Migration_Filename_Local": "Local_Vector_Migration_9_Nodes_One_Way.bin",
+            "Vector_Migration_Filename_Local": "../inputs/Local_Vector_Migration_9_Nodes_One_Way.bin",
             "Vector_Migration_Filename_Regional": "",
             "Vector_Migration_Food_Modifier": 0.0,
             "Vector_Migration_Habitat_Modifier": 0.0,
@@ -40,7 +39,6 @@
             "x_Vector_Migration_Regional": 1.0
         },
         "VECTOR_PARAMS": {
-            ".Vector_Sampling_Type": "TRACK_ALL_VECTORS",
             "Enable_Vector_Aging": 0,
             "Enable_Vector_Mortality": 0,
             "Human_Feeding_Mortality": 0.0,

@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/generic_default_config.json",
+    "Default_Config_Path": "defaults/generic_default_config.json",
     "parameters": {
         "DEMOGRAPHICS": {
             "Age_Initialization_Distribution_Type": "DISTRIBUTION_COMPLEX",
@@ -28,7 +28,6 @@
             "ENUMS": {
                 "Simulation_Type": "PY_SIM"
             },
-            "Geography": "",
             "Node_Grid_Size": 0.009,
             "Run_Number": 1
         },

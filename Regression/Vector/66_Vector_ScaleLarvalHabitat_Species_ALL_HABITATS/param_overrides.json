@@ -1,23 +1,23 @@
 {
-    "Default_Config_Path": "../../defaults/vector_default_config.json",
+    "Default_Config_Path": "defaults/vector_default_config.json",
     "parameters": {
         "CLIMATE": {
             "AIR": {
-                "Air_Temperature_Filename": "Namawala_single_node_air_temperature_daily.bin"
+                "Air_Temperature_Filename": "../inputs/Namawala_single_node_air_temperature_daily.bin"
             },
             "HUMIDITY": {
-                "Relative_Humidity_Filename": "Namawala_single_node_relative_humidity_daily.bin"
+                "Relative_Humidity_Filename": "../inputs/Namawala_single_node_relative_humidity_daily.bin"
             },
             "LAND_TEMP": {
-                "Land_Temperature_Filename": "Namawala_single_node_land_temperature_daily.bin"
+                "Land_Temperature_Filename": "../inputs/Namawala_single_node_land_temperature_daily.bin"
             },
             "RAINFALL": {
-                "Rainfall_Filename": "Namawala_single_node_rainfall_daily.bin"
+                "Rainfall_Filename": "../inputs/Namawala_single_node_rainfall_daily.bin"
             }
         },
         "DEMOGRAPHICS": {
             "Demographics_Filenames": [
-                "Namawala_single_node_demographics.json",
+                "../inputs/Namawala_single_node_demographics.json",
                 "Namawala_single_node_larval_habitat_species.json",
                 "demographics_overlay_initial_prevalence.json"
             ],
@@ -26,7 +26,6 @@
         "PRIMARY": {
             "Config_Name": "66_Vector_ScaleLarvalHabitat_Species_ALL_HABITATS",
             "Custom_Reports_Filename": "custom_reports.json",
-            "Geography": "Namawala",
             "Run_Number": 27
         },
         "x_Larval_Habitats": 0.1

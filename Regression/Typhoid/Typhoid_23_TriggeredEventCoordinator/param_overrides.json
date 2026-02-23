@@ -20,10 +20,10 @@
         ],
         "Custom_Node_Events": [],
         "Custom_Reports_Filename": "",
-        "Default_Config_Path": "../../defaults/typhoid_default_config.json",
+        "Default_Config_Path": "defaults/typhoid_default_config.json",
         "Demographics_Filenames": [
-            "../Santiago_Demographics.json",
-            "../MR_HINT_Overlay.json"
+            "../inputs/Santiago_Demographics.json",
+            "../inputs/MR_HINT_Overlay.json"
         ],
         "Enable_Default_Reporting": 1,
         "Enable_Heterogeneous_Intranode_Transmission": 1,

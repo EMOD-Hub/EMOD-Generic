@@ -32,16 +32,6 @@ class Monitor(threading.Thread):
         self.scenario_type = scenario_type
         self.sim_dir = None
 
-    def get_input_path_from_geog( self, input_root ):
-        #actual_input_dir = "."
-        actual_input_dir = None
-        if "Geography" in self.config_json["parameters"]:
-            if self.config_json["parameters"]["Geography"] == "LOCAL": # not used yet but forward-looking proposal for non-geography scenarios
-                actual_input_dir = "."
-            else:
-                actual_input_dir = ".;" + os.path.join( input_root, self.config_json["parameters"]["Geography"] )
-        return actual_input_dir 
-
     def get_num_cores( self ):
         num_cores = 1
         if ('parameters' in self.config_json) and ('Num_Cores' in self.config_json['parameters']):
@@ -64,7 +54,6 @@ class Monitor(threading.Thread):
         if self.scenario_type != 'tests':
             stdoutfile = "test.txt"
         with open(os.path.join(self.sim_dir, stdoutfile), "w") as stdout, open(os.path.join(self.sim_dir, "stderr.txt"), "w") as stderr:
-            actual_input_dir = self.get_input_path_from_geog( self.params.input_path )
             # Call Eradication.exe through mpiexec to avoid Windows security warnings (see GitHub issue #1439)
             cmd = None
             if "Eradication" in self.config_json["bin_path"]:
@@ -73,8 +62,7 @@ class Monitor(threading.Thread):
                 cmd = self.config_json["bin_path"].split()
                 if self.scenario_type != 'pymod':
                     cmd.extend( ["-C", "config.json" ] )
-            if actual_input_dir:
-                cmd.extend( [ "--input-path", actual_input_dir ] )
+
             # python-script-path is optional parameter.
             if "PSP" in self.config_json:
                 cmd.extend( [ "--python-script-path", self.config_json["PSP"] ] )
@@ -86,7 +74,6 @@ class Monitor(threading.Thread):
 
             proc = subprocess.Popen( cmd, stdout=stdout, stderr=stderr, cwd=self.sim_dir, shell=shell_val )
             proc.wait()
-        # JPS - do we want to append config_json["parameters"]["Geography"] to the input_path here too like we do in the HPC case?
         endtime = datetime.datetime.now()
         self.duration = endtime - starttime
         os.chdir( ru.cache_cwd )

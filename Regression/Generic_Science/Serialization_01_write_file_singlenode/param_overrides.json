@@ -1,0 +1,44 @@
+{
+    "Default_Config_Path": "defaults/generic_serialization_default_config.json",
+    "parameters": {
+        "DEMOGRAPHICS": {
+            "Birth_Rate_Dependence": "POPULATION_DEP_RATE",
+            "Demographics_Filenames": [
+                "../inputs/demographics.json",
+                "../inputs/demographics_1000_overlay.json"
+            ],
+            "Enable_Binned_Report": 1,
+            "Enable_Birth": 0,
+            "Enable_Demographics_Reporting": 1,
+            "Enable_Initial_Prevalence": 1,
+            "Enable_Strain_Tracking": 0,
+            "Enable_Termination_On_Zero_Total_Infectivity": 0,
+            "Enable_Vital_Dynamics": 0,
+            "IMMUNITY": {
+                "Enable_Immune_Decay": 0
+            }
+        },
+        "DISEASE": {
+            "INCUBATION": {
+                "Base_Incubation_Period": 0
+            },
+            "INFECTIOUSNESS": {
+                "Base_Infectivity_Constant": 0.7,
+                "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION"
+            }
+        },
+        "PRIMARY": {
+            "Config_Name": "Generic serialization 01 writes files",
+            "Python_Script_Path": "SHARED",
+            "Run_Number": 1,
+            "Serialization_Mask_Node_Write": 0,
+            "Serialization_Time_Steps": [
+                10,
+                20,
+                50
+            ],
+            "Simulation_Duration": 120
+        },
+        "Serialized_Population_Writing_Type": "TIMESTEP"
+    }
+}

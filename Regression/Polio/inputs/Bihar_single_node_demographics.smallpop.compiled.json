@@ -1,0 +1,238 @@
+{
+    "Metadata": {
+        "Author": "ewenger",
+        "DateCreated": "Sun Sep 25 20:13:53 2011",
+        "IdReference": "Legacy",
+        "NodeCount": 1,
+        "Tool": "convertdemog.py"
+    },
+    "NodeOffsets": "00000001000004B4",
+    "Nodes": [
+        {
+            "aa": 1,
+            "ab": {
+                "ac": 25.608667,
+                "ad": 85.141667,
+                "ae": 1,
+                "af": 0,
+                "ag": 0,
+                "ah": 0,
+                "ai": 1000,
+                "aj": 8.877e-05,
+                "ak": 0,
+                "al": 0.5
+            },
+            "am": {
+                "an": 3,
+                "ao": 0.0001096,
+                "ap": 25550,
+                "aq": 0,
+                "ar": 0,
+                "as": 0,
+                "at": 0,
+                "au": 0,
+                "av": 0,
+                "aw": 0,
+                "ax": 1,
+                "ay": 0,
+                "az": 0,
+                "ba": 1,
+                "bb": 0,
+                "bc": {
+                    "bd": 0,
+                    "be": "years",
+                    "bf": 365,
+                    "bg": [
+                        0,
+                        5,
+                        10,
+                        15,
+                        20,
+                        25,
+                        30,
+                        35,
+                        40,
+                        45,
+                        50,
+                        55,
+                        60,
+                        65,
+                        70,
+                        75,
+                        80,
+                        85,
+                        90,
+                        95,
+                        100,
+                        120
+                    ],
+                    "bh": [
+                        0,
+                        0.0996,
+                        0.192,
+                        0.2775,
+                        0.3612,
+                        0.4399,
+                        0.5123,
+                        0.5823,
+                        0.6478,
+                        0.7081,
+                        0.7662,
+                        0.8185,
+                        0.8651,
+                        0.9058,
+                        0.9382,
+                        0.965,
+                        0.9831,
+                        0.9934,
+                        0.9983,
+                        0.9998,
+                        1.0,
+                        1.0
+                    ]
+                },
+                "bi": {
+                    "bd": 2,
+                    "be": "annual births per 1000 individuals",
+                    "bf": 2.7397260273972604e-06,
+                    "bg": [
+                        [
+                            0,
+                            52.5,
+                            235.1,
+                            180.4,
+                            98.8,
+                            50.5,
+                            22.2,
+                            7.8,
+                            0
+                        ],
+                        [
+                            0,
+                            25.4,
+                            157.6,
+                            147.2,
+                            66.9,
+                            25.8,
+                            8.6,
+                            3.9,
+                            0
+                        ]
+                    ],
+                    "bj": [
+                        "urban",
+                        "age"
+                    ],
+                    "bk": [
+                        "rural=0,urban=1",
+                        "years"
+                    ],
+                    "bl": [
+                        1,
+                        365
+                    ],
+                    "bm": [
+                        2,
+                        9
+                    ],
+                    "bn": [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            12.5,
+                            17.5,
+                            22.5,
+                            27.5,
+                            32.5,
+                            37.5,
+                            42.5,
+                            47.5,
+                            52.5
+                        ]
+                    ]
+                },
+                "bo": {
+                    "bd": 2,
+                    "be": "annual deaths per 1000 individuals",
+                    "bf": 2.7397260273972604e-06,
+                    "bg": [
+                        [
+                            6.4
+                        ],
+                        [
+                            6.4
+                        ]
+                    ],
+                    "bj": [
+                        "gender",
+                        "age"
+                    ],
+                    "bk": [
+                        "male=0,female=1",
+                        "years"
+                    ],
+                    "bl": [
+                        1,
+                        365
+                    ],
+                    "bm": [
+                        2,
+                        1
+                    ],
+                    "bn": [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            0
+                        ]
+                    ]
+                }
+            }
+        }
+    ],
+    "StringTable": {
+        "AgeDistribution": "bc",
+        "AgeDistribution1": "ao",
+        "AgeDistribution2": "ap",
+        "AgeDistributionFlag": "an",
+        "Airport": "af",
+        "Altitude": "ae",
+        "AxisNames": "bj",
+        "AxisScaleFactors": "bl",
+        "AxisUnits": "bk",
+        "BirthRate": "aj",
+        "DistributionValues": "bh",
+        "FertilityDistribution": "bi",
+        "SusceptibilityDistribution1": "au",
+        "SusceptibilityDistribution2": "av",
+        "SusceptibilityDistributionFlag": "at",
+        "IndividualAttributes": "am",
+        "InitialPopulation": "ai",
+        "Latitude": "ac",
+        "Longitude": "ad",
+        "MigrationHeterogeneityDistribution1": "ba",
+        "MigrationHeterogeneityDistribution2": "bb",
+        "MigrationHeterogeneityDistributionFlag": "az",
+        "MortalityDistribution": "bo",
+        "NodeAttributes": "ab",
+        "NodeID": "aa",
+        "NumDistributionAxes": "bd",
+        "NumPopulationGroups": "bm",
+        "PopulationGroups": "bn",
+        "PrevalenceDistribution1": "ar",
+        "PrevalenceDistribution2": "as",
+        "PrevalenceDistributionFlag": "aq",
+        "Region": "ag",
+        "ResultScaleFactor": "bf",
+        "ResultUnits": "be",
+        "ResultValues": "bg",
+        "RiskDistribution1": "ax",
+        "RiskDistribution2": "ay",
+        "RiskDistributionFlag": "aw",
+        "Seaport": "ah"
+    }
+}

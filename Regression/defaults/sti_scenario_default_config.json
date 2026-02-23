@@ -9,8 +9,8 @@
             "Default_Geography_Initial_Node_Population": 1000,
             "Default_Geography_Torus_Size": 10,
             "Demographics_Filenames": [
-                "uniform_demographics.json",
-                "pfa_simple.json"
+                "../inputs/uniform_demographics.json",
+                "../inputs/pfa_simple.json"
             ],
             "Enable_Birth": 1,
             "Enable_Demographics_Birth": 0,
@@ -73,7 +73,6 @@
             "Enable_Infection_Rate_Overdispersion": 0,
             "Enable_Infectivity_Reservoir": 0,
             "Enable_Superinfection": 0,
-            "Geography": "SamplesInput",
             "Incubation_Period_Distribution": "CONSTANT_DISTRIBUTION",
             "Individual_Sampling_Type": "FIXED_SAMPLING",
             "Load_Balance_Filename": "",

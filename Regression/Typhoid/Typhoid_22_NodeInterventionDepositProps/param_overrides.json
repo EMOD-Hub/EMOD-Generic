@@ -1,10 +1,10 @@
 {
-    "Default_Config_Path": "../../defaults/typhoid_default_config.json",
+    "Default_Config_Path": "defaults/typhoid_default_config.json",
     "parameters": {
         "Config_Name": "Typhoid_22_NodeEnviroIntervention_SheddingProperties",
         "Demographics_Filenames": [
-            "../Santiago_Demographics.json",
-            "../IP_1_Overlay.json"
+            "../inputs/Santiago_Demographics.json",
+            "../inputs/IP_1_Overlay.json"
         ],
         "Enable_Strain_Tracking": 0,
         "Enable_Termination_On_Zero_Total_Infectivity": 0,

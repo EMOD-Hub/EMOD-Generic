@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../.././defaults/sti_default_config.json",
+    "Default_Config_Path": "defaults/sti_default_config.json",
     "parameters": {
         ".logLevel_SocietyImpl": "INFO",
         "Base_Infectivity_Constant": 10.0,
@@ -10,8 +10,8 @@
             "Reduced_Acquire_Lowest"
         ],
         "Demographics_Filenames": [
-            "../../HIV/input/SA_UN_demographics.json",
-            "../../HIV/input/PFA_overlay.json",
+            "../inputs/SA_UN_demographics.json",
+            "../inputs/PFA_overlay.json",
             "PFA_Concurrency.json"
         ],
         "Enable_Disease_Mortality": 0,

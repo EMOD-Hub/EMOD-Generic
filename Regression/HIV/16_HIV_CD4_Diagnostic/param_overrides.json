@@ -1,7 +1,7 @@
 {
     "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
-        "Base_Population_Scale_Factor": 1e-05,
+        "Base_Population_Scale_Factor": 0.00001,
         "Base_Year": 1990,
         "Config_Name": "16_HIV_CD4_Diagnostic",
         "Enable_Birth": 0,
@@ -31,14 +31,6 @@
         "Report_HIV_Infection_Stop_Year": 2100,
         "Simulation_Duration": 365,
         "Simulation_Timestep": 1,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
         "x_Birth": 20.025
     }
 }

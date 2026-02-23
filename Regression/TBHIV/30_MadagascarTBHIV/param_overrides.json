@@ -1,47 +1,35 @@
 {
-    "Default_Config_Path": "../../defaults/tbhiv_default_config.json",
+    "Default_Config_Path": "defaults/tbhiv_default_config.json",
     "parameters": {
         "Base_Infectivity_Constant": 0.3,
         "Base_Infectivity_Distribution": "CONSTANT_DISTRIBUTION",
         "Birth_Rate_Dependence": "INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR",
         "Config_Name": "30_MadagascarTBHIV",
         "Demographics_Filenames": [
-            "Base_Demog_Trunk.json",
-            "TBHIV_Madagascar_overlay.json"
+            "../inputs/Base_Demog_Trunk.json",
+            "../inputs/TBHIV_Madagascar_overlay.json"
         ],
         "EXECUTION": {
             "CLUSTER": {
-                "Geography": "Madagascar_Nosibe",
-                "Load_Balance_Filename": "Madagascar_Nosibe_2.5arcmin_load_balancing_8procs.bin",
+                "Load_Balance_Filename": "../inputs/Madagascar_Nosibe_2.5arcmin_load_balancing_8procs.bin",
                 "Num_Cores": 8
             }
         },
         "Enable_Strain_Tracking": 0,
         "Enable_Termination_On_Zero_Total_Infectivity": 0,
         "MIGRATION": {
-            "AIR": {
-                "Air_Migration_Filename": "",
-                "Enable_Air_Migration": 0
-            },
+            "Enable_Air_Migration": 0,
             "Enable_Family_Migration": 0,
+            "Enable_Regional_Migration": 0,
+            "Enable_Sea_Migration": 0,
             "Enable_Migration_Heterogeneity": 0,
-            "Family_Migration_Filename": "",
             "LOCAL": {
                 "Enable_Local_Migration": 1,
-                "Local_Migration_Filename": "Madagascar_Nosibe_2.5arcmin_local_migration.bin"
+                "Local_Migration_Filename": "../inputs/Madagascar_Nosibe_2.5arcmin_local_migration.bin"
             },
             "Migration_Model": "FIXED_RATE_MIGRATION",
             "Migration_Pattern": "WAYPOINTS_HOME",
-            "REGIONAL": {
-                "Enable_Regional_Migration": 0,
-                "Regional_Migration_Filename": ""
-            },
             "Roundtrip_Waypoints": 5,
-            "SEA": {
-                "Enable_Sea_Migration": 0,
-                "Sea_Migration_Filename": ""
-            },
-            "x_Family_Migration": 1,
             "x_Local_Migration": 0.5
         },
         "Simulation_Duration": 100,

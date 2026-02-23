@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/malaria_default_config.json",
+    "Default_Config_Path": "defaults/malaria_default_config.json",
     "parameters": {
         "CLIMATE": {
             "AIR_TEMPERATURE": {
@@ -9,7 +9,7 @@
         },
         "DEMOGRAPHICS": {
             "Demographics_Filenames": [
-                "LHM_Restructure_Demographics.json"
+                "../inputs/LHM_Restructure_Demographics.json"
             ],
             "Enable_Demographics_Initial": 1
         },
@@ -30,11 +30,11 @@
             "Air_Migration_Roundtrip_Probability": 0.0,
             "Enable_Family_Migration": 1,
             "Enable_Migration_Heterogeneity": 1,
-            "Family_Migration_Filename": "Work_Migration.bin",
+            "Family_Migration_Filename": "../inputs/Work_Migration.bin",
             "Family_Migration_Roundtrip_Duration": 100.0,
             "LOCAL": {
                 "Enable_Local_Migration": 1,
-                "Local_Migration_Filename": "Local_Migration.bin"
+                "Local_Migration_Filename": "../inputs/Local_Migration.bin"
             },
             "Local_Migration_Roundtrip_Duration": 1.0,
             "Local_Migration_Roundtrip_Probability": 1.0,
@@ -42,7 +42,7 @@
             "Migration_Pattern": "SINGLE_ROUND_TRIPS",
             "REGIONAL": {
                 "Enable_Regional_Migration": 1,
-                "Regional_Migration_Filename": "Regional_Migration.bin"
+                "Regional_Migration_Filename": "../inputs/Regional_Migration.bin"
             },
             "Regional_Migration_Roundtrip_Duration": 1.0,
             "Regional_Migration_Roundtrip_Probability": 1.0,
@@ -60,7 +60,6 @@
             "Enable_Report_Event_Recorder": 1,
             "Enable_Strain_Tracking": 0,
             "Enable_Termination_On_Zero_Total_Infectivity": 0,
-            "Geography": "Household_5x5",
             "Node_Grid_Size": 0.005,
             "Num_Cores": 2,
             "Python_Script_Path": "LOCAL",
@@ -77,8 +76,8 @@
             "Simulation_Timestep": 1,
             "logLevel_JsonConfigurable": "WARNING"
         },
-        "Vector_Migration_Filename_Local": "Local_Vector_Migration.bin",
-        "Vector_Migration_Filename_Regional": "Regional_Vector_Migration.bin",
+        "Vector_Migration_Filename_Local": "../inputs/Local_Vector_Migration.bin",
+        "Vector_Migration_Filename_Regional": "../inputs/Regional_Vector_Migration.bin",
         "Vector_Migration_Food_Modifier": 0.0,
         "Vector_Migration_Habitat_Modifier": 0.0,
         "Vector_Migration_Modifier_Equation": "EXPONENTIAL",

@@ -1,5 +1,5 @@
 {
-    "Default_Config_Path": "../../defaults/hiv_default_config.json",
+    "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
         "Config_Name": "39_HIV_CD4_ART_Dropout",
         "Enable_Birth": 0,
@@ -136,14 +136,6 @@
         "Report_HIV_Mortality": 1,
         "Run_Number": 39,
         "Simulation_Duration": 10000,
-        "____________DEMOGRAPHICS___________": "",
-        "____________INTRAHOST___________": "",
-        "____________NETWORK___________": "",
-        "____________RARELY_CHANGED___________": "",
-        "____________REPLICATION_AND_DRUGS___________": "",
-        "____________REPORTING___________": "",
-        "____________SIMULATION___________": "",
-        "____________TRANSMISSION___________": "",
-        "x_Base_Population": 5e-06
+        "x_Base_Population": 0.000005
     }
 }

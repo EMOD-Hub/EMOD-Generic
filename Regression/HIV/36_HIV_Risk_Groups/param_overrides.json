@@ -1,10 +1,10 @@
 {
-    "Default_Config_Path": "../../defaults/hiv_default_config.json",
+    "Default_Config_Path": "defaults/hiv_default_config.json",
     "parameters": {
         "Config_Name": "36_HIV_Risk_Groups",
         "Demographics_Filenames": [
-            "../input/SA_UN_demographics_extrapolated_WithProperties_Smoothed_with_RiskGroup.json",
-            "../input/PFA_overlay.json",
+            "../inputs/SA_UN_demographics_extrapolated_WithProperties_Smoothed_with_RiskGroup.json",
+            "../inputs/PFA_overlay.json",
             "PFA_Concurrency.json"
         ],
         "Enable_Strain_Tracking": 0,
@@ -13,14 +13,6 @@
         "Python_Script_Path": "LOCAL",
         "Simulation_Duration": 10,
         "Simulation_Timestep": 1,
-        "_____________DEMOGRAPHICS___________": "",
-        "_____________INTRAHOST___________": "",
-        "_____________NETWORK___________": "",
-        "_____________RARELY_CHANGED___________": "",
-        "_____________REPLICATION_AND_DRUGS___________": "",
-        "_____________REPORTING___________": "",
-        "_____________SIMULATION___________": "",
-        "_____________TRANSMISSION___________": "",
         "x_Base_Population": 0.0001
     }
 }
