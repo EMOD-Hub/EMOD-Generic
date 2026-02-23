@@ -1,0 +1,19 @@
+{
+    "Metadata": {
+        "DateCreated": "Sun Sep 25 23:19:55 2011",
+        "Tool": "convertdemog.py",
+        "Author": "jsteinkraus",
+        "IdReference": "Gridded world grump2.5arcmin",
+        "Resolution": 150,
+        "NodeCount": 1
+    },
+    "Nodes": [
+        {
+            "NodeID": 340461476,
+            "NodeAttributes": {
+                "InitialPopulation": 10000,
+                "BirthRate": 0.01
+            }
+        }
+    ]
+}

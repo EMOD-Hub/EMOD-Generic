@@ -1,0 +1,587 @@
+{
+    "Defaults": {
+        "ab": {
+            "ag": 1,
+            "ah": 1,
+            "ai": 0,
+            "aj": 7.202739726027397e-05,
+            "ak": 0,
+            "al": 0.5
+        },
+        "am": {
+            "an": 1,
+            "ao": 0,
+            "ap": 21900,
+            "aq": 0,
+            "ar": 0,
+            "as": 0,
+            "at": 0,
+            "au": 0,
+            "av": 0,
+            "aw": 0,
+            "ax": 1,
+            "ay": 0,
+            "az": 0,
+            "ba": 1,
+            "bb": 0,
+            "bc": {
+                "bd": 2,
+                "be": [
+                    "urban",
+                    "age"
+                ],
+                "bf": [
+                    "rural=0, urban=1",
+                    "years"
+                ],
+                "bg": [
+                    1,
+                    365
+                ],
+                "bh": [
+                    2,
+                    9
+                ],
+                "bi": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0,
+                        15,
+                        20,
+                        25,
+                        30,
+                        35,
+                        40,
+                        45,
+                        49
+                    ]
+                ],
+                "bj": "annual births per 1000 individuals",
+                "bk": 2.739726027397e-06,
+                "bl": [
+                    [
+                        0,
+                        28.4,
+                        190.3,
+                        222.4,
+                        155.4,
+                        68,
+                        21.9,
+                        3.6,
+                        0
+                    ],
+                    [
+                        0,
+                        28.4,
+                        190.3,
+                        222.4,
+                        155.4,
+                        68,
+                        21.9,
+                        3.6,
+                        0
+                    ]
+                ]
+            },
+            "bm": {
+                "bd": 2,
+                "be": [
+                    "gender",
+                    "age"
+                ],
+                "bf": [
+                    "male=0,female=1",
+                    "years"
+                ],
+                "bg": [
+                    1,
+                    365
+                ],
+                "bh": [
+                    2,
+                    21
+                ],
+                "bi": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        0,
+                        1,
+                        5,
+                        10,
+                        15,
+                        20,
+                        25,
+                        30,
+                        35,
+                        40,
+                        45,
+                        50,
+                        55,
+                        60,
+                        65,
+                        70,
+                        75,
+                        80,
+                        85,
+                        90,
+                        95
+                    ]
+                ],
+                "bj": "annual deaths per 1000 individuals",
+                "bk": 2.739726027397e-06,
+                "bl": [
+                    [
+                        56.005,
+                        5.912941612,
+                        6.350867763,
+                        4.471644227,
+                        3.659378542,
+                        5.614300166,
+                        8.510137508,
+                        12.74327236,
+                        17.34396082,
+                        26.94972903,
+                        35.27377819,
+                        51.31082322,
+                        80.49641508,
+                        137.2791162,
+                        265.9068747,
+                        298.9571263,
+                        509.4445009,
+                        568.3005723,
+                        854.7505126,
+                        1647.27955,
+                        2713.178295
+                    ],
+                    [
+                        56.005,
+                        5.113892505,
+                        5.477231419,
+                        3.399396468,
+                        2.466019699,
+                        3.841916438,
+                        5.283537042,
+                        7.379818343,
+                        10.37978091,
+                        15.23526725,
+                        19.22226741,
+                        26.00905796,
+                        37.9462989,
+                        61.97852249,
+                        158.0770078,
+                        160.0572498,
+                        279.0050255,
+                        385.7473197,
+                        508.0498866,
+                        973.4883721,
+                        2093.889717
+                    ]
+                ]
+            },
+            "bn": {
+                "bd": 0,
+                "bg": 1,
+                "bj": "years",
+                "bk": 365,
+                "bl": [
+                    0,
+                    5,
+                    10,
+                    15,
+                    20,
+                    25,
+                    30,
+                    35,
+                    40,
+                    45,
+                    50,
+                    55,
+                    60,
+                    65,
+                    70,
+                    75,
+                    80,
+                    85,
+                    90,
+                    95
+                ],
+                "bo": [
+                    0.126557473,
+                    0.247418168,
+                    0.369949006,
+                    0.491780413,
+                    0.604582313,
+                    0.685827384,
+                    0.745198481,
+                    0.797740421,
+                    0.844955868,
+                    0.892155905,
+                    0.928229304,
+                    0.951367227,
+                    0.965247393,
+                    0.974635993,
+                    0.986382539,
+                    0.993266795,
+                    0.997785983,
+                    0.999493636,
+                    0.999883695,
+                    1
+                ]
+            }
+        },
+        "bp": {
+            "bd": 1,
+            "be": [
+                "age"
+            ],
+            "bf": [
+                "years"
+            ],
+            "bg": [
+                365
+            ],
+            "bh": [
+                1
+            ],
+            "bi": [
+                [
+                    0
+                ]
+            ],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                [
+                    1
+                ]
+            ]
+        },
+        "bq": {
+            "bd": 1,
+            "be": [
+                "age"
+            ],
+            "bf": [
+                "years"
+            ],
+            "bg": [
+                365
+            ],
+            "bh": [
+                1
+            ],
+            "bi": [
+                [
+                    0
+                ]
+            ],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                [
+                    1
+                ]
+            ]
+        },
+        "br": {
+            "bd": 1,
+            "be": [
+                "age"
+            ],
+            "bf": [
+                "years"
+            ],
+            "bg": [
+                365
+            ],
+            "bh": [
+                1
+            ],
+            "bi": [
+                [
+                    0
+                ]
+            ],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                [
+                    1
+                ]
+            ]
+        },
+        "bs": {
+            "bd": 1,
+            "be": [
+                "age"
+            ],
+            "bf": [
+                "years"
+            ],
+            "bg": [
+                365
+            ],
+            "bh": [
+                1
+            ],
+            "bi": [
+                [
+                    0
+                ]
+            ],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                [
+                    1
+                ]
+            ]
+        },
+        "bt": {
+            "bd": 1,
+            "be": [
+                "age"
+            ],
+            "bf": [
+                "years"
+            ],
+            "bg": [
+                365
+            ],
+            "bh": [
+                1
+            ],
+            "bi": [
+                [
+                    0
+                ]
+            ],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                [
+                    1
+                ]
+            ]
+        },
+        "bu": {
+            "bd": 1,
+            "be": [
+                "age"
+            ],
+            "bf": [
+                "years"
+            ],
+            "bg": [
+                365
+            ],
+            "bh": [
+                1
+            ],
+            "bi": [
+                [
+                    0
+                ]
+            ],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                [
+                    1
+                ]
+            ]
+        },
+        "bv": {
+            "bd": 0,
+            "be": [],
+            "bf": [],
+            "bg": [],
+            "bh": [
+                0
+            ],
+            "bi": [],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                1
+            ]
+        },
+        "bw": {
+            "bd": 0,
+            "be": [],
+            "bf": [],
+            "bg": [],
+            "bh": [
+                0
+            ],
+            "bi": [],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                1
+            ]
+        },
+        "bx": {
+            "bd": 0,
+            "be": [],
+            "bf": [],
+            "bg": [],
+            "bh": [
+                0
+            ],
+            "bi": [],
+            "bj": "log2 antibody titer",
+            "bk": 1,
+            "bl": [
+                0
+            ],
+            "bo": [
+                1
+            ]
+        },
+        "by": {
+            "bd": 1,
+            "be": [
+                "age"
+            ],
+            "bf": [
+                "years"
+            ],
+            "bg": [
+                365
+            ],
+            "bh": [
+                4
+            ],
+            "bi": [
+                [
+                    0,
+                    1,
+                    5,
+                    10
+                ]
+            ],
+            "bj": "time in days",
+            "bk": 365,
+            "bl": [
+                [
+                    0
+                ]
+            ],
+            "bo": [
+                [
+                    1
+                ],
+                [
+                    1
+                ],
+                [
+                    1
+                ],
+                [
+                    1
+                ]
+            ]
+        }
+    },
+    "Metadata": {
+        "Author": "kmccarthy",
+        "DateCreated": "Wed Mar 12, 2014",
+        "IdReference": "Legacy",
+        "NodeCount": 1,
+        "Tool": "None"
+    },
+    "NodeOffsets": "0000820F0000110C",
+    "Nodes": [
+        {
+            "aa": 33295,
+            "ab": {
+                "ac": 38.24479394068253,
+                "ad": 68.61907343693882,
+                "ae": 100,
+                "af": 1081
+            }
+        }
+    ],
+    "StringTable": {
+        "AgeDistribution": "bn",
+        "AgeDistribution1": "ao",
+        "AgeDistribution2": "ap",
+        "AgeDistributionFlag": "an",
+        "Airport": "ag",
+        "Altitude": "af",
+        "AxisNames": "be",
+        "AxisScaleFactors": "bg",
+        "AxisUnits": "bf",
+        "BirthRate": "aj",
+        "DistributionValues": "bo",
+        "FertilityDistribution": "bc",
+        "SusceptibilityDistribution1": "au",
+        "SusceptibilityDistribution2": "av",
+        "SusceptibilityDistributionFlag": "at",
+        "IndividualAttributes": "am",
+        "InitialPopulation": "ae",
+        "Latitude": "ac",
+        "Longitude": "ad",
+        "MigrationHeterogeneityDistribution1": "ba",
+        "MigrationHeterogeneityDistribution2": "bb",
+        "MigrationHeterogeneityDistributionFlag": "az",
+        "MortalityDistribution": "bm",
+        "NodeAttributes": "ab",
+        "NodeID": "aa",
+        "NumDistributionAxes": "bd",
+        "NumPopulationGroups": "bh",
+        "PopulationGroups": "bi",
+        "PrevalenceDistribution1": "ar",
+        "PrevalenceDistribution2": "as",
+        "PrevalenceDistributionFlag": "aq",
+        "Region": "ah",
+        "ResultScaleFactor": "bk",
+        "ResultUnits": "bj",
+        "ResultValues": "bl",
+        "RiskDistribution1": "ax",
+        "RiskDistribution2": "ay",
+        "RiskDistributionFlag": "aw",
+        "Seaport": "ai",
+        "fake_time_since_infection_distribution": "by",
+        "humoral_memory_distribution1": "bs",
+        "humoral_memory_distribution2": "bt",
+        "humoral_memory_distribution3": "bu",
+        "maternal_antibody_distribution1": "bv",
+        "maternal_antibody_distribution2": "bw",
+        "maternal_antibody_distribution3": "bx",
+        "mucosal_memory_distribution1": "bp",
+        "mucosal_memory_distribution2": "bq",
+        "mucosal_memory_distribution3": "br"
+    }
+}
