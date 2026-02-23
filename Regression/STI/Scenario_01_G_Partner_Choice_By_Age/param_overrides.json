@@ -7,7 +7,7 @@
         "Death_Rate_Dependence": "NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER",
         "Demographics_Filenames": [
             "../inputs/SSA_Demographics.json",
-            "../inputs/pfa_overlay.json",
+            "../inputs/pfa_overlay_lc.json",
             "../inputs/PFA_Add_Informal_Marital.json"
         ],
         "Enable_Natural_Mortality": 1,
