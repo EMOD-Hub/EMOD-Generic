@@ -25,7 +25,6 @@
     "Enable_Superinfection": 0,
     "Enable_Susceptibility_Scaling": 0,
     "Enable_Vital_Dynamics": 0,
-    "Geography": "NONE",
     "Incubation_Period_Constant": 3,
     "Incubation_Period_Distribution": "CONSTANT_DISTRIBUTION",
     "Individual_Sampling_Type": "TRACK_ALL",
