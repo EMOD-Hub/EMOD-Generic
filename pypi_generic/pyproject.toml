@@ -8,9 +8,9 @@ dynamic = ["version"]
 description = "PyPI distribution of EMOD-Generic files."
 license = "MIT"
 authors = [
-  { name="Kurt Frey", email="kurt.frey@gatesfoundation.org" },
+    { name="Kurt Frey", email="kurt.frey@gatesfoundation.org" },
 ]
-readme = "README.md"
+readme = "../README.md"
 requires-python = ">=3.9"
 dependencies = [
 ]
