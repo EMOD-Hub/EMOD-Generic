@@ -1,4 +1,4 @@
-name: Build only
+name: Build EMOD
 
 on:
   # Allows manual run from the Actions tab

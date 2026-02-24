@@ -1,4 +1,4 @@
-name: Build and create artifacts
+name: Workflow - Build EMOD; create artifacts
 
 on:
   # Allows re-use in other workflows
@@ -40,19 +40,23 @@ jobs:
         with:
           name: Eradication
           path: ./build/x64/Release/Eradication/Eradication
+          retention-days: 7
       - name: Archive schema
         uses: actions/upload-artifact@v6
         with:
           name: schema.json
           path: schema.json
+          retention-days: 7
       - name: Archive version
         uses: actions/upload-artifact@v6
         with:
           name: version
           path: version
+          retention-days: 7
       - name: Archive component tests
         if: ${{ inputs.disease_type == 'All' }}
         uses: actions/upload-artifact@v4
         with:
           name: componentTests
           path: ./build/x64/Release/componentTests/componentTests
+          retention-days: 7
