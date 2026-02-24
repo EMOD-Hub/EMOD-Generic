@@ -10,7 +10,7 @@ license = "MIT"
 authors = [
     { name="Kurt Frey", email="kurt.frey@gatesfoundation.org" },
 ]
-readme = "../README.md"
+readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
 ]
@@ -37,7 +37,7 @@ tests = [
 
 [project.urls]
 Homepage = "https://www.idmod.org/tool/emod-generic/"
-Documentation = "https://docs.idmod.org/projects/emod-generic/en/latest/"
+Documentation = "https://emod-hub.github.io/EMOD-Generic/"
 Repository = "https://github.com/EMOD-Hub/EMOD-Generic"
 Issues = "https://github.com/EMOD-Hub/EMOD-Generic/issues"
 
