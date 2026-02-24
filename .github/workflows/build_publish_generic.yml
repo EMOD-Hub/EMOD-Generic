@@ -9,6 +9,7 @@ jobs:
     uses: ./.github/workflows/build_archive.yml
     with:
       disease_type: Generic
+      science_test: ' '
 
   publish:
     name: Publish distribution to PyPI
@@ -57,8 +58,8 @@ jobs:
           python3 -m pip install build
           cd pypi_generic
           python3 -m build
-      #- name: Upload files to PyPI
-      #  uses: pypa/gh-action-pypi-publish@release/v1
-      #  with:
-      #    verbose: true
-      #    packages-dir: pypi_generic/dist
+      - name: Upload files to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          verbose: true
+          packages-dir: pypi_generic/dist
