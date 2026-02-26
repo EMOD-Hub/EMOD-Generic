@@ -4,8 +4,6 @@ import threading
 import subprocess
 import glob
 import regression_local_monitor
-import regression_hpc_monitor
-import regression_hpc_linux_monitor
 import regression_utils as ru
 import sys
 import shutil
@@ -502,11 +500,9 @@ class MyRegressionRunner(object):
             elif psp_param != "NO":
                 print(psp_param + " is not a valid value for Python_Script_Path. Valid values are NO, LOCAL, SHARED. Exiting.")
                 sys.exit() 
-            #del(reply_json["parameters"]["Python_Script_Path"])
 
         self.copy_input_files_to_user_input(sim_id, scenario_path, reply_json)
 
-        # print "Writing out config and campaign.json."
         # save config.json
         with open(sim_dir + "/config.json", 'w') as f:
             f.write(json.dumps(reply_json, sort_keys=True, indent=4))
@@ -517,12 +513,6 @@ class MyRegressionRunner(object):
             reply_json["PSP"] = reply_json["parameters"]["Python_Script_Path"]
             del(reply_json["parameters"]["Python_Script_Path"])
 
-        # save campaign.json
-        #with open(sim_dir + "/" + self.campaign_filename, 'w') as f:
-            # f.write( json.dumps( campaign_json, sort_keys=True, indent=4 ) )
-            #f.write(str(campaign_json))
-
-        
         try:
             self.emodules_map["reporter_plugins"] = self.filter_emodules(reports_json)
         except UnboundLocalError:
@@ -548,36 +538,12 @@ class MyRegressionRunner(object):
         monitorThread = None    # need scoped here
 
         # print "Creating run & monitor thread."
-        if self.is_local_simulation():
-            monitorThread = regression_local_monitor.Monitor(sim_id, scenario_path, report, self.params, reply_json, scenario_type)
-        else:
-            if self.params.linux:
-                monitorThread = regression_hpc_linux_monitor.LinuxHpcMonitor(sim_id, scenario_path, report, self.params, self.params.label, reply_json, scenario_type)
-            else:
-                monitorThread = regression_hpc_monitor.HpcMonitor(sim_id, scenario_path, report, self.params, self.params.label, reply_json, scenario_type)
+        monitorThread = regression_local_monitor.Monitor(sim_id, scenario_path, report, self.params, reply_json, scenario_type)
 
-        # monitorThread.daemon = True
         monitorThread.daemon = False
-        # print "Starting run & monitor thread."
         monitorThread.start()
 
-        # print "Monitor thread started, notify data service, and return."
         return monitorThread
-
-    def attempt_test(self):
-        if self.is_local_simulation():
-            pass  # No test submissions for local simulations
-        else:
-            monitor_thread = regression_hpc_monitor.HpcMonitor("TestJob", None, None, self.params, self.params.label,
-                                                               None, None, priority="Highest")
-
-            # Test whether we can submit jobs to the cluster as specified
-            try:
-                monitor_thread.test_submission()
-            except (subprocess.TimeoutExpired, AssertionError) as ex:
-                print("FAILED to submit test job to the cluster. Make sure that you have valid credentials "
-                      "cached with the cluster and that the cluster at the specified address is available.")
-                raise ex
 
     def doSchemaTest(self):
         # print( "Testing schema generation..." )

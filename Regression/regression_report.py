@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import json
 import os
 import xml.dom.minidom
@@ -9,7 +7,7 @@ class SimpleReport:
         print( "Writing a human-readable report" )
         self.params = params
 
-        
+
 class Report:
     def __init__(self, params, version_string):
         self.num_tests = 0
@@ -171,5 +169,3 @@ class Report:
     @property
     def Summary(self):
         return { "tests" : self.num_tests, "passed" : (self.num_tests - self.num_errors - self.num_failures), "failed" : self.num_failures, "errors" : self.num_errors, "schema": self.schema }
-
-

@@ -1,12 +1,6 @@
-#!/usr/bin/python
-
-from __future__ import print_function
 import os
 import sys
-if sys.version_info[0] < 3:
-    import ConfigParser as configparser
-else:
-    import configparser
+import configparser
 import pdb
 
 class RuntimeParameters:
@@ -303,4 +297,3 @@ class RuntimeParameters:
     @property
     def linux(self):
         return self.args.linux
-

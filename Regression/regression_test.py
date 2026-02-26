@@ -1,18 +1,6 @@
-#!/usr/bin/python
-
 """
 This file is the root of regression. Almost everything here is about copying files around.
 """
-
-# These imports are from original version of regression_test.py that ran as a REST-ful web service 
-# inside mod_wsgi/apache setup. Was a good idea then and still might be...
-#import BaseHTTPServer
-#import SimpleHTTPServer
-#import SocketServer
-#import cgi
-#import httplib
-#import urllib
-#import urlparse
 
 import argparse
 import datetime
@@ -445,9 +433,6 @@ class TestRunner(object):
 
         return sim_id
 
-    def attempt_test(self):
-        self.runner.attempt_test()
-
     @staticmethod
     def override_config_value(config_json, param_name, param_value):
         """
@@ -656,9 +641,6 @@ def main():
 
     # initialize test runner for given directory, test type, constraints, etc.
     test_runner = TestRunner(ru.cache_cwd, test_type, params.constraints_dict, report, runner)
-
-    # verify that the test runner can dispatch tests to test executors
-    test_runner.attempt_test()
 
     if science:
         # prepare for generating graphs for SFTs
