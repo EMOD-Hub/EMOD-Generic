@@ -1,31 +1,21 @@
 import os
 import sys
 import configparser
-import pdb
+
+LOCAL_SIM_ROOT = 'outputs'
+LOCAL_BIN_ROOT = 'bin'
+LOCAL_DATA_ROOT = 'input_data_home'
 
 class RuntimeParameters:
     def __init__(self, args):
         print( "os = " + os.name )
         self.args = args
-        if not os.path.exists(args.config) :
-            print("Couldn't find configuration-file \"" + args.config + "\"")
-            sys.exit()
 
-        user = None
-        username_key = None
         if os.name == "posix":
             self.os_type = "POSIX"
-            username_key = "USER"
-            user = ""
         else:
             self.os_type = "WINDOWS"
-            username_key = "USERNAME"
-            user = os.environ["USERDOMAIN"] + '\\'
-            
-        user += os.environ[username_key]
 
-        self.config2 = configparser.ConfigParser({'password':'', 'username':user})
-        self.config2.read(args.config)
         self.PSP = None
         self.display()
 
@@ -37,20 +27,14 @@ class RuntimeParameters:
         print( "[arg] Use DLLs:                   ", self.use_dlls )
         print( "[arg] SCons:                      ", self.scons )
         print( "[arg] Print error msg to screen:  ", self.print_error )
-        print( "[arg] Config file:                ", self.regression_config )
         print( "[arg] Compare all outputs:        ", self.all_outputs )
         print( "[arg] Disable schema test:        ", self.disable_schema_test )
         print( "[arg] Component tests:            ", self.component_tests )
         print( "[arg] Component tests show output:", self.component_tests_show_output )
-        print( "[arg] Skip emodule test:          ", self.sec )
         print( "[arg] Config constraints:         ", self.constraints_dict )
         print( "[arg] Run Linux binary:           ", self.linux )
-
-        print( "[cfg] Bin root:                   ", self.bin_root )
         print( "[cfg] DLL root:                   ", self.dll_root )
         print( "[cfg] User input:                 ", self.user_input )
-        print( "[cfg] Sim root:                   ", self.sim_root )
-
         print( "[cfg] Local bin root:             ", self.local_bin_root )
         print( "[cfg] Local sim root:             ", self.local_sim_root )
         print( "[cfg] Source root:                ", self.src_root )
@@ -94,40 +78,20 @@ class RuntimeParameters:
         return self.args.print_error
 
     @property
-    def regression_config(self):
-        return self.args.config
-        
-    @property
-    def config(self):
-        return self.config2
-
-    @property
     def local_sim_root(self):
-        return self.config2.get(self.os_type, 'local_sim_root')
+        return LOCAL_SIM_ROOT
 
     @property
     def local_bin_root(self):
-        return self.config2.get(self.os_type, 'local_bin_root')
-
-    @property
-    def sim_root(self):
-        return self.config2.get(self.os_type, 'local_sim_root')
-
-    @property
-    def bin_root(self):
-        return self.config2.get(self.os_type, 'local_bin_root')
+        return LOCAL_BIN_ROOT
 
     @property
     def user_input(self):
-        return self.config2.get(self.os_type, 'home_input')
+        return LOCAL_DATA_ROOT
 
     @property
     def dll_root(self):
-        try:
-            dll_root = self.config2.get(self.os_type, 'local_dll_root')
-        except Exception as ex:
-            dll_root = self.config2.get(self.os_type, 'local_bin_root')
-        return dll_root
+        return LOCAL_BIN_ROOT
 
     @property
     def src_root(self):
@@ -149,10 +113,6 @@ class RuntimeParameters:
     @property
     def component_tests_show_output(self):
         return self.args.component_tests_show_output
-
-    @property
-    def sec(self):
-        return self.args.skip_emodule_check
 
     @property
     def constraints_dict(self):

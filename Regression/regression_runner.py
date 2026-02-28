@@ -31,7 +31,6 @@ class MyRegressionRunner(object):
         self.src_dest_set = set()
         self.dll_name_to_path = {}
         if params.dll_root is not None and params.use_dlls is True:
-            # print( "dll_root (remote) = " + params.dll_root )
             self.copyEModulesOver(params)
         else:
             print("Not using DLLs")
@@ -67,7 +66,7 @@ class MyRegressionRunner(object):
 
             # Copy directly to remote simulation working directory
             if os.path.isfile(scenario_file):
-                simulation_path = os.path.join(self.params.sim_root, simulation_directory)
+                simulation_path = os.path.join(self.params.local_sim_root, simulation_directory)
                 simulation_file = os.path.join(simulation_path, os.path.basename(filename))
                 self.update_file(scenario_file, simulation_file)
                 if(filename in input_files):
@@ -104,7 +103,7 @@ class MyRegressionRunner(object):
             # Copy directly to remote simulation working directory
             if scenario_file and os.path.isfile(scenario_file):
                 # print('Copying %s to remote working directory'%filename)
-                simulation_path = os.path.join(self.params.sim_root, simulation_directory)
+                simulation_path = os.path.join(self.params.local_sim_root, simulation_directory)
                 simulation_file = os.path.join(simulation_path, os.path.basename(filename))
                 self.update_file(scenario_file, simulation_file)
             else:
@@ -147,7 +146,7 @@ class MyRegressionRunner(object):
                 # For any demographics overlays WITHIN regression folder:
                 # Copy directly to remote simulation working directory
                 if os.path.isfile(scenario_file):
-                    simulation_path = os.path.join(self.params.sim_root, simulation_directory)
+                    simulation_path = os.path.join(self.params.local_sim_root, simulation_directory)
                     simulation_file = os.path.join(simulation_path, os.path.basename(filename))
                     source = scenario_file
                     dest = simulation_file
@@ -173,7 +172,7 @@ class MyRegressionRunner(object):
 
         # Copy *_template.json and *_test.py from scenario_path to simulation_directory.
         # And copy ../*.pyd files
-        sim_dir = os.path.join(self.params.sim_root, simulation_directory)
+        sim_dir = os.path.join(self.params.local_sim_root, simulation_directory)
 
         # just search for all pyd files by walking the tree and copy them to each sim folder for now
         pyds = []
@@ -259,8 +258,6 @@ class MyRegressionRunner(object):
             print("Except that directory does not exist!  Not copying emodules.")
             return
 
-        # print "dll_root = " + params.dll_root
-
         dll_dirs = ["disease_plugins",  "reporter_plugins", "interventions"]
 
         for dll_subdir in dll_dirs:
@@ -276,18 +273,16 @@ class MyRegressionRunner(object):
                 # 4) put full path in emodules_json
                 # 5) write out emodules_json when done to target sim dir
                 try:
-                    target_dir = os.path.join(params.dll_root, dll_subdir)
-                    target_dir = os.path.join(target_dir, dll_hash)
+                    target_dir = os.path.abspath(os.path.join(params.dll_root, dll_subdir))
+                    target_dir = os.path.abspath(os.path.join(target_dir, dll_hash))
 
-                    if params.sec:
-                        print(dll + " will be used without checking 'new-ness'.")
-                    elif(os.path.isdir(target_dir)):
+                    if(os.path.isdir(target_dir)):
                         if(os.listdir(target_dir)):
                             print(dll + ": Already on cluster")
                         else:
                             os.rmdir(target_dir)
 
-                    if not os.path.isdir(target_dir) and not params.sec:   # sec = command-line option to skip this
+                    if not os.path.isdir(target_dir):
                         print(dll + ": copying to cluster")
                         os.makedirs(target_dir)
                         ru.copy(dll, os.path.join(target_dir, os.path.basename(dll)))
@@ -348,8 +343,8 @@ class MyRegressionRunner(object):
         # scenario_type != 'tests', e.g. 'science' or 'sweep' will skip comparison
 
         print("Commissioning locally (not on cluster)!")
-        sim_dir = os.path.join(self.params.local_sim_root, sim_id)
-        bin_dir = os.path.join(self.params.local_bin_root, self.dtk_hash) if self.dtk_hash else None
+        sim_dir = os.path.abspath(os.path.join(self.params.local_sim_root, sim_id))
+        bin_dir = os.path.abspath(os.path.join(self.params.local_bin_root, self.dtk_hash)) if self.dtk_hash else None
 
         # create unique simulation directory
         self.sim_dir_sem.acquire()

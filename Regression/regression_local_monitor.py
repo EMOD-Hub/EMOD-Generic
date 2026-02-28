@@ -43,10 +43,8 @@ class Monitor(threading.Thread):
     
     def run(self):
         self.__class__.sems.acquire()
-        self.sim_root = self.params.local_sim_root
-        self.sim_dir = os.path.join( self.sim_root, self.sim_timestamp )
+        self.sim_dir = os.path.abspath(os.path.join( self.params.local_sim_root, self.sim_timestamp ))
         numcores = self.get_num_cores()
-        #os.chdir( self.sim_dir )    # NOT THREAD SAFE!
 
         starttime = datetime.datetime.now()
 

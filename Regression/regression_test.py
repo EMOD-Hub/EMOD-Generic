@@ -28,17 +28,15 @@ def get_argparser():
     parser.add_argument("exe_path", metavar="exe-path", nargs="?", default="",          help="Path to the Eradication.exe binary to run.  Default is where the executable is normally built depending on --scons and the OS.")
     parser.add_argument("--perf", action="store_true", default=False,                   help="Run for performance measurement purposes")
     parser.add_argument("--hidegraphs", action="store_true", default=False,             help="Suppress pop-up graphs in case of validation failure")
-    parser.add_argument("--config", default="regression_test.cfg",                      help="Regression test configuration [regression_test.cfg]")
     parser.add_argument("--disable-schema-test", action="store_true", default=False,    help="Disable schema test (testing is on by default, use to suppress schema testing)")
     parser.add_argument("--component-tests", action="store_true", default=False,        help="Run the componentTests if the executable exists")
     parser.add_argument("--component-tests-show-output", action="store_true", default=False, help="Show the output of the componentTests")
     parser.add_argument("--use-dlls", action="store_true", default=False,               help="Use emodules/DLLs when running tests")
     parser.add_argument("--all-outputs", action="store_true", default=False,            help="Use all output .json files for validation, not just InsetChart.json")
     parser.add_argument("--dll-path",                                                   help="Path to the root directory of the DLLs to use (e.g. contains reporter_plugins)")
-    parser.add_argument("--skip-emodule-check", action="store_true", default=False,     help="Use this to skip the sometimes slow check that EMODules on cluster are up to date.")
     parser.add_argument("--config-constraints", nargs="?",                              help="key:value pair(s) which are used to filter the scenario list (the given key and value must be in the config.json)")
     parser.add_argument("--scons", action="store_true", default=False,                  help="Indicates scons build so look for custom DLLs in the build/64/Release directory.")
-    parser.add_argument('--linux', action='store_true', default=False,                  help='Run on linux target')
+    parser.add_argument('--linux', action='store_true', default=False,                  help="Run on linux target")
     parser.add_argument("--print-error", action='store_true', default=False,            help="Print error message to screen.")
 
     return parser
@@ -256,11 +254,10 @@ def get_exe_version(exepath):
     version_string = version_results.group(0)
     return version_string
 
-def get_homepath(sim_root):
+def get_homepath():
     """
     Find the home path of the current user
 
-    :param sim_root: simulation root for running locally
     :return: home directory
     """
     if os.getenv("HOME") != None:
@@ -630,7 +627,7 @@ def main():
 
     if science:
         # prepare for generating graphs for SFTs
-        homepath = get_homepath(params.sim_root)
+        homepath = get_homepath()
         configure_SFT_graphs(homepath, params.hide_graphs)
 
     if sweep:
