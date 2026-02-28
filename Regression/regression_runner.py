@@ -246,15 +246,12 @@ class MyRegressionRunner(object):
 
         print( "src_root = " + params.src_root )
 
-        if params.dll_path is not None:
-            emodule_dir = params.dll_path
+        if params.scons:
+            emodule_dir = os.path.join(params.src_root, "build")
+            emodule_dir = os.path.join(emodule_dir, "x64")
         else:
-            if params.scons:
-                emodule_dir = os.path.join(params.src_root, "build")
-                emodule_dir = os.path.join(emodule_dir, "x64")
-            else:
-                emodule_dir = os.path.join(params.src_root, "x64")
-            emodule_dir = os.path.join(emodule_dir, "Release")
+            emodule_dir = os.path.join(params.src_root, "x64")
+        emodule_dir = os.path.join(emodule_dir, "Release")
 
         print('Assuming emodules (dlls) are in local directory: ' + emodule_dir)
 

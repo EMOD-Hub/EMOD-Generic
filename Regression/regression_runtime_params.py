@@ -53,7 +53,6 @@ class RuntimeParameters:
 
         print( "[cfg] Local bin root:             ", self.local_bin_root )
         print( "[cfg] Local sim root:             ", self.local_sim_root )
-        print( "[cfg] DLL path:                   ", self.dll_path )
         print( "[cfg] Source root:                ", self.src_root )
         return
 
@@ -84,10 +83,7 @@ class RuntimeParameters:
 
     @property
     def use_dlls(self):
-        if self.args.dll_path is not None:
-            return True
-        else:
-            return self.args.use_dlls
+        return self.args.use_dlls
     
     @property
     def scons(self):
@@ -124,10 +120,6 @@ class RuntimeParameters:
     @property
     def user_input(self):
         return self.config2.get(self.os_type, 'home_input')
-
-    @property
-    def dll_path(self):
-        return self.args.dll_path
 
     @property
     def dll_root(self):
