@@ -15,7 +15,6 @@ class MyRegressionRunner(object):
     emodules_map = {}
 
     # class variables
-    debug = False
     campaign_filename = "campaign.json"
 
     def __init__(self, params):
@@ -39,15 +38,9 @@ class MyRegressionRunner(object):
 
         return
 
-    def log(self, message):
-        if self.debug:
-            print(message)
-        return
-
     def update_file(self, source, destination):
 
         succeeded = False
-        self.log("Updating '{0}' from'{1}'".format(destination, source))
         if os.path.exists(source):
             src_dest_pair = (source, destination)
             if src_dest_pair not in self.src_dest_set:
@@ -55,7 +48,6 @@ class MyRegressionRunner(object):
                 self.src_dest_set.add(src_dest_pair)
             succeeded = True
         else:
-            self.log("Could not find source file '{0}' to copy to '{1}'".format(source, destination))
             print("Could not find source file '{0}' to copy to '{1}'".format(source, destination))
 
         return succeeded
@@ -118,7 +110,6 @@ class MyRegressionRunner(object):
             else:
                 if not self.update_file(source_path, dest_path):
                     print("Could not find source file '{0}' locally ({1}) or in inputs ({2}) [{3}]!".format(filename, scenario_file, source_path, scenario_directory))
-                    # config_json["parameters"]["Demographics_Filename"] = "input file ({0}) not found".format(filename)
                     # return
                     missing_files.append(os.path.basename(filename))
 
@@ -212,12 +203,6 @@ class MyRegressionRunner(object):
         for py in glob.glob( os.path.join( os.path.join( scenario_path, ".." ), "*.py" )):
             ru.copy( py, os.path.join( sim_dir, os.path.basename( py ) ) )
 
-        # Refresh all the shared_embedded_py_scripts: THIS IS GOING TO GO AWAY SOON WITH PIP INSTALL OF dtk_test_support
-        """
-        for py_file in glob.glob(os.path.join("shared_embedded_py_scripts", "dtk_*.py")):
-            py_input = self.params.py_input
-            self.copy_sim_file("shared_embedded_py_scripts", py_input, os.path.basename(py_file))
-        """
         return
 
     def copy_input_files_to_user_input(self, simulation_directory, scenario_path, config_json):
@@ -230,7 +215,6 @@ class MyRegressionRunner(object):
         self.copy_climate_and_migration_files_to_user_input(simulation_directory, config_json, source_input_directory, working_input_directory, scenario_path) 
         self.copy_serialized_population_files(config_json,simulation_directory, scenario_path)
         self.copy_pymod_files(config_json, simulation_directory, scenario_path)
-        self.params.use_user_input_root = True
 
         return
 
@@ -270,12 +254,7 @@ class MyRegressionRunner(object):
                 emodule_dir = os.path.join(emodule_dir, "x64")
             else:
                 emodule_dir = os.path.join(params.src_root, "x64")
-            if params.debug:
-                emodule_dir = os.path.join(emodule_dir, "Debug")
-            elif params.quick_start:
-                emodule_dir = os.path.join(emodule_dir, "QuickStart")
-            else:
-                emodule_dir = os.path.join(emodule_dir, "Release")
+            emodule_dir = os.path.join(emodule_dir, "Release")
 
         print('Assuming emodules (dlls) are in local directory: ' + emodule_dir)
 
@@ -345,9 +324,6 @@ class MyRegressionRunner(object):
                 print("ERROR: Failed to find file to copy: " + filename)
         return
 
-    def is_local_simulation(self):
-        return True if os.name == "posix" else self.params.local_execution
-
     def filter_emodules(self, custom_reports):
         final_reporters = []
 
@@ -373,17 +349,10 @@ class MyRegressionRunner(object):
     def commissionFromConfigJson(self, sim_id, reply_json, scenario_path, report, scenario_type='tests'):
         # scenario_type == 'tests' will compare results to reference
         # scenario_type != 'tests', e.g. 'science' or 'sweep' will skip comparison
-        # now we have the config_json, find out if we're commissioning locally or on HPC
 
-        sim_dir = os.path.join(self.params.sim_root, sim_id)
-        bin_dir = os.path.join(self.params.bin_root, self.dtk_hash) if self.dtk_hash else None
-
-        if self.is_local_simulation():
-            print("Commissioning locally (not on cluster)!")
-            sim_dir = os.path.join(self.params.local_sim_root, sim_id)
-            bin_dir = os.path.join(self.params.local_bin_root, self.dtk_hash) if self.dtk_hash else None
-        # else:
-            # print( "HPC!" )
+        print("Commissioning locally (not on cluster)!")
+        sim_dir = os.path.join(self.params.local_sim_root, sim_id)
+        bin_dir = os.path.join(self.params.local_bin_root, self.dtk_hash) if self.dtk_hash else None
 
         # create unique simulation directory
         self.sim_dir_sem.acquire()
@@ -470,10 +439,7 @@ class MyRegressionRunner(object):
                     self.copy_sim_file(scenario_path, sim_dir, os.path.basename(py_file))
             elif psp_param == "SHARED":
                 # We are going to copy scripts from s_e_p_s to simdir. But we need to separate dtk_test files from dtk_ep4 (TBD)
-                #py_input = self.params.py_input
                 py_input = "."
-                if not os.path.exists(py_input):
-                    os.makedirs(py_input)
                 for py_file in glob.glob(os.path.join(scenario_path, "dtk_*.py")):
                     self.copy_sim_file(scenario_path, sim_dir, os.path.basename(py_file))
 
@@ -493,10 +459,6 @@ class MyRegressionRunner(object):
                     elif dtk_test_path is not None:
                         self.copy_sim_file("shared_embedded_py_scripts", dtk_test_path, os.path.basename(py_file))
 
-                # Copy any files in shared_embedded to the SCENARION SIMULATION FOLDER (THIS IS A CHANGE).
-                #for py_file in glob.glob(os.path.join("shared_embedded_py_scripts", "dtk_*.py")):
-                #    self.copy_sim_file("shared_embedded_py_scripts", sim_dir, os.path.basename(py_file))
-
             elif psp_param != "NO":
                 print(psp_param + " is not a valid value for Python_Script_Path. Valid values are NO, LOCAL, SHARED. Exiting.")
                 sys.exit() 
@@ -509,7 +471,6 @@ class MyRegressionRunner(object):
 
         # now that config.json is written out, add Py Script Path back (if non-empty)
         if py_input is not None:
-            #reply_json["PSP"] = py_input
             reply_json["PSP"] = reply_json["parameters"]["Python_Script_Path"]
             del(reply_json["parameters"]["Python_Script_Path"])
 

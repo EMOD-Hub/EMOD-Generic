@@ -69,8 +69,6 @@ class Monitor(threading.Thread):
             print( "Calling '" + str(cmd) + "' from " + self.sim_dir + "\n" )
             print( "Running '" + str(self.config_json["parameters"]["Config_Name"]) + "' in " + self.sim_dir + "\n" )
             shell_val = False
-            #if self.scenario_type == 'pymod' and self.params.local_execution:
-            #    shell_val = True
 
             proc = subprocess.Popen( cmd, stdout=stdout, stderr=stderr, cwd=self.sim_dir, shell=shell_val )
             proc.wait()
