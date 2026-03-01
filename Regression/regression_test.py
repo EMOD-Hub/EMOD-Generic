@@ -29,7 +29,6 @@ def get_argparser():
     parser.add_argument("--perf", action="store_true", default=False,                   help="Run for performance measurement purposes")
     parser.add_argument("--disable-schema-test", action="store_true", default=False,    help="Disable schema test (testing is on by default, use to suppress schema testing)")
     parser.add_argument("--component-tests", action="store_true", default=False,        help="Run the componentTests if the executable exists")
-    parser.add_argument("--component-tests-show-output", action="store_true", default=False, help="Show the output of the componentTests")
     parser.add_argument("--use-dlls", action="store_true", default=False,               help="Use emodules/DLLs when running tests")
     parser.add_argument("--all-outputs", action="store_true", default=False,            help="Use all output .json files for validation, not just InsetChart.json")
     parser.add_argument("--dll-path",                                                   help="Path to the root directory of the DLLs to use (e.g. contains reporter_plugins)")
@@ -274,12 +273,11 @@ def configure_SFT_graphs(homepath):
     if os.path.exists(flag):
         os.remove(flag)
 
-def run_component_tests(scons_build, show_output):
+def run_component_tests(scons_build):
     """
     Run component tests
 
     :param scons_build: flag to look for the binaries in the scons output location
-    :param show_output: whether to show the output of the component tests
     :return: whether all tests succeeded
     """
 
@@ -296,15 +294,11 @@ def run_component_tests(scons_build, show_output):
 
     if (os.path.exists(component_test_path)):
         os.chdir("../componentTests")
-        if (show_output):
-            with open("StdErr.txt", "w") as stderr_file:
-                ret = subprocess.call([component_test_path], stderr=stderr_file)
-            os.remove("StdErr.txt")
-        else:
-            with open("StdOut.txt", "w") as stdout_file:
-                ret = subprocess.call([component_test_path], stdout=stdout_file)
-            if (ret == 0):
-                os.remove("StdOut.txt")
+
+        with open("StdOut.txt", "w") as stdout_file:
+            ret = subprocess.call([component_test_path], stdout=stdout_file)
+        if (ret == 0):
+            os.remove("StdOut.txt")
 
         if ret == 0:
             return True
@@ -653,7 +647,7 @@ def main():
     component_tests_passed = True
     if( params.component_tests ):
         ct_start = datetime.datetime.now()
-        component_tests_passed = run_component_tests(params.scons, params.component_tests_show_output)
+        component_tests_passed = run_component_tests(params.scons)
         duration = datetime.datetime.now() - ct_start
         if component_tests_passed:
             report.addPassingTest('component_tests', duration, 'see logs for details')

@@ -28,7 +28,6 @@ class RuntimeParameters:
         print( "[arg] Print error msg to screen:  ", self.print_error )
         print( "[arg] Disable schema test:        ", self.disable_schema_test )
         print( "[arg] Component tests:            ", self.component_tests )
-        print( "[arg] Component tests show output:", self.component_tests_show_output )
         print( "[arg] Config constraints:         ", self.constraints_dict )
         print( "[arg] Run Linux binary:           ", self.linux )
         print( "[cfg] DLL root:                   ", self.dll_root )
@@ -99,10 +98,6 @@ class RuntimeParameters:
     @property
     def component_tests(self):
         return self.args.component_tests
-
-    @property
-    def component_tests_show_output(self):
-        return self.args.component_tests_show_output
 
     @property
     def constraints_dict(self):
