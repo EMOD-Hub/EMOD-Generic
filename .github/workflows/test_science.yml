@@ -9,7 +9,6 @@ on:
         type: string
         default: 'generic_science,typhoid_science'
 
-
 jobs:
   build:
     name: Build and create artifacts

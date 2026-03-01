@@ -4,7 +4,6 @@ import configparser
 
 LOCAL_SIM_ROOT = 'outputs'
 LOCAL_BIN_ROOT = 'bin'
-LOCAL_DATA_ROOT = 'input_data_home'
 
 class RuntimeParameters:
     def __init__(self, args):
@@ -31,7 +30,6 @@ class RuntimeParameters:
         print( "[arg] Config constraints:         ", self.constraints_dict )
         print( "[arg] Run Linux binary:           ", self.linux )
         print( "[cfg] DLL root:                   ", self.dll_root )
-        print( "[cfg] User input:                 ", self.user_input )
         print( "[cfg] Local bin root:             ", self.local_bin_root )
         print( "[cfg] Local sim root:             ", self.local_sim_root )
         print( "[cfg] Source root:                ", self.src_root )
@@ -77,10 +75,6 @@ class RuntimeParameters:
     @property
     def local_bin_root(self):
         return LOCAL_BIN_ROOT
-
-    @property
-    def user_input(self):
-        return LOCAL_DATA_ROOT
 
     @property
     def dll_root(self):

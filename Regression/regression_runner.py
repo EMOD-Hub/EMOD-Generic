@@ -77,8 +77,7 @@ class MyRegressionRunner(object):
 
         return
 
-    def copy_demographics_files_to_user_input(self, simulation_directory, config_json, working_input_directory,
-                                              scenario_directory, source_input_directory):
+    def copy_demographics_files_to_user_input(self, simulation_directory, config_json, scenario_directory, source_input_directory):
 
         input_files = config_json['parameters'].get('Demographics_Filenames', [])
         if not input_files:
@@ -92,12 +91,8 @@ class MyRegressionRunner(object):
             if not filename or len(filename.strip(' ')) == 0:
                 continue
 
-            scenario_file = None
-            source_path = "."
-            if working_input_directory != None:
-                scenario_file = os.path.join(scenario_directory, filename)
-                source_path = os.path.join(source_input_directory, filename)
-                dest_path = os.path.join(working_input_directory, os.path.basename(filename))
+            scenario_file = os.path.join(scenario_directory, filename)
+            source_path = os.path.join(source_input_directory, filename)
 
             # For any demographics overlays WITHIN regression folder:
             # Copy directly to remote simulation working directory
@@ -107,10 +102,8 @@ class MyRegressionRunner(object):
                 simulation_file = os.path.join(simulation_path, os.path.basename(filename))
                 self.update_file(scenario_file, simulation_file)
             else:
-                if not self.update_file(source_path, dest_path):
-                    print("Could not find source file '{0}' locally ({1}) or in inputs ({2}) [{3}]!".format(filename, scenario_file, source_path, scenario_directory))
-                    # return
-                    missing_files.append(os.path.basename(filename))
+                print("Could not find source file '{0}' locally ({1}) or in inputs ({2}) [{3}]!".format(filename, scenario_file, source_path, scenario_directory))
+                missing_files.append(os.path.basename(filename))
 
             demographics_filenames.append(os.path.basename(filename))
 
@@ -124,10 +117,10 @@ class MyRegressionRunner(object):
 
         return
 
-    def copy_climate_and_migration_files_to_user_input(self, simulation_directory, config_json, source_input_directory,
-                                                       working_input_directory, scenario):
+    def copy_climate_and_migration_files_to_user_input(self, simulation_directory, config_json, source_input_directory, scenario):
 
-        filter_list = ['Demographics_Filename', 'Demographics_Filenames',
+        filter_list = ['Demographics_Filename',
+                       'Demographics_Filenames',
                        'Campaign_Filename',
                        'Custom_Reports_Filename',
                        'Serialized_Population_Filenames',
@@ -139,9 +132,9 @@ class MyRegressionRunner(object):
                 filename = config_json["parameters"][key]
                 if len(filename) == 0:
                     continue
-                source = os.path.join(source_input_directory, filename)
-                dest = os.path.join(working_input_directory, os.path.basename(filename))
+
                 scenario_file = os.path.join(scenario, filename)
+                source = os.path.join(source_input_directory, filename)
 
                 # For any demographics overlays WITHIN regression folder:
                 # Copy directly to remote simulation working directory
@@ -150,20 +143,16 @@ class MyRegressionRunner(object):
                     simulation_file = os.path.join(simulation_path, os.path.basename(filename))
                     source = scenario_file
                     dest = simulation_file
+                    if not self.update_file(source, dest):
+                        print("Could not find input file '{0}' to copy to '{1}' for scenario '{2}'".format(source, dest, scenario))
                     config_json["parameters"][key] = os.path.basename(filename)
 
-                # Copy main file
-                if not self.update_file(source, dest):
-                    print("Could not find input file '{0}' to copy to '{1}' for scenario '{2}'".format(source, dest,
-                                                                                                       scenario))
-
-                # Copy secondary file (Climate and Migration only)
-                if key != "Load_Balance_Filename":
-                    source = source + ".json"
-                    dest = dest + ".json"
-                    if not self.update_file(source, dest):
-                        print("Could not find input file '{0}' to copy to '{1}' for scenario '{2}'".format(source, dest,
-                                                                                                           scenario))
+                    # Copy secondary file (Climate and Migration only)
+                    if key != "Load_Balance_Filename":
+                        source = source + ".json"
+                        dest = dest + ".json"
+                        if not self.update_file(source, dest):
+                            print("Could not find input file '{0}' to copy to '{1}' for scenario '{2}'".format(source, dest, scenario))
         return
 
     def copy_pymod_files( self, config_json, simulation_directory, scenario_path ):
@@ -207,11 +196,10 @@ class MyRegressionRunner(object):
     def copy_input_files_to_user_input(self, simulation_directory, scenario_path, config_json):
         # Copy local demographics/input file(s) 
         source_input_directory = "."
-        working_input_directory = self.params.user_input
 
         # Harmonizing these to do the same thing
-        self.copy_demographics_files_to_user_input(simulation_directory, config_json, working_input_directory, scenario_path, source_input_directory) 
-        self.copy_climate_and_migration_files_to_user_input(simulation_directory, config_json, source_input_directory, working_input_directory, scenario_path) 
+        self.copy_demographics_files_to_user_input(simulation_directory, config_json, scenario_path, source_input_directory) 
+        self.copy_climate_and_migration_files_to_user_input(simulation_directory, config_json, source_input_directory, scenario_path) 
         self.copy_serialized_population_files(config_json,simulation_directory, scenario_path)
         self.copy_pymod_files(config_json, simulation_directory, scenario_path)
 

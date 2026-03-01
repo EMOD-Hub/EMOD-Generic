@@ -9,7 +9,6 @@ on:
         type: string
         default: 'generic,typhoid'
 
-
 jobs:
   build:
     name: Build and create artifacts
@@ -54,3 +53,9 @@ jobs:
             cd EMOD-Generic
             cd Regression
             python3 regression_test.py ${{ inputs.test_suite }} --scons --component-tests --linux
+      - name: Upload test results
+        uses: actions/upload-artifact@v6
+        with:
+          name: Reports
+          path: ./Regression/reports/
+          retention-days: 7
