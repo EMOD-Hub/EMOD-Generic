@@ -7,7 +7,7 @@ on:
       test_suite:
         required: true
         type: string
-        default: 'generic,typhoid'
+        default: 'generic_science,typhoid_science'
 
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/build_archive.yml
     with:
       disease_type: 'All'
-      science_test: ' '
+      science_test: '--TestSugar'
 
   run-tests:
     name: Run reression and component tests
@@ -25,7 +25,6 @@ jobs:
       - build
     env:
       path_exe: './build/x64/Release/Eradication'
-      path_comp_test: './build/x64/Release/componentTests'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
@@ -34,15 +33,9 @@ jobs:
         with:
           name: Eradication
           path: ${{ env.path_exe }}
-      - name: Download component tests
-        uses: actions/download-artifact@v7
-        with:
-          name: componentTests
-          path: ${{ env.path_comp_test }}
       - name: Restore permissions
         run: |
           chmod +x ${{ env.path_exe }}/Eradication
-          chmod +x ${{ env.path_comp_test }}/componentTests
       - name: Check python; run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -53,4 +46,4 @@ jobs:
             python3 -m pip list
             cd EMOD-Generic
             cd Regression
-            python3 regression_test.py ${{ inputs.test_suite }} --scons --component-tests --linux
+            python3 regression_test.py ${{ inputs.test_suite }} --scons --linux
