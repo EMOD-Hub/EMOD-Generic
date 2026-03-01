@@ -7,7 +7,7 @@ on:
       test_suite:
         required: true
         type: string
-        default: 'generic,typhoid'
+        default: 'generic,py,typhoid'
 
 jobs:
   build:

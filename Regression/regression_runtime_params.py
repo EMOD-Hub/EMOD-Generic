@@ -15,7 +15,6 @@ class RuntimeParameters:
         else:
             self.os_type = "WINDOWS"
 
-        self.PSP = None
         self.display()
 
     def display(self):

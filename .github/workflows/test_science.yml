@@ -7,7 +7,7 @@ on:
       test_suite:
         required: true
         type: string
-        default: 'generic_science,typhoid_science'
+        default: 'generic_science,py_science,typhoid_science'
 
 jobs:
   build:
