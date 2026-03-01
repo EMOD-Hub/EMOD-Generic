@@ -147,14 +147,8 @@ class Monitor(threading.Thread):
 
             if "Header" in ref_json.keys() and ref_json["Header"]["Timesteps"] != test_json["Header"]["Timesteps"]:
                 warning_msg = "WARNING: test "+report_name+" has timesteps " + str(test_json["Header"]["Timesteps"])  + " DIFFERRING from ref "+report_name+" timesteps " + str(ref_json["Header"]["Timesteps"]) + "!\n"
-                if self.params.hide_graphs:
-                    # This is treated as automated running mode (or bamboo nightly build mode)
-                    fail_validation = True
-                    failure_txt += warning_msg
-                else:
-                    # This is treated as manual running mode
-                    ru.final_warnings += warning_msg
-                    print(warning_msg)
+                fail_validation = True
+                failure_txt += warning_msg
 
             if not fail_validation:
                 #print( "Hasn't failed validation on second level review. Time to look channel by channel, timestep by timestep." )
@@ -348,11 +342,6 @@ class Monitor(threading.Thread):
         if fail_validation:
             #print( "Validation failed, add to failing tests report." )
             self.report.addFailingTest( self.scenario_path, failure_txt, os.path.join( self.sim_dir, ( "output/" + report_name ) ), self.scenario_type )
-
-            if len(failures) > 0 and not self.params.hide_graphs and report_name.startswith( "InsetChart" ):
-                #print( "Plotting charts for failure deep dive." )  
-                # Note: Use python version 2 for plotAllCharts.py
-                subprocess.Popen( ["python", "plotAllCharts.py", ref_path, test_path, self.scenario_path ] )
         else:
             print( self.scenario_path + " passed (" + str(self.duration) + ") - " + report_name )
             self.report.addPassingTest(self.scenario_path, self.duration, os.path.join(sim_dir, ("output/" + report_name)))

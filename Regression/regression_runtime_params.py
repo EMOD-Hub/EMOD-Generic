@@ -23,7 +23,6 @@ class RuntimeParameters:
         print( "[arg] Suite:                      ", self.suite )
         print( "[arg] Executable path:            ", self.executable_path )
         print( "[arg] Run in perf mode:           ", self.measure_perf )
-        print( "[arg] Hide graphs on mismatch:    ", self.hide_graphs )
         print( "[arg] Use DLLs:                   ", self.use_dlls )
         print( "[arg] SCons:                      ", self.scons )
         print( "[arg] Print error msg to screen:  ", self.print_error )
@@ -59,10 +58,6 @@ class RuntimeParameters:
     @property
     def measure_perf(self):
         return self.args.perf
-
-    @property
-    def hide_graphs(self):
-        return self.args.hidegraphs
 
     @property
     def use_dlls(self):

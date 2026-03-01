@@ -27,7 +27,6 @@ def get_argparser():
     parser.add_argument("suite",                                                        help="JSON test-suite to run - e.g. full.json, sanity (converted to sanity.json) - one or more comma separated values")
     parser.add_argument("exe_path", metavar="exe-path", nargs="?", default="",          help="Path to the Eradication.exe binary to run.  Default is where the executable is normally built depending on --scons and the OS.")
     parser.add_argument("--perf", action="store_true", default=False,                   help="Run for performance measurement purposes")
-    parser.add_argument("--hidegraphs", action="store_true", default=False,             help="Suppress pop-up graphs in case of validation failure")
     parser.add_argument("--disable-schema-test", action="store_true", default=False,    help="Disable schema test (testing is on by default, use to suppress schema testing)")
     parser.add_argument("--component-tests", action="store_true", default=False,        help="Run the componentTests if the executable exists")
     parser.add_argument("--component-tests-show-output", action="store_true", default=False, help="Show the output of the componentTests")
@@ -265,18 +264,15 @@ def get_homepath():
     else:
         return os.path.join(os.getenv("HOMEDRIVE"), os.getenv("HOMEPATH"))
 
-def configure_SFT_graphs(homepath, hide_graphs):
+def configure_SFT_graphs(homepath):
     """
     Prepare to generate graphs for SFTs by updating a touch file
 
     :param homepath: home directory
-    :param hide_graphs: whether to show graphs or not
     """
     flag = os.path.join(homepath, ".rt_show.sft")
     if os.path.exists(flag):
         os.remove(flag)
-    if not hide_graphs:
-        ru.touch_file(flag)
 
 def run_component_tests(scons_build, show_output):
     """
@@ -628,7 +624,7 @@ def main():
     if science:
         # prepare for generating graphs for SFTs
         homepath = get_homepath()
-        configure_SFT_graphs(homepath, params.hide_graphs)
+        configure_SFT_graphs(homepath)
 
     if sweep:
         print("Running sweep...\n")
