@@ -90,7 +90,6 @@
         "Post_Infection_Transmission_Multiplier": 0,
         "Property_Report_Start_Year": 1870,
         "Property_Report_Stop_Year": 2000,
-        "Python_Script_Path": "NO",
         "Rainfall_Filename": "Namawala_single_node_rainfall_daily.bin",
         "Rainfall_Scale_Factor": 1,
         "Relative_Humidity_Filename": "Namawala_single_node_relative_humidity_daily.bin",

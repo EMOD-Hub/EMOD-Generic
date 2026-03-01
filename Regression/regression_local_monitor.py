@@ -43,10 +43,8 @@ class Monitor(threading.Thread):
     
     def run(self):
         self.__class__.sems.acquire()
-        self.sim_root = self.params.local_sim_root
-        self.sim_dir = os.path.join( self.sim_root, self.sim_timestamp )
+        self.sim_dir = os.path.abspath(os.path.join( self.params.local_sim_root, self.sim_timestamp ))
         numcores = self.get_num_cores()
-        #os.chdir( self.sim_dir )    # NOT THREAD SAFE!
 
         starttime = datetime.datetime.now()
 
@@ -69,8 +67,6 @@ class Monitor(threading.Thread):
             print( "Calling '" + str(cmd) + "' from " + self.sim_dir + "\n" )
             print( "Running '" + str(self.config_json["parameters"]["Config_Name"]) + "' in " + self.sim_dir + "\n" )
             shell_val = False
-            #if self.scenario_type == 'pymod' and self.params.local_execution:
-            #    shell_val = True
 
             proc = subprocess.Popen( cmd, stdout=stdout, stderr=stderr, cwd=self.sim_dir, shell=shell_val )
             proc.wait()
@@ -81,14 +77,10 @@ class Monitor(threading.Thread):
         print( str(self.__class__.completed) + " out of " + str(len(ru.reg_threads)) + " completed." )
         # JPS - should check here and only do the verification if it passed... ?
         if self.scenario_type == 'tests':
-            if self.params.all_outputs == False:
-            # Following line is for InsetChart.json only
-                self.verify(self.sim_dir)
-            else:
-                # Every .json file in output (not hidden with . prefix) will be used for validation
-                for file in os.listdir( os.path.join( self.scenario_path, "output" ) ):
-                    if ( file.endswith( ".json" ) or file.endswith( ".csv" ) or file.endswith( ".h5" ) or file.endswith( ".db" ) ) and file[0] != ".":
-                        self.verify( self.sim_dir, file, "Channels" )
+            # Every .json file in output (not hidden with . prefix) will be used for validation
+            for file in os.listdir( os.path.join( self.scenario_path, "output" ) ):
+                if ( file.endswith( ".json" ) or file.endswith( ".csv" ) or file.endswith( ".h5" ) or file.endswith( ".db" ) ) and file[0] != ".":
+                    self.verify( self.sim_dir, file, "Channels" )
         elif self.scenario_type == 'science':
             self.science_verify( self.sim_dir )
         elif self.scenario_type == 'pymod':
@@ -155,14 +147,8 @@ class Monitor(threading.Thread):
 
             if "Header" in ref_json.keys() and ref_json["Header"]["Timesteps"] != test_json["Header"]["Timesteps"]:
                 warning_msg = "WARNING: test "+report_name+" has timesteps " + str(test_json["Header"]["Timesteps"])  + " DIFFERRING from ref "+report_name+" timesteps " + str(ref_json["Header"]["Timesteps"]) + "!\n"
-                if self.params.hide_graphs:
-                    # This is treated as automated running mode (or bamboo nightly build mode)
-                    fail_validation = True
-                    failure_txt += warning_msg
-                else:
-                    # This is treated as manual running mode
-                    ru.final_warnings += warning_msg
-                    print(warning_msg)
+                fail_validation = True
+                failure_txt += warning_msg
 
             if not fail_validation:
                 #print( "Hasn't failed validation on second level review. Time to look channel by channel, timestep by timestep." )
@@ -356,11 +342,6 @@ class Monitor(threading.Thread):
         if fail_validation:
             #print( "Validation failed, add to failing tests report." )
             self.report.addFailingTest( self.scenario_path, failure_txt, os.path.join( self.sim_dir, ( "output/" + report_name ) ), self.scenario_type )
-
-            if len(failures) > 0 and not self.params.hide_graphs and report_name.startswith( "InsetChart" ):
-                #print( "Plotting charts for failure deep dive." )  
-                # Note: Use python version 2 for plotAllCharts.py
-                subprocess.Popen( ["python", "plotAllCharts.py", ref_path, test_path, self.scenario_path ] )
         else:
             print( self.scenario_path + " passed (" + str(self.duration) + ") - " + report_name )
             self.report.addPassingTest(self.scenario_path, self.duration, os.path.join(sim_dir, ("output/" + report_name)))

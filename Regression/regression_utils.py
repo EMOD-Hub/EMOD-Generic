@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import json
 import collections
 import os
@@ -11,7 +9,7 @@ from io import open
 import argparse
 import subprocess
 import shutil
-from pathlib import Path # hereby making this script dependent on Python3.6 :(
+from pathlib import Path
 
 # below is list of 'global' variables that are shared across >1 modules in the regression suite of code. 
 # probably all of them could ultimately be made at least a static member of MyRegressionRunner or Monitor.
@@ -139,12 +137,6 @@ def flattenConfig( configjson_path, new_config_name="config" ):
     if "Default_Config_Path" in configjson["parameters"]:
         configjson["parameters"].pop("Default_Config_Path")
 
-    # let's write out a flat version in case someone wants
-    # to use regression examples as configs for debug mode
-    with open( configjson_path.replace( "param_overrides", new_config_name ), 'w', newline='\r\n') as handle:
-        # this is really funky and awkward but is here to maintain python 2/3 compatability
-        handle.write( bytearray(json.dumps(configjson, sort_keys=True, indent=4), 'utf-8').decode('utf-8') )
-    
     return configjson
 
 

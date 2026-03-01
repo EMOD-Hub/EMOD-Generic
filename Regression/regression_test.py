@@ -1,18 +1,6 @@
-#!/usr/bin/python
-
 """
 This file is the root of regression. Almost everything here is about copying files around.
 """
-
-# These imports are from original version of regression_test.py that ran as a REST-ful web service 
-# inside mod_wsgi/apache setup. Was a good idea then and still might be...
-#import BaseHTTPServer
-#import SimpleHTTPServer
-#import SocketServer
-#import cgi
-#import httplib
-#import urllib
-#import urlparse
 
 import argparse
 import datetime
@@ -29,50 +17,35 @@ import regression_utils as ru
 import regression_runtime_params
 import regression_report
 
-def get_argparser(parser = None):
+def get_argparser():
     """
     Add argparse parameters to a parser object.
 
-    :param parser: argparse parser to add params to (useful for testing)
     :return: argparse parser populated with param arguments
     """
-    if not parser:
-        parser = argparse.ArgumentParser()
-    parser.add_argument("suite",
-                        help="JSON test-suite to run - e.g. full.json, sanity (converted to sanity.json) - one or more comma separated values")
-    parser.add_argument("exe_path", metavar="exe-path", nargs="?", default="",
-                        help="Path to the Eradication.exe binary to run.  Default is where the executable is normally built depending on --scons, --debug, and the OS.")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("suite",                                                        help="JSON test-suite to run - e.g. full.json, sanity (converted to sanity.json) - one or more comma separated values")
+    parser.add_argument("exe_path", metavar="exe-path", nargs="?", default="",          help="Path to the Eradication.exe binary to run.  Default is where the executable is normally built depending on --scons and the OS.")
     parser.add_argument("--perf", action="store_true", default=False,                   help="Run for performance measurement purposes")
-    parser.add_argument("--hidegraphs", action="store_true", default=False,             help="Suppress pop-up graphs in case of validation failure")
-    parser.add_argument("--debug", action="store_true", default=False,                  help="Use debug path for emodules")
-    parser.add_argument("--quick-start", action="store_true", default=False,            help="Use QuickStart path for emodules")
-    parser.add_argument("--label",                                                      help="Custom suffix for HPC job name")
-    parser.add_argument("--config", default="regression_test.cfg",                      help="Regression test configuration [regression_test.cfg]")
     parser.add_argument("--disable-schema-test", action="store_true", default=False,    help="Disable schema test (testing is on by default, use to suppress schema testing)")
     parser.add_argument("--component-tests", action="store_true", default=False,        help="Run the componentTests if the executable exists")
-    parser.add_argument("--component-tests-show-output", action="store_true", default=False,
-                                                                                        help="Show the output of the componentTests")
     parser.add_argument("--use-dlls", action="store_true", default=False,               help="Use emodules/DLLs when running tests")
     parser.add_argument("--all-outputs", action="store_true", default=False,            help="Use all output .json files for validation, not just InsetChart.json")
     parser.add_argument("--dll-path",                                                   help="Path to the root directory of the DLLs to use (e.g. contains reporter_plugins)")
-    parser.add_argument("--skip-emodule-check", action="store_true", default=False,     help="Use this to skip the sometimes slow check that EMODules on cluster are up to date.")
     parser.add_argument("--config-constraints", nargs="?",                              help="key:value pair(s) which are used to filter the scenario list (the given key and value must be in the config.json)")
     parser.add_argument("--scons", action="store_true", default=False,                  help="Indicates scons build so look for custom DLLs in the build/64/Release directory.")
-    parser.add_argument('--local', action='store_true', default=False,                  help='Run all simulations locally.')
-    parser.add_argument('--linux', action='store_true', default=False,                  help='Run on linux target')
+    parser.add_argument('--linux', action='store_true', default=False,                  help="Run on linux target")
     parser.add_argument("--print-error", action='store_true', default=False,            help="Print error message to screen.")
 
     return parser
 
-def setup(args=None):
+def setup():
     """
     Process command-line parameters
 
-    :param args: argparse parser object to use instead of creating a new one (for testing)
     :return: RuntimeParameters object reflecting all the relevant arguments
     """
-    if not args:
-        args = get_argparser().parse_args()
+    args = get_argparser().parse_args()
     params = regression_runtime_params.RuntimeParameters(args)
     return params
 
@@ -279,40 +252,32 @@ def get_exe_version(exepath):
     version_string = version_results.group(0)
     return version_string
 
-def get_homepath(sim_root, run_local=False):
+def get_homepath():
     """
     Find the home path of the current user
 
-    :param sim_root: simulation root for running locally
-    :param run_local: flag for whether the run is using HPC or running locally
     :return: home directory
     """
     if os.getenv("HOME") != None:
         return os.getenv("HOME")
-    elif run_local:
+    else:
         return os.path.join(os.getenv("HOMEDRIVE"), os.getenv("HOMEPATH"))
-    else:  # cluster/HPC
-        return os.path.join(sim_root, "..")
 
-def configure_SFT_graphs(homepath, hide_graphs):
+def configure_SFT_graphs(homepath):
     """
     Prepare to generate graphs for SFTs by updating a touch file
 
     :param homepath: home directory
-    :param hide_graphs: whether to show graphs or not
     """
     flag = os.path.join(homepath, ".rt_show.sft")
     if os.path.exists(flag):
         os.remove(flag)
-    if not hide_graphs:
-        ru.touch_file(flag)
 
-def run_component_tests(scons_build, show_output):
+def run_component_tests(scons_build):
     """
     Run component tests
 
     :param scons_build: flag to look for the binaries in the scons output location
-    :param show_output: whether to show the output of the component tests
     :return: whether all tests succeeded
     """
 
@@ -329,15 +294,11 @@ def run_component_tests(scons_build, show_output):
 
     if (os.path.exists(component_test_path)):
         os.chdir("../componentTests")
-        if (show_output):
-            with open("StdErr.txt", "w") as stderr_file:
-                ret = subprocess.call([component_test_path], stderr=stderr_file)
-            os.remove("StdErr.txt")
-        else:
-            with open("StdOut.txt", "w") as stdout_file:
-                ret = subprocess.call([component_test_path], stdout=stdout_file)
-            if (ret == 0):
-                os.remove("StdOut.txt")
+
+        with open("StdOut.txt", "w") as stdout_file:
+            ret = subprocess.call([component_test_path], stdout=stdout_file)
+        if (ret == 0):
+            os.remove("StdOut.txt")
 
         if ret == 0:
             return True
@@ -444,9 +405,6 @@ class TestRunner(object):
             ru.final_warnings += "Error flattening config.  Skipped " + sim_path + "\n"
 
         return sim_id
-
-    def attempt_test(self):
-        self.runner.attempt_test()
 
     @staticmethod
     def override_config_value(config_json, param_name, param_value):
@@ -657,13 +615,10 @@ def main():
     # initialize test runner for given directory, test type, constraints, etc.
     test_runner = TestRunner(ru.cache_cwd, test_type, params.constraints_dict, report, runner)
 
-    # verify that the test runner can dispatch tests to test executors
-    test_runner.attempt_test()
-
     if science:
         # prepare for generating graphs for SFTs
-        homepath = get_homepath(params.sim_root, params.local_execution)
-        configure_SFT_graphs(homepath, params.hide_graphs)
+        homepath = get_homepath()
+        configure_SFT_graphs(homepath)
 
     if sweep:
         print("Running sweep...\n")
@@ -692,7 +647,7 @@ def main():
     component_tests_passed = True
     if( params.component_tests ):
         ct_start = datetime.datetime.now()
-        component_tests_passed = run_component_tests(params.scons, params.component_tests_show_output)
+        component_tests_passed = run_component_tests(params.scons)
         duration = datetime.datetime.now() - ct_start
         if component_tests_passed:
             report.addPassingTest('component_tests', duration, 'see logs for details')

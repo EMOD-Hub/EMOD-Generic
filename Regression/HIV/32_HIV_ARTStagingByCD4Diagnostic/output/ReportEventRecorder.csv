@@ -1790,7 +1790,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,1786,24471.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,1787,10659.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,1788,6453.7,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,1789,8405.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,1789,8405.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,1790,15603.4,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,1791,6306.85,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,1792,18659.4,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -2354,7 +2354,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,2350,368.882,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2351,27000.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2352,13109.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,2353,18653.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,2353,18653.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2354,2306.79,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2355,16091.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2356,23577.5,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -2748,7 +2748,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,2744,15711.9,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2745,7286,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2746,3429.65,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,2747,13892.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,2747,13892.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2748,1592.13,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2749,8165.34,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,2750,22821,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -4488,7 +4488,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,4484,15523.1,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,4485,1477.09,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,4486,2503.03,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,4487,19749.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,4487,19749.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,4488,1437.23,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,4489,26995.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,4490,5762.08,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -7268,7 +7268,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,7264,198.374,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,7265,1081.55,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,7266,4506.25,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,7267,17851.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,7267,17851.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,7268,14988.9,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,7269,2121.46,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,7270,11223.9,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -8813,7 +8813,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,8809,3168.6,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8810,10561.7,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8811,10945.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,8812,6692.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,8812,6692.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8813,6498.19,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8814,3498.99,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8815,21873,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -8841,7 +8841,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,8837,6001.64,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8838,4337.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8839,4086.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,8840,10213.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,8840,10213.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8841,2453.07,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8842,6423.48,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,8843,32.3639,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -9567,7 +9567,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,9563,8575.75,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9564,15806.4,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9565,2282.77,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,9566,9064.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,9566,9064.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9567,4254.59,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9568,3465.46,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9569,2386.29,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -9755,7 +9755,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,9751,6871.64,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9752,6852.36,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9753,448.429,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,9754,20316.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,9754,20316.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9755,6730.53,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9756,2593.99,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,9757,1811.29,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -11745,7 +11745,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,11741,20559.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,11742,7477.58,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,11743,8292.92,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,11744,9705.13,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,11744,9705.12,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,11745,20709.4,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,11746,21987.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,11747,8650.72,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -12382,7 +12382,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,12378,26117.9,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12379,9552.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12380,8937.11,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,12381,5501.13,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,12381,5501.12,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12382,1492.39,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12383,5663.89,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12384,2012.97,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -12833,7 +12833,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,12829,12660.1,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12830,22660.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12831,18720,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,12832,11508.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,12832,11508.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12833,11606.7,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12834,22959.4,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,12835,2877.23,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -13066,7 +13066,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,13062,25770,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13063,16453,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13064,1595.76,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,13065,6857.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,13065,6857.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13066,4960.27,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13067,6515.13,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13068,16847.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -13506,7 +13506,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,13502,20910.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13503,19884.6,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13504,15768,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,13505,21358.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,13505,21358.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13506,11087.9,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13507,10940.9,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13508,2806.67,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -13533,7 +13533,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,13529,2483.19,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13530,3266.37,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13531,3021.42,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,13532,9324.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,13532,9324.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13533,23663.8,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13534,974.835,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13535,4928.05,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -13909,7 +13909,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,13905,10840.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13906,4128.07,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13907,11034.8,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,13908,4914.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,13908,4914.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13909,7344.85,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13910,1800.47,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,13911,5179.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -14334,7 +14334,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,14330,5869.76,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14331,24055.1,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14332,17101.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,14333,4022.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,14333,4022.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14334,10034.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14335,3806.31,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14336,18552.6,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -14622,7 +14622,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,14618,6748.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14619,1018.28,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14620,7317.98,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,14621,15712.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,14621,15712.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14622,1077.48,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14623,15174.1,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14624,1913.43,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -14684,7 +14684,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,14680,9016.78,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14681,9337.53,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14682,4620.98,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,14683,9720.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,14683,9720.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14684,4539.41,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14685,3174.52,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,14686,5832.47,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -15091,7 +15091,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,15087,3846.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15088,407.977,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15089,4569.51,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,15090,16481.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,15090,16481.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15091,5586.18,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15092,8120.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15093,14501.9,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -15465,7 +15465,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,15461,23133.8,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15462,26828.1,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15463,6977.99,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,15464,9995.13,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,15464,9995.12,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15465,3144.27,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15466,28882.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,15467,8581.01,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -16656,7 +16656,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.03,1,HIVNeedsHIVTest,16652,22391.7,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,16653,3064.94,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,16654,4908,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.03,1,HIVNeedsHIVTest,16655,1206.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.03,1,HIVNeedsHIVTest,16655,1206.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,16656,13056.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,16657,1517.93,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.03,1,HIVNeedsHIVTest,16658,3038.04,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -19183,7 +19183,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,1786,24476.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,1787,10664.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,1788,6458.7,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,1789,8410.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,1789,8410.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,1790,15608.4,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,1791,6311.85,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,1792,18664.4,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -19747,7 +19747,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,2350,373.882,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2351,27005.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2352,13114.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,2353,18658.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,2353,18658.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2354,2311.79,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2355,16096.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2356,23582.5,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -20141,7 +20141,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,2744,15716.9,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2745,7291,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2746,3434.65,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,2747,13897.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,2747,13897.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2748,1597.13,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2749,8170.34,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,2750,22826,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -21881,7 +21881,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,4484,15528.1,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,4485,1482.09,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,4486,2508.03,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,4487,19754.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,4487,19754.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,4488,1442.23,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,4489,27000.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,4490,5767.08,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -24328,7 +24328,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,6931,9607.85,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,6932,2949.39,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,6933,947.47,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,6934,16384.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,6934,16384.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,6935,9764.42,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,6936,6904.96,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,6937,11789.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -24661,7 +24661,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,7264,203.374,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,7265,1086.55,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,7266,4511.25,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,7267,17856.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,7267,17856.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,7268,14993.9,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,7269,2126.46,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,7270,11228.9,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -26206,7 +26206,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,8809,3173.6,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8810,10566.7,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8811,10950.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,8812,6697.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,8812,6697.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8813,6503.19,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8814,3503.99,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8815,21878,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -26234,7 +26234,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,8837,6006.64,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8838,4342.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8839,4091.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,8840,10218.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,8840,10218.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8841,2458.07,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8842,6428.48,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,8843,37.3639,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -26960,7 +26960,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,9563,8580.75,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9564,15811.4,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9565,2287.77,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,9566,9069.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,9566,9069.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9567,4259.59,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9568,3470.46,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9569,2391.29,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -27148,7 +27148,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,9751,6876.64,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9752,6857.36,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9753,453.429,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,9754,20321.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,9754,20321.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9755,6735.53,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9756,2598.99,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,9757,1816.29,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -29138,7 +29138,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,11741,20564.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,11742,7482.58,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,11743,8297.92,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,11744,9710.13,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,11744,9710.12,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,11745,20714.4,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,11746,21992.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,11747,8655.72,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -29775,7 +29775,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,12378,26122.9,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12379,9557.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12380,8942.11,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,12381,5506.13,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,12381,5506.12,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12382,1497.39,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12383,5668.89,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12384,2017.97,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -30226,7 +30226,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,12829,12665.1,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12830,22665.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12831,18725,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,12832,11513.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,12832,11513.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12833,11611.7,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12834,22964.4,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,12835,2882.23,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -30459,7 +30459,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,13062,25775,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13063,16458,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13064,1600.76,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,13065,6862.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,13065,6862.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13066,4965.27,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13067,6520.13,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13068,16852.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -30899,7 +30899,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,13502,20915.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13503,19889.6,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13504,15773,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,13505,21363.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,13505,21363.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13506,11092.9,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13507,10945.9,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13508,2811.67,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -30926,7 +30926,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,13529,2488.19,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13530,3271.37,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13531,3026.42,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,13532,9329.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,13532,9329.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13533,23668.8,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13534,979.835,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13535,4933.05,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -31302,7 +31302,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,13905,10845.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13906,4133.07,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13907,11039.8,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,13908,4919.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,13908,4919.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13909,7349.85,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13910,1805.47,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,13911,5184.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -31727,7 +31727,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,14330,5874.76,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14331,24060.1,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14332,17106.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,14333,4027.63,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,14333,4027.62,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14334,10039.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14335,3811.31,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14336,18557.6,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -32015,7 +32015,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,14618,6753.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14619,1023.28,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14620,7322.98,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,14621,15717.3,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,14621,15717.2,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14622,1082.48,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14623,15179.1,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14624,1918.43,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -32077,7 +32077,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,14680,9021.78,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14681,9342.53,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14682,4625.98,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,14683,9725.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,14683,9725.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14684,4544.41,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14685,3179.52,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,14686,5837.47,M,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -32484,7 +32484,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,15087,3851.5,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,15088,412.977,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,15089,4574.51,M,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,15090,16486.3,M,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,15090,16486.2,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,15091,5591.18,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,15092,8125.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,15093,14506.9,F,0,0,N,N,1e+06,-1,InterventionStatus_4
@@ -34049,7 +34049,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1990.04,1,HIVDiagnosedEligibleForART,16652,22396.7,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,16653,3069.94,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,16654,4913,F,0,0,N,N,1e+06,-1,InterventionStatus_4
-1990.04,1,HIVDiagnosedEligibleForART,16655,1211.63,F,0,0,N,N,1e+06,-1,InterventionStatus_4
+1990.04,1,HIVDiagnosedEligibleForART,16655,1211.62,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,16656,13061.8,F,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,16657,1522.93,M,0,0,N,N,1e+06,-1,InterventionStatus_4
 1990.04,1,HIVDiagnosedEligibleForART,16658,3043.04,F,0,0,N,N,1e+06,-1,InterventionStatus_4
