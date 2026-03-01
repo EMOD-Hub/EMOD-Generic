@@ -77,14 +77,10 @@ class Monitor(threading.Thread):
         print( str(self.__class__.completed) + " out of " + str(len(ru.reg_threads)) + " completed." )
         # JPS - should check here and only do the verification if it passed... ?
         if self.scenario_type == 'tests':
-            if self.params.all_outputs == False:
-            # Following line is for InsetChart.json only
-                self.verify(self.sim_dir)
-            else:
-                # Every .json file in output (not hidden with . prefix) will be used for validation
-                for file in os.listdir( os.path.join( self.scenario_path, "output" ) ):
-                    if ( file.endswith( ".json" ) or file.endswith( ".csv" ) or file.endswith( ".h5" ) or file.endswith( ".db" ) ) and file[0] != ".":
-                        self.verify( self.sim_dir, file, "Channels" )
+            # Every .json file in output (not hidden with . prefix) will be used for validation
+            for file in os.listdir( os.path.join( self.scenario_path, "output" ) ):
+                if ( file.endswith( ".json" ) or file.endswith( ".csv" ) or file.endswith( ".h5" ) or file.endswith( ".db" ) ) and file[0] != ".":
+                    self.verify( self.sim_dir, file, "Channels" )
         elif self.scenario_type == 'science':
             self.science_verify( self.sim_dir )
         elif self.scenario_type == 'pymod':

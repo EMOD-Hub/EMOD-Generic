@@ -27,7 +27,6 @@ class RuntimeParameters:
         print( "[arg] Use DLLs:                   ", self.use_dlls )
         print( "[arg] SCons:                      ", self.scons )
         print( "[arg] Print error msg to screen:  ", self.print_error )
-        print( "[arg] Compare all outputs:        ", self.all_outputs )
         print( "[arg] Disable schema test:        ", self.disable_schema_test )
         print( "[arg] Component tests:            ", self.component_tests )
         print( "[arg] Component tests show output:", self.component_tests_show_output )
@@ -97,10 +96,6 @@ class RuntimeParameters:
     def src_root(self):
         src_root = ".\\.."
         return src_root
-
-    @property
-    def all_outputs(self):
-        return self.args.all_outputs
 
     @property
     def disable_schema_test(self):
