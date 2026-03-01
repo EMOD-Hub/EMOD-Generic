@@ -188,7 +188,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,188,27862.9,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,189,8236.64,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,190,4845.84,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,191,17345.3,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,191,17345.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,192,6848,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,193,3958.04,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,194,16250.9,F,0,0,N,N,1e+06,-1,None
@@ -1315,7 +1315,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,1314,23325.6,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1315,4680.15,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1316,16918.3,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,1317,23586.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,1317,23586.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1318,19298.4,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1319,4686.51,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1320,208.065,M,0,0,N,N,1e+06,-1,None
@@ -2084,7 +2084,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,2083,155.31,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2084,4976.12,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2085,4097.66,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,2086,24940.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,2086,24940.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2087,8925.32,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2088,7325.43,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2089,999.812,M,0,0,N,N,1e+06,-1,None
@@ -4586,7 +4586,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,4582,20806.1,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4583,984.244,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4584,24202,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,4585,8617.13,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,4585,8617.12,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4586,17438.1,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4587,20916.6,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4588,7276.95,M,0,0,N,N,1e+06,-1,None
@@ -5279,7 +5279,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,5275,12510.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5276,1875.93,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5277,13108.1,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,5278,12970.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,5278,12970.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5279,11594.6,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5280,9329.45,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5281,13778.6,M,0,0,N,N,1e+06,-1,None
@@ -6402,7 +6402,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,6396,3355.76,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6397,9737.46,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6398,10945.4,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,6399,4756.63,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,6399,4756.62,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6400,10100.1,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6401,508.735,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6402,2345.7,F,0,0,N,N,1e+06,-1,None
@@ -8113,7 +8113,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,8106,1480.99,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8107,1409.66,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8108,499.014,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,8109,10156.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,8109,10156.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8110,8777.99,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8111,23694.5,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8112,13447,F,0,0,N,N,1e+06,-1,None
@@ -8664,7 +8664,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,8657,16319.7,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8658,3298.61,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8659,721.406,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,8660,10758.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,8660,10758.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8661,984.242,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8662,13587.7,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8663,1727.94,M,0,0,N,N,1e+06,-1,None
@@ -10448,7 +10448,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,10441,4948.04,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10442,19088,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10443,21035,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,10444,25062.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,10444,25062.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10445,4442,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10446,3164.32,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10447,3530.52,F,0,0,N,N,1e+06,-1,None
@@ -10607,7 +10607,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,10600,7662.23,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10601,27759.5,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10602,1829.71,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,10603,18939.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,10603,18939.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10604,3802.94,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10605,12702.3,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10606,13462.6,M,0,0,N,N,1e+06,-1,None
@@ -11867,7 +11867,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,11860,9431.54,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11861,11590.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11862,2188.89,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,11863,2499.13,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,11863,2499.12,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11864,12403.1,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11865,1096.99,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11866,9790.7,F,0,0,N,N,1e+06,-1,None
@@ -12445,7 +12445,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,12438,9162.56,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12439,20208.8,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12440,7000.44,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,12441,17414.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,12441,17414.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12442,2449.35,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12443,9187.46,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12444,5365.94,F,0,0,N,N,1e+06,-1,None
@@ -12755,7 +12755,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,12748,13285.8,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12749,4570.42,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12750,18797.2,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,12751,3148.13,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,12751,3148.12,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12752,4101.44,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12753,21106.4,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12754,4246.41,M,0,0,N,N,1e+06,-1,None
@@ -13485,7 +13485,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,13478,25497,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13479,11399,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13480,17945.9,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,13481,10473.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,13481,10473.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13482,13437.5,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13483,14013.9,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13484,1527.72,M,0,0,N,N,1e+06,-1,None
@@ -15264,7 +15264,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,15255,22897.5,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15256,12191.9,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15257,19900,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,15258,24984.3,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,15258,24984.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15259,6420.74,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15260,22822.7,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15261,1532.53,F,0,0,N,N,1e+06,-1,None
@@ -15496,7 +15496,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,15487,2668.58,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15488,13446.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15489,16131.3,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,15490,10689.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,15490,10689.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15491,1213.81,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15492,7829.31,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15493,12821.4,F,0,0,N,N,1e+06,-1,None
@@ -15565,7 +15565,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,15556,12970.6,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15557,617.57,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15558,9831.56,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,15559,1866.13,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,15559,1866.12,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15560,8274.48,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15561,809.439,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15562,8058.53,M,0,0,N,N,1e+06,-1,None
@@ -16354,7 +16354,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,16345,16663.1,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16346,7946.62,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16347,6641.23,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,16348,8169.63,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,16348,8169.62,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16349,19771.8,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16350,15383,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16351,1380.56,F,0,0,N,N,1e+06,-1,None
@@ -16433,7 +16433,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,16424,10352,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16425,2438.88,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16426,17983.6,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,16427,6754.63,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,16427,6754.62,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16428,4452.08,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16429,6457.63,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16430,15511.7,F,0,0,N,N,1e+06,-1,None
@@ -17314,7 +17314,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,17305,17325.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17306,4931.68,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17307,1835.92,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,17308,16668.3,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,17308,16668.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17309,3440.38,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17310,3544.61,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17311,8933.98,M,0,0,N,N,1e+06,-1,None
@@ -17594,7 +17594,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,188,27863.9,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,189,8237.64,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,190,4846.84,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,191,17346.3,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,191,17346.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,192,6849,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,193,3959.04,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,194,16251.9,F,0,0,N,N,1e+06,-1,None
@@ -18721,7 +18721,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,1314,23326.6,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1315,4681.15,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1316,16919.3,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,1317,23587.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,1317,23587.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1318,19299.4,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1319,4687.51,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,1320,209.065,M,0,0,N,N,1e+06,-1,None
@@ -19492,7 +19492,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,2083,156.31,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2084,4977.12,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2085,4098.66,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,2086,24941.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,2086,24941.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2087,8926.32,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2088,7326.43,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,2089,1000.81,M,0,0,N,N,1e+06,-1,None
@@ -21993,7 +21993,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,4582,20807.1,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4583,985.244,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4584,24203,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,4585,8618.13,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,4585,8618.12,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4586,17439.1,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4587,20917.6,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,4588,7277.95,M,0,0,N,N,1e+06,-1,None
@@ -22687,7 +22687,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,5275,12511.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5276,1876.93,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5277,13109.1,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,5278,12971.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,5278,12971.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5279,11595.6,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5280,9330.45,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,5281,13779.6,M,0,0,N,N,1e+06,-1,None
@@ -23808,7 +23808,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,6396,3356.76,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6397,9738.46,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6398,10946.4,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,6399,4757.63,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,6399,4757.62,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6400,10101.1,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6401,509.735,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,6402,2346.7,F,0,0,N,N,1e+06,-1,None
@@ -25518,7 +25518,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,8106,1481.99,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8107,1410.66,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8108,500.014,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,8109,10157.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,8109,10157.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8110,8778.99,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8111,23695.5,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8112,13448,F,0,0,N,N,1e+06,-1,None
@@ -26070,7 +26070,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,8657,16320.7,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8658,3299.61,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8659,722.406,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,8660,10759.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,8660,10759.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8661,985.242,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8662,13588.7,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,8663,1728.94,M,0,0,N,N,1e+06,-1,None
@@ -27855,7 +27855,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,10441,4949.04,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10442,19089,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10443,21036,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,10444,25063.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,10444,25063.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10445,4443,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10446,3165.32,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10447,3531.52,F,0,0,N,N,1e+06,-1,None
@@ -28014,7 +28014,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,10600,7663.23,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10601,27760.5,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10602,1830.71,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,10603,18940.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,10603,18940.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10604,3803.94,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10605,12703.3,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,10606,13463.6,M,0,0,N,N,1e+06,-1,None
@@ -29274,7 +29274,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,11860,9432.54,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11861,11591.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11862,2189.89,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,11863,2500.13,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,11863,2500.12,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11864,12404.1,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11865,1097.99,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,11866,9791.7,F,0,0,N,N,1e+06,-1,None
@@ -29852,7 +29852,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,12438,9163.56,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12439,20209.8,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12440,7001.44,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,12441,17415.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,12441,17415.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12442,2450.35,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12443,9188.46,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12444,5366.94,F,0,0,N,N,1e+06,-1,None
@@ -30162,7 +30162,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,12748,13286.8,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12749,4571.42,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12750,18798.2,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,12751,3149.13,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,12751,3149.12,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12752,4102.44,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12753,21107.4,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,12754,4247.41,M,0,0,N,N,1e+06,-1,None
@@ -30894,7 +30894,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,13478,25498,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13479,11400,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13480,17946.9,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,13481,10474.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,13481,10474.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13482,13438.5,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13483,14014.9,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,13484,1528.72,M,0,0,N,N,1e+06,-1,None
@@ -32672,7 +32672,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,15255,22898.5,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15256,12192.9,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15257,19901,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,15258,24985.3,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,15258,24985.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15259,6421.74,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15260,22823.7,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15261,1533.53,F,0,0,N,N,1e+06,-1,None
@@ -32904,7 +32904,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,15487,2669.58,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15488,13447.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15489,16132.3,F,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,15490,10690.3,F,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,15490,10690.2,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15491,1214.81,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15492,7830.31,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15493,12822.4,F,0,0,N,N,1e+06,-1,None
@@ -32973,7 +32973,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,15556,12971.6,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15557,618.57,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15558,9832.56,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,15559,1867.13,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,15559,1867.12,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15560,8275.48,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15561,810.439,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,15562,8059.53,M,0,0,N,N,1e+06,-1,None
@@ -33762,7 +33762,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,16345,16664.1,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16346,7947.62,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16347,6642.23,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,16348,8170.63,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,16348,8170.62,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16349,19772.8,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16350,15384,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16351,1381.56,F,0,0,N,N,1e+06,-1,None
@@ -33841,7 +33841,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,16424,10353,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16425,2439.88,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16426,17984.6,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,16427,6755.63,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,16427,6755.62,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16428,4453.08,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16429,6458.63,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,16430,15512.7,F,0,0,N,N,1e+06,-1,None
@@ -34722,7 +34722,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.5,1,ExposureComplete,17305,17326.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17306,4932.68,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17307,1836.92,M,0,0,N,N,1e+06,-1,None
-1960.5,1,ExposureComplete,17308,16669.3,M,0,0,N,N,1e+06,-1,None
+1960.5,1,ExposureComplete,17308,16669.2,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17309,3441.38,M,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17310,3545.61,F,0,0,N,N,1e+06,-1,None
 1960.5,1,ExposureComplete,17311,8934.98,M,0,0,N,N,1e+06,-1,None
@@ -35001,7 +35001,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,188,27864.9,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,189,8238.64,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,190,4847.84,F,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,191,17347.3,M,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,191,17347.2,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,192,6850,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,193,3960.04,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,194,16252.9,F,0,0,N,N,1e+06,-1,None
@@ -36130,7 +36130,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,1314,23327.6,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,1315,4682.15,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,1316,16920.3,F,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,1317,23588.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,1317,23588.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,1318,19300.4,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,1319,4688.51,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,1320,210.065,M,0,0,N,N,1e+06,-1,None
@@ -36899,7 +36899,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,2083,157.31,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,2084,4978.12,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,2085,4099.66,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,2086,24942.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,2086,24942.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,2087,8927.32,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,2088,7327.43,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,2089,1001.81,M,0,0,N,N,1e+06,-1,None
@@ -39399,7 +39399,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,4582,20808.1,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,4583,986.244,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,4584,24204,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,4585,8619.13,M,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,4585,8619.12,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,4586,17440.1,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,4587,20918.6,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,4588,7278.95,M,0,0,N,N,1e+06,-1,None
@@ -40092,7 +40092,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,5275,12512.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,5276,1877.93,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,5277,13110.1,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,5278,12972.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,5278,12972.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,5279,11596.6,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,5280,9331.45,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,5281,13780.6,M,0,0,N,N,1e+06,-1,None
@@ -41213,7 +41213,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,6396,3357.76,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,6397,9739.46,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,6398,10947.4,F,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,6399,4758.63,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,6399,4758.62,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,6400,10102.1,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,6401,510.735,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,6402,2347.7,F,0,0,N,N,1e+06,-1,None
@@ -42924,7 +42924,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,8106,1482.99,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8107,1411.66,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8108,501.014,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,8109,10158.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,8109,10158.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8110,8779.99,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8111,23696.5,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8112,13449,F,0,0,N,N,1e+06,-1,None
@@ -43475,7 +43475,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,8657,16321.7,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8658,3300.61,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8659,723.406,F,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,8660,10760.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,8660,10760.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8661,986.242,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8662,13589.7,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,8663,1729.94,M,0,0,N,N,1e+06,-1,None
@@ -45259,7 +45259,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,10441,4950.04,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10442,19090,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10443,21037,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,10444,25064.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,10444,25064.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10445,4444,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10446,3166.32,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10447,3532.52,F,0,0,N,N,1e+06,-1,None
@@ -45418,7 +45418,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,10600,7664.23,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10601,27761.5,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10602,1831.71,F,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,10603,18941.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,10603,18941.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10604,3804.94,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10605,12704.3,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,10606,13464.6,M,0,0,N,N,1e+06,-1,None
@@ -46678,7 +46678,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,11860,9433.54,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,11861,11592.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,11862,2190.89,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,11863,2501.13,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,11863,2501.12,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,11864,12405.1,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,11865,1098.99,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,11866,9792.7,F,0,0,N,N,1e+06,-1,None
@@ -47257,7 +47257,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,12438,9164.56,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12439,20210.8,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12440,7002.44,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,12441,17416.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,12441,17416.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12442,2451.35,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12443,9189.46,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12444,5367.94,F,0,0,N,N,1e+06,-1,None
@@ -47567,7 +47567,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,12748,13287.8,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12749,4572.42,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12750,18799.2,F,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,12751,3150.13,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,12751,3150.12,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12752,4103.44,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12753,21108.4,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,12754,4248.41,M,0,0,N,N,1e+06,-1,None
@@ -48297,7 +48297,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,13478,25499,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,13479,11401,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,13480,17947.9,F,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,13481,10475.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,13481,10475.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,13482,13439.5,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,13483,14015.9,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,13484,1529.72,M,0,0,N,N,1e+06,-1,None
@@ -50075,7 +50075,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,15255,22899.5,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15256,12193.9,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15257,19902,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,15258,24986.3,M,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,15258,24986.2,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15259,6422.74,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15260,22824.7,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15261,1534.53,F,0,0,N,N,1e+06,-1,None
@@ -50307,7 +50307,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,15487,2670.58,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15488,13448.2,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15489,16133.3,F,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,15490,10691.3,F,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,15490,10691.2,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15491,1215.81,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15492,7831.31,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15493,12823.4,F,0,0,N,N,1e+06,-1,None
@@ -50376,7 +50376,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,15556,12972.6,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15557,619.57,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15558,9833.56,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,15559,1868.13,M,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,15559,1868.12,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15560,8276.48,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15561,811.439,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,15562,8060.53,M,0,0,N,N,1e+06,-1,None
@@ -51165,7 +51165,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,16345,16665.1,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16346,7948.62,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16347,6643.23,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,16348,8171.63,M,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,16348,8171.62,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16349,19773.8,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16350,15385,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16351,1382.56,F,0,0,N,N,1e+06,-1,None
@@ -51244,7 +51244,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,16424,10354,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16425,2440.88,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16426,17985.6,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,16427,6756.63,M,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,16427,6756.62,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16428,4454.08,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16429,6459.63,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,16430,15513.7,F,0,0,N,N,1e+06,-1,None
@@ -52125,7 +52125,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,17305,17327.2,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,17306,4933.68,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,17307,1837.92,M,0,0,N,N,1e+06,-1,None
-1960.51,1,ExposureComplete,17308,16670.3,M,0,0,N,N,1e+06,-1,None
+1960.51,1,ExposureComplete,17308,16670.2,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,17309,3442.38,M,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,17310,3546.61,F,0,0,N,N,1e+06,-1,None
 1960.51,1,ExposureComplete,17311,8935.98,M,0,0,N,N,1e+06,-1,None
@@ -52402,7 +52402,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,188,27864.9,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,189,8238.64,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,190,4847.84,F,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,191,17347.3,M,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,191,17347.2,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,192,6850,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,193,3960.04,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,194,16252.9,F,1,0.026,Y,N,540.55,1,None
@@ -53528,7 +53528,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,1314,23327.6,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,1315,4682.15,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,1316,16920.3,F,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,1317,23588.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,1317,23588.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,1318,19300.4,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,1319,4688.51,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,1320,210.065,M,1,0.026,Y,N,540.55,1,None
@@ -54297,7 +54297,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,2083,157.31,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,2084,4978.12,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,2085,4099.66,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,2086,24942.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,2086,24942.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,2087,8927.32,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,2088,7327.43,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,2089,1001.81,M,1,0.026,Y,N,540.55,1,None
@@ -56796,7 +56796,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,4582,20808.1,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,4583,986.244,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,4584,24204,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,4585,8619.13,M,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,4585,8619.12,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,4586,17440.1,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,4587,20918.6,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,4588,7278.95,M,1,0.026,Y,N,540.55,1,None
@@ -57489,7 +57489,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,5275,12512.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,5276,1877.93,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,5277,13110.1,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,5278,12972.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,5278,12972.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,5279,11596.6,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,5280,9331.45,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,5281,13780.6,M,1,0.026,Y,N,540.55,1,None
@@ -58610,7 +58610,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,6396,3357.76,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,6397,9739.46,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,6398,10947.4,F,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,6399,4758.63,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,6399,4758.62,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,6400,10102.1,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,6401,510.735,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,6402,2347.7,F,1,0.026,Y,N,540.55,1,None
@@ -60320,7 +60320,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,8106,1482.99,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8107,1411.66,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8108,501.014,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,8109,10158.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,8109,10158.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8110,8779.99,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8111,23696.5,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8112,13449,F,1,0.026,Y,N,540.55,1,None
@@ -60871,7 +60871,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,8657,16321.7,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8658,3300.61,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8659,723.406,F,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,8660,10760.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,8660,10760.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8661,986.242,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8662,13589.7,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,8663,1729.94,M,1,0.026,Y,N,540.55,1,None
@@ -62655,7 +62655,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,10441,4950.04,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10442,19090,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10443,21037,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,10444,25064.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,10444,25064.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10445,4444,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10446,3166.32,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10447,3532.52,F,1,0.026,Y,N,540.55,1,None
@@ -62814,7 +62814,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,10600,7664.23,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10601,27761.5,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10602,1831.71,F,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,10603,18941.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,10603,18941.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10604,3804.94,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10605,12704.3,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,10606,13464.6,M,1,0.026,Y,N,540.55,1,None
@@ -64074,7 +64074,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,11860,9433.54,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,11861,11592.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,11862,2190.89,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,11863,2501.13,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,11863,2501.12,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,11864,12405.1,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,11865,1098.99,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,11866,9792.7,F,1,0.026,Y,N,540.55,1,None
@@ -64652,7 +64652,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,12438,9164.56,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12439,20210.8,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12440,7002.44,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,12441,17416.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,12441,17416.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12442,2451.35,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12443,9189.46,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12444,5367.94,F,1,0.026,Y,N,540.55,1,None
@@ -64962,7 +64962,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,12748,13287.8,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12749,4572.42,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12750,18799.2,F,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,12751,3150.13,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,12751,3150.12,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12752,4103.44,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12753,21108.4,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,12754,4248.41,M,1,0.026,Y,N,540.55,1,None
@@ -65692,7 +65692,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,13478,25499,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,13479,11401,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,13480,17947.9,F,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,13481,10475.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,13481,10475.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,13482,13439.5,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,13483,14015.9,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,13484,1529.72,M,1,0.026,Y,N,540.55,1,None
@@ -67469,7 +67469,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,15255,22899.5,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15256,12193.9,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15257,19902,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,15258,24986.3,M,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,15258,24986.2,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15259,6422.74,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15260,22824.7,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15261,1534.53,F,1,0.026,Y,N,540.55,1,None
@@ -67701,7 +67701,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,15487,2670.58,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15488,13448.2,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15489,16133.3,F,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,15490,10691.3,F,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,15490,10691.2,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15491,1215.81,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15492,7831.31,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15493,12823.4,F,1,0.026,Y,N,540.55,1,None
@@ -67770,7 +67770,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,15556,12972.6,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15557,619.57,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15558,9833.56,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,15559,1868.13,M,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,15559,1868.12,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15560,8276.48,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15561,811.439,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,15562,8060.53,M,1,0.026,Y,N,540.55,1,None
@@ -68559,7 +68559,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,16345,16665.1,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16346,7948.62,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16347,6643.23,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,16348,8171.63,M,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,16348,8171.62,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16349,19773.8,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16350,15385,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16351,1382.56,F,1,0.026,Y,N,540.55,1,None
@@ -68638,7 +68638,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,16424,10354,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16425,2440.88,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16426,17985.6,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,16427,6756.63,M,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,16427,6756.62,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16428,4454.08,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16429,6459.63,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,16430,15513.7,F,1,0.026,Y,N,540.55,1,None
@@ -69519,7 +69519,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,STINewInfection,17305,17327.2,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,17306,4933.68,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,17307,1837.92,M,1,0.026,Y,N,540.55,1,None
-1960.51,1,STINewInfection,17308,16670.3,M,1,0.026,Y,N,540.55,1,None
+1960.51,1,STINewInfection,17308,16670.2,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,17309,3442.38,M,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,17310,3546.61,F,1,0.026,Y,N,540.55,1,None
 1960.51,1,STINewInfection,17311,8935.98,M,1,0.026,Y,N,540.55,1,None
@@ -70021,8 +70021,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewlySymptomatic,190,4848.84,F,1,0.026,Y,N,538.632,1.00818,None
 1960.51,1,ExposureComplete,190,4848.84,F,1,0.026,Y,N,538.632,1.00818,None
 1960.51,1,NewInfection,190,4848.84,F,1,0.026,Y,N,538.632,1.00818,None
-1960.51,1,ExposureComplete,191,17348.3,M,1,0.026,Y,N,539.943,1.00244,None
-1960.51,1,NewInfection,191,17348.3,M,1,0.026,Y,N,539.943,1.00244,None
+1960.51,1,ExposureComplete,191,17348.2,M,1,0.026,Y,N,539.943,1.00244,None
+1960.51,1,NewInfection,191,17348.2,M,1,0.026,Y,N,539.943,1.00244,None
 1960.51,1,ExposureComplete,192,6851,M,1,0.026,Y,N,540.348,1.00123,None
 1960.51,1,NewInfection,192,6851,M,1,0.026,Y,N,540.348,1.00123,None
 1960.51,1,NewlySymptomatic,193,3961.04,M,1,0.026,Y,N,536.932,1.01281,None
@@ -72497,8 +72497,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,1315,4683.15,F,1,0.026,Y,N,511.214,1.08405,None
 1960.51,1,ExposureComplete,1316,16921.3,F,1,0.026,Y,N,539.73,1.00104,None
 1960.51,1,NewInfection,1316,16921.3,F,1,0.026,Y,N,539.73,1.00104,None
-1960.51,1,ExposureComplete,1317,23589.3,F,1,0.026,Y,N,540.067,1.00208,None
-1960.51,1,NewInfection,1317,23589.3,F,1,0.026,Y,N,540.067,1.00208,None
+1960.51,1,ExposureComplete,1317,23589.2,F,1,0.026,Y,N,540.067,1.00208,None
+1960.51,1,NewInfection,1317,23589.2,F,1,0.026,Y,N,540.067,1.00208,None
 1960.51,1,ExposureComplete,1318,19301.4,M,1,0.026,Y,N,540.177,1.01092,None
 1960.51,1,NewInfection,1318,19301.4,M,1,0.026,Y,N,540.177,1.01092,None
 1960.51,1,ExposureComplete,1319,4689.51,F,1,0.026,Y,N,540.413,1.00108,None
@@ -74196,8 +74196,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewlySymptomatic,2085,4100.66,M,1,0.026,Y,N,526.867,3.09247,None
 1960.51,1,ExposureComplete,2085,4100.66,M,1,0.026,Y,N,526.867,3.09247,None
 1960.51,1,NewInfection,2085,4100.66,M,1,0.026,Y,N,526.867,3.09247,None
-1960.51,1,ExposureComplete,2086,24943.3,F,1,0.026,Y,N,540.383,1.04954,None
-1960.51,1,NewInfection,2086,24943.3,F,1,0.026,Y,N,540.383,1.04954,None
+1960.51,1,ExposureComplete,2086,24943.2,F,1,0.026,Y,N,540.383,1.04954,None
+1960.51,1,NewInfection,2086,24943.2,F,1,0.026,Y,N,540.383,1.04954,None
 1960.51,1,ExposureComplete,2087,8928.32,M,1,0.026,Y,N,540.316,1.03282,None
 1960.51,1,NewInfection,2087,8928.32,M,1,0.026,Y,N,540.316,1.03282,None
 1960.51,1,ExposureComplete,2088,7328.43,M,1,0.026,Y,N,540.358,1.00062,None
@@ -74873,8 +74873,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,2388,4841.72,F,1,0.026,Y,N,538.356,1.02223,None
 1960.51,1,ExposureComplete,2389,26410,F,1,0.026,Y,N,540.245,1.00292,None
 1960.51,1,NewInfection,2389,26410,F,1,0.026,Y,N,540.245,1.00292,None
-1960.51,1,ExposureComplete,2390,4506.56,F,1,0.026,Y,N,540.313,1.01054,None
-1960.51,1,NewInfection,2390,4506.56,F,1,0.026,Y,N,540.313,1.01054,None
+1960.51,1,ExposureComplete,2390,4506.56,F,1,0.026,Y,N,540.312,1.01054,None
+1960.51,1,NewInfection,2390,4506.56,F,1,0.026,Y,N,540.312,1.01054,None
 1960.51,1,NewlySymptomatic,2391,783.821,F,1,0.026,Y,N,536.168,1.00713,None
 1960.51,1,ExposureComplete,2391,783.821,F,1,0.026,Y,N,536.168,1.00713,None
 1960.51,1,NewInfection,2391,783.821,F,1,0.026,Y,N,536.168,1.00713,None
@@ -76144,8 +76144,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,2964,7483.62,M,1,0.026,Y,N,540.408,1.00013,None
 1960.51,1,ExposureComplete,2965,4023.05,F,1,0.026,Y,N,540.412,1.00203,None
 1960.51,1,NewInfection,2965,4023.05,F,1,0.026,Y,N,540.412,1.00203,None
-1960.51,1,ExposureComplete,2966,377.728,F,1,0.026,Y,N,540.313,1.0034,None
-1960.51,1,NewInfection,2966,377.728,F,1,0.026,Y,N,540.313,1.0034,None
+1960.51,1,ExposureComplete,2966,377.728,F,1,0.026,Y,N,540.312,1.0034,None
+1960.51,1,NewInfection,2966,377.728,F,1,0.026,Y,N,540.312,1.0034,None
 1960.51,1,ExposureComplete,2967,5914.3,M,1,0.026,Y,N,540.442,1.00052,None
 1960.51,1,NewInfection,2967,5914.3,M,1,0.026,Y,N,540.442,1.00052,None
 1960.51,1,ExposureComplete,2968,17884.9,F,1,0.026,Y,N,539.764,1.01214,None
@@ -79688,8 +79688,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,4583,987.244,F,1,0.026,Y,N,538.235,1.02921,None
 1960.51,1,ExposureComplete,4584,24205,M,1,0.026,Y,N,540.143,1.0187,None
 1960.51,1,NewInfection,4584,24205,M,1,0.026,Y,N,540.143,1.0187,None
-1960.51,1,ExposureComplete,4585,8620.13,M,1,0.026,Y,N,540.353,1.00017,None
-1960.51,1,NewInfection,4585,8620.13,M,1,0.026,Y,N,540.353,1.00017,None
+1960.51,1,ExposureComplete,4585,8620.12,M,1,0.026,Y,N,540.353,1.00017,None
+1960.51,1,NewInfection,4585,8620.12,M,1,0.026,Y,N,540.353,1.00017,None
 1960.51,1,ExposureComplete,4586,17441.1,F,1,0.026,Y,N,540.171,1.00231,None
 1960.51,1,NewInfection,4586,17441.1,F,1,0.026,Y,N,540.171,1.00231,None
 1960.51,1,ExposureComplete,4587,20919.6,M,1,0.026,Y,N,540.34,1.00118,None
@@ -81197,8 +81197,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,5276,1878.93,F,1,0.026,Y,N,540.397,1.0003,None
 1960.51,1,ExposureComplete,5277,13111.1,M,1,0.026,Y,N,540.448,1.00072,None
 1960.51,1,NewInfection,5277,13111.1,M,1,0.026,Y,N,540.448,1.00072,None
-1960.51,1,ExposureComplete,5278,12973.3,F,1,0.026,Y,N,540.395,1.0003,None
-1960.51,1,NewInfection,5278,12973.3,F,1,0.026,Y,N,540.395,1.0003,None
+1960.51,1,ExposureComplete,5278,12973.2,F,1,0.026,Y,N,540.395,1.0003,None
+1960.51,1,NewInfection,5278,12973.2,F,1,0.026,Y,N,540.395,1.0003,None
 1960.51,1,ExposureComplete,5279,11597.6,F,1,0.026,Y,N,540.224,1.00167,None
 1960.51,1,NewInfection,5279,11597.6,F,1,0.026,Y,N,540.224,1.00167,None
 1960.51,1,ExposureComplete,5280,9332.45,M,1,0.026,Y,N,540.436,1.01277,None
@@ -83666,8 +83666,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,6397,9740.46,F,1,0.026,Y,N,540.312,1.04677,None
 1960.51,1,ExposureComplete,6398,10948.4,F,1,0.026,Y,N,540.415,1.00139,None
 1960.51,1,NewInfection,6398,10948.4,F,1,0.026,Y,N,540.415,1.00139,None
-1960.51,1,ExposureComplete,6399,4759.63,F,1,0.026,Y,N,540.463,1.00022,None
-1960.51,1,NewInfection,6399,4759.63,F,1,0.026,Y,N,540.463,1.00022,None
+1960.51,1,ExposureComplete,6399,4759.62,F,1,0.026,Y,N,540.463,1.00022,None
+1960.51,1,NewInfection,6399,4759.62,F,1,0.026,Y,N,540.463,1.00022,None
 1960.51,1,ExposureComplete,6400,10103.1,F,1,0.026,Y,N,539.974,1.01258,None
 1960.51,1,NewInfection,6400,10103.1,F,1,0.026,Y,N,539.974,1.01258,None
 1960.51,1,ExposureComplete,6401,511.735,F,1,0.026,Y,N,540.25,1.00082,None
@@ -86272,8 +86272,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,7590,22163.9,M,1,0.026,Y,N,539.46,1.00983,None
 1960.51,1,ExposureComplete,7591,884.171,F,1,0.026,Y,N,540.385,1.00036,None
 1960.51,1,NewInfection,7591,884.171,F,1,0.026,Y,N,540.385,1.00036,None
-1960.51,1,ExposureComplete,7592,6461.26,F,1,0.026,Y,N,540.313,1.00272,None
-1960.51,1,NewInfection,7592,6461.26,F,1,0.026,Y,N,540.313,1.00272,None
+1960.51,1,ExposureComplete,7592,6461.26,F,1,0.026,Y,N,540.312,1.00272,None
+1960.51,1,NewInfection,7592,6461.26,F,1,0.026,Y,N,540.312,1.00272,None
 1960.51,1,ExposureComplete,7593,7884.35,F,1,0.026,Y,N,540.417,1.0006,None
 1960.51,1,NewInfection,7593,7884.35,F,1,0.026,Y,N,540.417,1.0006,None
 1960.51,1,ExposureComplete,7594,15588.6,F,1,0.026,Y,N,539.989,1.0043,None
@@ -87417,8 +87417,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewlySymptomatic,8108,502.014,M,1,0.026,Y,N,537.441,1.09222,None
 1960.51,1,ExposureComplete,8108,502.014,M,1,0.026,Y,N,537.441,1.09222,None
 1960.51,1,NewInfection,8108,502.014,M,1,0.026,Y,N,537.441,1.09222,None
-1960.51,1,ExposureComplete,8109,10159.3,F,1,0.026,Y,N,540.412,1.00026,None
-1960.51,1,NewInfection,8109,10159.3,F,1,0.026,Y,N,540.412,1.00026,None
+1960.51,1,ExposureComplete,8109,10159.2,F,1,0.026,Y,N,540.412,1.00026,None
+1960.51,1,NewInfection,8109,10159.2,F,1,0.026,Y,N,540.412,1.00026,None
 1960.51,1,ExposureComplete,8110,8780.99,M,1,0.026,Y,N,540.393,1.00049,None
 1960.51,1,NewInfection,8110,8780.99,M,1,0.026,Y,N,540.393,1.00049,None
 1960.51,1,ExposureComplete,8111,23697.5,F,1,0.026,Y,N,540.282,1.00045,None
@@ -88643,8 +88643,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewlySymptomatic,8659,724.406,F,1,0.026,Y,N,536.18,1.03026,None
 1960.51,1,ExposureComplete,8659,724.406,F,1,0.026,Y,N,536.18,1.03026,None
 1960.51,1,NewInfection,8659,724.406,F,1,0.026,Y,N,536.18,1.03026,None
-1960.51,1,ExposureComplete,8660,10761.3,F,1,0.026,Y,N,540.265,1.00184,None
-1960.51,1,NewInfection,8660,10761.3,F,1,0.026,Y,N,540.265,1.00184,None
+1960.51,1,ExposureComplete,8660,10761.2,F,1,0.026,Y,N,540.265,1.00184,None
+1960.51,1,NewInfection,8660,10761.2,F,1,0.026,Y,N,540.265,1.00184,None
 1960.51,1,ExposureComplete,8661,987.242,M,1,0.026,Y,N,540.441,1.0003,None
 1960.51,1,NewInfection,8661,987.242,M,1,0.026,Y,N,540.441,1.0003,None
 1960.51,1,ExposureComplete,8662,13590.7,M,1,0.026,Y,N,540.372,1.00079,None
@@ -92582,8 +92582,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,10442,19091,F,1,0.026,Y,N,540.078,1.00335,None
 1960.51,1,ExposureComplete,10443,21038,M,1,0.026,Y,N,540.319,1.00268,None
 1960.51,1,NewInfection,10443,21038,M,1,0.026,Y,N,540.319,1.00268,None
-1960.51,1,ExposureComplete,10444,25065.3,F,1,0.026,Y,N,539.984,1.00103,None
-1960.51,1,NewInfection,10444,25065.3,F,1,0.026,Y,N,539.984,1.00103,None
+1960.51,1,ExposureComplete,10444,25065.2,F,1,0.026,Y,N,539.984,1.00103,None
+1960.51,1,NewInfection,10444,25065.2,F,1,0.026,Y,N,539.984,1.00103,None
 1960.51,1,ExposureComplete,10445,4445,M,1,0.026,Y,N,540.325,1.00087,None
 1960.51,1,NewInfection,10445,4445,M,1,0.026,Y,N,540.325,1.00087,None
 1960.51,1,ExposureComplete,10446,3167.32,F,1,0.026,Y,N,540.414,1.00097,None
@@ -92936,8 +92936,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewlySymptomatic,10602,1832.71,F,1,0.026,Y,N,538.888,1.00762,None
 1960.51,1,ExposureComplete,10602,1832.71,F,1,0.026,Y,N,538.888,1.00762,None
 1960.51,1,NewInfection,10602,1832.71,F,1,0.026,Y,N,538.888,1.00762,None
-1960.51,1,ExposureComplete,10603,18942.3,F,1,0.026,Y,N,540.175,1.00172,None
-1960.51,1,NewInfection,10603,18942.3,F,1,0.026,Y,N,540.175,1.00172,None
+1960.51,1,ExposureComplete,10603,18942.2,F,1,0.026,Y,N,540.175,1.00172,None
+1960.51,1,NewInfection,10603,18942.2,F,1,0.026,Y,N,540.175,1.00172,None
 1960.51,1,NewlySymptomatic,10604,3805.94,M,1,0.026,Y,N,537.875,1.01085,None
 1960.51,1,ExposureComplete,10604,3805.94,M,1,0.026,Y,N,537.875,1.01085,None
 1960.51,1,NewInfection,10604,3805.94,M,1,0.026,Y,N,537.875,1.01085,None
@@ -95735,8 +95735,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewlySymptomatic,11862,2191.89,M,1,0.026,Y,N,511.912,1.21427,None
 1960.51,1,ExposureComplete,11862,2191.89,M,1,0.026,Y,N,511.912,1.21427,None
 1960.51,1,NewInfection,11862,2191.89,M,1,0.026,Y,N,511.912,1.21427,None
-1960.51,1,ExposureComplete,11863,2502.13,F,1,0.026,Y,N,540.407,1.00432,None
-1960.51,1,NewInfection,11863,2502.13,F,1,0.026,Y,N,540.407,1.00432,None
+1960.51,1,ExposureComplete,11863,2502.12,F,1,0.026,Y,N,540.407,1.00432,None
+1960.51,1,NewInfection,11863,2502.12,F,1,0.026,Y,N,540.407,1.00432,None
 1960.51,1,ExposureComplete,11864,12406.1,M,1,0.026,Y,N,540.42,1.00152,None
 1960.51,1,NewInfection,11864,12406.1,M,1,0.026,Y,N,540.42,1.00152,None
 1960.51,1,NewlySymptomatic,11865,1099.99,M,1,0.026,Y,N,521.205,1.13458,None
@@ -96938,8 +96938,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,12404,2768.55,M,1,0.026,Y,N,536.738,1.01176,None
 1960.51,1,ExposureComplete,12405,11157.6,F,1,0.026,Y,N,540.449,1.00156,None
 1960.51,1,NewInfection,12405,11157.6,F,1,0.026,Y,N,540.449,1.00156,None
-1960.51,1,ExposureComplete,12406,6749.9,F,1,0.026,Y,N,540.063,1.00833,None
-1960.51,1,NewInfection,12406,6749.9,F,1,0.026,Y,N,540.063,1.00833,None
+1960.51,1,ExposureComplete,12406,6749.9,F,1,0.026,Y,N,540.062,1.00833,None
+1960.51,1,NewInfection,12406,6749.9,F,1,0.026,Y,N,540.062,1.00833,None
 1960.51,1,ExposureComplete,12407,9551.6,F,1,0.026,Y,N,540.423,1.00018,None
 1960.51,1,NewInfection,12407,9551.6,F,1,0.026,Y,N,540.423,1.00018,None
 1960.51,1,ExposureComplete,12408,7752.52,F,1,0.026,Y,N,540.228,1.00136,None
@@ -97019,8 +97019,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,12439,20211.8,F,1,0.026,Y,N,540.203,1.00085,None
 1960.51,1,ExposureComplete,12440,7003.44,M,1,0.026,Y,N,540.445,1.00089,None
 1960.51,1,NewInfection,12440,7003.44,M,1,0.026,Y,N,540.445,1.00089,None
-1960.51,1,ExposureComplete,12441,17417.3,F,1,0.026,Y,N,540.36,1.0003,None
-1960.51,1,NewInfection,12441,17417.3,F,1,0.026,Y,N,540.36,1.0003,None
+1960.51,1,ExposureComplete,12441,17417.2,F,1,0.026,Y,N,540.36,1.0003,None
+1960.51,1,NewInfection,12441,17417.2,F,1,0.026,Y,N,540.36,1.0003,None
 1960.51,1,ExposureComplete,12442,2452.35,F,1,0.026,Y,N,540.392,1.00035,None
 1960.51,1,NewInfection,12442,2452.35,F,1,0.026,Y,N,540.392,1.00035,None
 1960.51,1,ExposureComplete,12443,9190.46,M,1,0.026,Y,N,539.969,1.00753,None
@@ -97715,8 +97715,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,12749,4573.42,M,1,0.026,Y,N,540.436,1.00185,None
 1960.51,1,ExposureComplete,12750,18800.2,F,1,0.026,Y,N,540.131,1.03305,None
 1960.51,1,NewInfection,12750,18800.2,F,1,0.026,Y,N,540.131,1.03305,None
-1960.51,1,ExposureComplete,12751,3151.13,F,1,0.026,Y,N,540.219,1.06319,None
-1960.51,1,NewInfection,12751,3151.13,F,1,0.026,Y,N,540.219,1.06319,None
+1960.51,1,ExposureComplete,12751,3151.12,F,1,0.026,Y,N,540.219,1.06319,None
+1960.51,1,NewInfection,12751,3151.12,F,1,0.026,Y,N,540.219,1.06319,None
 1960.51,1,NewlySymptomatic,12752,4104.44,M,1,0.026,Y,N,535.454,1.52059,None
 1960.51,1,ExposureComplete,12752,4104.44,M,1,0.026,Y,N,535.454,1.52059,None
 1960.51,1,NewInfection,12752,4104.44,M,1,0.026,Y,N,535.454,1.52059,None
@@ -99322,9 +99322,9 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,13479,11402,F,1,0.026,Y,N,540.393,1.05183,None
 1960.51,1,ExposureComplete,13480,17948.9,F,1,0.026,Y,N,540.334,1.00482,None
 1960.51,1,NewInfection,13480,17948.9,F,1,0.026,Y,N,540.334,1.00482,None
-1960.51,1,NewlySymptomatic,13481,10476.3,F,1,0.026,Y,N,539.299,1.00449,None
-1960.51,1,ExposureComplete,13481,10476.3,F,1,0.026,Y,N,539.299,1.00449,None
-1960.51,1,NewInfection,13481,10476.3,F,1,0.026,Y,N,539.299,1.00449,None
+1960.51,1,NewlySymptomatic,13481,10476.2,F,1,0.026,Y,N,539.299,1.00449,None
+1960.51,1,ExposureComplete,13481,10476.2,F,1,0.026,Y,N,539.299,1.00449,None
+1960.51,1,NewInfection,13481,10476.2,F,1,0.026,Y,N,539.299,1.00449,None
 1960.51,1,ExposureComplete,13482,13440.5,M,1,0.026,Y,N,540.297,1.00107,None
 1960.51,1,NewInfection,13482,13440.5,M,1,0.026,Y,N,540.297,1.00107,None
 1960.51,1,ExposureComplete,13483,14016.9,F,1,0.026,Y,N,540.007,1.01081,None
@@ -103226,8 +103226,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,15256,12194.9,M,1,0.026,Y,N,540.47,1.01242,None
 1960.51,1,ExposureComplete,15257,19903,M,1,0.026,Y,N,540.303,1.00155,None
 1960.51,1,NewInfection,15257,19903,M,1,0.026,Y,N,540.303,1.00155,None
-1960.51,1,ExposureComplete,15258,24987.3,M,1,0.026,Y,N,540.328,1.0004,None
-1960.51,1,NewInfection,15258,24987.3,M,1,0.026,Y,N,540.328,1.0004,None
+1960.51,1,ExposureComplete,15258,24987.2,M,1,0.026,Y,N,540.328,1.0004,None
+1960.51,1,NewInfection,15258,24987.2,M,1,0.026,Y,N,540.328,1.0004,None
 1960.51,1,ExposureComplete,15259,6423.74,F,1,0.026,Y,N,540.447,1.00058,None
 1960.51,1,NewInfection,15259,6423.74,F,1,0.026,Y,N,540.447,1.00058,None
 1960.51,1,ExposureComplete,15260,22825.7,M,1,0.026,Y,N,540.328,1.00106,None
@@ -103386,8 +103386,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,15330,17339.2,M,1,0.026,Y,N,539.696,1.0025,None
 1960.51,1,ExposureComplete,15331,2563.83,F,1,0.026,Y,N,540.413,1.00038,None
 1960.51,1,NewInfection,15331,2563.83,F,1,0.026,Y,N,540.413,1.00038,None
-1960.51,1,ExposureComplete,15332,12370.7,F,1,0.026,Y,N,540.313,1.00126,None
-1960.51,1,NewInfection,15332,12370.7,F,1,0.026,Y,N,540.313,1.00126,None
+1960.51,1,ExposureComplete,15332,12370.7,F,1,0.026,Y,N,540.312,1.00126,None
+1960.51,1,NewInfection,15332,12370.7,F,1,0.026,Y,N,540.312,1.00126,None
 1960.51,1,ExposureComplete,15333,12816.3,M,1,0.026,Y,N,539.906,1.07158,None
 1960.51,1,NewInfection,15333,12816.3,M,1,0.026,Y,N,539.906,1.07158,None
 1960.51,1,ExposureComplete,15334,1029.38,F,1,0.026,Y,N,540.4,1.00031,None
@@ -103730,8 +103730,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,15488,13449.2,M,1,0.026,Y,N,540.295,1.00637,None
 1960.51,1,ExposureComplete,15489,16134.3,F,1,0.026,Y,N,540.056,1.00382,None
 1960.51,1,NewInfection,15489,16134.3,F,1,0.026,Y,N,540.056,1.00382,None
-1960.51,1,ExposureComplete,15490,10692.3,F,1,0.026,Y,N,540.362,1.00093,None
-1960.51,1,NewInfection,15490,10692.3,F,1,0.026,Y,N,540.362,1.00093,None
+1960.51,1,ExposureComplete,15490,10692.2,F,1,0.026,Y,N,540.362,1.00093,None
+1960.51,1,NewInfection,15490,10692.2,F,1,0.026,Y,N,540.362,1.00093,None
 1960.51,1,ExposureComplete,15491,1216.81,M,1,0.026,Y,N,540.36,1.07887,None
 1960.51,1,NewInfection,15491,1216.81,M,1,0.026,Y,N,540.36,1.07887,None
 1960.51,1,ExposureComplete,15492,7832.31,M,1,0.026,Y,N,540.28,1.00094,None
@@ -103880,9 +103880,9 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,15557,620.57,M,1,0.026,Y,N,535.362,1.09532,None
 1960.51,1,ExposureComplete,15558,9834.56,M,1,0.026,Y,N,540.4,1.00042,None
 1960.51,1,NewInfection,15558,9834.56,M,1,0.026,Y,N,540.4,1.00042,None
-1960.51,1,NewlySymptomatic,15559,1869.13,M,1,0.026,Y,N,517.298,1.03311,None
-1960.51,1,ExposureComplete,15559,1869.13,M,1,0.026,Y,N,517.298,1.03311,None
-1960.51,1,NewInfection,15559,1869.13,M,1,0.026,Y,N,517.298,1.03311,None
+1960.51,1,NewlySymptomatic,15559,1869.12,M,1,0.026,Y,N,517.298,1.03311,None
+1960.51,1,ExposureComplete,15559,1869.12,M,1,0.026,Y,N,517.298,1.03311,None
+1960.51,1,NewInfection,15559,1869.12,M,1,0.026,Y,N,517.298,1.03311,None
 1960.51,1,ExposureComplete,15560,8277.48,F,1,0.026,Y,N,540.389,1.00826,None
 1960.51,1,NewInfection,15560,8277.48,F,1,0.026,Y,N,540.389,1.00826,None
 1960.51,1,ExposureComplete,15561,812.439,F,1,0.026,Y,N,540.342,1.01369,None
@@ -105619,8 +105619,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,16346,7949.62,F,1,0.026,Y,N,540.429,1.00045,None
 1960.51,1,ExposureComplete,16347,6644.23,M,1,0.026,Y,N,540.444,1.00098,None
 1960.51,1,NewInfection,16347,6644.23,M,1,0.026,Y,N,540.444,1.00098,None
-1960.51,1,ExposureComplete,16348,8172.63,M,1,0.026,Y,N,540.47,1.00105,None
-1960.51,1,NewInfection,16348,8172.63,M,1,0.026,Y,N,540.47,1.00105,None
+1960.51,1,ExposureComplete,16348,8172.62,M,1,0.026,Y,N,540.47,1.00105,None
+1960.51,1,NewInfection,16348,8172.62,M,1,0.026,Y,N,540.47,1.00105,None
 1960.51,1,NewlySymptomatic,16349,19774.8,F,1,0.026,Y,N,538.155,1.99016,None
 1960.51,1,ExposureComplete,16349,19774.8,F,1,0.026,Y,N,538.155,1.99016,None
 1960.51,1,NewInfection,16349,19774.8,F,1,0.026,Y,N,538.155,1.99016,None
@@ -105796,8 +105796,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,16425,2441.88,M,1,0.026,Y,N,540.311,1.00042,None
 1960.51,1,ExposureComplete,16426,17986.6,M,1,0.026,Y,N,540.055,1.00119,None
 1960.51,1,NewInfection,16426,17986.6,M,1,0.026,Y,N,540.055,1.00119,None
-1960.51,1,ExposureComplete,16427,6757.63,M,1,0.026,Y,N,540.332,1.00346,None
-1960.51,1,NewInfection,16427,6757.63,M,1,0.026,Y,N,540.332,1.00346,None
+1960.51,1,ExposureComplete,16427,6757.62,M,1,0.026,Y,N,540.332,1.00346,None
+1960.51,1,NewInfection,16427,6757.62,M,1,0.026,Y,N,540.332,1.00346,None
 1960.51,1,ExposureComplete,16428,4455.08,M,1,0.026,Y,N,540.431,1.00063,None
 1960.51,1,NewInfection,16428,4455.08,M,1,0.026,Y,N,540.431,1.00063,None
 1960.51,1,ExposureComplete,16429,6460.63,F,1,0.026,Y,N,540.403,1.01139,None
@@ -107739,8 +107739,8 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,NewInfection,17306,4934.68,M,1,0.026,Y,N,536.667,1.00574,None
 1960.51,1,ExposureComplete,17307,1838.92,M,1,0.026,Y,N,540.396,1.00056,None
 1960.51,1,NewInfection,17307,1838.92,M,1,0.026,Y,N,540.396,1.00056,None
-1960.51,1,ExposureComplete,17308,16671.3,M,1,0.026,Y,N,540.306,1.00242,None
-1960.51,1,NewInfection,17308,16671.3,M,1,0.026,Y,N,540.306,1.00242,None
+1960.51,1,ExposureComplete,17308,16671.2,M,1,0.026,Y,N,540.306,1.00242,None
+1960.51,1,NewInfection,17308,16671.2,M,1,0.026,Y,N,540.306,1.00242,None
 1960.51,1,NewlySymptomatic,17309,3443.38,M,1,0.026,Y,N,522.517,1.02222,None
 1960.51,1,ExposureComplete,17309,3443.38,M,1,0.026,Y,N,522.517,1.02222,None
 1960.51,1,NewInfection,17309,3443.38,M,1,0.026,Y,N,522.517,1.02222,None
@@ -108118,7 +108118,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,188,27866.9,M,1,0.026,Y,N,539.542,1.01381,None
 1960.51,1,ExposureComplete,189,8240.64,F,1,0.026,Y,N,540.364,1.00151,None
 1960.51,1,ExposureComplete,190,4849.84,F,1,0.026,Y,N,536.717,1.01635,None
-1960.51,1,ExposureComplete,191,17349.3,M,1,0.026,Y,N,539.335,1.00488,None
+1960.51,1,ExposureComplete,191,17349.2,M,1,0.026,Y,N,539.335,1.00488,None
 1960.51,1,ExposureComplete,192,6852,M,1,0.026,Y,N,540.147,1.00247,None
 1960.51,1,ExposureComplete,193,3962.04,M,1,0.026,Y,N,533.327,1.02562,None
 1960.51,1,ExposureComplete,194,16254.9,F,1,0.026,Y,N,538.688,1.00654,None
@@ -109245,7 +109245,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,1314,23329.6,F,1,0.026,Y,N,539.697,1.01867,None
 1960.51,1,ExposureComplete,1315,4684.15,F,1,0.026,Y,N,482.697,1.16809,None
 1960.51,1,ExposureComplete,1316,16922.3,F,1,0.026,Y,N,538.91,1.00208,None
-1960.51,1,ExposureComplete,1317,23590.3,F,1,0.026,Y,N,539.585,1.00417,None
+1960.51,1,ExposureComplete,1317,23590.2,F,1,0.026,Y,N,539.585,1.00417,None
 1960.51,1,ExposureComplete,1318,19302.4,M,1,0.026,Y,N,539.805,1.02183,None
 1960.51,1,ExposureComplete,1319,4690.51,F,1,0.026,Y,N,540.276,1.00216,None
 1960.51,1,ExposureComplete,1320,212.065,M,1,0.026,Y,N,534.589,1.049,None
@@ -110016,7 +110016,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,2083,159.31,M,1,0.026,Y,N,538.705,1.02373,None
 1960.51,1,ExposureComplete,2084,4980.12,M,1,0.026,Y,N,331.743,4,None
 1960.51,1,ExposureComplete,2085,4101.66,M,1,0.026,Y,N,513.359,3.23646,None
-1960.51,1,ExposureComplete,2086,24944.3,F,1,0.026,Y,N,540.217,1.09909,None
+1960.51,1,ExposureComplete,2086,24944.2,F,1,0.026,Y,N,540.217,1.09909,None
 1960.51,1,ExposureComplete,2087,8929.32,M,1,0.026,Y,N,540.083,1.06564,None
 1960.51,1,ExposureComplete,2088,7329.43,M,1,0.026,Y,N,540.166,1.00125,None
 1960.51,1,ExposureComplete,2089,1003.81,M,1,0.026,Y,N,536.48,1.00843,None
@@ -110333,7 +110333,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,2400,11973.1,F,1,0.026,Y,N,540.075,1.00493,None
 1960.51,1,ExposureComplete,2401,16945.5,M,1,0.026,Y,N,539.809,1.0078,None
 1960.51,1,ExposureComplete,2402,1561.86,M,1,0.026,Y,N,540.134,1.0005,None
-1960.51,1,ExposureComplete,2403,7673.49,M,1,0.026,Y,N,540.313,1.00032,None
+1960.51,1,ExposureComplete,2403,7673.49,M,1,0.026,Y,N,540.312,1.00032,None
 1960.51,1,ExposureComplete,2404,2142.92,M,1,0.026,Y,N,540.09,1.00374,None
 1960.51,1,ExposureComplete,2405,45.4263,F,1,0.026,Y,N,536.857,1.1253,None
 1960.51,1,ExposureComplete,2406,15648.8,F,1,0.026,Y,N,540.203,1.00207,None
@@ -110904,7 +110904,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,2971,6422.43,F,1,0.026,Y,N,540.139,1.00134,None
 1960.51,1,ExposureComplete,2972,21068.1,M,1,0.026,Y,N,539.923,1.00544,None
 1960.51,1,ExposureComplete,2973,5590.24,F,1,0.026,Y,N,540.222,1.00036,None
-1960.51,1,ExposureComplete,2974,6620.93,M,1,0.026,Y,N,540.063,1.00059,None
+1960.51,1,ExposureComplete,2974,6620.93,M,1,0.026,Y,N,540.062,1.00059,None
 1960.51,1,ExposureComplete,2975,1432.14,M,1,0.026,Y,N,537.126,1.01226,None
 1960.51,1,ExposureComplete,2976,20915.2,M,1,0.026,Y,N,539.601,1.03619,None
 1960.51,1,ExposureComplete,2977,9134.79,M,1,0.026,Y,N,540.234,1.0034,None
@@ -111166,7 +111166,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,3233,14172.1,M,1,0.026,Y,N,540.065,1.00146,None
 1960.51,1,ExposureComplete,3234,14107.6,F,1,0.026,Y,N,540.233,1.00048,None
 1960.51,1,ExposureComplete,3235,844.12,F,1,0.026,Y,N,331.743,1.48383,None
-1960.51,1,ExposureComplete,3236,11141.4,F,1,0.026,Y,N,540.063,1.00247,None
+1960.51,1,ExposureComplete,3236,11141.4,F,1,0.026,Y,N,540.062,1.00247,None
 1960.51,1,ExposureComplete,3237,4908.09,M,1,0.026,Y,N,533.465,1.01794,None
 1960.51,1,ExposureComplete,3238,1962.49,M,1,0.026,Y,N,540.304,1.00032,None
 1960.51,1,ExposureComplete,3239,3111.3,F,1,0.026,Y,N,525.96,1.187,None
@@ -112516,7 +112516,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,4582,20810.1,M,1,0.026,Y,N,539.449,1.00816,None
 1960.51,1,ExposureComplete,4583,988.244,F,1,0.026,Y,N,535.925,1.05842,None
 1960.51,1,ExposureComplete,4584,24206,M,1,0.026,Y,N,539.736,1.0374,None
-1960.51,1,ExposureComplete,4585,8621.13,M,1,0.026,Y,N,540.156,1.00034,None
+1960.51,1,ExposureComplete,4585,8621.12,M,1,0.026,Y,N,540.156,1.00034,None
 1960.51,1,ExposureComplete,4586,17442.1,F,1,0.026,Y,N,539.792,1.00462,None
 1960.51,1,ExposureComplete,4587,20920.6,M,1,0.026,Y,N,540.131,1.00237,None
 1960.51,1,ExposureComplete,4588,7280.95,M,1,0.026,Y,N,539.771,1.00137,None
@@ -113209,7 +113209,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,5275,12514.2,F,1,0.026,Y,N,540.25,1.00055,None
 1960.51,1,ExposureComplete,5276,1879.93,F,1,0.026,Y,N,540.244,1.00059,None
 1960.51,1,ExposureComplete,5277,13112.1,M,1,0.026,Y,N,540.346,1.00143,None
-1960.51,1,ExposureComplete,5278,12974.3,F,1,0.026,Y,N,540.24,1.00061,None
+1960.51,1,ExposureComplete,5278,12974.2,F,1,0.026,Y,N,540.24,1.00061,None
 1960.51,1,ExposureComplete,5279,11598.6,F,1,0.026,Y,N,539.897,1.00334,None
 1960.51,1,ExposureComplete,5280,9333.45,M,1,0.026,Y,N,540.321,1.02555,None
 1960.51,1,ExposureComplete,5281,13782.6,M,1,0.026,Y,N,540.165,1.0229,None
@@ -114332,7 +114332,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,6396,3359.76,F,1,0.026,Y,N,524.652,1.06765,None
 1960.51,1,ExposureComplete,6397,9741.46,F,1,0.026,Y,N,540.075,1.09354,None
 1960.51,1,ExposureComplete,6398,10949.4,F,1,0.026,Y,N,540.281,1.00279,None
-1960.51,1,ExposureComplete,6399,4760.63,F,1,0.026,Y,N,540.376,1.00043,None
+1960.51,1,ExposureComplete,6399,4760.62,F,1,0.026,Y,N,540.376,1.00043,None
 1960.51,1,ExposureComplete,6400,10104.1,F,1,0.026,Y,N,539.399,1.02515,None
 1960.51,1,ExposureComplete,6401,512.735,F,1,0.026,Y,N,539.951,1.00164,None
 1960.51,1,ExposureComplete,6402,2349.7,F,1,0.026,Y,N,526.111,1.07352,None
@@ -114893,7 +114893,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,6957,5254.19,F,1,0.026,Y,N,540.25,1.00177,None
 1960.51,1,ExposureComplete,6958,7123.19,F,1,0.026,Y,N,540.354,1.00053,None
 1960.51,1,ExposureComplete,6959,13313.7,M,1,0.026,Y,N,540.097,1.00869,None
-1960.51,1,ExposureComplete,6960,29614.6,F,1,0.026,Y,N,540.063,1.00284,None
+1960.51,1,ExposureComplete,6960,29614.6,F,1,0.026,Y,N,540.062,1.00284,None
 1960.51,1,ExposureComplete,6961,2838.63,M,1,0.026,Y,N,537.777,1.0265,None
 1960.51,1,ExposureComplete,6962,3105.15,F,1,0.026,Y,N,537.66,1.00618,None
 1960.51,1,ExposureComplete,6963,6150.98,F,1,0.026,Y,N,539.799,1.00585,None
@@ -116043,7 +116043,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,8106,1484.99,F,1,0.026,Y,N,536.245,1.01585,None
 1960.51,1,ExposureComplete,8107,1413.66,F,1,0.026,Y,N,534.216,1.03101,None
 1960.51,1,ExposureComplete,8108,503.014,M,1,0.026,Y,N,534.341,1.18444,None
-1960.51,1,ExposureComplete,8109,10160.3,F,1,0.026,Y,N,540.273,1.00052,None
+1960.51,1,ExposureComplete,8109,10160.2,F,1,0.026,Y,N,540.273,1.00052,None
 1960.51,1,ExposureComplete,8110,8781.99,M,1,0.026,Y,N,540.235,1.00099,None
 1960.51,1,ExposureComplete,8111,23698.5,F,1,0.026,Y,N,540.014,1.00089,None
 1960.51,1,ExposureComplete,8112,13451,F,1,0.026,Y,N,540.295,1.00087,None
@@ -116594,7 +116594,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,8657,16323.7,M,1,0.026,Y,N,540.175,1.0016,None
 1960.51,1,ExposureComplete,8658,3302.61,F,1,0.026,Y,N,540.326,1.00163,None
 1960.51,1,ExposureComplete,8659,725.406,F,1,0.026,Y,N,531.828,1.06053,None
-1960.51,1,ExposureComplete,8660,10762.3,F,1,0.026,Y,N,539.981,1.00369,None
+1960.51,1,ExposureComplete,8660,10762.2,F,1,0.026,Y,N,539.981,1.00369,None
 1960.51,1,ExposureComplete,8661,988.242,M,1,0.026,Y,N,540.331,1.0006,None
 1960.51,1,ExposureComplete,8662,13591.7,M,1,0.026,Y,N,540.194,1.00159,None
 1960.51,1,ExposureComplete,8663,1731.94,M,1,0.026,Y,N,524.606,1.02701,None
@@ -116908,7 +116908,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,8971,6014.85,M,1,0.026,Y,N,540.061,1.00161,None
 1960.51,1,ExposureComplete,8972,8753.61,F,1,0.026,Y,N,540.118,1.0022,None
 1960.51,1,ExposureComplete,8973,16084.7,F,1,0.026,Y,N,539.837,1.02624,None
-1960.51,1,ExposureComplete,8974,3685.89,F,1,0.026,Y,N,539.813,1.00563,None
+1960.51,1,ExposureComplete,8974,3685.89,F,1,0.026,Y,N,539.812,1.00563,None
 1960.51,1,ExposureComplete,8975,9947.16,F,1,0.026,Y,N,540.053,1.00891,None
 1960.51,1,ExposureComplete,8976,12323.5,F,1,0.026,Y,N,539.857,1.00768,None
 1960.51,1,ExposureComplete,8977,20031.4,M,1,0.026,Y,N,540.156,1.00675,None
@@ -118379,7 +118379,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,10441,4952.04,M,1,0.026,Y,N,536.674,2.00414,None
 1960.51,1,ExposureComplete,10442,19092,F,1,0.026,Y,N,539.605,1.00671,None
 1960.51,1,ExposureComplete,10443,21039,M,1,0.026,Y,N,540.089,1.00535,None
-1960.51,1,ExposureComplete,10444,25066.3,F,1,0.026,Y,N,539.418,1.00206,None
+1960.51,1,ExposureComplete,10444,25066.2,F,1,0.026,Y,N,539.418,1.00206,None
 1960.51,1,ExposureComplete,10445,4446,M,1,0.026,Y,N,540.099,1.00174,None
 1960.51,1,ExposureComplete,10446,3168.32,F,1,0.026,Y,N,540.278,1.00194,None
 1960.51,1,ExposureComplete,10447,3534.52,F,1,0.026,Y,N,532.833,1.01306,None
@@ -118538,7 +118538,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,10600,7666.23,M,1,0.026,Y,N,539.553,1.00173,None
 1960.51,1,ExposureComplete,10601,27763.5,M,1,0.026,Y,N,538.741,1.00301,None
 1960.51,1,ExposureComplete,10602,1833.71,F,1,0.026,Y,N,537.229,1.01523,None
-1960.51,1,ExposureComplete,10603,18943.3,F,1,0.026,Y,N,539.801,1.00344,None
+1960.51,1,ExposureComplete,10603,18943.2,F,1,0.026,Y,N,539.801,1.00344,None
 1960.51,1,ExposureComplete,10604,3806.94,M,1,0.026,Y,N,535.206,1.0217,None
 1960.51,1,ExposureComplete,10605,12706.3,F,1,0.026,Y,N,540.238,1.0009,None
 1960.51,1,ExposureComplete,10606,13466.6,M,1,0.026,Y,N,540.075,1.07367,None
@@ -119529,7 +119529,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,11591,12905.9,F,1,0.026,Y,N,540.235,1.00043,None
 1960.51,1,ExposureComplete,11592,11526.3,M,1,0.026,Y,N,540.081,1.00127,None
 1960.51,1,ExposureComplete,11593,13653.5,F,1,0.026,Y,N,540.162,1.00201,None
-1960.51,1,ExposureComplete,11594,6628.58,M,1,0.026,Y,N,540.313,1.00281,None
+1960.51,1,ExposureComplete,11594,6628.58,M,1,0.026,Y,N,540.312,1.00281,None
 1960.51,1,ExposureComplete,11595,25390.5,F,1,0.026,Y,N,539.594,1.00417,None
 1960.51,1,ExposureComplete,11596,19500.1,F,1,0.026,Y,N,539.948,1.00208,None
 1960.51,1,ExposureComplete,11597,10719.9,M,1,0.026,Y,N,540.33,1.00108,None
@@ -119798,7 +119798,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,11860,9435.54,M,1,0.026,Y,N,539.944,1.00206,None
 1960.51,1,ExposureComplete,11861,11594.2,F,1,0.026,Y,N,540.333,1.00874,None
 1960.51,1,ExposureComplete,11862,2192.89,M,1,0.026,Y,N,484.053,1.42853,None
-1960.51,1,ExposureComplete,11863,2503.13,F,1,0.026,Y,N,540.264,1.00865,None
+1960.51,1,ExposureComplete,11863,2503.12,F,1,0.026,Y,N,540.264,1.00865,None
 1960.51,1,ExposureComplete,11864,12407.1,M,1,0.026,Y,N,540.291,1.00304,None
 1960.51,1,ExposureComplete,11865,1100.99,M,1,0.026,Y,N,502.212,1.26916,None
 1960.51,1,ExposureComplete,11866,9794.7,F,1,0.026,Y,N,540.213,1.00258,None
@@ -120377,7 +120377,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,12438,9166.56,M,1,0.026,Y,N,540.148,1.00342,None
 1960.51,1,ExposureComplete,12439,20212.8,F,1,0.026,Y,N,539.856,1.0017,None
 1960.51,1,ExposureComplete,12440,7004.44,M,1,0.026,Y,N,540.341,1.00178,None
-1960.51,1,ExposureComplete,12441,17418.3,F,1,0.026,Y,N,540.171,1.0006,None
+1960.51,1,ExposureComplete,12441,17418.2,F,1,0.026,Y,N,540.171,1.0006,None
 1960.51,1,ExposureComplete,12442,2453.35,F,1,0.026,Y,N,540.233,1.0007,None
 1960.51,1,ExposureComplete,12443,9191.46,M,1,0.026,Y,N,539.388,1.01506,None
 1960.51,1,ExposureComplete,12444,5369.94,F,1,0.026,Y,N,540.079,1.01353,None
@@ -120687,7 +120687,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,12748,13289.8,F,1,0.026,Y,N,540.172,1.00553,None
 1960.51,1,ExposureComplete,12749,4574.42,M,1,0.026,Y,N,540.322,1.0037,None
 1960.51,1,ExposureComplete,12750,18801.2,F,1,0.026,Y,N,539.712,1.0661,None
-1960.51,1,ExposureComplete,12751,3152.13,F,1,0.026,Y,N,539.888,1.12637,None
+1960.51,1,ExposureComplete,12751,3152.12,F,1,0.026,Y,N,539.888,1.12637,None
 1960.51,1,ExposureComplete,12752,4105.44,M,1,0.026,Y,N,530.383,2.00282,None
 1960.51,1,ExposureComplete,12753,21110.4,F,1,0.026,Y,N,540.271,1.00045,None
 1960.51,1,ExposureComplete,12754,4250.41,M,1,0.026,Y,N,539.906,1.00159,None
@@ -121417,7 +121417,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,13478,25501,M,1,0.026,Y,N,536.375,1.01046,None
 1960.51,1,ExposureComplete,13479,11403,F,1,0.026,Y,N,540.235,1.10366,None
 1960.51,1,ExposureComplete,13480,17949.9,F,1,0.026,Y,N,540.118,1.00963,None
-1960.51,1,ExposureComplete,13481,10477.3,F,1,0.026,Y,N,538.05,1.00899,None
+1960.51,1,ExposureComplete,13481,10477.2,F,1,0.026,Y,N,538.05,1.00899,None
 1960.51,1,ExposureComplete,13482,13441.5,M,1,0.026,Y,N,540.045,1.00215,None
 1960.51,1,ExposureComplete,13483,14017.9,F,1,0.026,Y,N,539.464,1.02162,None
 1960.51,1,ExposureComplete,13484,1531.72,M,1,0.026,Y,N,540.344,1.00064,None
@@ -122727,7 +122727,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,14788,22353.7,M,1,0.026,Y,N,537.946,1.0079,None
 1960.51,1,ExposureComplete,14789,14144.3,M,1,0.026,Y,N,540.134,1.00209,None
 1960.51,1,ExposureComplete,14790,1706.72,F,1,0.026,Y,N,540.265,1.00049,None
-1960.51,1,ExposureComplete,14791,3450.68,M,1,0.026,Y,N,540.313,1.00143,None
+1960.51,1,ExposureComplete,14791,3450.68,M,1,0.026,Y,N,540.312,1.00143,None
 1960.51,1,ExposureComplete,14792,1158.36,F,1,0.026,Y,N,537.431,1.00601,None
 1960.51,1,ExposureComplete,14793,17933.4,F,1,0.026,Y,N,539.205,1.0031,None
 1960.51,1,ExposureComplete,14794,19619.4,M,1,0.026,Y,N,539.752,1.07692,None
@@ -122955,7 +122955,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,15016,5276.32,M,1,0.026,Y,N,540.337,1.00334,None
 1960.51,1,ExposureComplete,15017,1562.69,F,1,0.026,Y,N,540.407,1.00194,None
 1960.51,1,ExposureComplete,15018,7104.69,F,1,0.026,Y,N,540.181,1.00177,None
-1960.51,1,ExposureComplete,15019,21511.8,F,1,0.026,Y,N,539.813,1.00569,None
+1960.51,1,ExposureComplete,15019,21511.8,F,1,0.026,Y,N,539.812,1.00569,None
 1960.51,1,ExposureComplete,15020,20330.8,F,1,0.026,Y,N,539.528,1.08113,None
 1960.51,1,ExposureComplete,15021,5988.68,F,1,0.026,Y,N,540.104,1.01078,None
 1960.51,1,ExposureComplete,15022,15966.9,F,1,0.026,Y,N,540.215,1.00158,None
@@ -123194,7 +123194,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,15255,22901.5,M,1,0.026,Y,N,540.082,1.00789,None
 1960.51,1,ExposureComplete,15256,12195.9,M,1,0.026,Y,N,540.389,1.02483,None
 1960.51,1,ExposureComplete,15257,19904,M,1,0.026,Y,N,540.056,1.00311,None
-1960.51,1,ExposureComplete,15258,24988.3,M,1,0.026,Y,N,540.107,1.00079,None
+1960.51,1,ExposureComplete,15258,24988.2,M,1,0.026,Y,N,540.107,1.00079,None
 1960.51,1,ExposureComplete,15259,6424.74,F,1,0.026,Y,N,540.344,1.00117,None
 1960.51,1,ExposureComplete,15260,22826.7,M,1,0.026,Y,N,540.107,1.00211,None
 1960.51,1,ExposureComplete,15261,1536.53,F,1,0.026,Y,N,540.39,1.00671,None
@@ -123387,7 +123387,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,15448,12383.1,F,1,0.026,Y,N,540.042,1.00294,None
 1960.51,1,ExposureComplete,15449,16374.4,F,1,0.026,Y,N,539.223,1.00324,None
 1960.51,1,ExposureComplete,15450,14019.6,M,1,0.026,Y,N,540.261,1.00048,None
-1960.51,1,ExposureComplete,15451,13260.5,M,1,0.026,Y,N,540.313,1.0017,None
+1960.51,1,ExposureComplete,15451,13260.5,M,1,0.026,Y,N,540.312,1.0017,None
 1960.51,1,ExposureComplete,15452,9256.16,F,1,0.026,Y,N,540.216,1.00042,None
 1960.51,1,ExposureComplete,15453,13184.1,M,1,0.026,Y,N,538.335,1.01137,None
 1960.51,1,ExposureComplete,15454,22776,F,1,0.026,Y,N,536.334,1.06267,None
@@ -123426,7 +123426,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,15487,2672.58,F,1,0.026,Y,N,499.287,1.21109,None
 1960.51,1,ExposureComplete,15488,13450.2,M,1,0.026,Y,N,540.039,1.01274,None
 1960.51,1,ExposureComplete,15489,16135.3,F,1,0.026,Y,N,539.562,1.00764,None
-1960.51,1,ExposureComplete,15490,10693.3,F,1,0.026,Y,N,540.174,1.00185,None
+1960.51,1,ExposureComplete,15490,10693.2,F,1,0.026,Y,N,540.174,1.00185,None
 1960.51,1,ExposureComplete,15491,1217.81,M,1,0.026,Y,N,540.169,1.15775,None
 1960.51,1,ExposureComplete,15492,7833.31,M,1,0.026,Y,N,540.009,1.00188,None
 1960.51,1,ExposureComplete,15493,12825.4,F,1,0.026,Y,N,540.293,1.00133,None
@@ -123495,7 +123495,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,15556,12974.6,F,1,0.026,Y,N,538.794,1.00187,None
 1960.51,1,ExposureComplete,15557,621.57,M,1,0.026,Y,N,530.199,1.19063,None
 1960.51,1,ExposureComplete,15558,9835.56,M,1,0.026,Y,N,540.249,1.00084,None
-1960.51,1,ExposureComplete,15559,1870.13,M,1,0.026,Y,N,494.558,1.06623,None
+1960.51,1,ExposureComplete,15559,1870.12,M,1,0.026,Y,N,494.558,1.06623,None
 1960.51,1,ExposureComplete,15560,8278.48,F,1,0.026,Y,N,540.227,1.01651,None
 1960.51,1,ExposureComplete,15561,813.439,F,1,0.026,Y,N,540.134,1.02737,None
 1960.51,1,ExposureComplete,15562,8062.53,M,1,0.026,Y,N,539.43,1.03395,None
@@ -124284,7 +124284,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,16345,16667.1,M,1,0.026,Y,N,540.117,1.00059,None
 1960.51,1,ExposureComplete,16346,7950.62,F,1,0.026,Y,N,540.308,1.0009,None
 1960.51,1,ExposureComplete,16347,6645.23,M,1,0.026,Y,N,540.338,1.00196,None
-1960.51,1,ExposureComplete,16348,8173.63,M,1,0.026,Y,N,540.39,1.00211,None
+1960.51,1,ExposureComplete,16348,8173.62,M,1,0.026,Y,N,540.39,1.00211,None
 1960.51,1,ExposureComplete,16349,19775.8,F,1,0.026,Y,N,535.766,2.0118,None
 1960.51,1,ExposureComplete,16350,15387,F,1,0.026,Y,N,539.837,1.00258,None
 1960.51,1,ExposureComplete,16351,1384.56,F,1,0.026,Y,N,540.264,1.00283,None
@@ -124363,7 +124363,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,16424,10356,F,1,0.026,Y,N,540.08,1.00661,None
 1960.51,1,ExposureComplete,16425,2442.88,M,1,0.026,Y,N,540.073,1.00083,None
 1960.51,1,ExposureComplete,16426,17987.6,M,1,0.026,Y,N,539.56,1.00238,None
-1960.51,1,ExposureComplete,16427,6758.63,M,1,0.026,Y,N,540.113,1.00692,None
+1960.51,1,ExposureComplete,16427,6758.62,M,1,0.026,Y,N,540.113,1.00692,None
 1960.51,1,ExposureComplete,16428,4456.08,M,1,0.026,Y,N,540.312,1.00126,None
 1960.51,1,ExposureComplete,16429,6461.63,F,1,0.026,Y,N,540.256,1.02277,None
 1960.51,1,ExposureComplete,16430,15515.7,F,1,0.026,Y,N,540.282,1.0005,None
@@ -125244,7 +125244,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1960.51,1,ExposureComplete,17305,17329.2,M,1,0.026,Y,N,539.531,1.03015,None
 1960.51,1,ExposureComplete,17306,4935.68,M,1,0.026,Y,N,532.798,1.01149,None
 1960.51,1,ExposureComplete,17307,1839.92,M,1,0.026,Y,N,540.243,1.00112,None
-1960.51,1,ExposureComplete,17308,16672.3,M,1,0.026,Y,N,540.063,1.00484,None
+1960.51,1,ExposureComplete,17308,16672.2,M,1,0.026,Y,N,540.063,1.00484,None
 1960.51,1,ExposureComplete,17309,3444.38,M,1,0.026,Y,N,504.789,1.04443,None
 1960.51,1,ExposureComplete,17310,3548.61,F,1,0.026,Y,N,528.219,1.20764,None
 1960.51,1,ExposureComplete,17311,8937.98,M,1,0.026,Y,N,537.373,1.18679,None

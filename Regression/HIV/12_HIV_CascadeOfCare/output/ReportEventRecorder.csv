@@ -5194,7 +5194,7 @@ Year,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness,HasHIV,
 1998.45,1,HCTUptakePostDebut0,47,5399.25,F,0,0,N,N,1e+06,-1,HCTUptakePostDebut
 1998.45,1,HCTUptakePostDebut0,49,6111.29,F,1,0.026,Y,N,277.702,3.90157,HCTUptakePostDebut
 1998.45,1,HCTUptakePostDebut0,85,5215.94,F,1,0.026,Y,N,409.985,4,HCTUptakePostDebut
-1998.45,1,HCTUptakePostDebut0,102,6884.15,F,1,0.026,Y,N,307.563,3.26518,HCTUptakePostDebut
+1998.45,1,HCTUptakePostDebut0,102,6884.15,F,1,0.026,Y,N,307.562,3.26518,HCTUptakePostDebut
 1998.45,1,HCTUptakePostDebut0,129,6268.07,F,1,0.026,Y,N,490.656,1.40478,HCTUptakePostDebut
 1998.45,1,HCTUptakePostDebut0,138,7298.15,M,0,0,N,N,1e+06,-1,HCTUptakePostDebut
 1998.45,1,HCTUptakePostDebut0,140,7173.4,M,1,0.001,Y,N,421.657,1.33345,HCTUptakePostDebut
