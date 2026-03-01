@@ -24,6 +24,8 @@ jobs:
     needs:
       - build
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
       - name: Download executable
         uses: actions/download-artifact@v7
         with:
@@ -34,3 +36,14 @@ jobs:
         with:
           name: componentTests
           path: ./build/x64/Release/componentTests
+      - name: Check python; run tests
+        uses: addnab/docker-run-action@v3
+        with:
+          image: docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
+          options: --mount type=bind,src=${{ github.workspace }},dst=/EMOD-Generic
+          run: |
+            python3 --version
+            python3 -m pip list
+            cd EMOD-Generic
+            cd Regression
+            python3 regression_test.py ${{ inputs.test_suite }} --scons --component-tests --linux
