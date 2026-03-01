@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import json
 import collections
 import os
@@ -11,7 +9,7 @@ from io import open
 import argparse
 import subprocess
 import shutil
-from pathlib import Path # hereby making this script dependent on Python3.6 :(
+from pathlib import Path
 
 # below is list of 'global' variables that are shared across >1 modules in the regression suite of code. 
 # probably all of them could ultimately be made at least a static member of MyRegressionRunner or Monitor.

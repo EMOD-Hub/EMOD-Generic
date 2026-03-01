@@ -425,35 +425,17 @@ class MyRegressionRunner(object):
         py_input = None
         if "parameters" in reply_json and "Python_Script_Path" in reply_json["parameters"]:
             psp_param = reply_json["parameters"]["Python_Script_Path"]
-            if psp_param == "LOCAL" or psp_param == ".":    # or . is for new usecase when using existing config.json (SFT)
-                py_input = "."
-                for py_file in glob.glob(os.path.join(scenario_path, "dtk_*.py")):
-                    self.copy_sim_file(scenario_path, sim_dir, os.path.basename(py_file))
-            elif psp_param == "SHARED":
-                # We are going to copy scripts from s_e_p_s to simdir. But we need to separate dtk_test files from dtk_ep4 (TBD)
-                py_input = "."
-                for py_file in glob.glob(os.path.join(scenario_path, "dtk_*.py")):
-                    self.copy_sim_file(scenario_path, sim_dir, os.path.basename(py_file))
+            py_input = "."
+            for py_file in glob.glob(os.path.join(scenario_path, "dtk_*.py")):
+                self.copy_sim_file(scenario_path, sim_dir, os.path.basename(py_file))
 
-                # SFTS ONLY PLEASE 
-                dtk_test_path = None
-                if scenario_type == "science" and os.path.exists( "shared_embedded_py_scripts/dtk_test" ):
-                    dtk_test_path = os.path.join( sim_dir, "dtk_test" )
-                    os.mkdir( dtk_test_path )
-                    with open( os.path.join( dtk_test_path, "__init__.py" ), "w" ) as dunder:
-                        dunder.write( "name='dtk_test alpha'" )
-                    for py_file in glob.glob(os.path.join("shared_embedded_py_scripts/dtk_test", "dtk_*.py")):
-                        self.copy_sim_file("shared_embedded_py_scripts/dtk_test", dtk_test_path, os.path.basename(py_file))
+            source_dir = os.path.join("shared_embedded_py_scripts", "dtk_test")
+            destin_dir = os.path.join(sim_dir, "dtk_test")
+            shutil.copytree(source_dir, destin_dir)
 
-                for py_file in glob.glob(os.path.join("shared_embedded_py_scripts", "dtk_*.py")):
-                    if os.path.basename( py_file ).startswith( "dtk_pre" ) or os.path.basename( py_file ).startswith( "dtk_post" ):
-                        self.copy_sim_file("shared_embedded_py_scripts", sim_dir, os.path.basename(py_file))
-                    elif dtk_test_path is not None:
-                        self.copy_sim_file("shared_embedded_py_scripts", dtk_test_path, os.path.basename(py_file))
-
-            elif psp_param != "NO":
-                print(psp_param + " is not a valid value for Python_Script_Path. Valid values are NO, LOCAL, SHARED. Exiting.")
-                sys.exit() 
+            source_dir = os.path.join("shared_embedded_py_scripts", "dtk_ep4")
+            destin_dir = os.path.join(sim_dir, "dtk_ep4")
+            shutil.copytree(source_dir, destin_dir)
 
         self.copy_input_files_to_user_input(sim_id, scenario_path, reply_json)
 
