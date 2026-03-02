@@ -7,7 +7,7 @@ on:
       test_suite:
         required: true
         type: string
-        default: 'generic_science,py_science,typhoid_science'
+        default: 'generic_science'
 
 jobs:
   build:
@@ -46,3 +46,9 @@ jobs:
             cd EMOD-Generic
             cd Regression
             python3 regression_test.py ${{ inputs.test_suite }} --scons --linux
+      - name: Upload test results
+        uses: actions/upload-artifact@v6
+        with:
+          name: Reports
+          path: ./Regression/reports/
+          retention-days: 7
