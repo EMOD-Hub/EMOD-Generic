@@ -412,7 +412,6 @@ class MyRegressionRunner(object):
         # but we need it passed through to the monitor thread execution in the reply_json/config_json.
         py_input = None
         if "parameters" in reply_json and "Python_Script_Path" in reply_json["parameters"]:
-            psp_param = reply_json["parameters"]["Python_Script_Path"]
             py_input = "."
             for py_file in glob.glob(os.path.join(scenario_path, "dtk_*.py")):
                 self.copy_sim_file(scenario_path, sim_dir, os.path.basename(py_file))
@@ -433,7 +432,7 @@ class MyRegressionRunner(object):
 
         # now that config.json is written out, add Py Script Path back (if non-empty)
         if py_input is not None:
-            reply_json["PSP"] = reply_json["parameters"]["Python_Script_Path"]
+            reply_json["PSP"] = self.params.py_path
             del(reply_json["parameters"]["Python_Script_Path"])
 
         try:

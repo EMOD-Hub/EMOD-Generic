@@ -22,15 +22,14 @@ def get_argparser():
     parser = argparse.ArgumentParser()
     parser.add_argument("suite",                                                        help="JSON test-suite to run - e.g. full.json, sanity (converted to sanity.json) - one or more comma separated values")
     parser.add_argument("exe_path", metavar="exe-path", nargs="?", default="",          help="Path to the Eradication.exe binary to run.  Default is where the executable is normally built depending on --scons and the OS.")
+    parser.add_argument("--py-path",                                                    help="Path to a python virtual environment for running EMOD")
     parser.add_argument("--perf", action="store_true", default=False,                   help="Run for performance measurement purposes")
     parser.add_argument("--disable-schema-test", action="store_true", default=False,    help="Disable schema test (testing is on by default, use to suppress schema testing)")
     parser.add_argument("--component-tests", action="store_true", default=False,        help="Run the componentTests if the executable exists")
     parser.add_argument("--use-dlls", action="store_true", default=False,               help="Use emodules/DLLs when running tests")
-    parser.add_argument("--dll-path",                                                   help="Path to the root directory of the DLLs to use (e.g. contains reporter_plugins)")
     parser.add_argument("--config-constraints", nargs="?",                              help="key:value pair(s) which are used to filter the scenario list (the given key and value must be in the config.json)")
     parser.add_argument("--scons", action="store_true", default=False,                  help="Indicates scons build so look for custom DLLs in the build/64/Release directory.")
     parser.add_argument('--linux', action='store_true', default=False,                  help="Run on linux target")
-    parser.add_argument("--print-error", action='store_true', default=False,            help="Print error message to screen.")
 
     return parser
 

@@ -9,14 +9,7 @@ import dtk_test.dtk_sft as sft
 import dtk_test.dtk_migration as mig
 
 
-# DEVNOTE: add contact to point to input path, although we should probably interrogate the environment to get the
-# input_path passed to dtk
-if os.name == "nt":
-    INPUT_PATH = "\\\\iazdvfil05.idmhpc.azr\\IDM\\home\\IDM_Bamboo_User\\input\\MigrationSFTs"
-else:
-    INPUT_PATH = "/mnt/iazdvfil05/public/input/TIP/MigrationSFTs"
-
-# INPUT_PATH = "C:\\EMOD\\USER_input_data\\MigrationTest"
+INPUT_PATH = "."
 
 KEY_TOTAL_TIMESTEPS = "Simulation_Duration"
 KEY_SIMULATION_TIMESTEP = "Simulation_Timestep"
@@ -358,13 +351,11 @@ def create_report_file_stationary_distribution(param_obj, node_demog_df, report_
 
                 max_time = node_demog_df['Time'].max()
                 last_node_demog = node_demog_df[node_demog_df['Time']==max_time]
-                groupby_node = last_node_demog.groupby(['NodeID'])
-                groupby_node.aggregate({'NumIndividuals': ['sum']})
                 total_population = sum(last_node_demog['NumIndividuals'])
 
                 for source_node_id in (migration_bin_json['DecodedNodeOffsets'].keys()):
                     outfile.write('\tProcessing node {}.....\n '.format(source_node_id))
-                    actual_population = sum(groupby_node.get_group(source_node_id)['NumIndividuals'])
+                    actual_population = (last_node_demog[last_node_demog['NodeID']==source_node_id]['NumIndividuals']).sum()
                     expected_population = total_population * stationary_dist[source_node_id-1]
                     if debug:
                         outfile.write('\tactual population:{}, expected population:{}\n'.format(actual_population,

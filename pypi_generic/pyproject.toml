@@ -33,6 +33,11 @@ docs = [
     "pygithub"
 ]
 tests = [
+    "pandas",
+    "scipy",
+    "matplotlib",
+    "lz4",
+    "python-snappy",
 ]
 
 [project.urls]

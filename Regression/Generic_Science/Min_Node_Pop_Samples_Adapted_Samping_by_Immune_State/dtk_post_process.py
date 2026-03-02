@@ -130,7 +130,7 @@ class MinNodePopulationSamplesByImmuneTest(SFT):
             self.msg.append(
                 f'\n~~~~~~Checking the total population reported in InsetChart.json at each time step.~~~~~~\n')
 
-            for t, stat_pop in inset_chart.df[Channels.Statistical_Population].iteritems():  # vital dynamic is off
+            for t, stat_pop in inset_chart.df[Channels.Statistical_Population].items():  # vital dynamic is off
                 tolerance = 0.05 * sum(node_population_from_demog)
                 if math.fabs(sum(stat_pop_expected_list[:4]) - stat_pop) > tolerance:
                     self.success = False

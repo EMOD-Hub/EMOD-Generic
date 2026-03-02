@@ -20,10 +20,10 @@ class RuntimeParameters:
     def display(self):
         print( "[arg] Suite:                      ", self.suite )
         print( "[arg] Executable path:            ", self.executable_path )
+        print( "[arg] Python VE path:             ", self.py_path )
         print( "[arg] Run in perf mode:           ", self.measure_perf )
         print( "[arg] Use DLLs:                   ", self.use_dlls )
         print( "[arg] SCons:                      ", self.scons )
-        print( "[arg] Print error msg to screen:  ", self.print_error )
         print( "[arg] Disable schema test:        ", self.disable_schema_test )
         print( "[arg] Component tests:            ", self.component_tests )
         print( "[arg] Config constraints:         ", self.constraints_dict )
@@ -52,6 +52,10 @@ class RuntimeParameters:
         return path
 
     @property
+    def py_path(self):
+        return self.args.py_path
+
+    @property
     def measure_perf(self):
         return self.args.perf
 
@@ -62,10 +66,6 @@ class RuntimeParameters:
     @property
     def scons(self):
         return self.args.scons
-
-    @property
-    def print_error(self):
-        return self.args.print_error
 
     @property
     def local_sim_root(self):

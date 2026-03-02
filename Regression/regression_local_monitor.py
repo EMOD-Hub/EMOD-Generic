@@ -363,7 +363,11 @@ class Monitor(threading.Thread):
                     print( self.scenario_path + " passed (" + str(self.duration) + ") - " + report_name )
                     #print( self.scenario_path + " passed." )
                     self.report.addPassingTest(self.scenario_path, self.duration, os.path.join(self.sim_dir, report_name))
-                    os.remove( os.path.join( self.sim_dir, "test.txt" ) )
+                    try:
+                        os.remove( os.path.join( self.sim_dir, "test.txt" ) )
+                    except PermissionError:
+                        # May be locked by another process
+                        pass
                 else:
                     fail_text = self.scenario_path + " SFT failed."
                     print( self.scenario_path + " failed (" + str(self.duration) + ") - " + report_name )

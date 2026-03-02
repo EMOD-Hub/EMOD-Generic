@@ -200,8 +200,8 @@ def create_report_file(param_obj, campaign_obj, stdout_df, property_df, property
                 contagion_c = property_df[[c for c in cols if channels[4] in c]]
                 population = property_df[[c for c in cols if channels[5] in c]]
 
-                contagion_list_e = [[contagion_e.iloc[0][0], 0]]
-                contagion_list_c = [[contagion_c.iloc[0][0], 0]]
+                contagion_list_e = [[contagion_e.iloc[0, 0], 0]]
+                contagion_list_c = [[contagion_c.iloc[0, 0], 0]]
                 expected_new_infection_list_e = []
                 expected_new_infection_list_c = []
 
@@ -210,18 +210,18 @@ def create_report_file(param_obj, campaign_obj, stdout_df, property_df, property
                 with open("DEBUG_binomial_test_{}.txt".format(group), 'w') as group_file:
                     for t in range(duration - 1):
                         # calculate infectivity and nomalized with total population
-                        infectivity = base_infectivity * infected.iloc[t][0]
+                        infectivity = base_infectivity * infected.iloc[t, 0]
 
                         # calculate contagion
                         calculated_contagion_e = infectivity * transmission_matrix_e[property_values.index(group)][
-                            property_values.index(group)] / population.iloc[t][0]
+                            property_values.index(group)] / population.iloc[t, 0]
                         calculated_contagion_c = infectivity * transmission_matrix_c[property_values.index(group)][
                             property_values.index(group)] / stat_pop[t]
 
                         # get contagion of this group from property report
                         # actual contagion is for next time step
-                        actual_contagion_e = contagion_e.iloc[t + 1][0]
-                        actual_contagion_c = contagion_c.iloc[t + 1][0]
+                        actual_contagion_e = contagion_e.iloc[t + 1, 0]
+                        actual_contagion_c = contagion_c.iloc[t + 1, 0]
                         contagion_list_e.append([actual_contagion_e, calculated_contagion_e])
                         contagion_list_c.append([actual_contagion_c, calculated_contagion_c])
 
@@ -245,11 +245,11 @@ def create_report_file(param_obj, campaign_obj, stdout_df, property_df, property
                                                            param_obj[ConfigKeys.Simulation_Timestep])
 
                         # calculate expected new infection for this group
-                        susceptible_population_c = population.iloc[t][0] - infected.iloc[t][0]
+                        susceptible_population_c = population.iloc[t, 0] - infected.iloc[t, 0]
                         expected_new_infection_c = susceptible_population_c * calculated_prob_c
 
                         # Superinfection is not supported, so individuals may not be infected from both the environmental and the contact route.
-                        susceptible_population_e = susceptible_population_c - new_infection_c.iloc[t + 1][0]
+                        susceptible_population_e = susceptible_population_c - new_infection_c.iloc[t + 1, 0]
                         expected_new_infection_e = susceptible_population_e * calculated_prob_e
 
 
@@ -257,8 +257,8 @@ def create_report_file(param_obj, campaign_obj, stdout_df, property_df, property
                         expected_new_infection_list_c.append(expected_new_infection_c)
 
                         # new infection are from next time step
-                        actual_new_infection_e = new_infection_e.iloc[t + 1][0]
-                        actual_new_infection_c = new_infection_c.iloc[t + 1][0]
+                        actual_new_infection_e = new_infection_e.iloc[t + 1, 0]
+                        actual_new_infection_c = new_infection_c.iloc[t + 1, 0]
 
                         # run the same test for both routes
                         failed_count_e = hint_support.test_new_infections(expected_new_infection_e,
