@@ -4,7 +4,6 @@ import configparser
 
 LOCAL_SIM_ROOT = 'outputs'
 LOCAL_BIN_ROOT = 'bin'
-LOCAL_DATA_ROOT = 'input_data_home'
 
 class RuntimeParameters:
     def __init__(self, args):
@@ -16,22 +15,20 @@ class RuntimeParameters:
         else:
             self.os_type = "WINDOWS"
 
-        self.PSP = None
         self.display()
 
     def display(self):
         print( "[arg] Suite:                      ", self.suite )
         print( "[arg] Executable path:            ", self.executable_path )
+        print( "[arg] Python VE path:             ", self.py_path )
         print( "[arg] Run in perf mode:           ", self.measure_perf )
         print( "[arg] Use DLLs:                   ", self.use_dlls )
         print( "[arg] SCons:                      ", self.scons )
-        print( "[arg] Print error msg to screen:  ", self.print_error )
         print( "[arg] Disable schema test:        ", self.disable_schema_test )
         print( "[arg] Component tests:            ", self.component_tests )
         print( "[arg] Config constraints:         ", self.constraints_dict )
         print( "[arg] Run Linux binary:           ", self.linux )
         print( "[cfg] DLL root:                   ", self.dll_root )
-        print( "[cfg] User input:                 ", self.user_input )
         print( "[cfg] Local bin root:             ", self.local_bin_root )
         print( "[cfg] Local sim root:             ", self.local_sim_root )
         print( "[cfg] Source root:                ", self.src_root )
@@ -55,6 +52,10 @@ class RuntimeParameters:
         return path
 
     @property
+    def py_path(self):
+        return self.args.py_path
+
+    @property
     def measure_perf(self):
         return self.args.perf
 
@@ -67,20 +68,12 @@ class RuntimeParameters:
         return self.args.scons
 
     @property
-    def print_error(self):
-        return self.args.print_error
-
-    @property
     def local_sim_root(self):
         return LOCAL_SIM_ROOT
 
     @property
     def local_bin_root(self):
         return LOCAL_BIN_ROOT
-
-    @property
-    def user_input(self):
-        return LOCAL_DATA_ROOT
 
     @property
     def dll_root(self):

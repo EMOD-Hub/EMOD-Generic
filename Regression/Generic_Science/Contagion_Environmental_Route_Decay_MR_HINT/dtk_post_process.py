@@ -130,16 +130,16 @@ def create_report_file(param_obj, property_df, property_obj, inset_chart_obj, in
             pre_contagion = 0
             for t in range(duration - 1):
                 if t == 0:
-                    contagion_list_e.append([contagion_e.iloc[t][0], 0])
-                    if contagion_e.iloc[t][0]:
+                    contagion_list_e.append([contagion_e.iloc[t, 0], 0])
+                    if contagion_e.iloc[t, 0]:
                         success = False
                         outfile.write("    BAD: at time step {0}, for group {1} route {2}, the contagion is {3}, "
-                                      "expected {4}.\n".format(t, group, routes[0], contagion_e.iloc[t][0],
+                                      "expected {4}.\n".format(t, group, routes[0], contagion_e.iloc[t, 0],
                                                                0
                                                                ))
 
-                infectivity = base_infectivity * infected.iloc[t][0] / population.iloc[t][0]
-                infectivity_other = base_infectivity * infected_other.iloc[t][0] / population.iloc[t][0]
+                infectivity = base_infectivity * infected.iloc[t, 0] / population.iloc[t, 0]
+                infectivity_other = base_infectivity * infected_other.iloc[t, 0] / population.iloc[t, 0]
 
                 # calculate contagion for environmental group
                 new_contagion = infectivity * transmission_matrix_e[groups.index(group)][
@@ -152,7 +152,7 @@ def create_report_file(param_obj, property_df, property_obj, inset_chart_obj, in
                 pre_contagion = current_contagion
 
                 # get contagion from property report
-                actual_contagion_e = contagion_e.iloc[t + 1][0]
+                actual_contagion_e = contagion_e.iloc[t + 1, 0]
 
                 contagion_list_e.append([actual_contagion_e, current_contagion])
 

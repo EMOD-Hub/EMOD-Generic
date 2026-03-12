@@ -94,9 +94,8 @@ class OverdispersionTest(SFT):
             susceptible_pop = (inset_chart.df[Channels.stat_pop] - inset_chart.df[Channels.susceptible_infected]).tolist()
             # Infected for Seed group
             seed_infected = inset_chart.df[Channels.seed_infected]
-            value_counts = seed_infected.value_counts().reset_index().rename(
-                columns={'index': Channels.seed_infected,
-                         Channels.seed_infected: 'count'})
+            value_counts = seed_infected.value_counts().reset_index().rename(columns={'index': Channels.seed_infected, Channels.seed_infected: 'value'})
+
             if len(value_counts) > 2:
                 self.success = False
                 self.msg.append(f'BAD: {Channels.seed_infected} should contain at most 2 unique values(including 0).\n')
@@ -104,7 +103,7 @@ class OverdispersionTest(SFT):
                 # skip the first day when there is no infected individual in Seed group
                 new_infection.remove(0)
 
-                n_infected = value_counts[value_counts[Channels.seed_infected] != 0][Channels.seed_infected].iloc[0]
+                n_infected = value_counts["value"][0]
 
                 self.msg.append('1. Test actual infectivity (contagion):\n')
                 mean_contagion = dtk_sft.mean_f(contagion)

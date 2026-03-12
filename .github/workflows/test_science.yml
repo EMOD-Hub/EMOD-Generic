@@ -7,7 +7,7 @@ on:
       test_suite:
         required: true
         type: string
-        default: 'generic'
+        default: 'generic_science'
 
 jobs:
   build:
@@ -15,16 +15,15 @@ jobs:
     uses: ./.github/workflows/build_archive.yml
     with:
       disease_type: 'All'
-      science_test: ' '
+      science_test: '--TestSugar'
 
   run-tests:
-    name: Run regession and component tests
+    name: Run scientific feature tests
     runs-on: ubuntu-latest
     needs:
       - build
     env:
       path_exe: './build/x64/Release/Eradication'
-      path_comp_test: './build/x64/Release/componentTests'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
@@ -33,19 +32,13 @@ jobs:
         with:
           name: Eradication
           path: ${{ env.path_exe }}
-      - name: Download component tests
-        uses: actions/download-artifact@v7
-        with:
-          name: componentTests
-          path: ${{ env.path_comp_test }}
       - name: Restore permissions
         run: |
           chmod +x ${{ env.path_exe }}/Eradication
-          chmod +x ${{ env.path_comp_test }}/componentTests
       - name: Run tests
         uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
         with:
-          args: "python3 ./Regression/regression_test.py ${{ inputs.test_suite }} --scons --component-tests --linux"
+          args: "python3 ./Regression/regression_test.py ${{ inputs.test_suite }} --scons --linux"
       - name: Upload test results
         uses: actions/upload-artifact@v6
         with:

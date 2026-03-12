@@ -120,8 +120,7 @@ class Report:
         elif scenario_type == 'science':
             self._science_failures.add(scenario_path)
 
-        if self.params.print_error:
-            print(stderr_txt)
+        print(stderr_txt)
 
     def write(self, filename, time):
         self.suite_el.setAttribute("name", self.params.suite + " regression suite")

@@ -32,7 +32,12 @@ docs = [
     "myst-parser",
     "pygithub"
 ]
-tests = [
+test = [
+    "pandas",
+    "scipy",
+    "matplotlib",
+    "lz4",
+    "python-snappy",
 ]
 
 [project.urls]

@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "BaseTextReport.h"
@@ -29,8 +28,11 @@ namespace Kernel
 
     class ReportNodeDemographics: public BaseTextReport
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportNodeDemographics, IReport)
+
     public:
         ReportNodeDemographics();
+        ReportNodeDemographics(const ReportNodeDemographics&);
         virtual ~ReportNodeDemographics();
 
         // BaseEventReport

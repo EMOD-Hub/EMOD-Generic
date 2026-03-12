@@ -216,14 +216,14 @@ def create_report_file(param_obj, campaign_obj, stdout_df, property_df, property
 
                 expected_new_infection_list_e = []
                 expected_new_infection_list_c = []
-                contagion_list_e = [[contagion_sus_e.iloc[0][0], 0]]
-                contagion_list_c = [[contagion_sus_c.iloc[0][0], 0]]
+                contagion_list_e = [[contagion_sus_e.iloc[0, 0], 0]]
+                contagion_list_c = [[contagion_sus_c.iloc[0, 0], 0]]
 
                 failed_count_e = 0
                 failed_count_c = 0
                 with open("DEBUG_binomial_test_{}.txt".format(susceptible_group), 'w') as group_file:
                     for t in range(duration - 1):
-                        infectivity_seed = base_infectivity * infected_seed.iloc[t][0]
+                        infectivity_seed = base_infectivity * infected_seed.iloc[t, 0]
 
                         # calculate contagion of susceptible group
                         # environmental contagion decay 100% at each time step so it works as contact contagion
@@ -231,15 +231,15 @@ def create_report_file(param_obj, campaign_obj, stdout_df, property_df, property
                         # "environmental" route will be normalized by group population
                         calculated_contagion_e = infectivity_seed * \
                                                  transmission_matrix_e[property_values.index(seed_group)][
-                            property_values.index(susceptible_group)] / population_sus.iloc[t][0]
+                            property_values.index(susceptible_group)] / population_sus.iloc[t, 0]
 
                         calculated_contagion_c = infectivity_seed * \
                                                  transmission_matrix_c[property_values.index(seed_group)][
                             property_values.index(susceptible_group)] / stat_pop[t]
 
                         # get contagion of susceptible group from property report
-                        actual_contagion_e = contagion_sus_e.iloc[t][0]
-                        actual_contagion_c = contagion_sus_c.iloc[t][0]
+                        actual_contagion_e = contagion_sus_e.iloc[t, 0]
+                        actual_contagion_c = contagion_sus_c.iloc[t, 0]
 
                         contagion_list_e.append([actual_contagion_e, calculated_contagion_e])
                         contagion_list_c.append([actual_contagion_c, calculated_contagion_c])
@@ -265,18 +265,18 @@ def create_report_file(param_obj, campaign_obj, stdout_df, property_df, property
                                                            param_obj[ConfigKeys.Simulation_Timestep])
 
                         # calculate expected new infection for susceptible group
-                        susceptible_population_c = population_sus.iloc[t][0] - infected_sus.iloc[t][0]
+                        susceptible_population_c = population_sus.iloc[t, 0] - infected_sus.iloc[t, 0]
                         expected_new_infection_c = susceptible_population_c * calculated_prob_c
 
                         # Superinfection is not supported, so individuals may not be infected from both the environmental and the contact route.
-                        susceptible_population_e = susceptible_population_c - new_infection_sus_c.iloc[t][0]
+                        susceptible_population_e = susceptible_population_c - new_infection_sus_c.iloc[t, 0]
                         expected_new_infection_e = susceptible_population_e * calculated_prob_e
 
                         expected_new_infection_list_e.append(expected_new_infection_e)
                         expected_new_infection_list_c.append(expected_new_infection_c)
 
-                        actual_new_infection_e = new_infection_sus_e.iloc[t][0]
-                        actual_new_infection_c = new_infection_sus_c.iloc[t][0]
+                        actual_new_infection_e = new_infection_sus_e.iloc[t, 0]
+                        actual_new_infection_c = new_infection_sus_c.iloc[t, 0]
 
                         # run the same test for both routes
                         failed_count_e = hint_support.test_new_infections(

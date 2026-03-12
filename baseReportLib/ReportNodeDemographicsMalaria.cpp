@@ -1,8 +1,9 @@
 
+#pragma once
+
 #include "stdafx.h"
 
 #include "ReportNodeDemographicsMalaria.h"
-#include "DllInterfaceHelper.h"
 #include "FactorySupport.h"
 
 #include "NodeEventContext.h"
@@ -17,65 +18,23 @@
 #include "StrainIdentity.h"
 #include "MalariaContexts.h"
 
-//******************************************************************************
-
-//******************************************************************************
-
 SETUP_LOGGING( "ReportNodeDemographicsMalaria" )
-
-static const char* _sim_types[] = { "MALARIA_SIM", nullptr };
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::ReportNodeDemographicsMalaria();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-
-// ----------------------------------------
-// --- ReportNodeDemographicsMalaria Methods
-// ----------------------------------------
 
 namespace Kernel
 {
+    IMPLEMENT_FACTORY_REGISTERED(ReportNodeDemographicsMalaria)
+
     ReportNodeDemographicsMalaria::ReportNodeDemographicsMalaria()
         : ReportNodeDemographics( "ReportNodeDemographicsMalaria.csv" )
         , m_GenomeMarkerColumns()
     {
     }
+
+    // Copy constructor
+    ReportNodeDemographicsMalaria::ReportNodeDemographicsMalaria(const ReportNodeDemographicsMalaria& existing_instance)
+        : ReportNodeDemographics(existing_instance)
+        , m_GenomeMarkerColumns(existing_instance.m_GenomeMarkerColumns)
+    { }
 
     ReportNodeDemographicsMalaria::~ReportNodeDemographicsMalaria()
     {

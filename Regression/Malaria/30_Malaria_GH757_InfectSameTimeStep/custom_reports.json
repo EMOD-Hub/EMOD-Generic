@@ -1,15 +1,5 @@
 {
     "Custom_Reports": {
-        "ReportNodeDemographics": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Age_Bins": [
-                        150.0
-                    ]
-                }
-            ]
-        },
         "ReportVectorStats": {
             "Enabled": 1,
             "Reports": [
@@ -20,5 +10,13 @@
                 }
             ]
         }
-    }
+    },
+    "Reports": [
+        {
+            "Age_Bins": [
+                150.0
+            ],
+            "class": "ReportNodeDemographics"
+        }
+    ]
 }

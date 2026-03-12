@@ -1,16 +1,12 @@
 {
-    "Custom_Reports": {
-        "ReportNodeDemographics": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Age_Bins": [
-                        40.0,
-                        80.0,
-                        125.0
-                    ]
-                }
-            ]
+    "Reports": [
+        {
+            "Age_Bins": [
+                40.0,
+                80.0,
+                125.0
+            ],
+            "class": "ReportNodeDemographics"
         }
-    }
+    ]
 }

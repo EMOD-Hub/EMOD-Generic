@@ -143,8 +143,8 @@ def create_report_file(param_obj, campaign_obj, property_obj, property_df, stdou
                 envi_sample = stdout_t_df[Diagnostic_Support.Stdout.sample].iloc[0]
                 ip = stdout_t_df[Diagnostic_Support.Stdout.ip_value].iloc[0]
 
-                infected_ip_group = infected_ip_group_list.iloc[t - 1][0]
-                stat_pop_ip_group = stat_pop_ip_group_list.iloc[t - 1][0]
+                infected_ip_group = infected_ip_group_list.iloc[t - 1, 0]
+                stat_pop_ip_group = stat_pop_ip_group_list.iloc[t - 1, 0]
                 if stat_pop == stat_pop_ip_group and infected == infected_ip_group:
                     success = False
                     outfile.write("BAD: at time step {0} the total stat_pop = {1} and total infect = {2}, we got "

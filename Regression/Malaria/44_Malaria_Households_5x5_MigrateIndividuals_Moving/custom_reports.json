@@ -16,12 +16,12 @@
                     "Start_Day": 366
                 }
             ]
-        },
-        "ReportNodeDemographics": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
         }
-    }
+    },
+    "Reports": [
+        {
+            "Age_Bins": [],
+            "class": "ReportNodeDemographics"
+        }
+    ]
 }

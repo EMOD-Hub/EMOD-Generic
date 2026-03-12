@@ -112,18 +112,18 @@ def create_report_file(param_obj, property_df, property_obj, inset_chart_obj, in
 
             for t in range(duration - 1):
                 if t == 0:
-                    contagion_list_c.append([contagion_c.iloc[t][0], 0])
-                    if contagion_c.iloc[t][0]:
+                    contagion_list_c.append([contagion_c.iloc[t, 0], 0])
+                    if contagion_c.iloc[t, 0]:
                         success = False
                         outfile.write("    BAD: at time step {0}, for group {1} route {2}, the contagion is {3}, "
-                                      "expected {4}.\n".format(t, group, routes[1], contagion_c.iloc[t][0],
+                                      "expected {4}.\n".format(t, group, routes[1], contagion_c.iloc[t, 0],
                                                                0
                                                                ))
 
-                infectivity = base_infectivity * infected.iloc[t][0] / \
-                              (population.iloc[t][0] + population_other.iloc[t][0])
-                infectivity_other = base_infectivity * infected_other.iloc[t][0] / \
-                                    (population.iloc[t][0] + population_other.iloc[t][0])
+                infectivity = base_infectivity * infected.iloc[t, 0] / \
+                              (population.iloc[t, 0] + population_other.iloc[t, 0])
+                infectivity_other = base_infectivity * infected_other.iloc[t, 0] / \
+                                    (population.iloc[t, 0] + population_other.iloc[t, 0])
 
                 # calculate contagion
                 calculated_contagion = infectivity * transmission_matrix_c[groups.index(group)][
@@ -131,7 +131,7 @@ def create_report_file(param_obj, property_df, property_obj, inset_chart_obj, in
                     groups.index(group)]
 
                 # get contagion from property report
-                actual_contagion_c = contagion_c.iloc[t + 1][0]
+                actual_contagion_c = contagion_c.iloc[t + 1, 0]
 
                 contagion_list_c.append([actual_contagion_c, calculated_contagion])
 

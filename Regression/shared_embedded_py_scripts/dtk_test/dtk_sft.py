@@ -364,7 +364,7 @@ def calc_cdf(dist, num_bin=20):
     step = float(max_num - min_num) / num_bin
     bin_range = np.arange(min_num, max_num + step, step)
     # Use the histogram function to bin the data
-    counts, bin_edges = np.histogram(dist, bins=bin_range, normed=True)
+    counts, bin_edges = np.histogram(dist, bins=bin_range, density=True)
     # Now find the cdf
     cdf = np.cumsum(counts)
     max_p = float(max(cdf))
@@ -1526,7 +1526,7 @@ def round_to_n_digit(x, n):
 
 
 def get_val(key, line):
-    regex = key + "(\d*\.*\d*)"
+    regex = key + r"(\d*\.*\d*)"
     match = re.search(regex, line)
     if match is not None:
         return match.group(1)
@@ -1587,7 +1587,7 @@ def has_match(target, matches):
 
 
 def get_char(key, line):
-    regex = key + "(\w*\d*\w*\d*)"
+    regex = key + r"(\w*\d*\w*\d*)"
     match = re.search(regex, line)
     if match != None:
         return match.group(1)
