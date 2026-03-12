@@ -1,17 +1,13 @@
 {
-    "Custom_Reports": {
-        "ReportNodeDemographics": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Age_Bins": [
-                        40.0,
-                        80.0,
-                        125.0
-                    ],
-                    "IP_Key_To_Collect": "Risk"
-                }
-            ]
+    "Reports": [
+        {
+            "Age_Bins": [
+                40.0,
+                80.0,
+                125.0
+            ],
+            "IP_Key_To_Collect": "Risk",
+            "class": "ReportNodeDemographics"
         }
-    }
+    ]
 }

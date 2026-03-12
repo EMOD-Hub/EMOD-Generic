@@ -1,11 +1,5 @@
 {
     "Custom_Reports": {
-        "ReportHumanMigrationTracking": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
-        },
         "Report_TBHIV_ByAge": {
             "Enabled": 1,
             "Reports": [
@@ -18,5 +12,10 @@
                 }
             ]
         }
-    }
+    },
+    "Reports": [
+        {
+            "class": "ReportHumanMigrationTracking"
+        }
+    ]
 }

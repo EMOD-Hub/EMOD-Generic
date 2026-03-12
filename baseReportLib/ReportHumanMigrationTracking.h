@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "BaseTextReportEvents.h"
@@ -8,8 +7,11 @@ namespace Kernel
 {
     class ReportHumanMigrationTracking : public BaseTextReportEvents
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportHumanMigrationTracking, IReport)
+
     public:
         ReportHumanMigrationTracking();
+        ReportHumanMigrationTracking(const ReportHumanMigrationTracking&);
         virtual ~ReportHumanMigrationTracking();
 
         // BaseEventReport

@@ -12,11 +12,14 @@ reportSrcFiles = [
     "BinnedReport.cpp",
     "ChannelDataMap.cpp",
     "ReportFactory.cpp",
+    "ReportHumanMigrationTracking.cpp",
+    "ReportNodeDemographics.cpp",
     "ReportStrainTracking.cpp",
     "ReportUtilities.cpp",
 ]
 
 if ('Disease' in env) and ((env['Disease'] == 'Malaria') or (env['Disease'] == '')):
+    reportSrcFiles.append( "ReportNodeDemographicsMalaria.cpp" )
     reportSrcFiles.append( "ReportUtilitiesMalaria.cpp" )
 
 reportLib = env.StaticLibrary('baseReportLib', reportSrcFiles)

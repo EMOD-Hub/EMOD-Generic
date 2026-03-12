@@ -1,21 +1,14 @@
 {
-    "Custom_Reports": {
-        "ReportHumanMigrationTracking": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
+    "Reports": [
+        {
+            "Age_Bins": [
+                125.0
+            ],
+            "Stratify_By_Gender": 0,
+            "class": "ReportNodeDemographics"
         },
-        "ReportNodeDemographics": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Age_Bins": [
-                        125.0
-                    ],
-                    "Stratify_By_Gender": 0
-                }
-            ]
+        {
+            "class": "ReportHumanMigrationTracking"
         }
-    }
+    ]
 }

@@ -1,12 +1,8 @@
 {
-    "Custom_Reports": {
-        "ReportHumanMigrationTracking": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Additional_Events": []
-                }
-            ]
+    "Reports": [
+        {
+            "Additional_Events": [],
+            "class": "ReportHumanMigrationTracking"
         }
-    }
+    ]
 }

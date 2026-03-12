@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "ReportNodeDemographics.h"
@@ -39,8 +38,11 @@ namespace Kernel
 
     class ReportNodeDemographicsMalaria: public ReportNodeDemographics
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportNodeDemographicsMalaria, IReport)
+
     public:
         ReportNodeDemographicsMalaria();
+        ReportNodeDemographicsMalaria(const ReportNodeDemographicsMalaria&);
         virtual ~ReportNodeDemographicsMalaria();
 
         // ReportNodeDemographics

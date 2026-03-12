@@ -1,8 +1,9 @@
 
+#pragma once
+
 #include "stdafx.h"
 
 #include "ReportNodeDemographics.h"
-#include "DllInterfaceHelper.h"
 #include "FactorySupport.h"
 
 #include "NodeEventContext.h"
@@ -13,11 +14,11 @@
 #include "IdmDateTime.h"
 #include "INodeContext.h"
 
+SETUP_LOGGING( "ReportNodeDemographics" )
+
 namespace Kernel
 {
-// ----------------------------------------
-// --- ReportNodeDemographics Methods
-// ----------------------------------------
+    IMPLEMENT_FACTORY_REGISTERED(ReportNodeDemographics)
 
     ReportNodeDemographics::ReportNodeDemographics()
         : ReportNodeDemographics( "ReportNodeDemographics.csv" )
@@ -40,6 +41,17 @@ namespace Kernel
         // ------------------------------------------------------------------------------------------------
         AddRef();
     }
+
+    // Copy constructor
+    ReportNodeDemographics::ReportNodeDemographics(const ReportNodeDemographics& existing_instance)
+        : BaseTextReport(existing_instance.GetReportName(), existing_instance.write_every_time_step)
+        , m_StratifyByGender(existing_instance.m_StratifyByGender)
+        , m_StratifyByAge(existing_instance.m_StratifyByAge)
+        , m_AgeYears(existing_instance.m_AgeYears)
+        , m_IPKeyToCollect(existing_instance.m_IPKeyToCollect)
+        , m_IPValuesList(existing_instance.m_IPValuesList)
+        , m_Data(existing_instance.m_Data)
+    { }
 
     ReportNodeDemographics::~ReportNodeDemographics()
     {

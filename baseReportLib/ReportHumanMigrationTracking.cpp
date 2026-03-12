@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include "stdafx.h"
 
 #include "ReportHumanMigrationTracking.h"
@@ -11,63 +13,15 @@
 #include "IdmDateTime.h"
 #include "INodeContext.h"
 
-//******************************************************************************
-
 #define ADULT_AGE_YRS (15.0f)
-
-//******************************************************************************
 
 SETUP_LOGGING( "ReportHumanMigrationTracking" )
 
-static const char* _sim_types[] = { "*", nullptr };
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::ReportHumanMigrationTracking();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-
-// ----------------------------------------
-// --- ReportHumanMigrationTracking Methods
-// ----------------------------------------
-
 namespace Kernel
 {
+    IMPLEMENT_FACTORY_REGISTERED(ReportHumanMigrationTracking)
 
+    // Constructor
     ReportHumanMigrationTracking::ReportHumanMigrationTracking()
         : BaseTextReportEvents( "ReportHumanMigrationTracking.csv" )
         , m_EndTime(0.0)
@@ -80,6 +34,13 @@ namespace Kernel
         // ------------------------------------------------------------------------------------------------
         AddRef();
     }
+
+    // Copy constructor
+    ReportHumanMigrationTracking::ReportHumanMigrationTracking(const ReportHumanMigrationTracking& existing_instance)
+        : BaseTextReportEvents(existing_instance.GetReportName())
+        , m_EndTime(existing_instance.m_EndTime)
+        , m_MigrationDataMap(existing_instance.m_MigrationDataMap)
+    { }
 
     ReportHumanMigrationTracking::~ReportHumanMigrationTracking()
     {

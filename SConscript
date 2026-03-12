@@ -90,11 +90,8 @@ if disease != "Typhoid":
     OptionalScript('reporters/SConscript_Generic_AgeAtInfectionHistogram')
     OptionalScript('reporters/SConscript_Generic_Basic')
     OptionalScript('reporters/SConscript_Generic_EventCounter')
-    OptionalScript('reporters/SConscript_Generic_HumanMigrationTracking')
     OptionalScript('reporters/SConscript_Generic_KmlDemo')
-    OptionalScript('reporters/SConscript_Generic_NodeDemographics')
     OptionalScript('reporters/SConscript_Generic_Serosurvey')
-    OptionalScript('reporters/SConscript_Generic_StrainTracking')
 
 if( (disease == "ALL") or (disease == "HIV") ):
     pass
@@ -107,7 +104,6 @@ if( (disease == "ALL") or (disease == "Malaria") ):
     OptionalScript('reporters/SConscript_Malaria_Summary')
     OptionalScript('reporters/SConscript_Malaria_Survey')
     OptionalScript('reporters/SConscript_Malaria_Transmission')
-    OptionalScript('reporters/SConscript_Malaria_NodeDemographicsMalaria')
     OptionalScript('reporters/SConscript_Malaria_VectorStatsMalaria')
 
 if( (disease == "ALL") or (disease == "Polio") ):
