@@ -1,4 +1,4 @@
-name: Run regression and component tests
+name: Run scientific feature tests
 
 on:
   # Allows manual run from the Actions tab
