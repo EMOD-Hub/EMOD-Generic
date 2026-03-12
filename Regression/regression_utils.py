@@ -14,7 +14,9 @@ from pathlib import Path
 # below is list of 'global' variables that are shared across >1 modules in the regression suite of code. 
 # probably all of them could ultimately be made at least a static member of MyRegressionRunner or Monitor.
 
-cache_cwd = os.getcwd()
+# Tests built assuming current directory is ./Regression
+cache_cwd = os.path.dirname(os.path.abspath(__file__))
+
 final_warnings = ""
 reg_threads = []
 version_string = None

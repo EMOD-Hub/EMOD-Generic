@@ -576,6 +576,9 @@ class TestRunner(object):
 def main():
     """Main body of regression_test.py"""
 
+    # Tests built assuming current directory is ./Regression
+    os.chdir(ru.cache_cwd)
+
     # parse cmdline args
     params = setup()
 
