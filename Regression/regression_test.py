@@ -294,6 +294,8 @@ def run_component_tests(scons_build):
         if (ret == 0):
             os.remove("StdOut.txt")
 
+        os.chdir(ru.cache_cwd)
+
         if ret == 0:
             return True
         else:
