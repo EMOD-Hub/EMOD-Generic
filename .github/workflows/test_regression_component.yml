@@ -46,7 +46,6 @@ jobs:
         uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
         with:
           args: "python3 regression_test.py ${{ inputs.test_suite }} --scons --component-tests --linux"
-        working-directory: ./Regression
       - name: Upload test results
         uses: actions/upload-artifact@v6
         with:
