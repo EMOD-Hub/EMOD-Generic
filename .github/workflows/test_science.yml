@@ -18,7 +18,7 @@ jobs:
       science_test: '--TestSugar'
 
   run-tests:
-    name: Run reression and component tests
+    name: Run scientific feature tests
     runs-on: ubuntu-latest
     needs:
       - build
@@ -35,17 +35,10 @@ jobs:
       - name: Restore permissions
         run: |
           chmod +x ${{ env.path_exe }}/Eradication
-      - name: Check python; run tests
-        uses: addnab/docker-run-action@v3
+      - name: Run tests
+        uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
         with:
-          image: docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
-          options: --mount type=bind,src=${{ github.workspace }},dst=/EMOD-Generic
-          run: |
-            python3 --version
-            python3 -m pip list
-            cd EMOD-Generic
-            cd Regression
-            python3 regression_test.py ${{ inputs.test_suite }} --scons --linux
+          args: "python3 ./Regression/regression_test.py ${{ inputs.test_suite }} --scons --linux"
       - name: Upload test results
         uses: actions/upload-artifact@v6
         with:
