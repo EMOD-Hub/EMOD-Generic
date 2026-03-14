@@ -36,9 +36,9 @@ jobs:
         run: |
           chmod +x ${{ env.path_exe }}/Eradication
       - name: Run tests
-        uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
+        uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-sfts:3.0
         with:
-          args: "python3 ./Regression/regression_test.py ${{ inputs.test_suite }} --scons --linux"
+          args: "python3 ./Regression/regression_test.py ${{ inputs.test_suite }} --scons"
       - name: Upload test results
         uses: actions/upload-artifact@v6
         with:
