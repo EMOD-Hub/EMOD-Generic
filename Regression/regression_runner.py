@@ -249,7 +249,7 @@ class MyRegressionRunner(object):
         dll_dirs = ["disease_plugins",  "reporter_plugins", "interventions"]
 
         for dll_subdir in dll_dirs:
-            suffix = "*.dll" if os.name == "nt" and self.params.linux == False else "*.so"
+            suffix = "*.dll" if os.name == "nt" else "*.so"
             dlls = glob.glob(os.path.join( os.path.join(emodule_dir, dll_subdir), suffix )) 
             for dll in dlls:
                 print( "Considering dll: " + dll )
@@ -276,9 +276,6 @@ class MyRegressionRunner(object):
                         ru.copy(dll, os.path.join(target_dir, os.path.basename(dll)))
 
                     dll_path = os.path.join(target_dir, os.path.basename(dll))
-                    # dll_path has to be converted to /mnt for --linux
-                    if self.params.linux:
-                        dll_path = self.transform_path( dll_path )
                     self.emodules_map[dll_subdir].append(dll_path)
 
                     try:

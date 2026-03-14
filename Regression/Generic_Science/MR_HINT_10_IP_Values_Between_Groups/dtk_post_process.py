@@ -354,10 +354,10 @@ def create_report_file(param_obj, campaign_obj, stdout_df, property_df, property
             contagion_seed_c = property_df[[c for c in seed_cols if channels[4] in c]]
             message = "BAD: There is/are {0} time step(s) which has non-zero contagion in {1} channel, expected zero " \
                       "contagion for all time steps.\n"
-            if (np.sum(contagion_seed_e.astype(float))):
+            if (np.sum(contagion_seed_e.to_numpy()) > 0):
                 result_5 = success = False
                 sft_report_file.write(message.format(int(contagion_seed_e.astype(bool).sum(axis=0)), contagion_seed_e.columns[0]))
-            if (np.sum(contagion_seed_c.astype(float))):
+            if (np.sum(contagion_seed_c.to_numpy()) > 0):
                 result_5 = success = False
                 sft_report_file.write(message.format(int(contagion_seed_c.astype(bool).sum(axis=0)), contagion_seed_c.columns[0]))
             if not result_5:

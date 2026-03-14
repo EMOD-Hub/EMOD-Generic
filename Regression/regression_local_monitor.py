@@ -168,44 +168,45 @@ class Monitor(threading.Thread):
         return fail_validation, failure_txt
 
     def compareCsvOutputs( self, ref_path, test_path, failures ):
-        # print( "Comparing CSV files: ref = " + ref_path + ", test = " + test_path )
+
+        fail_validation = False
+        failure_txt = ""
+
         # Do Md5 comp first.
         ref_md5 = ru.md5_hash_of_file( ref_path )
         test_md5 = ru.md5_hash_of_file( test_path )
         if ref_md5 == test_md5:
-            # print( "CSV files passed MD5 comparison test." )
-            return False, ""
+            return fail_validation, failure_txt
 
-        fail_validation = False
-        err_msg = ""
-
-        # print( "CSV files failed MD5 comparison test." )
         # First (md5) test failed. Do line length, then line-by-line
-        ref_length = ru.file_len( ref_path )
-        test_length = ru.file_len( test_path )
-        if ref_length != test_length:
+        with open(ref_path, "r") as ref_file:
+            ref_lines = [val.strip() for val in ref_file.readlines()]
+
+        with open(test_path, "r") as test_file:
+            test_lines = [val.strip() for val in test_file.readlines()]
+
+        if len(ref_lines) != len(test_lines):
             fail_validation = True
-            err_msg = "Reference output {0} has {1} lines but test output {2} has {3} lines".format( ref_path, ref_length, test_path, test_length )
+            failure_txt = "Reference output {0} has {1} lines but test output {2} has {3} lines".format( ref_path, len(ref_lines), test_path, len(test_lines) )
 
-        else:
-            with open(ref_path, "r") as ref_file, open(test_path, "r") as test_file:
-                line_num = 0
-                for ref_line in ref_file:
-                    line_num = line_num + 1
-                    test_line = test_file.readline()
-                    if ref_line != test_line:
-                        ref_line_tokens = ref_line.split(',')
-                        test_line_tokens = test_line.split(',')
-                        for col_idx in range( len( ref_line_tokens) ):
-                            if ref_line_tokens[col_idx] != test_line_tokens[col_idx]:
-                                break
-                        err_msg = "First mismatch at line {0} of {1} column {2}: reference line...\n{3}vs test line...\n{4}{5} vs {6}".format( line_num, ref_path, col_idx, ref_line, test_line, ref_line_tokens[col_idx], test_line_tokens[col_idx] )
-                        fail_validation = True
+            print( failure_txt )
+            return fail_validation, failure_txt
+
+        line_num = 0
+        for ref_line in ref_lines:
+            test_line = test_lines[line_num]
+            line_num = line_num + 1
+            if ref_line != test_line:
+                ref_line_tokens = ref_line.split(',')
+                test_line_tokens = test_line.split(',')
+                for col_idx in range( len( ref_line_tokens) ):
+                    if ref_line_tokens[col_idx] != test_line_tokens[col_idx]:
                         break
+                failure_txt = "First mismatch at line {0} of {1} column {2}: reference line...\n{3}vs test line...\n{4}{5} vs {6}".format( line_num, ref_path, col_idx, ref_line, test_line, ref_line_tokens[col_idx], test_line_tokens[col_idx] )
+                fail_validation = True
+                break
 
-        print( err_msg )
-        failure_txt = err_msg
-        #self.report.addFailingTest( self.scenario_path, failure_txt, test_path, self.scenario_type )
+        print( failure_txt )
         return fail_validation, failure_txt
 
     def compareOtherOutputs( self, report_name, ref_path, test_path, failures ):
@@ -301,19 +302,20 @@ class Monitor(threading.Thread):
         if self.report == None:
             return 
 
+        # If name includes 'linux' do not compare, it's an alternate file
+        if '.linux' in report_name:
+            return True
+
         test_path = os.path.join( self.get_sim_path(), os.path.join( "output", report_name ) )
         ref_path = os.path.join( ru.cache_cwd, os.path.join( str(self.scenario_path), os.path.join( "output", report_name ) ) )
 
-        # if on linux, use alternate InsetChart.json, but only if exists
-        if ( os.name != "nt" or self.params.linux ) and report_name == "InsetChart.json":
-            report_name = "InsetChart.linux.json" 
-            alt_ref_path = os.path.join( ru.cache_cwd, os.path.join( str(self.scenario_path), os.path.join( "output", report_name ) ) )
+        # if on linux, use alternate file if it exists
+        if ( os.name != "nt" ):
+            rep_parts = report_name.split('.')
+            alt_rep_name = '.'.join(rep_parts[:-1] + ['linux', rep_parts[-1]])
+            alt_ref_path = os.path.join( ru.cache_cwd, os.path.join( str(self.scenario_path), os.path.join( "output", alt_rep_name ) ) )
             if os.path.exists( alt_ref_path ):
                 ref_path = alt_ref_path
-
-
-        if ( os.name == "nt" and not self.params.linux ) and report_name == "InsetChart.linux.json":
-            return True
 
         # This check is probably only for InsetChart.json
         if os.path.exists( ref_path ) == False:
@@ -338,13 +340,12 @@ class Monitor(threading.Thread):
             fail_validation, failure_txt = self.compareOtherOutputs( report_name, ref_path, test_path, failures )
 
         if fail_validation:
-            #print( "Validation failed, add to failing tests report." )
             self.report.addFailingTest( self.scenario_path, failure_txt, os.path.join( self.sim_dir, ( "output/" + report_name ) ), self.scenario_type )
         else:
             print( self.scenario_path + " passed (" + str(self.duration) + ") - " + report_name )
             self.report.addPassingTest(self.scenario_path, self.duration, os.path.join(sim_dir, ("output/" + report_name)))
-            
-            if ru.version_string is not None:
+
+            if self.params.timing:
                 try:
                     with open( os.path.join( self.scenario_path, "time.txt" ), 'a' ) as timefile:
                         timefile.write(ru.version_string + '\t' + str(self.duration) + '\n')

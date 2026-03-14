@@ -1,13 +1,12 @@
 import os
-import sys
-import configparser
 
 LOCAL_SIM_ROOT = 'outputs'
 LOCAL_BIN_ROOT = 'bin'
 
+
 class RuntimeParameters:
     def __init__(self, args):
-        print( "os = " + os.name )
+        print("os = " + os.name)
         self.args = args
 
         if os.name == "posix":
@@ -15,23 +14,38 @@ class RuntimeParameters:
         else:
             self.os_type = "WINDOWS"
 
+        # Jenkins stuff
+        self.mod_path = None
+        if os.path.exists("regression_test.cfg"):
+            with open("regression_test.cfg") as fid01:
+                flines = [val.strip() for val in fid01.readlines()]
+            linux_block = True
+            for lval in flines:
+                if (not linux_block and 'POSIX' not in lval):
+                    continue
+                elif (not linux_block and 'POSIX' in lval):
+                    linux_block = True
+                elif ('local_sim_root' in lval):
+                    self.mod_path = (lval.split('=')[1]).strip()
+                    break
+
         self.display()
 
     def display(self):
-        print( "[arg] Suite:                      ", self.suite )
-        print( "[arg] Executable path:            ", self.executable_path )
-        print( "[arg] Python VE path:             ", self.py_path )
-        print( "[arg] Run in perf mode:           ", self.measure_perf )
-        print( "[arg] Use DLLs:                   ", self.use_dlls )
-        print( "[arg] SCons:                      ", self.scons )
-        print( "[arg] Disable schema test:        ", self.disable_schema_test )
-        print( "[arg] Component tests:            ", self.component_tests )
-        print( "[arg] Config constraints:         ", self.constraints_dict )
-        print( "[arg] Run Linux binary:           ", self.linux )
-        print( "[cfg] DLL root:                   ", self.dll_root )
-        print( "[cfg] Local bin root:             ", self.local_bin_root )
-        print( "[cfg] Local sim root:             ", self.local_sim_root )
-        print( "[cfg] Source root:                ", self.src_root )
+        print("[arg] Suite:                      ", self.suite)
+        print("[arg] Executable path:            ", self.executable_path)
+        print("[arg] Python VE path:             ", self.py_path)
+        print("[arg] Run in perf mode:           ", self.measure_perf)
+        print("[arg] Use DLLs:                   ", self.use_dlls)
+        print("[arg] SCons:                      ", self.scons)
+        print("[arg] Timings:                    ", self.timing)
+        print("[arg] Disable schema test:        ", self.disable_schema_test)
+        print("[arg] Component tests:            ", self.component_tests)
+        print("[arg] Config constraints:         ", self.constraints_dict)
+        print("[cfg] DLL root:                   ", self.dll_root)
+        print("[cfg] Local bin root:             ", self.local_bin_root)
+        print("[cfg] Local sim root:             ", self.local_sim_root)
+        print("[cfg] Source root:                ", self.src_root)
         return
 
     @property
@@ -56,20 +70,28 @@ class RuntimeParameters:
         return self.args.py_path
 
     @property
+    def timing(self):
+        return self.args.timing
+
+    @property
     def measure_perf(self):
         return self.args.perf
 
     @property
     def use_dlls(self):
         return self.args.use_dlls
-    
+
     @property
     def scons(self):
         return self.args.scons
 
     @property
     def local_sim_root(self):
-        return LOCAL_SIM_ROOT
+        if (self.mod_path):
+            out_path = os.path.join(self.mod_path, LOCAL_SIM_ROOT)
+        else:
+            out_path = LOCAL_SIM_ROOT
+        return out_path
 
     @property
     def local_bin_root(self):
@@ -81,8 +103,7 @@ class RuntimeParameters:
 
     @property
     def src_root(self):
-        src_root = ".\\.."
-        return src_root
+        return ".."
 
     @property
     def disable_schema_test(self):
@@ -99,9 +120,5 @@ class RuntimeParameters:
             constraints_list = self.args.config_constraints.split(",")
             for raw_nvp in constraints_list:
                 nvp = raw_nvp.split(":")
-                constraints_dict[ nvp[0] ] = nvp[1]
+                constraints_dict[nvp[0]] = nvp[1]
         return constraints_dict
-
-    @property
-    def linux(self):
-        return self.args.linux
