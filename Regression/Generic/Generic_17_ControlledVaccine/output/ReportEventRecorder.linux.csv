@@ -41,7 +41,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 1,1,VaccinatedA,41,11999.2,M,0,0
 1,1,VaccinatedA,42,9740.55,M,0,0
 1,1,VaccinatedA,43,20729.1,M,0,0
-1,1,VaccinatedA,44,25407.2,F,0,0
+1,1,VaccinatedA,44,25407.3,F,0,0
 1,1,VaccinatedA,45,25.7996,M,0,0
 1,1,VaccinatedA,46,4613.2,F,0,0
 1,1,VaccinatedA,47,31758.9,M,0,0
@@ -283,7 +283,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 1,1,VaccinatedA,283,22697.4,F,0,0
 1,1,VaccinatedA,284,8483.28,F,0,0
 1,1,VaccinatedA,285,3743.13,M,0,0
-1,1,VaccinatedA,286,3695.3,M,0,0
+1,1,VaccinatedA,286,3695.31,M,0,0
 1,1,VaccinatedA,287,2017.22,M,0,0
 1,1,VaccinatedA,288,12476.6,F,0,0
 1,1,VaccinatedA,289,209.378,F,0,0
@@ -329,10 +329,10 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 1,1,VaccinatedA,329,29740.6,F,0,0
 1,1,VaccinatedA,330,6127.5,F,0,0
 1,1,VaccinatedA,331,36276.4,M,0,0
-1,1,VaccinatedA,332,7766.1,F,0,0
+1,1,VaccinatedA,332,7766.11,F,0,0
 1,1,VaccinatedA,333,14917.7,M,0,0
 1,1,VaccinatedA,334,47081.7,M,0,0
-1,1,VaccinatedA,335,6454.62,F,0,0
+1,1,VaccinatedA,335,6454.63,F,0,0
 1,1,VaccinatedA,336,748.651,M,0,0
 1,1,VaccinatedA,337,3333.32,F,0,0
 1,1,VaccinatedA,338,8626.31,M,0,0
@@ -392,7 +392,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 1,1,VaccinatedA,392,2447.67,M,0,0
 1,1,VaccinatedA,393,2750.22,M,0,0
 1,1,VaccinatedA,394,15894.5,M,0,0
-1,1,VaccinatedA,395,605.428,F,0,0
+1,1,VaccinatedA,395,605.429,F,0,0
 1,1,VaccinatedA,396,3347.58,M,0,0
 1,1,VaccinatedA,397,21864.3,M,0,0
 1,1,VaccinatedA,398,4128.34,M,0,0
@@ -563,7 +563,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 1,1,VaccinatedA,563,6221.22,F,0,0
 1,1,VaccinatedA,564,5859.06,F,0,0
 1,1,VaccinatedA,565,5342.96,F,0,0
-1,1,VaccinatedA,566,3313.72,F,0,0
+1,1,VaccinatedA,566,3313.73,F,0,0
 1,1,VaccinatedA,567,5709.07,M,0,0
 1,1,VaccinatedA,568,8032,M,0,0
 1,1,VaccinatedA,569,4849.73,F,0,0
@@ -781,7 +781,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 1,1,VaccinatedA,781,14209.7,F,0,0
 1,1,VaccinatedA,782,8991.47,F,0,0
 1,1,VaccinatedA,783,940.977,M,0,0
-1,1,VaccinatedA,784,18551.8,M,0,0
+1,1,VaccinatedA,784,18551.7,M,0,0
 1,1,VaccinatedA,785,9712.6,M,0,0
 1,1,VaccinatedA,786,7960.65,M,0,0
 1,1,VaccinatedA,787,6089.18,M,0,0
@@ -1041,7 +1041,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 45,1,VaccinatedA,41,11999.2,M,0,0
 45,1,VaccinatedA,42,9740.55,M,1,0.3
 45,1,VaccinatedA,43,20729.1,M,0,0
-45,1,VaccinatedA,44,25407.2,F,0,0
+45,1,VaccinatedA,44,25407.3,F,0,0
 45,1,VaccinatedA,45,25.7996,M,0,0
 45,1,VaccinatedA,46,4613.2,F,0,0
 45,1,VaccinatedA,47,31758.9,M,0,0
@@ -1283,7 +1283,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 45,1,VaccinatedA,283,22697.4,F,1,0.3
 45,1,VaccinatedA,284,8483.28,F,0,0
 45,1,VaccinatedA,285,3743.13,M,0,0
-45,1,VaccinatedA,286,3695.3,M,0,0
+45,1,VaccinatedA,286,3695.31,M,0,0
 45,1,VaccinatedA,287,2017.22,M,0,0
 45,1,VaccinatedA,288,12476.6,F,0,0
 45,1,VaccinatedA,289,209.378,F,0,0
@@ -1329,10 +1329,10 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 45,1,VaccinatedA,329,29740.6,F,0,0
 45,1,VaccinatedA,330,6127.5,F,0,0
 45,1,VaccinatedA,331,36276.4,M,0,0
-45,1,VaccinatedA,332,7766.1,F,0,0
+45,1,VaccinatedA,332,7766.11,F,0,0
 45,1,VaccinatedA,333,14917.7,M,1,0.3
 45,1,VaccinatedA,334,47081.7,M,0,0
-45,1,VaccinatedA,335,6454.62,F,0,0
+45,1,VaccinatedA,335,6454.63,F,0,0
 45,1,VaccinatedA,336,748.651,M,0,0
 45,1,VaccinatedA,337,3333.32,F,0,0
 45,1,VaccinatedA,338,8626.31,M,0,0
@@ -1392,7 +1392,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 45,1,VaccinatedA,392,2447.67,M,0,0
 45,1,VaccinatedA,393,2750.22,M,0,0
 45,1,VaccinatedA,394,15894.5,M,0,0
-45,1,VaccinatedA,395,605.428,F,0,0
+45,1,VaccinatedA,395,605.429,F,0,0
 45,1,VaccinatedA,396,3347.58,M,0,0
 45,1,VaccinatedA,397,21864.3,M,1,0
 45,1,VaccinatedA,398,4128.34,M,0,0
@@ -1563,7 +1563,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 45,1,VaccinatedA,563,6221.22,F,0,0
 45,1,VaccinatedA,564,5859.06,F,0,0
 45,1,VaccinatedA,565,5342.96,F,0,0
-45,1,VaccinatedA,566,3313.72,F,0,0
+45,1,VaccinatedA,566,3313.73,F,0,0
 45,1,VaccinatedA,567,5709.07,M,0,0
 45,1,VaccinatedA,568,8032,M,0,0
 45,1,VaccinatedA,569,4849.73,F,0,0
@@ -1781,7 +1781,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 45,1,VaccinatedA,781,14209.7,F,0,0
 45,1,VaccinatedA,782,8991.47,F,0,0
 45,1,VaccinatedA,783,940.977,M,0,0
-45,1,VaccinatedA,784,18551.8,M,0,0
+45,1,VaccinatedA,784,18551.7,M,0,0
 45,1,VaccinatedA,785,9712.6,M,0,0
 45,1,VaccinatedA,786,7960.65,M,0,0
 45,1,VaccinatedA,787,6089.18,M,0,0
@@ -2041,7 +2041,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 50,1,VaccineExpiredA,41,11999.2,M,0,0
 50,1,VaccineExpiredA,42,9740.55,M,0,0
 50,1,VaccineExpiredA,43,20729.1,M,0,0
-50,1,VaccineExpiredA,44,25407.2,F,0,0
+50,1,VaccineExpiredA,44,25407.3,F,0,0
 50,1,VaccineExpiredA,45,25.7996,M,0,0
 50,1,VaccineExpiredA,46,4613.2,F,0,0
 50,1,VaccineExpiredA,47,31758.9,M,0,0
@@ -2283,7 +2283,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 50,1,VaccineExpiredA,283,22697.4,F,1,0.3
 50,1,VaccineExpiredA,284,8483.28,F,0,0
 50,1,VaccineExpiredA,285,3743.13,M,0,0
-50,1,VaccineExpiredA,286,3695.3,M,0,0
+50,1,VaccineExpiredA,286,3695.31,M,0,0
 50,1,VaccineExpiredA,287,2017.22,M,0,0
 50,1,VaccineExpiredA,288,12476.6,F,0,0
 50,1,VaccineExpiredA,289,209.378,F,0,0
@@ -2329,10 +2329,10 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 50,1,VaccineExpiredA,329,29740.6,F,0,0
 50,1,VaccineExpiredA,330,6127.5,F,0,0
 50,1,VaccineExpiredA,331,36276.4,M,0,0
-50,1,VaccineExpiredA,332,7766.1,F,0,0
+50,1,VaccineExpiredA,332,7766.11,F,0,0
 50,1,VaccineExpiredA,333,14917.7,M,1,0.3
 50,1,VaccineExpiredA,334,47081.7,M,0,0
-50,1,VaccineExpiredA,335,6454.62,F,0,0
+50,1,VaccineExpiredA,335,6454.63,F,0,0
 50,1,VaccineExpiredA,336,748.651,M,0,0
 50,1,VaccineExpiredA,337,3333.32,F,0,0
 50,1,VaccineExpiredA,338,8626.31,M,0,0
@@ -2392,7 +2392,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 50,1,VaccineExpiredA,392,2447.67,M,0,0
 50,1,VaccineExpiredA,393,2750.22,M,0,0
 50,1,VaccineExpiredA,394,15894.5,M,0,0
-50,1,VaccineExpiredA,395,605.428,F,0,0
+50,1,VaccineExpiredA,395,605.429,F,0,0
 50,1,VaccineExpiredA,396,3347.58,M,0,0
 50,1,VaccineExpiredA,397,21864.3,M,0,0
 50,1,VaccineExpiredA,398,4128.34,M,0,0
@@ -2563,7 +2563,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 50,1,VaccineExpiredA,563,6221.22,F,0,0
 50,1,VaccineExpiredA,564,5859.06,F,0,0
 50,1,VaccineExpiredA,565,5342.96,F,0,0
-50,1,VaccineExpiredA,566,3313.72,F,0,0
+50,1,VaccineExpiredA,566,3313.73,F,0,0
 50,1,VaccineExpiredA,567,5709.07,M,0,0
 50,1,VaccineExpiredA,568,8032,M,0,0
 50,1,VaccineExpiredA,569,4849.73,F,0,0
@@ -2781,7 +2781,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 50,1,VaccineExpiredA,781,14209.7,F,0,0
 50,1,VaccineExpiredA,782,8991.47,F,0,0
 50,1,VaccineExpiredA,783,940.977,M,0,0
-50,1,VaccineExpiredA,784,18551.8,M,0,0
+50,1,VaccineExpiredA,784,18551.7,M,0,0
 50,1,VaccineExpiredA,785,9712.6,M,0,0
 50,1,VaccineExpiredA,786,7960.65,M,0,0
 50,1,VaccineExpiredA,787,6089.18,M,0,0
@@ -3041,7 +3041,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 60,1,VaccinatedB,41,11999.2,M,0,0
 60,1,VaccinatedB,42,9740.55,M,0,0
 60,1,VaccinatedB,43,20729.1,M,0,0
-60,1,VaccinatedB,44,25407.2,F,0,0
+60,1,VaccinatedB,44,25407.3,F,0,0
 60,1,VaccinatedB,45,25.7996,M,0,0
 60,1,VaccinatedB,46,4613.2,F,0,0
 60,1,VaccinatedB,47,31758.9,M,0,0
@@ -3283,7 +3283,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 60,1,VaccinatedB,283,22697.4,F,1,0.3
 60,1,VaccinatedB,284,8483.28,F,0,0
 60,1,VaccinatedB,285,3743.13,M,0,0
-60,1,VaccinatedB,286,3695.3,M,0,0
+60,1,VaccinatedB,286,3695.31,M,0,0
 60,1,VaccinatedB,287,2017.22,M,0,0
 60,1,VaccinatedB,288,12476.6,F,0,0
 60,1,VaccinatedB,289,209.378,F,0,0
@@ -3329,10 +3329,10 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 60,1,VaccinatedB,329,29740.6,F,0,0
 60,1,VaccinatedB,330,6127.5,F,0,0
 60,1,VaccinatedB,331,36276.4,M,0,0
-60,1,VaccinatedB,332,7766.1,F,0,0
+60,1,VaccinatedB,332,7766.11,F,0,0
 60,1,VaccinatedB,333,14917.7,M,0,0
 60,1,VaccinatedB,334,47081.7,M,0,0
-60,1,VaccinatedB,335,6454.62,F,0,0
+60,1,VaccinatedB,335,6454.63,F,0,0
 60,1,VaccinatedB,336,748.651,M,0,0
 60,1,VaccinatedB,337,3333.32,F,0,0
 60,1,VaccinatedB,338,8626.31,M,0,0
@@ -3392,7 +3392,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 60,1,VaccinatedB,392,2447.67,M,0,0
 60,1,VaccinatedB,393,2750.22,M,0,0
 60,1,VaccinatedB,394,15894.5,M,0,0
-60,1,VaccinatedB,395,605.428,F,0,0
+60,1,VaccinatedB,395,605.429,F,0,0
 60,1,VaccinatedB,396,3347.58,M,0,0
 60,1,VaccinatedB,397,21864.3,M,0,0
 60,1,VaccinatedB,398,4128.34,M,0,0
@@ -3563,7 +3563,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 60,1,VaccinatedB,563,6221.22,F,0,0
 60,1,VaccinatedB,564,5859.06,F,0,0
 60,1,VaccinatedB,565,5342.96,F,0,0
-60,1,VaccinatedB,566,3313.72,F,0,0
+60,1,VaccinatedB,566,3313.73,F,0,0
 60,1,VaccinatedB,567,5709.07,M,0,0
 60,1,VaccinatedB,568,8032,M,0,0
 60,1,VaccinatedB,569,4849.73,F,0,0
@@ -3781,7 +3781,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 60,1,VaccinatedB,781,14209.7,F,0,0
 60,1,VaccinatedB,782,8991.47,F,0,0
 60,1,VaccinatedB,783,940.977,M,0,0
-60,1,VaccinatedB,784,18551.8,M,0,0
+60,1,VaccinatedB,784,18551.7,M,0,0
 60,1,VaccinatedB,785,9712.6,M,0,0
 60,1,VaccinatedB,786,7960.65,M,0,0
 60,1,VaccinatedB,787,6089.18,M,0,0
@@ -4041,7 +4041,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 94,1,VaccineExpiredA,41,11999.2,M,0,0
 94,1,VaccineExpiredA,42,9740.55,M,0,0
 94,1,VaccineExpiredA,43,20729.1,M,0,0
-94,1,VaccineExpiredA,44,25407.2,F,0,0
+94,1,VaccineExpiredA,44,25407.3,F,0,0
 94,1,VaccineExpiredA,45,25.7996,M,0,0
 94,1,VaccineExpiredA,46,4613.2,F,0,0
 94,1,VaccineExpiredA,47,31758.9,M,0,0
@@ -4283,7 +4283,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 94,1,VaccineExpiredA,283,22697.4,F,0,0
 94,1,VaccineExpiredA,284,8483.28,F,0,0
 94,1,VaccineExpiredA,285,3743.13,M,0,0
-94,1,VaccineExpiredA,286,3695.3,M,0,0
+94,1,VaccineExpiredA,286,3695.31,M,0,0
 94,1,VaccineExpiredA,287,2017.22,M,0,0
 94,1,VaccineExpiredA,288,12476.6,F,0,0
 94,1,VaccineExpiredA,289,209.378,F,0,0
@@ -4329,10 +4329,10 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 94,1,VaccineExpiredA,329,29740.6,F,0,0
 94,1,VaccineExpiredA,330,6127.5,F,0,0
 94,1,VaccineExpiredA,331,36276.4,M,0,0
-94,1,VaccineExpiredA,332,7766.1,F,0,0
+94,1,VaccineExpiredA,332,7766.11,F,0,0
 94,1,VaccineExpiredA,333,14917.7,M,0,0
 94,1,VaccineExpiredA,334,47081.7,M,0,0
-94,1,VaccineExpiredA,335,6454.62,F,0,0
+94,1,VaccineExpiredA,335,6454.63,F,0,0
 94,1,VaccineExpiredA,336,748.651,M,0,0
 94,1,VaccineExpiredA,337,3333.32,F,0,0
 94,1,VaccineExpiredA,338,8626.31,M,0,0
@@ -4392,7 +4392,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 94,1,VaccineExpiredA,392,2447.67,M,0,0
 94,1,VaccineExpiredA,393,2750.22,M,0,0
 94,1,VaccineExpiredA,394,15894.5,M,0,0
-94,1,VaccineExpiredA,395,605.428,F,0,0
+94,1,VaccineExpiredA,395,605.429,F,0,0
 94,1,VaccineExpiredA,396,3347.58,M,0,0
 94,1,VaccineExpiredA,397,21864.3,M,0,0
 94,1,VaccineExpiredA,398,4128.34,M,0,0
@@ -4563,7 +4563,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 94,1,VaccineExpiredA,563,6221.22,F,0,0
 94,1,VaccineExpiredA,564,5859.06,F,0,0
 94,1,VaccineExpiredA,565,5342.96,F,0,0
-94,1,VaccineExpiredA,566,3313.72,F,0,0
+94,1,VaccineExpiredA,566,3313.73,F,0,0
 94,1,VaccineExpiredA,567,5709.07,M,0,0
 94,1,VaccineExpiredA,568,8032,M,0,0
 94,1,VaccineExpiredA,569,4849.73,F,0,0
@@ -4781,7 +4781,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 94,1,VaccineExpiredA,781,14209.7,F,0,0
 94,1,VaccineExpiredA,782,8991.47,F,0,0
 94,1,VaccineExpiredA,783,940.977,M,0,0
-94,1,VaccineExpiredA,784,18551.8,M,0,0
+94,1,VaccineExpiredA,784,18551.7,M,0,0
 94,1,VaccineExpiredA,785,9712.6,M,0,0
 94,1,VaccineExpiredA,786,7960.65,M,0,0
 94,1,VaccineExpiredA,787,6089.18,M,0,0
@@ -5041,7 +5041,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 109,1,VaccineExpiredB,41,11999.2,M,0,0
 109,1,VaccineExpiredB,42,9740.55,M,0,0
 109,1,VaccineExpiredB,43,20729.1,M,0,0
-109,1,VaccineExpiredB,44,25407.2,F,0,0
+109,1,VaccineExpiredB,44,25407.3,F,0,0
 109,1,VaccineExpiredB,45,25.7996,M,0,0
 109,1,VaccineExpiredB,46,4613.2,F,0,0
 109,1,VaccineExpiredB,47,31758.9,M,0,0
@@ -5283,7 +5283,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 109,1,VaccineExpiredB,283,22697.4,F,0,0
 109,1,VaccineExpiredB,284,8483.28,F,0,0
 109,1,VaccineExpiredB,285,3743.13,M,0,0
-109,1,VaccineExpiredB,286,3695.3,M,0,0
+109,1,VaccineExpiredB,286,3695.31,M,0,0
 109,1,VaccineExpiredB,287,2017.22,M,0,0
 109,1,VaccineExpiredB,288,12476.6,F,0,0
 109,1,VaccineExpiredB,289,209.378,F,0,0
@@ -5329,10 +5329,10 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 109,1,VaccineExpiredB,329,29740.6,F,0,0
 109,1,VaccineExpiredB,330,6127.5,F,0,0
 109,1,VaccineExpiredB,331,36276.4,M,0,0
-109,1,VaccineExpiredB,332,7766.1,F,0,0
+109,1,VaccineExpiredB,332,7766.11,F,0,0
 109,1,VaccineExpiredB,333,14917.7,M,0,0
 109,1,VaccineExpiredB,334,47081.7,M,0,0
-109,1,VaccineExpiredB,335,6454.62,F,0,0
+109,1,VaccineExpiredB,335,6454.63,F,0,0
 109,1,VaccineExpiredB,336,748.651,M,0,0
 109,1,VaccineExpiredB,337,3333.32,F,0,0
 109,1,VaccineExpiredB,338,8626.31,M,0,0
@@ -5392,7 +5392,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 109,1,VaccineExpiredB,392,2447.67,M,0,0
 109,1,VaccineExpiredB,393,2750.22,M,0,0
 109,1,VaccineExpiredB,394,15894.5,M,0,0
-109,1,VaccineExpiredB,395,605.428,F,0,0
+109,1,VaccineExpiredB,395,605.429,F,0,0
 109,1,VaccineExpiredB,396,3347.58,M,0,0
 109,1,VaccineExpiredB,397,21864.3,M,0,0
 109,1,VaccineExpiredB,398,4128.34,M,0,0
@@ -5563,7 +5563,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 109,1,VaccineExpiredB,563,6221.22,F,0,0
 109,1,VaccineExpiredB,564,5859.06,F,0,0
 109,1,VaccineExpiredB,565,5342.96,F,0,0
-109,1,VaccineExpiredB,566,3313.72,F,0,0
+109,1,VaccineExpiredB,566,3313.73,F,0,0
 109,1,VaccineExpiredB,567,5709.07,M,0,0
 109,1,VaccineExpiredB,568,8032,M,0,0
 109,1,VaccineExpiredB,569,4849.73,F,0,0
@@ -5781,7 +5781,7 @@ Time,Node_ID,Event_Name,Individual_ID,Age,Gender,Infected,Infectiousness
 109,1,VaccineExpiredB,781,14209.7,F,0,0
 109,1,VaccineExpiredB,782,8991.47,F,0,0
 109,1,VaccineExpiredB,783,940.977,M,0,0
-109,1,VaccineExpiredB,784,18551.8,M,0,0
+109,1,VaccineExpiredB,784,18551.7,M,0,0
 109,1,VaccineExpiredB,785,9712.6,M,0,0
 109,1,VaccineExpiredB,786,7960.65,M,0,0
 109,1,VaccineExpiredB,787,6089.18,M,0,0
