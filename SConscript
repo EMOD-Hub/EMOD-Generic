@@ -36,8 +36,20 @@ if dst_path != "":
     print("Finished installing.\n")
     sys.exit(0)
 
+env.Prepend( CPPPATH=[
+              "#/Eradication",
+              "#/interventions",
+              "#/campaign",
+              "#/baseReportLib",
+              "#/utils",
+              "#/libsqlite",
+              "#/cajun/include",
+              "#/rapidjson/include",
+              "#/snappy",
+              "#/lz4/lib"])
+
 # set the common libraries
-env.Append( LIBPATH = [
+env.Prepend( LIBPATH = [
               "$BUILD_DIR/baseReportLib",
               "$BUILD_DIR/campaign", 
               "$BUILD_DIR/cajun", 
@@ -46,8 +58,7 @@ env.Append( LIBPATH = [
               "$BUILD_DIR/lz4", 
               "$BUILD_DIR/utils"])
 
-if os.name != "posix":
-    env.Append( LIBS=[
+env.Prepend( LIBS=[
               "baseReportLib", 
               "campaign",
               "cajun",
@@ -57,19 +68,15 @@ if os.name != "posix":
               "utils"])
 
 # First static libs
-statlibscriptlist = [
-              'baseReportLib/SConscript',
+SConscript( [ 'baseReportLib/SConscript',
               'cajun/SConscript',
               'campaign/SConscript',
               'Eradication/SConscript_coreLib',
+              'libsqlite/SConscript',
               'snappy/SConscript',
               'lz4/SConscript',
-              'utils/SConscript' ]
+              'utils/SConscript' ])
 
-if os.name != "posix":
-    statlibscriptlist.append( "libsqlite/SConscript" )
-
-SConscript( statlibscriptlist )
 
 # Finally executable
 SConscript('Eradication/SConscript')

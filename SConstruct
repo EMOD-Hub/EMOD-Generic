@@ -205,18 +205,6 @@ if os.sys.platform == 'win32':
     env.Append( EXTRALIBPATH=[ "#/Dependencies/ComputeClusterPack/Lib/amd64" ] )
     env.Append( LIBS=["msmpi.lib"] )
 
-    env.Append( EXTRACPPPATH=[
-                          "#/Eradication",
-                          "#/interventions",
-                          "#/campaign",
-                          "#/libsqlite",
-                          "#/baseReportLib",
-                          "#/utils",
-                          "#/libgeneric_static",
-                          "#/cajun/include",
-                          "#/rapidjson/include",
-                          "#/snappy",
-                          "#/lz4/lib"])
 else:
     env['ENV']['PATH'] = path
     env['OS_FAMILY'] = 'posix'
@@ -227,17 +215,6 @@ else:
     env.Append( CCFLAGS=["-w"] )
     env.Append( CCFLAGS=["-ffloat-store"] )
     env.Append( CCFLAGS=["-Wno-unknown-pragmas"] )
-    env.Append( EXTRACPPPATH=[
-                          "#/Eradication",
-                          "#/interventions",
-                          "#/campaign",
-                          "#/baseReportLib",
-                          "#/utils",
-                          "#/libgeneric_static",
-                          "#/cajun/include",
-                          "#/rapidjson/include",
-                          "#/snappy",
-                          "#/lz4/lib"])
 
     # Python
     if(sys.version_info.minor == 9):
@@ -255,6 +232,9 @@ else:
     elif(sys.version_info.minor == 13):
         env.Append( LIBS=["python3.13"] )
         env.Append( EXTRACPPPATH=["/usr/include/python3.13"] )
+    elif(sys.version_info.minor == 14):
+        env.Append( LIBS=["python3.14"] )
+        env.Append( EXTRACPPPATH=["/usr/include/python3.14"] )
     else:
         raise RuntimeError("Unsupported python version")
 
