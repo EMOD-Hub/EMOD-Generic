@@ -272,7 +272,7 @@ if os.sys.platform.startswith("linux"):
         nixLibPrefix = "lib64"
         env.Append( EXTRALIBPATH=["/usr/lib64" , "/lib64" ] )
 
-    env.Append( LIBS=["pthread", "dl", "m", "sqlite3"] )
+    env.Append( LIBS=["pthread", "dl", "m"] )
     env.Append( EXTRALIBPATH=[ "/usr/local/lib", "/usr/lib64/mpich/lib" ] )
 
     if static:
