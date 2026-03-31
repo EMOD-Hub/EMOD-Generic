@@ -29,12 +29,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v6
       - name: Download executable
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: Eradication
           path: ${{ env.path_exe }}
       - name: Download component tests
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: componentTests
           path: ${{ env.path_comp_test }}
@@ -43,7 +43,7 @@ jobs:
           chmod +x ${{ env.path_exe }}/Eradication
           chmod +x ${{ env.path_comp_test }}/componentTests
       - name: Run tests
-        uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-sfts:3.0
+        uses: docker://ghcr.io/emod-hub/emod-ubuntu-runtime:latest
         with:
           args: "python3 ./Regression/regression_test.py ${{ inputs.test_suite }} --scons --component-tests"
       - name: Upload test results
