@@ -211,14 +211,9 @@ class MyRegressionRunner(object):
 
         arg_string = arg_string.upper()
 
-        arg_string = arg_string.replace('STIRELATIONSHIP', 'RELATIONSHIP')
-        arg_string = arg_string.replace('TRANSMISSIONS',   'TRANSMISSION')
-
         arg_string = arg_string.replace('_',             '')
         arg_string = arg_string.replace('LIB',           '')
         arg_string = arg_string.replace('CUSTOMREPORT',  '')
-        arg_string = arg_string.replace('REPORT',        '')
-        arg_string = arg_string.replace('PLUGIN',        '')
 
         return arg_string
 
