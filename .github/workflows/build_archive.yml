@@ -22,42 +22,47 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+      # Weird Ubuntu22 + Git specific issue. See https://github.com/actions/runner-images/issues/6775
+      - name: Add safety exceptions to git commands
+        uses: docker://ghcr.io/emod-hub/emod-ubuntu-buildenv:latest
+        with:
+          args: "git config --global --add safe.directory *"
       - name: Build executable
-        uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
+        uses: docker://ghcr.io/emod-hub/emod-ubuntu-buildenv:latest
         with:
           args: "scons --Release --jobs=4 ${{ env.SCONS_OPTION }} ${{ inputs.science_test }}"
       - name: Strip executable
-        uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
+        uses: docker://ghcr.io/emod-hub/emod-ubuntu-buildenv:latest
         with:
           args: "strip ./build/x64/Release/Eradication/Eradication"
       - name: Generate schema
-        uses: docker://docker-production.packages.idmod.org:443/idm/dtk-centos-buildenv:3.0
+        uses: docker://ghcr.io/emod-hub/emod-ubuntu-buildenv:latest
         with:
           args: "./build/x64/Release/Eradication/Eradication --get-schema --schema-path schema.json"
       - name: Generate version file
         run: |
           grep DTK_Version schema.json | sed 's/[^0-9.]//g' > version
       - name: Archive binary
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Eradication
           path: ./build/x64/Release/Eradication/Eradication
           retention-days: 7
       - name: Archive schema
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: schema.json
           path: schema.json
           retention-days: 7
       - name: Archive version
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: version
           path: version
           retention-days: 7
       - name: Archive component tests
         if: ${{ inputs.disease_type == 'All' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: componentTests
           path: ./build/x64/Release/componentTests/componentTests

@@ -8,9 +8,6 @@ Import('env')
 if env['AllDlls'] or ( 'DiseaseDll' in env and env[ 'DiseaseDll' ] !="" ):
 
     eradenv = env.Clone()
-    eradenv.Append(LIBS=['libgeneric_static'])
-    eradenv.Append(LIBPATH=['$BUILD_DIR/libgeneric_static'])
-    eradenv.Append(LIBPATH=['$BUILD_DIR/libgeneric'])
 
     eradicationSrcFiles = [  "Eradication.cpp",
                              "SimulationFactory.cpp",
@@ -55,9 +52,6 @@ else:
             erad_env.Append(LINKFLAGS=["-Wl,--whole-archive,build/x64/Release/Eradication/libcoreLib.a,--no-whole-archive"])
             erad_env.Append(LINKFLAGS=["-Wl,--whole-archive,build/x64/Release/campaign/libcampaign.a,--no-whole-archive"])
             erad_env.Append(LINKFLAGS=["-Wl,--whole-archive,build/x64/Release/baseReportLib/libbaseReportLib.a,--no-whole-archive"])
-
-        liblist = ["baseReportLib", "cajun", "campaign", "snappy", "lz4", "utils"]
-        erad_env.Append(LIBS=liblist)
 
     # Monolithic
     eradicationExe = erad_env.Program('Eradication', eradicationSrcFiles)

@@ -1,19 +1,10 @@
-# -*- mode: python; -*-
-# This Python script, SConscript, invoked by the SConscript in the upper directory,
-#
-# 1. builds main DTK core files and generate Eradication program
-import pdb
 import os
-import re
-import xml.etree.ElementTree as et
 
 Import('env')
 
 if env['AllDlls'] or ( 'DiseaseDll' in env and env[ 'DiseaseDll' ] !="" ):
-
     print("ERROR: component tests only supported in monolithic")
 else:
-
     print( env["Disease"] )
 
     testsSrcFiles = [
@@ -32,8 +23,8 @@ else:
         "GenomeMarkersTest.cpp",
         "HIVARTStagingByCD4DiagnosticTest.cpp",
         "HIVARTStagingCD4AgnosticDiagnosticTest.cpp",
-        "HIVDrawBloodTest.cpp", 
-        "HIVSimpleDiagnosticTest.cpp", 
+        "HIVDrawBloodTest.cpp",
+        "HIVSimpleDiagnosticTest.cpp",
         "IncidenceEventCoordinatorTest.cpp",
         "InterventionForCurrentPartnersTest.cpp",
         "InterpolatedValueMapTest.cpp",
@@ -68,18 +59,6 @@ else:
         "FakeLogger.cpp"
     ]
 
-   
-    testsIncFiles = [
-        'common.h',
-        'ICampaignCostObserverFake.h',
-        'IndividualHumanContextFake.h',
-        'IndividualHumanInterventionsContextFake.h',
-        'INodeContextFake.h',
-        'INodeEventContextFake.h',
-        'ISusceptibilityHIVFake.h',
-        'RandomFake.h',
-    ]
-
 
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # !!! These linker flags are here so that they are not included with the DLLs.  !!!
@@ -97,22 +76,12 @@ else:
         erad_env.Append(LIBPATH = ["$BUILD_DIR/Eradication"])
         erad_env.Append(LIBS=["/WHOLEARCHIVE:coreLib"])
     else:
-        erad_env.Append( LIBS=[ "baseReportLib"] )
-        erad_env.Append( LIBS=[ "campaign"] )
-        erad_env.Append( LIBS=[ "utils"] )
-        erad_env.Append( LIBS=[ "cajun"] )
-        erad_env.Append( LIBS=[ "snappy"] )
-        erad_env.Append( LIBS=[ "lz4"] )
         if env["Debug"]:
-            erad_env.Append(LINKFLAGS=["-Wl,--whole-archive,build/x64/Debug/Eradication/libcoreLib.a,--no-whole-archive,-lsqlite3"])
+            erad_env.Append(LINKFLAGS=["-Wl,--whole-archive,build/x64/Debug/Eradication/libcoreLib.a,--no-whole-archive"])
         else:
-            erad_env.Append(LINKFLAGS=["-Wl,--whole-archive,build/x64/Release/Eradication/libcoreLib.a,--no-whole-archive,-lsqlite3"])
+            erad_env.Append(LINKFLAGS=["-Wl,--whole-archive,build/x64/Release/Eradication/libcoreLib.a,--no-whole-archive"])
 
     # Monolithic
     testsExe = erad_env.Program('componentTests', testsSrcFiles)
     erad_env.Depends(testsExe, erad_env.Alias("CoreLibAlias") )
     erad_env.Depends(testsExe, erad_env.Alias("UnitTestAlias") )
-
-testsResource = []
-testsLocalInc = ['StdAfx.h']
-
