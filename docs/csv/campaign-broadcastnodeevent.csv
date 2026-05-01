@@ -1,3 +1,3 @@
-Parameter,Type,Min,Max,Default,Description,Example
-Broadcast_Event,string,NA,NA,"""""",The name of the node event to broadcast. This event must be set in the **Custom_Node_Events** configuration parameter.,[link](../json/campaign-broadcastnodeevent_Broadcast_Event.json)
-Cost_To_Consumer,float,0,999999,0,"The unit cost of the intervention campaign that will be assigned to the specified nodes, as configured under **Nodeset_Config**.",[link](../json/campaign-broadcastnodeevent_Cost_To_Consumer.json)
+Parameter,Example,Description,Type,Min,Max,Default
+Broadcast_Event,[link](../json/campaign-broadcastnodeevent_Broadcast_Event.json),The name of the node event to broadcast. This event must be set in the **Custom_Node_Events** configuration parameter.,string,NA,NA,""""""
+Cost_To_Consumer,[link](../json/campaign-broadcastnodeevent_Cost_To_Consumer.json),"The unit cost of the intervention campaign that will be assigned to the specified nodes, as configured under **Nodeset_Config**.",float,0,999999,0

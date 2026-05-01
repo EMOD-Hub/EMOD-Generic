@@ -1,5 +1,5 @@
-Parameter,Type,Min,Max,Default,Description,Example
-Durability_Map,JSON object,NA,NA,NA,"The time, in days, since the intervention was distributed and a multiplier for the **Initial_Effect**.",[link](../json/campaign-waningeffectmaplinearseasonal_Durability_Map.json)
-Initial_Effect,float,0,1,1,"The multiplier used to define the magnitude of the shape of the curve, as specified when using the parameters with the **WaningEffectMapLinearSeasonal** class.",[link](../json/campaign-waningeffectmaplinearseasonal_Initial_Effect.json)
-Times,array of floats,0,365,NA,An array of days.,[link](../json/campaign-waningeffectmaplinearseasonal_Times.json)
-Values,array of floats,0,3.40282e+38,NA,An array of values to match the defined **Times**.,[link](../json/campaign-waningeffectmaplinearseasonal_Values.json)
+Parameter,Example,Description,Type,Min,Max,Default
+Durability_Map,[link](../json/campaign-waningeffectmaplinearseasonal_Durability_Map.json),"The time, in days, since the intervention was distributed and a multiplier for the **Initial_Effect**.",JSON object,NA,NA,NA
+Initial_Effect,[link](../json/campaign-waningeffectmaplinearseasonal_Initial_Effect.json),"The multiplier used to define the magnitude of the shape of the curve, as specified when using the parameters with the **WaningEffectMapLinearSeasonal** class.",float,0,1,1
+Times,[link](../json/campaign-waningeffectmaplinearseasonal_Times.json),An array of days.,array of floats,0,365,NA
+Values,[link](../json/campaign-waningeffectmaplinearseasonal_Values.json),An array of values to match the defined **Times**.,array of floats,0,3.40282e+38,NA

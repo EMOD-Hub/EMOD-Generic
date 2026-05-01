@@ -77,16 +77,11 @@ with population density for the infectious disease models
 The table below shows how setting **Node_Grid_Size** in that scenario to 0.1, 0.15, and 0.3 affects
 population density and R~0~ \ values.
 
-+------------+-------------+------------+----------------+------------+---------+------------------+
-| Simulation | Population  | Latitude,  | Node_Grid_Size | Node Area  | Density | R~0~     |
-|            |             | Longitude  |                |            |         |                  |
-+============+=============+============+================+============+=========+==================+
-|  1         |  10,000     |   0, 0     |  0.1           |  124       |  80     | R~0~ > 1 |
-+------------+-------------+------------+----------------+------------+---------+------------------+
-|  2         |  10,000     |   0, 0     |  0.15          |  278       |  36     | R~0~ ~ 1 |
-+------------+-------------+------------+----------------+------------+---------+------------------+
-|  3         |  10,000     |   0, 0     |  0.3           |  1112      |  9      | R~0~ < 1 |
-+------------+-------------+------------+----------------+------------+---------+------------------+
+| Simulation | Population | Latitude, Longitude | Node_Grid_Size | Node Area | Density | R~0~ |
+|---|---|---|---|---|---|---|
+| 1 | 10,000 | 0, 0 | 0.1 | 124 | 80 | R~0~ > 1 |
+| 2 | 10,000 | 0, 0 | 0.15 | 278 | 36 | R~0~ ~ 1 |
+| 3 | 10,000 | 0, 0 | 0.3 | 1112 | 9 | R~0~ < 1 |
 
 The following graphs show the effect of population density on transmissibility, in terms of
 maintaining endemic status. When population density is large enough, it is easy to maintain an

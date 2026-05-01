@@ -1,25 +1,14 @@
-Parameter,Type,Min,Max,Default,Description,Example
-Demographic_Coverage,float,0,1,1,The fraction of individuals in the target demographic that will receive this intervention.,[link](../json/campaign-calendareventcoordinator_Demographic_Coverage.json)
-Distribution_Coverages,array of floats,0,1,0,A vector of floats for the fraction of individuals that will receive this intervention in a **CalendarEventCoordinator**.,[link](../json/campaign-calendareventcoordinator_Distribution_Coverages.json)
-Distribution_Times,array of integers,1,2.14748e+09,0,A vector of integers for simulation times at which distribution of events occurs in a **CalendarEventCoordinator**.,[link](../json/campaign-calendareventcoordinator_Distribution_Times.json)
-Intervention_Config,JSON object,NA,NA,NA,The nested JSON of the actual intervention to be distributed by this event coordinator.,[link](../json/campaign-calendareventcoordinator_Intervention_Config.json)
-Node_Property_Restrictions,array of JSON objects,NA,NA,NA,"A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See :ref:`demo-properties` parameters for more information.
-You can specify AND and OR combinations of key:value pairs with this parameter.",[link](../json/campaign-calendareventcoordinator_Node_Property_Restrictions.json)
-Property_Restrictions,array of JSON objects,NA,NA,NA,"A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
-To specify AND and OR combinations of key:value pairs, use **Property_Restrictions_Within_Node**. You cannot use both of these parameters in the same event coordinator.",[link](../json/campaign-calendareventcoordinator_Property_Restrictions.json)
-Property_Restrictions_Within_Node,array of JSON objects,NA,NA,NA,"A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
-This parameter allows you to specify AND and OR combinations of key:value pairs. You may specify individual property restrictions using either this parameter or **Property_Restrictions**, but not both. ",[link](../json/campaign-calendareventcoordinator_Property_Restrictions_Within_Node.json)
-Target_Age_Max,float,0,9.3228e+35,9.3228e+35,"The upper end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",[link](../json/campaign-calendareventcoordinator_Target_Age_Max.json)
-Target_Age_Min,float,0,3.40282e+38,0,"The lower end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",[link](../json/campaign-calendareventcoordinator_Target_Age_Min.json)
-Target_Demographic,enum,NA,NA,Everyone,"The target demographic group. Possible values are:
-* Everyone
-* ExplicitAgeRanges
-* ExplicitAgeRangesAndGender
-* ExplicitGender
-* ExplicitDiseaseState",[link](../json/campaign-calendareventcoordinator_Target_Demographic.json)
-Target_Gender,enum,NA,NA,All,"Specifies the gender restriction for the intervention. Possible values are:
-* Male
-* Female
-* All",[link](../json/campaign-calendareventcoordinator_Target_Gender.json)
-Target_Residents_Only,boolean,0,1,0,"When set to true (1), the intervention is only distributed to individuals that began the simulation in the node (i.e. those that claim the node as their residence).",[link](../json/campaign-calendareventcoordinator_Target_Residents_Only.json)
-Timesteps_Between_Repetitions,integer,-1,10000,-1,The repetition interval.,[link](../json/campaign-calendareventcoordinator_Timesteps_Between_Repetitions.json)
+Parameter,Example,Description,Type,Min,Max,Default
+Demographic_Coverage,[link](../json/campaign-calendareventcoordinator_Demographic_Coverage.json),The fraction of individuals in the target demographic that will receive this intervention.,float,0,1,1
+Distribution_Coverages,[link](../json/campaign-calendareventcoordinator_Distribution_Coverages.json),A vector of floats for the fraction of individuals that will receive this intervention in a **CalendarEventCoordinator**.,array of floats,0,1,0
+Distribution_Times,[link](../json/campaign-calendareventcoordinator_Distribution_Times.json),A vector of integers for simulation times at which distribution of events occurs in a **CalendarEventCoordinator**.,array of integers,1,2.14748e+09,0
+Intervention_Config,[link](../json/campaign-calendareventcoordinator_Intervention_Config.json),The nested JSON of the actual intervention to be distributed by this event coordinator.,JSON object,NA,NA,NA
+Node_Property_Restrictions,[link](../json/campaign-calendareventcoordinator_Node_Property_Restrictions.json),"A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See  parameters for more information.<br>You can specify AND and OR combinations of key:value pairs with this parameter.",array of JSON objects,NA,NA,NA
+Property_Restrictions,[link](../json/campaign-calendareventcoordinator_Property_Restrictions.json),"A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See  parameters for more information.<br>To specify AND and OR combinations of key:value pairs, use **Property_Restrictions_Within_Node**. You cannot use both of these parameters in the same event coordinator.",array of JSON objects,NA,NA,NA
+Property_Restrictions_Within_Node,[link](../json/campaign-calendareventcoordinator_Property_Restrictions_Within_Node.json),"A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See  parameters for more information.<br>This parameter allows you to specify AND and OR combinations of key:value pairs. You may specify individual property restrictions using either this parameter or **Property_Restrictions**, but not both.",array of JSON objects,NA,NA,NA
+Target_Age_Max,[link](../json/campaign-calendareventcoordinator_Target_Age_Max.json),"The upper end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",float,0,9.3228e+35,9.3228e+35
+Target_Age_Min,[link](../json/campaign-calendareventcoordinator_Target_Age_Min.json),"The lower end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",float,0,3.40282e+38,0
+Target_Demographic,[link](../json/campaign-calendareventcoordinator_Target_Demographic.json),The target demographic group. Possible values are:<br>* Everyone<br>* ExplicitAgeRanges<br>* ExplicitAgeRangesAndGender<br>* ExplicitGender<br>* ExplicitDiseaseState,enum,NA,NA,Everyone
+Target_Gender,[link](../json/campaign-calendareventcoordinator_Target_Gender.json),Specifies the gender restriction for the intervention. Possible values are:<br>* Male<br>* Female<br>* All,enum,NA,NA,All
+Target_Residents_Only,[link](../json/campaign-calendareventcoordinator_Target_Residents_Only.json),"When set to true (1), the intervention is only distributed to individuals that began the simulation in the node (i.e. those that claim the node as their residence).",boolean,0,1,0
+Timesteps_Between_Repetitions,[link](../json/campaign-calendareventcoordinator_Timesteps_Between_Repetitions.json),The repetition interval.,integer,-1,10000,-1

@@ -1,4 +1,4 @@
-# Generate a list of all available parameters (a schema)
+# Generate the schema
 
 You can generate a **schema** from the EMOD executable (Eradication.exe) or Eradication binary for Linux that defines all configuration
 parameters and campaign parameters available in the version of EMOD that is installed, for all

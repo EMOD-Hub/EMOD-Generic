@@ -1,7 +1,7 @@
-Parameter,Type,Min,Max,Default,Description,Example
-Durability_Map,JSON object,NA,NA,NA,"The time, in days, since the intervention was distributed and a multiplier for the **Initial_Effect**.",[link](../json/campaign-waningeffectmaplinear_Durability_Map.json)
-Expire_At_Durability_Map_End,boolean,0,1,0,Set to 1 to let the intervention expire when the end of the map is reached.,[link](../json/campaign-waningeffectmaplinear_Expire_At_Durability_Map_End.json)
-Initial_Effect,float,0,1,1,"The multiplier used to define the magnitude of the shape of the curve, as specified when using the parameters with the **WaningEffectMapLinear** class.",[link](../json/campaign-waningeffectmaplinear_Initial_Effect.json)
-Reference_Timer,integer,0,2147480000.0,0,The timestamp at which linear-map should be anchored.,[link](../json/campaign-waningeffectmaplinear_Reference_Timer.json)
-Times,array of floats,0,999999,NA,An array of days.,[link](../json/campaign-waningeffectmaplinear_Times.json)
-Values,array of floats,0,3.40282e+38,NA,An array of values to match the defined **Times**.,[link](../json/campaign-waningeffectmaplinear_Values.json)
+Parameter,Example,Description,Type,Min,Max,Default
+Durability_Map,[link](../json/campaign-waningeffectmaplinear_Durability_Map.json),"The time, in days, since the intervention was distributed and a multiplier for the **Initial_Effect**.",JSON object,NA,NA,NA
+Expire_At_Durability_Map_End,[link](../json/campaign-waningeffectmaplinear_Expire_At_Durability_Map_End.json),Set to 1 to let the intervention expire when the end of the map is reached.,boolean,0,1,0
+Initial_Effect,[link](../json/campaign-waningeffectmaplinear_Initial_Effect.json),"The multiplier used to define the magnitude of the shape of the curve, as specified when using the parameters with the **WaningEffectMapLinear** class.",float,0,1,1
+Reference_Timer,[link](../json/campaign-waningeffectmaplinear_Reference_Timer.json),The timestamp at which linear-map should be anchored.,integer,0,2147480000.0,0
+Times,[link](../json/campaign-waningeffectmaplinear_Times.json),An array of days.,array of floats,0,999999,NA
+Values,[link](../json/campaign-waningeffectmaplinear_Values.json),An array of values to match the defined **Times**.,array of floats,0,3.40282e+38,NA

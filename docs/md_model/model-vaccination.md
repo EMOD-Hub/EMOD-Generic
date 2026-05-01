@@ -100,20 +100,13 @@ the number of vaccine doses used is the same as the previous example, the overal
 lower. Creating campaigns that target interventions  is described in more detail in
 [model-targeted-interventions](model-targeted-interventions.md).
 
-+------------+---------------------+-----------------------+-----------------------+
-| Number of  | Covered percentage  | Covered percentage    | Covered percentage of |
-| campaigns  | of total population | of groups with access | groups without access |
-+============+=====================+=======================+=======================+
-| 1          | 50%                 | 71.43%                | 0%                    |
-+------------+---------------------+-----------------------+-----------------------+
-| 2          | 59%                 | 91.84%                | 0%                    |
-+------------+---------------------+-----------------------+-----------------------+
-| 3          | 68.37%              | 97.67%                | 0%                    |
-+------------+---------------------+-----------------------+-----------------------+
-| 4          | 69.53%              | 99.33%                | 0%                    |
-+------------+---------------------+-----------------------+-----------------------+
-| 5          | 69.87%              | 99.81%                | 0%                    |
-+------------+---------------------+-----------------------+-----------------------+
+| Number of campaigns | Covered percentage of total population | Covered percentage of groups with access | Covered percentage of groups without access |
+|---|---|---|---|
+| 1 | 50% | 71.43% | 0% |
+| 2 | 59% | 91.84% | 0% |
+| 3 | 68.37% | 97.67% | 0% |
+| 4 | 69.53% | 99.33% | 0% |
+| 5 | 69.87% | 99.81% | 0% |
 
 The following graph shows the same SIR outbreak when 30% of the population is chronically
 missed by the vaccination campaign, allowing the outbreak to persist.
