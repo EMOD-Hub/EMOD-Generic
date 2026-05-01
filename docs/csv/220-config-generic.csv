@@ -30,7 +30,7 @@ Minimum_End_Time,float,0,1000000,0,The minimum time step the simulation must rea
 Random_Number_Generator_Policy,enum,,,ONE_PER_CORE,"The policy that determines if random numbers are generated for objects in a simulation on a per-core or per-node basis.  The following values are available:
 
 ONE_PER_CORE
-    A random number generator (RNG) is created for each computing core running a simulation. When running a simulation on a single core, there will be only one RNG. If running the single simulation on multiple cores, each core will have its own RNG. The RNGs on the different cores start out such that they will not generate the same stream of random numbers. Prior to |EMOD_s| 2.19, all simulations used this policy. 
+    A random number generator (RNG) is created for each computing core running a simulation. When running a simulation on a single core, there will be only one RNG. If running the single simulation on multiple cores, each core will have its own RNG. The RNGs on the different cores start out such that they will not generate the same stream of random numbers. Prior to EMOD 2.19, all simulations used this policy. 
 ONE_PER_NODE
    An RNG is created for each geographic node in the simulation. The advantages of this policy are that 1) an event that causes a random number to be drawn in one node does not cause things to change in another node and 2) changing a simulation from single core to multi-core will not change the results. The RNGs on the different nodesstart out such that they will not generate the same stream of random numbers.",".. code-block:: json
 
@@ -43,7 +43,7 @@ ONE_PER_NODE
 Random_Number_Generator_Type,enum,,,USE_PSEUDO_DES,"The type of random number generator to use for objects in a simulation. Must set the RNG seed in **Run_Number**. The following values are available:
 
 USE_PSEUDO_DES
-    Based on `Numerical Recipes in C. The Art of Scientific Computing <https://en.wikipedia.org/wiki/Numerical_Recipes>`_, 2nd ed. Press, William H. et. al, 1992. Prior to |EMOD_s| 2.19, this was the only generator available.
+    Based on `Numerical Recipes in C. The Art of Scientific Computing <https://en.wikipedia.org/wiki/Numerical_Recipes>`_, 2nd ed. Press, William H. et. al, 1992. Prior to EMOD 2.19, this was the only generator available.
 USE_LINEAR_CONGRUENTIAL
     Based on `The Structure of Linear Congruential Sequences <https://www.researchgate.net/publication/242477888_The_Structure_of_Linear_Congruential_Sequences>`_, Marsaglia, George, 1972. 
 USE_AES_COUNTER

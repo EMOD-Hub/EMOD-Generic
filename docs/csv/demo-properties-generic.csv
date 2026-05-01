@@ -1,6 +1,6 @@
 "Age_Bin_Edges_In_Years","array","NA","NA","NA","An array of integers that represents the ages, in years, at which to demarcate the age groups for individuals. Used only with the **Age_Bin** property type. The first number must be 0, the last must be -1, and they must be listed in ascending order. Cannot be used with **NodeProperties**.
 
-|EMOD_s| automatically create the individual property **Age_Bin** with values based on the bin edges using the format **Age_Bin_Property_From_X_To_Y**. These appear in the property reports and can be used to target campaign interventions using **Property_Restrictions_Within_Node**. See :doc:`model-targeted-interventions` for more information.","The following example creates three age groups: 0 to 5, older than 5 to 13, and older than 13 to the maximum age.
+EMOD automatically create the individual property **Age_Bin** with values based on the bin edges using the format **Age_Bin_Property_From_X_To_Y**. These appear in the property reports and can be used to target campaign interventions using **Property_Restrictions_Within_Node**. See :doc:`model-targeted-interventions` for more information.","The following example creates three age groups: 0 to 5, older than 5 to 13, and older than 13 to the maximum age.
 
 .. code-block:: json
 
@@ -197,7 +197,7 @@ QualityofCare
 "TransmissionMatrix","JSON object","NA","NA","NA","An object that contains **Route** and **Matrix** parameters that define how to scale the base infectivity from individuals with one property value to individuals with another. **Route** can be set to ""Contact"" or ""Environmental"" and **Matrix** contains a :term:`WAIFW matrix` of the disease transmission multipliers. The rows and columns are in the same order that the property values were defined in **Value**.
 The rows represent the infectious individuals (the ""whom""); the columns represent the susceptible individuals (the ""who"").
 
-This implements the |HINT_s| feature, which is available only in the generic, environmental, and typhoid simulation types. For more information, see :doc:`model-hint`.
+This implements the HINT feature, which is available only in the generic, environmental, and typhoid simulation types. For more information, see :doc:`model-hint`.
 **Enable_Heterogeneous_Intranode_Transmission** in the configuration file must be set to 1 (see :doc:`parameter-configuration-infectivity` parameters). Cannot be used with **NodeProperties**.",".. code-block:: json
 
     {

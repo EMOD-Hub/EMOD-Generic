@@ -1,4 +1,4 @@
-site_name: EMOD
+site_name: EMOD-Generic
 site_url: https://emod.idmod.org/EMOD-Generic/
 repo_name: EMOD-Hub/EMOD
 repo_url: https://github.com/EMOD-Hub/EMOD-Generic/
@@ -30,6 +30,169 @@ theme:
 
 nav:
   - Home: index.md
+  - Software:
+    - Overview: md_software/software-overview.md
+    - Input files:
+      - Overview: md_software/software-inputs.md
+      - Demographics file:
+        - Overview: md_software/software-demographics.md
+        - md_software/software-demographics-overlay.md
+      - Configuration file:
+        - Overview: md_software/software-configuration.md
+        - md_software/software-configuration-overlay.md
+        - md_software/software-configuration-script.md
+        - md_software/software-parameter-sweep.md
+      - Campaign file:
+        - Overview: md_software/software-campaign.md
+        - md_software/software-campaign-overlay.md
+      - Migration files:
+        - Overview: md_software/software-migration.md
+        - md_software/software-migration-creation.md
+      - md_software/software-climate.md
+      - md_software/software-load-balancing.md
+      - md_software/software-serialized.md
+    - Running a simulation:
+      - Overview: md_software/software-run-simulation.md
+      - md_software/software-simulation-cli.md
+      - md_software/software-simulation-mpiexec.md
+      - md_software/software-simulation-python.md
+      - md_software/software-simulation-matlab.md
+      - md_software/software-simulation-performance.md
+    - Output files:
+      - Overview: md_software/software-outputs.md
+      - md_software/software-custom-reporter.md
+      - md_software/software-error-logging.md
+      - md_software/software-report-binned.md
+      - md_software/software-report-demographic-summary.md
+      - md_software/software-report-inset-chart.md
+      - md_software/software-report-property.md
+      - md_software/software-report-event-counter.md
+      - md_software/software-report-event-recorder.md
+      - md_software/software-report-human-migration.md
+      - md_software/software-report-node-demographics.md
+      - md_software/software-report-spatial.md
+  - Model:
+    - Overview: md_model/model-overview.md
+    - Generic model overview:
+      - Overview: md_model/model-overview-generic.md
+      - Compartmental models and EMOD:
+        - Overview: md_model/model-compartments.md
+        - md_model/model-sir.md
+        - md_model/model-seir.md
+        - md_model/model-si.md
+      - md_model/model-outbreak.md
+      - Adding heterogeneity:
+        - Overview: md_model/model-heterogeneity.md
+        - md_model/model-population-density.md
+        - md_model/model-properties.md
+        - md_model/model-hint.md
+        - md_model/model-migration.md
+      - Creating campaigns:
+        - Overview: md_model/model-campaign.md
+        - md_model/model-targeted-interventions.md
+        - md_model/model-vaccination.md
+        - md_model/model-care-cascade.md
+  - Installation:
+    - Overview: md_install/install-overview.md
+    - md_install/install-windows.md
+    - md_install/install-linux.md
+  - Parameters:
+    - Overview: md_parameter/parameter-overview.md
+    - md_parameter/parameter-demographics.md
+    - Configuration parameters:
+      - Overview: md_parameter/parameter-configuration.md
+      - md_parameter/parameter-configuration-enable.md
+      - md_parameter/parameter-configuration-env.md
+      - md_parameter/parameter-configuration-general.md
+      - md_parameter/parameter-configuration-immunity.md
+      - md_parameter/parameter-configuration-incubation.md
+      - md_parameter/parameter-configuration-infectivity.md
+      - md_parameter/parameter-configuration-input.md
+      - md_parameter/parameter-configuration-migration.md
+      - md_parameter/parameter-configuration-mortality.md
+      - md_parameter/parameter-configuration-output.md
+      - md_parameter/parameter-configuration-population.md
+      - md_parameter/parameter-configuration-sampling.md
+      - md_parameter/parameter-configuration-scalars.md
+      - md_parameter/parameter-configuration-setup.md
+    - Campaign parameters:
+      - Overview: md_parameter/parameter-campaign.md
+      - Events and event coordinators:
+        - Overview: md_parameter/parameter-campaign-event-coordinators.md
+        - md_parameter/parameter-campaign-event-broadcastcoordinatorevent.md
+        - md_parameter/parameter-campaign-event-calendareventcoordinator.md
+        - md_parameter/parameter-campaign-event-campaignevent.md
+        - md_parameter/parameter-campaign-event-communityhealthworkereventcoordinator.md
+        - md_parameter/parameter-campaign-event-coveragebynodeeventcoordinator.md
+        - md_parameter/parameter-campaign-event-delayeventcoordinator.md
+        - md_parameter/parameter-campaign-event-incidenceeventcoordinator.md
+        - md_parameter/parameter-campaign-event-nchoosereventcoordinator.md
+        - md_parameter/parameter-campaign-event-standardinterventiondistributioneventcoordinator.md
+        - md_parameter/parameter-campaign-event-surveillanceeventcoordinator.md
+        - md_parameter/parameter-campaign-event-triggeredeventcoordinator.md
+      - Node-level interventions:
+        - Overview: md_parameter/parameter-campaign-node-interventions.md
+        - md_parameter/parameter-campaign-node-birthtriggerediv.md
+        - md_parameter/parameter-campaign-node-broadcastnodeevent.md
+        - md_parameter/parameter-campaign-node-importpressure.md
+        - md_parameter/parameter-campaign-node-migratefamily.md
+        - md_parameter/parameter-campaign-node-multinodeinterventiondistributor.md
+        - md_parameter/parameter-campaign-node-nodelevelhealthtriggerediv.md
+        - md_parameter/parameter-campaign-node-nodelevelhealthtriggeredivscaleupswitch.md
+        - md_parameter/parameter-campaign-node-nodepropertyvaluechanger.md
+        - md_parameter/parameter-campaign-node-outbreak.md
+      - Individual-level interventions:
+        - Overview: md_parameter/parameter-campaign-individual-interventions.md
+        - md_parameter/parameter-campaign-individual-broadcastevent.md
+        - md_parameter/parameter-campaign-individual-broadcasteventtoothernodes.md
+        - md_parameter/parameter-campaign-individual-controlledvaccine.md
+        - md_parameter/parameter-campaign-individual-delayedintervention.md
+        - md_parameter/parameter-campaign-individual-immunitybloodtest.md
+        - md_parameter/parameter-campaign-individual-individualimmunitychanger.md
+        - md_parameter/parameter-campaign-individual-ivcalendar.md
+        - md_parameter/parameter-campaign-individual-migrateindividuals.md
+        - md_parameter/parameter-campaign-individual-multieffectboostervaccine.md
+        - md_parameter/parameter-campaign-individual-multieffectvaccine.md
+        - md_parameter/parameter-campaign-individual-multiinterventiondistributor.md
+        - md_parameter/parameter-campaign-individual-outbreakindividual.md
+        - md_parameter/parameter-campaign-individual-propertyvaluechanger.md
+        - md_parameter/parameter-campaign-individual-simpleboostervaccine.md
+        - md_parameter/parameter-campaign-individual-simplediagnostic.md
+        - md_parameter/parameter-campaign-individual-simplehealthseekingbehavior.md
+        - md_parameter/parameter-campaign-individual-simplevaccine.md
+      - md_parameter/parameter-campaign-waningeffects.md
+      - md_parameter/parameter-campaign-event-list.md
+    - md_parameter/parameter-schema.md
+  - Development:
+    - Overview: md_dev/dev-overview.md
+    - EMOD source code installation:
+      - Overview: md_dev/dev-install-overview.md
+      - md_dev/dev-install-windows-prerequisites.md
+      - md_dev/dev-install-centos-prerequisites.md
+      - md_dev/dev-install-download-emod.md
+      - md_dev/dev-install-build-emod.md
+      - Getting started with building EMOD source code from CentOS Docker images:
+        - Overview: md_dev/dev-install-centos-docker.md
+        - md_dev/dev-install-centos-docker-linux.md
+        - md_dev/dev-install-centos-docker-win.md
+    - EMOD architecture:
+      - Overview: md_dev/dev-architecture-overview.md
+      - md_dev/dev-architecture-environment.md
+      - Simulation controller subsystem:
+        - Overview: md_dev/dev-architecture-sim-controller.md
+        - md_dev/dev-architecture-core.md
+        - md_dev/dev-architecture-campaigns.md
+        - md_dev/dev-architecture-reporter.md
+    - Debugging and testing:
+      - Overview: md_dev/dev-debugging-overview.md
+      - md_dev/dev-logging.md
+      - md_dev/dev-simulations.md
+      - md_dev/dev-trouble-build.md
+      - Regression testing:
+        - Overview: md_dev/dev-regression.md
+        - md_dev/dev-regression-run.md
+        - md_dev/dev-regression-new.md
+      - md_dev/dev-sft.md
   - Related projects: https://emod.idmod.org/
 
 plugins:

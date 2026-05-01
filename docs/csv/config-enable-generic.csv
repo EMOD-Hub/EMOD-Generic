@@ -66,7 +66,7 @@
         ""Family_Migration_Filename"": ""../inputs/family_migration.bin""
     }
 "
-"Enable_Heterogeneous_Intranode_Transmission","boolean","0","1","0","Controls whether or not individuals experience heterogeneous disease transmission within a node. When set to true (1), individual property definitions and the :math:`\beta` matrix must be specified in the demographics file (see :ref:`demo-properties` parameters). The :math:`\beta` values are multiplied with the :math:`\beta` :sub:`0` value configured by **Base_Infectivity**.
+"Enable_Heterogeneous_Intranode_Transmission","boolean","0","1","0","Controls whether or not individuals experience heterogeneous disease transmission within a node. When set to true (1), individual property definitions and the $\\beta$ matrix must be specified in the demographics file (see :ref:`demo-properties` parameters). The $\\beta$ values are multiplied with the $\\beta$ :sub:`0` value configured by **Base_Infectivity**.
 
 This is used only in generic, environmental, and typhoid simulations, but must be set to false (0) for all other simulation types. Heterogeneous transmission for other diseases uses other mechanistic parameters included with the simulation type.",".. code-block:: json
 

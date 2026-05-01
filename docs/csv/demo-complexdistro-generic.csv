@@ -129,7 +129,7 @@ AgeDistribution
         }
     }
 "
-"AxisUnits","array of strings","NA","NA","NA","An array that describes the scale factors used to convert the units for the axes into the units expected by |EMOD_s|. For example, when age is provided in years but must be scaled to days. |EMOD_s| does not use this value; it is only informational.",".. code-block:: json
+"AxisUnits","array of strings","NA","NA","NA","An array that describes the scale factors used to convert the units for the axes into the units expected by EMOD. For example, when age is provided in years but must be scaled to days. EMOD does not use this value; it is only informational.",".. code-block:: json
 
     {
         ""IndividualAttributes"": {
@@ -331,7 +331,7 @@ AgeDistribution
         }
     }
 "
-"NumDistributionAxes","integer","1","NA","NA","The number of axes to use for a complex distribution. |EMOD_s| does not use this value; it is only informational.",".. code-block:: json
+"NumDistributionAxes","integer","1","NA","NA","The number of axes to use for a complex distribution. EMOD does not use this value; it is only informational.",".. code-block:: json
 
     {
         ""IndividualAttributes"": {
@@ -349,7 +349,7 @@ AgeDistribution
         }
     }
 "
-"NumPopulationGroups","array of integers","NA","NA","NA","An array of population groupings for each independent variable for a complex distribution. This variable defines the number of columns for each row in the population group table. The number of values in the array is often two, representing the values for gender and number of age bins. |EMOD_s| does not use this value; it is only informational.",".. code-block:: json
+"NumPopulationGroups","array of integers","NA","NA","NA","An array of population groupings for each independent variable for a complex distribution. This variable defines the number of columns for each row in the population group table. The number of values in the array is often two, representing the values for gender and number of age bins. EMOD does not use this value; it is only informational.",".. code-block:: json
 
     {
         ""IndividualAttributes"": {
@@ -472,7 +472,7 @@ AgeDistribution
         }
     }
 "
-"ResultUnits","string","NA","NA","NA","A string that indicates the units used for the **ResultValues** parameter of a complex distribution. |EMOD_s| does not use this value; it is only informational. The values here are scaled by the value in **ResultScaleFactor** before being passed to |EMOD_s| as a daily rate.",".. code-block:: json
+"ResultUnits","string","NA","NA","NA","A string that indicates the units used for the **ResultValues** parameter of a complex distribution. EMOD does not use this value; it is only informational. The values here are scaled by the value in **ResultScaleFactor** before being passed to EMOD as a daily rate.",".. code-block:: json
 
     {
         ""IndividualAttributes"": {
@@ -504,9 +504,9 @@ AgeDistribution
         }
     }
 "
-"ResultValues","array of floats","NA","NA","NA","An array in which each row represents one of the distribution axes and contains the dependent variable values. The units are configurable; the values are scaled by the value in **ResultScaleFactor** before being passed to |EMOD_s| in units of days.
+"ResultValues","array of floats","NA","NA","NA","An array in which each row represents one of the distribution axes and contains the dependent variable values. The units are configurable; the values are scaled by the value in **ResultScaleFactor** before being passed to EMOD in units of days.
 
-For age distributions, it lists in ascending order the ages at which to bin the population. The corresponding values in **DistributionValues** represent the proportion of the population that is below that age. If the first member of the array is non-zero, the first bin is defined as those with that exact value (|EMOD_s| does not assume the bins start at zero).
+For age distributions, it lists in ascending order the ages at which to bin the population. The corresponding values in **DistributionValues** represent the proportion of the population that is below that age. If the first member of the array is non-zero, the first bin is defined as those with that exact value (EMOD does not assume the bins start at zero).
 
 For all other distributions, an array in which each row represents the values for a combination of axes. For example, a mortality distribution that includes both gender and age axes will have a row for males and a row for females that each contain the mortality rate at various ages set in **PopulationGroups**. 
 

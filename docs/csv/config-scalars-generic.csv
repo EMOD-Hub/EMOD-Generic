@@ -3,7 +3,7 @@
 NONE
     Birth rate does not vary by time.
 SINUSOIDAL_FUNCTION_OF_TIME
-    Allows birth rate to be time-dependent, following a sinusoidal shape defined by :math:`1 + \sin \text{Birth\_Rate\_Sinusoidal\_Forcing\_Amplitude} \times \sin(2 \pi \times (\text{day} - \sin \text{Birth\_Rate\_Sinusoidal\_Forcing\_Phase})/365)`. Set **Birth_Rate_Sinusoidal_Forcing_Amplitude** and **Birth_Rate_Sinusoidal_Forcing_Phase**. 
+    Allows birth rate to be time-dependent, following a sinusoidal shape defined by $1 + \\sin \\text{Birth\\_Rate\\_Sinusoidal\\_Forcing\\_Amplitude} \\times \\sin(2 \\pi \\times (\\text{day} - \\sin \\text{Birth\\_Rate\\_Sinusoidal\\_Forcing\\_Phase})/365)$. Set **Birth_Rate_Sinusoidal_Forcing_Amplitude** and **Birth_Rate_Sinusoidal_Forcing_Phase**. 
 ANNUAL_BOXCAR_FUNCTION
     Allows birth rate to follow a boxcar function. The scale factor will be equal to 1 except for a single interval in which it is equal to a given constant equal to 1 + **Birth_Rate_Boxcar_Forcing_Amplitude**. Set **Birth_Rate_Boxcar_Forcing_Amplitude**, **Birth_Rate_Boxcar_Forcing_End_Time**, and **Birth_Rate_Boxcar_Forcing_Start_Time**.",".. code-block:: json
 
