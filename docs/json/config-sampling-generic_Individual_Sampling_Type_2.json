@@ -1,0 +1,10 @@
+{
+    "Individual_Sampling_Type": "ADAPTED_SAMPLING_BY_AGE_GROUP",
+    "Sample_Rate_0_18mo": 1,
+    "Sample_Rate_10_14": 0.5,
+    "Sample_Rate_15_19": 0.3,
+    "Sample_Rate_18mo_4yr": 1,
+    "Sample_Rate_20_Plus": 0.2,
+    "Sample_Rate_5_9": 1,
+    "Sample_Rate_Birth": 1
+}

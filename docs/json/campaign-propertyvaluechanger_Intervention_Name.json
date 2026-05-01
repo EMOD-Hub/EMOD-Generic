@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "PropertyValueChanger",
+        "Intervention_Name": "Diagnosed HIV+ to ART"
+    }
+}

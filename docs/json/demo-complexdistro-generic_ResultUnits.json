@@ -1,0 +1,29 @@
+{
+    "IndividualAttributes": {
+        "MortalityDistribution": {
+            "NumPopulationGroups": [
+                2,
+                1
+            ],
+            "PopulationGroups": [
+                [
+                    0,
+                    1
+                ],
+                [
+                    0
+                ]
+            ],
+            "ResultUnits": "annual deaths per 1000 individuals",
+            "ResultScaleFactor": 2.739726027397e-06,
+            "ResultValues": [
+                [
+                    0
+                ],
+                [
+                    0
+                ]
+            ]
+        }
+    }
+}

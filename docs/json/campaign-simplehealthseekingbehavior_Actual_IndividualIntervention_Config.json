@@ -1,0 +1,13 @@
+{
+    "Actual_IndividualIntervention_Config": {
+        "Cost_To_Consumer": 1,
+        "Drug_Type": "FirstLineCombo",
+        "Durability_Profile": "FIXED_DURATION_CONSTANT_EFFECT",
+        "Primary_Decay_Time_Constant": 180,
+        "Remaining_Doses": 1,
+        "Secondary_Decay_Time_Constant": 0,
+        "TB_Drug_Cure_Rate": 0.2,
+        "TB_Drug_Inactivation_Rate": 1e-09,
+        "class": "AntiTBDrug"
+    }
+}

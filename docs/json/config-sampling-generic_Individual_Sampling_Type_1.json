@@ -1,0 +1,5 @@
+{
+    "Individual_Sampling_Type": "ADAPTED_SAMPLING_BY_IMMUNE_STATE",
+    "Immune_Threshold_For_Downsampling": 0.5,
+    "Relative_Sample_Rate_Immune": 0.1
+}

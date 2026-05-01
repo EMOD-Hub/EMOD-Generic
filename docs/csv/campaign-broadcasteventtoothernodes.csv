@@ -1,78 +1,9 @@
-"Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
-
-    {
-        ""Disqualifying_Properties"": [
-            ""InterventionStatus:LostForever""
-        ]
-    }
-"
-"Dont_Allow_Duplicates","boolean","0","1","0","If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",".. code-block:: json
-
-    {
-        ""Dont_Allow_Duplicates"": 0
-    }
-"
-"Event_Trigger","enum","NA","NA","""""","The name of the event to broadcast to selected nodes. See :doc:`parameter-campaign-event-list` for possible values.",".. code-block:: json
-
-    {
-        ""Event_Trigger"": ""VaccinateNeighbors""
-    }
-"
-"Include_My_Node","boolean","0","1","0","Set to true (1) to broadcast the event to the current node.",".. code-block:: json
-
-    {
-        ""Actual_IndividualIntervention_Config"": {
-            ""class"": ""BroadcastEventToOtherNodes"",
-            ""Event_Trigger"": ""VaccinateNeighbors"",
-            ""Include_My_Node"": 1,
-            ""Node_Selection_Type"": ""DISTANCE_AND_MIGRATION"",
-            ""Max_Distance_To_Other_Nodes_Km"": 1
-        }
-    }
-"
-"Intervention_Name","string","NA","NA","BroadcastEventToOtherNodes","The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.",".. code-block:: json
-
-    {
-        ""Intervention_Config"": {
-            ""class"": ""BroadcastEventToOtherNodes"",
-            ""Intervention_Name"": ""Malaria diagnosis triggering reactive case detection""
-        }
-    }
-"
-"Max_Distance_To_Other_Nodes_Km","float","0","3.40282e+38","3.40282e+38","The maximum distance, in kilometers, to the destination node for the node to be selected. The location values used are those entered in the demographics file. Used only if **Node_Selection_Type** is either DISTANCE_ONLY or DISTANCE_AND_MIGRATION.",".. code-block:: json
-
-    {
-        ""Actual_IndividualIntervention_Config"": {
-            ""class"": ""BroadcastEventToOtherNodes"",
-            ""Event_Trigger"": ""VaccinateNeighbors"",
-            ""Include_My_Node"": 1,
-            ""Node_Selection_Type"": ""DISTANCE_AND_MIGRATION"",
-            ""Max_Distance_To_Other_Nodes_Km"": 1
-        }
-    }
-"
-"New_Property_Value","string","NA","NA","NA","An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See :ref:`demo-properties` parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one. ",".. code-block:: json
-
-    {
-        ""New_Property_Value"": ""InterventionStatus:None""
-    }
-"
-"Node_Selection_Type","enum","NA","NA","DISTANCE_ONLY","The method by which to select nodes to receive the event. Possible values are:
-
-DISTANCE_ONLY
-    Nodes located within the distance specified by **Max_Distance_To_Other_Nodes_Km** are selected. 
-MIGRATION_NODES_ONLY
-    Nodes that are local or regional are selected. 
-DISTANCE_AND_MIGRATION
-    Nodes are selected using DISTANCE_ONLY and MIGRATION_NODES_ONLY criteria.",".. code-block:: json
-
-    {
-        ""Actual_IndividualIntervention_Config"": {
-            ""class"": ""BroadcastEventToOtherNodes"",
-            ""Event_Trigger"": ""VaccinateNeighbors"",
-            ""Include_My_Node"": 1,
-            ""Node_Selection_Type"": ""DISTANCE_AND_MIGRATION"",
-            ""Max_Distance_To_Other_Nodes_Km"": 1
-        }
-    }
-"
+Parameter,Example,Description,Type,Min,Max,Default
+Disqualifying_Properties,[link](../json/campaign-broadcasteventtoothernodes_Disqualifying_Properties.json),"A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See  parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",array of strings,NA,NA,[]
+Dont_Allow_Duplicates,[link](../json/campaign-broadcasteventtoothernodes_Dont_Allow_Duplicates.json),"If an individual's container has an intervention, set to true (1) to prevent them from receiving another copy of the intervention. Supported by all intervention classes.",boolean,0,1,0
+Event_Trigger,[link](../json/campaign-broadcasteventtoothernodes_Event_Trigger.json),The name of the event to broadcast to selected nodes. See [Event list](../md_parameter/parameter-campaign-event-list.md) for possible values.,enum,NA,NA,""""""
+Include_My_Node,[link](../json/campaign-broadcasteventtoothernodes_Include_My_Node.json),Set to true (1) to broadcast the event to the current node.,boolean,0,1,0
+Intervention_Name,[link](../json/campaign-broadcasteventtoothernodes_Intervention_Name.json),The optional name used to refer to this intervention as a means to differentiate it from others that use the same class.,string,NA,NA,BroadcastEventToOtherNodes
+Max_Distance_To_Other_Nodes_Km,[link](../json/campaign-broadcasteventtoothernodes_Max_Distance_To_Other_Nodes_Km.json),"The maximum distance, in kilometers, to the destination node for the node to be selected. The location values used are those entered in the demographics file. Used only if **Node_Selection_Type** is either DISTANCE_ONLY or DISTANCE_AND_MIGRATION.",float,0,3.40282e+38,3.40282e+38
+New_Property_Value,[link](../json/campaign-broadcasteventtoothernodes_New_Property_Value.json),"An optional **IndividualProperty** key:value pair that will be assigned when the intervention is distributed. See  parameters for more information. Generally used to indicate the broad category of health care cascade to which an intervention belongs to prevent individuals from accessing care through multiple pathways. For example, if an individual must already be taking a particular medication to be prescribed a new one.",string,NA,NA,NA
+Node_Selection_Type,[link](../json/campaign-broadcasteventtoothernodes_Node_Selection_Type.json),The method by which to select nodes to receive the event. Possible values are:<br>DISTANCE_ONLY<br>    Nodes located within the distance specified by **Max_Distance_To_Other_Nodes_Km** are selected. <br>MIGRATION_NODES_ONLY<br>    Nodes that are local or regional are selected. <br>DISTANCE_AND_MIGRATION<br>    Nodes are selected using DISTANCE_ONLY and MIGRATION_NODES_ONLY criteria.,enum,NA,NA,DISTANCE_ONLY

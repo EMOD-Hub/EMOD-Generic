@@ -1,0 +1,19 @@
+{
+    "Positive_Diagnosis_Config": {
+        "class": "MultiInterventionDistributor",
+        "Intervention_List": [
+            {
+                "Cost_To_Consumer": 0.333,
+                "Secondary_Decay_Time_Constant": 1,
+                "Vaccine_Take": 1,
+                "Vaccine_Type": "AcquisitionBlocking",
+                "class": "SimpleVaccine",
+                "Waning_Config": {
+                    "Box_Duration": 3650,
+                    "Initial_Effect": 0.1,
+                    "class": "WaningEffectBox"
+                }
+            }
+        ]
+    }
+}

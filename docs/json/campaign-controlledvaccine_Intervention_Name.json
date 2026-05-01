@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "ControlledVaccine",
+        "Intervention_Name": "Round of three measles vaccinations"
+    }
+}

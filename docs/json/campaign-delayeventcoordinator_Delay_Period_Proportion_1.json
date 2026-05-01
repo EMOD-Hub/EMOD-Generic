@@ -1,0 +1,6 @@
+{
+    "Delay_Period_Distribution": "DUAL_EXPONENTIAL_DISTRIBUTION",
+    "Delay_Period_Mean_1": 4,
+    "Delay_Period_Mean_2": 12,
+    "Delay_Period_Proportion_1": 0.2
+}

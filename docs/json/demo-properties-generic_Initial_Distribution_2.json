@@ -1,0 +1,16 @@
+{
+    "Nodes": [
+        {
+            "NodeID": 25,
+            "IndividualProperties": [
+                {
+                    "Initial_Distribution": [
+                        0.2,
+                        0.4,
+                        0.4
+                    ]
+                }
+            ]
+        }
+    ]
+}

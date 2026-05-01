@@ -1,0 +1,12 @@
+{
+    "Property_Restrictions_Within_Node": [
+        {
+            "Geographic": "URBAN",
+            "Risk": "HIGH"
+        },
+        {
+            "Geographic": "URBAN",
+            "Risk": "MEDIUM"
+        }
+    ]
+}

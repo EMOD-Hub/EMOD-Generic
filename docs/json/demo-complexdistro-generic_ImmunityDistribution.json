@@ -1,0 +1,29 @@
+{
+    "IndividualAttributes": {
+        "ImmunityDistribution": {
+            "AxisNames": [
+                "age"
+            ],
+            "AxisUnits": [
+                "years"
+            ],
+            "AxisScaleFactors": [
+                365
+            ],
+            "NumPopulationGroups": [
+                1
+            ],
+            "PopulationGroups": [
+                [
+                    0
+                ]
+            ],
+            "ResultScaleFactor": 3.6952,
+            "ResultValues": [
+                [
+                    0
+                ]
+            ]
+        }
+    }
+}

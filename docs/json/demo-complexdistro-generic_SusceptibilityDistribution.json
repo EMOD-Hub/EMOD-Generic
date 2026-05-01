@@ -1,0 +1,29 @@
+{
+    "IndividualAttributes": {
+        "SusceptibilityDistribution": {
+            "AxisNames": [
+                "age"
+            ],
+            "AxisScaleFactors": [
+                365
+            ],
+            "AxisUnits": [
+                "years"
+            ],
+            "NumPopulationGroups": [
+                1
+            ],
+            "PopulationGroups": [
+                [
+                    0
+                ]
+            ],
+            "ResultScaleFactor": 3.6952,
+            "ResultValues": [
+                [
+                    0
+                ]
+            ]
+        }
+    }
+}

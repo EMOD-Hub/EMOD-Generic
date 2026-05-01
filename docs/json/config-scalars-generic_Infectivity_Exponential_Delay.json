@@ -1,0 +1,12 @@
+{
+    "INFECTIOUSNESS": {
+        "Base_Infectious_Period": 7,
+        "Base_Infectivity": 0.3,
+        "Enable_Infectivity_Scaling": 0,
+        "Infectious_Period_Distribution": "EXPONENTIAL_DISTRIBUTION",
+        "Infectious_Period_Exponential": 7,
+        "Infectivity_Exponential_Baseline": 0.5,
+        "Infectivity_Exponential_Delay": 60,
+        "Infectivity_Exponential_Rate": 60
+    }
+}

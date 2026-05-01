@@ -1,0 +1,9 @@
+{
+    "Metadata": {
+        "Tool": "convertdemog.py",
+        "Author": "jdoe",
+        "IdReference": "Gridded world grump2.5arcmin",
+        "Resolution": 150,
+        "NodeCount": 1
+    }
+}

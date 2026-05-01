@@ -1,0 +1,5 @@
+{
+    "Initial_Amount_Distribution": "GAUSSIAN_DISTRIBUTION",
+    "Initial_Amount_Gaussian_Mean": 8,
+    "Initial_Amount_Gaussian_Std_Dev": 1.5
+}

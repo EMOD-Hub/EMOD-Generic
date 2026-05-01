@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "BirthTriggeredIV",
+        "Intervention_Name": "Measles vaccination at 6 months"
+    }
+}

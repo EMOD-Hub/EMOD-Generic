@@ -1,0 +1,6 @@
+{
+    "Infectivity_Exponential_Baseline": 0.1,
+    "Infectivity_Exponential_Delay": 90,
+    "Infectivity_Exponential_Rate": 45,
+    "Infectivity_Scale_Type": "EXPONENTIAL_FUNCTION_OF_TIME"
+}

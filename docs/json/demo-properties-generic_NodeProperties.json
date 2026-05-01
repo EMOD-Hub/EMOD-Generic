@@ -1,0 +1,48 @@
+{
+    "NodeProperties": [
+        {
+            "Property": "Place",
+            "Values": [
+                "RURAL",
+                "URBAN"
+            ],
+            "Initial_Distribution": [
+                0.85,
+                0.15
+            ]
+        },
+        {
+            "Property": "InterventionStatus",
+            "Values": [
+                "NONE",
+                "SPRAYED_A",
+                "SPRAYED_B",
+                "FENCE_AND_TRAP"
+            ],
+            "Initial_Distribution": [
+                1,
+                0,
+                0,
+                0
+            ]
+        }
+    ],
+    "Nodes": [
+        {
+            "NodeID": 1,
+            "NodeAttributes": {
+                "Latitude": 0,
+                "Longitude": 0,
+                "Altitude": 0,
+                "Airport": 0,
+                "Region": 1,
+                "Seaport": 0,
+                "InitialPopulation": 10000,
+                "BirthRate": 5.48e-05,
+                "NodePropertyValues": [
+                    "Place:URBAN"
+                ]
+            }
+        }
+    ]
+}

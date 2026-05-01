@@ -1,0 +1,7 @@
+{
+    "NodeAttributes": {
+        "InfectivityReservoirSize": 0.1,
+        "InfectivityReservoirStartTime": 90,
+        "InfectivityReservoirEndTime": 365
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "MultiEffectVaccine",
+        "Intervention_Name": "Routine MMR vaccination"
+    }
+}

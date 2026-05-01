@@ -6,14 +6,15 @@ build-backend = "setuptools.build_meta"
 name = "emod-generic"
 dynamic = ["version"]
 description = "PyPI distribution of EMOD-Generic files."
-license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10"
 authors = [
     { name="Kurt Frey", email="kurt.frey@gatesfoundation.org" },
 ]
-readme = "README.md"
-requires-python = ">=3.9"
+keywords = ["modeling", "IDM"]
 dependencies = [
 ]
+license = "MIT"
 classifiers = [
     "Operating System :: POSIX :: Linux",
     "Programming Language :: C++",
@@ -22,15 +23,14 @@ classifiers = [
 
 [project.optional-dependencies]
 docs = [
-    "setuptools",
-    "sphinxext.remoteliteralinclude",
-    "sphinx",
-    "sphinx-copybutton",
-    "pydata-sphinx-theme",
-    "plantweb",
-    "sphinxcontrib-programoutput",
-    "myst-parser",
-    "pygithub"
+    "mkdocs-material",
+    "mkdocs-include-markdown-plugin",
+    "mkdocstrings-python",
+    "mkdocs-autoapi",
+    "mkdocs-glightbox",
+    "mkdocs-table-reader-plugin",
+]
+lint = [
 ]
 test = [
     "pandas",
@@ -41,9 +41,8 @@ test = [
 ]
 
 [project.urls]
-Homepage = "https://www.idmod.org/tool/emod-generic/"
-Documentation = "https://emod-hub.github.io/EMOD-Generic/"
 Repository = "https://github.com/EMOD-Hub/EMOD-Generic"
+Documentation = "https://emod.idmod.org/EMOD-Generic/"
 Issues = "https://github.com/EMOD-Hub/EMOD-Generic/issues"
 
 [tool.setuptools.package-data]

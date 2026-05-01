@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "SimpleHealthSeekingBehavior",
+        "Intervention_Name": "Return to clinic after treatment is unsuccessful"
+    }
+}

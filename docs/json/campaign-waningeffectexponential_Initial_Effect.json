@@ -1,0 +1,7 @@
+{
+    "Waning_Config": {
+        "Decay_Time_Constant": 0.87,
+        "Initial_Effect": 0.9,
+        "class": "WaningEffectExponential"
+    }
+}

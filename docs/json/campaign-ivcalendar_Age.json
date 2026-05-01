@@ -1,0 +1,28 @@
+{
+    "Calendar": [
+        {
+            "Age": 60,
+            "Probability": 1
+        },
+        {
+            "Age": 120,
+            "Probability": 1
+        },
+        {
+            "Age": 180,
+            "Probability": 1
+        },
+        {
+            "Age": 510,
+            "Probability": 0.9
+        },
+        {
+            "Age": 1825,
+            "Probability": 0.95
+        },
+        {
+            "Age": 4200,
+            "Probability": 0.95
+        }
+    ]
+}

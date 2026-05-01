@@ -1,0 +1,4 @@
+{
+    "Duration_At_Node_Distribution": "EXPONENTIAL_DISTRIBUTION",
+    "Duration_At_Node_Exponential": 4.25
+}

@@ -1,0 +1,18 @@
+{
+    "Event_Coordinator_Config": {
+        "Coverage_By_Node": [
+            [
+                1,
+                0.6
+            ],
+            [
+                2,
+                0.9
+            ],
+            [
+                3,
+                0.1
+            ]
+        ]
+    }
+}

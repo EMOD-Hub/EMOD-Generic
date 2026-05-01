@@ -1,0 +1,15 @@
+{
+    "Action_List": [
+        {
+            "Event_To_Broadcast": "Action_Event_1",
+            "Event_Type": "COORDINATOR",
+            "Threshold": 20
+        },
+        {
+            "Event_To_Broadcast": "Action_Event_2",
+            "Event_Type": "COORDINATOR",
+            "Threshold": 30
+        }
+    ],
+    "Threshold_Type": "COUNT"
+}

@@ -1,0 +1,5 @@
+{
+    "Delay_Period_Distribution": "LOG_NORMAL_DISTRIBUTION",
+    "Delay_Period_Log_Normal_Mu": 9,
+    "Delay_Period_Log_Normal_Sigma": 2
+}

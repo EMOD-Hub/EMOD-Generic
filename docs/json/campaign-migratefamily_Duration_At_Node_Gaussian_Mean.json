@@ -1,0 +1,5 @@
+{
+    "Duration_At_Node_Distribution": "GAUSSIAN_DISTRIBUTION",
+    "Duration_At_Node_Gaussian_Mean": 8,
+    "Duration_At_Node_Gaussian_Std_Dev": 1.5
+}

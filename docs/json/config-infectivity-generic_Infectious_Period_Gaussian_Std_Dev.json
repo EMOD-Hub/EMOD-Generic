@@ -1,0 +1,5 @@
+{
+    "Infectious_Period_Distribution": "GAUSSIAN_DISTRIBUTION",
+    "Infectious_Period_Gaussian_Mean": 4,
+    "Infectious_Period_Gaussian_Std_Dev": 1
+}

@@ -1,0 +1,5 @@
+{
+    "Initial_Amount_Distribution": "LOG_NORMAL_DISTRIBUTION",
+    "Initial_Amount_Log_Normal_Mu": 9,
+    "Initial_Amount_Log_Normal_Sigma": 2
+}

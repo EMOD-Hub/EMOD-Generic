@@ -1,0 +1,15 @@
+{
+    "IndividualAttributes": {
+        "MortalityDistribution": {
+            "NumDistributionAxes": 2,
+            "AxisNames": [
+                "gender",
+                "age"
+            ],
+            "AxisScaleFactors": [
+                1,
+                365
+            ]
+        }
+    }
+}

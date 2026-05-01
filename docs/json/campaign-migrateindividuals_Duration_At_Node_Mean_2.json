@@ -1,0 +1,6 @@
+{
+    "Duration_At_Node_Distribution": "DUAL_EXPONENTIAL_DISTRIBUTION",
+    "Duration_At_Node_Mean_1": 4,
+    "Duration_At_Node_Mean_2": 12,
+    "Duration_At_Node_Proportion_1": 0.2
+}

@@ -1,0 +1,5 @@
+{
+    "Enable_Sea_Migration": 1,
+    "Migration_Pattern": "SINGLE_ROUND_TRIPS",
+    "Sea_Migration_Roundtrip_Duration": 10000
+}

@@ -1,0 +1,16 @@
+{
+    "Defaults": {
+        "IndividualProperties": [
+            {
+                "Property": "Age_Bin",
+                "Age_Bin_Edges_In_Years": [
+                    0,
+                    6,
+                    10,
+                    20,
+                    -1
+                ]
+            }
+        ]
+    }
+}

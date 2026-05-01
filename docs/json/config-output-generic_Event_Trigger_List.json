@@ -1,0 +1,18 @@
+{
+    "Start_Day": 5,
+    "Nodeset_Config": {
+        "class": "NodeSetNodeList",
+        "Node_List": [
+            2
+        ]
+    },
+    "Pretty_Format": 1,
+    "Reporting_Interval": 40,
+    "Age_Bins": [
+        10,
+        100
+    ],
+    "Event_Trigger_List": [
+        "EveryUpdate"
+    ]
+}

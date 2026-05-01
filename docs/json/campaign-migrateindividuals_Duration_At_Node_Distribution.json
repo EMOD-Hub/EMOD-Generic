@@ -1,0 +1,5 @@
+{
+    "Duration_At_Node_Distribution": "WEIBULL_DISTRIBUTION",
+    "Duration_At_Node_Kappa": 0.9,
+    "Duration_At_Node_Lambda": 1.5
+}

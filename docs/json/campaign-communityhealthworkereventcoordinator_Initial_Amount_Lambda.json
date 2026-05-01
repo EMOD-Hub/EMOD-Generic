@@ -1,0 +1,5 @@
+{
+    "Initial_Amount_Distribution": "WEIBULL_DISTRIBUTION",
+    "Initial_Amount_Kappa": 0.9,
+    "Initial_Amount_Lambda": 1.5
+}

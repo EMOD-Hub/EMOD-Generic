@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "NodeLevelHealthTriggeredIVScaleUpSwitch",
+        "Intervention_Name": "Transition to CDC-recommended diagnostic"
+    }
+}

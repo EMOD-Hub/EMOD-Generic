@@ -1,0 +1,15 @@
+{
+    "Responder": {
+        "Threshold_Type": "COUNT",
+        "Action_List": [
+            {
+                "Threshold": 5,
+                "Event_To_Broadcast": "Action_Event_1"
+            },
+            {
+                "Threshold": 10,
+                "Event_To_Broadcast": "Action_Event_2"
+            }
+        ]
+    }
+}

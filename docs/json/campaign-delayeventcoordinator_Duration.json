@@ -1,0 +1,21 @@
+{
+    "Event_Coordinator_Config": {
+        "Coordinator_Name": "DelayEventCoordinator_10",
+        "Delay_Complete_Event": "Completion_Delayed_Coordinator_Event_1",
+        "Delay_Period_Distribution": "FIXED_DURATION",
+        "Delay_Period_Fixed": 25,
+        "Duration": 100,
+        "Start_Trigger_Condition_List": [
+            "Coordinator_Event_1"
+        ],
+        "Stop_Trigger_Condition_List": [],
+        "class": "DelayEventCoordinator"
+    },
+    "Event_Name": "Delay",
+    "Nodeset_Config": {
+        "class": "NodeSetAll"
+    },
+    "Start_Day": 1,
+    "Target_Demographic": "Everyone",
+    "class": "CampaignEvent"
+}

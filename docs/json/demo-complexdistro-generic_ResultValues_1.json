@@ -1,0 +1,18 @@
+{
+    "IndividualAttributes": {
+        "AgeDistribution": {
+            "DistributionValues": [
+                0.1,
+                0.25,
+                0.75,
+                1
+            ],
+            "ResultValues": [
+                0,
+                5,
+                20,
+                35
+            ]
+        }
+    }
+}

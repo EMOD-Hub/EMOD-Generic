@@ -1,0 +1,13 @@
+{
+    "Custom_Coordinator_Events": [
+        "Coordinator_Event_1",
+        "Coordinator_Event_2",
+        "Coordinator_Event_3"
+    ],
+    "Report_Coordinator_Event_Recorder": 1,
+    "Report_Coordinator_Event_Recorder_Events": [
+        "Coordinator_Event_1",
+        "Coordinator_Event_2",
+        "Coordinator_Event_3"
+    ]
+}

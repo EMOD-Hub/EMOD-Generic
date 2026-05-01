@@ -1,0 +1,6 @@
+{
+    "Enable_Vital_Dynamics": 1,
+    "Enable_Birth": 1,
+    "Birth_Rate_Time_Dependence": "SINUSOIDAL_FUNCTION_OF_TIME",
+    "Birth_Rate_Sinusoidal_Forcing_Amplitude": 0.1
+}

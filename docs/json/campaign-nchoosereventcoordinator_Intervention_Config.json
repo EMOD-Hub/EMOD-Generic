@@ -1,0 +1,9 @@
+{
+    "Intervention_Config": {
+        "class": "OutbreakIndividual",
+        "Antigen": 0,
+        "Genome": 0,
+        "Outbreak_Source": "PrevalenceIncrease",
+        "Incubation_Period_Override": 1
+    }
+}

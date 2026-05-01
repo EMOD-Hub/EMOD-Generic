@@ -1,0 +1,20 @@
+{
+    "Event_Coordinator_Config": {
+        "Demographic_Coverage": 1,
+        "Intervention_Config": {
+            "Base_Sensitivity": 1,
+            "Base_Specificity": 1,
+            "Cost_To_Consumer": 0,
+            "Days_To_Diagnosis": 0,
+            "Disqualifying_Properties": [
+                "InterventionStatus:LostForever"
+            ],
+            "Event_Or_Config": "Event",
+            "Negative_Diagnosis_Event": "TestedNegative_IamSusceptible",
+            "Positive_Diagnosis_Event": "TestedPositive_IamImmune",
+            "Positive_Threshold_AcquisitionImmunity": 0.99,
+            "Treatment_Fraction": 1,
+            "class": "ImmunityBloodTest"
+        }
+    }
+}

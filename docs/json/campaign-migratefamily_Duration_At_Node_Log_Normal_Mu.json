@@ -1,0 +1,5 @@
+{
+    "Duration_At_Node_Distribution": "LOG_NORMAL_DISTRIBUTION",
+    "Duration_At_Node_Log_Normal_Mu": 9,
+    "Duration_At_Node_Log_Normal_Sigma": 2
+}

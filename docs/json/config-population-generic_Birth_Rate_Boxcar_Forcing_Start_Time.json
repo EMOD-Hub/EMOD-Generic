@@ -1,0 +1,6 @@
+{
+    "Enable_Vital_Dynamics": 1,
+    "Enable_Birth": 1,
+    "Birth_Rate_Time_Dependence": "ANNUAL_BOXCAR_FUNCTION",
+    "Birth_Rate_Boxcar_Forcing_Start_Time": 130
+}

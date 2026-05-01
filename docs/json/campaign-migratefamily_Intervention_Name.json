@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "MigrateFamily",
+        "Intervention_Name": "Move family for seasonal work"
+    }
+}

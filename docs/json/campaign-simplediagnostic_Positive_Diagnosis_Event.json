@@ -1,0 +1,12 @@
+{
+    "Intervention_Config": {
+        "Base_Sensitivity": 1.0,
+        "Base_Specificity": 1.0,
+        "Cost_To_Consumer": 0.0,
+        "Days_To_Diagnosis": 0.0,
+        "Event_Or_Config": "Event",
+        "Positive_Diagnosis_Event": "TestedPositive_CureMeNow",
+        "Treatment_Fraction": 1.0,
+        "class": "SimpleDiagnostic"
+    }
+}

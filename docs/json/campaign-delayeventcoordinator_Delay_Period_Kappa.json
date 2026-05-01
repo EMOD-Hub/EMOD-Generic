@@ -1,0 +1,5 @@
+{
+    "Delay_Period_Distribution": "WEIBULL_DISTRIBUTION",
+    "Delay_Period_Kappa": 0.9,
+    "Delay_Period_Lambda": 1.5
+}

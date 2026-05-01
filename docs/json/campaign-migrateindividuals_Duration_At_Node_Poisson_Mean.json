@@ -1,0 +1,4 @@
+{
+    "Duration_At_Node_Distribution": "POISSON_DISTRIBUTION",
+    "Duration_At_Node_Poisson_Mean": 5
+}

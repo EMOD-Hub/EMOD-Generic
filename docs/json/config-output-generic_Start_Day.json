@@ -1,0 +1,10 @@
+{
+    "ReportEventCounter": {
+        "Enabled": 1
+    },
+    "Start_Day": 12,
+    "Duration_Days": 353,
+    "Nodeset_Config": {
+        "class": "NodeSetAll"
+    }
+}

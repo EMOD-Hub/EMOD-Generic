@@ -1,0 +1,5 @@
+{
+    "Migration_Model": "FIXED_RATE_MIGRATION",
+    "Local_Migration_Filename": "../inputs/local_migration.bin",
+    "Enable_Local_Migration": 1
+}

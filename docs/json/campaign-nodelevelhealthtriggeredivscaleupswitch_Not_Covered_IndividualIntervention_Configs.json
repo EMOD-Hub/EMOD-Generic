@@ -1,0 +1,22 @@
+{
+    "Not_Covered_IndividualIntervention_Configs": [
+        {
+            "class": "DelayedIntervention",
+            "Delay_Distribution": "FIXED_DURATION",
+            "Delay_Period": 10,
+            "Coverage": 1,
+            "Actual_IndividualIntervention_Configs": [
+                {
+                    "class": "AntiTBDrug",
+                    "Cost_To_Consumer": 90,
+                    "Drug_Type": "FirstLineCombo",
+                    "Durability_Profile": "FIXED_DURATION_CONSTANT_EFFECT",
+                    "Primary_Decay_Time_Constant": 180,
+                    "Remaining_Doses": 1,
+                    "TB_Drug_Cure_Rate": 5e-11,
+                    "TB_Drug_Inactivation_Rate": 0
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+{
+    "Enable_Demographics_Builtin": 1,
+    "Default_Geography_Initial_Node_Population": 1000,
+    "Default_Geography_Torus_Size": 3
+}

@@ -1,0 +1,6 @@
+{
+    "Trigger_Condition_List": [
+        "NewClinicalCase",
+        "NewSevereCase"
+    ]
+}

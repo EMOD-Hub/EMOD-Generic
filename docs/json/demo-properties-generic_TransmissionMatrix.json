@@ -1,0 +1,21 @@
+{
+    "Defaults": {
+        "IndividualProperties": [
+            {
+                "TransmissionMatrix": {
+                    "Route": "Contact",
+                    "Matrix": [
+                        [
+                            10,
+                            0.1
+                        ],
+                        [
+                            0.1,
+                            1
+                        ]
+                    ]
+                }
+            }
+        ]
+    }
+}

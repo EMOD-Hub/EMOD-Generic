@@ -1,0 +1,9 @@
+{
+    "Intervention_Config": {
+        "Antigen": 0,
+        "Genome": 0,
+        "Outbreak_Source": "ImportCases",
+        "Number_Cases_Per_Node": 10,
+        "class": "Outbreak"
+    }
+}

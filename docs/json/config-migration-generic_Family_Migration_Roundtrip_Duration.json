@@ -1,0 +1,6 @@
+{
+    "Migration_Model": "FIXED_RATE_MIGRATION",
+    "Migration_Pattern": "SINGLE_ROUND_TRIPS",
+    "Enable_Family_Migration": 1,
+    "Family_Migration_Roundtrip_Duration": 100
+}

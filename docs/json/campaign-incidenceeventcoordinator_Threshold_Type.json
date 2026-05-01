@@ -1,0 +1,13 @@
+{
+    "Threshold_Type": "COUNT",
+    "Action_List": [
+        {
+            "Threshold": 20,
+            "Event_To_Broadcast": "Action_Event_1"
+        },
+        {
+            "Threshold": 30,
+            "Event_To_Broadcast": "Action_Event_2"
+        }
+    ]
+}

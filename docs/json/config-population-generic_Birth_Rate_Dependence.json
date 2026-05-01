@@ -1,0 +1,5 @@
+{
+    "Enable_Vital_Dynamics": 1,
+    "Enable_Birth": 1,
+    "Birth_Rate_Dependence": "POPULATION_DEP_RATE"
+}

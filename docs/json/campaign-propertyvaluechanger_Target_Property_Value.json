@@ -1,0 +1,12 @@
+{
+    "Intervention_Config": {
+        "class": "PropertyValueChanger",
+        "Disqualifying_Properties": [],
+        "Target_Property_Key": "Risk",
+        "Target_Property_Value": "LOW",
+        "New_Property_Value": "",
+        "Daily_Probability": 1.0,
+        "Maximum_Duration": 0,
+        "Revert": 0
+    }
+}
