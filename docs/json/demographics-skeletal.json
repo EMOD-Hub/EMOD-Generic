@@ -12,17 +12,17 @@
      "Defaults": {
           "NodeAttributes": {},
           "IndividualAttributes": {},
-          "IndividualProperties": {},
+          "IndividualProperties": {}
      },
      "Nodes": [{
           "NodeID": 1,
           "NodeAttributes": {},
           "IndividualAttributes": {},
-          "IndividualProperties": {},
+          "IndividualProperties": {}
      }, {
           "NodeID": 2,
           "NodeAttributes": {},
           "IndividualAttributes": {},
-          "IndividualProperties": {},
+          "IndividualProperties": {}
      }]
 }
