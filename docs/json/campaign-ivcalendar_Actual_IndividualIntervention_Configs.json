@@ -1,0 +1,19 @@
+{
+    "Actual_IndividualIntervention_Config": {
+        "class": "IVCalendar",
+        "Actual_IndividualIntervention_Configs": [
+            {
+                "class": "BCGVaccine",
+                "Cost_To_Consumer": 10,
+                "Vaccine_Take": 1,
+                "Vaccine_Take_Age_Decay_Rate": 0,
+                "Waning_Config": {
+                    "Initial_Effect": 1,
+                    "Box_Duration": 3650,
+                    "Decay_Rate_Factor": 3650,
+                    "class": "WaningEffectBoxExponential"
+                }
+            }
+        ]
+    }
+}

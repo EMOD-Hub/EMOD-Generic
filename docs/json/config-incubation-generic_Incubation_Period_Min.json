@@ -1,0 +1,5 @@
+{
+    "Incubation_Period_Distribution": "UNIFORM_DISTRIBUTION",
+    "Incubation_Period_Min": 2,
+    "Incubation_Period_Max": 7
+}

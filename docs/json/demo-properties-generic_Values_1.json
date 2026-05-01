@@ -1,0 +1,15 @@
+{
+    "NodeProperties": [
+        {
+            "Property": "InterventionStatus",
+            "Values": [
+                "NONE",
+                "RECENT_SPRAY"
+            ],
+            "Initial_Distribution": [
+                1.0,
+                0.0
+            ]
+        }
+    ]
+}

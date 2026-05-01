@@ -1,0 +1,19 @@
+{
+    "Actual_IndividualIntervention_Config": {
+        "Intervention_List": [
+            {
+                "Cost_To_Consumer": 1,
+                "Dosing_Type": "FullTreatmentNewDetectionTech",
+                "Drug_Type": "Artemether",
+                "class": "AntimalarialDrug"
+            },
+            {
+                "Cost_To_Consumer": 1,
+                "Dosing_Type": "FullTreatmentNewDetectionTech",
+                "Drug_Type": "Lumefantrine",
+                "class": "AntimalarialDrug"
+            }
+        ],
+        "class": "MultiInterventionDistributor"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "Event_Coordinator_Config": {
+        "Completion_Event": "Done_Vaccinating_1n2",
+        "Coordinator_Name": "1n2_Vaccinator",
+        "Demographic_Coverage": 0.05,
+        "Duration": -1,
+        "Intervention_Config": {
+            "Cost_To_Consumer": 1,
+            "Vaccine_Take": 1,
+            "Vaccine_Type": "AcquisitionBlocking",
+            "Waning_Config": {
+                "Box_Duration": 730,
+                "Initial_Effect": 0.59,
+                "class": "WaningEffectBox"
+            },
+            "class": "SimpleVaccine"
+        },
+        "Number_Repetitions": 1,
+        "Start_Trigger_Condition_List": [
+            "Start_Vaccinating_1n2"
+        ],
+        "Stop_Trigger_Condition_List": [],
+        "Target_Demographic": "Everyone",
+        "Timesteps_Between_Repetitions": 1,
+        "class": "TriggeredEventCoordinator"
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "Infectious_Period_Distribution": "CONSTANT_DISTRIBUTION",
+    "Symptomatic_Infectious_Offset": 4,
+    "Incubation_Period_Constant": 10
+}

@@ -1,0 +1,7 @@
+{
+    "Mortality_Config": {
+        "Initial_Effect": 1.0,
+        "Decay_Time_Constant": 2525,
+        "class": "WaningEffectExponential"
+    }
+}

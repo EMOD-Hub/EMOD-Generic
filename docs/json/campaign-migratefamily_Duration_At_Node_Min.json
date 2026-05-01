@@ -1,0 +1,5 @@
+{
+    "Duration_At_Node_Distribution": "UNIFORM_DISTRIBUTION",
+    "Duration_At_Node_Min": 2,
+    "Duration_At_Node_Max": 7
+}

@@ -1,0 +1,11 @@
+{
+    "Event_Coordinator_Config": {
+        "Intervention_Config": {
+            "class": "Outbreak",
+            "Num_Cases": 1
+        },
+        "Number_Repetitions": 10,
+        "Timesteps_Between_Repetitions": 50,
+        "class": "StandardInterventionDistributionEventCoordinator"
+    }
+}

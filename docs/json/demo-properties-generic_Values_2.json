@@ -1,0 +1,13 @@
+{
+    "Defaults": {
+        "IndividualProperties": [
+            {
+                "Values": [
+                    "Low",
+                    "Medium",
+                    "High"
+                ]
+            }
+        ]
+    }
+}

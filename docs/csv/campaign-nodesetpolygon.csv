@@ -1,21 +1,3 @@
 Parameter,Type,Min,Max,Default,Description,Example
-"Polygon_Format","enum","NA","NA","SHAPE","The type of polygon to create. Currently, SHAPE is the only supported value.",".. code-block:: json
-
-    {
-        ""Nodeset_Config"": {
-            ""class"": ""NodeSetPolygon"",
-            ""Polygon_Format"": ""SHAPE"",
-            ""Vertices"": ""-122.320726936496,47.6597902588541 -122.320406460197,47.6520988276782 -122.308388598985,47.6471314450438""
-        }
-    }
-"
-"Vertices","string","NA","NA","UNINTIALIZED STRING","Comma-separated list of latitude/longitude points that bound a polygon.",".. code-block:: json
-
-    {
-        ""Nodeset_Config"": {
-            ""class"": ""NodeSetPolygon"",
-            ""Polygon_Format"": ""SHAPE"",
-            ""Vertices"": ""-122.320726936496,47.6597902588541 -122.320406460197,47.6520988276782 -122.308388598985,47.6471314450438""
-        }
-    }
-"
+Polygon_Format,enum,NA,NA,SHAPE,"The type of polygon to create. Currently, SHAPE is the only supported value.",[link](../json/campaign-nodesetpolygon_Polygon_Format.json)
+Vertices,string,NA,NA,UNINTIALIZED STRING,Comma-separated list of latitude/longitude points that bound a polygon.,[link](../json/campaign-nodesetpolygon_Vertices.json)

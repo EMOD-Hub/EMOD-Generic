@@ -1,0 +1,20 @@
+{
+    "Incidence_Counter": {
+        "Count_Events_For_Num_Timesteps": 5,
+        "Trigger_Condition_List": [
+            "PropertyChange"
+        ],
+        "Node_Property_Restrictions": [
+            {
+                "Risk": "HIGH"
+            }
+        ],
+        "Target_Demographic": "Everyone",
+        "Demographic_Coverage": 0.6,
+        "Property_Restrictions_Within_Node": [
+            {
+                "Accessibility": "YES"
+            }
+        ]
+    }
+}

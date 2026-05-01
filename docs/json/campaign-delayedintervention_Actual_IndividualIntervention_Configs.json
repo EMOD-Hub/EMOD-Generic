@@ -1,0 +1,13 @@
+{
+    "Actual_IndividualIntervention_Configs": [
+        {
+            "Base_Sensitivity": 1,
+            "Base_Specificity": 1,
+            "Event_Or_Config": "Event",
+            "Negative_Diagnosis_Event": "HIVNeedsMaleCircumcision",
+            "New_Property_Value": "InterventionStatus:None",
+            "Positive_Diagnosis_Event": "NoTreatment",
+            "class": "HIVSimpleDiagnostic"
+        }
+    ]
+}

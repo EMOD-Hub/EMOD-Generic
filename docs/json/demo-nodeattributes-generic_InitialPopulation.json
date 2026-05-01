@@ -1,0 +1,10 @@
+{
+    "Nodes": [
+        {
+            "NodeID": 25,
+            "NodeAttributes": {
+                "InitialPopulation": 1000
+            }
+        }
+    ]
+}

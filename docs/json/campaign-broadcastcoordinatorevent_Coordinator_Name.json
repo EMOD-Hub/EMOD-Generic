@@ -1,0 +1,13 @@
+{
+    "class": "CampaignEvent",
+    "Start_Day": 25,
+    "Nodeset_Config": {
+        "class": "NodeSetAll"
+    },
+    "Event_Coordinator_Config": {
+        "class": "BroadcastCoordinatorEvent",
+        "Coordinator_Name": "Coordinator_3",
+        "Cost_To_Consumer": 30,
+        "Broadcast_Event": "Coordinator_Event_3"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "Maternal_Protection_Type": "SIGMOID_BINARY",
+    "Maternal_Sigmoid_SteepFac": 30,
+    "Maternal_Sigmoid_HalfMaxAge": 365,
+    "Maternal_Sigmoid_SusInit": 0.0002
+}

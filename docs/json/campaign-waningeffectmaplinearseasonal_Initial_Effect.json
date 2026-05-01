@@ -1,0 +1,22 @@
+{
+    "class": "WaningEffectMapLinearSeasonal",
+    "Initial_Effect": 1,
+    "Durability_Map": {
+        "Times": [
+            0,
+            20,
+            21,
+            30,
+            31,
+            365
+        ],
+        "Values": [
+            1,
+            1,
+            0,
+            0,
+            1,
+            1
+        ]
+    }
+}

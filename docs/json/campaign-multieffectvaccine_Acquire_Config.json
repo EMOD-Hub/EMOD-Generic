@@ -1,0 +1,7 @@
+{
+    "Acquire_Config": {
+        "Initial_Effect": 0.9,
+        "Decay_Time_Constant": 2525,
+        "class": "WaningEffectExponential"
+    }
+}

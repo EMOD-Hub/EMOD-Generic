@@ -1,0 +1,13 @@
+{
+    "Actual_IndividualIntervention_Config": {
+        "class": "IVCalendar",
+        "Dont_Allow_Duplicates": 0,
+        "Dropout": 0,
+        "Calendar": [
+            {
+                "Age": 12045,
+                "Probability": 1
+            }
+        ]
+    }
+}

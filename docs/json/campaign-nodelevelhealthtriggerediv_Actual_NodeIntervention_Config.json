@@ -1,0 +1,8 @@
+{
+    "Actual_NodeIntervention_Config": {
+        "class": "OutbreakIndividual",
+        "Antigen": 0,
+        "Genome": 0,
+        "Outbreak_Source": "PrevalenceIncrease"
+    }
+}

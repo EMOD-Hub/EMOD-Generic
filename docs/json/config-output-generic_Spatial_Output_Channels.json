@@ -1,0 +1,6 @@
+{
+    "Spatial_Output_Channels": [
+        "Prevalence",
+        "New_Infections"
+    ]
+}

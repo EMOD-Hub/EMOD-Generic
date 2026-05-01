@@ -1,0 +1,5 @@
+{
+    "Maternal_Protection_Type": "LINEAR_FRACTIONAL",
+    "Maternal_Linear_SusZero": 0.45,
+    "Maternal_Linear_Slope": 0.02
+}

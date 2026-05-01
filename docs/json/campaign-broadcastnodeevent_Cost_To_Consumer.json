@@ -1,0 +1,18 @@
+{
+    "class": "CampaignEvent",
+    "Start_Day": 5,
+    "Nodeset_Config": {
+        "class": "NodeSetNodeList",
+        "Node_List": [
+            1
+        ]
+    },
+    "Event_Coordinator_Config": {
+        "class": "StandardInterventionDistributionEventCoordinator",
+        "Intervention_Config": {
+            "class": "BroadcastNodeEvent",
+            "Cost_To_Consumer": 10,
+            "Broadcast_Event": "Node_Event_1"
+        }
+    }
+}

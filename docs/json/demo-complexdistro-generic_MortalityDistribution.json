@@ -1,0 +1,46 @@
+{
+    "IndividualAttributes": {
+        "MortalityDistribution": {
+            "AxisNames": [
+                "gender",
+                "age"
+            ],
+            "AxisScaleFactors": [
+                1,
+                1
+            ],
+            "NumDistributionAxes": 2,
+            "NumPopulationGroups": [
+                2,
+                4
+            ],
+            "PopulationGroups": [
+                [
+                    0,
+                    1
+                ],
+                [
+                    0.0,
+                    29.99,
+                    365,
+                    1826
+                ]
+            ],
+            "ResultScaleFactor": 1,
+            "ResultValues": [
+                [
+                    0.0016,
+                    0.000107,
+                    6.3e-05,
+                    100.0
+                ],
+                [
+                    0.0016,
+                    0.000107,
+                    6.3e-05,
+                    100.0
+                ]
+            ]
+        }
+    }
+}

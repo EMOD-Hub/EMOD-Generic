@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "BroadcastEvent",
+        "Intervention_Name": "Broadcast that disease treatment was received"
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "Duration_Before_Leaving_Distribution": "LOG_NORMAL_DISTRIBUTION",
+    "Duration_Before_Leaving_Log_Normal_Mu": 9,
+    "Duration_Before_Leaving_Log_Normal_Sigma": 2
+}

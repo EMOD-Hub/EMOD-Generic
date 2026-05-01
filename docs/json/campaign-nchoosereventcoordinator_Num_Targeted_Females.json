@@ -1,0 +1,26 @@
+{
+    "Age_Ranges_Years": [
+        {
+            "Min": 10,
+            "Max": 19
+        },
+        {
+            "Min": 30,
+            "Max": 39
+        },
+        {
+            "Min": 50,
+            "Max": 59
+        }
+    ],
+    "Num_Targeted_Males": [
+        600000,
+        400000,
+        200000
+    ],
+    "Num_Targeted_Females": [
+        500000,
+        300000,
+        100000
+    ]
+}

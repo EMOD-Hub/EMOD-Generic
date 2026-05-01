@@ -1,0 +1,7 @@
+{
+    "Waning_Config": {
+        "Expected_Discard_Time": 65,
+        "Initial_Effect": 0.85,
+        "class": "WaningEffectRandomBox"
+    }
+}

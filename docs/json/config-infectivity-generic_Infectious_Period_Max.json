@@ -1,0 +1,5 @@
+{
+    "Infectious_Period_Distribution": "UNIFORM_DISTRIBUTION",
+    "Infectious_Period_Min": 2,
+    "Infectious_Period_Max": 7
+}

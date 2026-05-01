@@ -1,0 +1,6 @@
+{
+    "Infectious_Period_Distribution": "DUAL_EXPONENTIAL_DISTRIBUTION",
+    "Infectious_Period_Mean_1": 4,
+    "Infectious_Period_Mean_2": 12,
+    "Infectious_Period_Proportion_1": 0.2
+}

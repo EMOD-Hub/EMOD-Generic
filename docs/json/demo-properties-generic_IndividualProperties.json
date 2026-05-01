@@ -1,0 +1,30 @@
+{
+    "Defaults": {
+        "IndividualProperties": [
+            {
+                "Property": "InterventionStatus",
+                "Values": [
+                    "None",
+                    "ARTStaging"
+                ],
+                "Initial_Distribution": [
+                    1,
+                    0
+                ]
+            },
+            {
+                "Property": "Risk",
+                "Values": [
+                    "High",
+                    "Medium",
+                    "Low"
+                ],
+                "Initial_Distribution": [
+                    0.2,
+                    0.5,
+                    0.3
+                ]
+            }
+        ]
+    }
+}

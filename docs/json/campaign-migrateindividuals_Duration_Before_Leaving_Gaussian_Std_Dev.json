@@ -1,0 +1,5 @@
+{
+    "Duration_Before_Leaving_Distribution": "GAUSSIAN_DISTRIBUTION",
+    "Duration_Before_Leaving_Gaussian_Mean": 8,
+    "Duration_Before_Leaving_Gaussian_Std_Dev": 1.5
+}

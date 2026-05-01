@@ -1,0 +1,10 @@
+{
+    "Nodes": [
+        {
+            "NodeID": 21,
+            "NodeAttributes": {
+                "BirthRate": 0.0001
+            }
+        }
+    ]
+}

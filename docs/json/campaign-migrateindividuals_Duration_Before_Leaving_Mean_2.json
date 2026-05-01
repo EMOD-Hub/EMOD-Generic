@@ -1,0 +1,6 @@
+{
+    "Duration_Before_Leaving_Distribution": "DUAL_EXPONENTIAL_DISTRIBUTION",
+    "Duration_Before_Leaving_Mean_1": 4,
+    "Duration_Before_Leaving_Mean_2": 12,
+    "Duration_Before_Leaving_Proportion_1": 0.2
+}

@@ -1,0 +1,5 @@
+{
+    "Duration_Before_Leaving_Distribution": "UNIFORM_DISTRIBUTION",
+    "Duration_Before_Leaving_Min": 2,
+    "Duration_Before_Leaving_Max": 7
+}

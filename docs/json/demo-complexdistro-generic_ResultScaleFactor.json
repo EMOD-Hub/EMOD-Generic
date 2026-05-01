@@ -1,0 +1,17 @@
+{
+    "IndividualAttributes": {
+        "AgeDistribution": {
+            "AxisScaleFactors": 1,
+            "DistributionValues": [
+                0.99,
+                1.0
+            ],
+            "ResultScaleFactor": 365,
+            "ResultUnits": "years",
+            "ResultValues": [
+                0.0027,
+                0.0027
+            ]
+        }
+    }
+}

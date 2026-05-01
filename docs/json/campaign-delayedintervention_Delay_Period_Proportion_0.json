@@ -1,0 +1,5 @@
+{
+    "Delay_Period_Distribution": "DUAL_CONSTANT_DISTRIBUTION",
+    "Delay_Period_Proportion_0": 0.25,
+    "Delay_Period_Peak_2_Value": 5
+}

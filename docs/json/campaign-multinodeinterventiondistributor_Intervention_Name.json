@@ -1,0 +1,6 @@
+{
+    "Intervention_Config": {
+        "class": "MultiNodeInterventionDistributor",
+        "Intervention_Name": "Country-wide vaccination"
+    }
+}

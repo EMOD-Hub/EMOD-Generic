@@ -1,0 +1,9 @@
+{
+    "Events": [
+        {
+            "Event_Name": "Outbreak",
+            "class": "CampaignEvent",
+            "Nodeset_Config": "NodeSetAll"
+        }
+    ]
+}

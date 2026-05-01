@@ -1,0 +1,46 @@
+{
+    "Event_Coordinator_Config": {
+        "Coordinator_Name": "ACF_Counter",
+        "Duration": 30,
+        "Incidence_Counter": {
+            "Counter_Event_Type": "NODE",
+            "Counter_Period": 14,
+            "Counter_Type": "PERIODIC",
+            "Demographic_Coverage": 1,
+            "Target_Demographic": "Everyone",
+            "Trigger_Condition_List": [
+                "Node_Event_1",
+                "Node_Event_2"
+            ]
+        },
+        "Responder": {
+            "Action_List": [
+                {
+                    "Event_To_Broadcast": "Ind_Start_SIA_2",
+                    "Event_Type": "COORDINATOR",
+                    "Threshold": 5
+                },
+                {
+                    "Event_To_Broadcast": "Ind_Start_SIA_4",
+                    "Event_Type": "COORDINATOR",
+                    "Threshold": 2
+                }
+            ],
+            "Responded_Event": "Respond_To_Surveillance",
+            "Threshold_Type": "COUNT"
+        },
+        "Start_Trigger_Condition_List": [
+            "Start_ACF"
+        ],
+        "Stop_Trigger_Condition_List": [
+            "Start_SIA_2",
+            "Start_SIA_4"
+        ],
+        "class": "SurveillanceEventCoordinator"
+    },
+    "Nodeset_Config": {
+        "class": "NodeSetAll"
+    },
+    "Start_Day": 1,
+    "class": "CampaignEvent"
+}

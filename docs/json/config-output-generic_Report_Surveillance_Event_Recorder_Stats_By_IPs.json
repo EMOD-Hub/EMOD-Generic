@@ -1,0 +1,15 @@
+{
+    "Custom_Coordinator_Events": [
+        "Start_ACF",
+        "Start_SIA_2",
+        "Start_SIA_4",
+        "Ind_Start_SIA_2",
+        "Ind_Start_SIA_4",
+        "Respond_To_Surveillance"
+    ],
+    "Report_Surveillance_Event_Recorder": 1,
+    "Report_Surveillance_Event_Recorder_Events": [
+        "Respond_To_Surveillance"
+    ],
+    "Report_Surveillance_Event_Recorder_Stats_By_IPs": []
+}

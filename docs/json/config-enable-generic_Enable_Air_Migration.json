@@ -1,0 +1,5 @@
+{
+    "Migration_Model": "FIXED_RATE_MIGRATION",
+    "Enable_Air_Migration": 1,
+    "Air_Migration_Filename": "../inputs/air_migration.bin"
+}

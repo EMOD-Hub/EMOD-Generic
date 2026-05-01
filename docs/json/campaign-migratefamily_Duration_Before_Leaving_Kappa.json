@@ -1,0 +1,5 @@
+{
+    "Duration_Before_Leaving_Distribution": "WEIBULL_DISTRIBUTION",
+    "Duration_Before_Leaving_Kappa": 0.9,
+    "Duration_Before_Leaving_Lambda": 1.5
+}

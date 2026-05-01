@@ -1,0 +1,8 @@
+{
+    "Actual_IndividualIntervention_Config": {
+        "Actual_IndividualIntervention_Event": "ProviderOrdersTBTest",
+        "Tendency": 0.005,
+        "Event_Or_Config": "Event",
+        "class": "SimpleHealthSeekingBehavior"
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "Enable_Immunity": 1,
+    "Enable_Immunity_Decay": 1,
+    "Post_Infection_Transmission_Multiplier": 0.9
+}

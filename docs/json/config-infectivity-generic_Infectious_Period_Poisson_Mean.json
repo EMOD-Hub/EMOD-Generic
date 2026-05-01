@@ -1,0 +1,4 @@
+{
+    "Infectious_Period_Distribution": "POISSON_DISTRIBUTION",
+    "Infectious_Period_Poisson_Mean": 5
+}

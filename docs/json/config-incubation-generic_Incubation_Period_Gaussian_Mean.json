@@ -1,0 +1,5 @@
+{
+    "Incubation_Period_Distribution": "GAUSSIAN_DISTRIBUTION",
+    "Incubation_Period_Gaussian_Mean": 8,
+    "Incubation_Period_Gaussian_Std_Dev": 1.5
+}

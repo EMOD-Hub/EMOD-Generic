@@ -1,14 +1,2 @@
 Parameter,Type,Min,Max,Default,Description,Example
-"Node_List","array of integers","NA","NA","NA","A comma-separated list of node IDs in which this event will occur.",".. code-block:: json
-
-    {
-        ""Nodeset_Config"": {
-            ""class"": ""NodeSetNodeList"",
-            ""Node_List"": [
-                1,
-                5,
-                27
-            ]
-        }
-    }
-"
+Node_List,array of integers,NA,NA,NA,A comma-separated list of node IDs in which this event will occur.,[link](../json/campaign-nodesetnodelist_Node_List.json)
