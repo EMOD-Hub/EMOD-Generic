@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Boost_Effect","float","0","1","1","Specifies the boosting effect on [acquisition/transmission/mortality] immunity for previously exposed individuals (either natural or vaccine-derived). This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
 
     {

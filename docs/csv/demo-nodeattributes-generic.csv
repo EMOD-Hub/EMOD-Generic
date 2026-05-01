@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Airport","boolean","0","1","0","Indicates whether or not the node has an airport for air migration from (not to) the node. If set to 1, **Enable_Air_Migration** in the configuration file must be set to 1 or migration will not occur (see :doc:`parameter-configuration-migration` parameters). Primarily used to turn off migration in a particular node.",".. code-block:: json
 
     {

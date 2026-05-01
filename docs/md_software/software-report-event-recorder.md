@@ -44,4 +44,4 @@ configuration parameter **Report_Event_Recorder_Individual_Properties**.
 
 The following is an example of a ReportEventRecorder.csv report:
 
-{{ read_csv("reporteventrecorder.csv") }}
+{{ read_csv("../csv/report-event-recorder.csv") }}

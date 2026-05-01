@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Decay_Time_Constant","float","0","100000","100","The exponential decay length, in days, where the current effect is equal to 1 - dt/**Decay_Time_Constant** (dt equal to delta time).",".. code-block:: json
 
     {

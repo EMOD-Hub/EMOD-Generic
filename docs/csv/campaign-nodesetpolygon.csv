@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Polygon_Format","enum","NA","NA","SHAPE","The type of polygon to create. Currently, SHAPE is the only supported value.",".. code-block:: json
 
     {

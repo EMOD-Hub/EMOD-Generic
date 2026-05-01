@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Demographic_Coverage","float","0","1","1","The fraction of individuals in the target demographic that will receive this intervention.",".. code-block:: json
 
     {

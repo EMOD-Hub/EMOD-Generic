@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Acquisition_Blocking_Immunity_Decay_Rate","float","0","1","0.001","The rate at which acquisition-blocking immunity decays after the initial period indicated by the base acquisition-blocking immunity offset. Only used when **Enable_Immunity** and **Enable_Immune_Decay** parameters are set to true (1).",".. code-block:: json
 
     {

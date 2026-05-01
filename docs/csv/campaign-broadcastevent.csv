@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Broadcast_Event","string","NA","NA","""""","The name of the event that will trigger the intervention. See :doc:`parameter-campaign-event-list` for possible values.",".. code-block:: json
 
     {

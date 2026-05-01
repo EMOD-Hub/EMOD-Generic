@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "AgeDistribution","JSON object","NA","NA","NA","The structure defining a complex age distribution. **Age_Initialization_Distribution_Type** in the configuration file must be set to DISTRIBUTION_COMPLEX.","The following example shows at age distribution in which 25% of individuals are under age 5, 50% are between 5 and 20, and 25% are between 20 and 35.
 
 .. code-block:: json

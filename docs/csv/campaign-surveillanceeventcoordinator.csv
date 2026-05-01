@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Action_List","array of JSON objects","NA","NA","NA","A list of possible actions to take if a particular threshold is met. An action is taken when the specified threshold value is less than the number of incidence counted. If there are multiple actions listed then the action with the highest threshold value, that is also less than the number of incidence counted, is selected. The list cannot be empty.",".. code-block:: json
 
     {

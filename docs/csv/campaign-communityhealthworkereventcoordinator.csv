@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Amount_In_Shipment","integer","1","2147480000.0","2147480000.0","The number of interventions (such as vaccine doses) that a health worker or clinic receives in a shipment. Interventions can only be distributed if they are in stock; stock is updated every **Days_Between_Shipments** with the **Amount_In_Shipment**.",".. code-block:: json
 
     {

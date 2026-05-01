@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Age_Bin_Edges_In_Years","array","NA","NA","NA","An array of integers that represents the ages, in years, at which to demarcate the age groups for individuals. Used only with the **Age_Bin** property type. The first number must be 0, the last must be -1, and they must be listed in ascending order. Cannot be used with **NodeProperties**.
 
 EMOD automatically create the individual property **Age_Bin** with values based on the bin edges using the format **Age_Bin_Property_From_X_To_Y**. These appear in the property reports and can be used to target campaign interventions using **Property_Restrictions_Within_Node**. See :doc:`model-targeted-interventions` for more information.","The following example creates three age groups: 0 to 5, older than 5 to 13, and older than 13 to the maximum age.

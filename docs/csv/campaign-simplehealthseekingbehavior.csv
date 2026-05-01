@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Actual_IndividualIntervention_Config","JSON object","NA","NA","NA","The configuration of an actual intervention sought. Selects a class for the intervention and configures the parameters specific for that intervention class.",".. code-block:: json
 
     {

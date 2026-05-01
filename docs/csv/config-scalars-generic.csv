@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Birth_Rate_Time_Dependence","enum","NA","NA","NONE","A scale factor for **BirthRate** that allows it to be altered by time or season. **Enable_Birth** must be set to true (1). Possible values are:
 
 NONE

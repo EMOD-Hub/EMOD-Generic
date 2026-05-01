@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Broadcast_Event","string","NA","NA","""""","The name of the event to be broadcast. This event must be set in the **Custom_Coordinator_Events** configuration parameter. This cannot be assigned an empty string for the event.",".. code-block:: json
 
     {

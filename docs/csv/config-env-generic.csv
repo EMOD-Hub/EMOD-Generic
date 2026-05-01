@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Base_Air_Temperature","float","-55","45","22","The air temperature, in degrees Celsius, where **Climate_Model** is set to CLIMATE_CONSTANT.",".. code-block:: json
 
     {

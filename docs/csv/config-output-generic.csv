@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Custom_Coordinator_Events","array of strings","NA","NA","NA","The list of valid, user-defined events for Event Coordinators that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
 
 Note: This configuration parameter is currently in beta release and has not yet been fully tested.",".. code-block:: json

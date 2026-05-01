@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Daily_Probability","float","0","1","1","The daily probability that an individual will move to the **Target_Property_Value**.",".. code-block:: json
 
     {

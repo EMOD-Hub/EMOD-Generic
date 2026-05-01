@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Expected_Discard_Time","float","0","100000","100","The mean time, in days, of an exponential distribution of the duration of the effect of an intervention (such as a vaccine or bed net). Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
 
     {

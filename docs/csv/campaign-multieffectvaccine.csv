@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Acquire_Config","JSON object","NA","NA","NA","The configuration for multi-effect vaccine acquisition. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.",".. code-block:: json
 
     {

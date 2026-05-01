@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "IndividualAttributes","JSON object","NA","NA","NA","The structure that contains parameters that add or modify the distribution of attributes across individuals in a simulation. For example, the age or immunity distribution. An initial value for an individual is a randomly selected value from a distribution. For example, if you use a uniform distribution to initialize age, the initial ages of individuals in the simulation will be evenly distributed between some minimum and maximum value. These distributions can be set using :ref:`demo-simpledistro` or :ref:`demo-complexdistro`.",".. code-block:: json
 
     {

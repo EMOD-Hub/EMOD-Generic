@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Coordinator_Name","string","NA","NA","DelayEventCoordinator","The unique identifying coordinator name, which is useful with the output report, ReportCoordinatorEventRecorder.csv.",".. code-block:: json
 
     {

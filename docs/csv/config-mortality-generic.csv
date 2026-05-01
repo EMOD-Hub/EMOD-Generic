@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Base_Mortality","float","0","1000","0.001","The base mortality of the infection before accounting for individual immune modification factors. Depending on the setting of **Mortality_Time_Course**, this is either the daily probability of the disease being fatal (DAILY_MORTALITY) or the probability of death at the end of the infection duration (MORTALITY_AFTER_INFECTIOUS). **Enable_Disease_Mortality** must be set to 1 (true).
 
 ",".. code-block:: json

@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Box_Duration","float","0","100000","100","The box duration of the effect in days.",".. code-block:: json
 
     {

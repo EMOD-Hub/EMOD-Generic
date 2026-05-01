@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "AgeDistribution1","float","-3.40282e+038","3.40282e+038","0.000118","The first value in the age distribution, the meaning of which depends upon the value set in **AgeDistributionFlag**. The table below shows the flag value and corresponding distribution value. 
 
 .. csv-table::

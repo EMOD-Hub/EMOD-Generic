@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Enable_Strain_Tracking","boolean","0","1","0","Enable an association of an infection with a specified strain, defined by unique integers for a clade and a genome. 
 
 For infections distributed through interventions, you specify clade and genome values using the **Clade** and **Genome** parameters with the :doc:`parameter-campaign-node-outbreak` and :doc:`parameter-campaign-individual-outbreakindividual` intervention classes in the campaign file.

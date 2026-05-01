@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Config_Name","string","NA","NA","UNINITIALIZED STRING","The optional, user-supplied title naming a configuration file.",".. code-block:: json
 
     {

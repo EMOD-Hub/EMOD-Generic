@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Clade","integer","0","9","0","The clade ID (**Clade**) of the outbreak infection. Together with the genome ID (**Genome**) they are a unitary object representing a strain of infection, which allows for differentiation among infections. Values for **Clade** may range from 0 to **Number_of_Clades**-1 (set in the configuration file).",".. code-block:: json
 
     {

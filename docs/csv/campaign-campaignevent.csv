@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Event_Coordinator_Config","JSON object","NA","NA","NA","An object that specifies how the event is handled by the simulation. It specifies which Event Coordinator class will handle the event, and then configures the coordinator. This description starts with specifying class, and then the other fields depend on the class.
 ",".. code-block:: json
 

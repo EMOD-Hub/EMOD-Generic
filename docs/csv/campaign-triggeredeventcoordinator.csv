@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Completion_Event","array of strings","NA","NA","NA","The completion event list that will be broadcast every time the triggered event coordinator completes a set of repetitions. The events contained in the list are defined in **Custom_Coordinator_Events** in the simulation configuration file.
 ",".. code-block:: json
 

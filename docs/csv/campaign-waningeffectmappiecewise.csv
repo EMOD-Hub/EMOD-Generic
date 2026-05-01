@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Durability_Map","JSON object","NA","NA","NA","The time, in days, since the intervention was distributed and a multiplier for the **Initial_Effect**.",".. code-block:: json
 
     {

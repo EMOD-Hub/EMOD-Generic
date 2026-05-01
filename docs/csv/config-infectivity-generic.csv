@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Base_Infectivity","float","0","1000","0.3","The base infectiousness of individuals before accounting for transmission-blocking effects of acquired immunity and/or campaign interventions.
 
 For generic simulations, this is the average number of individuals per time step who will be exposed to infection by one infectious individual. In the case of super-infection, the infectiousness is summed over all infections. 

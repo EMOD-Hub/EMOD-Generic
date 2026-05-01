@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Disqualifying_Properties","array of strings","NA","NA","[]","A list of **IndividualProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to individuals with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",".. code-block:: json
 
     {

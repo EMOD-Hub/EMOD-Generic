@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Age_Initialization_Distribution_Type","enum","NA","NA","DISTRIBUTION_OFF","The method for initializing the age distribution in the simulated population. Possible values are: 
 
 DISTRIBUTION_OFF

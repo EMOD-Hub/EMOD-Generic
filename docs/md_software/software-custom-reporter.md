@@ -17,7 +17,9 @@ report will be automatically generated at the end of the simulation. There are t
 their location so Eradication.exe can load them. Eradication.exe attempts to load the file using the following
 methods, in the order listed:
 
-1. Define the location of the **dynamic link library (DLL)** in a JSON-formatted file (emodules_map.json). #.  Point to the location using the `--dll-path` command-line option when invoking Eradication.exe. #.  Place the DLL in the **working directory**.
+1. Define the location of the **dynamic link library (DLL)** in a JSON-formatted file (emodules_map.json).
+1.  Point to the location using the `--dll-path` command-line option when invoking Eradication.exe. 
+1.  Place the DLL in the **working directory**.
 
 ## JSON file
 

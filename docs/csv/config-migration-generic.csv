@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Air_Migration_Filename","string","NA","NA","\_add-your-air-migration-file\_.json","The path to the input file that defines patterns of migration by airplane. **Enable_Air_Migration** must be set to true (1). See :doc:`software-migration` for information on migration files.",".. code-block:: json
 
     {

@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Base_Individual_Sample_Rate","float","0.001","1","1","The base rate of sampling for individuals, equal to the fraction of individuals in each node being sampled. Reducing the sampling rate will reduce the time needed to run simulations. **Individual_Sampling_Type** must be set to FIXED_SAMPLING or ADAPTED_SAMPLING_BY_IMMUNE_STATE.",".. code-block:: json
 
     {

@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Cost_To_Consumer","float","0","999999","10","The unit cost per vaccine (unamortized).",".. code-block:: json
 
     {

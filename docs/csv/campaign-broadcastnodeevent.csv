@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Broadcast_Event","string","NA","NA","""""","The name of the node event to broadcast. This event must be set in the **Custom_Node_Events** configuration parameter.",".. code-block:: json
 
     {

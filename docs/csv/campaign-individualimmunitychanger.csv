@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Boost_Acquire","float","0","1","0","Specifies the boosting effect on acquisition immunity for naive individuals (without natural or vaccine-derived immunity) for a multi-effect booster vaccine. This does not replace current immunity, it builds multiplicatively on top of it.",".. code-block:: json
 
     {

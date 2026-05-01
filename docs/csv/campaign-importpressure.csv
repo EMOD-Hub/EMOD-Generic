@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Daily_Import_Pressures","array of floats","0","3.40282e+38","0","The rate of per-day importation for each node that the intervention is distributed to.",".. code-block:: json
 
     {

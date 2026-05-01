@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Actual_IndividualIntervention_Configs","array of JSON objects","NA","NA","NA","An array of interventions that will be distributed as specified in the calendar. This parameter selects a class for the intervention and configures the parameters specific for that intervention class.",".. code-block:: json
 
     {

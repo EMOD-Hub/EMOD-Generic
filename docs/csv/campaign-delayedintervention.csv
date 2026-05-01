@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Actual_IndividualIntervention_Configs","array of JSON objects","NA","NA","NA","An array of nested interventions to be distributed at the end of a delay period, to covered fraction of the population.",".. code-block:: json
 
     {

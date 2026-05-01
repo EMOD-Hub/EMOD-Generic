@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Coverage_By_Node","array of arrays","NA","NA","NA","An array of (nodeID, coverage) pairs configuring the demographic coverage of interventions by node for the targeted populations. The coverage value must be a float between 0 and 1.",".. code-block:: json
 
     {

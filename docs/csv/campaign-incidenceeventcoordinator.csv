@@ -1,3 +1,4 @@
+Parameter,Type,Min,Max,Default,Description,Example
 "Action_List","array of JSON objects","NA","NA","NA","List (array) of JSON objects, including the values specified in the following parameters: **Threshold**, **Event_Type**, **Event_To_Broadcast**.",".. code-block:: json
 
     {
