@@ -20,7 +20,7 @@ To use an overlay file:
 
     You may change this value if you desire, but all input files for a simulation must have the
     same **IdReference** value. For more information about this parameter and the structure of
-    demographics files in general, see [parameter-demographics](../parameter-demographics.md).
+    demographics files in general, see [parameter-demographics](../md_parameter/parameter-demographics.md).
 
 1. Create one or more overlay files. Keep the following things in mind:
 
@@ -44,10 +44,6 @@ An example base layer demographics file and an overlay file is below. You can se
 adds the **TransmissionMatrix** for Heterogeneous Intra-Node Transmission (HINT) to only three of the five nodes (which correspond to
 Washington state counties).
 
-```json
-{% include "json/howto-demographics-base-layer.json" %}
-```
+[link](../json/howto-demographics-base-layer.json)
 
-```json
-{% include "json/howto-demographics-overlay.json" %}
-```
+[link](../json/howto-demographics-overlay.json)

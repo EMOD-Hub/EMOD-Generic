@@ -22,7 +22,7 @@ The EMOD Regression_ directory contains many different subdirectories that conta
 configuration, campaign, and other associated files to run simulations used in regression testing.
 Some subdirectories include a campaign overlay file (campaign_overrides.json), which has been
 created by combining campaign_overrides.json with one of the default files in
-[Regression/defaults](https://github.com/InstituteforDiseaseModeling/EMOD/tree/master/Regression/defaults). The naming of these files is an arbitrary convention used at IDM; you
+defaults directory. The naming of these files is an arbitrary convention used at IDM; you
 may name this files anything you choose. However, it may be useful to see some examples of these
 files to understand how they are used.
 
@@ -30,12 +30,10 @@ To flatten campaign files:
 
 1. Create the default campaign file in JSON. You may, though it is not required, organize the
     parameters into logical categories of nested JSON objects to make managing the parameters
-    easier. See [parameter-campaign](../parameter-campaign.md) for a complete list of all parameters that are
+    easier. See [parameter-campaign](../md_parameter/parameter-campaign.md) for a complete list of all parameters that are
     available. See the example default campaign file below.
 
-```json
-{% include "json/howto-generic-default-campaign.json" %}
-```
+[link](../json/howto-generic-default-campaign.json)
 
 1. Create the overlay campaign file in JSON. This file must include the parameter
     **Default_Campaign_Path**, set to the path to the default campaign file, relative to the
@@ -43,9 +41,7 @@ To flatten campaign files:
     organize these into logical categories if you desire. See the example overlay campaign
     file below.
 
-```json
-{% include "json/howto-campaign-overlay.json" %}
-```
+[link](../json/howto-campaign-overlay.json)
 
 1. In a Command Prompt window, navigate to the Regression folder.
 
@@ -60,9 +56,7 @@ To flatten campaign files:
 1. Open the resulting campaign.json file and see that it has been flattened into a single file with
     nested JSON objects and any logical categories *retained*.
 
-```json
-{% include "json/howto-generic-campaign-flat-full.json" %}
-```
+[link](../json/howto-generic-campaign-flat-full.json)
 
 After the overlay files and default files are combined into a single campaign
 file, you can run a simulation using the EMOD executable (Eradication.exe).

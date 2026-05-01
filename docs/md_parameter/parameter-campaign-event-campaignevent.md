@@ -21,9 +21,7 @@ example that follows shows one potential configuration.
 
 {{ read_csv("csv/campaign-campaignevent.csv") }}
 
-```json
-{% include "json/campaign-campaignevent.json" %}
-```
+[link](../json/campaign-campaignevent.json)
 
 .. _campaign-nodeset-config:
 

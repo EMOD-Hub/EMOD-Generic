@@ -20,17 +20,13 @@ do not control the overall duration of an intervention and are not assigned prob
 See the example below that uses a mix of different waning effect classes and the tables below that
 describe all parameters that can be used with each waning effect class.
 
-```json
-{% include "json/campaign-waningeffects.json" %}
-```
+[link](../json/campaign-waningeffects.json)
 
 ## WaningEffectBox
 
 The efficacy is held at a constant rate until it drops to zero after the user-defined duration.
 
-```json
-{% include "json/campaign-waningeffectbox.json" %}
-```
+[link](../json/campaign-waningeffectbox.json)
 
 {{ read_csv("csv/campaign-waningeffectbox.csv") }}
 
@@ -38,9 +34,7 @@ The efficacy is held at a constant rate until it drops to zero after the user-de
 
 The initial efficacy is held for a specified duration, then the efficacy decays at an exponential rate where the current effect is equal to **Initial_Effect** - dt/**Decay_Time_Constant**.
 
-```json
-{% include "json/campaign-waningeffectboxexponential.json" %}
-```
+[link](../json/campaign-waningeffectboxexponential.json)
 
 {{ read_csv("csv/campaign-waningeffectboxexponential.csv") }}
 
@@ -48,9 +42,7 @@ The initial efficacy is held for a specified duration, then the efficacy decays 
 
 The **WaningEffectCombo** class is used within individual-level interventions and allows for specifiying a list of effects when the intervention only has one **WaningEffect** defined. These effects can be added or multiplied.
 
-```json
-{% include "json/campaign-waningeffectcombo.json" %}
-```
+[link](../json/campaign-waningeffectcombo.json)
 
 {{ read_csv("csv/campaign-waningeffectconstant.csv") }}
 
@@ -58,9 +50,7 @@ The **WaningEffectCombo** class is used within individual-level interventions an
 
 The efficacy is held at a constant rate.
 
-```json
-{% include "json/campaign-waningeffectconstant.json" %}
-```
+[link](../json/campaign-waningeffectconstant.json)
 
 {{ read_csv("csv/campaign-waningeffectconstant.csv") }}
 
@@ -68,9 +58,7 @@ The efficacy is held at a constant rate.
 
 The efficacy decays at an exponential rate where the current effect is equal to **Initial_Effect** - dt/**Decay_Time_Constant**.
 
-```json
-{% include "json/campaign-waningeffectexponential.json" %}
-```
+[link](../json/campaign-waningeffectexponential.json)
 
 {{ read_csv("csv/campaign-waningeffectexponential.csv") }}
 
@@ -83,9 +71,7 @@ be used unless the intervention expires. If the time since start is less than th
 map, the efficacy will be zero. This can be used to define the shape of a curve whose magnitude is
 defined by the **Initial_Effect** multiplier.
 
-```json
-{% include "json/campaign-waningeffectmaplinear.json" %}
-```
+[link](../json/campaign-waningeffectmaplinear.json)
 
 {{ read_csv("csv/campaign-waningeffectmaplinear.csv") }}
 
@@ -94,9 +80,7 @@ defined by the **Initial_Effect** multiplier.
 Similar to **WaningEffectMapLinear**, except that the efficacy decays based on the age of the
 individual who owns the intervention instead of the time since the start of the intervention.
 
-```json
-{% include "json/campaign-waningeffectmaplinearage.json" %}
-```
+[link](../json/campaign-waningeffectmaplinearage.json)
 
 {{ read_csv("csv/campaign-waningeffectmaplinearage.csv") }}
 
@@ -106,9 +90,7 @@ Similar to **WaningEffectMapLinear**, except that the map will repeat itself eve
 is, the time since start will reset to zero once it reaches 365.  This allows you to simulate
 seasonal effects.
 
-```json
-{% include "json/campaign-waningeffectmaplinearseasonal.json" %}
-```
+[link](../json/campaign-waningeffectmaplinearseasonal.json)
 
 {{ read_csv("csv/campaign-waningeffectmaplinearseasonal.csv") }}
 
@@ -118,9 +100,7 @@ Similar to **WaningEffectMapLinear**, except that the data is assumed to be cons
 time/value points (no interpolation). If the time since start falls between two points, the efficacy
 of the earlier time point is used.
 
-```json
-{% include "json/campaign-waningeffectmappiecewise.json" %}
-```
+[link](../json/campaign-waningeffectmappiecewise.json)
 
 {{ read_csv("csv/campaign-waningeffectmappiecewise.csv") }}
 
@@ -130,8 +110,6 @@ The efficacy is held at a constant rate until it drops to zero after a user-defi
 duration is randomly selected from an exponential distribution where **Expected_Discard_Time** is
 the mean.
 
-```json
-{% include "json/campaign-waningeffectrandombox.json" %}
-```
+[link](../json/campaign-waningeffectrandombox.json)
 
 {{ read_csv("csv/campaign-waningeffectrandombox.csv") }}

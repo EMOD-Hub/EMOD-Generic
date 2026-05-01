@@ -22,12 +22,10 @@ To flatten two configuration files:
 
 1. Create the default configuration file in JSON. You may, though it is not required, organize the
     parameters into logical categories of nested JSON objects to make managing the parameters
-    easier. See [parameter-configuration](../parameter-configuration.md) for a complete list of all parameters that are
+    easier. See [parameter-configuration](../md_parameter/parameter-configuration.md) for a complete list of all parameters that are
     available. See the example default configuration file below.
 
-```json
-{% include "json/howto-generic-default-config.json" %}
-```
+[link](../json/howto-generic-default-config.json)
 
 1. Create the overlay configuration file in JSON. This file must include the parameter
     **Default_Config_Path**, set to the path to the default configuration file, relative to the
@@ -35,9 +33,7 @@ To flatten two configuration files:
     organize the parameters into logical categories if you desire. See the example overlay
     configuration file below.
 
-```json
-{% include "json/howto-param-overlay.json" %}
-```
+[link](../json/howto-param-overlay.json)
 
 1. In a Command Prompt window, navigate to the Regression folder.
 
@@ -49,6 +45,4 @@ To flatten two configuration files:
     has been flattened into a single layer with all parameters listed alphabetically and any logical
     categories *removed*. Eradication.exe will not accept a configuration file with nested JSON objects.
 
-```json
-{% include "json/howto-generic-config-flat-full.json" %}
-```
+[link](../json/howto-generic-config-flat-full.json)

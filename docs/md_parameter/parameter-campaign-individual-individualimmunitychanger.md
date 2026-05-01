@@ -26,6 +26,4 @@ example that follows shows one potential configuration.
 
 {{ read_csv("csv/campaign-individualimmunitychanger.csv") }}
 
-```json
-{% include "json/campaign-individualimmunitychanger.json" %}
-```
+[link](../json/campaign-individualimmunitychanger.json)

@@ -40,6 +40,4 @@ The channels section contains the following parameters.
 
 The following is a sample of a PropertyReport.json file.
 
-```json
-{% include "json/report-property.json" %}
-```
+[link](../json/report-property.json)

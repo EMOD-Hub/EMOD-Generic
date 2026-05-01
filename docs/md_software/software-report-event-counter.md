@@ -48,6 +48,4 @@ The channels section contains the following parameters:
 
 The following is an example of ReportEventCounter.json.
 
-```json
-{% include "json/report-event-counter.json" %}
-```
+[link](../json/report-event-counter.json)

@@ -63,9 +63,7 @@ The following parameters can be included in the migration metadata file:
 
 ### Example
 
-```json
-{% include "json/migration-metadata.json" %}
-```
+[link](../json/migration-metadata.json)
 
 ## Binary file
 

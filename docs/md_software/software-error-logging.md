@@ -37,7 +37,7 @@ and the logging levels set for particular modules. The file follows that informa
 with log output using the following format: <timestep><HPC rank><log level><module><message>.
 
 By default, the logging level is set to "INFO". If you want to change the logging level,
-see [dev-logging](../dev-logging.md).
+see [dev-logging](../md_dev/dev-logging.md).
 
 For example:
 

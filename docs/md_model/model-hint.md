@@ -63,9 +63,7 @@ $\beta$, that scale base infectivity, $\beta_0$. Specifically, the entry of the 
 For example, the following demographics file configures HINT for transmission between individuals
 in high-risk and low-risk groups.
 
-```json
-{% include "json/howto-hint1.json" %}
-```
+[link](../json/howto-hint1.json)
 
 Based on the order the property values are listed, the high-risk group is represented in the first
 column and first row; the low-risk group is represented in the second column and second row. The
@@ -86,9 +84,7 @@ interacting with an individual who is a low risk and suburban: $0.1 \times 1.4 =
 Similarly, the transmission multiplier for a low risk  urban individual to a high risk rural
 individual will be $0.1 \times 0.2 = 0.02$.
 
-```json
-{% include "json/howto-hint2.json" %}
-```
+[link](../json/howto-hint2.json)
 
 While most multiplier matrices are symmetric, asymmetries as in the above
 example can arise for several reasons including heterogeneity in susceptibility.

@@ -56,6 +56,4 @@ The channels section contains the following parameters.
 
 The following is a sample of an BinnedReport.json file.
 
-```json
-{% include "json/report-binned.json" %}
-```
+[link](../json/report-binned.json)

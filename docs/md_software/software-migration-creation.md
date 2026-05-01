@@ -73,6 +73,4 @@ The following parameters are used in the JSON file for migration file generation
 
 ### Example file
 
-```json
-{% include "json/migration-input-file.json" %}
-```
+[link](../json/migration-input-file.json)

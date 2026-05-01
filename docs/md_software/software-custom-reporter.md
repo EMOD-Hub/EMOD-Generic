@@ -10,7 +10,7 @@ the Eradication.exe. A custom reporter is an **EMODule** that you plug in to EMO
 are not supported for CentOS. There are several reporters in the GitHub reporters_ directory that
 you can use. You may also want to build your own custom reporter to create a new output report.
 
-![figures/dev/Reporters.png](images/dev/Reporters.png)
+![Reporters](../figures/dev/Reporters.png)
 
 The Eradication.exe must load the reporter when running a simulation to use it. If it is loaded, the output
 report will be automatically generated at the end of the simulation. There are three ways to specify

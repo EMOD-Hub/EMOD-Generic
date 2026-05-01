@@ -28,9 +28,7 @@ The header section contains the following parameters.
 
 The following is a sample of an InsetChart.json file for a simulation with five time steps.
 
-```json
-{% include "json/report-insetchart.json" %}
-```
+[link](../json/report-insetchart.json)
 
 ## Channels
 

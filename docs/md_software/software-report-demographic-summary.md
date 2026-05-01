@@ -39,6 +39,4 @@ The channels section contains the following parameters.
 
 The following is a sample of a DemographicsSummary.json file.
 
-```json
-{% include "json/report-demographic.json" %}
-```
+[link](../json/report-demographic.json)

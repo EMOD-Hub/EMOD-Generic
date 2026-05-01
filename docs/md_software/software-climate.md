@@ -62,9 +62,7 @@ The following parameters in the metadata section are used by Eradication.exe:
 
 An example of climate by data metadata is as follows:
 
-```json
-{% include "json/climate-by-data-metadata.json" %}
-```
+[link](../json/climate-by-data-metadata.json)
 
 ### Binary file
 
@@ -73,7 +71,7 @@ count position for a given node, running from 1 to the maximum data count value.
 
 The binary format is as follows:
 
-![figures/file-structure/climate-by-data-binary.jpg](images/file-structure/climate-by-data-binary.jpg)
+![Climate by Data](../figures/file-structure/climate-by-data-binary.jpg)
 
 ## Climate by Koppen
 
@@ -101,9 +99,7 @@ The following parameters in the metadata section are used by Eradication.exe:
 
 An example of climate by Koppen metadata is as follows:
 
-```json
-{% include "json/climate-by-koppen-metadata.json" %}
-```
+[link](../json/climate-by-koppen-metadata.json)
 
 ### Binary file
 
@@ -115,4 +111,4 @@ The binary file parameters use the naming convention below to store the data.
 
 The binary format is as follows:
 
-![figures/file-structure/climate-by-koppen-binary.jpg](images/file-structure/climate-by-koppen-binary.jpg)
+![Climate by Koppen](../figures/file-structure/climate-by-koppen-binary.jpg)

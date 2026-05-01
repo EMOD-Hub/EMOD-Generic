@@ -31,6 +31,4 @@ The following example shows a simplified example with two interventions, a diagn
 distribution of medication. The demographics file defines intervention status values for having
 tested positive and for being on medication.
 
-```json
-{% include "json/howto-carecascade.json" %}
-```
+[link](../json/howto-carecascade.json)

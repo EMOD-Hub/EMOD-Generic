@@ -15,7 +15,7 @@ scripting language to make large modifications. See [software-configuration-scri
 information.
 
 For a complete list of configuration parameters that are available to use with this simulation type,
-see [parameter-configuration](../parameter-configuration.md). For more information about JSON, see [parameter-overview](../parameter-overview.md).
+see [parameter-configuration](../md_parameter/parameter-configuration.md). For more information about JSON, see [parameter-overview](../md_parameter/parameter-overview.md).
 
 ## Flattened configuration files
 
@@ -25,9 +25,7 @@ require for running simulations.
 
 Below is an example of a flattened configuration file:
 
-```json
-{% include "json/howto-generic-config-flat-full.json" %}
-```
+[link](../json/howto-generic-config-flat-full.json)
 
 ## Hierarchical configuration files
 
@@ -40,7 +38,5 @@ for more information on flattening files.
 
 Below is an example of a hierarchical configuration file:
 
-```json
-{% include "json/howto-generic-default-config.json" %}
-```
+[link](../json/howto-generic-default-config.json)
 

@@ -24,9 +24,7 @@ load-balancing file, it will be processed on the first core.
 For example, the load-balancing file shown below distributes the processing for 100 nodes across
 4 cores, assigning more nodes to particular cores when those nodes require less processing time.
 
-```json
-{% include "json/load-balancing.json" %}
-```
+[link](../json/load-balancing.json)
 
 ## Binary file
 

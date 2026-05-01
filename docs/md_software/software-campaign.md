@@ -41,7 +41,7 @@ by adding trigger conditions to the intervention. For example, interventions can
 notifications broadcast after some an event, such as Births (the individual’s own
 birth), GaveBirth, NewInfectionEvent, and more. It's also possible to have one intervention trigger
 another intervention by asking the first intervention to broadcast a unique string, and having the
-second intervention be triggered upon receipt of that string. See [parameter-campaign-event-list](../parameter-campaign-event-list.md).
+second intervention be triggered upon receipt of that string. See [parameter-campaign-event-list](../md_parameter/parameter-campaign-event-list.md).
 
 Individual-level interventions can be used as part of configuring a cascade of care along with the individual
 properties set in the demographics file. Use **Disqualifying_Properties** to disqualify individuals
@@ -63,9 +63,8 @@ by adding trigger conditions to the intervention. For example, interventions can
 notifications broadcast after some an event, such as Births, NewInfectionEvent, and more. It's also
 possible to have one intervention trigger another intervention by asking the first intervention to
 broadcast a unique string, and having the second intervention be triggered upon receipt of that
-string. See [parameter-campaign-event-list](../parameter-campaign-event-list.md).
+string. See [parameter-campaign-event-list](../md_parameter/parameter-campaign-event-list.md).
 
-[model-campaign](../md_model/model-campaign.md) describes some ways to configure a campaign file to target individuals with particular characteristics, repeat interventions, and more. See [parameter-campaign](../parameter-campaign.md) for a
+[model-campaign](../md_model/model-campaign.md) describes some ways to configure a campaign file to target individuals with particular characteristics, repeat interventions, and more. See [parameter-campaign](../md_parameter/parameter-campaign.md) for a
 comprehensive list and description of all parameters available to use in the campaign file for this
 simulation type.
-

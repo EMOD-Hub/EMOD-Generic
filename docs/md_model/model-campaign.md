@@ -60,9 +60,7 @@ best illustrate their hierarchy, but that many files in the Regression directory
 within the objects differently. See [parameter-campaign](../md_parameter/parameter-campaign.md) for more information on the structure
 of these files and available parameters for this simulation type.
 
-```json
-{% include "json/howto-generic-campaign-flat-full.json" %}
-```
+[link](../json/howto-generic-campaign-flat-full.json)
 
 For a complete list of campaign parameters that are available to use with this simulation type and
 more detail about the campaign file structure, see [parameter-campaign](../md_parameter/parameter-campaign.md). For more information about JSON, see [parameter-overview](../md_parameter/parameter-overview.md).
