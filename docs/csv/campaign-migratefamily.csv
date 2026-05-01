@@ -2,9 +2,7 @@ Parameter,Type,Min,Max,Default,Description,Example
 Disqualifying_Properties,array of strings,NA,NA,[],"A list of **NodeProperty** key:value pairs that cause an intervention to be aborted (persistent interventions will stop being distributed to nodes with these values). See :ref:`demo-properties` parameters for more information. Generally used to control the flow of health care access. For example, to prevent the same individual from accessing health care via two different routes at the same time.",[link](../json/campaign-migratefamily_Disqualifying_Properties.json)
 Duration_At_Node_Constant,float,0,3.40282E+38,-1,"The duration at node, in days, to use for all families when **Duration_At_Node_Distribution** is set to CONSTANT_DISTRIBUTION.",[link](../json/campaign-migratefamily_Duration_At_Node_Constant.json)
 Duration_At_Node_Distribution,enum,NA,NA,NOT_INITIALIZED,"The distribution type to use for assigning the duration of time an individual or family spends at a destination node after intervention-based migration. Each assigned value is a random draw from the distribution.
-
 Possible values are:
-
 NOT_INITIALIZED
     No distribution set. 
 CONSTANT_DISTRIBUTION
@@ -25,21 +23,12 @@ DUAL_CONSTANT_DISTRIBUTION
     Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Duration_At_Node_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
 DUAL_EXPONENTIAL_DISTRIBUTION
     Use two `exponential`_ distributions with given means. Set **Duration_At_Node_Mean_1**, **Duration_At_Node_Mean_2**, and **Duration_At_Node_Proportion_1**. This distribution does not use the parameters set for EXPONENTIAL_DISTRIBUTION.
-
-
 .. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
-
 .. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
-
 .. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
-
 .. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
-
 .. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
-
-.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
-
-",[link](../json/campaign-migratefamily_Duration_At_Node_Distribution.json)
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution",[link](../json/campaign-migratefamily_Duration_At_Node_Distribution.json)
 Duration_At_Node_Exponential,float,0,3.40282E+38,-1,The mean of the duration at node after migration when **Duration_At_Node_Distribution** is set to EXPONENTIAL_DISTRIBUTION.,[link](../json/campaign-migratefamily_Duration_At_Node_Exponential.json)
 Duration_At_Node_Gaussian_Mean,float,0,3.40282E+38,-1,"The mean of the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/campaign-migratefamily_Duration_At_Node_Gaussian_Mean.json)
 Duration_At_Node_Gaussian_Std_Dev,float,1.17549E-38,3.40282E+38,-1,"The standard deviation of the duration at node after migration, in days, when **Duration_At_Node_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/campaign-migratefamily_Duration_At_Node_Gaussian_Std_Dev.json)
@@ -57,9 +46,7 @@ Duration_At_Node_Proportion_0,float,0,1,-1,The proportion of families to assign 
 Duration_At_Node_Proportion_1,float,0,1,-1,The proportion of families in the first exponential distribution  when **Duration_At_Node_Distribution** is set to DUAL_EXPONENTIAL_DISTRIBUTION.,[link](../json/campaign-migratefamily_Duration_At_Node_Proportion_1.json)
 Duration_Before_Leaving_Constant,float,0,3.40282E+38,-1,"The duration before leaving to use for every family, in days, when **Duration_Before_Leaving_Distribution** is set to CONSTANT_DISTRIBUTION.",[link](../json/campaign-migratefamily_Duration_Before_Leaving_Constant.json)
 Duration_Before_Leaving_Distribution,enum,NA,NA,NOT_INITIALIZED,"The distribution type to use for assigning the duration of time an individual or family waits before migrating to the destination node after intervention-based migration. Each assigned value is a random draw from the distribution.
-
 Possible values are:
-
 NOT_INITIALIZED
     No distribution set. 
 CONSTANT_DISTRIBUTION
@@ -80,20 +67,12 @@ DUAL_CONSTANT_DISTRIBUTION
     Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Duration_Before_Leaving_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
 DUAL_EXPONENTIAL_DISTRIBUTION
     Use two `exponential`_ distributions with given means. Set **Duration_Before_Leaving_Mean_1**, **Duration_Before_Leaving_Mean_2**, and **Duration_Before_Leaving_Proportion_1**. This distribution does not use the parameters set for EXPONENTIAL_DISTRIBUTION.
-
 .. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
-
 .. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
-
 .. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
-
 .. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
-
 .. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
-
-.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
-
-",[link](../json/campaign-migratefamily_Duration_Before_Leaving_Distribution.json)
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution",[link](../json/campaign-migratefamily_Duration_Before_Leaving_Distribution.json)
 Duration_Before_Leaving_Exponential,float,0,3.40282E+38,-1,"The mean of the duration before leaving node, in days, when **Duration_Before_Leaving_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",[link](../json/campaign-migratefamily_Duration_Before_Leaving_Exponential.json)
 Duration_Before_Leaving_Gaussian_Mean,float,0,3.40282E+38,-1,"The mean of the duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/campaign-migratefamily_Duration_Before_Leaving_Gaussian_Mean.json)
 Duration_Before_Leaving_Gaussian_Std_Dev,float,1.17549E-38,3.40282E+38,1,"The standard deviation of the duration before leaving the node, in days, when **Duration_Before_Leaving_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/campaign-migratefamily_Duration_Before_Leaving_Gaussian_Std_Dev.json)

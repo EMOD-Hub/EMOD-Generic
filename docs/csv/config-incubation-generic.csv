@@ -1,9 +1,7 @@
 Parameter,Type,Min,Max,Default,Description,Example
 Incubation_Period_Constant,float,0,3.40282E+38,-1,"The incubation period, in days, to use for all individuals when **Incubation_Period_Distribution** is set to CONSTANT_DISTRIBUTION.",[link](../json/config-incubation-generic_Incubation_Period_Constant.json)
 Incubation_Period_Distribution,enum,NA,NA,NOT_INITIALIZED,"The distribution type to use for assigning the incubation period to each individual in the population. Each individual's value is a random draw from the distribution.
-
 Possible values are:
-
 NOT_INITIALIZED
     No distribution set. 
 CONSTANT_DISTRIBUTION
@@ -24,20 +22,12 @@ DUAL_CONSTANT_DISTRIBUTION
     Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Incubation_Period_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
 DUAL_EXPONENTIAL_DISTRIBUTION
     Use two `exponential`_ distributions with given means. Set **Incubation_Period_Mean_1**, **Incubation_Period_Mean_2**, and **Incubation_Period_Proportion_1**. This distribution does not use the parameters set for DUAL_EXPONENTIAL_DISTRIBUTION.
-
 .. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
-
 .. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
-
 .. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
-
 .. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
-
 .. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
-
-.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
-
-",[link](../json/config-incubation-generic_Incubation_Period_Distribution.json)
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution",[link](../json/config-incubation-generic_Incubation_Period_Distribution.json)
 Incubation_Period_Exponential,float,0,3.40282E+38,-1,"The mean incubation period, in days, when **Incubation_Period_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",[link](../json/config-incubation-generic_Incubation_Period_Exponential.json)
 Incubation_Period_Gaussian_Mean,float,0,3.40282E+38,-1,"The mean of the incubation period, in days, when **Incubation_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/config-incubation-generic_Incubation_Period_Gaussian_Mean.json)
 Incubation_Period_Gaussian_Std_Dev,float,1.17549E-38,3.40282E+38,-1,"The standard deviation of the incubation period, in days, when **Incubation_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/config-incubation-generic_Incubation_Period_Gaussian_Std_Dev.json)

@@ -3,9 +3,7 @@ Actual_IndividualIntervention_Configs,array of JSON objects,NA,NA,NA,"An array o
 Coverage,float,0,1,1,The proportion of individuals who receive the **DelayedIntervention** that actually receive the configured interventions.,[link](../json/campaign-delayedintervention_Coverage.json)
 Delay_Period_Constant,float,0,3.40282E+38,-1,"The delay period, in days, to use for all interventions when **Delay_Period_Distribution** is set to CONSTANT_DISTRIBUTION.",[link](../json/campaign-delayedintervention_Delay_Period_Constant.json)
 Delay_Period_Distribution,enum,NA,NA,NOT_INITIALIZED,"The distribution type to use for assigning the delay period for distributing interventions. Each assigned value is a random draw from the distribution.
-
 Possible values are:
-
 NOT_INITIALIZED
     No distribution set. 
 CONSTANT_DISTRIBUTION
@@ -26,21 +24,12 @@ DUAL_CONSTANT_DISTRIBUTION
     Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Delay_Period_Proportion_0** and **Peak_2_Value**.
 DUAL_EXPONENTIAL_DISTRIBUTION
     Use two `exponential`_ distributions with given means. Set **Delay_Period_Mean_1**, **Delay_Period_Mean_2**, and **Delay_Period_Proportion_1**. 
-
-
 .. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
-
 .. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
-
 .. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
-
 .. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
-
 .. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
-
-.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
-
-",[link](../json/campaign-delayedintervention_Delay_Period_Distribution.json)
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution",[link](../json/campaign-delayedintervention_Delay_Period_Distribution.json)
 Delay_Period_Exponential,float,0,3.40282E+38,-1,"The mean of the delay period, in days, when **Delay_Period_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",[link](../json/campaign-delayedintervention_Delay_Period_Exponential.json)
 Delay_Period_Gaussian_Mean,float,0,3.40282E+38,-1,"The mean of the delay period, in days, when **Delay_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/campaign-delayedintervention_Delay_Period_Gaussian_Mean.json)
 Delay_Period_Gaussian_Std_Dev,float,1.17549E-38,3.40282E+38,-1,"The standard deviation of the delay period, in days, when **Delay_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/campaign-delayedintervention_Delay_Period_Gaussian_Std_Dev.json)

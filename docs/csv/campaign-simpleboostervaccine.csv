@@ -11,7 +11,6 @@ Prime_Effect,float,0,1,1,Specifies the priming effect on [acquisition/transmissi
 Vaccine_Take,float,0,1,1,"The rate at which delivered vaccines will successfully stimulate an immune response and achieve the desired efficacy. For example, if it is set to 0.9, there will be a 90 percent chance that the vaccine will start with the specified efficacy, and a 10 percent chance that it will have no efficacy at all.",[link](../json/campaign-simpleboostervaccine_Vaccine_Take.json)
 Vaccine_Type,enum,NA,NA,Generic,"The type of vaccine to distribute in a vaccine intervention. 
 Possible values are:
-
 Generic
     The vaccine can reduce transmission, acquisition, and mortality.
 TransmissionBlocking
@@ -20,4 +19,4 @@ AcquisitionBlocking
     The vaccine will reduce the acquisition of the pathogen by reducing the force of infection experienced by the vaccinated individual.
 MortalityBlocking
     The vaccine reduces the disease-mortality rate of a vaccinated individual.",[link](../json/campaign-simpleboostervaccine_Vaccine_Type.json)
-Waning_Config,JSON object,NA,NA,NA,The configuration of how the intervention efficacy wanes over time. Specify how this effect decays over time using one of the :doc:`parameter-campaign-waningeffects`.,[link](../json/campaign-simpleboostervaccine_Waning_Config.json)
+Waning_Config,JSON object,NA,NA,NA,The configuration of how the intervention efficacy wanes over time. Specify how this effect decays over time using one of the [Waning effect classes](../md_parameter/parameter-campaign-waningeffects.md).,[link](../json/campaign-simpleboostervaccine_Waning_Config.json)

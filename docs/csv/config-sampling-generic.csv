@@ -2,7 +2,6 @@ Parameter,Type,Min,Max,Default,Description,Example
 Base_Individual_Sample_Rate,float,0.001,1,1,"The base rate of sampling for individuals, equal to the fraction of individuals in each node being sampled. Reducing the sampling rate will reduce the time needed to run simulations. **Individual_Sampling_Type** must be set to FIXED_SAMPLING or ADAPTED_SAMPLING_BY_IMMUNE_STATE.",[link](../json/config-sampling-generic_Base_Individual_Sample_Rate.json)
 Immune_Threshold_For_Downsampling,float,0,1,0,"The threshold on acquisition immunity at which to apply immunity-dependent downsampling; individuals who are more immune than this this threshold are downsampled. A value of 1 is equivalent to full susceptibility and 0 is equivalent to full immunity. If the acquisition immunity modifier is larger than the threshold, no downsampling occurs. **Individual_Sampling_Type** must set to ADAPTED_SAMPLING_BY_IMMUNE_STATE.",[link](../json/config-sampling-generic_Immune_Threshold_For_Downsampling.json)
 Individual_Sampling_Type,enum,NA,NA,TRACK_ALL,"The type of individual human sampling to use, which can be used to down sample large populations, certain age groups, or the immune population that does not contribute to transmission. Possible values are: 
-
 TRACK_ALL
     Each person in the population is tracked as a single Individual object with a sampling weight of 1.
 FIXED_SAMPLING

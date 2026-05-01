@@ -1,6 +1,5 @@
 Parameter,Type,Min,Max,Default,Description,Example
 Birth_Rate_Time_Dependence,enum,NA,NA,NONE,"A scale factor for **BirthRate** that allows it to be altered by time or season. **Enable_Birth** must be set to true (1). Possible values are:
-
 NONE
     Birth rate does not vary by time.
 SINUSOIDAL_FUNCTION_OF_TIME
@@ -12,7 +11,6 @@ Infectivity_Exponential_Delay,float,0,3.40E+38,0,"The number of days before infe
 Infectivity_Exponential_Rate,float,0,3.40E+38,0,"The daily rate of exponential growth to approach to full infectivity after the delay set by **Infectivity_Exponential_Delay** has passed. When **Enable_Infectivity_Scaling_Exponential**  configuration parameter is enabled, **Infectivity_Exponential_Rate** is an expected parameter.",[link](../json/config-scalars-generic_Infectivity_Exponential_Rate.json)
 Population_Scale_Type,enum,NA,NA,USE_INPUT_FILE,"The method to use for scaling the initial population specified in the demographics input file.
 Possible values are:
- 
 USE_INPUT_FILE
     Turns off population scaling and uses **InitialPopulation** in the demographics file (see :ref:`demo-nodeattributes` parameters).  
 FIXED_SCALING

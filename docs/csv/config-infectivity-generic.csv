@@ -1,35 +1,21 @@
 Parameter,Type,Min,Max,Default,Description,Example
 Base_Infectivity,float,0,1000,0.3,"The base infectiousness of individuals before accounting for transmission-blocking effects of acquired immunity and/or campaign interventions.
-
-For generic simulations, this is the average number of individuals per time step who will be exposed to infection by one infectious individual. In the case of super-infection, the infectiousness is summed over all infections. 
-
-",[link](../json/config-infectivity-generic_Base_Infectivity.json)
-Enable_Heterogeneous_Intranode_Transmission,boolean,0,1,0,"Controls whether or not individuals experience heterogeneous disease transmission within a node. When set to true (1), individual property definitions and the $\\beta$ matrix must be specified in the demographics file (see :ref:`demo-properties` parameters). The $\\beta$ values are multiplied with the $\\beta$ :sub:`0` value configured by **Base_Infectivity**.
-
+For generic simulations, this is the average number of individuals per time step who will be exposed to infection by one infectious individual. In the case of super-infection, the infectiousness is summed over all infections. ",[link](../json/config-infectivity-generic_Base_Infectivity.json)
+Enable_Heterogeneous_Intranode_Transmission,boolean,0,1,0,"Controls whether or not individuals experience heterogeneous disease transmission within a node. When set to true (1), individual property definitions and the $\\beta$ matrix must be specified in the demographics file (see :ref:`demo-properties` parameters). The $\\beta$ values are multiplied with the $\\beta$ ~0~ value configured by **Base_Infectivity**.
 This is used only in generic, environmental, and typhoid simulations, but must be set to false (0) for all other simulation types. Heterogeneous transmission for other diseases uses other mechanistic parameters included with the simulation type.",[link](../json/config-infectivity-generic_Enable_Heterogeneous_Intranode_Transmission.json)
 Enable_Infectivity_Reservoir,boolean,0,1,0,"Controls whether or not an exogeneous reservoir of infectivity will be included in the simulation and allows for the infectivity in a node to be increased additively. When set to 1 (true), the demographics parameter **InfectivityReservoirSize** is expected in **NodeAtttributes** for each node.
-
 .. warning::
-
     Do not set both **Enable_Infectivity_Reservoir** and  **Enable_Strain_Tracking** to true (1) - as this combination will cause an exception error.",[link](../json/config-infectivity-generic_Enable_Infectivity_Reservoir.json)
-Enable_Initial_Prevalence,boolean,0,1,0,"Controls whether or not parameters in the demographics file are used to define a distribution for the number of infected people per node at the beginning of the simulation. Set the distribution under :ref:`demo-nodeattributes` using **PrevalenceDistributionFlag**, **PrevalenceDistribution1**, and **PrevalenceDistribution2**.
-
-
-    ",[link](../json/config-infectivity-generic_Enable_Initial_Prevalence.json)
+Enable_Initial_Prevalence,boolean,0,1,0,"Controls whether or not parameters in the demographics file are used to define a distribution for the number of infected people per node at the beginning of the simulation. Set the distribution under :ref:`demo-nodeattributes` using **PrevalenceDistributionFlag**, **PrevalenceDistribution1**, and **PrevalenceDistribution2**.",[link](../json/config-infectivity-generic_Enable_Initial_Prevalence.json)
 Enable_Maternal_Infection_Transmission,boolean,0,1,0,"Controls whether or not infectious mothers infect infants at birth. **Enable_Birth** must be set to 1 (true).
-
 .. warning::
-
     Do not set both **Enable_Maternal_Infection_Transmission** and  **Enable_Strain_Tracking** to true (1) - as this combination will cause an exception error.",[link](../json/config-infectivity-generic_Enable_Maternal_Infection_Transmission.json)
-Enable_Skipping,boolean,0,1,0,"Controls whether or not the simulation uses an optimization that can increase performance by up to 50% in some cases by probabilistically exposing individuals rather than exposing every single person. Useful in low-prevalence, high-population scenarios.
-",[link](../json/config-infectivity-generic_Enable_Skipping.json)
+Enable_Skipping,boolean,0,1,0,"Controls whether or not the simulation uses an optimization that can increase performance by up to 50% in some cases by probabilistically exposing individuals rather than exposing every single person. Useful in low-prevalence, high-population scenarios.",[link](../json/config-infectivity-generic_Enable_Skipping.json)
 Enable_Termination_On_Zero_Total_Infectivity,boolean,0,1,0,Controls whether or not the simulation should be ended when total infectivity falls to zero. Supported only in single-node simulations. ,[link](../json/config-infectivity-generic_Enable_Termination_On_Zero_Total_Infectivity.json)
 Infection_Updates_Per_Timestep,integer,0,144,1,The number of infection updates executed during each timestep; note that a timestep defaults to one day.,[link](../json/config-infectivity-generic_Infection_Updates_Per_Timestep.json)
 Infectious_Period_Constant,float,0,3.40282E+38,-1,"The infectious period to use for all individuals, in days, when **Infectious_Period_Distribution** is set to CONSTANT_DISTRIBUTION.",[link](../json/config-infectivity-generic_Infectious_Period_Constant.json)
 Infectious_Period_Distribution,enum,NA,NA,NOT_INITIALIZED,"The distribution type to use for assigning the infectious period to each individual in the population. Each individual's value is a random draw from the distribution.
-
 Possible values are:
-
 NOT_INITIALIZED
     No distribution set. 
 CONSTANT_DISTRIBUTION
@@ -50,21 +36,12 @@ DUAL_CONSTANT_DISTRIBUTION
     Use a distribution where some individuals are set to a value of zero and the rest to a given value. Set **Infectious_Period_Proportion_0** and **Peak_2_Value**. This distribution does not use the parameters set for CONSTANT_DISTRIBUTION.
 DUAL_EXPONENTIAL_DISTRIBUTION
     Use two `exponential`_ distributions with given means. Set **Infectious_Period_Mean_1**, **Infectious_Period_Mean_2**, and **Infectious_Period_Proportion_1**. This distribution does not use the parameters set for EXPONENTIAL_DISTRIBUTION.
-
-
 .. _Gaussian: https://en.wikipedia.org/wiki/Normal_distribution
-
 .. _exponential: https://en.wikipedia.org/wiki/Exponential_distribution
-
 .. _Weibull: https://en.wikipedia.org/wiki/Weibull_distribution
-
 .. _log-normal: https://en.wikipedia.org/wiki/Log-normal_distribution
-
 .. _uniform: https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)
-
-.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution
-
-",[link](../json/config-infectivity-generic_Infectious_Period_Distribution.json)
+.. _Poisson: https://en.wikipedia.org/wiki/Poisson_distribution",[link](../json/config-infectivity-generic_Infectious_Period_Distribution.json)
 Infectious_Period_Exponential,float,0,3.40282E+38,-1,"The mean infectious period, in days, when **Infectious_Period_Distribution** is set to EXPONENTIAL_DISTRIBUTION.",[link](../json/config-infectivity-generic_Infectious_Period_Exponential.json)
 Infectious_Period_Gaussian_Mean,float,0,3.40282E+38,-1,"The mean infectious period, in days, when **Infectious_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/config-infectivity-generic_Infectious_Period_Gaussian_Mean.json)
 Infectious_Period_Gaussian_Std_Dev,float,1.17549E-38,3.40282E+38,-1,"The standard deviation of the infectious period, in days, when **Infectious_Period_Distribution** is set to GAUSSIAN_DISTRIBUTION.",[link](../json/config-infectivity-generic_Infectious_Period_Gaussian_Std_Dev.json)
@@ -84,23 +61,17 @@ Infectivity_Exponential_Baseline,float,0,1,0,"The scale factor applied to **Base
 Infectivity_Exponential_Delay,float,0,3.40E+38,0,"The number of days before infectivity begins to ramp up exponentially. When **Enable_Infectivity_Scaling_Exponential**  configuration parameter is enabled, **Infectivity_Exponential_Delay** is an expected parameter.",[link](../json/config-infectivity-generic_Infectivity_Exponential_Delay.json)
 Infectivity_Exponential_Rate,float,0,3.40E+38,0,"The daily rate of exponential growth to approach to full infectivity after the delay set by **Infectivity_Exponential_Delay** has passed. When **Enable_Infectivity_Scaling_Exponential**  configuration parameter is enabled, **Infectivity_Exponential_Rate** is an expected parameter.",[link](../json/config-infectivity-generic_Infectivity_Exponential_Rate.json)
 Maternal_Infection_Transmission_Probability,float,0,1,0,"The probability of transmission of infection from mother to infant at birth. **Enable_Maternal_Infection_Transmission** must be set to 1. 
-
 .. note::
-
     For malaria and vector simulations, set this to 0. Instead, use the **Maternal_Antibody_Protection**, **Maternal_Antibody_Decay_Rate**, and **Maternal_Antibodies_Type** parameters.  ",[link](../json/config-infectivity-generic_Maternal_Infection_Transmission_Probability.json)
 Population_Density_C50,float,0,3.40E+38,10,The population density at which R0 for a 2.5-arc minute square reaches half of its initial value. **Population_Density_Infectivity_Correction** must be set to SATURATING_FUNCTION_OF_DENSITY.,[link](../json/config-infectivity-generic_Population_Density_C50.json)
 Population_Density_Infectivity_Correction,enum,NA,NA,CONSTANT_INFECTIVITY,"Correction to alter infectivity by population density set in the **Population_Density_C50** parameter. Measured in people per square kilometer. 
 Possible values are:
-
 * CONSTANT_INFECTIVITY
 * SATURATING_FUNCTION_OF_DENSITY
-  
 .. note::
-
    Sparsely populated areas have a lower infectivity, while densely populated areas have a higher infectivity, which rises to saturate at the **Base_Infectivity** value.",[link](../json/config-infectivity-generic_Population_Density_Infectivity_Correction.json)
 Relative_Sample_Rate_Immune,float,0.001,1,0.1,"The relative sampling rate for people who have acquired immunity through recovery or vaccination. The immune threshold at which to downsample is set by **Immune_Threshold_For_Downsampling**. If set to 1, this will have no effect, even if the individual's immunity modifier is below threshold. This can be a useful sanity check while learning this feature. **Individual_Sampling_Type** must be set to ADAPTED_SAMPLING_BY_IMMUNE_STATE. ",[link](../json/config-infectivity-generic_Relative_Sample_Rate_Immune.json)
 Susceptibility_Type,enum,NA,NA,FRACTIONAL,"Controls implementation of an individual's susceptibility. Currently only relevant to **Maternal_Protection_Type** parameter. Possible values are:
-
 FRACTIONAL
     All agents are assigned equal values between 0 and 1 according to a governing equation as specified by **Maternal_Protection_Type**.
 BINARY

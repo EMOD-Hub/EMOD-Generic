@@ -1,35 +1,27 @@
 Parameter,Type,Min,Max,Default,Description,Example
 Config_Name,string,NA,NA,UNINITIALIZED STRING,"The optional, user-supplied title naming a configuration file.",[link](../json/config-setup-generic_Config_Name.json)
 Custom_Coordinator_Events,array of strings,NA,NA,NA,"The list of valid, user-defined events for Event Coordinators that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
-
 Note: This configuration parameter is currently in beta release and has not yet been fully tested.",[link](../json/config-setup-generic_Custom_Coordinator_Events.json)
 Custom_Individual_Events,array of strings,NA,NA,NA,"The list of valid, user-defined events that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
-
 .. note:: 
-
     This configuration parameter is currently in beta release and has not yet been fully tested.",[link](../json/config-setup-generic_Custom_Individual_Events.json)
 Custom_Node_Events,array of strings,NA,NA,NA,"The list of valid, user-defined events for nodes that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.
-
 .. note:: 
-
     This configuration parameter is currently in beta release and has not yet been fully tested.",[link](../json/config-setup-generic_Custom_Node_Events.json)
 Enable_Interventions,boolean,0,1,0,Controls whether or not campaign interventions will be used in the simulation. Set **Campaign_Filename** to the path of the file that contains the campaign interventions.,[link](../json/config-setup-generic_Enable_Interventions.json)
 Enable_Random_Generator_From_Serialized_Population,boolean,0,1,0,Determines if the random number generator(s) should be extracted from a serialized population file. Enabling this will start a simulation from this file with the exact same random number stream and location in that stream as when the file was serialized.,[link](../json/config-setup-generic_Enable_Random_Generator_From_Serialized_Population.json)
-Enable_Skipping,boolean,0,1,0,"Controls whether or not the simulation uses an optimization that can increase performance by up to 50% in some cases by probabilistically exposing individuals rather than exposing every single person. Useful in low-prevalence, high-population scenarios.
-",[link](../json/config-setup-generic_Enable_Skipping.json)
+Enable_Skipping,boolean,0,1,0,"Controls whether or not the simulation uses an optimization that can increase performance by up to 50% in some cases by probabilistically exposing individuals rather than exposing every single person. Useful in low-prevalence, high-population scenarios.",[link](../json/config-setup-generic_Enable_Skipping.json)
 Enable_Termination_On_Zero_Total_Infectivity,boolean,0,1,0,Controls whether or not the simulation should be ended when total infectivity falls to zero. Supported only in single-node simulations. ,[link](../json/config-setup-generic_Enable_Termination_On_Zero_Total_Infectivity.json)
 Listed_Events,array of strings,NA,NA,[],"The list of valid, user-defined events that will be included in the campaign. Any event used in the campaign must either be one of the built-in events or in this list.",[link](../json/config-setup-generic_Listed_Events.json)
 Memory_Usage_Halting_Threshold_Working_Set_MB,integer,0,1.00E+06,8000,The maximum size (in MB) of working set memory before the system throws an exception and halts. ,[link](../json/config-setup-generic_Memory_Usage_Halting_Threshold_Working_Set_MB.json)
 Memory_Usage_Warning_Threshold_Working_Set_MB,integer,0,1.00E+06,7000,The maximum size (in MB) of working set memory before memory usage statistics are written to the log regardless of log level.,[link](../json/config-setup-generic_Memory_Usage_Warning_Threshold_Working_Set_MB.json)
 Node_Grid_Size,float,0.00416,90,0.004167,The spatial resolution indicating the node grid size for a simulation in degrees.,[link](../json/config-setup-generic_Node_Grid_Size.json)
 Random_Number_Generator_Policy,enum,NA,NA,ONE_PER_CORE,"The policy that determines if random numbers are generated for objects in a simulation on a per-core or per-node basis.  The following values are available:
-
 ONE_PER_CORE
     A random number generator (RNG) is created for each computing core running a simulation. When running a simulation on a single core, there will be only one RNG. If running the single simulation on multiple cores, each core will have its own RNG. The RNGs on the different cores start out such that they will not generate the same stream of random numbers. Prior to EMOD 2.19, all simulations used this policy. 
 ONE_PER_NODE
    An RNG is created for each geographic node in the simulation. The advantages of this policy are that 1) an event that causes a random number to be drawn in one node does not cause things to change in another node and 2) changing a simulation from single core to multi-core will not change the results. The RNGs on the different nodesstart out such that they will not generate the same stream of random numbers.",[link](../json/config-setup-generic_Random_Number_Generator_Policy.json)
 Random_Number_Generator_Type,enum,NA,NA,USE_PSEUDO_DES,"The type of random number generator to use for objects in a simulation. Must set the RNG seed in **Run_Number**. The following values are available:
-
 USE_PSEUDO_DES
     Based on `Numerical Recipes in C. The Art of Scientific Computing <https://en.wikipedia.org/wiki/Numerical_Recipes>`_, 2nd ed. Press, William H. et. al, 1992. Prior to EMOD 2.19, this was the only generator available.
 USE_LINEAR_CONGRUENTIAL
@@ -40,7 +32,6 @@ Run_Number,integer,0,65535,1,Sets the random number seed used with **Random_Numb
 Serialization_Times,array of floats,,,0,"The list of times at which to save the serialized state to file. 0 indicates the initial state before simulation, n indicates the time to serialize in terms of start time and step size, and will be rounded up to the nearest time step. The serialized population files can then be loaded at the beginning of a simulation using **Serialized_Population_Filenames** and **Serialized_Population_Path**.",[link](../json/config-setup-generic_Serialization_Times.json)
 Serialization_Time_Steps,array of integers,0,2.15E+09,,"The list of time steps after which to save the serialized state to file. 0 (zero) indicates the initial state before simulation, n indicates after the nth time step. **Serialization_Type** must be set to TIMESTEP. The serialized population files can then be loaded at the beginning of a simulation using **Serialized_Population_Filenames** and **Serialized_Population_Path**.",[link](../json/config-setup-generic_Serialization_Time_Steps.json)
 Serialization_Type,enum,NA,NA,NONE,"The type of serialization to perform. Serialization saves the population state at particular times so you can start from that state in other simulations. Accepted values are:
-
 NONE
     No serialization.
 TIME
@@ -54,7 +45,6 @@ Serialized_Population_Path,string,NA,NA,.,The root path for the serialized popul
 Simulation_Duration,float,0,1000000,1,The elapsed time (in days) from the start to the end of a simulation.,[link](../json/config-setup-generic_Simulation_Duration.json)
 Simulation_Timestep,float,0,1000000,1,"The duration of a simulation time step, in days.",[link](../json/config-setup-generic_Simulation_Timestep.json)
 Simulation_Type,enum,NA,NA,GENERIC_SIM,"The type of disease being simulated. Possible IDM-supported values are:
-
 * GENERIC_SIM
 * VECTOR_SIM
 * MALARIA_SIM
@@ -64,8 +54,5 @@ Simulation_Type,enum,NA,NA,GENERIC_SIM,"The type of disease being simulated. Pos
 * ENVIRONMENTAL_SIM
 * TYPHOID_SIM",[link](../json/config-setup-generic_Simulation_Type.json)
 Start_Time,float,0,1000000,1,"The time, in days, when the simulation begins. This time is used to identify the starting values of the temporal input data, such as specifying which day's climate values should be used for the first day of the simulation. 
-
 .. note::
-
-   The **Start_Day** of campaign events is in absolute time, so time relative to the beginning of the simulation depends on this parameter.
-",[link](../json/config-setup-generic_Start_Time.json)
+   The **Start_Day** of campaign events is in absolute time, so time relative to the beginning of the simulation depends on this parameter.",[link](../json/config-setup-generic_Start_Time.json)

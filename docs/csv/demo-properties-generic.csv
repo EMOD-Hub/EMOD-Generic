@@ -1,12 +1,10 @@
 Parameter,Type,Min,Max,Default,Description,Example
 Age_Bin_Edges_In_Years,array,NA,NA,NA,"An array of integers that represents the ages, in years, at which to demarcate the age groups for individuals. Used only with the **Age_Bin** property type. The first number must be 0, the last must be -1, and they must be listed in ascending order. Cannot be used with **NodeProperties**.
-
-EMOD automatically create the individual property **Age_Bin** with values based on the bin edges using the format **Age_Bin_Property_From_X_To_Y**. These appear in the property reports and can be used to target campaign interventions using **Property_Restrictions_Within_Node**. See :doc:`model-targeted-interventions` for more information.",[link](../json/demo-properties-generic_Age_Bin_Edges_In_Years.json)
+EMOD automatically create the individual property **Age_Bin** with values based on the bin edges using the format **Age_Bin_Property_From_X_To_Y**. These appear in the property reports and can be used to target campaign interventions using **Property_Restrictions_Within_Node**. See [Targeting interventions to nodes or individuals](../md_model/model-targeted-interventions.md) for more information.",[link](../json/demo-properties-generic_Age_Bin_Edges_In_Years.json)
 IndividualProperties,array of objects,NA,NA,NA,"An array that contains parameters that add properties to individuals in a simulation. For example, you can define values for accessibility, age, geography, risk, and other properties and assign values to different individuals. alues.",[link](../json/demo-properties-generic_IndividualProperties.json)
 Initial_Distribution,array of floats,0,1,1,"An array of floats that define the proportion of property values to assign to individuals or nodes at the beginning of the simulation and when new individuals are born. Their sum must equal 1 and the number of members in this array must match the number of members in **Values**. For Age_Bin property types, omit this parameter as the demographics file controls the age distribution.",[link](../json/demo-properties-generic_Initial_Distribution_1.json) [link](../json/demo-properties-generic_Initial_Distribution_2.json)
 NodeProperties,array of objects,NA,NA,NA,"An array that contains parameters that add properties to nodes in a simulation. Defined in the demographics file at the same level as **Nodes** and **Defaults**. For example, you can define values for intervention status, risk, and other properties and assign values to different nodes.",[link](../json/demo-properties-generic_NodeProperties.json)
 Property,enum,NA,NA,NA,"The individual or node property type for which you will assign values to create groups. You can then update the property values assigned to individuals or nodes or target interventions to particular groups. Note that these types, with the exception of Age_Bin, are merely labels that do not affect the simulation unless specified to do so. Possible values are:
-
 Age_Bin
    Assign individuals to age bins. Use with **Age_Bin_Edges_In_Years**. Cannot be used with **NodeProperties**.
 Accessibility
@@ -22,13 +20,10 @@ Place
 Risk
    Tag individuals or nodes based on disease risk.
 QualityofCare
-   Tag individuals or nodes based on the quality of medical care.
-",[link](../json/demo-properties-generic_Property_1.json) [link](../json/demo-properties-generic_Property_2.json)
-TransmissionMatrix,JSON object,NA,NA,NA,"An object that contains **Route** and **Matrix** parameters that define how to scale the base infectivity from individuals with one property value to individuals with another. **Route** can be set to ""Contact"" or ""Environmental"" and **Matrix** contains a :term:`WAIFW matrix` of the disease transmission multipliers. The rows and columns are in the same order that the property values were defined in **Value**.
+   Tag individuals or nodes based on the quality of medical care.",[link](../json/demo-properties-generic_Property_1.json) [link](../json/demo-properties-generic_Property_2.json)
+TransmissionMatrix,JSON object,NA,NA,NA,"An object that contains **Route** and **Matrix** parameters that define how to scale the base infectivity from individuals with one property value to individuals with another. **Route** can be set to ""Contact"" or ""Environmental"" and **Matrix** contains a WAIFW matrix of the disease transmission multipliers. The rows and columns are in the same order that the property values were defined in **Value**.
 The rows represent the infectious individuals (the ""whom""); the columns represent the susceptible individuals (the ""who"").
-
-This implements the HINT feature, which is available only in the generic, environmental, and typhoid simulation types. For more information, see :doc:`model-hint`.
-**Enable_Heterogeneous_Intranode_Transmission** in the configuration file must be set to 1 (see :doc:`parameter-configuration-infectivity` parameters). Cannot be used with **NodeProperties**.",[link](../json/demo-properties-generic_TransmissionMatrix.json)
+This implements the HINT feature, which is available only in the generic, environmental, and typhoid simulation types. For more information, see [Property-based heterogeneous disease transmission (HINT)](../md_model/model-hint.md).
+**Enable_Heterogeneous_Intranode_Transmission** in the configuration file must be set to 1 (see [Infectivity and transmission](../md_parameter/parameter-configuration-infectivity.md) parameters). Cannot be used with **NodeProperties**.",[link](../json/demo-properties-generic_TransmissionMatrix.json)
 Values,array of strings,NA,NA,NA,"An array of the user-defined values that can be assigned to individuals or nodes for this property. The order of the values corresponds to the order of the **Initial_Distribution** array.
-
 You can have up to 125 values for the Geographic and InterventionStatus property types and up to 5 values for all other types. For Age_Bin property types, omit this parameter and use **Age_Bin_Edges_In_Years** instead.",[link](../json/demo-properties-generic_Values_1.json) [link](../json/demo-properties-generic_Values_2.json)

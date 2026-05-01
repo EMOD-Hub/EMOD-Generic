@@ -1,30 +1,25 @@
 Parameter,Type,Min,Max,Default,Description,Example
-Completion_Event,array of strings,NA,NA,NA,"The completion event list that will be broadcast every time the triggered event coordinator completes a set of repetitions. The events contained in the list are defined in **Custom_Coordinator_Events** in the simulation configuration file.
-",[link](../json/campaign-triggeredeventcoordinator_Completion_Event.json)
+Completion_Event,array of strings,NA,NA,NA,The completion event list that will be broadcast every time the triggered event coordinator completes a set of repetitions. The events contained in the list are defined in **Custom_Coordinator_Events** in the simulation configuration file.,[link](../json/campaign-triggeredeventcoordinator_Completion_Event.json)
 Coordinator_Name,string,NA,NA,TriggeredEventCoordinator,The unique identifying coordinator name used to identify the different coordinators in reports.,[link](../json/campaign-triggeredeventcoordinator_Coordinator_Name.json)
 Duration,float,-1,3.40282e+38,-1,The time period (in days) that the triggered event coordinator is active before it expires. Once the specified duration has been reached the coordinator will expire whether or not it is in the  middle of a set of repetitions. The value of -1 (default) equals to never expire. ,[link](../json/campaign-triggeredeventcoordinator_Duration.json)
 Intervention_Config,JSON object,NA,NA,NA,The nested JSON of the intervention to be distributed by this event coordinator.,[link](../json/campaign-triggeredeventcoordinator_Intervention_Config.json)
 Node_Property_Restrictions,array of JSON objects,NA,NA,NA,"A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See :ref:`demo-properties` parameters for more information. You can specify AND and OR combinations of key:value pairs with this parameter.",[link](../json/campaign-triggeredeventcoordinator_Node_Property_Restrictions.json)
 Number_Repetitions,integer,-1,1000,1,"The number of times an intervention is given, used with **Timesteps_Between_Repetitions**.",[link](../json/campaign-triggeredeventcoordinator_Number_Repetitions.json)
 Property_Restrictions,array of JSON objects,NA,NA,NA,"A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
-
 To specify AND and OR combinations of key:value pairs, use **Property_Restrictions_Within_Node**. You cannot use both of these parameters in the same event coordinator.",[link](../json/campaign-triggeredeventcoordinator_Property_Restrictions.json)
 Property_Restrictions_Within_Node,array of JSON objects,NA,NA,NA,"A list of the **IndividualProperty** key:value pairs, as defined in the demographics file, that individuals must have to be targeted by this intervention. See :ref:`demo-properties` parameters for more information.
-
 This parameter allows you to specify AND and OR combinations of key:value pairs. You may specify individual property restrictions using either this parameter or **Property_Restrictions**, but not both. ",[link](../json/campaign-triggeredeventcoordinator_Property_Restrictions_Within_Node.json)
 Start_Trigger_Condition_List,array of strings,NA,NA,NA,The trigger condition event list that when heard will start a new set of repetitions for the triggered event coordinator. The list cannot be empty. The events contained in the list are defined in **Custom_Coordinator_Events** in the simulation configuration file.,[link](../json/campaign-triggeredeventcoordinator_Start_Trigger_Condition_List.json)
 Stop_Trigger_Condition_List,array of strings,NA,NA,NA,The trigger condition event list that when heard will stop any repetitions for the triggered event coordinator until a start trigger condition event list is received. The list can be empty. The events contained in the list are defined in **Custom_Coordinator_Events** in the simulation configuration file.,[link](../json/campaign-triggeredeventcoordinator_Stop_Trigger_Condition_List.json)
 Target_Age_Max,float,0,9.3228e+35,9.3228e+35,"The upper end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",[link](../json/campaign-triggeredeventcoordinator_Target_Age_Max.json)
 Target_Age_Min,float,0,3.40E+38,0,"The lower end of ages targeted for an intervention, in years. Used when **Target_Demographic** is set to ExplicitAgeRanges or ExplicitAgeRangesAndGender.",[link](../json/campaign-triggeredeventcoordinator_Target_Age_Min.json)
 Target_Demographic,enum,NA,NA,Everyone,"The target demographic group. Possible values are:
-
 * Everyone
 * ExplicitAgeRanges
 * ExplicitAgeRangesAndGender
 * ExplicitGender
 * ExplicitDiseaseState",[link](../json/campaign-triggeredeventcoordinator_Target_Demographic.json)
 Target_Gender,enum,NA,NA,All,"Specifies the gender restriction for the intervention. Possible values are:
-
 * Male
 * Female
 * All",[link](../json/campaign-triggeredeventcoordinator_Target_Gender.json)

@@ -1,7 +1,5 @@
 Parameter,Type,Min,Max,Default,Description,Example
-Event_Coordinator_Config,JSON object,NA,NA,NA,"An object that specifies how the event is handled by the simulation. It specifies which Event Coordinator class will handle the event, and then configures the coordinator. This description starts with specifying class, and then the other fields depend on the class.
-",[link](../json/campaign-campaignevent_Event_Coordinator_Config.json)
+Event_Coordinator_Config,JSON object,NA,NA,NA,"An object that specifies how the event is handled by the simulation. It specifies which Event Coordinator class will handle the event, and then configures the coordinator. This description starts with specifying class, and then the other fields depend on the class.",[link](../json/campaign-campaignevent_Event_Coordinator_Config.json)
 Event_Name,string,NA,NA,NA,The optional name used to refer to this event as a means to differentiate it from others that use the same class.,[link](../json/campaign-campaignevent_Event_Name.json)
-Nodeset_Config,JSON object,NA,NA,NA,"An object that specifies in which nodes the interventions will be distributed. Set to one of the :ref:`campaign-nodeset-config`.
-",[link](../json/campaign-campaignevent_Nodeset_Config.json)
+Nodeset_Config,JSON object,NA,NA,NA,An object that specifies in which nodes the interventions will be distributed. Set to one of the :ref:`campaign-nodeset-config`.,[link](../json/campaign-campaignevent_Nodeset_Config.json)
 Start_Day,float,-1,3.40282e+38,1,"The day of the simulation to activate the event's event coordinator. Depending on the event coordinator and intervention, this may indicate when to distribute an intervention or when to begin listening for a trigger. ",[link](../json/campaign-campaignevent_Start_Day.json)

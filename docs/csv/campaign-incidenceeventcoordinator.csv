@@ -1,25 +1,21 @@
 Parameter,Type,Min,Max,Default,Description,Example
 Action_List,array of JSON objects,NA,NA,NA,"List (array) of JSON objects, including the values specified in the following parameters: **Threshold**, **Event_Type**, **Event_To_Broadcast**.",[link](../json/campaign-incidenceeventcoordinator_Action_List.json)
 Count_Events_For_Num_Timesteps,integer,1,2.15E+00,1,"If set to true (1), then the waning effect values, as specified in the **Effect_List** list of objects for the **WaningEffectCombo** classes, are added together. If set to false (0), the waning effect values are multiplied. The resulting waning effect value cannot be greater than 1.",[link](../json/campaign-incidenceeventcoordinator_Count_Events_For_Num_Timesteps.json)
-Event_To_Broadcast,string,NA,NA,NA,The action event to occur when the specified trigger value in the **Threshold** parameter is met. At least one action must be defined for **Event_To_Broadcast**. The events contained in the list can be built-in events (see :doc:`parameter-campaign-event-list` for possible events).,[link](../json/campaign-incidenceeventcoordinator_Event_To_Broadcast.json)
+Event_To_Broadcast,string,NA,NA,NA,The action event to occur when the specified trigger value in the **Threshold** parameter is met. At least one action must be defined for **Event_To_Broadcast**. The events contained in the list can be built-in events (see [Event list](../md_parameter/parameter-campaign-event-list.md) for possible events).,[link](../json/campaign-incidenceeventcoordinator_Event_To_Broadcast.json)
 Event_Type,enum,NA,NA,INDIVIDUAL,"The type of event to be broadcast.  Possible values are:
-
 * COORDINATOR
 * INDIVIDUAL
 * NODE",[link](../json/campaign-incidenceeventcoordinator_Event_Type.json)
-Incidence_Counter,array of JSON objects,NA,NA,NA,"List of JSON objects for specifying the conditions and parameters that must be met for an incidence to be counted. Some of the values are specified in the following parameters: **Count_Events_For_Num_Timesteps**, **Trigger_Condition_List**, **Node_Property_Restrictions**.
-",[link](../json/campaign-incidenceeventcoordinator_Incidence_Counter.json)
+Incidence_Counter,array of JSON objects,NA,NA,NA,"List of JSON objects for specifying the conditions and parameters that must be met for an incidence to be counted. Some of the values are specified in the following parameters: **Count_Events_For_Num_Timesteps**, **Trigger_Condition_List**, **Node_Property_Restrictions**.",[link](../json/campaign-incidenceeventcoordinator_Incidence_Counter.json)
 Node_Property_Restrictions,array of JSON objects,NA,NA,NA,"A list of the **NodeProperty** key:value pairs, as defined in the demographics file, that nodes must have to be targeted by the intervention. See :ref:`demo-properties` parameters for more information. You can specify AND and OR combinations of key:value pairs with this parameter.",[link](../json/campaign-incidenceeventcoordinator_Node_Property_Restrictions.json)
 Number_Repetitions,integer,-1,1000,1,"The number of times an intervention is given, used with **Timesteps_Between_Repetitions**.",[link](../json/campaign-incidenceeventcoordinator_Number_Repetitions.json)
 Responder,array of JSON objects,NA,NA,NA,"List of JSON objects for specifying the threshold type, values, and the actions to take when the specified conditions and parameters have been met, as configured in the **Incidence_Counter** parameter. Some of the values are specified in the following parameters:
-
 * **Threshold_Type**
 * **Action_List**
 * **Threshold**
 * **Event_To_Broadcast**",[link](../json/campaign-incidenceeventcoordinator_Responder.json)
 Threshold,float,0,3.40E+03,0,The threshold value that triggers the specified action for the **Event_To_Broadcast** parameter. When you use the **Threshold** parameter you must also use the **Event_To_Broadcast** parameter.,[link](../json/campaign-incidenceeventcoordinator_Threshold.json)
 Threshold_Type,enum,NA,NA,COUNT,"Threshold type. Possible values are: 
-
 * COUNT
 * PERCENTAGE.",[link](../json/campaign-incidenceeventcoordinator_Threshold_Type.json)
 Timesteps_Between_Repetitions,integer,-1,1000,-1,The repetition interval.,[link](../json/campaign-incidenceeventcoordinator_Timesteps_Between_Repetitions.json)

@@ -5,13 +5,6 @@ distribution for age, gender, immunity, risk, and mortality. These parameters wo
 [parameter-configuration-population](parameter-configuration-population.md) parameters in the **configuration file**, which are simulation-wide and
 generally control whether certain events, such as births or deaths, are enabled in a simulation.
 
-Generally, you will download a demographics file and modify it to meet the needs of your
-simulation. Demographics files for several locations are available on the Institute for Disease Modeling (IDM)
-GitHub [EMOD-InputData](https://github.com/InstituteforDiseaseModeling/EMOD-InputData) repository or
-you can use COmputational Modeling Platform Service (COMPS) to generate demographics and climate files for a particular region.
-By convention, these are named using the name of the region appended with "_demographics.json", but
-you may name the file anything you like.
-
 Additionally, you can use more than one demographics file, with one serving as the base layer and
 the one or more others acting as overlays that override the values in the base layer. This can be
 helpful if you want to experiment with different values in the overlay without modifying your base
@@ -48,8 +41,6 @@ The tables below contain only parameters available when using the generic **simu
         model.
 
     <button class="collapse-table-button btn btn-info">Collapse all parameter tables</button>
-
-.. _demo-metadata:
 
 ## Metadata
 
@@ -88,8 +79,6 @@ null value, 1 is added to the **NodeID** as part of the final calculation.
 
 {{ read_csv("csv/demo-metadata-generic.csv") }}
 
-.. _demo-properties:
-
 ## NodeProperties and IndividualProperties
 
 Node properties and individual properties are set similarly and share many of the same parameters.
@@ -125,8 +114,6 @@ depend on values set in the configuration parameters.
 
 {{ read_csv("csv/demo-nodeattributes-generic.csv") }}
 
-.. _demo-individualattributes:
-
 ## IndividualAttributes
 
 The **IndividualAttributes** section contains parameters that initialize the distribution of
@@ -139,21 +126,6 @@ distribution system.
     <button class="toggle-button btn btn-info">Toggle parameter table</button>
 
 {{ read_csv("csv/demo-individualattributes-generic.csv") }}
-
-.. _demo-simpledistro:
-
-### Simple distributions
-
-Simple distributions are defined by three parameters where one is a flag for the distribution type
-and the other two are used to further define the distribution. For example, if you set the age flag
-to a uniform distribution, the initial ages of individuals in the simulation will be evenly
-distributed between some minimum and maximum value as defined by the other two parameters.
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
-{{ read_csv("csv/demo-simpledistro-generic.csv") }}
-
-.. _demo-complexdistro:
 
 ### Complex distributions
 
