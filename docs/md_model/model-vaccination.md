@@ -60,19 +60,13 @@ For example, the fraction of people getting at least one vaccination with a 50% 
 shown in the following table. After a few rounds, the coverage increases significantly with the
 number of campaigns.
 
-+---------------------+-------------------------------+
 | Number of campaigns | Covered percentage (>=1 dose) |
-+=====================+===============================+
-| 1                   | 50%                           |
-+---------------------+-------------------------------+
-| 2                   | 75%                           |
-+---------------------+-------------------------------+
-| 3                   | 87.5%                         |
-+---------------------+-------------------------------+
-| 4                   | 93.75%                        |
-+---------------------+-------------------------------+
-| 5                   | 96.875%                       |
-+---------------------+-------------------------------+
+|---|---|
+| 1 | 50% |
+| 2 | 75% |
+| 3 | 87.5% |
+| 4 | 93.75% |
+| 5 | 96.875% |
 
 The following graphs show a baseline SIR outbreak and then the effect of a vaccination campaign
 distributed to the entire population. The vaccination campaign is repeated three times, seven days
