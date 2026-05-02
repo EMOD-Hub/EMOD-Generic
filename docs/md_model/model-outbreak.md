@@ -66,8 +66,7 @@ secondary human transmission to a high zoonosis rate with low human transmission
 fraction of cases that are primary zoonotic infections.
 
 The following graphs show the **inset chart** and charts for all channels in an outbreak of a
-zoonotic disease. To run this example simulation, see the Generic/Zoonosis scenario in the
-downloadable [EMOD scenarios](https://github.com/InstituteforDiseaseModeling/docs-emod-scenarios/releases) zip file. Review the README files there for more information.
+zoonotic disease.
 
 After the initial outbreak, there are no additional imported cases set in the campaign file.
 However, there are additional introductions from the animal

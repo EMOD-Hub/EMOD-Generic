@@ -8,5 +8,5 @@ simulations locally or on an HPC cluster using real-world data.
 !!! note
 
         If you want to download and modify the EMOD source code and build the Eradication.exe or Eradication binary for Linux
-        yourself, see [dev-install-overview](dev-install-overview.md).
+        yourself, see [dev-install-overview](../md_dev/dev-install-overview.md).
 

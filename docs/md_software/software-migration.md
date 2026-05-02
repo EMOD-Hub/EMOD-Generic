@@ -24,7 +24,7 @@ Additionally, a modifier can be applied for the migration rates to follow a dist
 the population. For more information, see [parameter-configuration-migration](../md_parameter/parameter-configuration-migration.md) parameters.
 
 Migration data is contained in a set of two files, a metadata file with header information and a
-binary data file. Both files are required. To create these files see, [software-migration-creation](software-migration-creation.md).
+binary data file. Both files are required.
 
 ## JSON metadata file
 

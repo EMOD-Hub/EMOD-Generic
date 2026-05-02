@@ -13,7 +13,7 @@ of models called compartmental models. Developed in the early 20th century, thes
 population into groups, generally based on their risk or infection status. Underlying these models
 is a system of differential equations that track the number of people in each category over time.
 If you would like a more in-depth introduction to epidemiology and disease modeling, you may want to
-take the [Epidemics](https://www.coursera.org/learn/epidemics/home/welcome) course from The Pennsylvania State University through Coursera.
+take the [Epidemics][coursera-epidemics] course from The Pennsylvania State University through Coursera.
 
 Epidemiological MODeling software (EMOD) is an **agent-based model** (ABM), another powerful tool used to help understand the complexity inherent in disease transmission systems. EMOD is a discrete time, :term:`Monte Carlo
 method`  simulator that simulates the simultaneous interactions of agents in an effort to recreate

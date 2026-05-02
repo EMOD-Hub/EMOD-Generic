@@ -26,11 +26,6 @@ You can use the Microsoft Visual Studio solution file in the EMOD source code re
 build the monolithic version of the EMOD executable (Eradication.exe), which can be either a release or debug build. Visual Studio 2022 (Professional, Premium, or Ultimate)
 is the currently supported version.
 
-!!! warning
-
-         Visual Studio creates a debug build by default. However, you must use a release build to
-         commission simulations to COmputational Modeling Platform Service (COMPS); attempting to use a debug build will result in an error.
-
 1. In Visual Studio, navigate to the directory where the EMOD repository is cloned and open the
     EradicationKernel solution.
 1. If prompted to upgrade the C++ toolset used, do so.
@@ -44,8 +39,7 @@ Eradication.exe will be in a subdirectory of the Eradication directory.
 SCons is a software construction tool that is an alternative to the well-known "Make" build tool. It
 is implemented in Python and the SCons configuration files, SConstruct and SConscript, are executed
 as Python scripts. This allows for greater flexibility and extensibility, such as the creation of
-custom SCons abilities just for EMOD. For more information on Scons, see [www.scons.org](http://www.scons.org/). SCons 3.0.1
-is the currently supported version.
+custom SCons abilities just for EMOD.
 
 !!! warning
 

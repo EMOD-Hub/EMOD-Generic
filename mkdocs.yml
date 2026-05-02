@@ -45,9 +45,7 @@ nav:
       - Campaign file:
         - Overview: md_software/software-campaign.md
         - md_software/software-campaign-overlay.md
-      - Migration files:
-        - Overview: md_software/software-migration.md
-        - md_software/software-migration-creation.md
+      - md_software/software-migration.md
       - md_software/software-climate.md
       - md_software/software-load-balancing.md
       - md_software/software-serialized.md
@@ -167,14 +165,8 @@ nav:
     - Overview: md_dev/dev-overview.md
     - EMOD source code installation:
       - Overview: md_dev/dev-install-overview.md
-      - md_dev/dev-install-windows-prerequisites.md
-      - md_dev/dev-install-centos-prerequisites.md
       - md_dev/dev-install-download-emod.md
       - md_dev/dev-install-build-emod.md
-      - Getting started with building EMOD source code from CentOS Docker images:
-        - Overview: md_dev/dev-install-centos-docker.md
-        - md_dev/dev-install-centos-docker-linux.md
-        - md_dev/dev-install-centos-docker-win.md
     - EMOD architecture:
       - Overview: md_dev/dev-architecture-overview.md
       - md_dev/dev-architecture-environment.md

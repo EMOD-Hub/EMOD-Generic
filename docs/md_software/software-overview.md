@@ -60,7 +60,7 @@ One strength of EMOD is the ability to incorporate interventions aimed at contro
 eradicating disease. Quantitative analysis of the simulated output enables disease eradication
 efforts to be more driven by data. The IDM research team has published many articles
 related to modeling and the modeling concepts underpinning EMOD. For a list of published
-articles, see [IDM Publications](http://idmod.org/publications).
+articles, see [IDM Publications][idmod-publications].
 
 This section provides an overview of EMOD and files needed to run simulations. The architecture
 diagram below shows, at a high level, how the system functions. If you run simulations in parallel

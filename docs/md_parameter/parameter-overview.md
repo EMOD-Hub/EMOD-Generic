@@ -60,11 +60,3 @@ The following is an example of a JSON formatted file.
         }
     }
 ```
-
-## JSON resources
-
-The website https://jsonlint.com provides validation of JSON formatting. This can be very helpful in
-identifying missing commas, unbalanced curly braces, missing quotation marks, and other common JSON
-syntax errors. Another helpful site is http://jsondiff.com/, which highlights differences between
-two uploaded JSON files.
-
