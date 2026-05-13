@@ -155,44 +155,6 @@ class MyRegressionRunner(object):
                             print("Could not find input file '{0}' to copy to '{1}' for scenario '{2}'".format(source, dest, scenario))
         return
 
-    def copy_pymod_files( self, config_json, simulation_directory, scenario_path ):
-        if "emodularization" not in scenario_path:
-            return
-
-        # Copy *_template.json and *_test.py from scenario_path to simulation_directory.
-        # And copy ../*.pyd files
-        sim_dir = os.path.join(self.params.local_sim_root, simulation_directory)
-
-        # just search for all pyd files by walking the tree and copy them to each sim folder for now
-        pyds = []
-        suffix = ".so" if os.name == "posix" else ".pyd"
-        #pyds = glob.glob( ( "../emodularization/**/*." + suffix ), recursive=True)
-        for root, dirs, files in os.walk("../emodularization/"):
-            for file in files:
-                if file.endswith(suffix):
-                    pyds.append((os.path.join(root, file))) 
-        print( "Found python shared objects to copy: " + str( pyds ) )
-        for pyd in pyds:
-            print( "Copying " + pyd + " to" + os.path.join( sim_dir, os.path.basename( pyd ) ) )
-            ru.copy( pyd, os.path.join( sim_dir, os.path.basename( pyd ) ) )
-       
-        # Yes, I can combine the below 3 blocks by having list pairs of root-dir and regex but I 
-        # want the last two to go away.
-        regexes = [ "*_template.json", "demographics_*.json", "*.py" ]
-        # copy certain files (nice if we can be more specific)
-        for pattern in regexes:
-            foundfiles = glob.glob(os.path.join( scenario_path, pattern ))
-            for myfile in foundfiles:
-                ru.copy( myfile, os.path.join( sim_dir, os.path.basename( myfile ) ) )
-       
-
-        # WANT TO GET RID OF THIS: Some multi-test situations have common python scripts in the parent folder
-        # but regular tests (non-sub-foldered) could have who-knows-what in their parent dir!
-        for py in glob.glob( os.path.join( os.path.join( scenario_path, ".." ), "*.py" )):
-            ru.copy( py, os.path.join( sim_dir, os.path.basename( py ) ) )
-
-        return
-
     def copy_input_files_to_user_input(self, simulation_directory, scenario_path, config_json):
         # Copy local demographics/input file(s) 
         source_input_directory = "."
@@ -201,7 +163,6 @@ class MyRegressionRunner(object):
         self.copy_demographics_files_to_user_input(simulation_directory, config_json, scenario_path, source_input_directory) 
         self.copy_climate_and_migration_files_to_user_input(simulation_directory, config_json, source_input_directory, scenario_path) 
         self.copy_serialized_population_files(config_json,simulation_directory, scenario_path)
-        self.copy_pymod_files(config_json, simulation_directory, scenario_path)
 
         return
 
