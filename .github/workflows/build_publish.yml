@@ -58,7 +58,7 @@ jobs:
             echo "> **emod-generic** — This package is a disease-specific distribution of the EMOD binary for the **Generic** simulation type."
             echo ""
             cat README.md
-          } > pypi/README.md
+          } > pypi_generic/README.md
       - name: Download executable
         uses: actions/download-artifact@v8
         with:
