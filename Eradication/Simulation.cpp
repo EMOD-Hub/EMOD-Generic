@@ -33,6 +33,7 @@
 #include "EventTrigger.h"
 #include "RandomNumberGeneratorFactory.h"
 #include "DllLoader.h"
+#include "ReportFactory.h"
 #include "MpiDataExchanger.h"
 #include "IdmMpi.h"
 #include "Properties.h"
@@ -1373,7 +1374,6 @@ namespace Kernel
 
         WithSelfFunc to_self_func = [this](int myRank) 
         { 
-#ifndef _DEBUG
             // Don't bother to serialize locally
             // for (auto individual : migratingIndividualQueues[destination_rank]) // Note the direction of iteration below!
             for (auto iterator = migratingIndividualQueues[myRank].rbegin(); iterator != migratingIndividualQueues[myRank].rend(); ++iterator)
@@ -1387,27 +1387,7 @@ namespace Kernel
                     delete individual;
                 }
             }
-#else
-            if ( migratingIndividualQueues[myRank].size() > 0 )
-            {
-                auto writer = make_shared<BinaryArchiveWriter>();
-                (*static_cast<IArchive*>(writer.get())) & migratingIndividualQueues[myRank];
-
-                for (auto& individual : migratingIndividualQueues[myRank])
-                    delete individual; // individual->Recycle();
-
-                migratingIndividualQueues[myRank].clear();
-
-                auto reader = make_shared<BinaryArchiveReader>(static_cast<IArchive*>(writer.get())->GetBuffer(), static_cast<IArchive*>(writer.get())->GetBufferSize());
-                (*static_cast<IArchive*>(reader.get())) & migratingIndividualQueues[myRank];
-                for (auto individual : migratingIndividualQueues[myRank])
-                {
-                    IMigrate* immigrant = individual->GetIMigrate();
-                    immigrant->ImmigrateTo( nodes[immigrant->GetMigrationDestination()] );
-                }
-            }
-#endif
-        }; 
+        };
 
         SendToOthersFunc to_others_func = [this](IArchive* writer, int toRank)
         {

@@ -34,38 +34,37 @@ else:
                             "SqlLogger.cpp",
                             "RandomSerializable.cpp",
                             "RandomNumberGeneratorFactory.cpp",
-                            "BroadcasterImpl.cpp",
                             
                             # Campaign
+                            "BroadcasterImpl.cpp",
+                            "BroadcastCoordinatorEvent.cpp",
+                            "CalendarEventCoordinator.cpp",
                             "CampaignEvent.cpp",
+                            "DelayEventCoordinator.cpp",
+                            "IncidenceEventCoordinator.cpp",
                             "InterventionsContainer.cpp",
                             "NChooserEventCoordinator.cpp",
                             "NodeEventContext.cpp",
                             "SimulationEventContext.cpp",
                             "StandardEventCoordinator.cpp",
+                            "IncidenceCounterSurveillance.cpp",
+                            "SurveillanceEventCoordinator.cpp",
+                            "TriggeredEventCoordinator.cpp",
                             "CoverageByNodeEventCoordinator.cpp",
                             "CommunityHealthWorkerEventCoordinator.cpp",
                             "DemographicRestrictions.cpp",
                             "PropertyRestrictions.cpp",
-
-                            # Surveillance
-                            "BroadcastCoordinatorEvent.cpp",
-                            "CalendarEventCoordinator.cpp",
-                            "DelayEventCoordinator.cpp",
-                            "IncidenceEventCoordinator.cpp",
-                            "IncidenceCounterSurveillance.cpp",
-                            "SurveillanceEventCoordinator.cpp",
-                            "TriggeredEventCoordinator.cpp",
-                            "ReportSurveillanceEventRecorder.cpp",
                             
                             # Reporting
                             "DemographicsReport.cpp",
                             "PropertyReport.cpp",
+                            "ReportFactory.cpp",
                             "Report.cpp",
                             "ReportStatsByIP.cpp",
                             "ReportEventRecorder.cpp",
                             "ReportEventRecorderNode.cpp",
                             "ReportEventRecorderCoordinator.cpp",
+                            "ReportSurveillanceEventRecorder.cpp",
                             "SQLReporter.cpp",
                             
                             # HINT
@@ -83,13 +82,13 @@ else:
                             "SpatialReport.cpp",
                             "Susceptibility.cpp",
 
+                            "../interventions/CalendarIV.cpp",
+                            "../interventions/DelayedIntervention.cpp",
+                            "../interventions/Diagnostics.cpp",
                             "../interventions/BroadcastEvent.cpp",
                             "../interventions/BroadcastNodeEvent.cpp",
                             "../interventions/BroadcastEventToOtherNodes.cpp",
-                            "../interventions/CalendarIV.cpp",
                             "../interventions/ChangeIPMatrix.cpp",
-                            "../interventions/DelayedIntervention.cpp",
-                            "../interventions/Diagnostics.cpp",
                             "../interventions/Drugs.cpp",
                             "../interventions/EnvironmentalDiagnostic.cpp",
                             "../interventions/HealthSeekingBehavior.cpp",
@@ -106,9 +105,10 @@ else:
                             "../interventions/NodeRandomNumber.cpp",
                             "../interventions/NLHTIVNode.cpp",
                             "../interventions/NodePropertyValueChanger.cpp",
+                            "../interventions/PropertyValueChanger.cpp",
                             "../interventions/Outbreak.cpp",
                             "../interventions/OutbreakIndividual.cpp",
-                            "../interventions/PropertyValueChanger.cpp",
+
                             "../interventions/TravelRestriction.cpp",
                             "../interventions/Vaccine.cpp",
     ]
@@ -139,12 +139,10 @@ else:
                             "VectorProbabilities.cpp",
                             "VectorSpeciesParameters.cpp",
                             "VectorSpeciesReport.cpp",
-
                             "Climate.cpp",
                             "ClimateByData.cpp",
                             "ClimateConstant.cpp",
                             "ClimateKoppen.cpp",
-
                             "../interventions/Bednet.cpp",
                             "../interventions/BitingRisk.cpp",
                             "../interventions/HousingModification.cpp", 
@@ -334,7 +332,7 @@ else:
                             "../interventions/ModifyStiCoInfectionStatus.cpp",
                             "../interventions/StiCoInfectionDiagnostic.cpp",
                             "../interventions/STIBarrier.cpp",
-                            "../interventions/STIIsPostDebut.cpp"
+                            "../interventions/STIIsPostDebut.cpp",
     ]
 
     # HIV

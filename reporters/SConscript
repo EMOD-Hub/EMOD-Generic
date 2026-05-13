@@ -1,0 +1,49 @@
+# This Python script, SConscript, invoked by the SConscript in the upper directory,
+# 1. builds customReport static library
+
+Import("env")
+
+
+generic_cpp = [
+    "ReportHumanMigrationTracking.cpp",
+    "ReportNodeDemographics.cpp",
+    "ReportStrainTracking.cpp",
+]
+
+vector_cpp = [
+]
+
+malaria_cpp = [
+    "ReportNodeDemographicsMalaria.cpp",
+]
+
+sti_cpp = [
+]
+
+hiv_cpp = [
+]
+
+disease = "ALL"
+if 'Disease' in env and len(env['Disease']) > 0:
+    disease = env["Disease"]
+
+
+reporters_cpp = [
+    "stdafx.cpp"
+]
+
+reporters_cpp = reporters_cpp + generic_cpp
+ 
+if( (disease == "ALL") or (disease == "Vector") or (disease == "Malaria") ):
+    reporters_cpp = reporters_cpp + vector_cpp
+
+if( (disease == "ALL") or (disease == "Malaria") ):
+    reporters_cpp = reporters_cpp + malaria_cpp
+
+if( (disease == "ALL") or (disease == "STI") or (disease == "HIV") ):
+    reporters_cpp = reporters_cpp + sti_cpp
+
+if( (disease == "ALL") or (disease == "HIV") ):
+    reporters_cpp = reporters_cpp + hiv_cpp
+
+reporters_lib = env.StaticLibrary('reporters', reporters_cpp)

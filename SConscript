@@ -60,6 +60,7 @@ env.Prepend( CPPPATH=[
 
 # set the common libraries
 env.Prepend( LIBPATH = [
+              "$BUILD_DIR/reporters", 
               "$BUILD_DIR/baseReportLib",
               "$BUILD_DIR/campaign", 
               "$BUILD_DIR/cajun", 
@@ -73,6 +74,7 @@ if 'Disease' in env and len(env['Disease']) > 0:
     disease = env["Disease"]
 
 env.Prepend( LIBS=[
+              "reporters",
               "baseReportLib", 
               "campaign",
               "cajun",
@@ -82,20 +84,19 @@ env.Prepend( LIBS=[
               "utils"])
 
 # First static libs
+print( "Build static libraries." )
 SConscript( [ 'baseReportLib/SConscript',
               'cajun/SConscript',
               'campaign/SConscript',
+              'reporters/SConscript',
               'Eradication/SConscript_coreLib',
               'libsqlite/SConscript',
               'snappy/SConscript',
               'lz4/SConscript',
               'utils/SConscript' ])
 
-
 # Finally executable
 SConscript('Eradication/SConscript')
-
-
 
 #if disease != "Typhoid":
 #    OptionalScript('reporters/SConscript_Generic_AgeAtInfection')

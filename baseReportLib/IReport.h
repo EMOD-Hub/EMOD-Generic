@@ -6,9 +6,6 @@
 
 #include "Configure.h"
 #include "ExternalNodeId.h"
-#include "FactorySupport.h"
-#include "IdmApi.h"
-#include "ObjectFactory.h"
 
 namespace Kernel
 {
@@ -18,7 +15,7 @@ namespace Kernel
     struct ISimulationContext;
     struct ISimulationEventContext;
 
-    class IDMAPI IReport : public JsonConfigurable
+    class IReport : public JsonConfigurable
     {
     public:
         virtual ~IReport() {} ;
@@ -46,14 +43,10 @@ namespace Kernel
         virtual std::string GetReportName() const = 0;
     };
 
-    class ReportFactory : public ObjectFactory<IReport, ReportFactory>
-    {
-    };
-
     // This abstract class provides a default implementation to some of pure virtual methods
     // of IReport.  This allows other classes to be IReport's
     // without needing the equivalent of the code below.
-    class IDMAPI BaseReport : public IReport
+    class BaseReport : public IReport
     {
     public:
         virtual ~BaseReport(){};

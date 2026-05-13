@@ -16,6 +16,7 @@
 #include "DllLoader.h"
 #include "EventTrigger.h"
 #include "InterventionFactory.h"
+#include "ReportFactory.h"
 #include "SimulationConfig.h"
 #include "CampaignEvent.h"
 #include "EventCoordinator.h"

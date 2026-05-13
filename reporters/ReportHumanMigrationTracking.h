@@ -2,6 +2,7 @@
 #pragma once
 
 #include "BaseTextReportEvents.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {

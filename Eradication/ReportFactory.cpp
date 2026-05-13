@@ -1,8 +1,7 @@
 
 #include "stdafx.h"
-#include "IReport.h"
+#include "ReportFactory.h"
 #include "ObjectFactoryTemplates.h"
-
 
 SETUP_LOGGING( "ReportFactory" )
 
