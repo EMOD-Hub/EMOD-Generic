@@ -451,7 +451,6 @@
     <ClInclude Include="SpatialReportTB.h" />
     <ClInclude Include="SpatialReportTyphoid.h" />
     <ClInclude Include="SpatialReportVector.h" />
-    <ClInclude Include="SqlLogger.h" />
     <ClInclude Include="SQLReporter.h" />
     <ClInclude Include="StandardEventCoordinator.h" />
     <ClInclude Include="stdafx.h" />
@@ -745,7 +744,6 @@
     <ClCompile Include="SpatialReportTB.cpp" />
     <ClCompile Include="SpatialReportTyphoid.cpp" />
     <ClCompile Include="SpatialReportVector.cpp" />
-    <ClCompile Include="SqlLogger.cpp" />
     <ClCompile Include="SQLReporter.cpp" />
     <ClCompile Include="StandardEventCoordinator.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -1252,9 +1252,6 @@
     <ClInclude Include="..\interventions\Vaccine.h">
       <Filter>Source Files\Campaign\IndividualTargeted</Filter>
     </ClInclude>
-    <ClInclude Include="SqlLogger.h">
-      <Filter>Source Files\Reporting</Filter>
-    </ClInclude>
     <ClInclude Include="SQLReporter.h">
       <Filter>Source Files\Reporting</Filter>
     </ClInclude>
@@ -2111,9 +2108,6 @@
     </ClCompile>
     <ClCompile Include="SerializationParameters.cpp">
       <Filter>Source Files\Kernel</Filter>
-    </ClCompile>
-    <ClCompile Include="SqlLogger.cpp">
-      <Filter>Source Files\Reporting</Filter>
     </ClCompile>
     <ClCompile Include="SQLReporter.cpp">
       <Filter>Source Files\Reporting</Filter>

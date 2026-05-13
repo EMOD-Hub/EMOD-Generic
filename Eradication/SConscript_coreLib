@@ -31,7 +31,6 @@ else:
                             "StrainIdentity.cpp",
                             "SerializedPopulation.cpp",
                             "SerializationParameters.cpp",
-                            "SqlLogger.cpp",
                             "RandomSerializable.cpp",
                             "RandomNumberGeneratorFactory.cpp",
                             
