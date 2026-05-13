@@ -2,6 +2,7 @@ name: Build EMOD and publish to PyPI
 
 on:
   workflow_dispatch:
+    inputs:
       development:
         description: 'Publish as a development version (appends .devN to version)'
         required: false
