@@ -12,10 +12,11 @@ on:
 jobs:
   build:
     name: Build and create artifacts
-    uses: ./.github/workflows/build_archive.yml
+    uses: ./.github/workflows/reusable_build_archive.yml
     with:
       disease_type: 'All'
       science_test: '--TestSugar'
+      dev_version: ''
 
   run-tests:
     name: Run scientific feature tests
