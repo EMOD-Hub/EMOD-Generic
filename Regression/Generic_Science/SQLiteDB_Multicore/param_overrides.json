@@ -60,7 +60,7 @@
             "Report_Event_Recorder_Individual_Properties": [
                 "Geographic"
             ],
-            "SQL_Busy_Timeout": 3000.0,
+            "SQL_Busy_Timeout": 8000.0,
             "SQL_Events": [
                 "NewInfection",
                 "NewlySymptomatic"
