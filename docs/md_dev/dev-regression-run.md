@@ -25,16 +25,13 @@ produce output that should not be considered scientifically accurate.
 2. Select the suite of regression tests you want to run. This is indicated by a JSON file in the
     following format:
 
-    ```json
-
-            {
-                "tests": [{
-                    "path": "Relative path to test directory."
-                }, {
-                    "path": "Relative path to test directory."
-                }]
-            }
-    ```
+        {
+            "tests": [{
+                "path": "Relative path to test directory."
+            }, {
+                "path": "Relative path to test directory."
+            }]
+        }
 
     You can use one of the JSON files in the Regression directory or create your own. The sanity.json
     file is recommended for quickly testing a wide range of EMOD functionality.
@@ -50,9 +47,9 @@ produce output that should not be considered scientifically accurate.
     In addition, you may need to include the following optional arguments depending on your
     testing environment or how Eradication.exe was built.
 
-| Argument | Default | Description |
-| --- | --- | --- |
-| `--perf` | False | Measure Eradication.exe performance.         `--hidegraphs` |
+    | Argument | Default | Description |
+    | --- | --- | --- |
+    | `--perf` | False | Measure Eradication.exe performance.         `--hidegraphs` |
 
 4. Review the output and examine any failures.
 
@@ -70,6 +67,6 @@ produce output that should not be considered scientifically accurate.
     adjusting the scale of the plots, zooming or panning, and so forth, through the icons at the
     bottom of the chart window.
 
-![Popup Chart](../figures/dev/matplotlibPopupChart.png)
+    ![Popup Chart](../figures/dev/matplotlibPopupChart.png)
 
-If any of the regression tests fail and you have *not* made any changes to the EMOD source code, visit https://github.com/orgs/EMOD-Hub/discussions or use the GitHub link at the top of the page to submit a new issue in the repo. Be sure to include any error information.
+If any of the regression tests fail and you have *not* made any changes to the EMOD source code, visit <https://github.com/orgs/EMOD-Hub/discussions> or use the GitHub link at the top of the page to submit a new issue in the repo. Be sure to include any error information.
