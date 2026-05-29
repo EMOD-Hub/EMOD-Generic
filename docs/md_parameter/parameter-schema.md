@@ -26,35 +26,34 @@ The following command-line options are available for providing information about
 ## Usage
 
 1. Open a Command Prompt window and navigate to the directory where Eradication.exe is installed.
-1. To output the schema to the Command Prompt window, enter::
+1. To output the schema to the Command Prompt window, enter:
 
-        Eradication.exe --get-schema
+    ```
+                Eradication.exe --get-schema
+    ```
 
-1. To output the schema to a file, do one of the following (replacing <filename> with the
-    desired filename):
+1. To output the schema to a file, do one of the following (replacing &lt;filename> with the desired filename}:
 
-    *   To output a text file that includes logging information, enter:
+    * To output a text file that includes logging information, enter:
+  
+        ```
+                     Eradication.exe --get-schema > <filename>.txt
+        ```
 
-```
-            Eradication.exe --get-schema > <filename>.txt
-```
+     * To display logging in the Command Prompt window and output a text file that does not include logging information, enter:
 
-    *   To display logging in the Command Prompt window and output a text file
-        that does not include logging information, enter:
+        ```
+                     Eradication.exe --get-schema --schema-path <filename>.txt
+        ``` 
 
-```
-            Eradication.exe --get-schema --schema-path <filename>.txt
-```
+     * To output the schema to a JSON file that includes logging information, enter:
 
-    *   To output the schema to a JSON file that includes logging information, enter:
+        ```
+                     Eradication.exe --get-schema > <filename>.json
+        ```
 
-```
-            Eradication.exe --get-schema > <filename>.json
-```
+     * To display logging in the Command Prompt window and output a JSON file that does not include logging information, enter:
 
-    *   To display logging in the Command Prompt window and output a JSON file
-        that does not include logging information, enter:
-
-```
-            Eradication.exe --get-schema --schema-path <filename>.json
-```
+        ```
+                     Eradication.exe --get-schema --schema-path <filename>.json
+        ```

@@ -48,24 +48,26 @@ custom SCons abilities just for EMOD.
 
 1. Open a Command Prompt window.
 
-1. Go to the directory where EMOD is installed::
+1. Go to the directory where EMOD is installed:
 
+      ```
         cd C:\IDM\EMOD
+      ```
 
 1. Run the following command to build Eradication.exe:
 
-    * For a monolithic build:
+      * For a monolithic build:
 
-```
-        scons --Release
-```
+      ```
+            scons --Release
+      ```
 
-    * For a disease-specific build, specify one of the supported disease types using the
-      `--Disease` flag:
+     * For a disease-specific build, specify one of the supported disease types using the
+    `--Disease` flag:
 
-```
-        scons --Release --Disease=Vector
-```
+      ```
+              scons --Release --Disease=Vector
+      ```
 
 1. The executable will be placed, by default, in the subdirectory
     build\\x64\\Release\\Eradication\\ of your local EMOD source.

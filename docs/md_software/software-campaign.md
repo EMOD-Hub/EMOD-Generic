@@ -18,19 +18,19 @@ file is specified by **Campaign_Filename** in the configuration file.
 
 To distribute an intervention, you must configure the following nested JSON objects:
 
-campaign event
+## Campaign event
 
 Campaign events determine *when* and *where* an intervention is distributed during a campaign. "When"
 can be the number of days after the beginning of the simulation or at a point during a particular
 calendar year. "Where" is the geographic **node** or nodes in which the event takes place.
 
-event coordinator
+## Event coordinator
 
 Event coordinators are nested within the campaign event JSON object and determine *who* receives the
 intervention. "Who" is determined by filtering on age, gender, or on the individual properties
 configured in the demographics files, such as risk group or sociodemographic category. See [model-properties](../md_model/model-properties.md).
 
-individual-level intervention
+## Individual-level intervention
 
 Individual-level interventions determine *what* will be distributed to individuals to reduce the
 spread of a disease. For example, distributing vaccines or drugs are individual-level interventions.
@@ -50,7 +50,7 @@ the intervention is received. For example, you can assign a property value after
 first-line treatment for a disease and prevent anyone from receiving the second-line treatment
 unless they have that property value and are still symptomatic.
 
-node-level intervention
+## Node-level intervention
 
 Node-level interventions determine *what* will be distributed to each **node** to reduce the spread of a
 disease. For example, spraying larvicide in a village to kill mosquito larvae is a node-level malaria
