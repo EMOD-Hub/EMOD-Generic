@@ -3,9 +3,7 @@
 If you encounter any of the following warnings or errors when attempting to build the EMOD executable (Eradication.exe) or
 Eradication binary for Linux, see the information below to resolve the issue.
 
-If you need assistance, you can contact support for help with solving issues. You can contact
-Institute for Disease Modeling (IDM) support at support@idmod.org. When submitting the issue, please include any error
-information.
+If you encounter an issue, use the GitHub link at the top of the page to submit a new issue in the repo. Be sure to include any error information. For general discussion and questions, please visit https://github.com/orgs/EMOD-Hub/discussions.
 
 ## Unknown compiler version
 

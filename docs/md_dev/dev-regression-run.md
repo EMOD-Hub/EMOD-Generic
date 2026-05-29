@@ -22,10 +22,8 @@ produce output that should not be considered scientifically accurate.
       sections for your cluster that contain the same variables as shown for IDM HPC
       clusters.
 
-1. Select the suite of regression tests you want to run. This is indicated by a JSON file in the
+2. Select the suite of regression tests you want to run. This is indicated by a JSON file in the
     following format:
-
-```json
 
         {
             "tests": [{
@@ -34,27 +32,26 @@ produce output that should not be considered scientifically accurate.
                 "path": "Relative path to test directory."
             }]
         }
-```
 
     You can use one of the JSON files in the Regression directory or create your own. The sanity.json
     file is recommended for quickly testing a wide range of EMOD functionality.
 
-1. From the Regression directory, open a Command Prompt window and run the regression test script,
+3. From the Regression directory, open a Command Prompt window and run the regression test script,
     regression_test.py. It requires the name of the regression suite (without the .json extension)
     and the relative path to Eradication.exe. For example:
 
-```
-        regression_test.py sanity ..\Eradication\x64\Release\Eradication.exe
-```
+    ```
+            regression_test.py sanity ..\Eradication\x64\Release\Eradication.exe
+    ```
 
     In addition, you may need to include the following optional arguments depending on your
     testing environment or how Eradication.exe was built.
 
-| Argument | Default | Description |
-| --- | --- | --- |
-| `--perf` | False | Measure Eradication.exe performance.         `--hidegraphs` |
+    | Argument | Default | Description |
+    | --- | --- | --- |
+    | `--perf` | False | Measure Eradication.exe performance.         `--hidegraphs` |
 
-1. Review the output and examine any failures.
+4. Review the output and examine any failures.
 
     EMOD will output the standard error and logging files, StdErr.txt and StdOut.txt, produced from
     any simulation (see [software-error-logging](../md_software/software-error-logging.md)). In addition, regression_test.py will output time.txt
@@ -70,7 +67,6 @@ produce output that should not be considered scientifically accurate.
     adjusting the scale of the plots, zooming or panning, and so forth, through the icons at the
     bottom of the chart window.
 
-![Popup Chart](../figures/dev/matplotlibPopupChart.png)
+    ![Popup Chart](../figures/dev/matplotlibPopupChart.png)
 
-If any of the regression tests fail and you have *not* made any changes to the EMOD source code,
-email support@idmod.org.
+If any of the regression tests fail and you have *not* made any changes to the EMOD source code, visit <https://github.com/orgs/EMOD-Hub/discussions> or use the GitHub link at the top of the page to submit a new issue in the repo. Be sure to include any error information.

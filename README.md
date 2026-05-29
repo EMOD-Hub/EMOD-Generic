@@ -18,6 +18,10 @@ Community contributions are welcome, and trusted collaborators may review and
 merge pull requests, but no guarantees are made regarding support, pull request
 review, security response, maintenance, or release timelines.
 
+## Documentation
+
+Documentation available at https://emod.idmod.org/EMOD-Generic
+
 ## Community
 
 Have a question or a comment? Check out our
