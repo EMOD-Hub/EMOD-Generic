@@ -40,8 +40,6 @@ The tables below contain only parameters available when using the generic **simu
         information to your files. Any keys that are not EMOD parameter names will be ignored by the
         model.
 
-    <button class="collapse-table-button btn btn-info">Collapse all parameter tables</button>
-
 ## Metadata
 
 Metadata provides information about data provenance. **IdReference** is the
@@ -53,15 +51,14 @@ in valid JSON format.
 If you generate **input files** using COMPS, the following **IdReference** values are
 possible and indicate how the **NodeID** values are generated:
 
-Gridded world grump30arcsec
-    Nodes are approximately square regions defined by a 30-arc second grid and the **NodeID** values
-    are generated from the latitude and longitude of the northwest corner.
-Gridded world grump2.5arcmin
-    Nodes are approximately square regions defined by a 2.5-arc minute grid and the **NodeID** values
-    are generated from the latitude and longitude of the northwest corner.
-Gridded world grump1degree
-    Nodes are approximately square regions defined by a 1-degree grid and the **NodeID** values are
-    generated from the latitude and longitude of the northwest corner.
+Gridded world grump30arcsec: Nodes are approximately square regions defined by a 30-arc second grid and the **NodeID** values
+are generated from the latitude and longitude of the northwest corner.
+
+Gridded world grump2.5arcmin: Nodes are approximately square regions defined by a 2.5-arc minute grid and the **NodeID** values
+are generated from the latitude and longitude of the northwest corner.
+
+Gridded world grump1degree: Nodes are approximately square regions defined by a 1-degree grid and the **NodeID** values are
+generated from the latitude and longitude of the northwest corner.
 
 The algorithm for encoding latitude and longitude into a **NodeID** is as follows:
 
@@ -74,8 +71,6 @@ The algorithm for encoding latitude and longitude into a **NodeID** is as follow
 This generates a **NodeID** that is a 4-byte unsigned integer; the first two bytes represent the
 longitude of the node and the second two bytes represent the latitude. To reserve 0 to be used as a
 null value, 1 is added to the **NodeID** as part of the final calculation.
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
 
 {{ read_csv("csv/demo-metadata-generic.csv") }}
 
@@ -98,19 +93,13 @@ that contains parameters that assign properties to nodes in a simulation. The
 **IndividualProperties** section is under either **Defaults** or **Nodes** and contains parameters
 that assign properties to individuals in a simulation. [model-properties](../md_model/model-properties.md) provides more guidance.
 
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
 {{ read_csv("csv/demo-properties-generic.csv") }}
-
-.. _demo-nodeattributes:
 
 ## NodeAttributes
 
 The **NodeAttributes** section contains parameters that add or modify information
 regarding the location, migration, habitat, and population of node. Some **NodeAttributes**
 depend on values set in the configuration parameters.
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
 
 {{ read_csv("csv/demo-nodeattributes-generic.csv") }}
 
@@ -123,8 +112,6 @@ configured using a simple flag system of three parameters or a complex system of
 many more parameters. The following table contains the parameters that can be used with either
 distribution system.
 
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
-
 {{ read_csv("csv/demo-individualattributes-generic.csv") }}
 
 ### Complex distributions
@@ -134,7 +121,5 @@ where the distribution does not fit a standard. Individual attribute values are 
 linear distribution. The distribution is configured using arrays of axes (such as gender or age) and
 values at points along each of these axes. This allows you to have different distributions for
 different groups in the population.
-
-    <button class="toggle-button btn btn-info">Toggle parameter table</button>
 
 {{ read_csv("csv/demo-complexdistro-generic.csv") }}
