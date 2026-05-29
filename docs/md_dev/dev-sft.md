@@ -14,15 +14,13 @@ If you are running locally without access to an HPC, do one the following depend
 
 1. In the Regression directory, edit the regression_test.cfg file to list the directories where you want the simulations to be run and output saved.
 
-1. Make a file listing all of the SFTs you want to run, using on of the files in Regression\<sim>_science.json as an example.
+1. Make a file listing all of the SFTs you want to run, using one of the files in Regression\\&lt;sim>_science.json as an example.
 
-1. From the Regression directory in a command prompt window, run the following, adding `--scons` if you built the Eradication.exe using SCONS::
+2. From the Regression directory in a command prompt window, run the following, adding `--scons` if you built the Eradication.exe using SCons:
 
         python regression_test.py my_sfts.json --local
 
-!!! note
-
-            Enter `python regression_test.py --help` for a list of all arguments you can use with the testing script.
+      - Enter `python regression_test.py --help` for a list of all arguments you can use with the testing script.
 
 ### Run on Windows using run_test.cmd
 
@@ -30,16 +28,11 @@ If you are running locally without access to an HPC, do one the following depend
 
 1. Navigate to the directory that contains your config.json file and other test files.
 
-!!! note
+      - Verify in the config.json file that the paths to the demographics and other additional input files are correct.
 
-            Verify in the config.json file that the paths to the demographics and other additional input files are correct.
+2. In a command prompt window, enter the following, substituting your path to the testing script as necessary:
 
-1. In a command prompt window, enter the following, substituting your path to the testing script 
-    as necessary:
-
-```
-        ../../run_test.cmd
-```
+                ../../run_test.cmd
 
 ### Run on CentOS using run_test.sh
 
@@ -47,13 +40,8 @@ If you are running locally without access to an HPC, do one the following depend
 
 1. Navigate to the directory that contains your config.json file and other test files.
 
-!!! note
+      - Verify in the config.json file that the paths to the demographics and other additional input files are correct.
 
-            Verify in the config.json file that the paths to the demographics and other additional input files are correct.
+2. In a command prompt window, enter the following, substituting your path to the testing script as necessary:
 
-1. In a command prompt window, enter the following, substituting your path to the testing script
-    as necessary:
-
-```
-        ../../run_test.sh
-```
+                ../../run_test.sh
