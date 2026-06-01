@@ -136,8 +136,6 @@ The **IndividualHuman** class contains the following methods:
 | ExposeToInfectivity() | Passes the **IndividualHuman** to the **ExposeIndividual()** function if it is exposed to infectivity at a time step. |
 | UpdateInfectiousness() | Advances the quantity of contagion deposited to the contagion pool by an **IndividualHuman** at each time step of their infectious period. This is explained in more detail below. |
 
-.. _arch-transmission:
-
 ### Disease transmission
 
 Transmission of disease is mediated through a pool mechanism which tracks abstract quantities of
