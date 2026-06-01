@@ -25,8 +25,6 @@ example that follows shows one potential configuration.
 
 [link](../json/campaign-campaignevent.json)
 
-.. _campaign-nodeset-config:
-
 ## Nodeset_Config classes
 
 The following classes determine in which nodes the event will occur.
