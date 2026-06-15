@@ -118,7 +118,7 @@ namespace Kernel
                 virtual const ConstrainedString& operator=( const std::string& new_value );
 
                 std::string constraints;
-                tStringSet * constraint_param;
+                const tStringSet * constraint_param;
                 std::string parameter_name;
         };
 
@@ -200,8 +200,8 @@ namespace Kernel
         typedef std::map< std::string, get_schema_funcptr_t > name2CreatorMapType;
         static name2CreatorMapType &get_registration_map();
 
-        static const char * _typename_label() { return "type_name"; }
-        static const char * _typeschema_label()  { return "type_schema"; }
+        static const char* _typename_label() { return "type_name"; }
+        static const char* _typeschema_label()  { return "type_schema"; }
 
         struct Registrator
         {
@@ -520,8 +520,7 @@ namespace Kernel
             const char* paramName,
             std::vector<IPKeyValue>* pVariable,
             const char* description = default_description,
-            const char* condition_key = nullptr,
-            const char* condition_value = nullptr,
+            const char* condition_key = nullptr, const char* condition_value = nullptr,
             const std::map<std::string, std::string>* depends_list = nullptr
         );
 
@@ -577,6 +576,11 @@ namespace Kernel
         template< typename T >
         void EnforceVectorParameterRanges( const std::string& key, std::vector<T> values, json::QuickInterpreter& jsonObj )
         {
+            if (values.size() == 0)
+            {
+                return;
+            }
+
             for (T& value : values)
             {
                 EnforceParameterRange<T>(key, value, jsonObj);

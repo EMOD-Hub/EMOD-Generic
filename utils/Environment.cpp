@@ -172,22 +172,17 @@ std::string Environment::FindFileOnPath( const std::string& rFilename )
     {
         throw Kernel::IllegalOperationException( __FILE__, __LINE__, __FUNCTION__, "Environment has not been created." );
     }
-    std::string error = "";
+
     for( auto path : localEnv->InputPaths )
     {
         std::string filepath = FileSystem::Concat( path, rFilename );
-        error += filepath;
         if( FileSystem::FileExists( filepath ) )
         {
             return filepath;
         }
-        else
-        {
-            error += " or here ";
-        }
     }
-        
-    throw Kernel::FileNotFoundException( __FILE__, __LINE__, __FUNCTION__, error.c_str() );
+
+    throw Kernel::FileNotFoundException( __FILE__, __LINE__, __FUNCTION__, rFilename.c_str() );
 }
 
 const Configuration* Environment::getConfiguration()

@@ -1,7 +1,6 @@
 
 #pragma once
 
-#include "IdmApi.h"
 #include <string>
 #include <set>
 #include <vector>
@@ -53,7 +52,7 @@ public:
     static void logJsonException( const json::ScanException &pe, std::string& err_msg );
 };
 
-Configuration IDMAPI *Configuration_Load( const std::string& rFilename ) ;
+Configuration *Configuration_Load( const std::string& rFilename ) ;
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // config/json loading wrappers
@@ -148,7 +147,7 @@ namespace Kernel
     using namespace std;
     using namespace json;
 
-    struct IDMAPI IConfigurable : ISupports
+    struct IConfigurable : ISupports
     {
         virtual bool Configure(const Configuration *config) = 0;
         virtual QuickBuilder GetSchema() = 0;

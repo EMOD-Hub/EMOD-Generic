@@ -31,7 +31,6 @@
 // * NotYetImplementedException (need to use more of these)
 // * NullPointerException (really try to avoid using this; why is a pointer null?)
 // * OutOfRangeException (consider whether should be ConfigurationRangeEx or CalculatedValueRangeEx; do we need an ArrayIndexOutOfBoundsEx?)
-// * QueryInterfaceException
 // * SerializationException
 //
 
@@ -56,11 +55,8 @@ namespace Kernel {
         virtual const std::string& GetStackTrace() const ;
 
     protected:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         std::string _msg;
         std::string _stackTrace ;
-#pragma warning( pop )
         const char * _fileName;
         const char * _funcName;
         int _lineNum;
@@ -95,7 +91,6 @@ namespace Kernel {
     {
     public:
         ConfigurationRangeException( const char * file_name, int line_num, const char * function_name, const char* var_name, float var_value, float test_value );
-        ConfigurationRangeException( const char * file_name, int line_num, const char * func_name, const char* var_name, float var_value, float min, float max, const char * condition );
     };
 
     // All failures for dll loading operations.

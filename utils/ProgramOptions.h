@@ -93,7 +93,7 @@ public:
 
     // Parse the command line arguments and return an empty string if successful.
     // If the returned string is not empty, it contains an error message indicating
-    // an issue that occured parsing the line.  LongName options are entered with two
+    // an issue that occurred parsing the line.  LongName options are entered with two
     // dashes ("--") while ShortName options are entered with one dash ("-").
     // A value for an option is entered with a space between the option name and the value
     // or an '=' sign.
@@ -193,13 +193,10 @@ private:
     std::string AddArgInfo( const Option* pOpt );
     std::vector<std::string> BreakDescriptionIntoChunks( const std::string& rDesc );
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
     std::string defaultMessage ;
     std::map<std::string,Option*> mapLongNameToOption ;
     std::map<std::string,Option*> mapShortNameToOption ;
     std::vector<std::string> insertionOrder ; // used to ensure the options are printed in the order they are added
 
     static const std::string SPACES_40 ;
-#pragma warning( pop )
 };
