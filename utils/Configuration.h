@@ -5,8 +5,8 @@
 #include <set>
 #include <vector>
 #include <map>
-#include <climits>
 
+#include "Exceptions.h"
 #include "ISupports.h"
 #include "CajunIncludes.h"
 
@@ -18,6 +18,7 @@ public:
     // creates a Configuration object representing a copy of the subtree rooted at the element passed in
     static Configuration* CopyFromElement( const json::Element &elem, const std::string& rDataLocation = "Unknown" );
 
+    bool CheckElementByName(const std::string& elementName) const;
     const std::string& GetDataLocation() const { return data_location; }
 
     bool IsObject() const { return (pElement->Type() == json::ElementType::OBJECT_ELEMENT); }
@@ -44,6 +45,20 @@ private:
     Configuration(); // this ctor only for serialization, the base class will be initialized to an invalid state which deserialization must repair
     std::map<std::string, json::Number> extendedConfig;
 };
+
+template<typename T>
+T ConvertIntegerValue( const char* parameterName, double jsonValue )
+{
+    if( jsonValue != T(jsonValue) )
+    {
+        std::ostringstream errMsg; // using a non-parameterized exception.
+        errMsg << "The value for parameter '"<< parameterName << "' appears to be a decimal ("
+                << jsonValue
+                << ") but needs to be an integer." << std::endl;
+        throw Kernel::GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, errMsg.str().c_str() );
+    }
+    return T( jsonValue );
+}
 
 class JsonUtility
 {
@@ -73,6 +88,12 @@ std::vector< std::vector< std::string > > GET_CONFIG_VECTOR2D_STRING(const json:
 inline std::vector< std::vector< std::string > > GET_CONFIG_VECTOR2D_STRING(const json::QuickInterpreter* parameter_source, const std::string& name)
 {
     return GET_CONFIG_VECTOR2D_STRING(parameter_source, name.c_str());
+}
+
+std::vector< std::vector< std::vector< std::string > > > GET_CONFIG_VECTOR3D_STRING(const json::QuickInterpreter* parameter_source, const char *name);
+inline std::vector< std::vector< std::vector< std::string > > > GET_CONFIG_VECTOR3D_STRING(const json::QuickInterpreter* parameter_source, const std::string& name)
+{
+    return GET_CONFIG_VECTOR3D_STRING(parameter_source, name.c_str());
 }
 
 std::vector< float > GET_CONFIG_VECTOR_FLOAT(const json::QuickInterpreter* parameter_source, const char *name);

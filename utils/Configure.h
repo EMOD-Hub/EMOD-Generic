@@ -20,7 +20,6 @@
 #include <map>
 #include <set>
 #include <vector>
-#include <iterator>
 
 #ifndef WIN32
 #include <limits>
@@ -135,7 +134,6 @@ namespace Kernel
         friend class InterventionFactory;
         friend class DemographicRestrictions;
         friend class DistributionConstantConfigurable;
-        friend class DurationDistribution;
         friend class DistributionExponentialConfigurable;
         friend class DistributionGammaConfigurable;
         friend class DistributionGaussianConfigurable;
@@ -167,6 +165,7 @@ namespace Kernel
         typedef std::map< std::string, std::set< std::string > * > tStringSetConfigTypeMapType;
         typedef std::map< std::string, std::vector< std::string > * > tVectorStringConfigTypeMapType;
         typedef std::map< std::string, std::vector< std::vector< std::string > > * > tVector2dStringConfigTypeMapType;
+        typedef std::map< std::string, std::vector< std::vector< std::vector< std::string > > > * > tVector3dStringConfigTypeMapType;
         typedef std::map< std::string, const std::set< std::string > * > tVectorStringConstraintsTypeMapType;
         typedef std::map< std::string, std::vector< float > * > tVectorFloatConfigTypeMapType;
         typedef std::map< std::string, std::vector< bool > * > tVectorBoolConfigTypeMapType;
@@ -233,8 +232,10 @@ namespace Kernel
             jsonConfigurable::tConStringConfigTypeMapType conStringConfigTypeMap;
             tVectorStringConfigTypeMapType vectorStringConfigTypeMap;
             tVector2dStringConfigTypeMapType vector2dStringConfigTypeMap;
+            tVector3dStringConfigTypeMapType vector3dStringConfigTypeMap;
             tVectorStringConstraintsTypeMapType vectorStringConstraintsTypeMap;
             tVectorStringConstraintsTypeMapType vector2dStringConstraintsTypeMap;
+            tVectorStringConstraintsTypeMapType vector3dStringConstraintsTypeMap;
             tVectorFloatConfigTypeMapType vectorFloatConfigTypeMap;
             tVectorBoolConfigTypeMapType vectorBoolConfigTypeMap;
             tVectorIntConfigTypeMapType vectorIntConfigTypeMap;
@@ -379,6 +380,16 @@ namespace Kernel
         void initConfigTypeMap(
             const char* paramName,
             std::vector< std::vector< std::string > > * pVariable,
+            const char* description = default_description,
+            const char* constraint_schema = nullptr,
+            const std::set< std::string > &constraint_variable = empty_set,
+            const char* condition_key = nullptr, const char* condition_value = nullptr,
+            const std::map<std::string, std::string>* depends_list = nullptr
+        );
+
+        void initConfigTypeMap(
+            const char* paramName,
+            std::vector< std::vector< std::vector< std::string > > > * pVariable,
             const char* description = default_description,
             const char* constraint_schema = nullptr,
             const std::set< std::string > &constraint_variable = empty_set,
@@ -589,6 +600,15 @@ namespace Kernel
             if (jsonObj.Exist("ascending") && jsonObj["ascending"].As<json::Number>())
             {
                 EnforceParameterAscending<T>(key, values);
+            }
+        }
+
+        template< typename T >
+        void EnforceVectorVectorParameterRanges(const std::string& key, std::vector<std::vector<T>> values, json::QuickInterpreter& jsonObj)
+        {
+            for (std::vector<T>& value : values)
+            {
+                EnforceVectorParameterRanges<T>(key, value, jsonObj);
             }
         }
 

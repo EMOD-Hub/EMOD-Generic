@@ -951,6 +951,47 @@ namespace Kernel
         jsonSchemaBase[paramName] = newParamSchema;
     }
 
+    void JsonConfigurable::initConfigTypeMap(
+        const char* paramName,
+        std::vector< std::vector< std::vector< std::string > > > * pVariable,
+        const char* description,
+        const char* constraint_schema,
+        const std::set< std::string > &constraint_variable,
+        const char* condition_key, const char* condition_value,
+        const std::map<std::string, std::string>* depends_list
+        )
+    {
+        LOG_DEBUG_F( "initConfigTypeMap<vector<vector<vector<string>>>>: %s\n", paramName);
+
+        json::Object newParamSchema;
+        if ( _dryrun )
+        {
+            newParamSchema["description"] = json::String(description);
+            newParamSchema["type"] = json::String("Vector3d String");
+            newParamSchema[ "default" ] = json::Array();
+            if( constraint_schema )
+            {
+                newParamSchema["value_source"] = json::String( constraint_schema );
+            }
+        }
+        else
+        {
+            GetConfigData()->vector3dStringConfigTypeMap[ paramName ] = pVariable;
+            GetConfigData()->vector3dStringConstraintsTypeMap[ paramName ] = &constraint_variable;
+        }
+
+        updateSchemaWithCondition( newParamSchema, condition_key, condition_value );
+        if(depends_list)
+        {
+            for(auto const pair: *depends_list)
+            {
+                updateSchemaWithCondition(newParamSchema, (pair.first).c_str(), (pair.second).c_str());
+            }
+        }
+
+        jsonSchemaBase[paramName] = newParamSchema;
+    }
+
     void
     JsonConfigurable::initConfigTypeMap(
         const char* paramName,
@@ -1515,7 +1556,6 @@ namespace Kernel
         {
             GetConfigData()->complexTypeMap[ paramName ] = pVariable;
         }
-
 
         updateSchemaWithCondition( newParamSchema, condition_key, condition_value );
         if(depends_list)
@@ -2244,6 +2284,51 @@ namespace Kernel
             }
         }
 
+        // ---------------------------------- VECTOR VECTOR VECTOR of STRINGs ------------------------------------
+        for (auto& entry : GetConfigData()->vector3dStringConfigTypeMap)
+        {
+            const std::string& key = entry.first;
+            json::QuickInterpreter schema = jsonSchemaBase[key];
+            if( ignoreParameter( schema, inputJson ) )
+            {
+                continue; // param is missing and that's ok.
+            }
+
+            if ( inputJson->Exist(key) )
+            {
+                *(entry.second) = GET_CONFIG_VECTOR3D_STRING( inputJson, (entry.first).c_str() );
+            }
+            else if( !_useDefaults )
+            {
+                handleMissingParam( key, inputJson->GetDataLocation() );
+            }
+
+            auto allowed_values = GetConfigData()->vector3dStringConstraintsTypeMap[ key ];
+            for( auto &candidate_2d_vector : *(entry.second) )
+            {
+                for( auto& candidate_vector : candidate_2d_vector )
+                {
+                    for( auto& candidate : candidate_vector )
+                    {
+                        if( allowed_values->size() > 0 && std::find( allowed_values->begin(), allowed_values->end(), candidate ) == allowed_values->end() )
+                        {
+                            std::ostringstream msg;
+                            msg << "Parameter '"
+                                << key
+                                << "' with specified value '"
+                                << candidate
+                                << "' invalid. Possible values are: ";
+                            for( auto value : *allowed_values )
+                            {
+                                msg << value << "...";
+                            }
+                            throw GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, msg.str().c_str() );
+                        }
+                    }
+                }
+            }
+        }
+
         //----------------------------------- VECTOR of FLOATs ------------------------------
         for (auto& entry : GetConfigData()->vectorFloatConfigTypeMap)
         {
@@ -2360,6 +2445,32 @@ namespace Kernel
             else if( !_useDefaults )
             {
                 handleMissingParam( key, inputJson->GetDataLocation() );
+            }
+        }
+
+        //----------------------------------- VECTOR VECTOR VECTOR of FLOATs ------------------------------
+        for (auto& entry : GetConfigData()->vector3dFloatConfigTypeMap)
+        {
+            const std::string& key = entry.first;
+            json::QuickInterpreter schema = jsonSchemaBase[key];
+            if ( ignoreParameter(schema, inputJson))
+            {
+                continue; // param is missing and that's ok.
+            }
+
+            if (inputJson->Exist(key))
+            {
+                std::vector < std::vector < std::vector< float >>> configValues = GET_CONFIG_VECTOR3D_FLOAT(inputJson, (entry.first).c_str());
+                *(entry.second) = configValues;
+
+                for (auto values : configValues)
+                {
+                    EnforceVectorVectorParameterRanges<float>(key, values, schema);
+                }
+            }
+            else if (!_useDefaults)
+            {
+                handleMissingParam(key, inputJson->GetDataLocation());
             }
         }
 

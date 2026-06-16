@@ -78,6 +78,11 @@ QuickInterpreter Configuration::operator[] (const std::string& key) const {
     return QuickInterpreter::operator[](key);
 }
 
+bool Configuration::CheckElementByName(const std::string& elementName) const
+{
+    return QuickInterpreter::Exist(elementName);
+}
+
 Configuration* Configuration::LoadFromPython(
     const std::string& filename
 )
@@ -278,7 +283,8 @@ vector<int> GET_CONFIG_VECTOR_INT(const QuickInterpreter* parameter_source, cons
         json::QuickInterpreter json_array( (*parameter_source)[name].As<json::Array>() );
         for( unsigned int idx = 0; idx < (*parameter_source)[name].As<json::Array>().Size(); idx++ )
         {
-            int value = (int)json_array[idx].As<json::Number>();
+            double jsonValueAsDouble = json_array[idx].As<json::Number>();
+            int value = ConvertIntegerValue<int>( name, jsonValueAsDouble );
             values.push_back(value);
         }
     }
@@ -476,7 +482,8 @@ vector<vector<int>> GET_CONFIG_VECTOR2D_INT(const QuickInterpreter* parameter_so
 
             for( unsigned int idy = 0; idy < num_elements_y; idy++ )
             {
-                int value = (int)json_array[idy].As<json::Number>();
+                double jsonValueAsDouble = json_array[idy].As<json::Number>();
+                int value = ConvertIntegerValue<int>( name, jsonValueAsDouble );
                 values.push_back(value);
             }
             matrix.push_back( values );
@@ -491,6 +498,73 @@ vector<vector<int>> GET_CONFIG_VECTOR2D_INT(const QuickInterpreter* parameter_so
         else
         {
             throw Kernel::JsonTypeConfigurationException( __FILE__, __LINE__, __FUNCTION__, name, (*parameter_source), "Expected STRING VECTOR/ARRAY" );
+        }
+    }
+
+    return matrix;
+}
+
+vector<vector<vector<string>>> GET_CONFIG_VECTOR3D_STRING(const QuickInterpreter* parameter_source, const char *name)
+{
+    vector<vector<vector<string>>> matrix;
+
+    if(parameter_source == NULL)
+    {
+        if( Kernel::JsonConfigurable::_dryrun )
+        {
+            return matrix;
+        }
+        else
+        {
+            throw std::runtime_error("Null pointer!  Invalid config passed for parsing");
+        }
+    }
+    try
+    {
+        unsigned int num_elements_x = (*parameter_source)[name].As<json::Array>().Size();
+
+        json::QuickInterpreter json_3d_array( (*parameter_source)[name].As<json::Array>() );
+        for( unsigned int idx = 0; idx < num_elements_x; idx++ )
+        {
+            json::QuickInterpreter json_2d_array( json_3d_array[idx].As<json::Array>() );
+
+            unsigned int num_elements_y = json_3d_array[idx].As<json::Array>().Size() ;
+            std::vector<std::vector<string>> values_2d;
+
+            for( unsigned int idy = 0; idy < num_elements_y; idy++ )
+            {
+                json::QuickInterpreter json_array( json_2d_array[ idy ].As<json::Array>() );
+
+                unsigned int num_elements_z = json_2d_array[ idy ].As<json::Array>().Size();
+                std::vector<string> values;
+
+                for( unsigned int idz = 0; idz < num_elements_z; idz++ )
+                {
+                    string value = (string)json_array[ idz ].As<json::String>();
+                    values.push_back( value );
+                }
+                values_2d.push_back( values );
+            }
+            matrix.push_back( values_2d );
+        }
+    }
+    catch (json::Exception& e)
+    {
+        string full_description(e.what());
+        if (strcmp(e.what(), "Bad json_cast") == 0)
+        {
+            full_description += ": ";
+            full_description += name;
+            full_description += " (expected JSON array of string)";
+        }
+
+        if( Kernel::JsonConfigurable::_dryrun )
+        {
+            return matrix;
+        }
+        else
+        {
+            throw json::Exception(full_description);
         }
     }
 
@@ -635,23 +709,6 @@ set<string> GET_CONFIG_STRING_SET(const QuickInterpreter* parameter_source, cons
     return values;
 }
 
-std::string& ltrim(std::string& str, const std::string& chars = "\t\n\v\f\r ")
-{
-    str.erase(0, str.find_first_not_of(chars));
-    return str;
-}
-
-std::string& rtrim(std::string& str, const std::string& chars = "\t\n\v\f\r ")
-{
-    str.erase(str.find_last_not_of(chars) + 1);
-    return str;
-}
-
-std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\r ")
-{
-    return ltrim(rtrim(str, chars), chars);
-}
-
 string GET_CONFIG_STRING(const QuickInterpreter* parameter_source, const char *name)
 {
     string value = "";
@@ -671,13 +728,6 @@ string GET_CONFIG_STRING(const QuickInterpreter* parameter_source, const char *n
 
     try {
         value = (string)((*parameter_source)[name].As<json::String>());
-        string trimmed = value;
-        trim(trimmed);
-        if (value != trimmed)
-        {
-            LOG_WARN_F("Parameter '%s' has value \"%s\" with leading or trailing whitespace. Trimming whitespace and continuing.\n", name, value.c_str(), __FUNCTION__);
-        }
-        value = trimmed;
     }
     catch( json::Exception )
     {
@@ -693,7 +743,6 @@ string GET_CONFIG_STRING(const QuickInterpreter* parameter_source, const char *n
 
     return value;
 }
-
 
 double GET_CONFIG_DOUBLE(
     const QuickInterpreter* parameter_source,
