@@ -5,9 +5,8 @@
 #include <iomanip> //setw(), setfill()
 #include <algorithm>
 #include <deque>
-#include <functional>
-#include <memory>
 
+#include "Controller.h"
 #include "FileSystem.h"
 #include "Debug.h"
 #include "Log.h"
@@ -17,42 +16,14 @@
 #include "Simulation.h"
 #include "IdmMpi.h"
 
-#include "StatusReporter.h"
-
-#ifndef _DLLS_
-#include "SimulationMalaria.h"
-#ifdef ENABLE_POLIO
-#include "SimulationPolio.h"
-#endif
-
-#include "SimulationTBHIV.h"
-#endif // _DLLS_
-#include "ControllerFactory.h"
-
 #include "SerializedPopulation.h"
 #include "SerializationParameters.h"
+#include "StatusReporter.h"
 
-#pragma warning(disable : 4244)
 
 using namespace Kernel;
 
 SETUP_LOGGING( "Controller" )
-
-
-void CheckMissingParameters()
-{
-    if( !JsonConfigurable::missing_parameters_set.empty() )
-    {
-        std::stringstream errMsg;
-        errMsg << "The following necessary parameters were not specified" << std::endl;
-        for (auto& key : JsonConfigurable::missing_parameters_set)
-        {
-            errMsg << "\t \"" << key.c_str() << "\"" << std::endl;
-        }
-        //LOG_ERR( errMsg.str().c_str() );
-        throw GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, errMsg.str().c_str() );
-    }
-}
 
 
 // Basic simulation main loop with reporting
@@ -98,34 +69,29 @@ template <class SimulationT> void RunSimulation(SimulationT &sim, int steps)
     }
 }
 
-
 bool DefaultController::execute_internal()
 {
     using namespace Kernel;
     list<string> serialization_test_state_filenames;
 
-    LOG_INFO("DefaultController::execute_internal()...\n");
+    LOG_DEBUG("DefaultController::execute_internal()...\n");
 
     JsonConfigurable::_useDefaults = false;
     JsonConfigurable::_track_missing = true;
     SerializationParameters::GetInstance()->Configure( EnvPtr->Config );  // Has to be configured before CreateSimulation()
-    CheckMissingParameters();
+    JsonConfigurable::CheckMissingParameters();
 
-#ifdef _DLLS_
-    ISimulation* sim = SimulationFactory::CreateSimulation(); 
-    release_assert(sim);
-#else
     std::unique_ptr<ISimulation> sim(SimulationFactory::CreateSimulation());
-    if(!sim.get())
+
+    if (!sim.get())
     {
         throw InitializationException( __FILE__, __LINE__, __FUNCTION__, "sim.get() returned NULL after call to CreateSimulation.\n" );
     }
-#endif // End of _DLLS_
 
     if (EnvPtr->MPI.Rank==0) { ostringstream oss; oss << "Beginning Simulation...";  EnvPtr->getStatusReporter()->ReportStatus(oss.str()); }
 
     // populate it
-    LOG_INFO("DefaultController::execute_internal() populate simulation...\n");
+    LOG_DEBUG("DefaultController::execute_internal() populate simulation...\n");
     // Confusing variable name (JC::useDefaults); we want to collect all defaults for reporting. It's up to us as the calling function
     JsonConfigurable::_track_missing = true;
     if(sim->Populate())
@@ -133,7 +99,8 @@ bool DefaultController::execute_internal()
         // Need to reset back to false; will be set as appropriate by campaign related code after this based on
         // "Use_Defaults" in campaign.json.
         JsonConfigurable::_useDefaults = false;
-        CheckMissingParameters();
+        JsonConfigurable::CheckMissingParameters();
+
         // now try to run it
         // divide the simulation into stages according to requesting number of serialization test cycles
         int simulation_steps = static_cast<int>( sim->GetSimParams().sim_time_total / sim->GetSimParams().sim_time_delta );
@@ -173,12 +140,12 @@ bool DefaultController::execute_internal()
         }
 
         LOG_INFO_F( "Exiting %s\n", __FUNCTION__ );
+        EnvPtr->Log->Flush();
 
         return true;
     }
     return false;
 }
-
 
 bool DefaultController::Execute()
 {

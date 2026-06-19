@@ -1,11 +1,3 @@
-/***************************************************************************************************
-
-Copyright (c) 2016 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 // suids provides services for creating and manipulating a set of lightweight IDs unique to a simulation (Simulation Unique ID ~ suid)
 // in a system distributed on multiple processes
@@ -30,8 +22,6 @@ namespace Kernel
 
         32bits is the default which will be fine for most systems that have << (2 billion)/numtasks of any 
         entity type over their lifetime.
-
-        The suid class was originally designed after the boost::uuid interface.
         */
 
         typedef uint32_t suid_data_t; 
@@ -45,8 +35,6 @@ namespace Kernel
         class IDMAPI suid final
         {
         public:
-
-            // for consistency with boost::uuid, define a special NULL suid. 
             // NB: non-nil generating generators must never return an suid with data==0! 
             bool is_nil() const { return data == 0; }
 
@@ -63,8 +51,7 @@ namespace Kernel
         inline bool operator<=(suid const& lhs, suid const& rhs) { return lhs.data <= rhs.data; }
         inline bool operator>=(suid const& lhs, suid const& rhs) { return lhs.data >= rhs.data; }
 
-        // generators - patterned after boost uuid generators 
-
+        // generators
         struct nil_generator 
         {
             typedef suid result_type;

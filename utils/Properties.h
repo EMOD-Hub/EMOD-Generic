@@ -114,8 +114,6 @@ namespace Kernel
         void Validate( const JsonObjectDemog& rDemog );
 
     private:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         IPKeyValue  m_From;
         IPKeyValue  m_To;
         std::string m_Type;
@@ -128,7 +126,6 @@ namespace Kernel
         float       m_MinAgeYears;
         float       m_MaxAgeYears;
         float       m_AgeYears;
-#pragma warning( pop )
     };
 
     // An iterator class used for traversing the elements in IPKeyValueContainer
@@ -162,10 +159,9 @@ namespace Kernel
         bool operator==( const IPKeyValueContainer& rThat ) const;
         bool operator!=( const IPKeyValueContainer& rThat ) const;
 
-        void Set( const IPKeyValue& rKeyValue );
-
-        void Add( const IPKeyValue& rKeyValue );
-        void Remove( const IPKeyValue& rKeyValue );
+        virtual void Set( const IPKeyValue& rKeyValue );
+        virtual void Add( const IPKeyValue& rKeyValue );
+        virtual void Remove( const IPKeyValue& rKeyValue );
 
         IPKeyValue FindFirst( const IPKeyValueContainer& rContainer ) const;
 
@@ -194,12 +190,9 @@ namespace Kernel
         const std::map<TransmissionRoute::Enum, std::vector<std::vector<float>>>& GetRouteToMatrixMap() const;
 
     private:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         TransmissionRoute::Enum m_tx_route;
         std::vector<std::vector<float>> m_Matrix;
         std::map<TransmissionRoute::Enum, std::vector<std::vector<float>>> m_RouteToMatrixMap;
-#pragma warning( pop )
     };
 
     // An IndividualProperty object represents a single Individual Property.  It contains everything 
@@ -234,11 +227,8 @@ namespace Kernel
 
         void CreateAgeBinTransitions();
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         std::vector<IPTransition*> m_Transitions;
         std::map<uint32_t,IPIntraNodeTransmission*> m_IntraNodeTransmissionMap;
-#pragma warning( pop )
     };
 
 

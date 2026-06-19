@@ -21,6 +21,7 @@
 #include <set>
 #include <vector>
 #include <iterator>
+#include <climits>
 
 #ifndef WIN32
 #include <limits>
@@ -118,7 +119,7 @@ namespace Kernel
                 virtual const ConstrainedString& operator=( const std::string& new_value );
 
                 std::string constraints;
-                tStringSet * constraint_param;
+                const tStringSet * constraint_param;
                 std::string parameter_name;
         };
 
@@ -135,7 +136,6 @@ namespace Kernel
         friend class InterventionFactory;
         friend class DemographicRestrictions;
         friend class DistributionConstantConfigurable;
-        friend class DurationDistribution;
         friend class DistributionExponentialConfigurable;
         friend class DistributionGammaConfigurable;
         friend class DistributionGaussianConfigurable;
@@ -153,6 +153,7 @@ namespace Kernel
         typedef std::map< std::string, float > tStringFloatMapConfigType;
         static const char * default_string;
 
+        static void CheckMissingParameters();
         virtual IConfigurable* GetConfigurable() override;
 
     private:
@@ -167,6 +168,7 @@ namespace Kernel
         typedef std::map< std::string, std::set< std::string > * > tStringSetConfigTypeMapType;
         typedef std::map< std::string, std::vector< std::string > * > tVectorStringConfigTypeMapType;
         typedef std::map< std::string, std::vector< std::vector< std::string > > * > tVector2dStringConfigTypeMapType;
+        typedef std::map< std::string, std::vector< std::vector< std::vector< std::string > > > * > tVector3dStringConfigTypeMapType;
         typedef std::map< std::string, const std::set< std::string > * > tVectorStringConstraintsTypeMapType;
         typedef std::map< std::string, std::vector< float > * > tVectorFloatConfigTypeMapType;
         typedef std::map< std::string, std::vector< bool > * > tVectorBoolConfigTypeMapType;
@@ -200,8 +202,8 @@ namespace Kernel
         typedef std::map< std::string, get_schema_funcptr_t > name2CreatorMapType;
         static name2CreatorMapType &get_registration_map();
 
-        static const char * _typename_label() { return "type_name"; }
-        static const char * _typeschema_label()  { return "type_schema"; }
+        static const char* _typename_label() { return "type_name"; }
+        static const char* _typeschema_label()  { return "type_schema"; }
 
         struct Registrator
         {
@@ -233,8 +235,10 @@ namespace Kernel
             jsonConfigurable::tConStringConfigTypeMapType conStringConfigTypeMap;
             tVectorStringConfigTypeMapType vectorStringConfigTypeMap;
             tVector2dStringConfigTypeMapType vector2dStringConfigTypeMap;
+            tVector3dStringConfigTypeMapType vector3dStringConfigTypeMap;
             tVectorStringConstraintsTypeMapType vectorStringConstraintsTypeMap;
             tVectorStringConstraintsTypeMapType vector2dStringConstraintsTypeMap;
+            tVectorStringConstraintsTypeMapType vector3dStringConstraintsTypeMap;
             tVectorFloatConfigTypeMapType vectorFloatConfigTypeMap;
             tVectorBoolConfigTypeMapType vectorBoolConfigTypeMap;
             tVectorIntConfigTypeMapType vectorIntConfigTypeMap;
@@ -388,6 +392,16 @@ namespace Kernel
 
         void initConfigTypeMap(
             const char* paramName,
+            std::vector< std::vector< std::vector< std::string > > > * pVariable,
+            const char* description = default_description,
+            const char* constraint_schema = nullptr,
+            const std::set< std::string > &constraint_variable = empty_set,
+            const char* condition_key = nullptr, const char* condition_value = nullptr,
+            const std::map<std::string, std::string>* depends_list = nullptr
+        );
+
+        void initConfigTypeMap(
+            const char* paramName,
             std::vector< float > * pVariable,
             const char* description = default_description,
             float min = -FLT_MAX, float max = FLT_MAX, bool ascending = false,
@@ -520,8 +534,7 @@ namespace Kernel
             const char* paramName,
             std::vector<IPKeyValue>* pVariable,
             const char* description = default_description,
-            const char* condition_key = nullptr,
-            const char* condition_value = nullptr,
+            const char* condition_key = nullptr, const char* condition_value = nullptr,
             const std::map<std::string, std::string>* depends_list = nullptr
         );
 
@@ -567,7 +580,7 @@ namespace Kernel
                     if (*it >= *(it + 1))
                     {
                         std::stringstream error_string;
-                        error_string << "The values in " << key << " must be unique and in ascending order.";
+                        error_string << "The values in '" << key << "' must be unique and in ascending order.";
                         throw InvalidInputDataException(__FILE__, __LINE__, __FUNCTION__, error_string.str().c_str());
                     }
                 }
@@ -577,6 +590,11 @@ namespace Kernel
         template< typename T >
         void EnforceVectorParameterRanges( const std::string& key, std::vector<T> values, json::QuickInterpreter& jsonObj )
         {
+            if (values.size() == 0)
+            {
+                return;
+            }
+
             for (T& value : values)
             {
                 EnforceParameterRange<T>(key, value, jsonObj);
@@ -585,6 +603,15 @@ namespace Kernel
             if (jsonObj.Exist("ascending") && jsonObj["ascending"].As<json::Number>())
             {
                 EnforceParameterAscending<T>(key, values);
+            }
+        }
+
+        template< typename T >
+        void EnforceVectorVectorParameterRanges(const std::string& key, std::vector<std::vector<T>> values, json::QuickInterpreter& jsonObj)
+        {
+            for (std::vector<T>& value : values)
+            {
+                EnforceVectorParameterRanges<T>(key, value, jsonObj);
             }
         }
 
@@ -621,9 +648,9 @@ namespace Kernel
             {
                 if( _useDefaults )
                 {
-                    if( (EnvPtr != nullptr) && EnvPtr->Log->CheckLogLevel(Logger::INFO, "JsonConfigurable"))
+                    if( (EnvPtr != nullptr) && EnvPtr->Log->CheckLogLevel(Logger::DEBUG, "JsonConfigurable"))
                     {
-                        EnvPtr->Log->Log(Logger::INFO, "JsonConfigurable", "Using the default value ( \"%s\" : \"%s\" ) for unspecified parameter.\n", key, enum_md.enum_value_specs[0].first.c_str() );
+                        EnvPtr->Log->Log(Logger::DEBUG, "JsonConfigurable", "Using the default value ( \"%s\" : \"%s\" ) for unspecified parameter.\n", key, enum_md.enum_value_specs[0].first.c_str() );
                     }
                     thevar = (myclass) enum_md.enum_value_specs[0].second;
                 }
@@ -712,18 +739,14 @@ namespace Kernel
 
             if (pJson && pJson->Exist(key) == false && _useDefaults )
             {
-                if( (EnvPtr != nullptr) && EnvPtr->Log->CheckLogLevel(Logger::INFO, "JsonConfigurable"))
+                if ((EnvPtr != nullptr) && EnvPtr->Log->CheckLogLevel(Logger::DEBUG, "JsonConfigurable"))
                 {
-                    EnvPtr->Log->Log(Logger::INFO, "JsonConfigurable", "Using the default value ( \"%s\" : [ \"%s\" ] ) for unspecified parameter.\n", key, enum_md.enum_value_specs[0].first.c_str() );
-                }
-                thevector.push_back( (myclass) enum_md.enum_value_specs[0].second );
-
-                if( _track_missing )
-                {
-                    missing_parameters_set.insert(key);
+                    release_assert(thevector.empty()); // the default is empty vector
+                    std::string default_in_string= "[]";
+                    EnvPtr->Log->Log(Logger::DEBUG, "JsonConfigurable", "Using the default value ( \"%s\" : \"%s\" ) for unspecified parameter.\n", key, default_in_string.c_str());
                 }
 
-                return false;
+                return true;
             }
 
             std::vector<std::string> enum_value_strings = GET_CONFIG_VECTOR_STRING(pJson, key);
@@ -844,17 +867,6 @@ namespace Kernel
             virtual json::QuickBuilder GetSchema() override;
     };
 
-    class IndividualInterventionConfigList : public IndividualInterventionConfig
-    {
-        public:
-            IndividualInterventionConfigList();
-            IndividualInterventionConfigList(json::QuickInterpreter* qi);
-
-            virtual json::QuickBuilder GetSchema() override;
-
-            virtual bool  HasValidDefault() const override {return true;}
-    };
-
     class NodeInterventionConfig : public InterventionConfig
     {
         public:
@@ -862,17 +874,6 @@ namespace Kernel
             NodeInterventionConfig(json::QuickInterpreter* qi);
 
             virtual json::QuickBuilder GetSchema() override;
-    };
-
-    class NodeInterventionConfigList : public NodeInterventionConfig
-    {
-        public:
-            NodeInterventionConfigList();
-            NodeInterventionConfigList(json::QuickInterpreter* qi);
-
-            virtual json::QuickBuilder GetSchema() override;
-
-            virtual bool  HasValidDefault() const override {return true;}
     };
 
     class NodeSetConfig : public JsonConfigurable, public IComplexJsonConfigurable

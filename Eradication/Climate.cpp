@@ -355,7 +355,7 @@ namespace Kernel {
             std::string schema_version( ReadStringFromConfig( metadata, SCHEMA_VERSION, metadata_filepath ) );
             if ( schema_version == "2.0" )
             {
-                LOG_INFO( "Found 'WeatherSchemaVersion' \"2.0\" in climate file metadata. Using 'WeatherCellCount' and 'NumberDTKNodes'\n" );
+                LOG_DEBUG( "Found 'WeatherSchemaVersion' \"2.0\" in climate file metadata. Using 'WeatherCellCount' and 'NumberDTKNodes'\n" );
                 md_num_entries = ReadIntegerFromConfig( metadata, CELL_COUNT, metadata_filepath );
                 md_num_offsets = ReadIntegerFromConfig( metadata, DTK_NODE_COUNT, metadata_filepath );
             }
@@ -369,7 +369,7 @@ namespace Kernel {
         }
         else // Fallback to "original" behavior.
         {
-            LOG_WARN( "No 'WeatherSchemaVersion' found in climate file metadata. Falling back to 'NodeCount' and 'NumberDTKNodes'\n" );
+            LOG_DEBUG( "No 'WeatherSchemaVersion' found in climate file metadata. Falling back to 'NodeCount' and 'NumberDTKNodes'\n" );
             md_num_entries = ReadIntegerFromConfig( metadata, NODE_COUNT, metadata_filepath );
             md_num_offsets = md_num_entries;
 
@@ -448,7 +448,7 @@ namespace Kernel {
 
         LOG_DEBUG_F( "Processing nodeid %d\n", nodeid );
 
-        switch(GetClimateParams().climate_structure )
+        switch( GetClimateParams().climate_structure )
         {
             case ClimateStructure::CLIMATE_CONSTANT:
                 new_climate = ClimateConstant::CreateClimate( ClimateUpdateResolution::CLIMATE_UPDATE_DAY, parent_node, start_time, pRNG );

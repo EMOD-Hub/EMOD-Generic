@@ -14,7 +14,6 @@
 ** of implementation of high level simulation plans involving averaging, serialization, etc
 */
 
-
 class DefaultController : public IController
 {
 public:

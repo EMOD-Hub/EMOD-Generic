@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <stdafx.h>
@@ -6,7 +5,7 @@
 #include <sstream>
 #include <iomanip>
 #include "Exceptions.h"
-#include "IdmString.h"
+#include "FileSystem.h"
 #include "Types.h" // temp, for backtrace
 #ifdef __GNUC__
 #include <execinfo.h>
@@ -182,46 +181,51 @@ static const char* nullptr_str = "nullptr";
 #define GET_VAR_NAME(v) ( (v) ? (v) : default_varname )
 #define GET_STR(s)      ( (s) ? (s) : nullptr_str )
 
-namespace Kernel {
-
+namespace Kernel
+{
     DetailedException::DetailedException( const char * file_name, int line_num, const char * func_name )
-    : std::runtime_error( std::string( "\nException in " ) + GET_STR(file_name) + " at " + std::to_string(line_num) + " in " + GET_STR(func_name) + ".\n" )
-    , _msg()
-    , _stackTrace()
-    , _fileName( file_name )
-    , _funcName( func_name )
-    , _lineNum( line_num )
+        : std::runtime_error( std::string( "\nException in " ) + GET_STR(file_name) + " at " + std::to_string(line_num) + " in " + GET_STR(func_name) + ".\n" )
+        , _msg()
+        , _stackTrace()
+        , _fileName( file_name )
+        , _funcName( func_name )
+        , _lineNum( line_num )
     {
         _stackTrace = dump_backtrace();
     }
-
-    //DetailedException::~DetailedException() throw() {}; // or some compilers complain
 
     // this used to return what(), but now it returns our customized string.
     // what() can always be called directly in case our carefully formed message
     // from parameters lost something really useful! Callers should not assume
     // _msg includes what().
-    const char *
-    DetailedException::GetMsg() const
+    const char* DetailedException::GetMsg() const
     {
         return _msg.c_str();
     }
-    const char *
-    DetailedException::GetFilename() const { return _fileName; }
-    int
-    DetailedException::GetLineNumber() const { return _lineNum; }
-    const char*
-    DetailedException::GetFunction() const { return _funcName; }
 
-    const std::string&
-    DetailedException::GetStackTrace() const 
+    const char* DetailedException::GetFilename() const
+    {
+        return _fileName;
+    }
+
+    int DetailedException::GetLineNumber() const
+    {
+        return _lineNum;
+    }
+
+    const char* DetailedException::GetFunction() const
+    {
+        return _funcName;
+    }
+
+    const std::string& DetailedException::GetStackTrace() const 
     {
         return _stackTrace ;
     }
 
     // This is to be used in the default section of most switch statements. 
     BadEnumInSwitchStatementException::BadEnumInSwitchStatementException( const char* file_name, int line_num, const char* function_name, const char* var_name, int bad_value, std::string as_string )
-    : DetailedException( file_name, line_num, function_name )
+        : DetailedException( file_name, line_num, function_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "BadEnumInSwitchStatementException: "
@@ -240,7 +244,7 @@ namespace Kernel {
     // This is to be used when a map is searched for a key that is believed
     // to exist but is not found.
     BadMapKeyException::BadMapKeyException( const char* file_name, int line_num, const char* function_name, const char* var_name, const char* value )
-    : DetailedException( file_name, line_num, function_name )
+        : DetailedException( file_name, line_num, function_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "BadMapKeyException: "
@@ -253,7 +257,7 @@ namespace Kernel {
     }
 
     CalculatedValueOutOfRangeException::CalculatedValueOutOfRangeException( const char* file_name, int line_num, const char* function_name, const char* var_name, float bad_value, float range_violated )
-    : DetailedException( file_name, line_num, function_name )
+        : DetailedException( file_name, line_num, function_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "CalculatedValueOutOfRangeException: "
@@ -267,42 +271,24 @@ namespace Kernel {
     }
 
     ConfigurationRangeException::ConfigurationRangeException( const char * file_name, int line_num, const char * func_name, const char* var_name, float var_value, float test_value )
-    : DetailedException( file_name, line_num, func_name )
-    {
-        std::ostringstream _tmp_msg;
-        _tmp_msg << "ConfigurationRangeException: "
-            << what()
-            << "Configuration variable "
-            << "'" << GET_VAR_NAME( var_name ) << "'" 
-            << " with value "
-            << var_value
-            << " out of range: "
-            << ((var_value < test_value) ? "less than " : "greater than ")  //value can only be smaller or greater. Exception is only triggered when x < min or x > max
-            << test_value
-            << ".";
-        _msg = _tmp_msg.str();
-    }
-
-
-    ConfigurationRangeException::ConfigurationRangeException( const char * file_name, int line_num, const char * func_name, const char* var_name, float var_value, float min, float max, const char * condition )
         : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "ConfigurationRangeException: "
-            << what()
-            << "Configuration variable "
-            << GET_VAR_NAME( var_name )
-            << ( ( !condition || condition == '\0') ?  "" : " for " + std::string(condition))
-            << " with value " << var_value
-            << " out of range. "
-            << "It is possible that you did not define this where it was expected - this parameter has no valid default and must be explicitly defined to a value between "
-            << min << " and " << max << ". \n";
+                 << what()
+                 << "Configuration variable "
+                 << "'" << GET_VAR_NAME( var_name ) << "'"
+                 << " with value "
+                 << var_value
+                 << " out of range: "
+                 << ((var_value < test_value) ? "less than " : "greater than ")  //value can only be smaller or greater. Exception is only triggered when x < min or x > max
+                 << test_value
+                 << ".";
         _msg = _tmp_msg.str();
     }
 
-
     DllLoadingException::DllLoadingException( const char * file_name, int line_num, const char * func_name, const char * msg )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "DllLoadingException: filename = " << what() << GET_STR(msg) << std::endl;
@@ -310,7 +296,7 @@ namespace Kernel {
     }
 
     FactoryCreateFromJsonException::FactoryCreateFromJsonException( const char* file_name, int line_num, const char* func_name, const char* note )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "FactoryCreateFromJsonException: " << what() << GET_STR(note) << std::endl;
@@ -318,7 +304,7 @@ namespace Kernel {
     }
 
     FileIOException::FileIOException( const char* sourccode_filename, int line_num, const char* function_name, const char* filename, const char* note )
-    : DetailedException( sourccode_filename, line_num, function_name )
+        : DetailedException( sourccode_filename, line_num, function_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "FileIOException: "
@@ -333,25 +319,23 @@ namespace Kernel {
     }
 
     FileNotFoundException::FileNotFoundException( const char * src_file_name, int line_num, const char* func_name, const char * missing_file_name )
-    : DetailedException( src_file_name, line_num, func_name )
+        : DetailedException( src_file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "FileNotFoundException: "
             << what()
-            << "Could not find file at any of 1 or more paths:" << std::endl;
-        auto elements = IdmString( missing_file_name ).split(); // should be array/vector of IdmStrings
-        for( std::string elem: elements  )
-        {
-            if( elem.size() > 0 )
-            {
-                _tmp_msg << elem << std::endl;
-            }
-        }
+            << "Could not find file "
+            << GET_STR(missing_file_name);
+
+        std::stringstream ss;
+        ss << "Received system error '" << FileSystem::GetSystemErrorMessage() << "'.";
+        _tmp_msg << ".\n" << ss.str();
+
         _msg = _tmp_msg.str();
     }
 
     GeneralConfigurationException::GeneralConfigurationException( const char * file_name, int line_num, const char* func_name, const char * msg )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         // pass message straight through
         std::ostringstream _tmp_msg;
@@ -360,7 +344,7 @@ namespace Kernel {
     }
 
     IllegalOperationException::IllegalOperationException( const char * file_name, int line_num, const char* func_name, const char * msg )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "IllegalOperationException: " << what() << GET_STR(msg) << std::endl;
@@ -368,25 +352,25 @@ namespace Kernel {
     }
 
     IncoherentConfigurationException::IncoherentConfigurationException( const char * file_name, int line_num, const char* func_name, const char* existing_label, double existing_value, const char* test_label, double test_value, const char* details )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         createICEMessage( existing_label, std::to_string(existing_value).c_str(), test_label, std::to_string(test_value).c_str(), details );
     }
 
     IncoherentConfigurationException::IncoherentConfigurationException( const char * file_name, int line_num, const char* func_name, const char* existing_label, unsigned long existing_value, const char* test_label, unsigned long test_value, const char* details )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         createICEMessage( existing_label, std::to_string(existing_value).c_str(), test_label, std::to_string(test_value).c_str(), details );
     }
 
     IncoherentConfigurationException::IncoherentConfigurationException( const char * file_name, int line_num, const char* func_name, const char* existing_label, signed int existing_value, const char* test_label, signed int test_value, const char* details )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         createICEMessage( existing_label, std::to_string(existing_value).c_str(), test_label, std::to_string(test_value).c_str(), details );
     }
 
     IncoherentConfigurationException::IncoherentConfigurationException( const char * file_name, int line_num, const char* func_name, const char* existing_label, float existing_value, const char* test_label, float test_value, const char* details )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         createICEMessage( existing_label, std::to_string(existing_value).c_str(), test_label, std::to_string(test_value).c_str(), details );
     }
@@ -401,7 +385,7 @@ namespace Kernel {
         const char* test_value,
         const char* details
     )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         createICEMessage( existing_label, existing_value, test_label, test_value, details );
     }
@@ -446,7 +430,7 @@ namespace Kernel {
     }
 
     InitializationException::InitializationException( const char * file_name, int line_num, const char * func_name, const char * msg )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "InitializationException: " << what() << GET_STR(msg);
@@ -454,7 +438,7 @@ namespace Kernel {
     }
 
     InvalidInputDataException::InvalidInputDataException( const char* file_name, int line_num, const char* func_name, const char* note )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "InvalidInputDataException: " << what() << GET_STR(note) << std::endl;
@@ -462,7 +446,7 @@ namespace Kernel {
     }
 
     InvalidInputDataException::InvalidInputDataException(const char * file_name, int line_num, const char * function_name, const std::string& config_filename, const char * note)
-    : DetailedException( file_name, line_num, function_name)
+        : DetailedException( file_name, line_num, function_name)
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << what() << std::endl;
@@ -476,7 +460,7 @@ namespace Kernel {
                                                                                 const char* func_name, 
                                                                                 const char* demographicsFilename, 
                                                                                 const char* note )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "NodeDemographicsFormatErrorException: " << what() ;
@@ -486,7 +470,7 @@ namespace Kernel {
     }
 
     MPIException::MPIException( const char* file_name, int line_num, const char* func_name, const char* note )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "MPIException: " << what() << GET_STR(note) << std::endl;
@@ -494,7 +478,7 @@ namespace Kernel {
     }
 
     NotYetImplementedException::NotYetImplementedException( const char * file_name, int line_num, const char* func_name, const char * msg )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "NotYetImplementedException: "
@@ -505,7 +489,7 @@ namespace Kernel {
     }
 
     NullPointerException::NullPointerException( const char * file_name, int line_num, const char * func_name, const char* var_name, const char* type_name )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "NullPointerException: "
@@ -519,7 +503,7 @@ namespace Kernel {
     }
     
     OutOfRangeException::OutOfRangeException( const char * file_name, int line_num, const char* func_name, const char* var_name, float value, float value_violated )
-    : DetailedException( file_name, line_num, func_name )
+        : DetailedException( file_name, line_num, func_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "OutOfRangeException: "
@@ -534,7 +518,7 @@ namespace Kernel {
     }
 
     SerializationException::SerializationException( const char* filename, int line_num, const char* function_name, const char* notes )
-    : DetailedException( filename, line_num, function_name )
+        : DetailedException( filename, line_num, function_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "SerializationException: "
@@ -545,7 +529,7 @@ namespace Kernel {
     }
 
     WarningException::WarningException( const char* filename, int line_num, const char* function_name )
-    : DetailedException( filename, line_num, function_name )
+        : DetailedException( filename, line_num, function_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "WarningException: "
@@ -561,7 +545,7 @@ namespace Kernel {
         const char* config_file_name,
         const char* param_name
     )
-    : DetailedException( filename, line_num, function_name )
+        : DetailedException( filename, line_num, function_name )
     {
         std::ostringstream _tmp_msg;
         _tmp_msg << "MissingParameterFromConfigurationException: "
@@ -611,17 +595,8 @@ namespace Kernel {
         const char * param_name,
         const json::QuickInterpreter& json_blob, 
         const char * caught_msg )
-    : DetailedException( filename, line_num, function_name )
+        : DetailedException( filename, line_num, function_name )
     {
-#if 0
-                 << what()
-                 << "Parameter '"
-                 << param_name
-                 << "' not found in input file '"
-                 << config_file_name
-                 << "'."
-                 << std::endl;
-#endif
         std::stringstream blob_msg;
         json::Writer::Write( json_blob, blob_msg );
 

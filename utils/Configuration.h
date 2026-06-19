@@ -1,13 +1,13 @@
 
 #pragma once
 
-#include "IdmApi.h"
 #include <string>
 #include <set>
 #include <vector>
 #include <map>
 #include <climits>
 
+#include "Exceptions.h"
 #include "ISupports.h"
 #include "CajunIncludes.h"
 
@@ -19,6 +19,7 @@ public:
     // creates a Configuration object representing a copy of the subtree rooted at the element passed in
     static Configuration* CopyFromElement( const json::Element &elem, const std::string& rDataLocation = "Unknown" );
 
+    bool CheckElementByName(const std::string& elementName) const;
     const std::string& GetDataLocation() const { return data_location; }
 
     bool IsObject() const { return (pElement->Type() == json::ElementType::OBJECT_ELEMENT); }
@@ -46,6 +47,20 @@ private:
     std::map<std::string, json::Number> extendedConfig;
 };
 
+template<typename T>
+T ConvertIntegerValue( const char* parameterName, double jsonValue )
+{
+    if( jsonValue != T(jsonValue) )
+    {
+        std::ostringstream errMsg; // using a non-parameterized exception.
+        errMsg << "The value for parameter '"<< parameterName << "' appears to be a decimal ("
+                << jsonValue
+                << ") but needs to be an integer." << std::endl;
+        throw Kernel::GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, errMsg.str().c_str() );
+    }
+    return T( jsonValue );
+}
+
 class JsonUtility
 {
 public:
@@ -53,7 +68,7 @@ public:
     static void logJsonException( const json::ScanException &pe, std::string& err_msg );
 };
 
-Configuration IDMAPI *Configuration_Load( const std::string& rFilename ) ;
+Configuration *Configuration_Load( const std::string& rFilename ) ;
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // config/json loading wrappers
@@ -74,6 +89,12 @@ std::vector< std::vector< std::string > > GET_CONFIG_VECTOR2D_STRING(const json:
 inline std::vector< std::vector< std::string > > GET_CONFIG_VECTOR2D_STRING(const json::QuickInterpreter* parameter_source, const std::string& name)
 {
     return GET_CONFIG_VECTOR2D_STRING(parameter_source, name.c_str());
+}
+
+std::vector< std::vector< std::vector< std::string > > > GET_CONFIG_VECTOR3D_STRING(const json::QuickInterpreter* parameter_source, const char *name);
+inline std::vector< std::vector< std::vector< std::string > > > GET_CONFIG_VECTOR3D_STRING(const json::QuickInterpreter* parameter_source, const std::string& name)
+{
+    return GET_CONFIG_VECTOR3D_STRING(parameter_source, name.c_str());
 }
 
 std::vector< float > GET_CONFIG_VECTOR_FLOAT(const json::QuickInterpreter* parameter_source, const char *name);
@@ -148,7 +169,7 @@ namespace Kernel
     using namespace std;
     using namespace json;
 
-    struct IDMAPI IConfigurable : ISupports
+    struct IConfigurable : ISupports
     {
         virtual bool Configure(const Configuration *config) = 0;
         virtual QuickBuilder GetSchema() = 0;
