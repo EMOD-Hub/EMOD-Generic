@@ -20,6 +20,8 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <iterator>
+#include <climits>
 
 #ifndef WIN32
 #include <limits>
