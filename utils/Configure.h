@@ -151,6 +151,7 @@ namespace Kernel
         typedef std::map< std::string, float > tStringFloatMapConfigType;
         static const char * default_string;
 
+        static void CheckMissingParameters();
         virtual IConfigurable* GetConfigurable() override;
 
     private:
@@ -577,7 +578,7 @@ namespace Kernel
                     if (*it >= *(it + 1))
                     {
                         std::stringstream error_string;
-                        error_string << "The values in " << key << " must be unique and in ascending order.";
+                        error_string << "The values in '" << key << "' must be unique and in ascending order.";
                         throw InvalidInputDataException(__FILE__, __LINE__, __FUNCTION__, error_string.str().c_str());
                     }
                 }
@@ -645,9 +646,9 @@ namespace Kernel
             {
                 if( _useDefaults )
                 {
-                    if( (EnvPtr != nullptr) && EnvPtr->Log->CheckLogLevel(Logger::INFO, "JsonConfigurable"))
+                    if( (EnvPtr != nullptr) && EnvPtr->Log->CheckLogLevel(Logger::DEBUG, "JsonConfigurable"))
                     {
-                        EnvPtr->Log->Log(Logger::INFO, "JsonConfigurable", "Using the default value ( \"%s\" : \"%s\" ) for unspecified parameter.\n", key, enum_md.enum_value_specs[0].first.c_str() );
+                        EnvPtr->Log->Log(Logger::DEBUG, "JsonConfigurable", "Using the default value ( \"%s\" : \"%s\" ) for unspecified parameter.\n", key, enum_md.enum_value_specs[0].first.c_str() );
                     }
                     thevar = (myclass) enum_md.enum_value_specs[0].second;
                 }
@@ -736,18 +737,14 @@ namespace Kernel
 
             if (pJson && pJson->Exist(key) == false && _useDefaults )
             {
-                if( (EnvPtr != nullptr) && EnvPtr->Log->CheckLogLevel(Logger::INFO, "JsonConfigurable"))
+                if ((EnvPtr != nullptr) && EnvPtr->Log->CheckLogLevel(Logger::DEBUG, "JsonConfigurable"))
                 {
-                    EnvPtr->Log->Log(Logger::INFO, "JsonConfigurable", "Using the default value ( \"%s\" : [ \"%s\" ] ) for unspecified parameter.\n", key, enum_md.enum_value_specs[0].first.c_str() );
-                }
-                thevector.push_back( (myclass) enum_md.enum_value_specs[0].second );
-
-                if( _track_missing )
-                {
-                    missing_parameters_set.insert(key);
+                    release_assert(thevector.empty()); // the default is empty vector
+                    std::string default_in_string= "[]";
+                    EnvPtr->Log->Log(Logger::DEBUG, "JsonConfigurable", "Using the default value ( \"%s\" : \"%s\" ) for unspecified parameter.\n", key, default_in_string.c_str());
                 }
 
-                return false;
+                return true;
             }
 
             std::vector<std::string> enum_value_strings = GET_CONFIG_VECTOR_STRING(pJson, key);
@@ -868,17 +865,6 @@ namespace Kernel
             virtual json::QuickBuilder GetSchema() override;
     };
 
-    class IndividualInterventionConfigList : public IndividualInterventionConfig
-    {
-        public:
-            IndividualInterventionConfigList();
-            IndividualInterventionConfigList(json::QuickInterpreter* qi);
-
-            virtual json::QuickBuilder GetSchema() override;
-
-            virtual bool  HasValidDefault() const override {return true;}
-    };
-
     class NodeInterventionConfig : public InterventionConfig
     {
         public:
@@ -886,17 +872,6 @@ namespace Kernel
             NodeInterventionConfig(json::QuickInterpreter* qi);
 
             virtual json::QuickBuilder GetSchema() override;
-    };
-
-    class NodeInterventionConfigList : public NodeInterventionConfig
-    {
-        public:
-            NodeInterventionConfigList();
-            NodeInterventionConfigList(json::QuickInterpreter* qi);
-
-            virtual json::QuickBuilder GetSchema() override;
-
-            virtual bool  HasValidDefault() const override {return true;}
     };
 
     class NodeSetConfig : public JsonConfigurable, public IComplexJsonConfigurable

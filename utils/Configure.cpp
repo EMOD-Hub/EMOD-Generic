@@ -29,7 +29,7 @@ namespace Kernel
         {
             if( pJson && pJson->Exist(condition_key) == true )
             {
-                // condition_key is in config. Read value 
+                // condition_key is in config. Read value
                 auto c_value = (*pJson)[condition_key];
 
                 if( condition_value == nullptr )
@@ -107,15 +107,15 @@ namespace Kernel
             auto condition_list = json_cast<const json::Object&>(schema["depends-on"]);
             for(auto itr1 = condition_list.Begin(); itr1 != condition_list.End(); itr1++)
             {
-                std::string  condition_key       = itr1->name;
-                std::string  condition_value_str = "";
-                std::string  condition_value_int = "";
-                const char * condition_value     = nullptr;
+                std::string condition_key = itr1->name;
+                std::string condition_value_str = "";
+                std::string condition_value_int = "";
+                const char* condition_value = nullptr;
 
                 try
                 {
                     condition_value_str = (json::QuickInterpreter(itr1->element)).As<json::String>();
-                    condition_value     = condition_value_str.c_str();
+                    condition_value = condition_value_str.c_str();
                     LOG_DEBUG_F( "schema condition value appears to be string/enum: %s.\n", condition_value );
                 }
                 catch(...)
@@ -271,30 +271,6 @@ namespace Kernel
         return schema;
     }
 
-    IndividualInterventionConfigList::IndividualInterventionConfigList()
-        : IndividualInterventionConfig()
-    {
-        _json = json::Array();
-    }
-
-    IndividualInterventionConfigList::IndividualInterventionConfigList(json::QuickInterpreter* qi)
-        : IndividualInterventionConfig(qi)
-    { }
-
-    json::QuickBuilder IndividualInterventionConfigList::GetSchema()
-    {
-        json::QuickBuilder schema = IndividualInterventionConfig::GetSchema();
-        auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[tn] = json::String( "idmType:IndividualInterventionList" );
-        IndividualInterventionConfig i_i_config;
-        schema[ts] = json::Array();
-        schema[ts][0] = i_i_config.GetSchema();
-        schema["default"] = json::Array();
-
-        return schema;
-    }
-
     NodeInterventionConfig::NodeInterventionConfig()
         : InterventionConfig()
     { }
@@ -308,30 +284,6 @@ namespace Kernel
         json::QuickBuilder schema = InterventionConfig::GetSchema();
         auto tn = JsonConfigurable::_typename_label();
         schema[tn] = json::String( "idmAbstractType:NodeIntervention" );
-
-        return schema;
-    }
-
-    NodeInterventionConfigList::NodeInterventionConfigList()
-        : NodeInterventionConfig()
-    {
-        _json = json::Array();
-    }
-
-    NodeInterventionConfigList::NodeInterventionConfigList(json::QuickInterpreter* qi)
-        : NodeInterventionConfig(qi)
-    { }
-
-    json::QuickBuilder NodeInterventionConfigList::GetSchema()
-    {
-        json::QuickBuilder schema = InterventionConfig::GetSchema();
-        auto tn = JsonConfigurable::_typename_label();
-        auto ts = JsonConfigurable::_typeschema_label();
-        schema[tn] = json::String("idmType:NodeInterventionList");
-        NodeInterventionConfig n_i_config;
-        schema[ts] = json::Array();
-        schema[ts][0] = n_i_config.GetSchema();
-        schema["default"] = json::Array();
 
         return schema;
     }
@@ -1593,7 +1545,6 @@ namespace Kernel
     )
     {
         LOG_DEBUG_F( "initConfigTypeMap<IPKey>: %s\n", paramName);
-        GetConfigData()->ipKeyTypeMap[ paramName ] = pVariable;
         json::Object newParamSchema;
         newParamSchema["default"] = json::String("");
         if( _dryrun )
@@ -1602,13 +1553,16 @@ namespace Kernel
             newParamSchema["type"] = json::String("Constrained String");
             newParamSchema[ "value_source" ] = json::String( IPKey::GetConstrainedStringConstraintKey() );
         }
+        else
+        {
+            if( pVariable->GetParameterName().empty() )
+            {
+                pVariable->SetParameterName( paramName );
+            }
+            GetConfigData()->ipKeyTypeMap[ paramName ] = pVariable;
+        }
 
         jsonSchemaBase[paramName] = newParamSchema;
-
-        if( pVariable->GetParameterName().empty() )
-        {
-            pVariable->SetParameterName( paramName );
-        }
     }
 
     void
@@ -1619,7 +1573,6 @@ namespace Kernel
     )
     {
         LOG_DEBUG_F( "initConfigTypeMap<IPKeyValue>: %s\n", paramName);
-        GetConfigData()->ipKeyValueTypeMap[ paramName ] = pVariable;
         json::Object newParamSchema;
         newParamSchema["default"] = json::String("");
         if( _dryrun )
@@ -1628,13 +1581,16 @@ namespace Kernel
             newParamSchema[ "type" ] = json::String( "Constrained String" );
             newParamSchema[ "value_source" ] = json::String( IPKey::GetConstrainedStringConstraintKeyValue() );
         }
+        else
+        {
+            if( pVariable->GetParameterName().empty() )
+            {
+                pVariable->SetParameterName( paramName );
+            }
+            GetConfigData()->ipKeyValueTypeMap[ paramName ] = pVariable;
+        }
 
         jsonSchemaBase[paramName] = newParamSchema;
-
-        if( pVariable->GetParameterName().empty() )
-        {
-            pVariable->SetParameterName( paramName );
-        }
     }
 
     void
@@ -1642,13 +1598,11 @@ namespace Kernel
         const char* paramName,
         std::vector<IPKeyValue>* pVariable,
         const char* description,
-        const char* condition_key,
-        const char* condition_value,
+        const char* condition_key, const char* condition_value,
         const std::map<std::string, std::string>* depends_list
     )
     {
         LOG_DEBUG_F("initConfigTypeMap<vector<IPKeyValue>>: %s\n", paramName);
-        GetConfigData()->iPKeyValueVectorMapType[paramName] = pVariable;
         json::Object newParamSchema;
         if (_dryrun)
         {
@@ -1656,14 +1610,18 @@ namespace Kernel
             newParamSchema["type"] = json::String("Vector Constrained String");
             newParamSchema[ "default" ] = json::Array();
             newParamSchema["value_source"] = json::String(IPKey::GetConstrainedStringConstraintKeyValue());
+        }
+        else
+        {
+            GetConfigData()->iPKeyValueVectorMapType[paramName] = pVariable;
+        }
 
-            updateSchemaWithCondition( newParamSchema, condition_key, condition_value );
-            if(depends_list)
+        updateSchemaWithCondition( newParamSchema, condition_key, condition_value );
+        if(depends_list)
+        {
+            for(auto const pair: *depends_list)
             {
-                for(auto const pair: *depends_list)
-                {
-                    updateSchemaWithCondition(newParamSchema, (pair.first).c_str(), (pair.second).c_str());
-                }
+                updateSchemaWithCondition(newParamSchema, (pair.first).c_str(), (pair.second).c_str());
             }
         }
 
@@ -1678,7 +1636,6 @@ namespace Kernel
     )
     {
         LOG_DEBUG_F( "initConfigTypeMap<NPKey>: %s\n", paramName);
-        GetConfigData()->npKeyTypeMap[ paramName ] = pVariable;
         json::Object newParamSchema;
         newParamSchema["default"] = json::String("");
         if( _dryrun )
@@ -1687,24 +1644,26 @@ namespace Kernel
             newParamSchema[ "type" ] = json::String( "Constrained String" );
             newParamSchema[ "value_source" ] = json::String( NPKey::GetConstrainedStringConstraintKey() );
         }
+        else
+        {
+            if( pVariable->GetParameterName().empty() )
+            {
+                pVariable->SetParameterName( paramName );
+            }
+            GetConfigData()->npKeyTypeMap[ paramName ] = pVariable;
+        }
 
         jsonSchemaBase[paramName] = newParamSchema;
-
-        if( pVariable->GetParameterName().empty() )
-        {
-            pVariable->SetParameterName( paramName );
-        }
     }
 
     void
     JsonConfigurable::initConfigTypeMap(
         const char* paramName,
         NPKeyValue * pVariable,
-        const char * description
+        const char* description
     )
     {
         LOG_DEBUG_F( "initConfigTypeMap<NPKeyValue>: %s\n", paramName);
-        GetConfigData()->npKeyValueTypeMap[ paramName ] = pVariable;
         json::Object newParamSchema;
         newParamSchema["default"] = json::String("");
         if( _dryrun )
@@ -1713,12 +1672,29 @@ namespace Kernel
             newParamSchema[ "type" ] = json::String( "Constrained String" );
             newParamSchema[ "value_source" ] = json::String( NPKey::GetConstrainedStringConstraintKeyValue() );
         }
+        else
+        {
+            if( pVariable->GetParameterName().empty() )
+            {
+                pVariable->SetParameterName( paramName );
+            }
+            GetConfigData()->npKeyValueTypeMap[ paramName ] = pVariable;
+        }
 
         jsonSchemaBase[paramName] = newParamSchema;
+    }
 
-        if( pVariable->GetParameterName().empty() )
+    void JsonConfigurable::CheckMissingParameters()
+    {
+        if( !JsonConfigurable::missing_parameters_set.empty() )
         {
-            pVariable->SetParameterName( paramName );
+            std::stringstream errMsg;
+            errMsg << "The following necessary parameters were not specified" << std::endl;
+            for (auto& key : JsonConfigurable::missing_parameters_set)
+            {
+                errMsg << "\t \"" << key.c_str() << "\"" << std::endl;
+            }
+            throw GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, errMsg.str().c_str() );
         }
     }
 
@@ -1802,15 +1778,8 @@ namespace Kernel
             {
                 // get specified configuration parameter
                 double jsonValueAsDouble = GET_CONFIG_DOUBLE( inputJson, key.c_str() );
-                if( jsonValueAsDouble != (int) jsonValueAsDouble )
-                {
-                    std::ostringstream errMsg; // using a non-parameterized exception.
-                    errMsg << "The value for parameter '"<< key << "' appears to be a decimal ("
-                           << jsonValueAsDouble
-                           << ") but needs to be an integer." << std::endl;
-                    throw Kernel::GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, errMsg.str().c_str() );
-                }
-                val = int(jsonValueAsDouble);
+                val = ConvertIntegerValue<int>( key.c_str(), jsonValueAsDouble );
+
                 // throw exception if value is outside of range
                 EnforceParameterRange<int>( key, val, schema );
                 *(entry.second) = val;
@@ -1850,15 +1819,8 @@ namespace Kernel
             {
                 // get specified configuration parameter
                 double jsonValueAsDouble = GET_CONFIG_DOUBLE( inputJson, key.c_str() );
-                if( jsonValueAsDouble != (uint32_t)jsonValueAsDouble )
-                {
-                    std::ostringstream errMsg; // using a non-parameterized exception.
-                    errMsg << "The value for parameter '"<< key << "' appears to be a decimal ("
-                           << jsonValueAsDouble
-                           << ") but needs to be an integer." << std::endl;
-                    throw Kernel::GeneralConfigurationException( __FILE__, __LINE__, __FUNCTION__, errMsg.str().c_str() );
-                }
-                val = uint32_t( jsonValueAsDouble );
+                val = ConvertIntegerValue<uint32_t>( key.c_str(), jsonValueAsDouble );
+
                 // throw exception if value is outside of range
                 EnforceParameterRange<uint32_t>( key, val, schema );
                 *(entry.second) = val;
@@ -2271,9 +2233,11 @@ namespace Kernel
                     if( allowed_values->size() > 0 && std::find( allowed_values->begin(), allowed_values->end(), candidate ) == allowed_values->end() )
                     {
                         std::ostringstream msg;
-                        msg << "Constrained strings (dynamic enum) with specified value " 
+                        msg << "Parameter '"
+                            << key
+                            << "' with specified value '" 
                             << candidate 
-                            << " invalid. Possible values are: ";
+                            << "' invalid. Possible values are: ";
                         for( auto value: *allowed_values )
                         {
                             msg << value << "...";

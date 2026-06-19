@@ -17,7 +17,6 @@
 #define DTK_DLLEXPORT   __declspec(dllexport)
 #else // Other non-windows platform
 #define DTK_DLLEXPORT   
-#define __cdecl
 #endif
 
 namespace Kernel
@@ -39,8 +38,9 @@ namespace Kernel
             std::ostringstream errMsg;
             string templateClassName = typeid(ReturnTypeT).name();
             templateClassName = templateClassName.substr( templateClassName.find_last_of("::")+1 );
-            errMsg << templateClassName 
-                   << " could not instantiate object from json because class was not specified as required. Details from caught exception: "
+            errMsg << "'" 
+                   << templateClassName
+                   << "' could not instantiate object from json because class was not specified as required.\nDetails from caught exception: "
                    << std::endl
                    << except.GetMsg()
                    << std::endl;
