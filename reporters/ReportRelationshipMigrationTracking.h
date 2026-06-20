@@ -1,20 +1,22 @@
 
-
 #pragma once
 
 #include "BaseTextReportEvents.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
-    class ReportRelationshipCensus : public BaseTextReportEvents
+    class ReportRelationshipMigrationTracking : public BaseTextReportEvents
     {
     public:
-        ReportRelationshipCensus();
-        virtual ~ReportRelationshipCensus();
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportRelationshipMigrationTracking, IReport)
+
+        ReportRelationshipMigrationTracking();
+        ReportRelationshipMigrationTracking(const ReportRelationshipMigrationTracking&);
+        virtual ~ReportRelationshipMigrationTracking();
 
         // BaseEventReport
         virtual bool Configure( const Configuration* ) override;
-        virtual bool Validate(const ISimulationContext*) override;
 
         virtual void UpdateEventRegistration( float currentTime, 
                                               float dt, 
@@ -23,21 +25,22 @@ namespace Kernel
 
         virtual std::string GetHeader() const override;
         virtual bool notifyOnEvent( IIndividualHumanEventContext *context, 
-                                    const EventTrigger::Enum &trigger ) override;
+                                    const EventTrigger::Enum& trigger ) override;
         virtual void LogIndividualData( IIndividualHuman* individual ) override;
         virtual bool IsCollectingIndividualData( float currentTime, float dt ) const override;
         virtual void EndTimestep( float currentTime, float dt ) override;
         virtual void Reduce() override;
-        virtual std::string GetReportName() const override;
-
     private:
-        std::string m_ReportName;
-        float m_StartYear;
-        float m_EndYear;
-        float m_ReportingIntervalYears;
-        float m_IntervalTimerDays;
-        bool m_IsCollectingData;
-        bool m_FirstDataCollection;
-        std::vector<std::string> m_RelationshipTypes;
+        struct MigrationData
+        {
+            MigrationData() : age_years(-1.0), gender(-1), node_id(-1), migration_type_str() {}
+
+            float age_years ;
+            int gender ;
+            uint32_t node_id ;
+            std::string migration_type_str ;
+        };
+        float m_EndTime ;
+        std::map<long,MigrationData> m_MigrationDataMap ;
     };
 }

@@ -1,8 +1,9 @@
 
+#pragma once
+
 #include "stdafx.h"
 
 #include "ReportRelationshipCensus.h"
-#include "DllInterfaceHelper.h"
 #include "FactorySupport.h"
 
 #include "NodeEventContext.h"
@@ -13,67 +14,22 @@
 #include "IdmDateTime.h"
 #include "INodeContext.h"
 
-//******************************************************************************
-
 #define THREE_MONTHS  ( 91) // ~3 months
 #define SIX_MONTHS    (182) // ~6 months
 #define NINE_MONTHS   (274) // ~9 months
 #define TWELVE_MONTHS (365) // ~12 months
 #define DEFAULT_NAME ("ReportRelationshipCensus.csv")
 
-//******************************************************************************
-
 SETUP_LOGGING( "ReportRelationshipCensus" )
 
-static const char* _sim_types[]  = { "STI_SIM", "HIV_SIM", nullptr };
 static const float PERIODS[]     = { THREE_MONTHS, SIX_MONTHS, NINE_MONTHS, TWELVE_MONTHS };
 static std::vector<float> UNIQUE_PARTNER_TIME_PERIODS( PERIODS, PERIODS + sizeof( PERIODS ) / sizeof( PERIODS[ 0 ] ) );
 
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::ReportRelationshipCensus();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-// ----------------------------------------
-// --- ReportRelationshipCensus Methods
-// ----------------------------------------
-
 namespace Kernel
 {
+    IMPLEMENT_FACTORY_REGISTERED(ReportRelationshipCensus)
+
+    // Constructor
     ReportRelationshipCensus::ReportRelationshipCensus()
         : BaseTextReportEvents( DEFAULT_NAME )
         , m_ReportName( DEFAULT_NAME )
@@ -93,9 +49,24 @@ namespace Kernel
         AddRef();
     }
 
-    ReportRelationshipCensus::~ReportRelationshipCensus()
+    // Copy constructor
+    ReportRelationshipCensus::ReportRelationshipCensus(const ReportRelationshipCensus& existing_instance)
+        : BaseTextReportEvents(existing_instance.GetReportName())
+        , m_ReportName(existing_instance.m_ReportName)
+        , m_StartYear(existing_instance.m_StartYear)
+        , m_EndYear(existing_instance.m_EndYear)
+        , m_ReportingIntervalYears(existing_instance.m_ReportingIntervalYears)
+        , m_IntervalTimerDays(existing_instance.m_IntervalTimerDays)
+        , m_IsCollectingData(existing_instance.m_IsCollectingData)
+        , m_FirstDataCollection(existing_instance.m_FirstDataCollection)
+        , m_RelationshipTypes(existing_instance.m_RelationshipTypes)
     {
+        AddRef();
     }
+
+    // Destructor
+    ReportRelationshipCensus::~ReportRelationshipCensus()
+    { }
 
     bool ReportRelationshipCensus::Configure( const Configuration * inputJson )
     {

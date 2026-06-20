@@ -1,10 +1,7 @@
 {
-    "Custom_Reports": {
-        "ReportRelationshipMigrationTracking": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
+    "Reports": [
+        {
+            "class": "ReportRelationshipMigrationTracking"
         }
-    }
+    ]
 }

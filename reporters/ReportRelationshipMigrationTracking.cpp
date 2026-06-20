@@ -1,8 +1,9 @@
 
+#pragma once
+
 #include "stdafx.h"
 
 #include "ReportRelationshipMigrationTracking.h"
-#include "DllInterfaceHelper.h"
 #include "FactorySupport.h"
 
 #include "ISimulationContext.h"
@@ -19,60 +20,11 @@
 #include "INodeContext.h"
 #include "IMigrate.h"
 
-//******************************************************************************
-
-//******************************************************************************
-
-SETUP_LOGGING( "ReportRelationshipMigrationTracking" )
-
-static const char* _sim_types[] = { "STI_SIM", "HIV_SIM", nullptr };
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::ReportRelationshipMigrationTracking();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-
-// ----------------------------------------
-// --- ReportRelationshipMigrationTracking Methods
-// ----------------------------------------
-
 namespace Kernel
 {
+    IMPLEMENT_FACTORY_REGISTERED(ReportRelationshipMigrationTracking)
+
+    // Constructor
     ReportRelationshipMigrationTracking::ReportRelationshipMigrationTracking()
         : BaseTextReportEvents( "ReportRelationshipMigrationTracking.csv" )
         , m_EndTime(0.0)
@@ -86,9 +38,18 @@ namespace Kernel
         AddRef();
     }
 
-    ReportRelationshipMigrationTracking::~ReportRelationshipMigrationTracking()
+    // Copy constructor
+    ReportRelationshipMigrationTracking::ReportRelationshipMigrationTracking(const ReportRelationshipMigrationTracking& existing_instance)
+        : BaseTextReportEvents(existing_instance.GetReportName())
+        , m_EndTime(existing_instance.m_EndTime)
+        , m_MigrationDataMap(existing_instance.m_MigrationDataMap)
     {
+        AddRef();
     }
+
+    // Destructor
+    ReportRelationshipMigrationTracking::~ReportRelationshipMigrationTracking()
+    { }
 
     bool ReportRelationshipMigrationTracking::Configure( const Configuration * inputJson )
     {

@@ -18,7 +18,9 @@ malaria_cpp = [
 ]
 
 sti_cpp = [
-    "StiRelationshipQueueReporter.cpp"
+    "ReportRelationshipCensus.cpp",
+    "ReportRelationshipMigrationTracking.cpp",
+    "StiRelationshipQueueReporter.cpp",
 ]
 
 hiv_cpp = [

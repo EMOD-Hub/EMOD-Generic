@@ -120,10 +120,6 @@ SConscript('Eradication/SConscript')
 #    OptionalScript('reporters/SConscript_TBHIV_Basic')
 #    OptionalScript('reporters/SConscript_TBHIV_ByAge')
 
-#if( (disease == "ALL") or (disease == "STI") or (disease == "HIV") ):
-#    OptionalScript('reporters/SConscript_STI_RelationshipMigrationTracking')
-#    OptionalScript('reporters/SConscript_STI_RelationshipCensus')
-
 #if( (disease == "ALL") or (disease == "Vector") or (disease == "Malaria") ):
 #    OptionalScript('reporters/SConscript_Vector_VectorHabitat')
 #    OptionalScript('reporters/SConscript_Vector_VectorMigration')

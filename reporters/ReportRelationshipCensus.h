@@ -2,17 +2,22 @@
 #pragma once
 
 #include "BaseTextReportEvents.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
-    class ReportRelationshipMigrationTracking : public BaseTextReportEvents
+    class ReportRelationshipCensus : public BaseTextReportEvents
     {
     public:
-        ReportRelationshipMigrationTracking();
-        virtual ~ReportRelationshipMigrationTracking();
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportRelationshipCensus, IReport)
+
+        ReportRelationshipCensus();
+        ReportRelationshipCensus(const ReportRelationshipCensus&);
+        virtual ~ReportRelationshipCensus();
 
         // BaseEventReport
         virtual bool Configure( const Configuration* ) override;
+        virtual bool Validate(const ISimulationContext*) override;
 
         virtual void UpdateEventRegistration( float currentTime, 
                                               float dt, 
@@ -21,22 +26,21 @@ namespace Kernel
 
         virtual std::string GetHeader() const override;
         virtual bool notifyOnEvent( IIndividualHumanEventContext *context, 
-                                    const EventTrigger::Enum& trigger ) override;
+                                    const EventTrigger::Enum &trigger ) override;
         virtual void LogIndividualData( IIndividualHuman* individual ) override;
         virtual bool IsCollectingIndividualData( float currentTime, float dt ) const override;
         virtual void EndTimestep( float currentTime, float dt ) override;
         virtual void Reduce() override;
-    private:
-        struct MigrationData
-        {
-            MigrationData() : age_years(-1.0), gender(-1), node_id(-1), migration_type_str() {}
+        virtual std::string GetReportName() const override;
 
-            float age_years ;
-            int gender ;
-            uint32_t node_id ;
-            std::string migration_type_str ;
-        };
-        float m_EndTime ;
-        std::map<long,MigrationData> m_MigrationDataMap ;
+    private:
+        std::string m_ReportName;
+        float m_StartYear;
+        float m_EndYear;
+        float m_ReportingIntervalYears;
+        float m_IntervalTimerDays;
+        bool m_IsCollectingData;
+        bool m_FirstDataCollection;
+        std::vector<std::string> m_RelationshipTypes;
     };
 }
