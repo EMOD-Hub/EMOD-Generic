@@ -8,76 +8,29 @@
 #include "NodeEventContext.h"
 #include "IPairFormationAgent.h"
 #include "INodeContext.h"
-
 #include "Environment.h"
-#include "DllInterfaceHelper.h"
-#include "FactorySupport.h"
-
-//******************************************************************************
-
-using namespace std;
-
-//******************************************************************************
 
 SETUP_LOGGING( "StiRelationshipQueueReporter" )
 
-static const char* _sim_types[] = { "STI_SIM", "HIV_SIM", nullptr };
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::StiRelationshipQueueReporter();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-
-// ----------------------------------------
-// --- StiRelationshipQueueReporter Methods
-// ----------------------------------------
-
 namespace Kernel
 {
+    IMPLEMENT_FACTORY_REGISTERED(StiRelationshipQueueReporter)
+
+    // Constructor
     StiRelationshipQueueReporter::StiRelationshipQueueReporter()
         : BaseTextReport("RelationshipQueueReporter.csv")
         , m_FirstTime(true)
-    {
-    }
+    { }
 
+    // Copy constructor
+    StiRelationshipQueueReporter::StiRelationshipQueueReporter(const StiRelationshipQueueReporter& existing_instance)
+        : BaseTextReport(existing_instance.GetReportName())
+        , m_FirstTime(existing_instance.m_FirstTime)
+    { }
+
+    // Destructor
     StiRelationshipQueueReporter::~StiRelationshipQueueReporter()
-    {
-    }
+    { }
 
     std::string StiRelationshipQueueReporter::GetHeader() const
     {

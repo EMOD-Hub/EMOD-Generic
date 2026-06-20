@@ -1,6 +1,8 @@
 
 #pragma once
+
 #include "BaseTextReport.h"
+#include "ReportFactory.h"
 #include "IIndividualHuman.h"
 
 namespace Kernel
@@ -10,8 +12,11 @@ namespace Kernel
 
     class StiRelationshipQueueReporter : public BaseTextReport
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, StiRelationshipQueueReporter, IReport)
+
     public:
         StiRelationshipQueueReporter();
+        StiRelationshipQueueReporter(const StiRelationshipQueueReporter&);
         virtual ~StiRelationshipQueueReporter();
 
         // IReport

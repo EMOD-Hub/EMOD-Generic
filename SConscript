@@ -122,7 +122,6 @@ SConscript('Eradication/SConscript')
 
 #if( (disease == "ALL") or (disease == "STI") or (disease == "HIV") ):
 #    OptionalScript('reporters/SConscript_STI_RelationshipMigrationTracking')
-#    OptionalScript('reporters/SConscript_STI_RelationshipQueue')
 #    OptionalScript('reporters/SConscript_STI_RelationshipCensus')
 
 #if( (disease == "ALL") or (disease == "Vector") or (disease == "Malaria") ):
