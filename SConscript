@@ -106,10 +106,6 @@ SConscript('Eradication/SConscript')
 #    OptionalScript('reporters/SConscript_Generic_KmlDemo')
 #    OptionalScript('reporters/SConscript_Generic_Serosurvey')
 
-#if( (disease == "ALL") or (disease == "TBHIV") ):
-#    OptionalScript('reporters/SConscript_TBHIV_Basic')
-#    OptionalScript('reporters/SConscript_TBHIV_ByAge')
-
 if( disease == "ALL"):
     OptionalScript('UnitTest++/SConscript')
     OptionalScript('componentTests/SConscript')

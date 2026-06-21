@@ -1,17 +1,7 @@
-/***************************************************************************************************
-
-Copyright (c) 2016 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 
 #include "Report_TBHIV_ByAge.h"
-#include "DllInterfaceHelper.h"
-
 #include "TBContexts.h"
 #include "IndividualCoInfection.h"
 #include "TBInterventionsContainer.h"
@@ -19,7 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "Drugs.h"
 #include "AntiTBDrug.h"
 #include "InfectionTB.h"
-
 #include "NodeEventContext.h"
 #include "IIndividualHuman.h"
 #include "IIndividualHumanHIV.h"
@@ -30,73 +19,17 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "FactorySupport.h"
 #include "IdmDateTime.h"
 
-// TODO: 
-// --> Start_Year
-// --> Every 6 months
-// --> Strings for CD4 stage and care stage
-// --> Functions computing cd4_stage and care_stage
-// --> Function for counter reset
-
-//******************************************************************************
-
 #define BASE_YEAR (0)
 #define FIFTEEN_YEARS (15.0f * DAYSPERYEAR)
 #define SIX_MONTHS (0.5f * DAYSPERYEAR)
 #define MAX_AGE_YRS 200.0f
 #define REPORT_PERIOD 360
 
-//******************************************************************************
-
 SETUP_LOGGING( "Report_TBHIV_ByAge" )
-
-static const char* _sim_types[] = { "TBHIV_SIM", nullptr };
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::Report_TBHIV_ByAge();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
 
 namespace Kernel
 {
-    ENUM_INITIALIZE(ARTStatusLocal, IDM_ENUMSPEC_ARTStatusLocal)
-    ENUM_INITIALIZE(TB_State,       IDM_ENUMSPEC_TB_State)
-    ENUM_INITIALIZE(MDR_State,      IDM_ENUMSPEC_MDR_State)
-    ENUM_INITIALIZE(Report_Age,     IDM_ENUMSPEC_Report_Age)
+    IMPLEMENT_FACTORY_REGISTERED(Report_TBHIV_ByAge)
 
     Report_TBHIV_ByAge::Report_TBHIV_ByAge()
         : BaseTextReportEvents( "Report_TBHIV_ByAge.csv" )
@@ -116,14 +49,12 @@ namespace Kernel
         // ------------------------------------------------------------------------------------------------
         AddRef();
 
-        // Add events to event trigger list
-
         // Call a reset function
         ZERO_ARRAY(Population);
         ZERO_ARRAY(DiseaseDeaths);
         ZERO_ARRAY(NonDiseaseDeaths);
         ZERO_ARRAY(OnART);
-        ZERO_ARRAY(New_Activations);                                                 //                       --> Infections
+        ZERO_ARRAY(New_Activations);
         ZERO_ARRAY(Active_Prevalence);
         ZERO_ARRAY(Active_Sx_Prevalence);
         ZERO_ARRAY(Active_PreSymptomatic);
@@ -143,17 +74,12 @@ namespace Kernel
         ZERO_ARRAY(HIVPosTBDeaths);
         ZERO_ARRAY(HIVPosNotifications);
         ZERO_ARRAY(TBTests);
-        
         ZERO_ARRAY(DynamicEvents);
         ZERO_ARRAY(HIVDeathsActiveTB);
-        
-
     }
 
     Report_TBHIV_ByAge::~Report_TBHIV_ByAge()
-    {
-        
-    }
+    { }
 
     bool Report_TBHIV_ByAge::Configure( const Configuration * inputJson )
     {
@@ -201,20 +127,12 @@ namespace Kernel
         eventTriggerList.push_back(EventTrigger::ProviderOrdersTBTest);
         eventTriggerList.push_back(EventTrigger::NewInfection);
 
-        
         return ret;
     }
 
     void Report_TBHIV_ByAge::Initialize( unsigned int nrmSize )
     {
         BaseTextReportEvents::Initialize( nrmSize );
-
-        // has to be done if Initialize() since it is called after the demographics is read
-       // IndividualProperty* p_ip = IPFactory::GetInstance()->GetIP( "InterventionStatus", "", false );
-       // if( p_ip != nullptr )
-      //  {
-         //   m_InterventionStatusKey = p_ip->GetKey<IPKey>();
-       // }
     }
 
     void Report_TBHIV_ByAge::UpdateEventRegistration( float currentTime,
@@ -270,7 +188,6 @@ namespace Kernel
         }
     }
 
-    
     std::string Report_TBHIV_ByAge::GetHeader() const
     {
         std::stringstream header ;
@@ -308,14 +225,12 @@ namespace Kernel
             header << ", "
                 << EventTrigger::pairs::lookup_key( *it );
         }
-            
-        return header.str();
 
+        return header.str();
     }
 
     Report_Age::Enum  Report_TBHIV_ByAge::ComputeAgeBin(float loc_age)
     {
-
         if (loc_age < DAYSPERYEAR)
         {
             return Report_Age::LESS_1;
@@ -446,12 +361,10 @@ namespace Kernel
                 << "," << TBTests[age_idx];
 
            for (int i = 0; i < Additional_Event_Names.size(); i++)
-            {
-                GetOutputStream() << ","
-                    << DynamicEvents[i][ age_idx];
-            } 
-                     
-               GetOutputStream() << endl;
+           {
+               GetOutputStream() << "," << DynamicEvents[i][ age_idx];
+           } 
+           GetOutputStream() << endl;
         } 
 
         // Call a reset function
@@ -480,11 +393,7 @@ namespace Kernel
         ZERO_ARRAY(HIVPosNotifications);
         ZERO_ARRAY(TBTests);
         ZERO_ARRAY(HIVDeathsActiveTB);
-
         ZERO_ARRAY(DynamicEvents);
-
-
-      
     }
 
     bool Report_TBHIV_ByAge::IsCollectingIndividualData( float currentTime, float dt ) const
@@ -553,7 +462,6 @@ namespace Kernel
                 OnART[age_group] += mc_weight;
             }
         }
-
     }
 
     bool Report_TBHIV_ByAge::notifyOnEvent( IIndividualHumanEventContext* context, const EventTrigger::Enum& trigger )
@@ -656,5 +564,4 @@ namespace Kernel
         }
         return true;
     }
-
 }

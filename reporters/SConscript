@@ -38,6 +38,11 @@ sti_cpp = [
 hiv_cpp = [
 ]
 
+tbhiv_cpp = [
+    "Report_TBHIV_Basic.cpp",
+    "Report_TBHIV_ByAge.cpp",
+]
+
 disease = "ALL"
 if 'Disease' in env and len(env['Disease']) > 0:
     disease = env["Disease"]
@@ -60,5 +65,8 @@ if( (disease == "ALL") or (disease == "STI") or (disease == "HIV") ):
 
 if( (disease == "ALL") or (disease == "HIV") ):
     reporters_cpp = reporters_cpp + hiv_cpp
+
+if( (disease == "ALL") or (disease == "TBHIV") ):
+    reporters_cpp = reporters_cpp + tbhiv_cpp
 
 reporters_lib = env.StaticLibrary('reporters', reporters_cpp)

@@ -1,17 +1,7 @@
-/***************************************************************************************************
-
-Copyright (c) 2016 Intellectual Ventures Property Holdings, LLC (IVPH) All rights reserved.
-
-EMOD is licensed under the Creative Commons Attribution-Noncommercial-ShareAlike 4.0 License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
-
-***************************************************************************************************/
 
 #include "stdafx.h"
 
 #include "Report_TBHIV_Basic.h"
-#include "DllInterfaceHelper.h"
-
 #include "TBContexts.h"
 #include "IndividualCoInfection.h"
 #include "TBInterventionsContainer.h"
@@ -19,7 +9,6 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "Drugs.h"
 #include "AntiTBDrug.h"
 #include "InfectionTB.h"
-
 #include "INodeContext.h"
 #include "NodeEventContext.h"
 #include "IIndividualHuman.h"
@@ -30,71 +19,15 @@ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc
 #include "FactorySupport.h"
 #include "IdmDateTime.h"
 
-// TODO: 
-// --> Start_Year
-// --> Every 6 months
-// --> Strings for CD4 stage and care stage
-// --> Functions computing cd4_stage and care_stage
-// --> Function for counter reset
-
-//******************************************************************************
-
 #define BASE_YEAR (0)
 #define FIFTEEN_YEARS (15.0f * DAYSPERYEAR)
 #define SIX_MONTHS (0.5f * DAYSPERYEAR)
 
-//******************************************************************************
-
 SETUP_LOGGING( "Report_TBHIV_Basic" )
-
-static const char* _sim_types[] = { "TBHIV_SIM", nullptr };
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::Report_TBHIV_Basic();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
 
 namespace Kernel
 {
-    ENUM_INITIALIZE(CD4_Stage,      IDM_ENUMSPEC_CD4_Stage)
-    ENUM_INITIALIZE(ARTStatusLocal, IDM_ENUMSPEC_ARTStatusLocal)
-    ENUM_INITIALIZE(TB_State,       IDM_ENUMSPEC_TB_State)
-    ENUM_INITIALIZE(MDR_State,      IDM_ENUMSPEC_MDR_State)
+    IMPLEMENT_FACTORY_REGISTERED(Report_TBHIV_Basic)
 
     Report_TBHIV_Basic::Report_TBHIV_Basic()
         : BaseTextReportEvents( "Report_TBHIV_Basic_Adult.csv" )
@@ -150,7 +83,6 @@ namespace Kernel
         eventTriggerList.push_back( EventTrigger::TBTestPositive    );
         eventTriggerList.push_back( EventTrigger::StartedART            );
         eventTriggerList.push_back( EventTrigger::StoppedART            );
-        //eventTriggerList.push_back( EventTrigger("HCTUptakePostDebut9") );
         eventTriggerList.push_back( EventTrigger::TBActivation     );
         eventTriggerList.push_back( EventTrigger::DiseaseDeaths         );
         eventTriggerList.push_back( EventTrigger::NonDiseaseDeaths      );
@@ -161,13 +93,6 @@ namespace Kernel
     void Report_TBHIV_Basic::Initialize( unsigned int nrmSize )
     {
         BaseTextReportEvents::Initialize( nrmSize );
-
-        // has to be done if Initialize() since it is called after the demographics is read
-       // IndividualProperty* p_ip = IPFactory::GetInstance()->GetIP( "InterventionStatus", "", false );
-       // if( p_ip != nullptr )
-      //  {
-         //   m_InterventionStatusKey = p_ip->GetKey<IPKey>();
-       // }
     }
 
     void Report_TBHIV_Basic::UpdateEventRegistration(  float currentTime,
@@ -388,7 +313,6 @@ namespace Kernel
             }
         }
 
-
         // Call a reset function
         ZERO_ARRAY( Population );
         ZERO_ARRAY( DiseaseDeaths );
@@ -463,5 +387,4 @@ namespace Kernel
 
         return true;
     }
-
 }

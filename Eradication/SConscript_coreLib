@@ -152,7 +152,7 @@ else:
                             "../interventions/VectorControlNodeTargeted.cpp",
                             "../interventions/ScaleLarvalHabitat.cpp",
                             "../interventions/UsageDependentBednet.cpp",
-                        ]
+    ]
 
     malariaSrcFiles = vectorSrcFiles + [
                             # Malaria
@@ -177,12 +177,9 @@ else:
                             "../interventions/MalariaChallenge.cpp",
                             "../interventions/MalariaDiagnostic.cpp",
                             "../interventions/RTSSVaccine.cpp",
-                        ]
+    ]
 
-    dengueSrcFiles = []
-    if env["Disease"] == "Dengue":
-        dengueSrcFiles += vectorSrcFiles
-    dengueSrcFiles += [
+    dengueSrcFiles = vectorSrcFiles + [
                             # Dengue
                             "BinnedReportDengue.cpp",
                             "IndividualDengue.cpp",
@@ -194,7 +191,7 @@ else:
                             "SpatialReportDengue.cpp",
                             "SusceptibilityDengue.cpp",
                             "../interventions/OutbreakIndividualDengue.cpp",
-                      ]
+    ]
 
     environmentalSrcFiles = [
                             # Environmental
@@ -202,8 +199,8 @@ else:
                             "InfectionEnvironmental.cpp",
                             "NodeEnvironmental.cpp",
                             "SimulationEnvironmental.cpp",
-                            "SusceptibilityEnvironmental.cpp"
-                        ]
+                            "SusceptibilityEnvironmental.cpp",
+    ]
 
     polioSrcFiles = environmentalSrcFiles + [
                             # Polio
@@ -219,7 +216,7 @@ else:
                             "../interventions/PolioVaccine.cpp",
                             "../interventions/AntiPoliovirusDrug.cpp",
                             "../interventions/PolioNodeSurvey.cpp",
-                        ]
+    ]
                         
     typhoidSrcFiles = environmentalSrcFiles + [
                             # Typhoid
@@ -240,7 +237,7 @@ else:
                             "../interventions/TyphoidWASH.cpp",
                             "../interventions/TyphoidCarrierDiagnostic.cpp",
                             "../interventions/TyphoidCarrierClear.cpp",
-                        ]
+    ]
 
     airborneSrcFiles = [
                             # Airborne
@@ -268,18 +265,20 @@ else:
                             "../interventions/HealthSeekingBehaviorUpdate.cpp",
                             "../interventions/HealthSeekingBehaviorUpdateable.cpp",
                             "../interventions/ResistanceDiagnostics.cpp",
-                            "../interventions/SmearDiagnostics.cpp"
-                        ]
+                            "../interventions/SmearDiagnostics.cpp",
+    ]
 
     # TBHIV
-    tbhivSrcFiles = [       "IndividualCoInfection.cpp",
+    tbhivSrcFiles = [
+                            "IndividualCoInfection.cpp",
                             "GroupEventCoordinatorHIV.cpp",
                             "MasterInterventionsContainer.cpp",
                             "NodeTBHIV.cpp",
                             "ReportTBHIV.cpp",
                             "SimulationTBHIV.cpp",
+                            "TBHIVEnums.cpp",
                             "../interventions/OutbreakIndividualTBorHIV.cpp",
-                            "../interventions/TBHIVConfigurableTBdrug.cpp"
+                            "../interventions/TBHIVConfigurableTBdrug.cpp",
     ]
 
     # STI
@@ -370,7 +369,7 @@ else:
                             "../interventions/HIVSigmoidByYearAndSexDiagnostic.cpp",
                             "../interventions/HIVSimpleDiagnostic.cpp",
                             "../interventions/HIVMuxer.cpp",
-                            "../interventions/PMTCT.cpp"
+                            "../interventions/PMTCT.cpp",
     ]
 
     pyDemoSrcFiles = [
