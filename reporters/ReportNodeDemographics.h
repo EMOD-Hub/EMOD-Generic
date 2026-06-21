@@ -33,7 +33,6 @@ namespace Kernel
 
     public:
         ReportNodeDemographics();
-        ReportNodeDemographics(const ReportNodeDemographics&);
         virtual ~ReportNodeDemographics();
 
         // BaseEventReport

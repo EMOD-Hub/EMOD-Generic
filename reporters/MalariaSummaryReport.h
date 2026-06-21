@@ -5,6 +5,7 @@
 #include <map>
 
 #include "BaseEventReportIntervalOutput.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
@@ -64,6 +65,8 @@ namespace Kernel
 
     class MalariaSummaryReport : public BaseEventReportIntervalOutput
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, MalariaSummaryReport, IReport)
+
     public:
         MalariaSummaryReport();
         virtual ~MalariaSummaryReport();

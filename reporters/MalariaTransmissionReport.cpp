@@ -1,20 +1,16 @@
 
+#pragma once
+
 #include "stdafx.h"
-
 #include "MalariaTransmissionReport.h"
-
 #include <algorithm>
 #include <numeric>
-
 #include "FileSystem.h"
 #include "Environment.h"
 #include "Exceptions.h"
-#include "DllInterfaceHelper.h"
-#include "DllDefs.h"
 #include "ProgVersion.h"
 #include "IdmMpi.h"
 #include "ReportUtilities.h"
-
 #include "ISimulationContext.h"
 #include "MalariaContexts.h"
 #include "VectorContexts.h"
@@ -24,53 +20,7 @@
 #include "IMigrate.h"
 #include "RANDOM.h"
 
-//******************************************************************************
-
-//******************************************************************************
-
 SETUP_LOGGING("MalariaTransmissionReport")
-
-static const char* _sim_types[] = {"MALARIA_SIM", nullptr};
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::MalariaTransmissionReport();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
 
 namespace Kernel
 {
@@ -91,23 +41,29 @@ namespace Kernel
         to_node_id = pSim->GetNodeExternalID(pim->GetMigrationDestination());
     }
 
-// ----------------------------------------
-// --- MalariaTransmissionReport Methods
-// ----------------------------------------
+    // ----------------------------------------
+    // --- MalariaTransmissionReport Methods
+    // ----------------------------------------
+    IMPLEMENT_FACTORY_REGISTERED(MalariaTransmissionReport)
 
+    // Constructor
     MalariaTransmissionReport::MalariaTransmissionReport() 
         : BaseEventReport( _module )
         , m_PrettyFormat(true)
         , outputWritten(false)
         , timeStep(0)
-    {
-        LOG_DEBUG( "CTOR\n" );
-    }
+    { }
+
+    // Copy constructor
+    MalariaTransmissionReport::MalariaTransmissionReport(const MalariaTransmissionReport& existing_instance)
+        : BaseEventReport(existing_instance.GetReportName())
+        , m_PrettyFormat(existing_instance.m_PrettyFormat)
+        , outputWritten(existing_instance.outputWritten)
+        , timeStep(existing_instance.timeStep)
+    { }
 
     MalariaTransmissionReport::~MalariaTransmissionReport()
-    {
-        LOG_DEBUG( "DTOR\n" );
-    }
+    { }
 
     bool MalariaTransmissionReport::Configure( const Configuration* inputJson )
     {

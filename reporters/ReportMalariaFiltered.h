@@ -5,11 +5,14 @@
 
 #include "BaseTextReport.h"
 #include "ReportMalaria.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
     class ReportMalariaFiltered : public ReportMalaria
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportMalariaFiltered, IReport)
+
     public:
         ReportMalariaFiltered();
         virtual ~ReportMalariaFiltered();

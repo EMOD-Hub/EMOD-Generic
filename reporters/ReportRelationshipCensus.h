@@ -12,7 +12,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED(ReportFactory, ReportRelationshipCensus, IReport)
 
         ReportRelationshipCensus();
-        ReportRelationshipCensus(const ReportRelationshipCensus&);
         virtual ~ReportRelationshipCensus();
 
         // BaseEventReport

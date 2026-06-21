@@ -5,13 +5,14 @@
 #include <map>
 
 #include "BaseEventReportIntervalOutput.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
-    struct MalariaPatient
+    struct Patient
     {
-        MalariaPatient(int id_, float age_, float local_birthday_);
-        virtual ~MalariaPatient();
+        Patient(int id_, float age_, float local_birthday_);
+        virtual ~Patient();
 
         uint32_t id;
         uint32_t node_id;
@@ -40,11 +41,11 @@ namespace Kernel
 
     };
 
-    class MalariaPatientMap : public IIntervalData
+    class PatientMap : public IIntervalData
     {
     public:
-        MalariaPatientMap();
-        virtual ~MalariaPatientMap();
+        PatientMap();
+        virtual ~PatientMap();
 
         // IIntervalData methods
         virtual void Clear() override;
@@ -53,15 +54,17 @@ namespace Kernel
         virtual void Deserialize( json::Object& root ) override;
 
         // other methods
-        MalariaPatient* FindPatient( uint32_t id );
-        void Add( MalariaPatient* pPatient );
+        Patient* FindPatient( uint32_t id );
+        void Add( Patient* pPatient );
 
     protected:
-        std::map<uint32_t,MalariaPatient*> m_Map;
+        std::map<uint32_t,Patient*> m_Map;
     };
 
     class MalariaSurveyJSONAnalyzer : public BaseEventReportIntervalOutput
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, MalariaSurveyJSONAnalyzer, IReport)
+
     public:
         MalariaSurveyJSONAnalyzer();
         virtual ~MalariaSurveyJSONAnalyzer();
@@ -76,6 +79,6 @@ namespace Kernel
         virtual void SerializeOutput( float currentTime, json::Object& root ) override;
 
         std::string m_IPKeyToCollect;
-        MalariaPatientMap* m_pPatientMap;
+        PatientMap* m_pPatientMap;
     };
 }

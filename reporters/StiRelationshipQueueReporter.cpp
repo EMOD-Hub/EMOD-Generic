@@ -16,19 +16,11 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(StiRelationshipQueueReporter)
 
-    // Constructor
     StiRelationshipQueueReporter::StiRelationshipQueueReporter()
         : BaseTextReport("RelationshipQueueReporter.csv")
         , m_FirstTime(true)
     { }
 
-    // Copy constructor
-    StiRelationshipQueueReporter::StiRelationshipQueueReporter(const StiRelationshipQueueReporter& existing_instance)
-        : BaseTextReport(existing_instance.GetReportName())
-        , m_FirstTime(existing_instance.m_FirstTime)
-    { }
-
-    // Destructor
     StiRelationshipQueueReporter::~StiRelationshipQueueReporter()
     { }
 

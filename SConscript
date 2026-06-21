@@ -107,13 +107,6 @@ SConscript('Eradication/SConscript')
 #    OptionalScript('reporters/SConscript_Generic_Serosurvey')
 
 #if( (disease == "ALL") or (disease == "Malaria") ):
-#    OptionalScript('reporters/SConscript_Malaria_Filtered')
-#    OptionalScript('reporters/SConscript_Malaria_Filtered_Spatial')
-#    OptionalScript('reporters/SConscript_Malaria_Immunity')
-#    OptionalScript('reporters/SConscript_Malaria_Patient')
-#    OptionalScript('reporters/SConscript_Malaria_Summary')
-#    OptionalScript('reporters/SConscript_Malaria_Survey')
-#    OptionalScript('reporters/SConscript_Malaria_Transmission')
 #    OptionalScript('reporters/SConscript_Malaria_VectorStatsMalaria')
 
 #if( (disease == "ALL") or (disease == "TBHIV") ):

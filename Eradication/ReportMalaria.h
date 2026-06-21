@@ -3,8 +3,8 @@
 
 #include "ReportVector.h"
 
-namespace Kernel {
-
+namespace Kernel
+{
     class ReportMalaria : public ReportVector
     {
     public:

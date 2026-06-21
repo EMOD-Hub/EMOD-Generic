@@ -1,10 +1,9 @@
 
+#pragma once
+
 #include "stdafx.h"
-
 #include "MalariaSummaryReport.h"
-
 #include <algorithm>
-
 #include "FileSystem.h"
 #include "Environment.h"
 #include "Exceptions.h"
@@ -16,104 +15,51 @@
 #include "ReportUtilities.h"
 #include "ReportUtilitiesMalaria.h"
 #include "INodeContext.h"
-
-#include "DllInterfaceHelper.h"
-#include "DllDefs.h"
 #include "ProgVersion.h"
-
 #include "math.h"
-
-//******************************************************************************
-
-//******************************************************************************
 
 SETUP_LOGGING( "MalariaSummaryReport" )
 
-static const char* _sim_types[] = {"MALARIA_SIM", "DENGUE_SIM", nullptr};
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
+namespace Kernel
 {
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::MalariaSummaryReport();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-
 // ----------------------------------------
 // --- ReportIntervalData Methods
 // ----------------------------------------
-
-namespace Kernel
-{
     ReportIntervalData::ReportIntervalData()
-    : IIntervalData()
-    , sum_EIR(0.0)
-    , sum_population_2to10(0.0)
-    , sum_parasite_positive_2to10(0.0)
-    , sum_population_by_agebin()
-    , sum_parasite_positive_by_agebin()
-    , sum_gametocyte_positive_by_agebin()
-    , sum_log_parasite_density_by_agebin()
-    , sum_rdt_positive_by_agebin()
-    , sum_clinical_cases_by_agebin()
-    , sum_severe_cases_by_agebin()
-    , sum_severe_anemia_by_agebin()
-    , sum_moderate_anemia_by_agebin()
-    , sum_mild_anemia_by_agebin()
-    , sum_severe_cases_by_anemia_by_agebin()
-    , sum_severe_cases_by_parasites_by_agebin()
-    , sum_severe_cases_by_fever_by_agebin()
-    , sum_binned_PfPR_by_agebin()
-    , sum_binned_PfgamPR_by_agebin()
-    , sum_binned_PfPR_by_agebin_smeared()
-    , sum_binned_PfgamPR_by_agebin_smeared()
-    , sum_binned_PfPR_by_agebin_true_smeared()
-    , sum_binned_PfgamPR_by_agebin_true_smeared()
-    , sum_binned_infection_by_pfprbin_and_agebin()
-    , sum_binned_infection_by_pfprbin_and_agebin_age_scaled()
-    , sum_binned_infection_by_pfprbin_and_agebin_smeared()
-    , sum_binned_infection_by_pfprbin_and_agebin_smeared_inf_and_gam()
-    , sum_binned_infection_by_pfprbin_and_agebin_smeared_inf_and_gam_age_scaled()
-    , sum_no_infected_days(0.0)
-    , sum_days_under_1pct_infected(0.0)
-    {
-    }
+        : IIntervalData()
+        , sum_EIR(0.0)
+        , sum_population_2to10(0.0)
+        , sum_parasite_positive_2to10(0.0)
+        , sum_population_by_agebin()
+        , sum_parasite_positive_by_agebin()
+        , sum_gametocyte_positive_by_agebin()
+        , sum_log_parasite_density_by_agebin()
+        , sum_rdt_positive_by_agebin()
+        , sum_clinical_cases_by_agebin()
+        , sum_severe_cases_by_agebin()
+        , sum_severe_anemia_by_agebin()
+        , sum_moderate_anemia_by_agebin()
+        , sum_mild_anemia_by_agebin()
+        , sum_severe_cases_by_anemia_by_agebin()
+        , sum_severe_cases_by_parasites_by_agebin()
+        , sum_severe_cases_by_fever_by_agebin()
+        , sum_binned_PfPR_by_agebin()
+        , sum_binned_PfgamPR_by_agebin()
+        , sum_binned_PfPR_by_agebin_smeared()
+        , sum_binned_PfgamPR_by_agebin_smeared()
+        , sum_binned_PfPR_by_agebin_true_smeared()
+        , sum_binned_PfgamPR_by_agebin_true_smeared()
+        , sum_binned_infection_by_pfprbin_and_agebin()
+        , sum_binned_infection_by_pfprbin_and_agebin_age_scaled()
+        , sum_binned_infection_by_pfprbin_and_agebin_smeared()
+        , sum_binned_infection_by_pfprbin_and_agebin_smeared_inf_and_gam()
+        , sum_binned_infection_by_pfprbin_and_agebin_smeared_inf_and_gam_age_scaled()
+        , sum_no_infected_days(0.0)
+        , sum_days_under_1pct_infected(0.0)
+    { }
 
     ReportIntervalData::~ReportIntervalData()
-    {
-    }
+    { }
 
     void ReportIntervalData::SetVectorSize( int age_size, int PfPR_size, int Infectiousness_size )
     {
@@ -311,13 +257,16 @@ namespace Kernel
         ReportUtilities::DeserializeVector( root, true, "binned_Infectiousness_smeared_inf_and_gam_age_scaled", sum_binned_infection_by_pfprbin_and_agebin_smeared_inf_and_gam_age_scaled );
     }
 
-
 // ----------------------------------------
 // --- MalariaSummaryReport Methods
 // ----------------------------------------
+    IMPLEMENT_FACTORY_REGISTERED(MalariaSummaryReport)
 
     MalariaSummaryReport::MalariaSummaryReport() 
-        : BaseEventReportIntervalOutput( _module, false, new ReportIntervalData(), new ReportIntervalData() ) //false => only one file
+        : BaseEventReportIntervalOutput( _module,
+                                         false, //false => only one file
+                                         new ReportIntervalData(),
+                                         new ReportIntervalData() )
         , node_vector(nullptr)
         , ages()
         , m_pReportData(nullptr)
@@ -349,8 +298,10 @@ namespace Kernel
         , annual_mild_anemia_by_agebin()
         , duration_no_infection_streak()
         , fraction_under_1pct_infected()
-    {
-    }
+    { }
+
+    MalariaSummaryReport::~MalariaSummaryReport()
+    { }
 
     bool MalariaSummaryReport::Configure( const Configuration * inputJson )
     {
@@ -426,10 +377,6 @@ namespace Kernel
         }
  
         return configured;
-    }
-
-    MalariaSummaryReport::~MalariaSummaryReport()
-    {
     }
 
     void MalariaSummaryReport::EndTimestep( float currentTime, float dt )

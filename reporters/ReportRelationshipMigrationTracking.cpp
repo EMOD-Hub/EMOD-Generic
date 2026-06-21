@@ -24,7 +24,6 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(ReportRelationshipMigrationTracking)
 
-    // Constructor
     ReportRelationshipMigrationTracking::ReportRelationshipMigrationTracking()
         : BaseTextReportEvents( "ReportRelationshipMigrationTracking.csv" )
         , m_EndTime(0.0)
@@ -38,16 +37,6 @@ namespace Kernel
         AddRef();
     }
 
-    // Copy constructor
-    ReportRelationshipMigrationTracking::ReportRelationshipMigrationTracking(const ReportRelationshipMigrationTracking& existing_instance)
-        : BaseTextReportEvents(existing_instance.GetReportName())
-        , m_EndTime(existing_instance.m_EndTime)
-        , m_MigrationDataMap(existing_instance.m_MigrationDataMap)
-    {
-        AddRef();
-    }
-
-    // Destructor
     ReportRelationshipMigrationTracking::~ReportRelationshipMigrationTracking()
     { }
 

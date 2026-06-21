@@ -22,7 +22,6 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(ReportStrainTracking)
 
-    // Constructor
     ReportStrainTracking::ReportStrainTracking()
         : BaseTextReport(DEFAULT_REP_NAME, false)
         , m_all_done(false)
@@ -30,15 +29,6 @@ namespace Kernel
         , m_time_end(FLT_MAX)
     { }
 
-    // Copy constructor
-    ReportStrainTracking::ReportStrainTracking(const ReportStrainTracking& existing_instance)
-        : BaseTextReport(existing_instance.GetReportName(), existing_instance.write_every_time_step)
-        , m_all_done(existing_instance.m_all_done)
-        , m_time_start(existing_instance.m_time_start)
-        , m_time_end(existing_instance.m_time_end)
-    { }
-
-    // Destructor
     ReportStrainTracking::~ReportStrainTracking()
     { }
 

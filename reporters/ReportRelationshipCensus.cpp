@@ -29,7 +29,6 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(ReportRelationshipCensus)
 
-    // Constructor
     ReportRelationshipCensus::ReportRelationshipCensus()
         : BaseTextReportEvents( DEFAULT_NAME )
         , m_ReportName( DEFAULT_NAME )
@@ -49,22 +48,6 @@ namespace Kernel
         AddRef();
     }
 
-    // Copy constructor
-    ReportRelationshipCensus::ReportRelationshipCensus(const ReportRelationshipCensus& existing_instance)
-        : BaseTextReportEvents(existing_instance.GetReportName())
-        , m_ReportName(existing_instance.m_ReportName)
-        , m_StartYear(existing_instance.m_StartYear)
-        , m_EndYear(existing_instance.m_EndYear)
-        , m_ReportingIntervalYears(existing_instance.m_ReportingIntervalYears)
-        , m_IntervalTimerDays(existing_instance.m_IntervalTimerDays)
-        , m_IsCollectingData(existing_instance.m_IsCollectingData)
-        , m_FirstDataCollection(existing_instance.m_FirstDataCollection)
-        , m_RelationshipTypes(existing_instance.m_RelationshipTypes)
-    {
-        AddRef();
-    }
-
-    // Destructor
     ReportRelationshipCensus::~ReportRelationshipCensus()
     { }
 

@@ -1,10 +1,8 @@
 
+#pragma once
+
 #include "stdafx.h"
 #include "MalariaImmunityReport.h"
-
-#include <algorithm>
-
-#include "DllInterfaceHelper.h"
 #include "FileSystem.h"
 #include "Environment.h"
 #include "Exceptions.h"
@@ -12,75 +10,28 @@
 #include "SusceptibilityMalaria.h"
 #include "ReportUtilities.h"
 
-//******************************************************************************
-
-//******************************************************************************
-
+#include <algorithm>
 SETUP_LOGGING( "MalariaImmunityReport" )
 
-static const char* _sim_types[] = {"MALARIA_SIM", nullptr};
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
+namespace Kernel
 {
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::MalariaImmunityReport();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-
 // ----------------------------------------
 // --- ImmunityData Methods
 // ----------------------------------------
 
-namespace Kernel
-{
     ImmunityData::ImmunityData()
-    : IIntervalData()
-    , sum_population_by_agebin()
-    , sum_MSP_by_agebin()
-    , sum_nonspec_by_agebin()
-    , sum_pfemp1_by_agebin()
-    , sumsqr_MSP_by_agebin()
-    , sumsqr_nonspec_by_agebin()
-    , sumsqr_pfemp1_by_agebin()
-    {
-    }
+        : IIntervalData()
+        , sum_population_by_agebin()
+        , sum_MSP_by_agebin()
+        , sum_nonspec_by_agebin()
+        , sum_pfemp1_by_agebin()
+        , sumsqr_MSP_by_agebin()
+        , sumsqr_nonspec_by_agebin()
+        , sumsqr_pfemp1_by_agebin()
+    { }
 
     ImmunityData::~ImmunityData()
-    {
-    }
+    { }
 
     void ImmunityData::SetVectorSize( int size )
     {
@@ -143,9 +94,13 @@ namespace Kernel
 // ----------------------------------------
 // --- MalariaImmunityReport Methods
 // ----------------------------------------
+    IMPLEMENT_FACTORY_REGISTERED( MalariaImmunityReport )
 
     MalariaImmunityReport::MalariaImmunityReport() 
-        : BaseEventReportIntervalOutput( _module, false, new ImmunityData(), new ImmunityData() ) //false => only one file
+        : BaseEventReportIntervalOutput( _module,
+                                         false, //false => only one file
+                                         new ImmunityData(),
+                                         new ImmunityData())
         , ages()
         , m_pImmunityData(nullptr)
         , MSP_mean_by_agebin()
@@ -155,11 +110,15 @@ namespace Kernel
         , PfEMP1_mean_by_agebin()
         , PfEMP1_std_by_agebin()
     {
+        initSimTypes( 1, "MALARIA_SIM" );
     }
+
+    MalariaImmunityReport::~MalariaImmunityReport()
+    { }
 
     bool MalariaImmunityReport::Configure( const Configuration * inputJson )
     {
-        if( inputJson->Exist("Age_Bins") )
+        if( inputJson->Exist("Age_Bins") || JsonConfigurable::_dryrun )
         {
             initConfigTypeMap("Age_Bins", &ages, "Age Bins (in years) to aggregate within and report", 0, MAX_HUMAN_AGE, true);
         }
@@ -180,7 +139,7 @@ namespace Kernel
 
         bool configured = BaseEventReportIntervalOutput::Configure( inputJson );
 
-        if( configured )
+        if( configured && !JsonConfigurable::_dryrun )
         {
             static_cast<ImmunityData*>(m_pIntervalData         )->SetVectorSize( ages.size() );
             static_cast<ImmunityData*>(m_pMulticoreDataExchange)->SetVectorSize( ages.size() );
@@ -188,10 +147,6 @@ namespace Kernel
         }
 
         return configured;
-    }
-
-    MalariaImmunityReport::~MalariaImmunityReport()
-    {
     }
 
     bool MalariaImmunityReport::notifyOnEvent( IIndividualHumanEventContext *context, const EventTrigger::Enum& trigger )

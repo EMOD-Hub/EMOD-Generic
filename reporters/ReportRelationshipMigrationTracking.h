@@ -12,7 +12,6 @@ namespace Kernel
         DECLARE_FACTORY_REGISTERED(ReportFactory, ReportRelationshipMigrationTracking, IReport)
 
         ReportRelationshipMigrationTracking();
-        ReportRelationshipMigrationTracking(const ReportRelationshipMigrationTracking&);
         virtual ~ReportRelationshipMigrationTracking();
 
         // BaseEventReport

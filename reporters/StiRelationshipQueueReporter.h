@@ -16,7 +16,6 @@ namespace Kernel
 
     public:
         StiRelationshipQueueReporter();
-        StiRelationshipQueueReporter(const StiRelationshipQueueReporter&);
         virtual ~StiRelationshipQueueReporter();
 
         // IReport

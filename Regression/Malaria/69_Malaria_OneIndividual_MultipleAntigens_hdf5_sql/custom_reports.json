@@ -1,10 +1,7 @@
 {
-    "Custom_Reports": {
-        "MalariaPatientJSONReport": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
+    "Reports": [
+        {
+            "class": "MalariaPatientJSONReport"
         }
-    }
+    ]
 }

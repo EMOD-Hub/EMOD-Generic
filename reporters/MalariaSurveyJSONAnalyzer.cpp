@@ -1,8 +1,8 @@
 
+#pragma once
+
 #include "stdafx.h"
-
 #include "MalariaSurveyJSONAnalyzer.h"
-
 #include "FileSystem.h"
 #include "Environment.h"
 #include "Exceptions.h"
@@ -10,83 +10,34 @@
 #include "SusceptibilityMalaria.h"
 #include "NodeEventContext.h"
 #include "INodeContext.h"
-
-#include "DllInterfaceHelper.h"
-#include "DllDefs.h"
 #include "ProgVersion.h"
 #include "ReportUtilities.h"
 #include "ReportUtilitiesMalaria.h"
-
 #include "math.h"
 
-//******************************************************************************
-
-//******************************************************************************
+#define Survey_IP_Key_To_Collect_DESC_TEXT "Name of the Individual Property Key whose value to collect.  Empty string means collect values for all IPs."
 
 SETUP_LOGGING( "MalariaSurveyJSONAnalyzer" )
 
-static const char* _sim_types[] = {"MALARIA_SIM", nullptr};
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::MalariaSurveyJSONAnalyzer();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-
-// ---------------------------
-// --- MalariaPatent Methods
-// ---------------------------
 namespace Kernel
 {
-    MalariaPatient::MalariaPatient(int id_, float age_, float local_birthday_)
+// ---------------------------
+// --- Patient Methods
+// ---------------------------
+
+    Patient::Patient(int id_, float age_, float local_birthday_)
         : id(id_)
         , node_id(-1)
         , initial_age(age_)
         , local_birthday(local_birthday_)
-    {
-    }
+    { }
 
-    MalariaPatient::~MalariaPatient()
-    {
-    }
+    Patient::~Patient()
+    { }
 
-    void MalariaPatient::Serialize( json::Object& root )
+    void Patient::Serialize( json::Object& root )
     {
-        LOG_DEBUG("Serializing MalariaPatient\n");
+        LOG_DEBUG("Serializing Patient\n");
 
         json::QuickBuilder mp_json(root);
         LOG_DEBUG("Inserting simple variables\n");
@@ -139,7 +90,7 @@ namespace Kernel
         return value_list;
     }
 
-    void MalariaPatient::Deserialize( json::Object& root )
+    void Patient::Deserialize( json::Object& root )
     {
         json::QuickInterpreter q_int(root);
         id             = static_cast<int>(q_int["id"].As<json::Number>());
@@ -168,18 +119,16 @@ namespace Kernel
     }
 
 // ----------------------------------------
-// --- MalariaPatientMap Methods
+// --- PatientMap Methods
 // ----------------------------------------
 
-    MalariaPatientMap::MalariaPatientMap()
-    {
-    }
+    PatientMap::PatientMap()
+    { }
 
-    MalariaPatientMap::~MalariaPatientMap()
-    {
-    }
+    PatientMap::~PatientMap()
+    { }
 
-    void MalariaPatientMap::Clear()
+    void PatientMap::Clear()
     {
         for( auto& entry: m_Map )
         {
@@ -197,23 +146,20 @@ namespace Kernel
         }
     }
 
-    void MalariaPatientMap::Update( const IIntervalData& rOther )
+    void PatientMap::Update( const IIntervalData& rOther )
     {
-        const MalariaPatientMap& rOtherMap = static_cast< const MalariaPatientMap& >(rOther);
+        const PatientMap& rOtherMap = static_cast< const PatientMap& >(rOther);
 
         for( auto& other_entry : rOtherMap.m_Map )
         {
-            MalariaPatient* new_patient = other_entry.second;
-            MalariaPatient* existing_patient = FindPatient( new_patient->id );
+            Patient* new_patient = other_entry.second;
+            Patient* existing_patient = FindPatient( new_patient->id );
 
             if( existing_patient == nullptr )
             {
-                existing_patient = new MalariaPatient(new_patient->id,-1,-1);
+                existing_patient = new Patient(new_patient->id,-1,-1);
                 Add( existing_patient );
             }
-
-            // set in constructor
-            //existing_patient->id             = new_patient->id;
 
             existing_patient->node_id        = new_patient->node_id;
             existing_patient->initial_age    = new_patient->initial_age;
@@ -239,14 +185,14 @@ namespace Kernel
         }
     }
 
-    void MalariaPatientMap::Serialize( json::Object& root )
+    void PatientMap::Serialize( json::Object& root )
     {
         json::QuickBuilder mpm_json(root);
 
         json::Array arr_mpm;
         for( auto &id_patient_pair: m_Map )
         {
-            MalariaPatient* patient = id_patient_pair.second;
+            Patient* patient = id_patient_pair.second;
             release_assert( patient );
             json::Object mpm_data;
             patient->Serialize(mpm_data);
@@ -255,7 +201,7 @@ namespace Kernel
         mpm_json["patient_array"] = arr_mpm;
     }
 
-    void MalariaPatientMap::Deserialize( json::Object& root )
+    void PatientMap::Deserialize( json::Object& root )
     {
         json::QuickInterpreter q_int(root);
 
@@ -263,17 +209,17 @@ namespace Kernel
 
         for( size_t i = 0 ; i < json_array.Size() ; ++i )
         {
-            MalariaPatient* new_patient = new MalariaPatient(-1,-1,-1);
+            Patient* new_patient = new Patient(-1,-1,-1);
             json::Object mp_obj = q_int["patient_array"][i].As<json::Object>();
             new_patient->Deserialize( mp_obj );
             Add( new_patient );
         }
     }
 
-    MalariaPatient* MalariaPatientMap::FindPatient( uint32_t id )
+    Patient* PatientMap::FindPatient( uint32_t id )
     {
-        MalariaPatient* p_patient = nullptr;
-        std::map<uint32_t,MalariaPatient*>::iterator it = m_Map.find( id );
+        Patient* p_patient = nullptr;
+        std::map<uint32_t,Patient*>::iterator it = m_Map.find( id );
         if( it != m_Map.end() )
         {
             p_patient = it->second;
@@ -281,7 +227,7 @@ namespace Kernel
         return p_patient;
     }
 
-    void MalariaPatientMap::Add( MalariaPatient* pPatient )
+    void PatientMap::Add( Patient* pPatient )
     {
         m_Map.insert( std::make_pair( pPatient->id, pPatient ) );
     }
@@ -289,19 +235,19 @@ namespace Kernel
 // ----------------------------------------
 // --- MalariaSurveyJSONAnalyzer Methods
 // ----------------------------------------
-
-#define Survey_IP_Key_To_Collect_DESC_TEXT "Name of the Individual Property Key whose value to collect.  Empty string means collect values for all IPs."
+    IMPLEMENT_FACTORY_REGISTERED(MalariaSurveyJSONAnalyzer)
 
     MalariaSurveyJSONAnalyzer::MalariaSurveyJSONAnalyzer()
-        : BaseEventReportIntervalOutput( _module, true, new MalariaPatientMap(), new MalariaPatientMap() ) // true => one file per report
+        : BaseEventReportIntervalOutput( _module,
+                                         true,// true => one file per report
+                                         new PatientMap(),
+                                         new PatientMap() ) 
         , m_IPKeyToCollect()
         , m_pPatientMap(nullptr)
-    {
-    }
+    { }
 
     MalariaSurveyJSONAnalyzer::~MalariaSurveyJSONAnalyzer()
-    {
-    }
+    { }
 
     bool MalariaSurveyJSONAnalyzer::Configure( const Configuration* inputJson )
     {
@@ -310,7 +256,7 @@ namespace Kernel
         bool configured = BaseEventReportIntervalOutput::Configure( inputJson );
         if( configured )
         {
-            m_pPatientMap = static_cast<MalariaPatientMap*>(m_pIntervalData);
+            m_pPatientMap = static_cast<PatientMap*>(m_pIntervalData);
         }
         return configured;
     }
@@ -360,11 +306,11 @@ namespace Kernel
         IMalariaSusceptibility* susceptibility_malaria = individual_malaria->GetMalariaSusceptibilityContext();
 
         // get the correct existing patient or insert a new one
-        MalariaPatient* patient = m_pPatientMap->FindPatient(id);
+        Patient* patient = m_pPatientMap->FindPatient(id);
 
         if( patient == nullptr )
         {
-            patient = new MalariaPatient(id, age, m_interval_timer-age); // birthday relative to current interval (i.e. output file)
+            patient = new Patient(id, age, m_interval_timer-age); // birthday relative to current interval (i.e. output file)
             m_pPatientMap->Add( patient );
 
             patient->strain_ids = individual_malaria->GetInfectingStrainIds();
@@ -404,7 +350,9 @@ namespace Kernel
         int positive_gametocyte_fields = 0;
         individual_malaria->CountPositiveSlideFields( iindividual->GetParent()->GetRng(), 200, (float)(1.0/400.0), positive_asexual_fields, positive_gametocyte_fields);
         patient->pos_asexual_fields.push_back( (float)positive_asexual_fields );
+
         patient->pos_gametocyte_fields.push_back( (float)positive_gametocyte_fields );
+
         LOG_DEBUG_F("(a,g) = (%d,%d)\n", (int)positive_asexual_fields, (int)positive_gametocyte_fields);
 
         // Values incorporating variability and sensitivity of blood test with uncertainty

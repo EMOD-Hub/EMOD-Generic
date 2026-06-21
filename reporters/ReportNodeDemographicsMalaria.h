@@ -42,16 +42,15 @@ namespace Kernel
 
     public:
         ReportNodeDemographicsMalaria();
-        ReportNodeDemographicsMalaria(const ReportNodeDemographicsMalaria&);
         virtual ~ReportNodeDemographicsMalaria();
 
         // ReportNodeDemographics
-        virtual void Initialize( unsigned int nrmSize );
+        virtual void Initialize( unsigned int nrmSize ) override;
         virtual std::string GetHeader() const override;
 
     protected:
-        virtual NodeData* CreateNodeData();
-        virtual void WriteNodeData( const NodeData* pData );
+        virtual NodeData* CreateNodeData() override;
+        virtual void WriteNodeData( const NodeData* pData ) override;
         virtual void LogIndividualData( IIndividualHuman* individual, NodeData* pNodeData ) override;
 
     private:

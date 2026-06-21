@@ -8,6 +8,7 @@
 #include "BaseEventReport.h"
 #include "IVectorMigrationReporting.h"
 #include "INodeContext.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
@@ -25,8 +26,11 @@ namespace Kernel
 
     class MalariaTransmissionReport : public BaseEventReport, public IVectorMigrationReporting
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, MalariaTransmissionReport, IReport)
+
     public:
         MalariaTransmissionReport();
+        MalariaTransmissionReport(const MalariaTransmissionReport&);
         virtual ~MalariaTransmissionReport();
 
         // BaseEventReport
