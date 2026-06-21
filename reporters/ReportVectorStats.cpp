@@ -2,9 +2,6 @@
 #include "stdafx.h"
 
 #include "ReportVectorStats.h"
-#include "DllInterfaceHelper.h"
-#include "FactorySupport.h"
-
 #include "NodeEventContext.h"
 #include "Individual.h"
 #include "VectorContexts.h"
@@ -13,11 +10,15 @@
 #include "INodeContext.h"
 #include "IdmDateTime.h"
 
+SETUP_LOGGING( "ReportVectorStats" )
+
 namespace Kernel
 {
-// ----------------------------------------
-// --- ReportVectorStats Methods
-// ----------------------------------------
+    // ----------------------------------------
+    // --- ReportVectorStats Methods
+    // ----------------------------------------
+
+    IMPLEMENT_FACTORY_REGISTERED( ReportVectorStats )
 
     ReportVectorStats::ReportVectorStats()
         : ReportVectorStats( "ReportVectorStats.csv" )
@@ -75,8 +76,9 @@ namespace Kernel
     {
         std::stringstream header ;
 
-        header << "Time"                << ", "
-               << "NodeID"              << ", ";
+        header << "Time"
+               << "," << "NodeID"
+               << ",";
 
         if( stratify_by_species )
         {

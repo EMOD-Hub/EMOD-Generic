@@ -5,11 +5,14 @@
 #include "IVectorMigrationReporting.h"
 #include "ReportUtilitiesMalaria.h"
 #include "IVectorPopulation.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
     class ReportVectorStats : public BaseTextReportEvents, public IVectorMigrationReporting
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportVectorStats, IReport)
+
     public:
         ReportVectorStats();
         virtual ~ReportVectorStats();

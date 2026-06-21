@@ -11,6 +11,9 @@ generic_cpp = [
 ]
 
 vector_cpp = [
+    "VectorHabitatReport.cpp",
+    "ReportVectorMigration.cpp",
+    "ReportVectorStats.cpp",
 ]
 
 malaria_cpp = [
@@ -23,6 +26,7 @@ malaria_cpp = [
     "ReportHelpers.cpp",
     "SpatialReportMalariaFiltered.cpp",
     "ReportNodeDemographicsMalaria.cpp",
+    "ReportVectorStatsMalaria.cpp",
 ]
 
 sti_cpp = [

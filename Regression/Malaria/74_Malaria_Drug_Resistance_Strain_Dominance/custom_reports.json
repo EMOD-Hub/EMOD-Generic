@@ -1,17 +1,12 @@
 {
-    "Custom_Reports": {
-        "ReportVectorStatsMalaria": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
-        }
-    },
     "Reports": [
         {
             "Age_Bins": [],
             "Stratify_By_Gender": 0,
             "class": "ReportNodeDemographicsMalaria"
+        },
+        {
+            "class": "ReportVectorStatsMalaria"
         }
     ]
 }

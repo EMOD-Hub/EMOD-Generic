@@ -2,70 +2,21 @@
 #include "stdafx.h"
 
 #include "ReportVectorMigration.h"
-#include "DllInterfaceHelper.h"
-#include "FactorySupport.h" // for DTK_DLLEXPORT
-
 #include "VectorCohortIndividual.h"
 #include "IMigrate.h"
 #include "ISimulationContext.h"
 #include "IdmDateTime.h"
 
-//******************************************************************************
-
-//******************************************************************************
+#define DEFAULT_NAME ("ReportVectorMigration.csv")
 
 SETUP_LOGGING( "ReportVectorMigration" )
 
-static const char* _sim_types[] = { "VECTOR_SIM", "MALARIA_SIM", nullptr };
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator()
-{
-    return new Kernel::ReportVectorMigration();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-
-// ----------------------------------------
-// --- ReportVectorMigration Methods
-// ----------------------------------------
-
 namespace Kernel
 {
+    IMPLEMENT_FACTORY_REGISTERED( ReportVectorMigration )
+
     ReportVectorMigration::ReportVectorMigration()
-        : BaseTextReport( "ReportVectorMigration.csv" )
+        : BaseTextReport(DEFAULT_NAME)
     {
         // ------------------------------------------------------------------------------------------------
         // --- Since this report will be listening for events, it needs to increment its reference count
@@ -124,12 +75,12 @@ namespace Kernel
             release_assert( false );
 
         GetOutputStream() << currentTime
-                   << "," << vci_id 
-                   << "," << from_node_id 
-                   << "," << to_node_id 
-                   << "," << mig_type_str
-                   << "," << species 
-                   << "," << age 
-                   << endl;
+                          << "," << vci_id
+                          << "," << from_node_id
+                          << "," << to_node_id
+                          << "," << mig_type_str
+                          << "," << species 
+                          << "," << age 
+                          << endl;
     }
 }

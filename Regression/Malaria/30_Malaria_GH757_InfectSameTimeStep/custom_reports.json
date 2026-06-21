@@ -1,22 +1,16 @@
 {
-    "Custom_Reports": {
-        "ReportVectorStats": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Species_List": [
-                        "SillySkeeter"
-                    ]
-                }
-            ]
-        }
-    },
     "Reports": [
         {
             "Age_Bins": [
                 150.0
             ],
             "class": "ReportNodeDemographics"
+        },
+        {
+            "class": "ReportVectorStats",
+            "Species_List": [
+                "SillySkeeter"
+            ]
         }
     ]
 }

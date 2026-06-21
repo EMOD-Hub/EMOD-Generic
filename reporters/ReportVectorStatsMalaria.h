@@ -2,11 +2,14 @@
 #pragma once
 
 #include "ReportVectorStats.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
     class ReportVectorStatsMalaria : public ReportVectorStats
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportVectorStatsMalaria, IReport)
+
     public:
         ReportVectorStatsMalaria();
         virtual ~ReportVectorStatsMalaria();

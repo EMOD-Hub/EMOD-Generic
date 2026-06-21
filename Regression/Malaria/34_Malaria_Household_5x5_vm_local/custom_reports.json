@@ -1,23 +1,13 @@
 {
-    "Custom_Reports": {
-        "ReportVectorMigration": {
-            "Enabled": 1,
-            "NOTE": "This can generate very large files.  Not saving to compare against.",
-            "Reports": [
-                {}
-            ]
+    "Reports": [
+        {
+            "class": "ReportVectorMigration"
         },
-        "ReportVectorStats": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
+        {
+            "class": "ReportVectorStats"
         },
-        "VectorHabitatReport": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
+        {
+            "class": "VectorHabitatReport"
         }
-    }
+    ]
 }

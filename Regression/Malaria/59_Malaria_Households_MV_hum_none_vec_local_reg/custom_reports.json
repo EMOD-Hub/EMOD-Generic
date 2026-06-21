@@ -1,12 +1,8 @@
 {
-    "Custom_Reports": {
-        "ReportVectorStats": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Stratify_By_Species": 1
-                }
-            ]
+    "Reports": [
+        {
+            "class": "ReportVectorStats",
+            "Stratify_By_Species": 1
         }
-    }
+    ]
 }
