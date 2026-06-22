@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include "EnumSupport.h"
 
 namespace Kernel
