@@ -22,28 +22,29 @@ namespace Kernel
     ReportVectorStatsMalaria::ReportVectorStatsMalaria()
         : ReportVectorStats( "ReportVectorStatsMalaria.csv" )
         , genome_marker_columns()
-    {
-    }
+    { }
 
     ReportVectorStatsMalaria::~ReportVectorStatsMalaria()
-    {
-    }
+    { }
 
     bool ReportVectorStatsMalaria::Configure( const Configuration * inputJson )
     {
         bool ret = ReportVectorStats::Configure( inputJson );
 
-        if( ret )
-        {
-            SimulationConfig* p_sim_config = GET_CONFIGURABLE( SimulationConfig );
-            std::vector<std::pair<std::string,uint64_t>> marker_combos = p_sim_config->malaria_params->pGenomeMarkers->CreatePossibleCombinations();
-
-            for( auto& combo : marker_combos )
-            {
-                genome_marker_columns.push_back( ReportUtilitiesMalaria::GenomeMarkerColumn( combo.first, combo.second ) );
-            }
-        }
         return ret;
+    }
+
+    void ReportVectorStatsMalaria::Initialize( unsigned int nrmSize )
+    {
+        SimulationConfig* p_sim_config = GET_CONFIGURABLE( SimulationConfig );
+        std::vector<std::pair<std::string, uint64_t>> marker_combos = p_sim_config->malaria_params->pGenomeMarkers->CreatePossibleCombinations();
+
+        for( auto& combo : marker_combos )
+        {
+            genome_marker_columns.push_back( ReportUtilitiesMalaria::GenomeMarkerColumn( combo.first, combo.second ) );
+        }
+
+        ReportVectorStats::Initialize( nrmSize );
     }
 
     std::string ReportVectorStatsMalaria::GetHeader() const
