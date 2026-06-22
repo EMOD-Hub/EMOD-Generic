@@ -1,85 +1,27 @@
-//******************************************************************************
-//
-// Reporter for serosurveys
-//
-//******************************************************************************
 
 #pragma once
 
 #include "stdafx.h"
-
 #include "ReportSerosurvey.h"
-
-#include "DllInterfaceHelper.h"
-#include "FactorySupport.h"
-
 #include "IdmDateTime.h"
 #include "INodeContext.h"
 #include "IIndividualHuman.h"
 #include "InterventionsContainer.h"
 
-//******************************************************************************
-
 #define DEFAULT_REP_NAME       ("ReportSerosurvey.csv")
 #define NULL_PROP              ("")
-
 #define DESC_TEXT_AGE_BINS     ("List of ages in days defining the upper value on age bins.")
 #define DESC_TEXT_REPORT_NAME  ("Output file name.")
 #define DESC_TEXT_SUS_THRESH   ("Susceptibility level that must be exceeded to qualify as susceptible.")
 #define DESC_TEXT_TARG_PROP    ("A key:value label for target agents. Empty string targets all agents.")
 #define DESC_TEXT_TIME_STAMPS  ("List of timesteps to log serosurvy data.")
 
-//******************************************************************************
-
 SETUP_LOGGING( "ReportSerosurvey" )
-
-static const char* _sim_types[]            = { "*", nullptr };
-
-Kernel::DllInterfaceHelper DLL_HELPER( _module, _sim_types );
-
-//******************************************************************************
-// DLL Methods
-//******************************************************************************
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-DTK_DLLEXPORT char*
-__cdecl GetEModuleVersion(char* sVer, const Environment* pEnv)
-{
-    return DLL_HELPER.GetEModuleVersion( sVer, pEnv );
-}
-
-DTK_DLLEXPORT void
-__cdecl GetSupportedSimTypes(char* simTypes[])
-{
-    DLL_HELPER.GetSupportedSimTypes( simTypes );
-}
-
-DTK_DLLEXPORT const char*
-__cdecl GetType()
-{
-    return DLL_HELPER.GetType();
-}
-
-DTK_DLLEXPORT Kernel::IReport*
-__cdecl GetReportInstantiator(Kernel::report_instantiator_function_t* pif)
-{
-    return new Kernel::ReportSerosurvey();
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-//******************************************************************************
-// Class Methods
-//******************************************************************************
 
 namespace Kernel
 {
-    // Constructor
+    IMPLEMENT_FACTORY_REGISTERED(ReportSerosurvey)
+
     ReportSerosurvey::ReportSerosurvey()
         : BaseTextReport(DEFAULT_REP_NAME, false)
         , m_sus_thresh(0.0f)
@@ -89,10 +31,8 @@ namespace Kernel
     { }
 
 
-    // Destructor
     ReportSerosurvey::~ReportSerosurvey()
     { }
-
 
     // Retrieves values from reporter-specific config file
     bool ReportSerosurvey::Configure(const Configuration* inputJson)
@@ -116,7 +56,6 @@ namespace Kernel
         return retVal;
     }
 
-
     // Provides header line; called by BaseTextReport
     std::string ReportSerosurvey::GetHeader() const
     {
@@ -134,7 +73,6 @@ namespace Kernel
 
         return ret_val;
     }
-
 
     // Evaluates for each node
     void ReportSerosurvey::LogNodeData(INodeContext* node)
@@ -198,7 +136,6 @@ namespace Kernel
         return;
     }
 
-
     // End of timestep operations; NOTE - time has already been incremented
     void ReportSerosurvey::EndTimestep(float currentTime, float dt)
     {
@@ -214,7 +151,4 @@ namespace Kernel
 
         return;
     }
-
 }
-
-//******************************************************************************

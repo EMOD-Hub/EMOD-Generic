@@ -98,14 +98,6 @@ SConscript( [ 'baseReportLib/SConscript',
 # Finally executable
 SConscript('Eradication/SConscript')
 
-#if disease != "Typhoid":
-#    OptionalScript('reporters/SConscript_Generic_AgeAtInfection')
-#    OptionalScript('reporters/SConscript_Generic_AgeAtInfectionHistogram')
-#    OptionalScript('reporters/SConscript_Generic_Basic')
-#    OptionalScript('reporters/SConscript_Generic_EventCounter')
-#    OptionalScript('reporters/SConscript_Generic_KmlDemo')
-#    OptionalScript('reporters/SConscript_Generic_Serosurvey')
-
 if( disease == "ALL"):
     OptionalScript('UnitTest++/SConscript')
     OptionalScript('componentTests/SConscript')

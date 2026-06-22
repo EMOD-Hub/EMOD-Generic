@@ -1,19 +1,15 @@
-//******************************************************************************
-//
-// Reporter for serosurveys
-//
-//******************************************************************************
 
 #pragma once
 
 #include "BaseTextReport.h"
-
-//******************************************************************************
+#include "ReportFactory.h"
 
 namespace Kernel
 {
     class ReportSerosurvey : public BaseTextReport
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportSerosurvey, IReport)
+
         public:
             ReportSerosurvey();
             ~ReportSerosurvey();
@@ -34,5 +30,3 @@ namespace Kernel
             std::vector<float>   m_time_stamps;
   };
 }
-
-//******************************************************************************

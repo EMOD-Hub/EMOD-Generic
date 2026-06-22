@@ -5,11 +5,14 @@
 
 #include "BaseEventReport.h"
 #include "ChannelDataMap.h"
+#include "ReportFactory.h"
 
 namespace Kernel
 {
     class ReportEventCounter : public BaseEventReport
     {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportEventCounter, IReport)
+
     public:
         ReportEventCounter();
         virtual ~ReportEventCounter();

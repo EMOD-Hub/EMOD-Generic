@@ -6,7 +6,9 @@ Import("env")
 
 generic_cpp = [
     "ReportHumanMigrationTracking.cpp",
+    "ReportEventCounter.cpp",
     "ReportNodeDemographics.cpp",
+    "ReportSerosurvey.cpp",
     "ReportStrainTracking.cpp",
 ]
 
