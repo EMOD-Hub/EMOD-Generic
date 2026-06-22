@@ -16,6 +16,7 @@ namespace Kernel
 
         // BaseEventReport
         virtual bool Configure( const Configuration* ) override;
+        virtual void Initialize( unsigned int nrmSize ) override;
 
         virtual std::string GetHeader() const override;
 
