@@ -1,27 +1,22 @@
 {
-    "Custom_Reports": {
-        "ReportMalariaFiltered": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "End_Day": 365,
-                    "Node_IDs_Of_Interest": [],
-                    "Report_File_Name": "0_to_365.json",
-                    "Start_Day": 0
-                },
-                {
-                    "End_Day": 730,
-                    "Node_IDs_Of_Interest": [],
-                    "Report_File_Name": "366_to_730.json",
-                    "Start_Day": 366
-                }
-            ]
-        }
-    },
     "Reports": [
         {
             "Age_Bins": [],
             "class": "ReportNodeDemographics"
+        },
+        {
+            "class": "ReportMalariaFiltered",
+            "End_Day": 365,
+            "Node_IDs_Of_Interest": [],
+            "Report_File_Name": "0_to_365.json",
+            "Start_Day": 0
+        },
+        {
+            "class": "ReportMalariaFiltered",
+            "End_Day": 730,
+            "Node_IDs_Of_Interest": [],
+            "Report_File_Name": "366_to_730.json",
+            "Start_Day": 366
         }
     ]
 }

@@ -1,0 +1,41 @@
+
+#pragma once
+
+#include <map>
+
+#include "BaseTextReport.h"
+#include "ReportMalaria.h"
+#include "ReportFactory.h"
+
+namespace Kernel
+{
+    class ReportMalariaFiltered : public ReportMalaria
+    {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportMalariaFiltered, IReport)
+
+    public:
+        ReportMalariaFiltered();
+        virtual ~ReportMalariaFiltered();
+
+        // ReportMalaria
+        virtual bool Configure( const Configuration* ) override;
+        virtual bool Validate( const ISimulationContext *parent_sim ) override;
+        virtual void Initialize( unsigned int nrmSize ) override;
+
+        virtual void UpdateEventRegistration( float currentTime, 
+                                              float dt, 
+                                              std::vector<INodeEventContext*>& rNodeEventContextList,
+                                              ISimulationEventContext* pSimEventContext ) override;
+        virtual void BeginTimestep() override;
+        virtual void LogIndividualData( IIndividualHuman* individual ) override;
+        virtual bool IsCollectingIndividualData( float currentTime, float dt ) const override;
+        virtual void LogNodeData( INodeContext* pNC ) override;
+    private:
+        bool IsValidNode( uint32_t externalNodeID ) const;
+
+        std::map<uint32_t,bool> m_NodesToInclude;
+        float m_StartDay;
+        float m_EndDay;
+        bool m_IsValidDay;
+    };
+}

@@ -1,15 +1,11 @@
 {
-    "Custom_Reports": {
-        "ReportRelationshipCensus": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "End_Year": 1964,
-                    "Report_File_Name": "ReportRelationshipCensus.csv",
-                    "Reporting_Interval_Years": 1.0,
-                    "Start_Year": 1962
-                }
-            ]
+    "Reports": [
+        {
+            "class": "ReportRelationshipCensus",
+            "End_Year": 1964,
+            "Report_File_Name": "ReportRelationshipCensus.csv",
+            "Reporting_Interval_Years": 1.0,
+            "Start_Year": 1962
         }
-    }
+    ]
 }

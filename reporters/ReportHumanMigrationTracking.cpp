@@ -21,7 +21,6 @@ namespace Kernel
 {
     IMPLEMENT_FACTORY_REGISTERED(ReportHumanMigrationTracking)
 
-    // Constructor
     ReportHumanMigrationTracking::ReportHumanMigrationTracking()
         : BaseTextReportEvents( "ReportHumanMigrationTracking.csv" )
         , m_EndTime(0.0)
@@ -34,13 +33,6 @@ namespace Kernel
         // ------------------------------------------------------------------------------------------------
         AddRef();
     }
-
-    // Copy constructor
-    ReportHumanMigrationTracking::ReportHumanMigrationTracking(const ReportHumanMigrationTracking& existing_instance)
-        : BaseTextReportEvents(existing_instance.GetReportName())
-        , m_EndTime(existing_instance.m_EndTime)
-        , m_MigrationDataMap(existing_instance.m_MigrationDataMap)
-    { }
 
     ReportHumanMigrationTracking::~ReportHumanMigrationTracking()
     {

@@ -1,68 +1,60 @@
 {
-    "Custom_Reports": {
-        "MalariaImmunityReport": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Age_Bins": [
-                        10,
-                        20,
-                        30,
-                        40,
-                        50,
-                        60,
-                        70,
-                        80,
-                        90,
-                        100,
-                        125
-                    ],
-                    "Duration_Days": 10000,
-                    "Event_Trigger_List": [
-                        "EveryUpdate"
-                    ],
-                    "Max_Number_Reports": 15,
-                    "Nodeset_Config": {
-                        "class": "NodeSetAll"
-                    },
-                    "Pretty_Format": 1,
-                    "Report_Description": "",
-                    "Reporting_Interval": 11,
-                    "Start_Day": 0
-                }
-            ]
+    "Reports": [
+        {
+            "class": "MalariaImmunityReport",
+            "Age_Bins": [
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80,
+                90,
+                100,
+                125
+            ],
+            "Duration_Days": 10000,
+            "Event_Trigger_List": [
+                "EveryUpdate"
+            ],
+            "Max_Number_Reports": 15,
+            "Nodeset_Config": {
+                "class": "NodeSetAll"
+            },
+            "Pretty_Format": 1,
+            "Report_Description": "",
+            "Reporting_Interval": 11,
+            "Start_Day": 0
         },
-        "MalariaSummaryReport": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Age_Bins": [
-                        10,
-                        20,
-                        30,
-                        40,
-                        50,
-                        60,
-                        70,
-                        80,
-                        90,
-                        100,
-                        125
-                    ],
-                    "Duration_Days": 10000,
-                    "Event_Trigger_List": [
-                        "EveryUpdate"
-                    ],
-                    "Max_Number_Reports": 15,
-                    "Nodeset_Config": {
-                        "class": "NodeSetAll"
-                    },
-                    "Pretty_Format": 1,
-                    "Report_Description": "",
-                    "Reporting_Interval": 11,
-                    "Start_Day": 0
-                }
-            ]
+        {
+            "class": "MalariaSummaryReport",
+            "Age_Bins": [
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80,
+                90,
+                100,
+                125
+            ],
+            "Duration_Days": 10000,
+            "Event_Trigger_List": [
+                "EveryUpdate"
+            ],
+            "Max_Number_Reports": 15,
+            "Nodeset_Config": {
+                "class": "NodeSetAll"
+            },
+            "Pretty_Format": 1,
+            "Report_Description": "",
+            "Reporting_Interval": 11,
+            "Start_Day": 0
         }
-    }
+    ]
 }

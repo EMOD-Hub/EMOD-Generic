@@ -4,8 +4,8 @@
 #include "stdafx.h"
 
 #include "ReportNodeDemographics.h"
-#include "FactorySupport.h"
 
+#include "FactorySupport.h"
 #include "NodeEventContext.h"
 #include "IIndividualHuman.h"
 #include "ReportUtilities.h"
@@ -42,17 +42,6 @@ namespace Kernel
         AddRef();
     }
 
-    // Copy constructor
-    ReportNodeDemographics::ReportNodeDemographics(const ReportNodeDemographics& existing_instance)
-        : BaseTextReport(existing_instance.GetReportName(), existing_instance.write_every_time_step)
-        , m_StratifyByGender(existing_instance.m_StratifyByGender)
-        , m_StratifyByAge(existing_instance.m_StratifyByAge)
-        , m_AgeYears(existing_instance.m_AgeYears)
-        , m_IPKeyToCollect(existing_instance.m_IPKeyToCollect)
-        , m_IPValuesList(existing_instance.m_IPValuesList)
-        , m_Data(existing_instance.m_Data)
-    { }
-
     ReportNodeDemographics::~ReportNodeDemographics()
     {
         for( int i = 0; i < m_Data.size(); ++i )
@@ -85,7 +74,7 @@ namespace Kernel
         }
         initConfigTypeMap( "Stratify_By_Gender", &m_StratifyByGender, "1 (default) implies stratify by gender, 0 implies do not", true );
         bool ret = JsonConfigurable::Configure( inputJson );
-        
+
         JsonConfigurable::_useDefaults = stack;
         return ret;
     }
@@ -258,5 +247,4 @@ namespace Kernel
         }
         return index;
     }
-
 }

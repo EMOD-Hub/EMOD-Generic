@@ -6,21 +6,43 @@ Import("env")
 
 generic_cpp = [
     "ReportHumanMigrationTracking.cpp",
+    "ReportEventCounter.cpp",
     "ReportNodeDemographics.cpp",
+    "ReportSerosurvey.cpp",
     "ReportStrainTracking.cpp",
 ]
 
 vector_cpp = [
+    "VectorHabitatReport.cpp",
+    "ReportVectorMigration.cpp",
+    "ReportVectorStats.cpp",
 ]
 
 malaria_cpp = [
+    "MalariaImmunityReport.cpp",
+    "MalariaPatientJSONReport.cpp",
+    "MalariaSummaryReport.cpp",
+    "MalariaSurveyJSONAnalyzer.cpp",
+    "ReportMalariaFiltered.cpp",
+    "MalariaTransmissionReport.cpp",
+    "ReportHelpers.cpp",
+    "SpatialReportMalariaFiltered.cpp",
     "ReportNodeDemographicsMalaria.cpp",
+    "ReportVectorStatsMalaria.cpp",
 ]
 
 sti_cpp = [
+    "ReportRelationshipCensus.cpp",
+    "ReportRelationshipMigrationTracking.cpp",
+    "StiRelationshipQueueReporter.cpp",
 ]
 
 hiv_cpp = [
+]
+
+tbhiv_cpp = [
+    "Report_TBHIV_Basic.cpp",
+    "Report_TBHIV_ByAge.cpp",
 ]
 
 disease = "ALL"
@@ -45,5 +67,8 @@ if( (disease == "ALL") or (disease == "STI") or (disease == "HIV") ):
 
 if( (disease == "ALL") or (disease == "HIV") ):
     reporters_cpp = reporters_cpp + hiv_cpp
+
+if( (disease == "ALL") or (disease == "TBHIV") ):
+    reporters_cpp = reporters_cpp + tbhiv_cpp
 
 reporters_lib = env.StaticLibrary('reporters', reporters_cpp)

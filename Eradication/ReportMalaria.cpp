@@ -12,8 +12,8 @@ static const std::string _new_clinical_cases_label( "New Clinical Cases" );
 static const std::string _new_severe_cases_label( "New Severe Cases" );
 static const std::string _statistical_population_label( "Statistical Population" );
 
-namespace Kernel {
-
+namespace Kernel
+{
     ReportMalaria::ReportMalaria()
     {}
 

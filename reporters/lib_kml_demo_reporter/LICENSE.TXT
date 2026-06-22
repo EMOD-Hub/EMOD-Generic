@@ -1,3 +1,0 @@
-Copyright c 2010 Pierre Lindenbaum
-
-Tthere is no license for this code. Use it at your own risk.

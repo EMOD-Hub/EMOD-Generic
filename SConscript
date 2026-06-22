@@ -98,38 +98,6 @@ SConscript( [ 'baseReportLib/SConscript',
 # Finally executable
 SConscript('Eradication/SConscript')
 
-#if disease != "Typhoid":
-#    OptionalScript('reporters/SConscript_Generic_AgeAtInfection')
-#    OptionalScript('reporters/SConscript_Generic_AgeAtInfectionHistogram')
-#    OptionalScript('reporters/SConscript_Generic_Basic')
-#    OptionalScript('reporters/SConscript_Generic_EventCounter')
-#    OptionalScript('reporters/SConscript_Generic_KmlDemo')
-#    OptionalScript('reporters/SConscript_Generic_Serosurvey')
-
-#if( (disease == "ALL") or (disease == "Malaria") ):
-#    OptionalScript('reporters/SConscript_Malaria_Filtered')
-#    OptionalScript('reporters/SConscript_Malaria_Filtered_Spatial')
-#    OptionalScript('reporters/SConscript_Malaria_Immunity')
-#    OptionalScript('reporters/SConscript_Malaria_Patient')
-#    OptionalScript('reporters/SConscript_Malaria_Summary')
-#    OptionalScript('reporters/SConscript_Malaria_Survey')
-#    OptionalScript('reporters/SConscript_Malaria_Transmission')
-#    OptionalScript('reporters/SConscript_Malaria_VectorStatsMalaria')
-
-#if( (disease == "ALL") or (disease == "TBHIV") ):
-#    OptionalScript('reporters/SConscript_TBHIV_Basic')
-#    OptionalScript('reporters/SConscript_TBHIV_ByAge')
-
-#if( (disease == "ALL") or (disease == "STI") or (disease == "HIV") ):
-#    OptionalScript('reporters/SConscript_STI_RelationshipMigrationTracking')
-#    OptionalScript('reporters/SConscript_STI_RelationshipQueue')
-#    OptionalScript('reporters/SConscript_STI_RelationshipCensus')
-
-#if( (disease == "ALL") or (disease == "Vector") or (disease == "Malaria") ):
-#    OptionalScript('reporters/SConscript_Vector_VectorHabitat')
-#    OptionalScript('reporters/SConscript_Vector_VectorMigration')
-#    OptionalScript('reporters/SConscript_Vector_VectorStats')
-
 if( disease == "ALL"):
     OptionalScript('UnitTest++/SConscript')
     OptionalScript('componentTests/SConscript')

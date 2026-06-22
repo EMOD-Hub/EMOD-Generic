@@ -15,11 +15,22 @@ namespace Kernel {
     BaseTextReport::BaseTextReport( const std::string& rReportName, bool everyTimeStep )
         : BaseReport()
         , write_every_time_step( everyTimeStep )
+        , write_header_newline(true)
         , report_name( rReportName )
         , output_stream()
         , reduced_stream()
         , outfile()
-        , write_header_newline(true)
+    {
+    }
+
+    BaseTextReport::BaseTextReport( const BaseTextReport& rThat )
+        : BaseReport( rThat )
+        , write_every_time_step( rThat.write_every_time_step )
+        , write_header_newline(rThat.write_header_newline)
+        , report_name( rThat.report_name )
+        , output_stream()
+        , reduced_stream()
+        , outfile()
     {
     }
 

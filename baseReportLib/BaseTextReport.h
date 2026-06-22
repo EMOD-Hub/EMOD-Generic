@@ -15,6 +15,7 @@ namespace Kernel
     {
     public:
         BaseTextReport( const std::string& rReportName, bool everyTimeStep = true );
+        BaseTextReport( const BaseTextReport& rThat );
         virtual ~BaseTextReport();
 
         // ------------
@@ -45,14 +46,12 @@ namespace Kernel
         void SetReportName(const std::string& new_name);
         void AddHeaderNewline(bool add_endl);
 
-        virtual void GetDataFromOtherCores();
+        void GetDataFromOtherCores();
         virtual void WriteData( const std::string& rStringData );
 
         // make protected so derived classes can set in Configure()
         bool write_every_time_step;
         bool write_header_newline;
-
-    private:
         std::string report_name;
         std::stringstream output_stream;
         std::stringstream reduced_stream;   // For rank 0 only

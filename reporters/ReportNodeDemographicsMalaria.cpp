@@ -29,13 +29,6 @@ namespace Kernel
         , m_GenomeMarkerColumns()
     {
     }
-
-    // Copy constructor
-    ReportNodeDemographicsMalaria::ReportNodeDemographicsMalaria(const ReportNodeDemographicsMalaria& existing_instance)
-        : ReportNodeDemographics(existing_instance)
-        , m_GenomeMarkerColumns(existing_instance.m_GenomeMarkerColumns)
-    { }
-
     ReportNodeDemographicsMalaria::~ReportNodeDemographicsMalaria()
     {
     }

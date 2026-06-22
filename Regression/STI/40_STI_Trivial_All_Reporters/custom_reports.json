@@ -1,10 +1,7 @@
 {
-    "Custom_Reports": {
-        "StiRelationshipQueueReporter": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
+    "Reports": [
+        {
+            "class": "StiRelationshipQueueReporter"
         }
-    }
+    ]
 }

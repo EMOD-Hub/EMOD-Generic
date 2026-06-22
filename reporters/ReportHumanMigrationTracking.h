@@ -12,7 +12,6 @@ namespace Kernel
 
     public:
         ReportHumanMigrationTracking();
-        ReportHumanMigrationTracking(const ReportHumanMigrationTracking&);
         virtual ~ReportHumanMigrationTracking();
 
         // BaseEventReport

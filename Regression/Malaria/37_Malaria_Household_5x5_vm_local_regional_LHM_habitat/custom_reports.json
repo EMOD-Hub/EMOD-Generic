@@ -1,10 +1,7 @@
 {
-    "Custom_Reports": {
-        "ReportVectorStats": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
+    "Reports": [
+        {
+            "class": "ReportVectorStats"
         }
-    }
+    ]
 }

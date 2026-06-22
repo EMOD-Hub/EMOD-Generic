@@ -1,29 +1,19 @@
 {
-    "Custom_Reports": {
-        "ReportEventCounter": {
-            "Enabled": 1,
-            "Reports": [
-                {
-                    "Duration_Days": 10000,
-                    "Event_Trigger_List": [
-                        "Births",
-                        "EveryUpdate",
-                        "NewInfection",
-                        "NonDiseaseDeaths"
-                    ],
-                    "Nodeset_Config": {
-                        "class": "NodeSetAll"
-                    },
-                    "Report_Description": "",
-                    "Start_Day": 0
-                }
-            ]
-        },
-        "ReportPluginBasic": {
-            "Enabled": 1,
-            "Reports": [
-                {}
-            ]
+    "Reports": [
+        {
+            "class": "ReportEventCounter",
+            "Duration_Days": 10000,
+            "Event_Trigger_List": [
+                "Births",
+                "EveryUpdate",
+                "NewInfection",
+                "NonDiseaseDeaths"
+            ],
+            "Nodeset_Config": {
+                "class": "NodeSetAll"
+            },
+            "Report_Description": "",
+            "Start_Day": 0
         }
-    }
+    ]
 }

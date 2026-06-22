@@ -1,0 +1,51 @@
+
+#pragma once
+
+#include "BaseTextReportEvents.h"
+#include "IVectorMigrationReporting.h"
+#include "ReportUtilitiesMalaria.h"
+#include "IVectorPopulation.h"
+#include "ReportFactory.h"
+
+namespace Kernel
+{
+    class ReportVectorStats : public BaseTextReportEvents, public IVectorMigrationReporting
+    {
+        DECLARE_FACTORY_REGISTERED(ReportFactory, ReportVectorStats, IReport)
+
+    public:
+        ReportVectorStats();
+        virtual ~ReportVectorStats();
+
+        // BaseEventReport
+        virtual bool Configure( const Configuration* ) override;
+        //virtual void BeginTimestep() override;
+
+        virtual void UpdateEventRegistration( float currentTime, 
+                                              float dt, 
+                                              std::vector<INodeEventContext*>& rNodeEventContextList,
+                                              ISimulationEventContext* pSimEventContext ) override;
+
+        virtual std::string GetHeader() const override;
+        virtual void LogNodeData( Kernel::INodeContext * pNC ) override;
+        virtual bool notifyOnEvent( IIndividualHumanEventContext *context, 
+                                    const EventTrigger::Enum& trigger ) override;
+
+        // IVectorMigrationReporting
+        virtual void LogVectorMigration( ISimulationContext* pSim, 
+                                         float currentTime, 
+                                         const suids::suid& nodeSuid, 
+                                         IVectorCohort* pivc ) override;
+    protected:
+        ReportVectorStats( const std::string& rReportName );
+        virtual void ResetOtherCounters() {};
+        virtual void CollectOtherData( IVectorPopulation* pIVPR ) {};
+        virtual void WriteOtherData() {};
+
+    private:
+        std::map<uint32_t, std::map<std::string, int>> migration_count_local;
+        std::map<uint32_t, std::map<std::string, int>> migration_count_regional;
+        std::vector<std::string> species_list ;
+        bool stratify_by_species;
+    };
+}

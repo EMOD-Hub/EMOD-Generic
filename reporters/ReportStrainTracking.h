@@ -12,7 +12,6 @@ namespace Kernel
 
         public:
             ReportStrainTracking();
-            ReportStrainTracking(const ReportStrainTracking&);
             ~ReportStrainTracking();
 
             bool Configure(const Configuration* inputJson) override;
