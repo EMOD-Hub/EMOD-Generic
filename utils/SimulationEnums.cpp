@@ -1,7 +1,4 @@
 
-#pragma once
-
-#include "stdafx.h"
 #include "SimulationEnums.h"
 
 namespace Kernel

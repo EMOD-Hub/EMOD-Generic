@@ -1,7 +1,4 @@
 
-#pragma once
-
-#include "stdafx.h"
 #include "TBHIVEnums.h"
 
 namespace Kernel

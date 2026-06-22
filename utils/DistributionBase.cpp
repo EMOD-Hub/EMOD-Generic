@@ -1,5 +1,4 @@
 
-#pragma once
 #include "stdafx.h"
 #include "Configure.h"
 #include "MathFunctions.h"

@@ -1,7 +1,4 @@
 
-#pragma once
-
-#include "stdafx.h"
 #include "VectorEnums.h"
 
 namespace Kernel
