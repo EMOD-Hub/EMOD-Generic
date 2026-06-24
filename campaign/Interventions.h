@@ -4,7 +4,6 @@
 #include <string>
 #include <list>
 
-#include "IdmApi.h"
 #include "ISupports.h"
 #include "Configure.h"                 // for JsonConfigurable
 #include "InterventionEnums.h"
@@ -35,14 +34,12 @@ namespace Kernel
     struct INodeEventContext;
     struct IEventCoordinator2;
 
-    struct IDMAPI ICampaignCostObserver : ISupports
+    struct ICampaignCostObserver : ISupports
     {
         virtual void notifyCampaignExpenseIncurred( float expenseIncurred, const IIndividualHumanEventContext* pIndiv ) = 0;
     };
 
-#pragma warning(push)
-#pragma warning(disable: 4251) // See IdmApi.h for details
-    struct IDMAPI IDistributableIntervention : ISerializable
+    struct IDistributableIntervention : ISerializable
     {
         // Distribute transfers ownership of this object to the context if it succeeds, the context becomes responsible for freeing it
         // returns false if cannot distribute to the individual represented by this context, for whatever reason
@@ -66,9 +63,7 @@ namespace Kernel
 
         virtual ~IDistributableIntervention() { }
     };
-#pragma warning(pop)
 
-    // Interface for an individual's intervention container
     struct IIndividualHumanInterventionsContext : ISerializable // ISupports
     {
         // specific helpers for interoperating with the interventions container might go here
@@ -98,7 +93,7 @@ namespace Kernel
         virtual ~IIndividualHumanInterventionsContext() {}
     };
 
-    struct IDMAPI INodeDistributableIntervention : ISupports
+    struct INodeDistributableIntervention : ISupports
     {
         // Distribute transfers ownership of this object to the context if it succeeds, the context becomes responsible for freeing it
         // returns false if cannot distribute to the individual represented by this context, for whatever reason
@@ -119,13 +114,13 @@ namespace Kernel
         virtual bool GiveIntervention( IDistributableIntervention * pIV ) = 0;
     };
 
-    struct IDMAPI INodeInterventionConsumer : ISupports
+    struct INodeInterventionConsumer : ISupports
     {
         virtual bool GiveIntervention( INodeDistributableIntervention * pIV ) = 0;
     };
 
     // TODO - BaseInterventions looks concrete, but can't be instantiated. :(
-    struct IDMAPI BaseIntervention : IDistributableIntervention, JsonConfigurable
+    struct BaseIntervention : IDistributableIntervention, JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 

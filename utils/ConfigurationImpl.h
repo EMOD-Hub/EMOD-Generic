@@ -10,11 +10,6 @@
 
 namespace Kernel
 {
-    namespace MetadataDescriptor 
-    {
-        struct Enum; // forward decl
-    }
-
     namespace MetadataDescriptor
     {
         struct Base
@@ -82,8 +77,9 @@ namespace Kernel
             {
                 Element member = Enum::GetSchemaElement();
                 QuickBuilder qb(member);
-                auto default_array = json::Array();
-                qb["default"] = default_array;
+
+                // for a list of enums, the default is emtpy list
+                qb["default"] = json::Array();
                 return member;
             }
         };

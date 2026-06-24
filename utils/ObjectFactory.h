@@ -56,7 +56,7 @@ namespace Kernel
         // Returns the name fo the factory
         std::string GetFactoryName();
 
-        void CheckSimType( IObject* pObject );
+        void CheckSimType( ISupports* pObject );
 
         support_spec_map_t m_RegisteredClasses;
         json::Object       m_FactorySchema;

@@ -191,7 +191,7 @@ namespace Kernel
     }
 
     template<class IObject, class Factory>
-    void ObjectFactory<IObject, Factory>::CheckSimType( IObject* pObject )
+    void ObjectFactory<IObject, Factory>::CheckSimType( ISupports* pObject )
     {
         if( JsonConfigurable::_dryrun )
         {

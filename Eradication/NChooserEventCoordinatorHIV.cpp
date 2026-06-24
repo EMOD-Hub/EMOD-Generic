@@ -34,6 +34,7 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- TargetedDistributionHIV
     // ------------------------------------------------------------------------
+
     TargetedDistributionHIV::TargetedDistributionHIV( NChooserObjectFactory* pObjectFactory )
     : TargetedDistributionSTI(pObjectFactory)
     , m_Vector2dStringDiseaseStates()
