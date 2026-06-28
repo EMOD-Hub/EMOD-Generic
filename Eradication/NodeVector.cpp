@@ -74,9 +74,9 @@ namespace Kernel
 
     void NodeVector::Initialize()
     {
-        larval_habitat_multiplier.SetExternalNodeId(externalId);
-
         Node::Initialize();
+
+        larval_habitat_multiplier.SetExternalNodeId(externalId);
 
         // when creating nodes from scratch (not from serialization)
         larval_habitat_multiplier.Initialize();
