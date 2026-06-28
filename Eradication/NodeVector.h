@@ -44,6 +44,7 @@ namespace Kernel
         virtual void SetupIntranodeTransmission() override;
         virtual void CreateTransmissionGroups() override;
         virtual void BuildTransmissionRoutes() override;
+        virtual void SetParameters( NodeDemographicsFactory *demographics_factory, ClimateFactory *climate_factory ) override;
         virtual void updateInfectivity(float dt = 0.0f) override;
         virtual void updatePopulationStatistics(float dt = 1.0f) override;
         void         updateVectorLifecycleProbabilities(float dt);
@@ -72,6 +73,7 @@ namespace Kernel
         IMigrationInfoVector* vector_migration_info;
 
         ITransmissionGroups* txOutdoor;
+        suids::distributed_generator m_VectorCohortSuidGenerator;
 
         NodeVector();
         NodeVector(ISimulationContext *context, ExternalNodeId_t externalNodeId, suids::suid node_suid);

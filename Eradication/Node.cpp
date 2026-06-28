@@ -276,7 +276,7 @@ namespace Kernel
         ExtractDataFromDemographics(demog_ptr);
 
 #ifndef DISABLE_CLIMATE
-        if ( climate_factory->GetClimateParams().climate_structure != ClimateStructure::CLIMATE_OFF )
+        if (climate_factory->GetClimateParams().climate_structure != ClimateStructure::CLIMATE_OFF)
         {
             LOG_DEBUG( "Parsing NodeAttributes->Altitude tag in node demographics file.\n" );
             float altitude = float((*demog_ptr)["NodeAttributes"]["Altitude"].AsDouble());
@@ -1356,8 +1356,8 @@ namespace Kernel
 
         initial_population   = static_cast<uint32_t>((*demog_ptr)["NodeAttributes"]["InitialPopulation"].AsUint64());
 
-        _latitude            = static_cast<float>((*demog_ptr)["NodeAttributes"]["Latitude"].AsDouble());
-        _longitude           = static_cast<float>((*demog_ptr)["NodeAttributes"]["Longitude"].AsDouble());
+        _latitude  = static_cast<float>((*demog_ptr)["NodeAttributes"]["Latitude"].AsDouble());
+        _longitude = static_cast<float>((*demog_ptr)["NodeAttributes"]["Longitude"].AsDouble());
 
         if(GetNodeParams().enable_birth)
         {
@@ -2523,7 +2523,7 @@ namespace Kernel
     }
 
     INodeEventContext* Node::GetEventContext()
-    { 
+    {
         return static_cast<INodeEventContext*>(event_context_host);
     }
 
@@ -2663,7 +2663,6 @@ namespace Kernel
             ar.labelElement("distribution_susceptibility")              & node.distribution_susceptibility;
             ar.labelElement("distribution_age")                         & node.distribution_age;
 
-            //ar.labelElement("routes")                            & node.routes;
             ar.labelElement("bSkipping")                         & node.bSkipping;
         }
     }

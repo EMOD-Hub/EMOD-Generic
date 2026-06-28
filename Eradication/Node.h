@@ -284,7 +284,7 @@ namespace Kernel
 
         virtual void Initialize();
         virtual void setupEventContextHost();
-        void ExtractDataFromDemographics(const NodeDemographics* demog_ptr);
+        void ExtractDataFromDemographics(const NodeDemographics*);
         virtual void LoadImmunityDemographicsDistribution(const NodeDemographics* demog_ptr);
         virtual void LoadOtherDiseaseSpecificDistributions(const NodeDemographics* demog_ptr);
 

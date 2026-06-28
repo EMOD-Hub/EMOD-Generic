@@ -37,7 +37,8 @@ using namespace std;
 namespace Kernel
 {
     NodeVector::NodeVector() 
-        : m_larval_habitats()
+        : Node()
+        , m_larval_habitats()
         , m_vector_init_pop()
         , m_vectorpopulations()
         , m_VectorPopulationReportingList()
@@ -45,10 +46,10 @@ namespace Kernel
         , larval_habitat_multiplier()
         , vector_migration_info( nullptr )
         , txOutdoor( nullptr )
+        , m_VectorCohortSuidGenerator(0,0)
     {
         serializationFlagsDefault.set( SerializationFlags::LarvalHabitats );
         serializationFlagsDefault.set( SerializationFlags::VectorPopulation );
-        larval_habitat_multiplier.Initialize();
         delete event_context_host;
         NodeVector::setupEventContextHost();    // This is marked as a virtual function, but isn't virtualized here because we're still in the ctor.
     }
@@ -63,10 +64,10 @@ namespace Kernel
         , larval_habitat_multiplier()
         , vector_migration_info( nullptr )
         , txOutdoor( nullptr )
+        , m_VectorCohortSuidGenerator(0,0)
     {
         serializationFlagsDefault.set( SerializationFlags::LarvalHabitats );
         serializationFlagsDefault.set( SerializationFlags::VectorPopulation );
-        larval_habitat_multiplier.Initialize();
         delete event_context_host;
         NodeVector::setupEventContextHost();    // This is marked as a virtual function, but isn't virtualized here because we're still in the ctor.
     }
@@ -77,7 +78,17 @@ namespace Kernel
 
         Node::Initialize();
 
+        // when creating nodes from scratch (not from serialization)
+        larval_habitat_multiplier.Initialize();
+
         m_vector_lifecycle_probabilities = VectorProbabilities::CreateVectorProbabilities();
+    }
+
+    void NodeVector::SetParameters( NodeDemographicsFactory *demographics_factory, ClimateFactory *climate_factory )
+    {
+        m_VectorCohortSuidGenerator = suids::distributed_generator( GetSuid().data, demographics_factory->GetNodeIDs().size() );
+
+        Node::SetParameters( demographics_factory, climate_factory );
     }
 
     void NodeVector::LoadOtherDiseaseSpecificDistributions(const NodeDemographics* demog_ptr)
@@ -150,7 +161,7 @@ namespace Kernel
         }
         m_larval_habitats.clear();
 
-        delete vector_migration_info ;
+        delete vector_migration_info;
     }
 
     IIndividualHuman* NodeVector::createHuman( suids::suid id, float MCweight, float init_age, int gender)
@@ -165,7 +176,7 @@ namespace Kernel
         return movedind;
     }
 
-    IIndividualHuman* NodeVector::addNewIndividual( float MCweight, float init_age, int gender, int init_infs, float immparam, float riskparam)
+    IIndividualHuman* NodeVector::addNewIndividual(float MCweight, float init_age, int gender, int init_infs, float immparam, float riskparam)
     {
         // just the base class for now
         return Node::addNewIndividual(MCweight, init_age, gender, init_infs, immparam, riskparam);
@@ -273,7 +284,8 @@ namespace Kernel
             }
         }
 
-        transmissionGroups->EndUpdate();    // finish processing human-to-mosquito infectiousness
+        // finish processing human-to-mosquito infectiousness
+        transmissionGroups->EndUpdate();
         txOutdoor->EndUpdate();
 
         // don't need to update the vector populations before the first timestep
@@ -290,7 +302,8 @@ namespace Kernel
         }
 
         // do again so that humans bitten this time step get infected
-        transmissionGroups->EndUpdate();    // finish processing mosquito-to-human infectiousness
+        // finish processing mosquito-to-human infectiousness
+        transmissionGroups->EndUpdate();
         txOutdoor->EndUpdate();
 
         // Now process the node's emigrating mosquitoes
