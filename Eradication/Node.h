@@ -19,7 +19,6 @@
 #include "INodeContext.h"
 #include "StrainIdentity.h"
 
-
 class Report;
 class ReportVector;
 class DemographicsReport;
@@ -62,9 +61,9 @@ namespace Kernel
         virtual INodePolio*         GetNodePolio()     override { return nullptr; };
 
         virtual suids::suid   GetSuid() const override;
-        virtual suids::suid   GetNextInfectionSuid() override; 
+        virtual suids::suid   GetNextInfectionSuid() override;
         virtual RANDOMBASE* GetRng() override;
-        virtual void SetRng( RANDOMBASE* prng ) override; 
+        virtual void SetRng( RANDOMBASE* prng ) override;
         virtual void AddEventsFromOtherNodes( const std::vector<EventTrigger::Enum>& rTriggerList ) override;
 
         virtual const NodeParams& GetNodeParams() const;
@@ -101,22 +100,23 @@ namespace Kernel
 
         // Reporting to higher levels (intermediate form)
         // Possible TODO: refactor into common interfaces if there is demand
-        virtual       INodeEventContext*  GetEventContext()                     override;
+        virtual       INodeEventContext*  GetEventContext()     override;
         virtual       ExternalNodeId_t    GetExternalID() const override;
 
-        virtual const IdmDateTime&  GetTime()                   const override;
-        virtual const Climate*      GetLocalWeather()           const override;
-        virtual float               GetInfected()               const override;
-        virtual float               GetSymptomatic()            const override;
-        virtual float               GetNewlySymptomatic()       const override;
-        virtual float               GetStatPop()                const override;
-        virtual float               GetBirths()                 const override;
-        virtual float               GetCampaignCost()           const override;
-        virtual float               GetInfectivity()            const override;
-        virtual float               GetInfectionRate()          const override;
-        virtual float               GetSusceptDynamicScaling()  const override;
-        virtual long int            GetPossibleMothers()        const override;
-        virtual uint64_t            GetTotalGenomes()           const override;
+        virtual const IdmDateTime& GetTime()     const override;
+        virtual const Climate* GetLocalWeather() const override;
+
+        virtual float GetInfected()              const override;
+        virtual float GetSymptomatic()           const override;
+        virtual float GetNewlySymptomatic()      const override;
+        virtual float GetStatPop()               const override;
+        virtual float GetBirths()                const override;
+        virtual float GetCampaignCost()          const override;
+        virtual float GetInfectivity()           const override;
+        virtual float GetInfectionRate()         const override;
+
+        virtual long int GetPossibleMothers()    const override;
+        virtual uint64_t GetTotalGenomes()       const override;
 
         virtual float GetNonDiseaseMortalityRateByAgeAndSex( float age, Gender::Enum sex ) const override;
 
@@ -187,8 +187,6 @@ namespace Kernel
         IDistribution* distribution_demographic_risk;
         IDistribution* distribution_susceptibility;
 
-        float susceptibility_dynamic_scaling;
-
         // Node properties
         suids::suid suid;
         float base_samp_rate_node;
@@ -214,12 +212,12 @@ namespace Kernel
         bool                family_is_destination_new_home;
 
         // Heterogeneous intra-node transmission
-        ITransmissionGroups*  transmissionGroups;
-        ITransmissionGroups*  txEnvironment;
+        ITransmissionGroups* transmissionGroups;
+        ITransmissionGroups* txEnvironment;
 
         // Climate and demographics
-        Climate *localWeather;
-        IMigrationInfo *migration_info;
+        Climate* localWeather;
+        IMigrationInfo* migration_info;
         ExternalNodeId_t externalId; // DON'T USE THIS EXCEPT FOR INPUT/OUTPUT PURPOSES!
         NPKeyValueContainer node_properties;
 
@@ -332,11 +330,8 @@ namespace Kernel
 
         // Skipping functions & variables
         virtual int calcGap();
-
         std::map< TransmissionRoute::Enum, float > maxInfectionProb; // set to 1.0 if not defined
-
         virtual void computeMaxInfectionProb( float dt );
-
         virtual float GetMaxInfectionProb( TransmissionRoute::Enum route ) const
         {
             // Note that in GENERIC there's on ly one route. Can get tricky b/w CONTACT and ALL.

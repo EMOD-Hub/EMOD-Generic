@@ -42,6 +42,7 @@
 
 SETUP_LOGGING( "Node" )
 
+
 #include "Properties.h"
 
 namespace Kernel
@@ -49,7 +50,6 @@ namespace Kernel
     //------------------------------------------------------------------
     //   Initialization methods
     //------------------------------------------------------------------
-
     SerializationBitMask_t Node::serializationFlagsDefault = SerializationBitMask_t{}.set( SerializationFlags::Population )
                                                            | SerializationBitMask_t{}.set( SerializationFlags::Parameters );
 
@@ -66,7 +66,6 @@ namespace Kernel
         , _latitude(FLT_MAX)
         , _longitude(FLT_MAX)
         , initial_population(0)
-        , susceptibility_dynamic_scaling(0.0f)
         , suid(_suid)
         , base_samp_rate_node(0.0f)
         , birthrate(0.0f)
@@ -142,7 +141,6 @@ namespace Kernel
         , _latitude(FLT_MAX)
         , _longitude(FLT_MAX)
         , initial_population(0)
-        , susceptibility_dynamic_scaling(0.0f)
         , suid()
         , base_samp_rate_node(0.0f)
         , birthrate(0.0f)
@@ -2504,11 +2502,6 @@ namespace Kernel
         return infectionrate;
     }
 
-    float Node::GetSusceptDynamicScaling() const
-    {
-        return susceptibility_dynamic_scaling;
-    }
-
     ExternalNodeId_t Node::GetExternalID() const
     {
         return externalId;
@@ -2653,7 +2646,6 @@ namespace Kernel
             ar.labelElement("family_time_at_destination")       & node.family_time_at_destination;
             ar.labelElement("family_is_destination_new_home")   & node.family_is_destination_new_home;
 
-            ar.labelElement("susceptibility_dynamic_scaling")    & node.susceptibility_dynamic_scaling;
             ar.labelElement("node_properties")                   & node.node_properties;
             ar.labelElement("statPop")                           & node.statPop;
             ar.labelElement("Infected")                          & node.Infected;
