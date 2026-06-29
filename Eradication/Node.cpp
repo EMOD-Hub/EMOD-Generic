@@ -127,7 +127,6 @@ namespace Kernel
         , distribution_age( nullptr )
     {
         SetContextTo(_parent_sim);  // TODO - this should be a virtual function call, but it isn't because the constructor isn't finished running yet.
-        setupEventContextHost();
     }
 
     Node::Node()
@@ -201,7 +200,6 @@ namespace Kernel
         , distribution_susceptibility( nullptr )
         , distribution_age( nullptr )
     {
-        setupEventContextHost();
     }
 
     Node::~Node()
@@ -234,9 +232,15 @@ namespace Kernel
 
     void Node::Initialize()
     {
+        // -----------------------------------------------------
+        // --- Call this here for normal setup, but it is 
+        // --- called in Simulation::populateFromDemographics()
+        // --- when reading from a serialized population file
+        // -----------------------------------------------------
+        SetupEventContextHost();
     }
 
-    void Node::setupEventContextHost()
+    void Node::SetupEventContextHost()
     {
         event_context_host = _new_ NodeEventContextHost(this);
     }

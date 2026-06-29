@@ -50,8 +50,6 @@ namespace Kernel
     {
         serializationFlagsDefault.set( SerializationFlags::LarvalHabitats );
         serializationFlagsDefault.set( SerializationFlags::VectorPopulation );
-        delete event_context_host;
-        NodeVector::setupEventContextHost();    // This is marked as a virtual function, but isn't virtualized here because we're still in the ctor.
     }
 
     NodeVector::NodeVector(ISimulationContext *context, ExternalNodeId_t externalNodeId, suids::suid _suid) 
@@ -68,8 +66,6 @@ namespace Kernel
     {
         serializationFlagsDefault.set( SerializationFlags::LarvalHabitats );
         serializationFlagsDefault.set( SerializationFlags::VectorPopulation );
-        delete event_context_host;
-        NodeVector::setupEventContextHost();    // This is marked as a virtual function, but isn't virtualized here because we're still in the ctor.
     }
 
     void NodeVector::Initialize()
@@ -128,7 +124,7 @@ namespace Kernel
         }
     }
 
-    void NodeVector::setupEventContextHost()
+    void NodeVector::SetupEventContextHost()
     {
         event_context_host = _new_ NodeVectorEventContextHost(this);
     }

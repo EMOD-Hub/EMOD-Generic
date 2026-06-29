@@ -18,7 +18,8 @@ SETUP_LOGGING( "NodeMalaria" )
 
 namespace Kernel
 {
-    NodeMalaria::NodeMalaria() : NodeVector()
+    NodeMalaria::NodeMalaria()
+        : NodeVector()
         , m_Parasite_positive(0)
         , m_Log_parasites(0)
         , m_Fever_positive(0)
@@ -38,8 +39,6 @@ namespace Kernel
         , PfEMP1_variance_antibody_distribution( nullptr )
         , distribution_susceptibility( nullptr )
     {
-        delete event_context_host;
-        NodeMalaria::setupEventContextHost();    // This is marked as a virtual function, but isn't virtualized here because we're still in the ctor.
     }
 
     NodeMalaria::NodeMalaria(ISimulationContext *simulation, ExternalNodeId_t externalNodeId, suids::suid suid)
@@ -63,8 +62,6 @@ namespace Kernel
         , PfEMP1_variance_antibody_distribution( nullptr )
         , distribution_susceptibility( nullptr )
     {
-        delete event_context_host;
-        NodeMalaria::setupEventContextHost();    // This is marked as a virtual function, but isn't virtualized here because we're still in the ctor.
     }
 
     void NodeMalaria::Initialize()
@@ -84,13 +81,6 @@ namespace Kernel
     {
         // individual deletion done by ~Node
         // vectorpopulation deletion handled at _Vector level
-
-        //delete MSP_mean_antibody_distribution;
-        //delete nonspec_mean_antibody_distribution;
-        //delete PfEMP1_mean_antibody_distribution;
-        //delete MSP_variance_antibody_distribution;
-        //delete nonspec_variance_antibody_distribution;
-        //delete PfEMP1_variance_antibody_distribution;
     }
 
     INodeMalaria* NodeMalaria::GetNodeMalaria()
@@ -211,10 +201,8 @@ namespace Kernel
         if ( statPop > 0 )
         {
             m_Parasite_Prevalence        = m_Parasite_positive       / statPop;
-            //LOG_DEBUG_F( "m_Parasite_Prevalence = %f/%f = %f\n", m_Parasite_positive, statPop, m_Parasite_Prevalence );
             m_New_Diagnostic_Prevalence  = m_New_Diagnostic_Positive / statPop;
             m_Fever_Prevalence           = m_Fever_positive          / statPop;
-
             m_Geometric_Mean_Parasitemia = (m_Parasite_positive > 0) ? exp(m_Log_parasites / m_Parasite_positive) : 0;
         }
 
@@ -259,7 +247,7 @@ namespace Kernel
         m_Maternal_Antibody_Fraction = 0;
     }
 
-    void NodeMalaria::setupEventContextHost()
+    void NodeMalaria::SetupEventContextHost()
     {
         event_context_host = _new_ NodeMalariaEventContextHost(this);
     }
@@ -270,16 +258,16 @@ namespace Kernel
     {
         NodeVector::serialize(ar, obj);
         NodeMalaria& node = *obj;
-        ar.labelElement("m_Parasite_positive") & node.m_Parasite_positive;
-        ar.labelElement("m_Log_parasites") & node.m_Log_parasites;
-        ar.labelElement("m_Fever_positive") & node.m_Fever_positive;
-        ar.labelElement("m_New_Clinical_Cases") & node.m_New_Clinical_Cases;
-        ar.labelElement("m_New_Severe_Cases") & node.m_New_Severe_Cases;
-        ar.labelElement("m_Parasite_Prevalence") & node.m_Parasite_Prevalence;
-        ar.labelElement("m_New_Diagnostic_Positive") & node.m_New_Diagnostic_Positive;
-        ar.labelElement("m_New_Diagnostic_Prevalence") & node.m_New_Diagnostic_Prevalence;
-        ar.labelElement("m_Geometric_Mean_Parasitemia") & node.m_Geometric_Mean_Parasitemia;
-        ar.labelElement("m_Fever_Prevalence") & node.m_Fever_Prevalence;
-        ar.labelElement("m_Maternal_Antibody_Fraction") & node.m_Maternal_Antibody_Fraction;
+        ar.labelElement( "m_Parasite_positive"          ) & node.m_Parasite_positive;
+        ar.labelElement( "m_Log_parasites"              ) & node.m_Log_parasites;
+        ar.labelElement( "m_Fever_positive"             ) & node.m_Fever_positive;
+        ar.labelElement( "m_New_Clinical_Cases"         ) & node.m_New_Clinical_Cases;
+        ar.labelElement( "m_New_Severe_Cases"           ) & node.m_New_Severe_Cases;
+        ar.labelElement( "m_Parasite_Prevalence"        ) & node.m_Parasite_Prevalence;
+        ar.labelElement( "m_New_Diagnostic_Positive"    ) & node.m_New_Diagnostic_Positive;
+        ar.labelElement( "m_New_Diagnostic_Prevalence"  ) & node.m_New_Diagnostic_Prevalence;
+        ar.labelElement( "m_Geometric_Mean_Parasitemia" ) & node.m_Geometric_Mean_Parasitemia;
+        ar.labelElement( "m_Fever_Prevalence"           ) & node.m_Fever_Prevalence;
+        ar.labelElement( "m_Maternal_Antibody_Fraction" ) & node.m_Maternal_Antibody_Fraction;
     }
 }

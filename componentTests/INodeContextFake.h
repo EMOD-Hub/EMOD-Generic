@@ -236,6 +236,11 @@ public:
         throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented.");
     }
 
+    virtual void SetupEventContextHost() override
+    {
+        throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented.");
+    }
+
     virtual INodeEventContext* GetEventContext() override
     {
         release_assert( m_pNEC );

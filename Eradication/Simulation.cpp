@@ -1268,7 +1268,9 @@ namespace Kernel
         {
             for (auto& entry : nodes)
             {
+                auto& suid = entry.first;
                 auto node = entry.second;
+                node->SetupEventContextHost(); // called in Node::Initialize() for normal path
                 node->SetContextTo(this);
                 initializeNode( node, demographics_factory, climate_factory );
             }

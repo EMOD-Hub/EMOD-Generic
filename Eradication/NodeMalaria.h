@@ -36,6 +36,7 @@ namespace Kernel
         virtual const NodeDemographicsDistribution* GetPfEMP1_variance_antibody_distribution()  const override { return PfEMP1_variance_antibody_distribution; };
 
         virtual uint64_t GetTotalGenomes() const override;
+        virtual void SetupEventContextHost() override;
 
         virtual IIndividualHuman* addNewIndividual( float = 1.0f, float = 0.0f, int = 0, int = 0, float = 1.0f, float = 1.0f) override;
 
@@ -43,7 +44,7 @@ namespace Kernel
         float m_Parasite_positive;
         float m_Log_parasites;
         float m_Fever_positive;
-        float m_New_Clinical_Cases; 
+        float m_New_Clinical_Cases;
         float m_New_Severe_Cases;
         float m_Parasite_Prevalence;
         float m_New_Diagnostic_Positive;
@@ -69,16 +70,14 @@ namespace Kernel
         virtual void updateNodeStateCounters(IIndividualHuman *ih);
         virtual void resetNodeStateCounters(void) override;
 
-        virtual void setupEventContextHost() override;
 
-        DECLARE_SERIALIZABLE(NodeMalaria);
-        
-    private:
         NodeMalaria();
         NodeMalaria(ISimulationContext *simulation, ExternalNodeId_t externalNodeId, suids::suid suid);
         virtual void Initialize() override;
 
         virtual INodeContext *getContextPointer() override { return static_cast<INodeContext*>(this); }
         IDistribution* distribution_susceptibility;
+
+        DECLARE_SERIALIZABLE(NodeMalaria);
     };
 }

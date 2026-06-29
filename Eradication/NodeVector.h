@@ -29,9 +29,6 @@ namespace Kernel
         static NodeVector *CreateNode(ISimulationContext *context, ExternalNodeId_t externalNodeId, suids::suid suid);
         virtual ~NodeVector();
 
-        // INodeContext methods
-        virtual INodeVector*         GetNodeVector() override;
-
         virtual VectorProbabilities* GetVectorLifecycleProbabilities() override;
         virtual IVectorHabitat*      GetVectorHabitatBySpeciesAndType( std::string& species, VectorHabitatType::Enum type, const Configuration* inputJson) override;
         virtual VectorHabitatList_t* GetVectorHabitatsBySpecies( std::string& species ) override;
@@ -57,6 +54,9 @@ namespace Kernel
         void processEmigratingVectors( float dt );
         virtual std::string GetHabitatName(int habitat_enum_val) override;
 
+        // INodeContext methods
+        virtual void SetupEventContextHost() override;
+        virtual INodeVector* GetNodeVector() override;
         virtual const VectorPopulationReportingList_t& GetVectorPopulationReporting() const override;
 
     protected:
@@ -81,7 +81,6 @@ namespace Kernel
 
         virtual void LoadOtherDiseaseSpecificDistributions(const NodeDemographics* demog_ptr) override;
 
-        virtual void setupEventContextHost() override;
         virtual void InitializeVectorPopulation( IVectorPopulation* vp );
         void VectorMigrationBasedOnFiles( float dt );
             

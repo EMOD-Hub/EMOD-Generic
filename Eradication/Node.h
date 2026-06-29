@@ -88,6 +88,7 @@ namespace Kernel
         virtual       void                    DepositNetInf(sparse_contagion_id,float)        override;
 
         // Initialization
+        virtual void SetupEventContextHost() override;
         virtual void SetContextTo(ISimulationContext* context) override;
         virtual void SetParameters( NodeDemographicsFactory *demographics_factory, ClimateFactory *climate_factory ) override;
         virtual void PopulateFromDemographics() override;
@@ -283,7 +284,6 @@ namespace Kernel
         RouteList_t routes;
 
         virtual void Initialize();
-        virtual void setupEventContextHost();
         void ExtractDataFromDemographics(const NodeDemographics*);
         virtual void LoadImmunityDemographicsDistribution(const NodeDemographics* demog_ptr);
         virtual void LoadOtherDiseaseSpecificDistributions(const NodeDemographics* demog_ptr);
