@@ -30,7 +30,7 @@ namespace Kernel
         NodeTyphoid();
         NodeTyphoid(ISimulationContext *_parent_sim, ExternalNodeId_t externalNodeId, suids::suid node_suid);
         virtual void Initialize() override;
-        virtual void setupEventContextHost() override;
+        virtual void SetupEventContextHost() override;
 
         // Factory methods
         virtual Kernel::IndividualHuman *createHuman(suids::suid suid, float monte_carlo_weight, float initial_age, int gender);

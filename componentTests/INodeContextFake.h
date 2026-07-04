@@ -231,12 +231,12 @@ public:
         throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented.");
     }
 
-    virtual float GetSusceptDynamicScaling() const override
+    virtual const Climate* GetLocalWeather() const override
     {
         throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented.");
     }
 
-    virtual const Climate* GetLocalWeather() const override
+    virtual void SetupEventContextHost() override
     {
         throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented.");
     }
@@ -322,6 +322,7 @@ public:
     virtual void SetContextTo(ISimulationContext*)                                                             override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method is not implemented."); }
     virtual void PopulateFromDemographics()                                                                    override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method is not implemented."); }
     virtual void InitializeTransmissionGroupPopulations()                                                      override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method is not implemented."); }
+    virtual void InitSuidGenerator(int, int)                                                                   override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method is not implemented."); }
     virtual void Update(float)                                                                                 override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method is not implemented."); }
     virtual IIndividualHuman* processImmigratingIndividual(IIndividualHuman*)                                  override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method is not implemented."); }
     virtual void SortHumans()                                                                                  override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method is not implemented."); }

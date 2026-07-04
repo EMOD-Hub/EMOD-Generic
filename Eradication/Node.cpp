@@ -42,6 +42,7 @@
 
 SETUP_LOGGING( "Node" )
 
+
 #include "Properties.h"
 
 namespace Kernel
@@ -49,7 +50,6 @@ namespace Kernel
     //------------------------------------------------------------------
     //   Initialization methods
     //------------------------------------------------------------------
-
     SerializationBitMask_t Node::serializationFlagsDefault = SerializationBitMask_t{}.set( SerializationFlags::Population )
                                                            | SerializationBitMask_t{}.set( SerializationFlags::Parameters );
 
@@ -66,7 +66,6 @@ namespace Kernel
         , _latitude(FLT_MAX)
         , _longitude(FLT_MAX)
         , initial_population(0)
-        , susceptibility_dynamic_scaling(0.0f)
         , suid(_suid)
         , base_samp_rate_node(0.0f)
         , birthrate(0.0f)
@@ -128,7 +127,6 @@ namespace Kernel
         , distribution_age( nullptr )
     {
         SetContextTo(_parent_sim);  // TODO - this should be a virtual function call, but it isn't because the constructor isn't finished running yet.
-        setupEventContextHost();
     }
 
     Node::Node()
@@ -142,7 +140,6 @@ namespace Kernel
         , _latitude(FLT_MAX)
         , _longitude(FLT_MAX)
         , initial_population(0)
-        , susceptibility_dynamic_scaling(0.0f)
         , suid()
         , base_samp_rate_node(0.0f)
         , birthrate(0.0f)
@@ -203,7 +200,6 @@ namespace Kernel
         , distribution_susceptibility( nullptr )
         , distribution_age( nullptr )
     {
-        setupEventContextHost();
     }
 
     Node::~Node()
@@ -236,9 +232,15 @@ namespace Kernel
 
     void Node::Initialize()
     {
+        // -----------------------------------------------------
+        // --- Call this here for normal setup, but it is 
+        // --- called in Simulation::populateFromDemographics()
+        // --- when reading from a serialized population file
+        // -----------------------------------------------------
+        SetupEventContextHost();
     }
 
-    void Node::setupEventContextHost()
+    void Node::SetupEventContextHost()
     {
         event_context_host = _new_ NodeEventContextHost(this);
     }
@@ -252,14 +254,18 @@ namespace Kernel
         }
     }
 
+    void Node::InitSuidGenerator(int node_suid, int num_nodes)
+    {
+        // Called by Simulation only when NOT restarting from serialization
+        m_IndividualHumanSuidGenerator = suids::distributed_generator(node_suid, num_nodes);
+    }
+
     void Node::SetParameters( NodeDemographicsFactory *demographics_factory, ClimateFactory *climate_factory )
     {
         // Parameters set from an input filestream
         // TODO: Jeff, this is a bit hack-y that I had to do this. is there a better way?
         NodeDemographics* demog_ptr = demographics_factory->CreateNodeDemographics(this);
         release_assert( demog_ptr );
-
-        m_IndividualHumanSuidGenerator = suids::distributed_generator( GetSuid().data, demographics_factory->GetNodeIDs().size() );
 
         //////////////////////////////////////////////////////////////////////////////////////
         // Hack: commenting out for pymod work. Need real solution once I understand all this.
@@ -278,7 +284,7 @@ namespace Kernel
         ExtractDataFromDemographics(demog_ptr);
 
 #ifndef DISABLE_CLIMATE
-        if ( climate_factory->GetClimateParams().climate_structure != ClimateStructure::CLIMATE_OFF )
+        if (climate_factory->GetClimateParams().climate_structure != ClimateStructure::CLIMATE_OFF)
         {
             LOG_DEBUG( "Parsing NodeAttributes->Altitude tag in node demographics file.\n" );
             float altitude = float((*demog_ptr)["NodeAttributes"]["Altitude"].AsDouble());
@@ -724,7 +730,7 @@ namespace Kernel
         //----------------------------------------------------------------
 
         // Vital dynamics for this time step at community level (handles mainly births)
-        if(GetNodeParams().enable_vital_dynamics)
+        if (GetNodeParams().enable_vital_dynamics)
         {
             updateVitalDynamics(dt);
         }
@@ -1005,7 +1011,7 @@ namespace Kernel
             float step_birthrate;
 
             // If we are using an age-dependent fertility rate, then this needs to be accessed/interpolated based on the current possible-mother's age.
-            if(GetNodeParams().vital_birth_dependence == VitalBirthDependence::INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR)
+            if( GetNodeParams().vital_birth_dependence == VitalBirthDependence::INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR )
             {
                 // "FertilityDistribution" is added to map in Node::SetParameters if 'vital_birth_dependence' flag is set to INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR 
                 float temp_birthrate = FertilityDistribution->DrawResultValue(age, float(GetTime().Year()));
@@ -1118,11 +1124,11 @@ namespace Kernel
             // DJK TODO: Compute natural death at initiation and use timer <ERAD-1857>
             // for performance, cache and recalculate mortality rate only every month
             {
-                if(GetNodeParams().vital_death_dependence == VitalDeathDependence::NONDISEASE_MORTALITY_BY_AGE_AND_GENDER)
+                if( GetNodeParams().vital_death_dependence == VitalDeathDependence::NONDISEASE_MORTALITY_BY_AGE_AND_GENDER )
                 {
                     rate = MortalityDistribution->DrawResultValue( sex == Gender::FEMALE, age);
                 }
-                else if(GetNodeParams().vital_death_dependence == VitalDeathDependence::NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER)
+                else if( GetNodeParams().vital_death_dependence == VitalDeathDependence::NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER )
                 {
                     float year_val = GetTime().Year();
                     if( sex == Gender::MALE )
@@ -1329,13 +1335,13 @@ namespace Kernel
 
         // Don't need this distribution after demographic initialization is completed
         // (If we ever want to use it in the future, e.g. in relation to Outbreak ImportCases, we can remove the following.  Clean-up would then be done only in the destructor.)
-        if(np.age_init_dist_type == DistributionType::DISTRIBUTION_COMPLEX )
+        if( np.age_init_dist_type == DistributionType::DISTRIBUTION_COMPLEX )
         {
             delete AgeDistribution;
             AgeDistribution = nullptr;
         }
 
-        if(np.enable_initial_sus_dist)
+        if( np.enable_initial_sus_dist )
         {
             delete SusceptibilityDistribution;
             SusceptibilityDistribution = nullptr;
@@ -1358,8 +1364,8 @@ namespace Kernel
 
         initial_population   = static_cast<uint32_t>((*demog_ptr)["NodeAttributes"]["InitialPopulation"].AsUint64());
 
-        _latitude            = static_cast<float>((*demog_ptr)["NodeAttributes"]["Latitude"].AsDouble());
-        _longitude           = static_cast<float>((*demog_ptr)["NodeAttributes"]["Longitude"].AsDouble());
+        _latitude  = static_cast<float>((*demog_ptr)["NodeAttributes"]["Latitude"].AsDouble());
+        _longitude = static_cast<float>((*demog_ptr)["NodeAttributes"]["Longitude"].AsDouble());
 
         if(GetNodeParams().enable_birth)
         {
@@ -1411,26 +1417,20 @@ namespace Kernel
             // Only allowing CONSTANT, UNIFORM, GAUSSIAN, EXPONENTIAL
             if(age_dist_type == DistributionFunction::CONSTANT_DISTRIBUTION)
             {
-                LOG_DEBUG( "Parsing IndividualAttributes->AgeDistribution1 tag in node demographics file.\n" );
                 age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
             }
             else if(age_dist_type == DistributionFunction::UNIFORM_DISTRIBUTION)
             {
-                LOG_DEBUG( "Parsing IndividualAttributes->AgeDistribution1 tag in node demographics file.\n" );
                 age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
-                LOG_DEBUG( "Parsing IndividualAttributes->AgeDistribution2 tag in node demographics file.\n" );
                 age_dist2 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution2"].AsDouble());
             }
             else if(age_dist_type == DistributionFunction::GAUSSIAN_DISTRIBUTION)
             {
-                LOG_DEBUG( "Parsing IndividualAttributes->AgeDistribution1 tag in node demographics file.\n" );
                 age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
-                LOG_DEBUG( "Parsing IndividualAttributes->AgeDistribution2 tag in node demographics file.\n" );
                 age_dist2 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution2"].AsDouble());
             }
             else if(age_dist_type == DistributionFunction::EXPONENTIAL_DISTRIBUTION)
             {
-                LOG_DEBUG( "Parsing IndividualAttributes->AgeDistribution1 tag in node demographics file.\n" );
                 age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
             }
             else
@@ -1440,7 +1440,7 @@ namespace Kernel
 
             distribution_age->SetParameters( age_dist1, age_dist2, 0.0 );
         }
-        else if (GetNodeParams().age_init_dist_type == DistributionType::DISTRIBUTION_COMPLEX)
+        else if(GetNodeParams().age_init_dist_type == DistributionType::DISTRIBUTION_COMPLEX)
         {
             if( !(*demog_ptr).Contains( "IndividualAttributes" ) || !(*demog_ptr)["IndividualAttributes"].Contains( "AgeDistribution" ) )
             {
@@ -1450,11 +1450,11 @@ namespace Kernel
             AgeDistribution = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["AgeDistribution"]);
         }
 
-        if(GetNodeParams().enable_initial_sus_dist)
+        if (GetNodeParams().enable_initial_sus_dist)
         {
             LOG_DEBUG("Parsing SusceptibilityDistribution\n");
 
-            if(GetNodeParams().initial_sus_dist_type == DistributionType::DISTRIBUTION_SIMPLE)
+            if (GetNodeParams().initial_sus_dist_type == DistributionType::DISTRIBUTION_SIMPLE)
             {
                 LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistributionFlag tag in node demographics file.\n" );
                 DistributionFunction::Enum susceptibility_dist_type = DistributionFunction::Enum((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistributionFlag"].AsInt());
@@ -1466,21 +1466,16 @@ namespace Kernel
                 // Only allowing CONSTANT, UNIFORM, DUAL_CONSTANT
                 if(susceptibility_dist_type == DistributionFunction::CONSTANT_DISTRIBUTION)
                 {
-                    LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistribution1 tag in node demographics file.\n" );
                     susceptibility_dist1 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
                 }
                 else if(susceptibility_dist_type == DistributionFunction::UNIFORM_DISTRIBUTION)
                 {
-                    LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistribution1 tag in node demographics file.\n" );
                     susceptibility_dist1 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
-                    LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistribution2 tag in node demographics file.\n" );
                     susceptibility_dist2 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution2"].AsDouble());
                 }
                 else if(susceptibility_dist_type == DistributionFunction::DUAL_CONSTANT_DISTRIBUTION)
                 {
-                    LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistribution1 tag in node demographics file.\n" );
                     susceptibility_dist1 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
-                    LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistribution2 tag in node demographics file.\n" );
                     susceptibility_dist2 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution2"].AsDouble());
                 }
                 else
@@ -1490,7 +1485,7 @@ namespace Kernel
 
                 distribution_susceptibility->SetParameters( susceptibility_dist1, susceptibility_dist2, 0.0 );
             }
-            else if(GetNodeParams().initial_sus_dist_type == DistributionType::DISTRIBUTION_COMPLEX)
+            else if (GetNodeParams().initial_sus_dist_type == DistributionType::DISTRIBUTION_COMPLEX)
             {
                 LoadImmunityDemographicsDistribution(demog_ptr);
             }
@@ -1710,7 +1705,7 @@ namespace Kernel
         }
 
         // Determine the prevalence from which maternal transmission events will be calculated, depending on birth model
-        if(np.enable_maternal_infect_trans) 
+        if (np.enable_maternal_infect_trans) 
         {
             switch (np.vital_birth_dependence) 
             {
@@ -1770,7 +1765,7 @@ namespace Kernel
             }
 
             if(np.enable_maternal_infect_trans && GetRng()->SmartDraw( temp_prevalence * np.prob_maternal_infection_trans ) )
-            { 
+            {
                 temp_infections = 1;
             }
 
@@ -1807,7 +1802,7 @@ namespace Kernel
     {
         float mcw      = mother->GetMonteCarloWeight(); // same sampling weight as mother
         int child_infections = 0;
-        if(GetNodeParams().enable_maternal_infect_trans)
+        if ( GetNodeParams().enable_maternal_infect_trans )
         {
             if ( mother->IsInfected() )
             {
@@ -1900,7 +1895,8 @@ namespace Kernel
                 temp_birthrate = birthrate;
             }
 
-            if( GetRng()->SmartDraw( GetNodeParams().x_birth * temp_birthrate * event_context_host->GetBirthRateMultiplier() * (DAYSPERWEEK * WEEKS_FOR_GESTATION) ) ) // is the woman within any of the 40 weeks of pregnancy?
+            float prob = GetNodeParams().x_birth * temp_birthrate * event_context_host->GetBirthRateMultiplier() * (DAYSPERWEEK * WEEKS_FOR_GESTATION);
+            if( GetRng()->SmartDraw( prob ) ) // is the woman within any of the 40 weeks of pregnancy?
             {
                 float duration = static_cast<float>( GetRng()->e() ) * (DAYSPERWEEK * WEEKS_FOR_GESTATION); // uniform distribution over 40 weeks
                 LOG_DEBUG_F("Initial pregnancy of %f remaining days for %d-year-old\n", duration, (int)(individual->GetAge()/DAYSPERYEAR));
@@ -1943,7 +1939,7 @@ namespace Kernel
         default:
             if( !JsonConfigurable::_dryrun )
             {
-                throw BadEnumInSwitchStatementException(__FILE__, __LINE__, __FUNCTION__, "susceptibility_initialization_distribution_type", GetNodeParams().initial_sus_dist_type, DistributionType::pairs::lookup_key(GetNodeParams().initial_sus_dist_type));
+                throw BadEnumInSwitchStatementException( __FILE__, __LINE__, __FUNCTION__, "susceptibility_initialization_distribution_type", GetNodeParams().initial_sus_dist_type, DistributionType::pairs::lookup_key(GetNodeParams().initial_sus_dist_type) );
             }
         }
 
@@ -2052,7 +2048,6 @@ namespace Kernel
         return new_individual;
     }
 
-
     double Node::calculateInitialAge(double default_age)
     {
         // Change initial age according to distribution, or return unmodified default age
@@ -2064,6 +2059,7 @@ namespace Kernel
         }
         else if (GetNodeParams().age_init_dist_type == DistributionType::DISTRIBUTION_SIMPLE)
         {
+            release_assert(distribution_age);
             age = distribution_age->Calculate( GetRng() );
         }
 
@@ -2207,7 +2203,6 @@ namespace Kernel
         mInfectivity           = 0;
         new_infections         = 0;
         new_reportedinfections = 0;
-        newInfectedPeopleAgeProduct = 0;
         symptomatic            = 0;
         newly_symptomatic      = 0;
 
@@ -2251,7 +2246,6 @@ namespace Kernel
 
         new_infections += monte_carlo_weight; 
         Cumulative_Infections += monte_carlo_weight; 
-        newInfectedPeopleAgeProduct += monte_carlo_weight * float(ih->GetAge());
     }
 
     void Node::reportDetectedInfection(IIndividualHuman *ih)
@@ -2504,11 +2498,6 @@ namespace Kernel
         return infectionrate;
     }
 
-    float Node::GetSusceptDynamicScaling() const
-    {
-        return susceptibility_dynamic_scaling;
-    }
-
     ExternalNodeId_t Node::GetExternalID() const
     {
         return externalId;
@@ -2530,7 +2519,7 @@ namespace Kernel
     }
 
     INodeEventContext* Node::GetEventContext()
-    { 
+    {
         return static_cast<INodeEventContext*>(event_context_host);
     }
 
@@ -2619,7 +2608,7 @@ namespace Kernel
             node.serializationFlags = node.serializationFlags & ~SerializationParameters::GetInstance()->GetSerializationReadMask();
         }
 
-        ar.labelElement("suid")                              & node.suid;
+        ar.labelElement( "suid" )                            & node.suid;
         ar.labelElement( "externalId" )                      & node.externalId;
         ar.labelElement( "m_pRng" )                          & node.m_pRng;
         ar.labelElement( "m_IndividualHumanSuidGenerator" )  & node.m_IndividualHumanSuidGenerator;
@@ -2653,7 +2642,6 @@ namespace Kernel
             ar.labelElement("family_time_at_destination")       & node.family_time_at_destination;
             ar.labelElement("family_is_destination_new_home")   & node.family_is_destination_new_home;
 
-            ar.labelElement("susceptibility_dynamic_scaling")    & node.susceptibility_dynamic_scaling;
             ar.labelElement("node_properties")                   & node.node_properties;
             ar.labelElement("statPop")                           & node.statPop;
             ar.labelElement("Infected")                          & node.Infected;
@@ -2671,7 +2659,6 @@ namespace Kernel
             ar.labelElement("distribution_susceptibility")              & node.distribution_susceptibility;
             ar.labelElement("distribution_age")                         & node.distribution_age;
 
-            //ar.labelElement("routes")                            & node.routes;
             ar.labelElement("bSkipping")                         & node.bSkipping;
         }
     }

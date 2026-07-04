@@ -98,13 +98,13 @@ namespace Kernel
         virtual INodeInfo* CreateNodeInfo( int rank, INodeContext* pNC ) override;
 
         typedef std::map< suids::suid, INodeContext* > NodeMap_t; // TODO: change to unordered_map for better asymptotic performance
+        virtual void Initialize(const ::Configuration *config) override;
         typedef NodeMap_t::value_type NodeMapEntry_t;
 
     protected:
         Simulation();
 
-        virtual void Initialize();
-        virtual void Initialize(const ::Configuration *config) override;
+        virtual void Initialize();  // for serialization
 
         virtual bool ValidateConfiguration(const ::Configuration *config);
 
@@ -138,9 +138,6 @@ namespace Kernel
         // Campaign input file parsing
         virtual void notifyNewNodeObservers(INodeContext*);
         virtual void loadCampaignFromFile(const std::string & campaignfilename, const std::vector<ExternalNodeId_t>& demographic_node_ids);
-
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
 
         friend void SerializedState::SaveSerializedSimulation(Simulation* sim, uint32_t time_step, bool compress);
         friend Kernel::ISimulation* SerializedState::ReadDtkVersion2(FILE* f, const char* filename, Header& header);
@@ -208,25 +205,18 @@ namespace Kernel
         std::vector<std::vector<float>>       node_dist_mat;
         std::vector<std::vector<INodeInfo*>>  node_info_mat;
 
-#pragma warning( pop )
     protected:
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         map<void*, Kernel::ISimulation::callback_t> new_node_observers;
 
         DECLARE_SERIALIZABLE(Simulation);
         static void serialize(IArchive&, NodeMap_t&);
-#pragma warning( pop )
 
     private:
         bool m_abort_sim;
 
-        typedef std::unordered_map< std::string, report_instantiator_function_t > ReportInstantiatorMap ;
         void Reports_ConfigureBuiltIn();
         void Reports_FindReportsCollectingIndividualData();
-        Configuration* Reports_GetCustomReportConfiguration();
-        void Reports_Instantiate( ReportInstantiatorMap& rReportInstantiatorMap );
         void Reports_UpdateEventRegistration();
         void Reports_BeginTimestep();
         void Reports_EndTimestep();

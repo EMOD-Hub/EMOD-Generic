@@ -36,8 +36,6 @@ namespace Kernel
 
         // Other methods
         float GetThreshold() const;
-
-        //const std::string& GetEventToBroadcast() const;
         const EventTrigger::Enum& GetEventToBroadcast() const;
         
         EventType::Enum GetEventType() { return m_EventType; };
@@ -124,11 +122,6 @@ namespace Kernel
         virtual void ConfigureTriggers( const Configuration * inputJson );
         virtual void CheckConfigurationTriggers();
 
-        // IIndividualEventObserver methods
-        virtual bool notifyOnEvent( IIndividualHumanEventContext *context,
-                                    const EventTrigger::Enum& StateChange ) override;
-
-        // Other methods
         uint32_t GetCount() const;
         virtual uint32_t GetCountOfQualifyingPopulation( const std::vector<INodeEventContext*>& rNodes );
         virtual void StartCounting();
@@ -144,6 +137,10 @@ namespace Kernel
         bool IsNodeQualified( INodeEventContext* pNEC );
         individual_qualified_function_t GetIndividualQualifiedFunction();
 
+        // IIndividualEventObserver methods
+        virtual bool notifyOnEvent( IIndividualHumanEventContext *context,
+                                    const EventTrigger::Enum& StateChange ) override;
+
     protected:
         uint32_t m_Count;
         PropertyRestrictions<NPKey, NPKeyValue, NPKeyValueContainer> m_NodePropertyRestrictions;
@@ -154,7 +151,6 @@ namespace Kernel
         int32_t m_CountEventsForNumTimeSteps;
         int32_t m_NumTimeStepsCounted;
         bool m_IsDoneCounting;
-
     };
 
     // ------------------------------------------------------------------------

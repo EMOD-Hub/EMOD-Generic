@@ -19,7 +19,6 @@
 #include "INodeContext.h"
 #include "StrainIdentity.h"
 
-
 class Report;
 class ReportVector;
 class DemographicsReport;
@@ -62,9 +61,9 @@ namespace Kernel
         virtual INodePolio*         GetNodePolio()     override { return nullptr; };
 
         virtual suids::suid   GetSuid() const override;
-        virtual suids::suid   GetNextInfectionSuid() override; 
+        virtual suids::suid   GetNextInfectionSuid() override;
         virtual RANDOMBASE* GetRng() override;
-        virtual void SetRng( RANDOMBASE* prng ) override; 
+        virtual void SetRng( RANDOMBASE* prng ) override;
         virtual void AddEventsFromOtherNodes( const std::vector<EventTrigger::Enum>& rTriggerList ) override;
 
         virtual const NodeParams& GetNodeParams() const;
@@ -89,10 +88,12 @@ namespace Kernel
         virtual       void                    DepositNetInf(sparse_contagion_id,float)        override;
 
         // Initialization
+        virtual void SetupEventContextHost() override;
         virtual void SetContextTo(ISimulationContext* context) override;
         virtual void SetParameters( NodeDemographicsFactory *demographics_factory, ClimateFactory *climate_factory ) override;
         virtual void PopulateFromDemographics() override;
         virtual void InitializeTransmissionGroupPopulations() override;
+        virtual void InitSuidGenerator(int, int) override;
 
         // Campaign event-related
         bool IsInPolygon(float* vertex_coords, int numcoords); // might want to create a real polygon object at some point
@@ -101,22 +102,23 @@ namespace Kernel
 
         // Reporting to higher levels (intermediate form)
         // Possible TODO: refactor into common interfaces if there is demand
-        virtual       INodeEventContext*  GetEventContext()                     override;
+        virtual       INodeEventContext*  GetEventContext()     override;
         virtual       ExternalNodeId_t    GetExternalID() const override;
 
-        virtual const IdmDateTime&  GetTime()                   const override;
-        virtual const Climate*      GetLocalWeather()           const override;
-        virtual float               GetInfected()               const override;
-        virtual float               GetSymptomatic()            const override;
-        virtual float               GetNewlySymptomatic()       const override;
-        virtual float               GetStatPop()                const override;
-        virtual float               GetBirths()                 const override;
-        virtual float               GetCampaignCost()           const override;
-        virtual float               GetInfectivity()            const override;
-        virtual float               GetInfectionRate()          const override;
-        virtual float               GetSusceptDynamicScaling()  const override;
-        virtual long int            GetPossibleMothers()        const override;
-        virtual uint64_t            GetTotalGenomes()           const override;
+        virtual const IdmDateTime& GetTime()     const override;
+        virtual const Climate* GetLocalWeather() const override;
+
+        virtual float GetInfected()              const override;
+        virtual float GetSymptomatic()           const override;
+        virtual float GetNewlySymptomatic()      const override;
+        virtual float GetStatPop()               const override;
+        virtual float GetBirths()                const override;
+        virtual float GetCampaignCost()          const override;
+        virtual float GetInfectivity()           const override;
+        virtual float GetInfectionRate()         const override;
+
+        virtual long int GetPossibleMothers()    const override;
+        virtual uint64_t GetTotalGenomes()       const override;
 
         virtual float GetNonDiseaseMortalityRateByAgeAndSex( float age, Gender::Enum sex ) const override;
 
@@ -177,17 +179,17 @@ namespace Kernel
         NodeDemographicsDistribution* MortalityDistributionFemale;
         NodeDemographicsDistribution* AgeDistribution;
 
+    private:
         // Do not access these directly but use the access methods above.
         float _latitude;
         float _longitude;
 
+    protected:
         // Standard distributions for SIMPLE initialization
         IDistribution* distribution_age;
         IDistribution* distribution_migration;
         IDistribution* distribution_demographic_risk;
         IDistribution* distribution_susceptibility;
-
-        float susceptibility_dynamic_scaling;
 
         // Node properties
         suids::suid suid;
@@ -214,12 +216,12 @@ namespace Kernel
         bool                family_is_destination_new_home;
 
         // Heterogeneous intra-node transmission
-        ITransmissionGroups*  transmissionGroups;
-        ITransmissionGroups*  txEnvironment;
+        ITransmissionGroups* transmissionGroups;
+        ITransmissionGroups* txEnvironment;
 
         // Climate and demographics
-        Climate *localWeather;
-        IMigrationInfo *migration_info;
+        Climate* localWeather;
+        IMigrationInfo* migration_info;
         ExternalNodeId_t externalId; // DON'T USE THIS EXCEPT FOR INPUT/OUTPUT PURPOSES!
         NPKeyValueContainer node_properties;
 
@@ -249,11 +251,6 @@ namespace Kernel
         long int Possible_Mothers;
         float symptomatic;
         float newly_symptomatic;
-
-        float mean_age_infection;      // (years)
-        float newInfectedPeopleAgeProduct;
-        std::list<float> infected_people_prior; // [infection_averaging_window];
-        std::list<float> infected_age_people_prior; // [infection_averaging_window];
 
         float infectionrate; // TODO: this looks like its only a reporting counter now and possibly not accurately updated in all cases
         float mInfectivity;
@@ -285,8 +282,7 @@ namespace Kernel
         RouteList_t routes;
 
         virtual void Initialize();
-        virtual void setupEventContextHost();
-        void ExtractDataFromDemographics(const NodeDemographics* demog_ptr);
+        void ExtractDataFromDemographics(const NodeDemographics*);
         virtual void LoadImmunityDemographicsDistribution(const NodeDemographics* demog_ptr);
         virtual void LoadOtherDiseaseSpecificDistributions(const NodeDemographics* demog_ptr);
 
@@ -332,11 +328,8 @@ namespace Kernel
 
         // Skipping functions & variables
         virtual int calcGap();
-
         std::map< TransmissionRoute::Enum, float > maxInfectionProb; // set to 1.0 if not defined
-
         virtual void computeMaxInfectionProb( float dt );
-
         virtual float GetMaxInfectionProb( TransmissionRoute::Enum route ) const
         {
             // Note that in GENERIC there's on ly one route. Can get tricky b/w CONTACT and ALL.

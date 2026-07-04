@@ -94,8 +94,6 @@ namespace Kernel
             }
         }
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         ISimulationEventContext*        m_Parent;
         std::vector<INodeEventContext*> m_CachedNodes;
         std::string                     m_InterventionName;
@@ -122,7 +120,6 @@ namespace Kernel
         float m_DaysBetweenShipments;
         int   m_AmountInShipment;
         float m_DaysToNextShipment;
-#pragma warning( pop )
     };
 }
 

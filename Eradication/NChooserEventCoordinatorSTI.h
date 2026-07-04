@@ -29,11 +29,8 @@ namespace Kernel
         virtual float GetEndInDays() const override;
         virtual float GetCurrentInDays( const IdmDateTime& rDateTime ) const override;
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         float m_StartYear;
         float m_EndYear;
-#pragma warning( pop )
     };
 
     // ------------------------------------------------------------------------

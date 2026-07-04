@@ -69,10 +69,12 @@ namespace Kernel
 
         virtual void SetupMigration( IMigrationInfoFactory * migration_factory ) = 0;
 
+        virtual void SetupEventContextHost() = 0;
         virtual void SetContextTo( ISimulationContext* ) = 0;
         virtual void SetParameters( NodeDemographicsFactory *demographics_factory, ClimateFactory *climate_factory ) = 0;
         virtual void PopulateFromDemographics() = 0;
         virtual void InitializeTransmissionGroupPopulations() = 0;
+        virtual void InitSuidGenerator(int, int) = 0;
 
         virtual suids::suid GetNextInfectionSuid() = 0;
         virtual RANDOMBASE* GetRng() = 0; 
@@ -102,21 +104,22 @@ namespace Kernel
         virtual NPKeyValueContainer& GetNodeProperties() = 0;
 
         // reporting interfaces
-        virtual const IdmDateTime&  GetTime()                   const = 0;
-        virtual const Climate*      GetLocalWeather()           const = 0;
-        virtual float               GetInfected()               const = 0;
-        virtual float               GetSymptomatic()            const = 0;
-        virtual float               GetNewlySymptomatic()       const = 0;
-        virtual float               GetStatPop()                const = 0;
-        virtual float               GetBirths()                 const = 0;
-        virtual float               GetCampaignCost()           const = 0;
-        virtual float               GetInfectivity()            const = 0;
-        virtual float               GetInfectionRate()          const = 0;
-        virtual float               GetLatitudeDegrees()              = 0;
-        virtual float               GetLongitudeDegrees()             = 0;
-        virtual float               GetSusceptDynamicScaling()  const = 0;
-        virtual long int            GetPossibleMothers()        const = 0;
-        virtual uint64_t            GetTotalGenomes()           const = 0;
+        virtual const IdmDateTime& GetTime()     const = 0;
+        virtual const Climate* GetLocalWeather() const = 0;
+
+        virtual float GetInfected()              const = 0;
+        virtual float GetSymptomatic()           const = 0;
+        virtual float GetNewlySymptomatic()      const = 0;
+        virtual float GetStatPop()               const = 0;
+        virtual float GetBirths()                const = 0;
+        virtual float GetCampaignCost()          const = 0;
+        virtual float GetInfectivity()           const = 0;
+        virtual float GetInfectionRate()         const = 0;
+        virtual float GetLatitudeDegrees()             = 0;
+        virtual float GetLongitudeDegrees()            = 0;
+
+        virtual long int GetPossibleMothers()    const = 0;
+        virtual uint64_t GetTotalGenomes()       const = 0;
 
         virtual float GetNonDiseaseMortalityRateByAgeAndSex( float age, Gender::Enum sex ) const = 0;
 

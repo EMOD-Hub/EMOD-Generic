@@ -53,13 +53,10 @@ namespace Kernel
                                       IIndividualHumanHIV *pHIV,
                                       IHIVMedicalHistory * pMedHistory ) const;
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         std::set< std::string > m_AllowedStates; // member variable so that it exists shen JsonConfigurable::Configure() is called.
         std::vector<std::vector<std::string>> m_Vector2dStringDiseaseStates;
         std::vector<std::vector<TargetedDiseaseState::Enum>> m_DiseaseStates;
         std::string m_HasInterventionName;
-#pragma warning( pop )
     };
 
     // ------------------------------------------------------------------------

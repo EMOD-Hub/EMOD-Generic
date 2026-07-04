@@ -23,6 +23,9 @@ namespace Kernel
 {
     using namespace std;
 
+    //////////////////////////////////////////////////////////////////////////
+    // CreateInstance/ClassFactory helpers
+   
     typedef std::function<ISupports* (void)> instantiator_function_t;
     typedef map<string, instantiator_function_t> support_spec_map_t;
 

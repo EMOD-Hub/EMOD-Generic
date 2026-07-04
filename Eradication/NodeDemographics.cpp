@@ -281,11 +281,11 @@ std::string NodeDemographics::getMissingParamHelperMessage(const std::string &mi
     stringstream ss;
     ss << "Was ";
 
-    if(missing_param == "AgeDistribution")               ss << "EnableAgeInitializationDistribution set to 1";
-    else if(missing_param == "FertilityDistribution")    ss << "Birth_Rate_Dependence set to INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR";
-    else if(missing_param == "MortalityDistribution")    ss << "Death_Rate_Dependence set to NONDISEASE_MORTALITY_BY_AGE_AND_GENDER";
-    else if(missing_param == "MortalityDistributionMale")    ss << "Death_Rate_Dependence set to NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER";
-    else if(missing_param == "MortalityDistributionFemale")    ss << "Death_Rate_Dependence set to NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER";
+    if(     missing_param == "AgeDistribution"            ) ss << "EnableAgeInitializationDistribution set to 1";
+    else if(missing_param == "FertilityDistribution"      ) ss << "Birth_Rate_Dependence set to INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR";
+    else if(missing_param == "MortalityDistribution"      ) ss << "Death_Rate_Dependence set to NONDISEASE_MORTALITY_BY_AGE_AND_GENDER";
+    else if(missing_param == "MortalityDistributionMale"  ) ss << "Death_Rate_Dependence set to NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER";
+    else if(missing_param == "MortalityDistributionFemale") ss << "Death_Rate_Dependence set to NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER";
     else if(missing_param == "mucosal_memory_distribution1")     ss << "EnableImmunityInitializationDistribution set to 1";
     else if(missing_param == "mucosal_memory_distribution2")     ss << "EnableImmunityInitializationDistribution set to 1";
     else if(missing_param == "mucosal_memory_distribution3")     ss << "EnableImmunityInitializationDistribution set to 1";
@@ -1214,7 +1214,7 @@ NodeDemographicsDistribution* NodeDemographicsDistribution::CreateDistribution( 
                 total_pop_groups *= num_elements;
 
                 pop_groups.push_back(std::vector<double>());
-                for( int j = 0; j < pop_groups_orig[i].size(); j++ )
+                for(int j = 0; j < pop_groups_orig[i].size(); j++)
                     pop_groups[i].push_back(float(pop_groups_orig[i][j].AsDouble()));
 
                 // check if PopulationGroups are sorted in ascending order by checking if left number is greater or equal to right number
@@ -1295,7 +1295,7 @@ NodeDemographicsDistribution* NodeDemographicsDistribution::CreateDistribution( 
     catch(std::exception &e)
     {
         std::stringstream s ;
-        s << "An exception occured while parsing '" << demographics.GetJsonKey() << "'. Error: " << e.what() ;
+        s << "An exception occurred while parsing '" << demographics.GetJsonKey() << "'. Error: " << e.what() ;
         throw InvalidInputDataException( __FILE__, __LINE__, __FUNCTION__, s.str().c_str() );
     }
 }

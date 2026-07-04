@@ -12,7 +12,7 @@ namespace Kernel
 {
     class IReport;
     struct DemographicsContext;
-    struct INodeQualifier; 
+    struct INodeQualifier;
     struct IIndividualHuman;
     struct IdmDateTime;
     struct ISimulation;

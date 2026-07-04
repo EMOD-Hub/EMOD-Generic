@@ -25,15 +25,11 @@ namespace Kernel
     NodeTyphoid::NodeTyphoid()
         : NodeEnvironmental()
     {
-        delete event_context_host;
-        NodeTyphoid::setupEventContextHost();
     }
 
     NodeTyphoid::NodeTyphoid(ISimulationContext *_parent_sim, ExternalNodeId_t externalNodeId, suids::suid node_suid)
         : NodeEnvironmental(_parent_sim, externalNodeId, node_suid)
     {
-        delete event_context_host;
-        NodeTyphoid::setupEventContextHost();
     }
 
     void NodeTyphoid::Initialize()
@@ -43,7 +39,7 @@ namespace Kernel
         NodeEnvironmental::Initialize();
     }
 
-    void NodeTyphoid::setupEventContextHost()
+    void NodeTyphoid::SetupEventContextHost()
     {
         event_context_host = _new_ NodeTyphoidEventContextHost(this);
     }

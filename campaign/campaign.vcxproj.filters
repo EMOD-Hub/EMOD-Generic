@@ -36,9 +36,6 @@
     <ClInclude Include="..\utils\Configuration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\utils\ConfigurationImpl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\utils\Configure.h">
       <Filter>Header Files</Filter>
     </ClInclude>

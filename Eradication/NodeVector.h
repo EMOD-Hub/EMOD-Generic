@@ -29,9 +29,7 @@ namespace Kernel
         static NodeVector *CreateNode(ISimulationContext *context, ExternalNodeId_t externalNodeId, suids::suid suid);
         virtual ~NodeVector();
 
-        // INodeContext methods
-        virtual INodeVector*         GetNodeVector() override;
-
+        virtual void InitSuidGenerator(int, int) override;
         virtual VectorProbabilities* GetVectorLifecycleProbabilities() override;
         virtual IVectorHabitat*      GetVectorHabitatBySpeciesAndType( std::string& species, VectorHabitatType::Enum type, const Configuration* inputJson) override;
         virtual VectorHabitatList_t* GetVectorHabitatsBySpecies( std::string& species ) override;
@@ -44,6 +42,7 @@ namespace Kernel
         virtual void SetupIntranodeTransmission() override;
         virtual void CreateTransmissionGroups() override;
         virtual void BuildTransmissionRoutes() override;
+        virtual void SetParameters( NodeDemographicsFactory *demographics_factory, ClimateFactory *climate_factory ) override;
         virtual void updateInfectivity(float dt = 0.0f) override;
         virtual void updatePopulationStatistics(float dt = 1.0f) override;
         void         updateVectorLifecycleProbabilities(float dt);
@@ -56,6 +55,9 @@ namespace Kernel
         void processEmigratingVectors( float dt );
         virtual std::string GetHabitatName(int habitat_enum_val) override;
 
+        // INodeContext methods
+        virtual void SetupEventContextHost() override;
+        virtual INodeVector* GetNodeVector() override;
         virtual const VectorPopulationReportingList_t& GetVectorPopulationReporting() const override;
 
     protected:
@@ -72,6 +74,7 @@ namespace Kernel
         IMigrationInfoVector* vector_migration_info;
 
         ITransmissionGroups* txOutdoor;
+        suids::distributed_generator m_VectorCohortSuidGenerator;
 
         NodeVector();
         NodeVector(ISimulationContext *context, ExternalNodeId_t externalNodeId, suids::suid node_suid);
@@ -79,7 +82,6 @@ namespace Kernel
 
         virtual void LoadOtherDiseaseSpecificDistributions(const NodeDemographics* demog_ptr) override;
 
-        virtual void setupEventContextHost() override;
         virtual void InitializeVectorPopulation( IVectorPopulation* vp );
         void VectorMigrationBasedOnFiles( float dt );
             

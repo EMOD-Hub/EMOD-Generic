@@ -108,7 +108,6 @@
     <ClInclude Include="..\interventions\IDrug.h" />
     <ClInclude Include="..\utils\Common.h" />
     <ClInclude Include="..\utils\Configuration.h" />
-    <ClInclude Include="..\utils\ConfigurationImpl.h" />
     <ClInclude Include="..\utils\Configure.h" />
     <ClInclude Include="..\utils\Debug.h" />
     <ClInclude Include="..\utils\EnumSupport.h" />

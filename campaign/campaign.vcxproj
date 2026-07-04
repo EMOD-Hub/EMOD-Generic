@@ -134,7 +134,6 @@
     <ClInclude Include="..\Eradication\VectorEnums.h" />
     <ClInclude Include="..\Eradication\VectorSpeciesParameters.h" />
     <ClInclude Include="..\utils\Configuration.h" />
-    <ClInclude Include="..\utils\ConfigurationImpl.h" />
     <ClInclude Include="..\utils\Configure.h" />
     <ClInclude Include="..\utils\EnumSupport.h" />
     <ClInclude Include="..\utils\Environment.h" />

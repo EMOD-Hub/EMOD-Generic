@@ -347,8 +347,6 @@ namespace Kernel
 
     void Simulation::Initialize(const ::Configuration *config)
     {
-        LOG_DEBUG( "Initialize\n" );
-
         Configure( config );
 
         IndividualHumanConfig   gen_individual_config_obj;
@@ -609,10 +607,10 @@ namespace Kernel
 
             if( !p_config->Exist("Reports") )
             {
-                // Old style file format; will eventually be an error 
-                // std::stringstream ss;
-                // ss << "Error occured reading json file " << cr_file << ". Error: No \"Reports\" key." << std::endl;
-                // throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
+                // Old style file format;
+                std::stringstream ss;
+                ss << "Error occured reading json file " << cr_file << ". Error: No \"Reports\" key." << std::endl;
+                throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
             }
             else
             {
@@ -649,18 +647,7 @@ namespace Kernel
 
             delete p_cr_config;
             p_cr_config = nullptr;
-
-            // Return here for now to only support 1 format of the custom reports file`
-            return;
         }
-
-        ReportInstantiatorMap report_instantiator_map ;
-        DllLoader dllLoader(SimType::pairs::lookup_key(GetSimParams().sim_type).c_str());
-        if( !dllLoader.LoadReportDlls( report_instantiator_map ) )
-        {
-            LOG_WARN_F("Failed to load reporter emodules for SimType: %s from path: %s\n" , SimType::pairs::lookup_key(GetSimParams().sim_type).c_str(), dllLoader.GetEModulePath(REPORTER_EMODULES).c_str());
-        }
-        Reports_Instantiate( report_instantiator_map );
     }
 
     void Simulation::Reports_FindReportsCollectingIndividualData()
@@ -680,120 +667,11 @@ namespace Kernel
         }
     }
 
-    Configuration* Simulation::Reports_GetCustomReportConfiguration()
-    {
-        Configuration* p_cr_config = nullptr;
-        std::string    cr_file     = GetSimParams().custom_reports_filename;
-
-        LOG_INFO_F("Looking for custom reports file = %s\n", cr_file.c_str());
-        if( FileSystem::FileExists(cr_file) )
-        {
-            LOG_INFO_F("Found custom reports file = %s\n", cr_file.c_str());
-            // it is extremely unlikely that this will return null.  It will throw an exception if an error occurs.
-            Configuration* p_config = Configuration::Load(cr_file);
-            if( !p_config ) 
-            {
-                throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, cr_file.c_str() );
-            }
-            p_cr_config = Configuration::CopyFromElement( (*p_config)["Custom_Reports"], p_config->GetDataLocation() );
-            delete p_config ;
-        }
-        else
-        {
-            throw Kernel::FileNotFoundException(__FILE__, __LINE__, __FUNCTION__, cr_file.c_str());
-        }
-
-        return p_cr_config ;
-    }
-
-    void Simulation::Reports_Instantiate( ReportInstantiatorMap& rReportInstantiatorMap )
-    {
-        auto cachedValue = JsonConfigurable::_useDefaults;
-        JsonConfigurable::_useDefaults = true;
-
-        Configuration* p_cr_config = Reports_GetCustomReportConfiguration();
-
-        LOG_INFO_F("Found %d Custom Report DLL's to consider loading\n", rReportInstantiatorMap.size());
-
-        // Verify that a DLL exists for each report defined in the custom reports file
-        if( p_cr_config )
-        {
-            auto custom_reports_config = p_cr_config->As<json::Object>();
-            for( auto it = custom_reports_config.Begin(); it != custom_reports_config.End(); ++it )
-            {
-                std::string reportname(it->name);
-                if( rReportInstantiatorMap.find( reportname ) == rReportInstantiatorMap.end() )
-                {
-                    //check if report is enabled
-                    json::QuickInterpreter dll_data = (*p_cr_config)[reportname];
-                    if (dll_data.GetElement().Type() != json::OBJECT_ELEMENT)
-                    {
-                        // Badly formatted reports file
-                        std::stringstream ss;
-                        ss << "Error reading reports file: " << reportname << " should be a configuration (json object)." << std::endl;
-                        throw Kernel::InitializationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
-                    }
-
-                    json::QuickInterpreter conf_data = dll_data.As<json::Object>();
-                    if( int( conf_data["Enabled"].As<json::Number>() ) != 0 )
-                    {
-                        //Dll not found
-                        std::stringstream ss;
-                        ss << reportname << " (dll)";
-                        throw Kernel::FileNotFoundException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
-                    }
-                }
-            }
-        }
-
-        for( auto ri_entry : rReportInstantiatorMap )
-        {
-            std::string class_name = ri_entry.first ;
-            try
-            {
-                if( (p_cr_config != nullptr) && p_cr_config->Exist( class_name ) )
-                {
-                    LOG_INFO_F("Found custom report data for %s\n", class_name.c_str());
-                    json::QuickInterpreter dll_data = p_cr_config->operator[]( class_name ).As<json::Object>() ;
-                    if( int(dll_data["Enabled"].As<json::Number>()) != 0 )
-                    {
-                        json::Array report_data = dll_data["Reports"].As<json::Array>() ;
-                        for( int i = 0 ; i < report_data.Size() ; i++ )
-                        {
-                            LOG_INFO_F( "Created instance #%d of %s\n", (i+1),class_name.c_str() );
-                            Configuration* p_cfg = Configuration::CopyFromElement( report_data[i], p_cr_config->GetDataLocation() );
-
-                            IReport* p_cr = ri_entry.second(); // creates report object
-                            p_cr->Configure( p_cfg );
-                            reports.push_back( p_cr );
-                            delete p_cfg ;
-                            p_cfg = nullptr;
-                        }
-                    }
-                }
-                else
-                {
-                    LOG_WARN_F("Did not find report configuration for report DLL %s.\n", class_name.c_str());
-                }
-            }
-            catch( json::Exception& e )
-            {
-                std::stringstream ss ;
-                ss << "Error occured reading report data for " << class_name << ".  Error: " << e.what() << std::endl ;
-                throw InitializationException( __FILE__, __LINE__, __FUNCTION__, ss.str().c_str() );
-            }
-        }
-
-        delete p_cr_config;
-        p_cr_config = nullptr;
-        JsonConfigurable::_useDefaults = cachedValue;
-    }
-
     void Simulation::Reports_UpdateEventRegistration()
     {
         for (auto report : reports)
         {
-            report->UpdateEventRegistration( currentTime.time,GetSimParams().sim_time_delta, node_event_context_list, event_context_host );
+            report->UpdateEventRegistration( currentTime.time, GetSimParams().sim_time_delta, node_event_context_list, event_context_host );
         }
     }
 
@@ -1043,18 +921,16 @@ namespace Kernel
 
     bool Simulation::Populate()
     {
-        LOG_DEBUG("Calling populateFromDemographics()\n");
-
         // Populate nodes
-        LOG_INFO_F("Campaign file name identified as: %s\n", (GetSimParams().campaign_filename).c_str());
+        LOG_INFO_F( "Using campaign file: %s\n", (GetSimParams().campaign_filename).c_str() );
+        LOG_INFO( "Populating simulation from demographics...\n" );
         int node_count = populateFromDemographics();
-        LOG_INFO_F("populateFromDemographics() generated %d nodes.\n", node_count);
 
-        LOG_INFO_F("Rank %d contributes %d nodes...\n", EnvPtr->MPI.Rank, nodeRankMap.Size());
         EnvPtr->Log->Flush();
-        LOG_INFO_F("Merging node rank maps...\n");
+        LOG_INFO_F( "Merging node rank maps...\n" );
         nodeRankMap.MergeMaps(); // merge rank maps across all processors
-        LOG_INFO_F("Merged rank %d map now has %d nodes.\n", EnvPtr->MPI.Rank, nodeRankMap.Size());
+        LOG_INFO_F( "Merged rank %d map now has %d nodes.\n", EnvPtr->MPI.Rank, nodeRankMap.Size() );
+        EnvPtr->Log->Flush();
 
         // Initialize migration structure from file
         IMigrationInfoFactory* migration_factory = ConstructMigrationInfoFactory( demographics_factory->GetIdReference(),
@@ -1071,12 +947,6 @@ namespace Kernel
 
         delete migration_factory;
         migration_factory = nullptr;
-
-//        if (nodeRankMap.Size() < 500)
-//            LOG_INFO_F("Rank %d map contents:\n%s\n", EnvPtr->MPI.Rank, nodeRankMap.ToString().c_str());
-//        else 
-//            LOG_INFO("(Rank map contents not displayed due to large (> 500) number of entries.)\n");
-        LOG_INFO("Rank map contents not displayed until NodeRankMap::ToString() (re)implemented.\n");
 
         // Inter-node distance factors for network infectivity
         if(GetSimParams().enable_net_infect)
@@ -1166,7 +1036,7 @@ namespace Kernel
         // Set up campaign interventions from file
         if( GetSimParams().enable_interventions )
         {
-            LOG_INFO_F( "Looking for campaign file %s\n", (GetSimParams().campaign_filename).c_str() );
+            LOG_DEBUG_F( "Looking for campaign file %s\n", (GetSimParams().campaign_filename).c_str() );
 
             if ( !FileSystem::FileExists( GetSimParams().campaign_filename ) )
             {
@@ -1174,7 +1044,7 @@ namespace Kernel
             }
             else 
             {
-                LOG_INFO("Found campaign file successfully.\n");
+                LOG_DEBUG("Found campaign file successfully.\n");
             }
 
             JsonConfigurable::_track_missing = false;
@@ -1258,6 +1128,7 @@ namespace Kernel
                 {
                     suids::suid node_suid;
                     node_suid.data = node_index + 1;
+
                     LOG_DEBUG_F( "Creating/adding new node: external_node_id = %lu, node_suid = %lu\n", external_node_id, node_suid.data );
                     addNewNodeFromDemographics( external_node_id, node_suid, demographics_factory, climate_factory );
                 }
@@ -1268,7 +1139,9 @@ namespace Kernel
         {
             for (auto& entry : nodes)
             {
+                auto& suid = entry.first;
                 auto node = entry.second;
+                node->SetupEventContextHost(); // called in Node::Initialize() for normal path
                 node->SetContextTo(this);
                 initializeNode( node, demographics_factory, climate_factory );
             }
@@ -1287,16 +1160,17 @@ namespace Kernel
         climate_factory = nullptr;
 #endif
 
-        LOG_INFO_F( "populateFromDemographics() created %d nodes\n", nodes.size() );
+        LOG_DEBUG_F( "populateFromDemographics() created %d nodes\n", nodes.size() );
         return int(nodes.size());
     }
 
     void Kernel::Simulation::addNewNodeFromDemographics( ExternalNodeId_t externalNodeId,
-                                                         suids::suid node_suid, 
-                                                         NodeDemographicsFactory *nodedemographics_factory, 
-                                                         ClimateFactory *climate_factory )
+                                                         suids::suid node_suid,
+                                                         NodeDemographicsFactory* nodedemographics_factory,
+                                                         ClimateFactory* climate_factory )
     {
-        Node *node = Node::CreateNode(this, externalNodeId, node_suid);
+        Node* node = Node::CreateNode(this, externalNodeId, node_suid);
+        node->InitSuidGenerator(node_suid.data, nodedemographics_factory->GetNodeIDs().size());
         addNode_internal( node, nodedemographics_factory, climate_factory );
     }
 
@@ -1338,6 +1212,7 @@ namespace Kernel
 #endif
 
         node->SetParameters( nodedemographics_factory, climate_factory );
+
         node->InitializeTransmissionGroupPopulations();
 
         node_event_context_list.push_back( node->GetEventContext() );
@@ -1570,7 +1445,7 @@ namespace Kernel
 
         if (sim.serializationFlags.test(SerializationFlags::Parameters))
         {
-            ar.labelElement( "custom_reports_filename" )          & sim.custom_reports_filename;
+            ar.labelElement( "custom_reports_filename" ) & sim.custom_reports_filename;
         }
 
         if (sim.serializationFlags.test(SerializationFlags::Properties))

@@ -37,14 +37,13 @@ namespace Kernel
     bool Action::Configure( const Configuration * inputJson )
     {
         initConfigTypeMap( "Threshold", &m_Threshold, ICE_Action_Threshold_DESC_TEXT, 0.0, FLT_MAX, 0.0 );
-
         initConfig("Event_Type", m_EventType, inputJson, MetadataDescriptor::Enum("Event_Type", ICE_Event_Type_DESC_TEXT, MDD_ENUM_ARGS( EventType ))); 
         initConfig( "Event_To_Broadcast", m_EventToBroadcast, inputJson, MetadataDescriptor::Enum("Event_To_Broadcast", ICE_Action_Event_To_Broadcast_DESC_TEXT, MDD_ENUM_ARGS( EventTrigger ) ) );
 
         bool ret = JsonConfigurable::Configure( inputJson );
 
         if( ret && !JsonConfigurable::_dryrun )
-        { 
+        {
             CheckConfigurationTriggers();
         }
         return ret;
@@ -61,7 +60,7 @@ namespace Kernel
         {
             case EventType::INDIVIDUAL:
             {
-                m_TriggerIndividual =  m_EventToBroadcast;
+                m_TriggerIndividual = m_EventToBroadcast;
                 break;
             }
             case EventType::NODE:
@@ -206,33 +205,31 @@ namespace Kernel
 
             switch(m_pCurrentAction->GetEventType())
             {
-                case EventType::INDIVIDUAL:
-                    for (INodeEventContext* p_node : nodes)
-                    {
-                        num_distributed += p_node->VisitIndividuals( this );
-                        ss << "Distribute() broadcasted '" << EventTrigger::pairs::lookup_key( m_pCurrentAction->GetEventToBroadcast() ) << "' to " << num_distributed << " individuals\n";
-                    }
-                    break;
-                case EventType::NODE:
-                    for (INodeEventContext* p_node : nodes)
-                    {
-                        auto TriggerNode = m_pCurrentAction->GetEventToBroadcastNode();
-                        p_node->GetNodeContext()->GetParent()->GetSimulationEventContext()->GetNodeEventBroadcaster()->TriggerObservers(p_node, TriggerNode);
-                        ss << "Distribute() broadcasted Node Event: '" << EventTrigger::pairs::lookup_key( TriggerNode ) << "'\n";
-                    }
-                    break;
-                case EventType::COORDINATOR:
-                    {
-                    auto TriggerCoordinator = m_pCurrentAction->GetEventToBroadcastCoordinator();
-                    m_sim->GetCoordinatorEventBroadcaster()->TriggerObservers(m_Parent, TriggerCoordinator);
-                    ss << "Distribute() broadcasted Coordinator Event: '" << EventTrigger::pairs::lookup_key( TriggerCoordinator ) << "'\n";
-                    }
-                    break;
-
-                default:
-                    abort();
+            case EventType::INDIVIDUAL:
+                for (INodeEventContext* p_node : nodes)
+                {
+                    num_distributed += p_node->VisitIndividuals( this );
+                    ss << "Distribute() broadcasted '" << EventTrigger::pairs::lookup_key( m_pCurrentAction->GetEventToBroadcast() ) << "' to " << num_distributed << " individuals\n";
+                }
+                break;
+            case EventType::NODE:
+                for (INodeEventContext* p_node : nodes)
+                {
+                    auto TriggerNode = m_pCurrentAction->GetEventToBroadcastNode();
+                    p_node->GetNodeContext()->GetParent()->GetSimulationEventContext()->GetNodeEventBroadcaster()->TriggerObservers(p_node, TriggerNode);
+                    ss << "Distribute() broadcasted Node Event: '" << EventTrigger::pairs::lookup_key( TriggerNode ) << "'\n";
+                }
+                break;
+            case EventType::COORDINATOR:
+            {
+                auto TriggerCoordinator = m_pCurrentAction->GetEventToBroadcastCoordinator();
+                m_sim->GetCoordinatorEventBroadcaster()->TriggerObservers(m_Parent, TriggerCoordinator);
+                ss << "Distribute() broadcasted Coordinator Event: '" << EventTrigger::pairs::lookup_key( TriggerCoordinator ) << "'\n";
+                break;
             }
-            ss << "UpdateNodes() broadcasted '" << EventTrigger::pairs::lookup_key( m_pCurrentAction->GetEventToBroadcast() )  << "' to " << num_distributed << " individuals\n";
+            default:
+                release_assert(false);
+            }
             LOG_INFO( ss.str().c_str() );
         }
         return (m_pCurrentAction != nullptr);
@@ -252,7 +249,6 @@ namespace Kernel
             {
                 value = value / float( qualifyingPopulation );
             }
-            printf("numIncidences=%d  qualifyingPopulation=%d\n", numIncidences, qualifyingPopulation );
         }
         return value;
     }
@@ -280,6 +276,7 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- IncidenceCounter
     // ------------------------------------------------------------------------
+
     IncidenceCounter::IncidenceCounter()
         : JsonConfigurable()
         , m_Count(0)
@@ -331,18 +328,15 @@ namespace Kernel
             !IsDoneCounting() )
         {
             float demographic_coverage = m_DemographicRestrictions.GetDemographicCoverage();
-
             if( (demographic_coverage > 0.0) )
             {
                 bool count_event = (static_cast<int>(m_Count) < m_DemographicRestrictions.GetMaxEvents());
-
                 // don't draw random number if coverage equals 1.
                 if(count_event && demographic_coverage < 1.0)
                 {
                     RANDOMBASE* p_rng = context->GetInterventionsContext()->GetParent()->GetRng();
                     count_event = p_rng->SmartDraw( demographic_coverage );
                 }
-
                 if( count_event )
                 {
                     ++m_Count;
@@ -408,7 +402,7 @@ namespace Kernel
 
     void IncidenceCounter::UnregisterForEvents( ISimulationEventContext * pSEC )
     {
-        //to be overriden
+        //to be overridden
     }
 
     void IncidenceCounter::RegisterForEvents( INodeEventContext* pNEC )
@@ -454,6 +448,7 @@ namespace Kernel
     // ------------------------------------------------------------------------
     // --- IncidenceEventCoordinator
     // ------------------------------------------------------------------------
+
     IMPLEMENT_FACTORY_REGISTERED( IncidenceEventCoordinator )
 
     IncidenceEventCoordinator::IncidenceEventCoordinator()

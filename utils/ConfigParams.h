@@ -472,5 +472,4 @@ namespace Kernel
     protected:
         static       TBHIVParams    tbhiv_params;
     };
-
 }
