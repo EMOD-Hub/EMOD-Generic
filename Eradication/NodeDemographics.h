@@ -103,15 +103,12 @@ namespace Kernel
         std::string GetFailedToInterpretMessage( const char* pExpType ) const ;
 
     private:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         JsonObjectDemog jsonValue;
         std::map<std::string,std::string> * string_table;
         INodeContext * parent;
         ExternalNodeId_t nodeID ; // external ID of the node
         std::string valueKey ; // The key/string used in the demographics file for this value/object
         std::string parentKey ; // The key/string used in the demographics file for the parent i.e. demographics[ parentKey ][ valueKey ]
-#pragma warning( pop )
 
         friend struct NodeDemographicsDistribution;
     };
@@ -165,8 +162,6 @@ namespace Kernel
         static std::vector<std::string> GetDemographicsFileList() { return demographics_filenames_list; };
 
     private:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         static const std::string default_node_demographics_str;
 
         std::vector<ExternalNodeId_t> nodeIDs; // sucks to have to keep an extra copy of these; I guess we could expose through an iterator, but for now, I prefer this...
@@ -193,8 +188,6 @@ namespace Kernel
         bool allow_nodeid_zero;
 
         static std::vector<std::string> demographics_filenames_list;
-
-#pragma warning( pop )
 
         NodeDemographicsFactory()
             : nodeIDs()
@@ -328,13 +321,10 @@ namespace Kernel
 
         int num_axes;
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         std::vector<int> num_pop_groups;
         std::vector< std::vector<double> > pop_groups;
 
         std::vector<double> result_values;
         std::vector< std::vector<double> > dist_values;
-#pragma warning( pop )
     };
 }

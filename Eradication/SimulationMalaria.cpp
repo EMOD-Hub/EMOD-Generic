@@ -91,7 +91,8 @@ GetSchema()
 namespace Kernel
 {
     ///// Simulation /////
-    SimulationMalaria::SimulationMalaria() : SimulationVector()
+    SimulationMalaria::SimulationMalaria()
+        : SimulationVector()
     {
         reportClassCreator = ReportMalaria::CreateReport;
         binnedReportClassCreator = BinnedReportMalaria::CreateReport;
@@ -163,17 +164,19 @@ namespace Kernel
                                                         ClimateFactory *climate_factory )
     {
         NodeMalaria *node = NodeMalaria::CreateNode(GetContextPointer(), externalNodeId, node_suid);
+        node->InitSuidGenerator(node_suid.data, nodedemographics_factory->GetNodeIDs().size());
         addNode_internal( node, nodedemographics_factory, climate_factory );
     }
 
-    ISimulationContext *
-    SimulationMalaria::GetContextPointer() { return (ISimulationContext*)this; }
+    ISimulationContext* SimulationMalaria::GetContextPointer()
+    {
+        return (ISimulationContext*)this;
+    }
 
     REGISTER_SERIALIZABLE(SimulationMalaria);
 
     void SimulationMalaria::serialize(IArchive& ar, SimulationMalaria* obj)
     {
         SimulationVector::serialize( ar, obj );
-        // Nothing to do here.
     }
 } // end namespace Kernel

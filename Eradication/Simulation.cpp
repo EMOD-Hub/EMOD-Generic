@@ -347,8 +347,6 @@ namespace Kernel
 
     void Simulation::Initialize(const ::Configuration *config)
     {
-        LOG_DEBUG( "Initialize\n" );
-
         Configure( config );
 
         IndividualHumanConfig   gen_individual_config_obj;
@@ -1167,11 +1165,12 @@ namespace Kernel
     }
 
     void Kernel::Simulation::addNewNodeFromDemographics( ExternalNodeId_t externalNodeId,
-                                                         suids::suid node_suid, 
-                                                         NodeDemographicsFactory *nodedemographics_factory, 
-                                                         ClimateFactory *climate_factory )
+                                                         suids::suid node_suid,
+                                                         NodeDemographicsFactory* nodedemographics_factory,
+                                                         ClimateFactory* climate_factory )
     {
-        Node *node = Node::CreateNode(this, externalNodeId, node_suid);
+        Node* node = Node::CreateNode(this, externalNodeId, node_suid);
+        node->InitSuidGenerator(node_suid.data, nodedemographics_factory->GetNodeIDs().size());
         addNode_internal( node, nodedemographics_factory, climate_factory );
     }
 

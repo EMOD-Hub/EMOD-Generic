@@ -101,6 +101,7 @@ namespace Kernel
                                                       ClimateFactory *climate_factory )
     {
         NodeTBHIV *node = NodeTBHIV::CreateNode(this, externalNodeId, node_suid);
+        node->InitSuidGenerator(node_suid.data, nodedemographics_factory->GetNodeIDs().size());
         addNode_internal( node, nodedemographics_factory, climate_factory );
     }
 

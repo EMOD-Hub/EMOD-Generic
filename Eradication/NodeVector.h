@@ -29,6 +29,7 @@ namespace Kernel
         static NodeVector *CreateNode(ISimulationContext *context, ExternalNodeId_t externalNodeId, suids::suid suid);
         virtual ~NodeVector();
 
+        virtual void InitSuidGenerator(int, int) override;
         virtual VectorProbabilities* GetVectorLifecycleProbabilities() override;
         virtual IVectorHabitat*      GetVectorHabitatBySpeciesAndType( std::string& species, VectorHabitatType::Enum type, const Configuration* inputJson) override;
         virtual VectorHabitatList_t* GetVectorHabitatsBySpecies( std::string& species ) override;

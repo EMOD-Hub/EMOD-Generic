@@ -79,7 +79,6 @@ namespace Kernel
     SimulationVector *SimulationVector::CreateSimulation(const ::Configuration *config)
     {
         SimulationVector *newsimulation = _new_ SimulationVector();
-
         if (newsimulation)
         {
             // This sequence is important: first
@@ -141,7 +140,8 @@ namespace Kernel
                                                        NodeDemographicsFactory *nodedemographics_factory,
                                                        ClimateFactory *climate_factory )
     {
-        NodeVector *node = NodeVector::CreateNode(this, externalNodeId, node_suid);
+        NodeVector* node = NodeVector::CreateNode(this, externalNodeId, node_suid);
+        node->InitSuidGenerator(node_suid.data, nodedemographics_factory->GetNodeIDs().size());
         addNode_internal( node, nodedemographics_factory, climate_factory );
         node_populations_map.insert( std::make_pair( node_suid, node->GetStatPop() ) );
     }
@@ -152,19 +152,11 @@ namespace Kernel
 
         WithSelfFunc to_self_func = [this](int myRank) 
         { 
-#ifndef _DEBUG  // Standard path
-            // Don't bother to serialize locally
-            for (auto iterator = migratingVectorQueues[myRank].rbegin(); iterator != migratingVectorQueues[myRank].rend(); ++iterator)
-            {
-                // map.at() is faster than map[] since it doesn't optionally create an entry
-                auto vector = *iterator;
-                IMigrate* emigre = vector->GetIMigrate();
-                emigre->ImmigrateTo( nodes.at(emigre->GetMigrationDestination()) );
-            }
-#else           // Test serialization even on single core.
+#ifdef _DEBUG
+            // Test serialization even on single core.
             auto writer = new BinaryArchiveWriter();
             (*static_cast<IArchive*>(writer)) & migratingVectorQueues[myRank];
-            for (auto& individual : migratingVectorQueues[myRank])
+            for(auto& individual : migratingVectorQueues[myRank])
                 individual->Recycle();
             migratingVectorQueues[myRank].clear();
 
@@ -183,6 +175,15 @@ namespace Kernel
             delete reader;
             delete writer;
 #endif
+
+            // Don't bother to serialize locally
+            for (auto iterator = migratingVectorQueues[myRank].rbegin(); iterator != migratingVectorQueues[myRank].rend(); ++iterator)
+            {
+                // map.at() is faster than map[] since it doesn't optionally create an entry
+                auto vector = *iterator;
+                IMigrate* emigre = vector->GetIMigrate();
+                emigre->ImmigrateTo( nodes.at(emigre->GetMigrationDestination()) );
+            }
         };
 
         SendToOthersFunc to_others_func = [this](IArchive* writer, int toRank)
@@ -230,7 +231,7 @@ namespace Kernel
 
         if( total_vector_population == 0 )
         {
-            LOG_WARN_F("!!!! NO VECTORS !!!!!  There are %d nodes on this core and zero vectors.",nodes.size());
+            LOG_WARN_F("!!!! NO VECTORS !!!!!  There are %d nodes on this core and zero vectors.\n",nodes.size());
         }
 
         return num_nodes ;
@@ -276,14 +277,5 @@ namespace Kernel
     {
         Simulation::serialize( ar, obj );
         SimulationVector& sim = *obj;
-
-        if( sim.serializationFlags.test( SerializationFlags::VectorPopulation) ) 
-        {
-            //ar.labelElement("m_VectorCohortSuidGenerator") & sim.m_VectorCohortSuidGenerator;
-        }
-
-//        ar.labelElement("migratingVectorQueues") & sim.migratingVectorQueues;         // no reason to keep track of migrating vectors "in-flight" :)
-//        ar.labelElement("vector_migration_reports") & sim.vector_migration_reports;
-//        ar.labelElement("node_populations_map") & sim.node_populations_map;           // should be reconstituted in populateFromDemographics()
     }
 }

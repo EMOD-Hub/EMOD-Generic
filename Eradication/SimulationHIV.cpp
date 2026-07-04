@@ -44,7 +44,6 @@ namespace Kernel
     SimulationHIV *SimulationHIV::CreateSimulation(const ::Configuration *config)
     {
         SimulationHIV *newsimulation = _new_ SimulationHIV();
-
         if (newsimulation)
         {
             // This sequence is important: first
@@ -68,7 +67,6 @@ namespace Kernel
     void SimulationHIV::Initialize(const ::Configuration *config)
     {
         SimulationSTI::Initialize(config); 
-
         IndividualHumanHIVConfig   hiv_individual_config_obj;
         SusceptibilityHIVConfig    hiv_susceptibility_config_obj;
         InfectionHIVConfig         hiv_infection_config_obj;
@@ -156,6 +154,7 @@ namespace Kernel
                                                     ClimateFactory *climate_factory )
     {
         NodeHIV *node = NodeHIV::CreateNode(this, externalNodeId, node_suid);
+        node->InitSuidGenerator(node_suid.data, nodedemographics_factory->GetNodeIDs().size());
         addNode_internal( node, nodedemographics_factory, climate_factory );
     }
 

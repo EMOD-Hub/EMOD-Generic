@@ -93,6 +93,7 @@ namespace Kernel
         virtual void SetParameters( NodeDemographicsFactory *demographics_factory, ClimateFactory *climate_factory ) override;
         virtual void PopulateFromDemographics() override;
         virtual void InitializeTransmissionGroupPopulations() override;
+        virtual void InitSuidGenerator(int, int) override;
 
         // Campaign event-related
         bool IsInPolygon(float* vertex_coords, int numcoords); // might want to create a real polygon object at some point
@@ -178,10 +179,12 @@ namespace Kernel
         NodeDemographicsDistribution* MortalityDistributionFemale;
         NodeDemographicsDistribution* AgeDistribution;
 
+    private:
         // Do not access these directly but use the access methods above.
         float _latitude;
         float _longitude;
 
+    protected:
         // Standard distributions for SIMPLE initialization
         IDistribution* distribution_age;
         IDistribution* distribution_migration;
@@ -248,11 +251,6 @@ namespace Kernel
         long int Possible_Mothers;
         float symptomatic;
         float newly_symptomatic;
-
-        float mean_age_infection;      // (years)
-        float newInfectedPeopleAgeProduct;
-        std::list<float> infected_people_prior; // [infection_averaging_window];
-        std::list<float> infected_age_people_prior; // [infection_averaging_window];
 
         float infectionrate; // TODO: this looks like its only a reporting counter now and possibly not accurately updated in all cases
         float mInfectivity;

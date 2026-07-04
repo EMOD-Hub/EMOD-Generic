@@ -64,9 +64,6 @@ namespace Kernel
 // !!! the memory layout and boundary issues are not really a concern.
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
-
     class IDMAPI SimulationConfig : public JsonConfigurable
     {
 
@@ -98,5 +95,4 @@ namespace Kernel
         void MalariaCheckConfig( const Configuration* inputJson );
         void MalariaAddSchema( json::QuickBuilder& retJson );
     };
-#pragma warning( pop )
 }
