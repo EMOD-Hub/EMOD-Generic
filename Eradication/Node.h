@@ -196,7 +196,7 @@ namespace Kernel
         float base_samp_rate_node;
         float birthrate;
 
-        uint32_t  initial_population;
+        int initial_population;
 
         // ----------------------------------------------------------------------------------------
         // --- DMB 9-16-2014 Through comparison, it was determined that using a vector (and moving
@@ -283,8 +283,8 @@ namespace Kernel
 
         virtual void Initialize();
         void ExtractDataFromDemographics(const NodeDemographics*);
-        virtual void LoadImmunityDemographicsDistribution(const NodeDemographics* demog_ptr);
-        virtual void LoadOtherDiseaseSpecificDistributions(const NodeDemographics* demog_ptr);
+        virtual void LoadImmunityDemographicsDistribution(const NodeDemographics*);
+        virtual void LoadOtherDiseaseSpecificDistributions(const NodeDemographics*);
 
         // Updates
         virtual void updateInfectivity(float dt = 0.0f);

@@ -205,6 +205,28 @@ namespace Kernel
     Node::~Node()
     {
         if (suid.data % 10 == 0) LOG_INFO_F("Freeing Node %d \n", suid.data);
+
+        /* Let all of this dangle, we're about to exit the process...
+        for (auto individual : individualHumans)
+        {
+            delete individual;
+        }
+
+        individualHumans.clear();
+        home_individual_ids.clear();
+
+        if (transmissionGroups) delete transmissionGroups;
+        if (migration_info)     delete migration_info;
+
+        delete event_context_host;
+
+        delete SusceptibilityDistribution;
+        delete FertilityDistribution;
+        delete MortalityDistribution;
+        delete MortalityDistributionMale;
+        delete MortalityDistributionFemale;
+        delete AgeDistribution;
+        */
     }
 
     float Node::GetLatitudeDegrees()
@@ -264,35 +286,35 @@ namespace Kernel
     {
         // Parameters set from an input filestream
         // TODO: Jeff, this is a bit hack-y that I had to do this. is there a better way?
-        NodeDemographics* demog_ptr = demographics_factory->CreateNodeDemographics(this);
-        release_assert( demog_ptr );
+        NodeDemographics* p_demog = demographics_factory->CreateNodeDemographics(this);
+        release_assert( p_demog );
 
         //////////////////////////////////////////////////////////////////////////////////////
         // Hack: commenting out for pymod work. Need real solution once I understand all this.
         if( NPFactory::GetInstance() )
         {
-            node_properties = NPFactory::GetInstance()->GetInitialValues( GetRng(), (*demog_ptr).GetJsonObject() );
+            node_properties = NPFactory::GetInstance()->GetInitialValues( GetRng(), (*p_demog).GetJsonObject() );
         }
 
         LOG_DEBUG( "Looking for Individual_Properties in demographics.json file(s)\n" );
         if( IPFactory::GetInstance() )
         {
-            IPFactory::GetInstance()->Initialize( GetExternalID(), (*demog_ptr).GetJsonObject() );
+            IPFactory::GetInstance()->Initialize( GetExternalID(), (*p_demog).GetJsonObject() );
         }
         //////////////////////////////////////////////////////////////////////////////////////
 
-        ExtractDataFromDemographics(demog_ptr);
+        ExtractDataFromDemographics(p_demog);
 
 #ifndef DISABLE_CLIMATE
         if (climate_factory->GetClimateParams().climate_structure != ClimateStructure::CLIMATE_OFF)
         {
             LOG_DEBUG( "Parsing NodeAttributes->Altitude tag in node demographics file.\n" );
-            float altitude = float((*demog_ptr)["NodeAttributes"]["Altitude"].AsDouble());
+            float altitude = float((*p_demog)["NodeAttributes"]["Altitude"].AsDouble());
             localWeather = climate_factory->CreateClimate( this, altitude, GetLatitudeDegrees(), GetRng() );
         }
 #endif
 
-        delete demog_ptr;
+        delete p_demog;
 
         SetupIntranodeTransmission();
 
@@ -736,29 +758,28 @@ namespace Kernel
         }
 
         // Immunity dependendent down-sampling
-        const NodeParams np = GetNodeParams();
-        if (np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE)
+        if (GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE)
         {
             float rate_sampling_pre  = 1.0f/(base_samp_rate_node);
-            float rate_sampling_post = 1.0f/(base_samp_rate_node*np.rel_sample_rate_immune);
+            float rate_sampling_post = 1.0f/(base_samp_rate_node*GetNodeParams().rel_sample_rate_immune);
             int   num_agents         = individualHumans.size();
 
             LOG_DEBUG_F( "Check whether any individuals need to be down-sampled based on immunity.\n" );
             for (auto individual : individualHumans) 
             {
-                if(num_agents < np.min_sampling_cell_pop)
+                if(num_agents < GetNodeParams().min_sampling_cell_pop)
                 {
                     break;
                 }
                 float mod_acq_iv = individual->GetVaccineContext()->GetInterventionReducedAcquire(TransmissionRoute::CONTACT);
-                if( individual->GetMonteCarloWeight()                                    == rate_sampling_pre                     &&  // Not down-sampled
-                    individual->GetSusceptibilityContext()->getModAcquire()*mod_acq_iv   <= np.immune_threshold_for_downsampling  &&  // Not susceptible
-                   !individual->GetSusceptibilityContext()->HasMaternalImmunity()                                                 &&  // Not waning
-                    individual->GetAge()                                                 >= np.immune_downsample_min_age          &&  // Not too young
-                    individual->GetStateChange()                                         == HumanStateChange::None                &&  // Not killed or migrating
-                   !individual->IsInfected()                                                                                        ) // Not infected
+                if( individual->GetMonteCarloWeight()                                    == rate_sampling_pre                                  &&  // Not down-sampled
+                    individual->GetSusceptibilityContext()->getModAcquire()*mod_acq_iv   <= GetNodeParams().immune_threshold_for_downsampling  &&  // Not susceptible
+                   !individual->GetSusceptibilityContext()->HasMaternalImmunity()                                                              &&  // Not waning
+                    individual->GetAge()                                                 >= GetNodeParams().immune_downsample_min_age          &&  // Not too young
+                    individual->GetStateChange()                                         == HumanStateChange::None                             &&  // Not killed or migrating
+                   !individual->IsInfected()                                                                                                     ) // Not infected
                 {
-                    if( GetRng()->SmartDraw(np.rel_sample_rate_immune) )
+                    if( GetRng()->SmartDraw(GetNodeParams().rel_sample_rate_immune) )
                     {
                         individual->UpdateMCSamplingRate(rate_sampling_post);
                     }
@@ -1008,7 +1029,7 @@ namespace Kernel
         }
         else if( bPossibleMother )
         {
-            float step_birthrate;
+            float step_birthrate = 0.0f;
 
             // If we are using an age-dependent fertility rate, then this needs to be accessed/interpolated based on the current possible-mother's age.
             if( GetNodeParams().vital_birth_dependence == VitalBirthDependence::INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR )
@@ -1162,9 +1183,7 @@ namespace Kernel
     // (4) vital_birth_dependence: INDIVIDUAL_PREGNANCIES must have initial pregnancies initialized
     void Node::PopulateFromDemographics()
     {
-        int count_new_individuals = static_cast<int>(initial_population * GetNodeParams().population_scaling_factor);
-
-        const NodeParams np = GetNodeParams();
+        int count_new_individuals = initial_population * GetNodeParams().population_scaling_factor;
 
         // Set default values for configureAndAddIndividual arguments, sampling rate, etc.
         double temp_age           = 0;
@@ -1175,12 +1194,12 @@ namespace Kernel
         float temp_risk           = 1.0f;
 
         // Base sampling rate is only modified for FIXED_SAMPLING or ADAPTED_SAMPLING_BY_IMMUNE_STATE
-        if(np.ind_sampling_type == IndSamplingType::FIXED_SAMPLING ||
-           np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE)
+        if(GetNodeParams().ind_sampling_type == IndSamplingType::FIXED_SAMPLING ||
+           GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE)
         {
-            if(np.min_sampling_cell_pop > base_samp_rate_node * count_new_individuals && count_new_individuals > 0)
+            if(GetNodeParams().min_sampling_cell_pop > base_samp_rate_node * count_new_individuals && count_new_individuals > 0)
             {
-                base_samp_rate_node = np.min_sampling_cell_pop/count_new_individuals;
+                base_samp_rate_node = GetNodeParams().min_sampling_cell_pop/count_new_individuals;
                 if(base_samp_rate_node > 1.0f)
                 {
                     base_samp_rate_node = 1.0f;
@@ -1191,12 +1210,12 @@ namespace Kernel
         }
 
         // Modify sampling rate in case of adapted sampling by population size
-        if ( np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_POPULATION_SIZE ||
-             np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE )
+        if ( GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_POPULATION_SIZE ||
+             GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE )
         {
-            if (count_new_individuals > np.max_sampling_cell_pop)
+            if (count_new_individuals > GetNodeParams().max_sampling_cell_pop)
             {
-                temp_sampling_rate *= np.max_sampling_cell_pop / count_new_individuals;
+                temp_sampling_rate *= GetNodeParams().max_sampling_cell_pop / count_new_individuals;
             }
         }
 
@@ -1217,27 +1236,27 @@ namespace Kernel
             temp_sampling_rate = temp_node_sampling_rate;
 
             // For age-dependent adaptive sampling, we need to draw an individual age before adjusting the sampling rate
-            if ( (np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP             ) ||
-                 (np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE) )
+            if ( (GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP             ) ||
+                 (GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE) )
             {
                 temp_age = calculateInitialAge(default_age);
                 temp_sampling_rate = adjustSamplingRateByAge(temp_node_sampling_rate, temp_age);
             }
 
             // Condition for rejecting potential individuals based on sampling rate in case we're using sampling
-            if ( np.ind_sampling_type != IndSamplingType::TRACK_ALL && GetRng()->e() > temp_sampling_rate )
+            if ( GetNodeParams().ind_sampling_type != IndSamplingType::TRACK_ALL && GetRng()->e() > temp_sampling_rate )
             {
                 LOG_VALID( "Not creating individual\n" );
                 continue;
             }
 
             // Draw individual's age if we haven't already done it to determine adaptive sampling rate
-            if ( (np.ind_sampling_type != IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP             ) &&
-                 (np.ind_sampling_type != IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE) )
+            if ( (GetNodeParams().ind_sampling_type != IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP             ) &&
+                 (GetNodeParams().ind_sampling_type != IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE) )
             {
                 temp_age = calculateInitialAge(default_age);
 
-                if(np.enable_percentage_children)
+                if(GetNodeParams().enable_percentage_children)
                 {
                     float percent_children = static_cast<float>(num_children)/static_cast<float>(count_new_individuals);
                     float percent_adults   = static_cast<float>(num_adults)  /static_cast<float>(count_new_individuals);
@@ -1268,7 +1287,7 @@ namespace Kernel
                 }
             }
 
-            if(np.enable_initial_sus_dist)
+            if(GetNodeParams().enable_initial_sus_dist)
             {
                 // Set initial immunity (or heterogeneous innate immunity in derived malaria code)
                 temp_susceptibility = drawInitialSusceptibility(static_cast<float>(temp_age));
@@ -1286,13 +1305,13 @@ namespace Kernel
                 }
 
                 // Down-sample if immune; cannot be infected yet, initial prevalence applied later
-                if(np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE && 
-                   temp_susceptibility < np.immune_threshold_for_downsampling && 
-                   temp_age            > np.immune_downsample_min_age)
+                if(GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE && 
+                   temp_susceptibility < GetNodeParams().immune_threshold_for_downsampling && 
+                   temp_age            > GetNodeParams().immune_downsample_min_age)
                 {
-                    if( GetRng()->SmartDraw( np.rel_sample_rate_immune ) )
+                    if( GetRng()->SmartDraw( GetNodeParams().rel_sample_rate_immune ) )
                     {
-                        temp_sampling_rate = temp_node_sampling_rate * np.rel_sample_rate_immune;
+                        temp_sampling_rate = temp_node_sampling_rate * GetNodeParams().rel_sample_rate_immune;
                     }
                     else
                     {
@@ -1302,13 +1321,13 @@ namespace Kernel
                 }
             }
 
-            if(np.enable_demographics_risk)
+            if(GetNodeParams().enable_demographics_risk)
             {
                 // set heterogeneous risk
                 release_assert( distribution_demographic_risk );
                 temp_risk = distribution_demographic_risk->Calculate( GetRng() );
             }
-            else if(np.enable_acquisition_heterogeneity)
+            else if(GetNodeParams().enable_acquisition_heterogeneity)
             {
                 temp_risk = exp(risk_ln_mu + risk_ln_sig*(GetRng()->eGauss()));
             }
@@ -1335,13 +1354,13 @@ namespace Kernel
 
         // Don't need this distribution after demographic initialization is completed
         // (If we ever want to use it in the future, e.g. in relation to Outbreak ImportCases, we can remove the following.  Clean-up would then be done only in the destructor.)
-        if( np.age_init_dist_type == DistributionType::DISTRIBUTION_COMPLEX )
+        if( GetNodeParams().age_init_dist_type == DistributionType::DISTRIBUTION_COMPLEX )
         {
             delete AgeDistribution;
             AgeDistribution = nullptr;
         }
 
-        if( np.enable_initial_sus_dist )
+        if( GetNodeParams().enable_initial_sus_dist )
         {
             delete SusceptibilityDistribution;
             SusceptibilityDistribution = nullptr;
@@ -1357,22 +1376,22 @@ namespace Kernel
         }
     }
 
-    void Node::ExtractDataFromDemographics(const NodeDemographics* demog_ptr)
+    void Node::ExtractDataFromDemographics(const NodeDemographics* p_demog)
     {
-        uint32_t temp_externalId = (*demog_ptr)["NodeID"].AsUint();
+        uint32_t temp_externalId = (*p_demog)["NodeID"].AsUint();
         release_assert( this->externalId == temp_externalId );
 
-        initial_population   = static_cast<uint32_t>((*demog_ptr)["NodeAttributes"]["InitialPopulation"].AsUint64());
+        initial_population = static_cast<int>((*p_demog)["NodeAttributes"]["InitialPopulation"].AsUint64());
 
-        _latitude  = static_cast<float>((*demog_ptr)["NodeAttributes"]["Latitude"].AsDouble());
-        _longitude = static_cast<float>((*demog_ptr)["NodeAttributes"]["Longitude"].AsDouble());
+        _latitude  = static_cast<float>((*p_demog)["NodeAttributes"]["Latitude"].AsDouble());
+        _longitude = static_cast<float>((*p_demog)["NodeAttributes"]["Longitude"].AsDouble());
 
         if(GetNodeParams().enable_birth)
         {
             if(GetNodeParams().vital_birth_dependence != VitalBirthDependence::INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR)
             {
                 LOG_DEBUG("Parsing BirthRate\n");
-                birthrate = static_cast<float>((*demog_ptr)["NodeAttributes"]["BirthRate"].AsDouble());
+                birthrate = static_cast<float>((*p_demog)["NodeAttributes"]["BirthRate"].AsDouble());
 
                 if( (GetNodeParams().vital_birth_dependence != VitalBirthDependence::FIXED_BIRTH_RATE) && (birthrate > BIRTHRATE_SANITY_VALUE) )
                 {
@@ -1382,7 +1401,7 @@ namespace Kernel
             else
             {
                 LOG_DEBUG( "Parsing IndividualAttributes->FertilityDistribution tag in node demographics file.\n" );
-                FertilityDistribution = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["FertilityDistribution"], "age", "year");
+                FertilityDistribution = NodeDemographicsDistribution::CreateDistribution((*p_demog)["IndividualAttributes"]["FertilityDistribution"], "age", "year");
             }
         }
 
@@ -1391,13 +1410,13 @@ namespace Kernel
             if(GetNodeParams().vital_death_dependence == VitalDeathDependence::NONDISEASE_MORTALITY_BY_AGE_AND_GENDER)
             {
                 LOG_DEBUG( "Parsing IndividualAttributes->MortalityDistribution tag in node demographics file.\n" );
-                MortalityDistribution = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["MortalityDistribution"], "gender", "age");
+                MortalityDistribution = NodeDemographicsDistribution::CreateDistribution((*p_demog)["IndividualAttributes"]["MortalityDistribution"], "gender", "age");
             }
             else if(GetNodeParams().vital_death_dependence == VitalDeathDependence::NONDISEASE_MORTALITY_BY_YEAR_AND_AGE_FOR_EACH_GENDER)
             {
                 LOG_DEBUG("Parsing IndividualAttributes->MortalityDistributionMale and IndividualAttributes->MortalityDistributionFemale tags in node demographics file.\n");
-                MortalityDistributionMale   = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["MortalityDistributionMale"],   "age", "year");
-                MortalityDistributionFemale = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["MortalityDistributionFemale"], "age", "year");
+                MortalityDistributionMale   = NodeDemographicsDistribution::CreateDistribution((*p_demog)["IndividualAttributes"]["MortalityDistributionMale"],   "age", "year");
+                MortalityDistributionFemale = NodeDemographicsDistribution::CreateDistribution((*p_demog)["IndividualAttributes"]["MortalityDistributionFemale"], "age", "year");
             }
             else
             {
@@ -1408,7 +1427,7 @@ namespace Kernel
         if (GetNodeParams().age_init_dist_type == DistributionType::DISTRIBUTION_SIMPLE)
         {
             LOG_DEBUG( "Parsing IndividualAttributes->AgeDistributionFlag tag in node demographics file.\n" );
-            DistributionFunction::Enum age_dist_type = DistributionFunction::Enum((*demog_ptr)["IndividualAttributes"]["AgeDistributionFlag"].AsInt());
+            DistributionFunction::Enum age_dist_type = DistributionFunction::Enum((*p_demog)["IndividualAttributes"]["AgeDistributionFlag"].AsInt());
             distribution_age = DistributionFactory::CreateDistribution( age_dist_type );
 
             float age_dist1 = 0.0;
@@ -1417,26 +1436,26 @@ namespace Kernel
             // Only allowing CONSTANT, UNIFORM, GAUSSIAN, EXPONENTIAL, WEIBULL
             if(age_dist_type == DistributionFunction::CONSTANT_DISTRIBUTION)
             {
-                age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
+                age_dist1 = float((*p_demog)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
             }
             else if(age_dist_type == DistributionFunction::UNIFORM_DISTRIBUTION)
             {
-                age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
-                age_dist2 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution2"].AsDouble());
+                age_dist1 = float((*p_demog)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
+                age_dist2 = float((*p_demog)["IndividualAttributes"]["AgeDistribution2"].AsDouble());
             }
             else if(age_dist_type == DistributionFunction::GAUSSIAN_DISTRIBUTION)
             {
-                age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
-                age_dist2 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution2"].AsDouble());
+                age_dist1 = float((*p_demog)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
+                age_dist2 = float((*p_demog)["IndividualAttributes"]["AgeDistribution2"].AsDouble());
             }
             else if(age_dist_type == DistributionFunction::EXPONENTIAL_DISTRIBUTION)
             {
-                age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
+                age_dist1 = float((*p_demog)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
             }
             else if(age_dist_type == DistributionFunction::WEIBULL_DISTRIBUTION)
             {
-                age_dist1 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
-                age_dist2 = float((*demog_ptr)["IndividualAttributes"]["AgeDistribution2"].AsDouble());
+                age_dist1 = float((*p_demog)["IndividualAttributes"]["AgeDistribution1"].AsDouble());
+                age_dist2 = float((*p_demog)["IndividualAttributes"]["AgeDistribution2"].AsDouble());
             }
             else
             {
@@ -1447,12 +1466,12 @@ namespace Kernel
         }
         else if(GetNodeParams().age_init_dist_type == DistributionType::DISTRIBUTION_COMPLEX)
         {
-            if( !(*demog_ptr).Contains( "IndividualAttributes" ) || !(*demog_ptr)["IndividualAttributes"].Contains( "AgeDistribution" ) )
+            if( !(*p_demog).Contains( "IndividualAttributes" ) || !(*p_demog)["IndividualAttributes"].Contains( "AgeDistribution" ) )
             {
                 throw IncoherentConfigurationException( __FILE__, __LINE__, __FUNCTION__, "Age_Initialization_Distribution_Type", "DISTRIBUTION_COMPLEX", "['IndividualAttributes']['AgeDistribution']", "<not found>" );
             }
             LOG_DEBUG( "Parsing IndividualAttributes->AgeDistribution tag in node demographics file.\n" );
-            AgeDistribution = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["AgeDistribution"]);
+            AgeDistribution = NodeDemographicsDistribution::CreateDistribution((*p_demog)["IndividualAttributes"]["AgeDistribution"]);
         }
 
         if (GetNodeParams().enable_initial_sus_dist)
@@ -1462,7 +1481,7 @@ namespace Kernel
             if (GetNodeParams().initial_sus_dist_type == DistributionType::DISTRIBUTION_SIMPLE)
             {
                 LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistributionFlag tag in node demographics file.\n" );
-                DistributionFunction::Enum susceptibility_dist_type = DistributionFunction::Enum((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistributionFlag"].AsInt());
+                DistributionFunction::Enum susceptibility_dist_type = DistributionFunction::Enum((*p_demog)["IndividualAttributes"]["SusceptibilityDistributionFlag"].AsInt());
                 distribution_susceptibility = DistributionFactory::CreateDistribution( susceptibility_dist_type );
 
                 float susceptibility_dist1 = 0.0;
@@ -1471,17 +1490,17 @@ namespace Kernel
                 // Only allowing CONSTANT, UNIFORM, DUAL_CONSTANT
                 if(susceptibility_dist_type == DistributionFunction::CONSTANT_DISTRIBUTION)
                 {
-                    susceptibility_dist1 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
+                    susceptibility_dist1 = float((*p_demog)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
                 }
                 else if(susceptibility_dist_type == DistributionFunction::UNIFORM_DISTRIBUTION)
                 {
-                    susceptibility_dist1 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
-                    susceptibility_dist2 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution2"].AsDouble());
+                    susceptibility_dist1 = float((*p_demog)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
+                    susceptibility_dist2 = float((*p_demog)["IndividualAttributes"]["SusceptibilityDistribution2"].AsDouble());
                 }
                 else if(susceptibility_dist_type == DistributionFunction::DUAL_CONSTANT_DISTRIBUTION)
                 {
-                    susceptibility_dist1 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
-                    susceptibility_dist2 = float((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution2"].AsDouble());
+                    susceptibility_dist1 = float((*p_demog)["IndividualAttributes"]["SusceptibilityDistribution1"].AsDouble());
+                    susceptibility_dist2 = float((*p_demog)["IndividualAttributes"]["SusceptibilityDistribution2"].AsDouble());
                 }
                 else
                 {
@@ -1492,7 +1511,7 @@ namespace Kernel
             }
             else if (GetNodeParams().initial_sus_dist_type == DistributionType::DISTRIBUTION_COMPLEX)
             {
-                LoadImmunityDemographicsDistribution(demog_ptr);
+                LoadImmunityDemographicsDistribution(p_demog);
             }
         }
 
@@ -1500,9 +1519,9 @@ namespace Kernel
         {
             LOG_DEBUG("Parsing RiskDistribution\n");
 
-            DistributionFunction::Enum risk_dist_type = DistributionFunction::Enum((*demog_ptr)["IndividualAttributes"]["RiskDistributionFlag"].AsInt());
-            float risk_dist1                          = static_cast<float>((*demog_ptr)["IndividualAttributes"]["RiskDistribution1"].AsDouble());
-            float risk_dist2                          = static_cast<float>((*demog_ptr)["IndividualAttributes"]["RiskDistribution2"].AsDouble());
+            DistributionFunction::Enum risk_dist_type = DistributionFunction::Enum((*p_demog)["IndividualAttributes"]["RiskDistributionFlag"].AsInt());
+            float risk_dist1                          = static_cast<float>((*p_demog)["IndividualAttributes"]["RiskDistribution1"].AsDouble());
+            float risk_dist2                          = static_cast<float>((*p_demog)["IndividualAttributes"]["RiskDistribution2"].AsDouble());
 
             distribution_demographic_risk = DistributionFactory::CreateDistribution(risk_dist_type);
             distribution_demographic_risk->SetParameters(risk_dist1, risk_dist2, 0.0);
@@ -1512,7 +1531,7 @@ namespace Kernel
         {
             LOG_DEBUG("Parsing AcquisitionHeterogeneityVariance\n");
 
-            acquisition_heterogeneity_variance = static_cast<float>((*demog_ptr)["IndividualAttributes"]["AcquisitionHeterogeneityVariance"].AsDouble());
+            acquisition_heterogeneity_variance = static_cast<float>((*p_demog)["IndividualAttributes"]["AcquisitionHeterogeneityVariance"].AsDouble());
 
             if(acquisition_heterogeneity_variance < 0.0f)
             {
@@ -1524,7 +1543,7 @@ namespace Kernel
         {
             LOG_DEBUG( "Parsing InfectivityOverdispersion\n" );
 
-            infectivity_overdispersion  = static_cast<float>((*demog_ptr)["NodeAttributes"]["InfectivityOverdispersion"].AsDouble());
+            infectivity_overdispersion  = static_cast<float>((*p_demog)["NodeAttributes"]["InfectivityOverdispersion"].AsDouble());
 
             if(infectivity_overdispersion < 0.0f)
             {
@@ -1536,7 +1555,7 @@ namespace Kernel
         {
             LOG_DEBUG( "Parsing InfectivityReservoirSize, InfectivityReservoirStartTime, and InfectivityReservoirEndTime\n" );
 
-            infectivity_reservoir_size       = static_cast<float>((*demog_ptr)["NodeAttributes"]["InfectivityReservoirSize"].AsDouble());
+            infectivity_reservoir_size       = static_cast<float>((*p_demog)["NodeAttributes"]["InfectivityReservoirSize"].AsDouble());
             infectivity_reservoir_start_time = 0.0f;
             infectivity_reservoir_end_time   = FLT_MAX;
 
@@ -1544,17 +1563,17 @@ namespace Kernel
             {
                 throw ConfigurationRangeException( __FILE__, __LINE__, __FUNCTION__, "InfectivityReservoirSize", infectivity_reservoir_size, 0.0f);
             }
-            if((*demog_ptr)["NodeAttributes"].Contains("InfectivityReservoirStartTime"))
+            if((*p_demog)["NodeAttributes"].Contains("InfectivityReservoirStartTime"))
             {
-                infectivity_reservoir_start_time = static_cast<float>((*demog_ptr)["NodeAttributes"]["InfectivityReservoirStartTime"].AsDouble());
+                infectivity_reservoir_start_time = static_cast<float>((*p_demog)["NodeAttributes"]["InfectivityReservoirStartTime"].AsDouble());
                 if(infectivity_reservoir_start_time < 0.0f)
                 {
                     throw ConfigurationRangeException( __FILE__, __LINE__, __FUNCTION__, "InfectivityReservoirStartTime", infectivity_reservoir_start_time, 0.0f);
                 }
             }
-            if((*demog_ptr)["NodeAttributes"].Contains("InfectivityReservoirEndTime" ))
+            if((*p_demog)["NodeAttributes"].Contains("InfectivityReservoirEndTime" ))
             {
-                infectivity_reservoir_end_time = static_cast<float>((*demog_ptr)["NodeAttributes"]["InfectivityReservoirEndTime"].AsDouble());
+                infectivity_reservoir_end_time = static_cast<float>((*p_demog)["NodeAttributes"]["InfectivityReservoirEndTime"].AsDouble());
                 if(infectivity_reservoir_end_time < infectivity_reservoir_start_time)
                 {
                     throw ConfigurationRangeException( __FILE__, __LINE__, __FUNCTION__, "InfectivityReservoirEndTime", infectivity_reservoir_end_time, infectivity_reservoir_start_time);
@@ -1566,7 +1585,7 @@ namespace Kernel
         {
             LOG_DEBUG( "Parsing InfectivityMultiplier\n" );
 
-            infectivity_multiplier = static_cast<float>((*demog_ptr)["NodeAttributes"]["InfectivityMultiplier"].AsDouble());
+            infectivity_multiplier = static_cast<float>((*p_demog)["NodeAttributes"]["InfectivityMultiplier"].AsDouble());
             if(infectivity_multiplier < 0.0f)
             {
                 throw ConfigurationRangeException( __FILE__, __LINE__, __FUNCTION__, "InfectivityMultiplier", infectivity_multiplier, 0.0f);
@@ -1577,57 +1596,57 @@ namespace Kernel
         {
             LOG_DEBUG( "Parsing InitialPrevalence\n" );
 
-            initial_prevalence = static_cast<float>((*demog_ptr)["IndividualAttributes"]["InitialPrevalence"].AsDouble());
+            initial_prevalence = static_cast<float>((*p_demog)["IndividualAttributes"]["InitialPrevalence"].AsDouble());
         }
 
         if (GetNodeParams().enable_percentage_children)
         {
             LOG_DEBUG( "Parsing PercentageChildren\n" );
 
-            initial_percentage_children = static_cast<float>((*demog_ptr)["IndividualAttributes"]["PercentageChildren"].AsDouble());
+            initial_percentage_children = static_cast<float>((*p_demog)["IndividualAttributes"]["PercentageChildren"].AsDouble());
         }
 
         if (GetNodeParams().enable_initial_prevalence)
         {
             LOG_DEBUG( "Parsing InitialPrevalenceStrains\n" );
             // Parse initial strain distribution if present
-            if((*demog_ptr)["IndividualAttributes"].Contains("InitialPrevalenceStrains"))
+            if((*p_demog)["IndividualAttributes"].Contains("InitialPrevalenceStrains"))
             {
-                if(!(*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"].IsArray())
+                if(!(*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"].IsArray())
                 {
                     throw InvalidInputDataException(__FILE__, __LINE__, __FUNCTION__, "demographics file", "InitialPrevalenceStrains must be an array.");
                 }
 
-                for(int k1 = 0; k1 < (*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"].size(); k1++)
+                for(int k1 = 0; k1 < (*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"].size(); k1++)
                 {
-                    if(!(*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"][k1].IsObject())
+                    if(!(*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"][k1].IsObject())
                     {
                         throw InvalidInputDataException(__FILE__, __LINE__, __FUNCTION__, "demographics file", "All elements of InitialPrevalenceStrains must be objects.");
                     }
 
-                    if(!(*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"][k1].Contains("Clade"))
+                    if(!(*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"][k1].Contains("Clade"))
                     {
                         throw InvalidInputDataException(__FILE__, __LINE__, __FUNCTION__, "demographics file", "Each object in InitialPrevalenceStrains must contain \"Clade\".");
                     }
                     else
                     {
-                        init_prev_clade.push_back(static_cast<int>((*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"][k1]["Clade"].AsInt()));
+                        init_prev_clade.push_back(static_cast<int>((*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"][k1]["Clade"].AsInt()));
                     }
-                    if(!(*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"][k1].Contains("Genome"))
+                    if(!(*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"][k1].Contains("Genome"))
                     {
                         throw InvalidInputDataException(__FILE__, __LINE__, __FUNCTION__, "demographics file", "Each object in InitialPrevalenceStrains must contain \"Genome\".");
                     }
                     else
                     {
-                        init_prev_genome.push_back(static_cast<int>((*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"][k1]["Genome"].AsInt()));
+                        init_prev_genome.push_back(static_cast<int>((*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"][k1]["Genome"].AsInt()));
                     }
-                    if(!(*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"][k1].Contains("Fraction"))
+                    if(!(*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"][k1].Contains("Fraction"))
                     {
                         throw InvalidInputDataException(__FILE__, __LINE__, __FUNCTION__, "demographics file", "Each object in InitialPrevalenceStrains must contain \"Fraction\".");
                     }
                     else
                     {
-                        init_prev_fraction.push_back(static_cast<float>((*demog_ptr)["IndividualAttributes"]["InitialPrevalenceStrains"][k1]["Fraction"].AsDouble())); 
+                        init_prev_fraction.push_back(static_cast<float>((*p_demog)["IndividualAttributes"]["InitialPrevalenceStrains"][k1]["Fraction"].AsDouble())); 
                         if(init_prev_fraction.back() < 0.0f)
                         {
                             throw ConfigurationRangeException( __FILE__, __LINE__, __FUNCTION__, "Fraction", init_prev_fraction.back(), 0.0f);
@@ -1667,18 +1686,18 @@ namespace Kernel
         }
         init_prev_fraction.back() = 1.0f; 
 
-        LoadOtherDiseaseSpecificDistributions(demog_ptr);
+        LoadOtherDiseaseSpecificDistributions(p_demog);
     }
 
-    void Node::LoadImmunityDemographicsDistribution(const NodeDemographics* demog_ptr)
+    void Node::LoadImmunityDemographicsDistribution(const NodeDemographics* p_demog)
     {
         // Overridden in derived classes
         LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistribution tag in node demographics file.\n" );
         // Age-specific probabilities of being susceptible (1.0 = not immune; 0.0 = immune)
-        SusceptibilityDistribution = NodeDemographicsDistribution::CreateDistribution((*demog_ptr)["IndividualAttributes"]["SusceptibilityDistribution"]);
+        SusceptibilityDistribution = NodeDemographicsDistribution::CreateDistribution((*p_demog)["IndividualAttributes"]["SusceptibilityDistribution"]);
     }
 
-    void Node::LoadOtherDiseaseSpecificDistributions(const NodeDemographics* demog_ptr)
+    void Node::LoadOtherDiseaseSpecificDistributions(const NodeDemographics* p_demog)
     {
         // Overridden in derived classes
     }
@@ -1696,23 +1715,21 @@ namespace Kernel
         float  temp_sampling_rate = 1.0f;  // default sampling rate
         float  temp_risk          = 1.0f;
 
-        const NodeParams np = GetNodeParams();
-
         // Mu and sigma parameters for log normal distribution with mean = 1.0 and variance = acquisition_heterogeneity_variance
         float risk_ln_sig = sqrt(log(acquisition_heterogeneity_variance+1.0f));
         float risk_ln_mu  = -0.5f*risk_ln_sig*risk_ln_sig;
 
         // Base sampling rate is only modified for FIXED_SAMPLING or ADAPTED_SAMPLING_BY_IMMUNE_STATE
-        if(np.ind_sampling_type == IndSamplingType::FIXED_SAMPLING ||
-           np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE)
+        if(GetNodeParams().ind_sampling_type == IndSamplingType::FIXED_SAMPLING ||
+           GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE)
         {
             temp_sampling_rate = base_samp_rate_node;
         }
 
         // Determine the prevalence from which maternal transmission events will be calculated, depending on birth model
-        if (np.enable_maternal_infect_trans) 
+        if (GetNodeParams().enable_maternal_infect_trans) 
         {
-            switch (np.vital_birth_dependence) 
+            switch (GetNodeParams().vital_birth_dependence) 
             {
             case VitalBirthDependence::FIXED_BIRTH_RATE:
             case VitalBirthDependence::POPULATION_DEP_RATE:
@@ -1726,19 +1743,19 @@ namespace Kernel
         }
 
         // For births, the adapted sampling by age uses the 'sample_rate_birth' parameter
-        if (np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP || 
-            np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE)
+        if (GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP || 
+            GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE)
         {
-            temp_sampling_rate *= np.sample_rate_birth;
+            temp_sampling_rate *= GetNodeParams().sample_rate_birth;
         }
 
         // Modify sampling rate according to population size if so specified
-        if (np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_POPULATION_SIZE || 
-            np.ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE)
+        if (GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_POPULATION_SIZE || 
+            GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_AGE_GROUP_AND_POP_SIZE)
         {
-            if (statPop > np.max_sampling_cell_pop)
+            if (statPop > GetNodeParams().max_sampling_cell_pop)
             {
-                temp_sampling_rate *= np.max_sampling_cell_pop / statPop;
+                temp_sampling_rate *= GetNodeParams().max_sampling_cell_pop / statPop;
             }
         }
 
@@ -1753,23 +1770,23 @@ namespace Kernel
         for (int i = 1; i <= count_new_individuals; i++)
         {
             // Condition for rejecting potential individuals based on sampling rate in case we're using sampling
-            if ( np.ind_sampling_type != IndSamplingType::TRACK_ALL && GetRng()->e() >= temp_sampling_rate )
+            if ( GetNodeParams().ind_sampling_type != IndSamplingType::TRACK_ALL && GetRng()->e() >= temp_sampling_rate )
             {
                 LOG_VALID( "Not creating individual\n" );
                 continue;
             }
 
-            if(np.enable_demographics_risk)
+            if(GetNodeParams().enable_demographics_risk)
             {
                 release_assert( distribution_demographic_risk );
                 temp_risk = distribution_demographic_risk->Calculate( GetRng() );
             }
-            else if(np.enable_acquisition_heterogeneity)
+            else if(GetNodeParams().enable_acquisition_heterogeneity)
             {
                 temp_risk = exp(risk_ln_mu + risk_ln_sig*(GetRng()->eGauss()));
             }
 
-            if(np.enable_maternal_infect_trans && GetRng()->SmartDraw( temp_prevalence * np.prob_maternal_infection_trans ) )
+            if(GetNodeParams().enable_maternal_infect_trans && GetRng()->SmartDraw( temp_prevalence * GetNodeParams().prob_maternal_infection_trans ) )
             {
                 temp_infections = 1;
             }
@@ -1886,7 +1903,7 @@ namespace Kernel
 
         if (individual->IsPossibleMother()) // woman of child-bearing age?
         {
-            float temp_birthrate;
+            float temp_birthrate = 0.0f;
 
             if(GetNodeParams().vital_birth_dependence == VitalBirthDependence::INDIVIDUAL_PREGNANCIES_BY_AGE_AND_YEAR) 
             { 
@@ -1903,7 +1920,7 @@ namespace Kernel
             float prob = GetNodeParams().x_birth * temp_birthrate * event_context_host->GetBirthRateMultiplier() * (DAYSPERWEEK * WEEKS_FOR_GESTATION);
             if( GetRng()->SmartDraw( prob ) ) // is the woman within any of the 40 weeks of pregnancy?
             {
-                float duration = static_cast<float>( GetRng()->e() ) * (DAYSPERWEEK * WEEKS_FOR_GESTATION); // uniform distribution over 40 weeks
+                float duration = ( GetRng()->e() ) * (DAYSPERWEEK * WEEKS_FOR_GESTATION); // uniform distribution over 40 weeks
                 LOG_DEBUG_F("Initial pregnancy of %f remaining days for %d-year-old\n", duration, (int)(individual->GetAge()/DAYSPERYEAR));
                 individual->InitiatePregnancy(duration);// initialize the pregnancy
             }
