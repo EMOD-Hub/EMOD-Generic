@@ -1999,7 +1999,12 @@ namespace Kernel
         return tempind;
     }
 
-    IIndividualHuman* Node::addNewIndividual(float mc_weight, float initial_age, int gender, int initial_infections, float susceptibility_parameter, float risk_parameter)
+    IIndividualHuman* Node::addNewIndividual(float mc_weight,
+                                             float initial_age,
+                                             int gender,
+                                             int initial_infections,
+                                             float susceptibility_parameter,
+                                             float risk_parameter)
     {
         // new creation process
         IIndividualHuman* new_individual = createHuman( m_IndividualHumanSuidGenerator(), mc_weight, initial_age, gender ); // initial_infections isn't needed here if SetInitialInfections function is used
