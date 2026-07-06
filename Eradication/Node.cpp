@@ -757,7 +757,7 @@ namespace Kernel
             updateVitalDynamics(dt);
         }
 
-        // Immunity dependendent down-sampling
+        // Immunity dependent down-sampling
         if (GetNodeParams().ind_sampling_type == IndSamplingType::ADAPTED_SAMPLING_BY_IMMUNE_STATE)
         {
             float rate_sampling_pre  = 1.0f/(base_samp_rate_node);
@@ -845,9 +845,10 @@ namespace Kernel
 
     void Node::updateInfectivity(float dt)
     {
-        // Process population to update who is infectious, etc.
+        // Process population to update who is infectious, etc...
         updatePopulationStatistics(dt);
         LOG_DEBUG_F("Statistical population of %d at Node ID = %d.\n", GetStatPop(), GetSuid().data);
+
         if ( statPop <=0 )
         {
             infectionrate = 0;
