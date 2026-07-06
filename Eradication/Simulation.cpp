@@ -1449,7 +1449,8 @@ namespace Kernel
         }
 
         if (sim.serializationFlags.test(SerializationFlags::Properties))
-        { }
+        {
+        }
     }
 
     void Simulation::serialize(IArchive& ar, NodeMap_t& node_map)
