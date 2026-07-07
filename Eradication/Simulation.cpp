@@ -260,11 +260,11 @@ namespace Kernel
 
     bool Simulation::ValidateConfiguration(const Configuration* config)
     {
-        const ClimateParams    cp = ClimateConfig::GetClimateParams();
-        const MigrationParams  mp = MigrationConfig::GetMigrationParams();
-        const NodeParams       np = NodeConfig::GetNodeParams();
-        const AgentParams      ap = AgentConfig::GetAgentParams();
-        const SimParams        sp = SimConfig::GetSimParams();
+        const ClimateParams&    cp = ClimateConfig::GetClimateParams();
+        const MigrationParams&  mp = MigrationConfig::GetMigrationParams();
+        const NodeParams&       np = NodeConfig::GetNodeParams();
+        const AgentParams&      ap = AgentConfig::GetAgentParams();
+        const SimParams&        sp = SimConfig::GetSimParams();
 
         if( demographics_factory->GetEnableDemographicsBuiltin() && cp.climate_structure != ClimateStructure::CLIMATE_OFF 
                                                                  && cp.climate_structure != ClimateStructure::CLIMATE_CONSTANT )
