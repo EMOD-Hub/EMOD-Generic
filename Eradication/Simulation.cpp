@@ -1170,7 +1170,6 @@ namespace Kernel
                                                          ClimateFactory* climate_factory )
     {
         Node* node = Node::CreateNode(this, externalNodeId, node_suid);
-        node->InitSuidGenerator(node_suid.data, nodedemographics_factory->GetNodeIDs().size());
         addNode_internal( node, nodedemographics_factory, climate_factory );
     }
 
@@ -1188,6 +1187,7 @@ namespace Kernel
         node->SetRng( m_pRngFactory->CreateRng( node->GetExternalID() ) );
 
         // Node initialization 
+        node->InitSuidGenerator(node->GetSuid().data, nodedemographics_factory->GetNodeIDs().size());
         node->SetParameters( nodedemographics_factory, climate_factory );
 
         // Populate node

@@ -128,7 +128,6 @@ namespace Kernel
     SimulationMalaria *SimulationMalaria::CreateSimulation(const ::Configuration *config)
     {
         SimulationMalaria *newsimulation = _new_ SimulationMalaria();
-
         if (newsimulation)
         {
             // This sequence is important: first
@@ -137,6 +136,7 @@ namespace Kernel
             if(!newsimulation->ValidateConfiguration(config))
             {
                 delete newsimulation;
+                newsimulation = nullptr;
                 throw GeneralConfigurationException(__FILE__, __LINE__, __FUNCTION__, "MALARIA_SIM requested with invalid configuration.");
             }
         }
@@ -146,8 +146,6 @@ namespace Kernel
 
     bool SimulationMalaria::ValidateConfiguration(const ::Configuration *config)
     {
-        // TODO: any disease-specific validation goes here.
-
         return SimulationVector::ValidateConfiguration(config);
     }
 
@@ -163,8 +161,8 @@ namespace Kernel
                                                         NodeDemographicsFactory *nodedemographics_factory,
                                                         ClimateFactory *climate_factory )
     {
-        NodeMalaria *node = NodeMalaria::CreateNode(GetContextPointer(), externalNodeId, node_suid);
-        node->InitSuidGenerator(node_suid.data, nodedemographics_factory->GetNodeIDs().size());
+        INodeContext* node = nullptr;
+        node = NodeMalaria::CreateNode( GetContextPointer(), externalNodeId, node_suid );
         addNode_internal( node, nodedemographics_factory, climate_factory );
     }
 
