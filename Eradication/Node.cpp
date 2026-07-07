@@ -1692,9 +1692,8 @@ namespace Kernel
 
     void Node::LoadImmunityDemographicsDistribution(const NodeDemographics* p_demog)
     {
-        // Overridden in derived classes
+        // If not overridden, "SusceptibilityDistribution" provides age-specific probabilities of being susceptible (1.0 = not immune; 0.0 = immune)
         LOG_DEBUG( "Parsing IndividualAttributes->SusceptibilityDistribution tag in node demographics file.\n" );
-        // Age-specific probabilities of being susceptible (1.0 = not immune; 0.0 = immune)
         SusceptibilityDistribution = NodeDemographicsDistribution::CreateDistribution((*p_demog)["IndividualAttributes"]["SusceptibilityDistribution"]);
     }
 

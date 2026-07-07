@@ -94,14 +94,14 @@ namespace Kernel
         initConfigTypeMap( "Antibody_CSP_Decay_Days",                 &antibody_csp_decay_days,           Antibody_CSP_Decay_Days_DESC_TEXT,                 1.0f, FLT_MAX,    DEFAULT_ANTIBODY_CSP_DECAY_DAYS );
         initConfigTypeMap( "Erythropoiesis_Anemia_Effect",            &erythropoiesis_anemia_effect,      Erythropoiesis_Anemia_Effect_DESC_TEXT,            0.0f, 1000.0f,    3.5f );
 
-        initConfigTypeMap("Enable_Maternal_Antibodies_Transmission", &enable_maternal_antibodies_transmission, Enable_Maternal_Antibodies_Transmission_DESC_TEXT, false, "Simulation_Type","MALARIA_SIM");
+        initConfigTypeMap("Enable_Maternal_Antibodies_Transmission",  &enable_maternal_antibodies_transmission, Enable_Maternal_Antibodies_Transmission_DESC_TEXT, false, "Simulation_Type","MALARIA_SIM");
         initConfig( "Maternal_Antibodies_Type", maternal_antibodies_type, config, MetadataDescriptor::Enum("maternal_antibodies_type", Maternal_Antibodies_Type_DESC_TEXT, MDD_ENUM_ARGS(MaternalAntibodiesType)), "Enable_Maternal_Antibodies_Transmission" );
         initConfigTypeMap( "Maternal_Antibody_Protection",        &maternal_antibody_protection,      Maternal_Antibody_Protection_DESC_TEXT,            0.0f, 1.0f,       0.1f, "Maternal_Antibodies_Type", "SIMPLE_WANING,CONSTANT_INITIAL_IMMUNITY" );
         initConfigTypeMap( "Maternal_Antibody_Decay_Rate",        &maternal_antibody_decay_rate,      Maternal_Antibody_Decay_Rate_DESC_TEXT,            0.0f, FLT_MAX,    0.01f, "Maternal_Antibodies_Type", "SIMPLE_WANING,CONSTANT_INITIAL_IMMUNITY" );
 
-        initConfig( "Innate_Immune_Variation_Type", innate_immune_variation_type, config, MetadataDescriptor::Enum("innate_immune_variation_type", Innate_Immune_Variation_Type_DESC_TEXT, MDD_ENUM_ARGS(InnateImmuneVariationType)) );
-        initConfigTypeMap( "Pyrogenic_Threshold", &pyrogenic_threshold, Pyrogenic_Threshold_DESC_TEXT, 0.1f, 20000.0f, 1000.0f );
-        initConfigTypeMap( "Fever_IRBC_Kill_Rate", &fever_IRBC_killrate, Fever_IRBC_Kill_Rate_DESC_TEXT, 0.0, 1000.0, DEFAULT_FEVER_IRBC_KILL_RATE );
+        initConfig( "Innate_Immune_Variation_Type",      innate_immune_variation_type, config, MetadataDescriptor::Enum("innate_immune_variation_type", Innate_Immune_Variation_Type_DESC_TEXT, MDD_ENUM_ARGS(InnateImmuneVariationType)) );
+        initConfigTypeMap( "Pyrogenic_Threshold",        &pyrogenic_threshold, Pyrogenic_Threshold_DESC_TEXT,  0.1f, 20000.0f, 1000.0f );
+        initConfigTypeMap( "Fever_IRBC_Kill_Rate",       &fever_IRBC_killrate, Fever_IRBC_Kill_Rate_DESC_TEXT, 0.0f, 1000.0f,    DEFAULT_FEVER_IRBC_KILL_RATE );
 
         bool configured = JsonConfigurable::Configure( config );
 
@@ -122,7 +122,7 @@ namespace Kernel
         m_ind_fever_kill_rate(0.0f),
         m_cytokine_stimulation(0.0f),
         m_parasite_density(0.0f),
-        m_antibodies_to_n_variations(MalariaAntibodyType::N_MALARIA_ANTIBODY_TYPES),
+        m_antibodies_to_n_variations( MalariaAntibodyType::N_MALARIA_ANTIBODY_TYPES ),
         m_max_fever_in_tstep(0.0f),
         m_max_parasite_density_in_tstep(0.0f),
         severetype(SevereCaseTypesEnum::NONE),
@@ -133,7 +133,8 @@ namespace Kernel
     {
     }
 
-    SusceptibilityMalaria::SusceptibilityMalaria(IIndividualHumanContext *context) : Kernel::SusceptibilityVector(context),
+    SusceptibilityMalaria::SusceptibilityMalaria(IIndividualHumanContext *context)
+        : SusceptibilityVector(context),
         m_antigenic_flag(0),
         m_maternal_antibody_strength(0),
         m_RBC(0),
@@ -186,10 +187,6 @@ namespace Kernel
         m_RBCcapacity = m_RBCproduction * AVERAGE_RBC_LIFESPAN;  // Health equilibrium of RBC is production*lifetime.  This is the total number of RBC per human
         m_RBC         = m_RBCcapacity;
 
-        // Set up variable pyrogenic thresholds + fever killing rates
-        m_ind_pyrogenic_threshold = SusceptibilityMalariaConfig::pyrogenic_threshold;
-        m_ind_fever_kill_rate = SusceptibilityMalariaConfig::fever_IRBC_killrate;
-
         switch(SusceptibilityMalariaConfig::innate_immune_variation_type)
         {
             case InnateImmuneVariationType::NONE:
@@ -220,9 +217,9 @@ namespace Kernel
             default:
                 throw BadEnumInSwitchStatementException(__FILE__, __LINE__, __FUNCTION__, "innate_immune_variation_type", SusceptibilityMalariaConfig::innate_immune_variation_type, InnateImmuneVariationType::pairs::lookup_key(SusceptibilityMalariaConfig::innate_immune_variation_type));
          }
- 
-        LOG_DEBUG_F("Individual pyrogenic threshold = %0.2f\n", m_ind_pyrogenic_threshold);
-        LOG_DEBUG_F("Individual maximum fever killing rate = %0.2f\n", m_ind_fever_kill_rate);
+
+        m_ind_pyrogenic_threshold = SusceptibilityMalariaConfig::pyrogenic_threshold; // set base values
+        m_ind_fever_kill_rate = SusceptibilityMalariaConfig::fever_IRBC_killrate;     // set base values
 
         m_CSP_antibody = MalariaAntibodyCSP::CreateAntibody(0);
 
@@ -353,17 +350,17 @@ namespace Kernel
 
             // reset antigenic presence and IRBC counters
             m_antigenic_flag = 0;
-            for (auto antibody : m_active_MSP_antibodies)
+            for(auto antibody : m_active_MSP_antibodies)
             {
                 antibody->ResetCounters();
             }
 
-            for (auto antibody : m_active_PfEMP1_minor_antibodies)
+            for(auto antibody : m_active_PfEMP1_minor_antibodies)
             {
                 antibody->ResetCounters();
             }
 
-            for (auto antibody : m_active_PfEMP1_major_antibodies)
+            for(auto antibody : m_active_PfEMP1_major_antibodies)
             {
                 antibody->ResetCounters();
             }
@@ -557,7 +554,7 @@ namespace Kernel
         float prob_fatal    = get_fatal_disease_probability(dt, anemiaFatalFraction, parasiteFatalFraction, feverFatalFraction);
 
         // sanity check on inconsistently specified sigmoids
-        if ( prob_fatal > prob_severe )
+        if( prob_fatal > prob_severe )
         {
             LOG_WARN_F( "Probability of mortality (%f) exceeds probability of severe disease (%f)!\n", prob_fatal, prob_severe);
         }
@@ -567,7 +564,6 @@ namespace Kernel
             // reset unique-incident counter
             days_between_incidents = float(SusceptibilityMalariaConfig::minDaysBetweenClinicalIncidents);
 
-            // TODO: this function is getting big enough that we might break out the three inner bits (i.e. UpdateSymptomaticCases, UpdateSevereCases, UpdateFatalCases)
             // check for new symptomatic case and accumulate days with fever
             if ( current_fever > SusceptibilityMalariaConfig::clinicalFeverThreshold_high )
             {
@@ -620,7 +616,7 @@ namespace Kernel
             if ( rand < prob_fatal * parent->GetVaccineContext()->GetInterventionReducedMortality(TransmissionRoute::CONTACT) )
             {
                 if ( InfectionConfig::enable_disease_mortality )
-                { 
+                {
                     parent->GetEventContext()->Die( HumanStateChange::KilledByInfection ); // set the individual's HumanStateChange to KilledByInfection
 
                     // Here is where we can use the partial fractions to do some logging of deaths by cause, for example:
@@ -906,7 +902,7 @@ namespace Kernel
         float prob_parasite = dt *          Sigmoid::variableWidthSigmoid( m_parasite_density,  parasiteThreshold,  parasiteInvWidth );
         float prob_fever    = dt *          Sigmoid::variableWidthSigmoid( get_fever(),         feverThreshold,     feverInvWidth );
 
-        // total probability of something happening is one minus the product of each event not occuring
+        // total probability of something happening is one minus the product of each event not occurring
         float total_prob = 1.0f - ( (1.0f - prob_anemia) * (1.0f - prob_parasite) * (1.0f - prob_fever) );
 
         // adjust partial probabilities passed in by reference
