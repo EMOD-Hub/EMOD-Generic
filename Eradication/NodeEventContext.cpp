@@ -195,7 +195,7 @@ namespace Kernel
         IIndividualEventObserver * pObserver,
         const EventTrigger::Enum& trigger
     )
-    { 
+    {
         broadcaster_impl.RegisterObserver( pObserver, trigger );
     }
 
@@ -204,9 +204,7 @@ namespace Kernel
         const EventTrigger::Enum& trigger
     )
     {
-        //LOG_INFO( "[UnregisterIndividualEventObserver] Putting individual event observer into the disposed observers list .\n" );
         broadcaster_impl.UnregisterObserver( pObserver, trigger );
-        //LOG_INFO( "[UnregisterIndividualEventObserver] Putting individual event observer into the disposed observers list .\n" );
     }
 
     void NodeEventContextHost::TriggerObservers(
@@ -278,9 +276,6 @@ namespace Kernel
     bool NodeEventContextHost::GiveIntervention( INodeDistributableIntervention* iv )
     {
         node_interventions.push_back( iv );
-        // We need to increase the reference counter here to represent fact that interventions container
-        // is keeping a pointer to the intervention. (Otherwise when event coordinator calls Release,
-        // and ref counter is decremented, the intervention object will delete itself.)
         iv->AddRef();
         iv->SetContextTo( this );
         return true;
