@@ -111,7 +111,8 @@ namespace Kernel
         return configured;
     }
 
-    SusceptibilityMalaria::SusceptibilityMalaria() : SusceptibilityVector(),
+    SusceptibilityMalaria::SusceptibilityMalaria()
+        : SusceptibilityVector(),
         m_antigenic_flag(0),
         m_maternal_antibody_strength(0),
         m_RBC(0),
@@ -279,10 +280,11 @@ namespace Kernel
 
     void SusceptibilityMalaria::Update(float dt)
     {
-        LOG_VALID("\n--------------------------------------------------\n\n");
-        release_assert( params() );
+        // dt = 0.125 when infected, 1.0 otherwise
+        release_assert(params());
 
         m_age_dependent_biting_risk = BitingRiskAgeFactor();
+
         recalculateBloodCapacity();
 
         // Red blood cell dynamics
@@ -350,19 +352,19 @@ namespace Kernel
 
             // reset antigenic presence and IRBC counters
             m_antigenic_flag = 0;
-            for(auto antibody : m_active_MSP_antibodies)
+            for( auto p_antibody : m_active_MSP_antibodies )
             {
-                antibody->ResetCounters();
+                p_antibody->ResetCounters();
             }
 
-            for(auto antibody : m_active_PfEMP1_minor_antibodies)
+            for( auto p_antibody : m_active_PfEMP1_minor_antibodies )
             {
-                antibody->ResetCounters();
+                p_antibody->ResetCounters();
             }
 
-            for(auto antibody : m_active_PfEMP1_major_antibodies)
+            for( auto p_antibody : m_active_PfEMP1_major_antibodies )
             {
-                antibody->ResetCounters();
+                p_antibody->ResetCounters();
             }
         }
 
@@ -747,7 +749,6 @@ namespace Kernel
 
         default:
             throw NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "Only implemented InitializeAntibodyVariants functionality MSP1 and PfEMP1 major/minor so far" );
-            //throw BadEnumInSwitchStatementException( __FILE__, __LINE__, __FUNCTION__, "type", (int)type, MalariaAntibodyType::pairs::lookup_key(type) );
         }
 
         variants = InitialVariants( int(n_total*frac_variants), n_total );
@@ -826,7 +827,6 @@ namespace Kernel
             break;
 
         default:
-            //throw NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "Only implemented IMalariaAntibody query for CSP, MSP1, PfEMP1 major/minor so far" );
             throw BadEnumInSwitchStatementException( __FILE__, __LINE__, __FUNCTION__, "type", int(type), MalariaAntibodyType::pairs::lookup_key(type) );
         }
         
@@ -890,7 +890,7 @@ namespace Kernel
         return fraction;
     }
 
-    float SusceptibilityMalaria::get_combined_probability ( 
+    float SusceptibilityMalaria::get_combined_probability (
             float dt, 
             float anemiaThreshold, float anemiaInvWidth,
             float parasiteThreshold, float parasiteInvWidth,
@@ -984,8 +984,8 @@ namespace Kernel
     {
         // update maximum fever (is zero if undetectable through whole time step)
         float fever_ = get_fever();
-        if ( fever_ > params()->malaria_params->feverDetectionThreshold && 
-             fever_ > m_max_fever_in_tstep )
+        if( fever_ > params()->malaria_params->feverDetectionThreshold && 
+            fever_ > m_max_fever_in_tstep )
         {
             m_max_fever_in_tstep = fever_;
         }
@@ -1010,7 +1010,7 @@ namespace Kernel
         return severetype;
     }
 
-    long long SusceptibilityMalaria::get_RBC_count() const          { return m_RBC; }
+    int64_t SusceptibilityMalaria::get_RBC_count() const          { return m_RBC; }
 
     // TODO: use this to calculate parasite density?  trigger end of asexual cycle update timing?
     void SusceptibilityMalaria::remove_RBCs(int64_t infectedAsexual, int64_t infectedGametocytes, double RBC_destruction_multiplier)
@@ -1025,8 +1025,13 @@ namespace Kernel
 
     void SusceptibilityMalaria::serialize(IArchive& ar, SusceptibilityMalaria* obj)
     {
+        if( ar.IsWriter() && (obj->GetParent() != nullptr) )
+        {
+        }
+
         SusceptibilityVector::serialize(ar, obj);
         SusceptibilityMalaria& susceptibility = *obj;
+
 // Boost serialiation didn't include this member.            ar.labelElement("m_antigenic_flag") & susceptibility.m_antigenic_flag;
         ar.labelElement("m_maternal_antibody_strength") & susceptibility.m_maternal_antibody_strength;
         ar.labelElement("m_CSP_antibody") & susceptibility.m_CSP_antibody;

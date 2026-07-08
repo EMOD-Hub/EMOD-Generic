@@ -11,12 +11,12 @@
 
 namespace Kernel
 {
-    struct IIndividualHumanInterventionsContext;
     struct IIndividualHuman;
+    struct IIndividualHumanInterventionsContext;
     struct INodeEventContext;
     class IPKeyValueContainer;
 
-    struct IDMAPI IIndividualHumanEventContext : public ISupports 
+    struct IIndividualHumanEventContext : public ISupports 
     {
         virtual float  GetAge()              const = 0;
         virtual int    GetGender()           const = 0;

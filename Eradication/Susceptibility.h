@@ -43,9 +43,7 @@ namespace Kernel
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
     public:
         static Susceptibility* Susceptibility::CreateSusceptibility(IIndividualHumanContext* context, float immmod, float riskmod);
-
         virtual ~Susceptibility();
-
         virtual void SetContextTo(IIndividualHumanContext* context);
         IIndividualHumanContext* GetParent();
 
@@ -75,7 +73,6 @@ namespace Kernel
         Susceptibility(IIndividualHumanContext* context);
 
         virtual void Initialize(float immmod, float riskmod);
-
         IIndividualHumanContext* parent;
 
         IWaningEffect*           effect_mat_acquire;

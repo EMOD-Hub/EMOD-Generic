@@ -60,7 +60,6 @@ namespace Kernel
         virtual IIndividualHumanEventContext*           GetEventContext()                   = 0;
         virtual IIndividualHumanContext*                GetIndividualContext()              = 0;
         virtual ISusceptibilityContext*                 GetSusceptibilityContext()    const = 0;
-
         virtual INodeContext*                           GetParent()                   const = 0;
 
         virtual IPKeyValueContainer* GetProperties() = 0;

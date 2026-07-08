@@ -15,6 +15,8 @@ namespace Kernel
 {
     #define TWELVE_WEEKS    (12*7.0f)
     #define FOURTEEN_WEEKS  (14*7.0f)
+    #define SIX_WEEKS       (6*7.0f)
+    #define EIGHTEEN_MONTHS (18*30.0f)
 
     float IndividualHumanHIVConfig::maternal_transmission_ART_multiplier = 1.0f;
 
@@ -51,8 +53,8 @@ namespace Kernel
 
     IndividualHumanHIV::IndividualHumanHIV(suids::suid _suid, float monte_carlo_weight, float initial_age, int gender)
         : IndividualHumanSTI(_suid, monte_carlo_weight, initial_age, gender)
-        , pos_num_partners_while_CD4500plus(0)
-        , neg_num_partners_while_CD4500plus(0)
+        , pos_num_partners_while_CD4500plus( 0 )
+        , neg_num_partners_while_CD4500plus( 0 )
     {
         LOG_DEBUG("created IndividualHumanHIV\n");
     }
@@ -130,7 +132,7 @@ namespace Kernel
     {
         bool birth_this_timestep = IndividualHumanSTI::UpdatePregnancy( dt );
         
-        if( is_pregnant  && broadcaster )
+        if( is_pregnant && broadcaster )
         {
             if( ((pregnancy_timer - dt) < (DAYSPERWEEK*WEEKS_FOR_GESTATION - TWELVE_WEEKS)) && 
                                           ((DAYSPERWEEK*WEEKS_FOR_GESTATION - TWELVE_WEEKS) <= pregnancy_timer) )

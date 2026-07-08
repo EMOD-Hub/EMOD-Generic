@@ -52,18 +52,6 @@ namespace Kernel
 
         bool bRet = JsonConfigurable::Configure( config );
 
-        LOG_DEBUG_F( "baseacqoffset = %f\n",  baseacqoffset );
-        LOG_DEBUG_F( "basetranoffset = %f\n", basetranoffset );
-        LOG_DEBUG_F( "basemortoffset = %f\n", basemortoffset );
-
-        LOG_DEBUG_F( "immune_decay = %d\n", enable_immune_decay );
-        LOG_DEBUG_F( "acqdecayrate= %f\n",   acqdecayrate );
-        LOG_DEBUG_F( "trandecayrate = %f\n", trandecayrate );
-        LOG_DEBUG_F( "mortdecayrate = %f\n", mortdecayrate );
-        LOG_DEBUG_F( "baseacqupdate = %f\n",  baseacqupdate );
-        LOG_DEBUG_F( "basetranupdate = %f\n", basetranupdate );
-        LOG_DEBUG_F( "basemortupdate = %f\n", basemortupdate );
-
         return bRet;
     }
 
@@ -240,14 +228,14 @@ namespace Kernel
 
     bool Susceptibility::IsImmune() const
     {
-        // Overriden as needed (used by TB)
+        // Overriden as needed
         release_assert(false);
         return false;
     }
 
     void Susceptibility::InitNewInfection()
     {
-        // Overriden as needed (used by TB)
+        // Overriden as needed
         release_assert(false);
     }
 

@@ -39,6 +39,7 @@ namespace Kernel
 
     class IndividualHumanConfig : public JsonConfigurable
     {
+        GET_SCHEMA_STATIC_WRAPPER(IndividualHumanConfig)
         friend class Simulation;
         friend class IndividualHuman;
         friend class IndividualHumanTyphoid;
@@ -47,7 +48,7 @@ namespace Kernel
         friend class IndividualHumanPolioConfig;
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        GET_SCHEMA_STATIC_WRAPPER( IndividualHumanConfig )
+
 
     public:
         virtual bool Configure( const Configuration* config ) override;
@@ -119,8 +120,8 @@ namespace Kernel
         virtual void              BroadcastDeath()                       override;
         virtual void              Die( HumanStateChange )                override;
 
-        virtual INodeEventContext*   GetNodeEventContext()               override; // for campaign cost reporting in e.g. HealthSeekingBehavior
-        virtual IPKeyValueContainer* GetProperties()                     override;
+        virtual INodeEventContext*        GetNodeEventContext()          override; // for campaign cost reporting in e.g. HealthSeekingBehavior
+        virtual IPKeyValueContainer*      GetProperties()                override;
 
         virtual const std::string& GetPropertyReportString() const override { return m_PropertyReportString; }
         virtual bool AtHome() const override;
@@ -261,7 +262,6 @@ namespace Kernel
         IIndividualEventBroadcaster* broadcaster;
 
     private:
-
         bool m_newly_symptomatic;
 
         virtual IIndividualHumanContext* GetContextPointer();
