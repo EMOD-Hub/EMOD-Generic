@@ -58,15 +58,12 @@ class Monitor(threading.Thread):
                 cmd = self.config_json["bin_path"].split()
                 if self.scenario_type != 'pymod':
                     cmd.extend( ["-C", "config.json" ] )
-
             # python-script-path is optional parameter.
             if "PSP" in self.config_json:
                 cmd.extend( [ "--python-script-path", self.config_json["PSP"] ] )
-            print( "Calling '" + str(cmd) + "' from " + self.sim_dir + "\n" )
             print( "Running '" + str(self.config_json["parameters"]["Config_Name"]) + "' in " + self.sim_dir + "\n" )
-            shell_val = False
 
-            proc = subprocess.Popen( cmd, stdout=stdout, stderr=stderr, cwd=self.sim_dir, shell=shell_val )
+            proc = subprocess.Popen( cmd, stdout=stdout, stderr=stderr, cwd=self.sim_dir )
             proc.wait()
         endtime = datetime.datetime.now()
         self.duration = endtime - starttime
@@ -79,9 +76,9 @@ class Monitor(threading.Thread):
             for file in os.listdir( os.path.join( self.scenario_path, "output" ) ):
                 if ( file.endswith( ".json" ) or file.endswith( ".csv" ) or file.endswith( ".h5" ) or file.endswith( ".db" ) ) and file[0] != ".":
                     self.verify( self.sim_dir, file, "Channels" )
-        elif self.scenario_type == 'science':
+        elif self.scenario_type == 'science':   # self.report <> None:
             self.science_verify( self.sim_dir )
-        elif self.scenario_type == 'pymod':
+        elif self.scenario_type == 'pymod':   # self.report <> None:
             self.pymod_verify( self.sim_dir )
 
         self.__class__.sems.release()
@@ -101,19 +98,23 @@ class Monitor(threading.Thread):
         try:
             ru.load_json( os.path.join(ru.cache_cwd, ref_path) )
         except Exception:
-            print("Exception {0} {1} loading json file: {2}.".format(sys.exc_info()[0], sys.exc_info()[1], (os.path.join(ru.cache_cwd, ref_path))))
-            return
+            fail_validation = True
+            failure_txt = "Exception {0} {1} loading json file: {2}.".format(sys.exc_info()[0], sys.exc_info()[1], (os.path.join(ru.cache_cwd, ref_path)))
+            print(failure_txt)
+            return True, failure_txt
 
         ref_json = ru.load_json( os.path.join( sim_dir, ref_path ) )
 
         if "Channels" not in ref_json.keys():
-            ref_md5  = ru.md5_hash_of_file( ref_path )
-            test_md5 = ru.md5_hash_of_file( test_path )
-            if ref_md5 == test_md5:
+            # switched from MD5 to equality so files generated on different OS can still pass
+            # without dealing with line endings
+            test_json = ru.load_json( os.path.join( sim_dir, test_path ) )
+            if ref_json == test_json:
                 return False, ""
             else:
-                print( self.scenario_path + " completed but did not match reference! (" + str(self.duration) + ") - " + report_name )
-                return True, "Non-Channel JSON failed MD5."
+                stt = ""
+                print( self.scenario_path + stt + " completed but did not match reference! (" + str(self.duration) + ") - " + report_name )
+                return True, "Non-Channel JSON failed equality."
         else:
             test_json = ru.load_json( os.path.join( sim_dir, test_path ) )
 
@@ -163,7 +164,8 @@ class Monitor(threading.Thread):
             if len(failures) > 0:
                 fail_validation = True
                 failure_txt += "Channel Timestep Reference_Value Test_Value\n" + ''.join(failures)
-                print( self.scenario_path + " completed but did not match reference! (" + str(self.duration) + ") - " + report_name )
+                stt = ""
+                print( self.scenario_path + stt + " completed but did not match reference! (" + str(self.duration) + ") - " + report_name )
 
         return fail_validation, failure_txt
 
@@ -199,6 +201,10 @@ class Monitor(threading.Thread):
             if ref_line != test_line:
                 ref_line_tokens = ref_line.split(',')
                 test_line_tokens = test_line.split(',')
+                if len(ref_line_tokens) != len(test_line_tokens):
+                    failure_txt = "First mismatch at line {0} of {1}:\nDifferent number of columns: {2} vs {3}:\nreference line...\n{4}\nvs test line...\n{5}".format( line_num, ref_path, len(ref_line_tokens), len(test_line_tokens), ref_line, test_line )
+                    fail_validation = True
+                    break
                 for col_idx in range( len( ref_line_tokens) ):
                     if ref_line_tokens[col_idx] != test_line_tokens[col_idx]:
                         break
@@ -267,7 +273,7 @@ class Monitor(threading.Thread):
             num_steps_test = len(test_json["Channels"][chan_title]["Data"])
             if( (min_tstep_ind > num_steps_ref) or (min_tstep_ind > num_steps_test) ):
                 failures.append("Reference has "+str(num_steps_ref) + " steps and test has "+str(num_steps_test)+" steps, but the header says the min Timesteps is "+str(min_tstep_ind))
-                print("!!!! Reference has "+str(num_steps_ref) + " steps and test has "+str(num_steps_test)+" steps, but the header says the min Timesteps is "+str(min_tstep_ind))
+                print("!!!! Reference["+str(chan_title)+"] has "+str(num_steps_ref) + " steps and test has "+str(num_steps_test)+" steps, but the header says the min Timesteps is "+str(min_tstep_ind))
                 return
             num_lines = 10
             num_skipped = 0
@@ -286,7 +292,7 @@ class Monitor(threading.Thread):
         return self.sim_dir
 
     # Adding optional report_name parameter, defaults to InsetChart
-    def verify(self, sim_dir, report_name="InsetChart.json", key="Channels" ):
+    def verify(self, sim_dir, report_name="InsetChart.json", key="Channels" ) -> bool:
         #print( "Checking if report " + report_name + " based on key " + key + " matches reference..." )
         # check if insetchart matched
         # since ICJ now has header, just calculate md5 on data section
@@ -364,11 +370,6 @@ class Monitor(threading.Thread):
                     print( self.scenario_path + " passed (" + str(self.duration) + ") - " + report_name )
                     #print( self.scenario_path + " passed." )
                     self.report.addPassingTest(self.scenario_path, self.duration, os.path.join(self.sim_dir, report_name))
-                    try:
-                        os.remove( os.path.join( self.sim_dir, "test.txt" ) )
-                    except PermissionError:
-                        # May be locked by another process
-                        pass
                 else:
                     fail_text = self.scenario_path + " SFT failed."
                     print( self.scenario_path + " failed (" + str(self.duration) + ") - " + report_name )
