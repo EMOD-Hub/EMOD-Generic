@@ -368,13 +368,14 @@ namespace Kernel
         }
         else
         {
+            float infection_time = currenttime;
             for (int i = 0; i < numsteps; i++)
             {
                 bool prev_symptomatic = IsSymptomatic();
                 for (auto it = infections.begin(); it != infections.end();)
                 {
                     // Update infection
-                    (*it)->Update(infection_timestep, susceptibility);
+                    (*it)->Update( infection_timestep, susceptibility );
                     // Note that the newly calculated infestiousness from the Update above won't get used (shed) until the next timestep
                     // Node::updateInfectivity is called before Individual::Update (this function)
 
@@ -420,12 +421,12 @@ namespace Kernel
                 }
 
                 m_newly_symptomatic = !prev_symptomatic && IsSymptomatic();
-                if( m_newly_symptomatic && broadcaster != nullptr )
+                if( m_newly_symptomatic && broadcaster )
                 {
                     broadcaster->TriggerObservers( GetEventContext(), EventTrigger::NewlySymptomatic );
                 }
 
-                if( prev_symptomatic && !IsSymptomatic() && broadcaster ) //no longer symptomatic 
+                if( prev_symptomatic && broadcaster && !IsSymptomatic() ) //no longer symptomatic 
                 {
                     broadcaster->TriggerObservers( GetEventContext(), EventTrigger::SymptomaticCleared );
                 }
@@ -435,6 +436,8 @@ namespace Kernel
                     break; // If individual died, no need to keep simulating infections.
                 }
                 interventions->InfectiousLoopUpdate( infection_timestep );
+
+                infection_time += infection_timestep;
             }
             if( StateChange != HumanStateChange::KilledByInfection )
             {
