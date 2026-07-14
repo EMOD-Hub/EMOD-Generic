@@ -69,7 +69,6 @@ namespace Kernel
     , m_parasites_detected_by_blood_smear(0.0)
     , m_parasites_detected_by_new_diagnostic(0.0)
     , m_gametocytes_detected(0.0)
-    //, m_clinical_symptoms()
     , m_CSP_antibody(nullptr)
     , m_initial_infected_hepatocytes(0)
     {
@@ -155,7 +154,6 @@ namespace Kernel
             malaria_susceptibility->init_maternal_antibodies(malaria_node->GetMaternalAntibodyFraction());
         }
     }
-
 
     IInfection* IndividualHumanMalaria::createInfection(suids::suid _suid)
     {
@@ -602,15 +600,15 @@ namespace Kernel
     {
         IndividualHumanVector::serialize(ar, obj);
         IndividualHumanMalaria& individual = *obj;
-        ar.labelElement("m_inv_microliters_blood") & individual.m_inv_microliters_blood;
-        ar.labelElement("m_male_gametocytes") & individual.m_male_gametocytes;
-        ar.labelElement("m_female_gametocytes") & individual.m_female_gametocytes;
-        ar.labelElement("m_female_gametocytes_by_strain"); Kernel::serialize(ar, individual.m_female_gametocytes_by_strain);
-        ar.labelElement("m_parasites_detected_by_blood_smear") & individual.m_parasites_detected_by_blood_smear;
-        ar.labelElement("m_parasites_detected_by_new_diagnostic") & individual.m_parasites_detected_by_new_diagnostic;
-        ar.labelElement("m_gametocytes_detected") & individual.m_gametocytes_detected;
-        ar.labelElement("m_clinical_symptoms"); ar.serialize( individual.m_clinical_symptoms, ClinicalSymptomsEnum::CLINICAL_SYMPTOMS_COUNT);
-        ar.labelElement("m_initial_infected_hepatocytes") & individual.m_initial_infected_hepatocytes;
+        ar.labelElement( "m_inv_microliters_blood"        ) & individual.m_inv_microliters_blood;
+        ar.labelElement( "m_male_gametocytes"             ) & individual.m_male_gametocytes;
+        ar.labelElement( "m_female_gametocytes"           ) & individual.m_female_gametocytes;
+        ar.labelElement( "m_female_gametocytes_by_strain" ); Kernel::serialize(ar, individual.m_female_gametocytes_by_strain);
+        ar.labelElement( "m_parasites_detected_by_blood_smear") & individual.m_parasites_detected_by_blood_smear;
+        ar.labelElement( "m_parasites_detected_by_new_diagnostic") & individual.m_parasites_detected_by_new_diagnostic;
+        ar.labelElement( "m_gametocytes_detected"         ) & individual.m_gametocytes_detected;
+        ar.labelElement( "m_clinical_symptoms"            ); ar.serialize( individual.m_clinical_symptoms, ClinicalSymptomsEnum::CLINICAL_SYMPTOMS_COUNT);
+        ar.labelElement( "m_initial_infected_hepatocytes" ) & individual.m_initial_infected_hepatocytes;
 
         // ----------------------------------------------------------------------
         // --- This is a pointer to an object held in the Susceptibility object. 

@@ -29,7 +29,6 @@ namespace Kernel
         static float disease_death_CD4_alpha;
         static float disease_death_CD4_inverse_beta;
 
-        // TBHIV
         static float days_between_symptomatic_and_death_lambda;
         static float days_between_symptomatic_and_death_inv_kappa;
 

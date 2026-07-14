@@ -49,29 +49,32 @@ namespace Kernel
 
     struct IMalariaSusceptibility : public ISupports
     {
-        virtual float  get_fever()              const = 0;
-        virtual float  get_fever_celsius()      const = 0;
-        virtual float  get_cytokines()          const = 0;
-        virtual double get_RBC_availability()   const = 0;
-        virtual float  get_parasite_density()   const = 0;
-        virtual float  get_inv_microliters_blood() const = 0;
-        virtual void   ResetMaximumSymptoms()         = 0;
-        virtual float  GetMaxFever()            const = 0;
-        virtual float  GetMaxParasiteDensity()  const = 0;
-        virtual float  GetHemoglobin()          const = 0;
-        virtual bool   CheckForParasitesWithTest( int test_type ) const = 0;
-        virtual float  CheckParasiteCountWithTest( int test_type ) const = 0;
+        virtual float   get_fever()                 const = 0;
+        virtual float   get_fever_celsius()         const = 0;
+        virtual float   get_cytokines()             const = 0;
+        virtual double  get_RBC_availability()      const = 0;
+        virtual int64_t get_RBC_count()             const = 0;
+        virtual float   get_parasite_density()      const = 0;
+        virtual float   get_inv_microliters_blood() const = 0;
+        virtual void    ResetMaximumSymptoms()            = 0;
+        virtual float   GetMaxFever()               const = 0;
+        virtual float   GetMaxParasiteDensity()     const = 0;
+        virtual float   GetHemoglobin()             const = 0;
+        virtual bool    CheckForParasitesWithTest( int test_type ) const = 0;
+        virtual float   CheckParasiteCountWithTest( int test_type ) const = 0;
         virtual float  get_fraction_of_variants_with_antibodies(MalariaAntibodyType::Enum type) const = 0;
+
         virtual IMalariaAntibody* RegisterAntibody( MalariaAntibodyType::Enum type, int variant, float capacity=0.0f ) = 0;
         virtual SevereCaseTypesEnum::Enum  CheckSevereCaseType() const = 0;
+
         virtual void BoostAntibody( MalariaAntibodyType::Enum type, int variant, float boosted_antibody_concentration ) = 0;
-        virtual long long get_RBC_count()             const = 0;
-        virtual void   SetAntigenPresent() = 0;
-        virtual void   UpdateActiveAntibody( pfemp1_antibody_t &pfemp1_variant, int minor_variant, int major_variant ) = 0;
-        virtual void   remove_RBCs(int64_t infectedAsexual, int64_t infectedGametocytes, double RBC_destruction_multiplier) = 0;
-        virtual float  get_maternal_antibodies() const = 0;
-        virtual void   init_maternal_antibodies(float mother_factor) = 0;
-        virtual float  get_fever_killing_rate() const = 0;
+        virtual void SetAntigenPresent() = 0;
+        virtual void UpdateActiveAntibody( pfemp1_antibody_t &pfemp1_variant, int minor_variant, int major_variant ) = 0;
+        virtual void remove_RBCs( int64_t infectedAsexual, int64_t infectedGametocytes, double RBC_destruction_multiplier ) = 0;
+
+        virtual float get_maternal_antibodies() const = 0;
+        virtual void  init_maternal_antibodies(float mother_factor) = 0;
+        virtual float get_fever_killing_rate() const = 0;
     };
 
     struct IMalariaHumanContext : public ISupports

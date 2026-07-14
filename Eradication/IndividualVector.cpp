@@ -73,6 +73,11 @@ namespace Kernel
             vector_susceptibility = susceptibility->GetSusceptibilityVector();
             release_assert(vector_susceptibility);
         }
+
+        if(interventions && !vector_interventions)
+        {
+            vector_interventions = static_cast<VectorInterventionsContainer*>(interventions);
+        }
     }
 
     void IndividualHumanVector::setupInterventionsContainer()
@@ -99,7 +104,7 @@ namespace Kernel
 
         // Expose individual to all pools in weighted collection (i.e. indoor + outdoor)
         LOG_VALID("Exposure to contagion: vector to human.\n");
-        parent->ExposeIndividual( this, transmissionGroupMembershipByRoute[TransmissionRoute::CONTACT], dt);
+        parent->ExposeIndividual( this, transmissionGroupMembershipByRoute[TransmissionRoute::CONTACT], dt );
 
         // Decide based on total exposure to infectious bites
         // whether the individual becomes infected and with what strain
@@ -137,14 +142,8 @@ namespace Kernel
         release_assert( cp );
         release_assert( susceptibility );
         release_assert( interventions );
-#if 1
-        // get rid of this. but seems to be needed for malaria garki. :( :( :(
-        if( !vector_interventions )
-        {
-            vector_interventions = static_cast<VectorInterventionsContainer*>(interventions);
-        }
-#endif
         release_assert( vector_interventions );
+
         float acqmod = GetRelativeBitingRate() * susceptibility->getModAcquire() * interventions->GetInterventionReducedAcquire(tx_route);
 
         switch( tx_route )
@@ -206,7 +205,6 @@ namespace Kernel
             }
         }
 
-        // This optimization seems to make sense. Works for Dengue. Need to test for Vector/Malaria of course.
         if( infectiousness == 0 )
         {
             return;

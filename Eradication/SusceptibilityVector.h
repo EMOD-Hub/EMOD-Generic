@@ -40,6 +40,8 @@ namespace Kernel
         virtual void  SetRelativeBitingRate( float rate ) override;
         virtual float GetRelativeBitingRate(void) const override;
 
+        static float LinearBitingFunction(float);
+
         // The code for this function is in the header file so that it can be easily used by DLLs
         static float SurfaceAreaBitingFunction(float input_age)
         {
@@ -60,7 +62,6 @@ namespace Kernel
             return 1.0f;
         }
 
-        static float LinearBitingFunction(float input_age);
 
     protected:
         SusceptibilityVector();

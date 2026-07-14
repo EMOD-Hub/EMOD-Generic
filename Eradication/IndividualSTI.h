@@ -53,8 +53,7 @@ namespace Kernel
     {
         friend class SimulationSTI;
 
-        IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        DECLARE_SERIALIZABLE( IndividualHumanSTI )
+        IMPLEMENT_DEFAULT_REFERENCE_COUNTING();
 
     public:
         static IndividualHumanSTI *CreateHuman( INodeContext *context, suids::suid _suid, float monte_carlo_weight = 1.0f, float initial_age = 0.0f, int gender = 0);
@@ -181,5 +180,7 @@ namespace Kernel
 
         typedef std::map<suids::suid, float> PartnerIdToRelEndTimeMap_t;
         std::vector<std::vector<PartnerIdToRelEndTimeMap_t>> num_unique_partners; // vector(by time period) of vector(by relationship type) of maps of IndividualID to Relationship End Time
+
+        DECLARE_SERIALIZABLE(IndividualHumanSTI);
     };
 }

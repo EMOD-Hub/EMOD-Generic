@@ -265,7 +265,6 @@ namespace Kernel
 
     void IndividualHuman::CreateSusceptibility(float init_mod_acq, float init_mod_risk)
     {
-        LOG_DEBUG_F( "%s: Creating susceptibility; individual %d; init_mod_acq %f; init_mod_risk %f\n", __FUNCTION__, suid.data, init_mod_acq, init_mod_risk );
         susceptibility = Susceptibility::CreateSusceptibility(this, init_mod_acq, init_mod_risk);
     }
 
@@ -369,13 +368,14 @@ namespace Kernel
         }
         else
         {
+            float infection_time = currenttime;
             for (int i = 0; i < numsteps; i++)
             {
                 bool prev_symptomatic = IsSymptomatic();
                 for (auto it = infections.begin(); it != infections.end();)
                 {
                     // Update infection
-                    (*it)->Update(infection_timestep, susceptibility);
+                    (*it)->Update( infection_timestep, susceptibility );
                     // Note that the newly calculated infestiousness from the Update above won't get used (shed) until the next timestep
                     // Node::updateInfectivity is called before Individual::Update (this function)
 
@@ -398,7 +398,7 @@ namespace Kernel
                             if ( IndividualHumanConfig::enable_immunity )
                             {
                                 susceptibility->UpdateInfectionCleared();
-                            }
+                            } //Immunity update: survived infection
 
                             delete *it;
                             it = infections.erase(it);
@@ -421,12 +421,12 @@ namespace Kernel
                 }
 
                 m_newly_symptomatic = !prev_symptomatic && IsSymptomatic();
-                if( m_newly_symptomatic && broadcaster != nullptr )
+                if( m_newly_symptomatic && broadcaster )
                 {
                     broadcaster->TriggerObservers( GetEventContext(), EventTrigger::NewlySymptomatic );
                 }
 
-                if( prev_symptomatic && !IsSymptomatic() && broadcaster ) //no longer symptomatic 
+                if( prev_symptomatic && broadcaster && !IsSymptomatic() ) //no longer symptomatic 
                 {
                     broadcaster->TriggerObservers( GetEventContext(), EventTrigger::SymptomaticCleared );
                 }
@@ -436,6 +436,8 @@ namespace Kernel
                     break; // If individual died, no need to keep simulating infections.
                 }
                 interventions->InfectiousLoopUpdate( infection_timestep );
+
+                infection_time += infection_timestep;
             }
             if( StateChange != HumanStateChange::KilledByInfection )
             {
@@ -501,7 +503,6 @@ namespace Kernel
                 broadcaster->TriggerObservers( GetEventContext(), EventTrigger::EighteenMonthsOld );
             }
         }
-
     }
 
     void IndividualHuman::UpdateAge( float dt )
@@ -709,7 +710,7 @@ namespace Kernel
                 }
                 else
                 {
-                    float return_prob;
+                    float return_prob = 0.0f;
                     switch(migration_type)
                     {
                         case MigrationType::LOCAL_MIGRATION:    return_prob = migration_info->GetMigrationParams().local_roundtrip_prob;  break;
@@ -759,7 +760,7 @@ namespace Kernel
                 throw BadEnumInSwitchStatementException( __FILE__, __LINE__, __FUNCTION__, "trip_type", trip_type, MigrationType::pairs::lookup_key( migration_type ) );
         }
 
-        if( duration_value > 0.0f )
+        if(duration_value > 0.0f)
         {
             duration_value = static_cast<float>( GetRng()->expdist( 1.0f/duration_value ) );
         }
@@ -1004,6 +1005,7 @@ namespace Kernel
 
         infectiousness = inf_mod_iv * susceptibility->getModTransmit();
         float iv_mod_ratio = (inf_mod_iv + FLT_EPSILON)/(raw_inf + FLT_EPSILON);
+
         LOG_VALID_F("Infectiousness for individual %d = %f (raw=%f, immunity modifier=%f, intervention modifier=%f, weight=%f).\n",
             GetSuid().data, infectiousness, raw_inf, susceptibility->getModTransmit(), iv_mod_ratio, m_mc_weight);
     }

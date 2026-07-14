@@ -2,7 +2,7 @@
 #pragma once
 
 #include "Common.h"
-#include "IMalariaAntibody.h" // for MalariaAntibodyType enum, containers of IMalariaAntibody pointers
+#include "IMalariaAntibody.h"
 #include "MalariaEnums.h"
 #include "MalariaContexts.h"
 #include "SusceptibilityVector.h"
@@ -76,38 +76,43 @@ namespace Kernel
         virtual void Update(float dt) override;
         virtual void UpdateInfectionCleared() override;
 
-        // functions to mediate interaction with Infection_Malaria objects
-        virtual void UpdateActiveAntibody( pfemp1_antibody_t &pfemp1_variant, int minor_variant, int major_variant ) override;
-
         virtual IMalariaSusceptibility* GetSusceptibilityMalaria() override;
 
-        // IMalariaSusceptibility interfaces
-        virtual void   SetAntigenPresent() override;
-        virtual float  get_fever()              const override;
-        virtual float  get_fever_celsius()      const override;
-        virtual float  get_cytokines()          const override;
-        virtual double get_RBC_availability()   const override;
-        virtual float  get_parasite_density()   const override;
-        virtual float  GetMaxFever()            const override;
-        virtual float  GetMaxParasiteDensity()  const override;
-        virtual float  GetHemoglobin()          const override;
-        virtual bool   CheckForParasitesWithTest( int test_type = MALARIA_TEST_BLOOD_SMEAR ) const override;
-        virtual float  CheckParasiteCountWithTest( int test_type = MALARIA_TEST_BLOOD_SMEAR ) const override;
+        // -------------------------------------
+        // --- IMalariaSusceptibility interfaces
+        // -------------------------------------
+        virtual void    SetAntigenPresent()               override;
+        virtual float   get_fever()                 const override;
+        virtual float   get_fever_celsius()         const override;
+        virtual float   get_fever_killing_rate()    const override;
+        virtual float   get_cytokines()             const override;
+        virtual double  get_RBC_availability()      const override;
+        virtual int64_t get_RBC_count()             const override;
+        virtual float   get_parasite_density()      const override;
+        virtual float   get_maternal_antibodies()   const override;
+        virtual float   get_inv_microliters_blood() const override;
+        virtual float   GetMaxFever()               const override;
+        virtual float   GetMaxParasiteDensity()     const override;
+        virtual float   GetHemoglobin()             const override;
+        virtual bool    CheckForParasitesWithTest( int test_type = MALARIA_TEST_BLOOD_SMEAR ) const override;
+        virtual float   CheckParasiteCountWithTest( int test_type = MALARIA_TEST_BLOOD_SMEAR ) const override;
+
         virtual float  get_fraction_of_variants_with_antibodies(MalariaAntibodyType::Enum type) const override;
+
         virtual IMalariaAntibody* RegisterAntibody(MalariaAntibodyType::Enum type, int variant, float capacity=0.0f) override;
         virtual SevereCaseTypesEnum::Enum  CheckSevereCaseType() const override;
-        virtual float  get_inv_microliters_blood() const override;
-        virtual void   ResetMaximumSymptoms() override;
-        virtual long long get_RBC_count() const override;
-        virtual float  get_maternal_antibodies() const override;
-        virtual void   init_maternal_antibodies(float mother_factor) override;
-        virtual float  get_fever_killing_rate() const override;
+
+        // functions to mediate interaction with Infection_Malaria objects
+        virtual void BoostAntibody( MalariaAntibodyType::Enum type, int variant, float boosted_antibody_concentration ) override;
+        virtual void UpdateActiveAntibody( pfemp1_antibody_t &pfemp1_variant, int minor_variant, int major_variant ) override;
+
+        virtual void ResetMaximumSymptoms() override;
+        virtual void init_maternal_antibodies(float mother_factor) override;
 
         // functions to mediate interactions with red blood cell count
-        virtual void   remove_RBCs(int64_t infectedAsexual, int64_t infectedGametocytes, double RBC_destruction_multiplier) override;
+        virtual void remove_RBCs(int64_t infectedAsexual, int64_t infectedGametocytes, double RBC_destruction_multiplier) override;
 
     protected:
-
         const SimulationConfig *params() const;
 
         // Functions to enforce antigen-antibody reactions (e.g. stimulation, decay)
@@ -122,9 +127,6 @@ namespace Kernel
         // Immune initialization
         void InitializeAntibodyVariants(MalariaAntibodyType::Enum type, float frac_variants);
         std::vector<int> InitialVariants(int n_choose, int n_total);
-
-        // IAntibodyBoostable functions
-        virtual void BoostAntibody( MalariaAntibodyType::Enum type, int variant, float boosted_antibody_concentration ) override;
 
         // Clinical outcome calculations
         void  updateClinicalStates( float dt );
@@ -147,6 +149,7 @@ namespace Kernel
         // containers for antibody objects
         float m_maternal_antibody_strength;
         IMalariaAntibody* m_CSP_antibody;
+
         std::vector<IMalariaAntibody*> m_active_MSP_antibodies;
         std::vector<IMalariaAntibody*> m_active_PfEMP1_minor_antibodies;
         std::vector<IMalariaAntibody*> m_active_PfEMP1_major_antibodies;

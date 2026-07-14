@@ -314,8 +314,8 @@ public:
         return m_Properties ;
     }
 
-    virtual float GetCoInfectiveTransmissionFactor()           const override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
-    virtual float GetCoInfectiveAcquisitionFactor()           const override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual float GetCoInfectiveTransmissionFactor() const override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
+    virtual float GetCoInfectiveAcquisitionFactor()  const override { throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented."); }
 
     virtual void UpdateSTINetworkParams(const char *prop = nullptr, const char* new_value = nullptr) override {throw Kernel::NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "The method or operation is not implemented.");}
 
@@ -348,7 +348,7 @@ public:
 
     virtual float GetDebutAge() const override
     {
-        return 13*365 ;
+        return 13 * 365;
     }
 
     virtual RelationshipSet_t& GetRelationships() override

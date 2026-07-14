@@ -192,7 +192,7 @@ namespace Kernel
             debut_inv_kappa = IndividualHumanSTIConfig::debutAgeYrsFemale_inv_kappa;
             debut_lambda    = IndividualHumanSTIConfig::debutAgeYrsFemale_lambda;
         }
-        float debut_draw = float(DAYSPERYEAR * GetRng()->Weibull2( debut_lambda, debut_inv_kappa ));
+        float debut_draw = float( DAYSPERYEAR * GetRng()->Weibull2( debut_lambda, debut_inv_kappa ) );
         LOG_DEBUG_F( "debut_draw = %f with lamba %f and kappa %f\n", debut_draw, debut_lambda, debut_inv_kappa );
         sexual_debut_age = (std::max)(min_age_sexual_debut_in_days, debut_draw );
 
@@ -285,7 +285,7 @@ namespace Kernel
                 multiplier = IndividualHumanSTIConfig::maleToFemaleRelativeInfectivityMultipliers.back();
                 LOG_DEBUG_F( "Using value of %f for age-asymmetric infection multiplier for female age (in yrs) %f.\n", float(multiplier), (float) age_in_yrs );
             }
-            else 
+            else
             {
                 // do some linear interp math.
                 float left_age = IndividualHumanSTIConfig::maleToFemaleRelativeInfectivityAges[idx-1];
@@ -404,17 +404,14 @@ namespace Kernel
 
         // Check for debut
         bool is_post_debut = m_age >= sexual_debut_age;
-        if( was_pre_debut && is_post_debut )
+        if( was_pre_debut && is_post_debut && broadcaster )
         {
             // Broadcast STIDebut
-            if( broadcaster )
-            {
-                broadcaster->TriggerObservers( GetEventContext(), EventTrigger::STIDebut );
-            }
+            broadcaster->TriggerObservers( GetEventContext(), EventTrigger::STIDebut );
         }
     }
 
-   void IndividualHumanSTI::UpdateHistory( const IdmDateTime& rCurrentTime, float dt )
+    void IndividualHumanSTI::UpdateHistory( const IdmDateTime& rCurrentTime, float dt )
    {
        while( (last_6_month_relationships.size() > 0) && ((rCurrentTime.time - last_6_month_relationships.front().second) > SIX_MONTHS) )
        {
@@ -504,7 +501,7 @@ namespace Kernel
 
         infectiousness = 0;
 
-        if ( infections.size() == 0 ) 
+        if( infections.size() == 0 )
             return;
         else if( infections.size() > 1 )
             throw NotYetImplementedException( __FILE__, __LINE__, __FUNCTION__, "STI/HIV does not support superinfection yet." );
@@ -551,9 +548,8 @@ namespace Kernel
         {
             for (auto relationship : relationships)
             {
-                release_assert( relationship ); 
-                relationship->Consummate( GetRng(), dt ); // JHHB: ugh. Passing rng pointers around does not seem right
-                LOG_VALID_F( "Individual %d is consummating relationship %d.\n", GetSuid().data, relationship->GetSuid().data );
+                release_assert( relationship );
+                relationship->Consummate( GetRng(), dt );
             }
         }
     }
@@ -568,24 +564,24 @@ namespace Kernel
             return;
         }
 
-        LOG_INFO_F( "(EEL) %s: %s\n", __FUNCTION__, toString().c_str() );
+        LOG_DEBUG_F( "(EEL) %s: %s\n", __FUNCTION__, toString().c_str() );
 
         // Would be nice to log the infecting relationship.
 
         // Let's just put some paranoid code to make sure that we are in relationship with an infected individual
         if( infstrain )
         {
-            LOG_INFO_F( "(EEL) individual %lu infected by relationship partner %lu\n", GetSuid().data, infstrain->GetCladeID() );
+            LOG_DEBUG_F( "(EEL) individual %lu infected by relationship partner %lu\n", GetSuid().data, infstrain->GetCladeID() );
         }
         else
         {
-            LOG_INFO_F( "(EEL) individual %lu infected, but relationship partner cannot be identified\n", GetSuid().data );
+            LOG_DEBUG_F( "(EEL) individual %lu infected, but relationship partner cannot be identified\n", GetSuid().data );
         }
 
         if( infstrain && infstrain->GetCladeID() == 0 )
         {
             release_assert( infstrain );
-            LOG_INFO_F( "(EEL) individual %lu infected by relationship partner %lu\n", GetSuid().data, infstrain->GetCladeID() );
+            LOG_DEBUG_F( "(EEL) individual %lu infected by relationship partner %lu\n", GetSuid().data, infstrain->GetCladeID() );
             if( infstrain->GetCladeID() == 0 )
             {
                 // Can't throw exception because there are even non-outbreak cases where this is valid (e.g., infecting relationship ended this time step
@@ -605,7 +601,6 @@ namespace Kernel
     void IndividualHumanSTI::UpdateEligibility()
     {
         // DJK: Could return if pre-sexual-debut, related to <ERAD-1869>
-        //release_assert( p_sti_node );
         if( p_sti_node == nullptr )
         {
             return;
@@ -1088,6 +1083,7 @@ namespace Kernel
                         rel->Migrate();
 
                         partner->migrating_because_of_partner = true ;
+
                         partner->StateChange                  = HumanStateChange::Migrating;
                         partner->migration_destination        = this->migration_destination ;
                         partner->migration_type               = this->migration_type;
@@ -1191,12 +1187,9 @@ namespace Kernel
 
         m_TotalCoitalActs += numActs;
 
-        if( (prev_total_coital_acts == 0) && (m_TotalCoitalActs > 0) )
+        if( (prev_total_coital_acts == 0) && (m_TotalCoitalActs > 0) && broadcaster)
         {
-            if( broadcaster )
-            {
-                broadcaster->TriggerObservers( GetEventContext(), EventTrigger::FirstCoitalAct );
-            }
+            broadcaster->TriggerObservers( GetEventContext(), EventTrigger::FirstCoitalAct );
         }
     }
 

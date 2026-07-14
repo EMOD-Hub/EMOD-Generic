@@ -70,7 +70,6 @@ namespace Kernel
         virtual void UnregisterTravelDistributionSource(ITravelLinkedDistributionSource *tles, TravelEventType type) override;
 
         virtual const suids::suid & GetId() const override;
-
         virtual void SetContextTo(INodeContext* context) override;
         virtual void SetupTxRoutes() override;
 
