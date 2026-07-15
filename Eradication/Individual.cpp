@@ -337,15 +337,7 @@ namespace Kernel
         float infection_timestep = dt;
         int numsteps = 1;
 
-        // eventually need to correct for time step in case of individuals moving among communities with different adapted time steps
-
         StateChange = HumanStateChange::None;
-
-        //  Aging
-        if (IndividualHumanConfig::aging)
-        {
-            UpdateAge( dt );
-        }
 
         // Adjust time step for infections as specified by infection_updates_per_tstep.  A value of 0 reverts to a single update per time step for backward compatibility.
         // There is no special meaning of 1 being hourly.  For hourly infection updates with a tstep of one day, one must now specify 24.
@@ -360,8 +352,14 @@ namespace Kernel
         // Process list of infections
         if (infections.size() == 0) // don't need to process infections or go hour by hour
         {
+            if (IndividualHumanConfig::aging)
+            {
+                UpdateAge( dt );
+            }
+
             release_assert( susceptibility );
             susceptibility->Update(dt);
+
             release_assert( interventions );
             interventions->InfectiousLoopUpdate( dt );
             interventions->Update( dt );
@@ -371,6 +369,11 @@ namespace Kernel
             float infection_time = currenttime;
             for (int i = 0; i < numsteps; i++)
             {
+                if (IndividualHumanConfig::aging)
+                {
+                    UpdateAge( infection_timestep );
+                }
+
                 bool prev_symptomatic = IsSymptomatic();
                 for (auto it = infections.begin(); it != infections.end();)
                 {
@@ -439,6 +442,7 @@ namespace Kernel
 
                 infection_time += infection_timestep;
             }
+
             if( StateChange != HumanStateChange::KilledByInfection )
             {
                 interventions->Update( dt );
@@ -552,9 +556,8 @@ namespace Kernel
                 birth_this_timestep = true;
 
                 // Broadcast GaveBirth
-                if( GetNodeEventContext() != nullptr )
+                if( broadcaster )
                 {
-                    IIndividualEventBroadcaster* broadcaster = GetNodeEventContext()->GetIndividualEventBroadcaster();
                     broadcaster->TriggerObservers( GetEventContext(), EventTrigger::GaveBirth );
                 }
             }
@@ -571,9 +574,8 @@ namespace Kernel
             pregnancy_timer = duration; 
 
             // Broadcast Pregnant
-            if( GetNodeEventContext() != nullptr )
+            if( broadcaster )
             {
-                IIndividualEventBroadcaster* broadcaster = GetNodeEventContext()->GetIndividualEventBroadcaster();
                 broadcaster->TriggerObservers( GetEventContext(), EventTrigger::Pregnant );
             }
         }
