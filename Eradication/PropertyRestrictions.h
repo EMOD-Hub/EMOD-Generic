@@ -44,8 +44,8 @@ namespace Kernel
 
         int Size() const;
         void Add( std::map< std::string, std::string >& rMap );
-        bool Qualifies( const Container& rPropertiesContainer );
-        bool Qualifies( const tProperties* pPropsMap ) const;
+        bool Qualifies( const Container& rPropertiesContainer ) const;
+        bool Qualifies( const tProperties* pPropsMap );
         std::string GetAsString() const;
 
     private:
