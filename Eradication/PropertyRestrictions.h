@@ -45,14 +45,11 @@ namespace Kernel
         int Size() const;
         void Add( std::map< std::string, std::string >& rMap );
         bool Qualifies( const Container& rPropertiesContainer );
-        bool Qualifies( const tProperties* pPropsMap );
+        bool Qualifies( const tProperties* pPropsMap ) const;
         std::string GetAsString() const;
 
     private:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         std::list< Container > _restrictions;
-#pragma warning( pop )
 
     protected:
         virtual PropertyRestriction* CreateObject() override;

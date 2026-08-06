@@ -342,7 +342,7 @@ namespace Kernel
         }
     }
 
-    bool StandardInterventionDistributionEventCoordinator::DistributeInterventionsToIndividual( IIndividualHumanEventContext *ihec, ICampaignCostObserver *pICCO )
+    bool StandardInterventionDistributionEventCoordinator::DistributeInterventionsToIndividual( IIndividualHumanEventContext* ihec, ICampaignCostObserver* pICCO )
     {
         // instantiate and distribute intervention
         LOG_DEBUG_F( "Attempting to instantiate intervention of class %s\n", log_intervention_name.c_str());

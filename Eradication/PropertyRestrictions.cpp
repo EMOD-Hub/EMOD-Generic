@@ -21,7 +21,7 @@ namespace Kernel
         return result;
     }
     
-        std::vector<std::string> const & PropertyRestriction::GetRestrictions() const
+    std::vector<std::string> const & PropertyRestriction::GetRestrictions() const
     {
         release_assert(m_configured);
         return m_restrictions;
@@ -35,8 +35,8 @@ namespace Kernel
 
     template<class Key, class KeyValue, class Container>
     PropertyRestrictions<Key,KeyValue,Container>::PropertyRestrictions()
-    : JsonConfigurableCollection("PropertyRestrictions")
-    , _restrictions()
+        : JsonConfigurableCollection("PropertyRestrictions")
+        , _restrictions()
     {
     }
 
@@ -67,8 +67,8 @@ namespace Kernel
 
         // We have a list of json objects. The format/logic is as follows. For input:
         // [
-        //  {"Restrictions": ["Character:Good", "Income:High"]},
-        //  {"Restrictions": ["Character:Bad",  "Income:Low" ]}
+        //  {"Restrictions": [ "Character:Good", "Income:High" ]},
+        //  {"Restrictions": [ "Character:Bad", "Income:Low" ]}
         // ]
         // We give the intervention if the individuals has
         // Good Character AND High Income OR Bad Character AND Low Income.
@@ -101,12 +101,12 @@ namespace Kernel
     }
 
     template<class Key, class KeyValue, class Container>
-    bool PropertyRestrictions<Key, KeyValue, Container>::Qualifies( const Container& rPropertiesContainer )
+    bool PropertyRestrictions<Key, KeyValue, Container>::Qualifies( const Container& rPropertiesContainer ) const
     {
         bool qualifies = true;
 
         // individual has to have one of these properties
-        for( Container& container : _restrictions)
+        for( const Container& container : _restrictions)
         {
             qualifies = false;
             bool meets_property_restriction_criteria = true;
