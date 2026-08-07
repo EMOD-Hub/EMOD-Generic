@@ -12,17 +12,18 @@ namespace Kernel
 {
     class LarvalHabitatParams : public JsonConfigurable, public IComplexJsonConfigurable
     {
+    public:
+        LarvalHabitatParams() {}
+
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
-        public:
-            LarvalHabitatParams() {}
-            virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
-            virtual json::QuickBuilder GetSchema() override;
-            virtual bool  HasValidDefault() const override { return false; }
-            std::map< VectorHabitatType::Enum, const Configuration* > habitat_map;
+
+        virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
+        virtual json::QuickBuilder GetSchema() override;
+        std::map< VectorHabitatType::Enum, const Configuration* > habitat_map;
     };
 
-    class IDMAPI VectorSpeciesParameters : public JsonConfigurable
+    class VectorSpeciesParameters : public JsonConfigurable
     {
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
@@ -32,8 +33,6 @@ namespace Kernel
         virtual ~VectorSpeciesParameters();
         bool Configure( const ::Configuration *json );
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         LarvalHabitatParams habitat_params;
         float aquaticarrhenius1;
         float aquaticarrhenius2;
@@ -70,6 +69,5 @@ namespace Kernel
     private:
         std::string _species;
 
-#pragma warning( pop )
     };
 }
