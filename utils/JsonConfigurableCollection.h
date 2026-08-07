@@ -44,11 +44,6 @@ namespace Kernel
         virtual int32_t Release() { return 1; }
 
         // IComplexJsonConfigurable methods
-        virtual bool  HasValidDefault() const override
-        {
-            return false;
-        }
-
         virtual json::QuickBuilder GetSchema() override
         {
             JsonConfigurableClass* p_jcc = CreateObject();

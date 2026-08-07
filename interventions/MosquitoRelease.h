@@ -23,7 +23,6 @@ namespace Kernel
             ResistanceHegGenetics() {}
             virtual void ConfigureFromJsonAndKey( const Configuration *, const std::string &key ) override;
             virtual json::QuickBuilder GetSchema() override;
-            virtual bool  HasValidDefault() const override { return false; }
             VectorAllele::Enum pesticideResistance;
             VectorAllele::Enum HEG;
     };

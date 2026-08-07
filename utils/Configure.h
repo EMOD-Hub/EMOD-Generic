@@ -42,7 +42,6 @@ namespace Kernel
     {
         virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) = 0;
         virtual json::QuickBuilder GetSchema() = 0;
-        virtual bool  HasValidDefault() const = 0;
     };
 
 #define FIXED_STRING_SET_LABEL "Fixed String Set"
@@ -853,7 +852,6 @@ namespace Kernel
 
             virtual json::QuickBuilder GetSchema() override;
             virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
-            virtual bool  HasValidDefault() const override { return false; }
             json::Element _json;
             static void serialize(IArchive&, InterventionConfig&);
     };
@@ -884,7 +882,6 @@ namespace Kernel
             NodeSetConfig(json::QuickInterpreter* qi);
             virtual json::QuickBuilder GetSchema() override;
             virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
-            virtual bool  HasValidDefault() const override { return false; }
             json::Element _json;
     };
 
@@ -896,7 +893,6 @@ namespace Kernel
             EventConfig(json::QuickInterpreter* qi);
             json::QuickBuilder GetSchema() override;
             virtual void ConfigureFromJsonAndKey( const Configuration* inputJson, const std::string& key ) override;
-            virtual bool  HasValidDefault() const override { return false; }
             json::Element _json;
     };
 
