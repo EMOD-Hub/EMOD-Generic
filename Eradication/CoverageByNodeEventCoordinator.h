@@ -12,7 +12,7 @@ namespace Kernel
 
     public:
         CoverageByNodeEventCoordinator();
-        virtual bool Configure( const Configuration * inputJson );
+        virtual bool Configure( const Configuration * inputJson ) override;
 
     protected:
         virtual bool TargetedIndividualIsCovered(IIndividualHumanEventContext *ihec);

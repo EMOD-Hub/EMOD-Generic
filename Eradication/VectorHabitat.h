@@ -79,8 +79,9 @@ namespace Kernel
     class ConstantHabitat : public VectorHabitat
     {
     public:
+        ConstantHabitat();
+
         virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
-        ConstantHabitat();  //boring... inherit
     protected:
         DECLARE_SERIALIZABLE(ConstantHabitat);
     };
@@ -88,8 +89,10 @@ namespace Kernel
     class TemporaryRainfallHabitat : public VectorHabitat
     {
     public:
-        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
         TemporaryRainfallHabitat();
+
+        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
+
     protected:
         DECLARE_SERIALIZABLE(TemporaryRainfallHabitat);
     };
@@ -97,8 +100,9 @@ namespace Kernel
     class WaterVegetationHabitat : public VectorHabitat
     {
     public:
-        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
         WaterVegetationHabitat();
+
+        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
     protected:
         DECLARE_SERIALIZABLE(WaterVegetationHabitat);
     };
@@ -106,8 +110,9 @@ namespace Kernel
     class HumanPopulationHabitat : public VectorHabitat
     {
     public:
-        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
         HumanPopulationHabitat();
+
+        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
     protected:
         DECLARE_SERIALIZABLE(HumanPopulationHabitat);
     };
@@ -115,8 +120,10 @@ namespace Kernel
     class BrackishSwampHabitat : public VectorHabitat
     {
     public:
-        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
         BrackishSwampHabitat();
+
+        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
+
     protected:
         DECLARE_SERIALIZABLE(BrackishSwampHabitat);
     };
@@ -145,11 +152,11 @@ namespace Kernel
     class LinearSplineHabitat : public VectorHabitat
     {
     public:
-        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
         LinearSplineHabitat();
 
-        virtual bool Configure( const Configuration* inputJson );
+        virtual bool Configure( const Configuration* inputJson ) override;
 
+        virtual void UpdateCurrentLarvalCapacity(float dt, INodeContext* node) override;
     protected:
         float day_of_year;
         InterpolatedValueMap capacity_distribution;

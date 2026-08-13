@@ -10,12 +10,12 @@ namespace Kernel
     {
         DECLARE_FACTORY_REGISTERED(IndividualIVFactory, MultiInterventionDistributor, IDistributableIntervention)
     
-    public: 
+    public:
         MultiInterventionDistributor();
         MultiInterventionDistributor( const MultiInterventionDistributor& rMaster );
         virtual ~MultiInterventionDistributor();
 
-        bool Configure( const Configuration* config );
+        virtual bool Configure( const Configuration* config ) override;
 
         virtual void Update(float dt) override;
         virtual bool Distribute(IIndividualHumanInterventionsContext *context, ICampaignCostObserver * const pICCO ) override;

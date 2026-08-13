@@ -62,7 +62,7 @@ public:
 
 protected:
     SpatialReport();
-    virtual bool Configure( const Configuration* config );
+    virtual bool Configure( const Configuration* config ) override;
 
     virtual void Accumulate( std::string channel_name, int nodeid, float value );
 

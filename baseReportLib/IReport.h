@@ -54,7 +54,7 @@ namespace Kernel
         // ---------------------
         // --- ISupport Methods
         // ---------------------
-        virtual bool Configure( const Configuration* inputJson ) { return true ; };
+        virtual bool Configure( const Configuration* inputJson ) override { return true ; };
         virtual bool Validate( const ISimulationContext* parent_sim ) { return true; }
         virtual int32_t AddRef()  { return -1 ; }
         virtual int32_t Release() { return -1 ; }

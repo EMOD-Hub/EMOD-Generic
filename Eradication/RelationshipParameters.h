@@ -6,14 +6,14 @@
 
 namespace Kernel 
 {
-    class IDMAPI RelationshipParameters : public IRelationshipParameters, public JsonConfigurable
+    class RelationshipParameters : public IRelationshipParameters, public JsonConfigurable
     {
     public:
         RelationshipParameters( RelationshipType::Enum type );
         ~RelationshipParameters();
 
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
-        virtual bool Configure( const Configuration* config );
+        virtual bool Configure( const Configuration* config ) override;
 
         RelationshipType::Enum GetType() const { return m_Type; }
 
@@ -26,8 +26,6 @@ namespace Kernel
         virtual const std::vector<float>& GetMigrationActionsCDF() const { return m_MigrationActionsCDF; }
 
     private:
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         RelationshipType::Enum m_Type;
         float m_CoitalActRate;
         float m_DurationWeibullHeterogeneity;
@@ -35,6 +33,5 @@ namespace Kernel
         Sigmoid m_CondomUsage;
         std::vector<RelationshipMigrationAction::Enum> m_MigrationActions;
         std::vector<float> m_MigrationActionsCDF;
-#pragma warning( pop )
     };
 }

@@ -30,7 +30,7 @@ public:
     static SerializationParameters* GetInstance();
     static void ResetInstance();
     std::deque<int32_t> GetSerializedTimeSteps( int32_t steps, float start_time, float step_size ) const;
-    virtual bool Configure( const Configuration *config );    
+    virtual bool Configure( const Configuration *config ) override;
     SerializationPrecision::Enum GetPrecision() const;
     void CheckConfiguration() const;
 

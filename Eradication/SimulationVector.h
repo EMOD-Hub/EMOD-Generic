@@ -9,7 +9,7 @@
 
 namespace Kernel
 {
-    struct IVectorMigrationReporting ;
+    struct IVectorMigrationReporting;
 
     class SimulationVector : public Simulation, public IVectorSimulationContext
     {
@@ -51,8 +51,8 @@ namespace Kernel
 
         // holds a vector of migrating vectors for each node rank
         vector<vector<IVectorCohort*>> migratingVectorQueues;
-        vector< IVectorMigrationReporting* > vector_migration_reports ;
-        std::map<suids::suid,float> node_populations_map ;
+        vector< IVectorMigrationReporting* > vector_migration_reports;
+        std::map<suids::suid, float> node_populations_map;
 
         virtual void resolveMigration() override;
         virtual void setupMigrationQueues() override;

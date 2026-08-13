@@ -17,7 +17,7 @@ namespace Kernel
 
     public:
         LarvalHabitatMultiplierSpec();
-        virtual bool Configure(const Configuration* config);
+        virtual bool Configure(const Configuration* config) override;
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
         float GetFactor() const;
@@ -41,7 +41,7 @@ namespace Kernel
         virtual LarvalHabitatMultiplierSpec* CreateObject() override;
     };
 
-    class IDMAPI LarvalHabitatMultiplier : public JsonConfigurable
+    class LarvalHabitatMultiplier : public JsonConfigurable
     {
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
@@ -55,7 +55,7 @@ namespace Kernel
         // ------------------------------------
         // --- JsonConfigurable
         // ------------------------------------
-        virtual bool Configure(const Configuration * config);
+        virtual bool Configure(const Configuration * config) override;
 
         bool WasInitialized() const;
         float GetMultiplier( VectorHabitatType::Enum, const std::string& species ) const;
@@ -71,8 +71,6 @@ namespace Kernel
                                            const std::string & species_name);
         void UnsetAllFactors();
 
-#pragma warning( push )
-#pragma warning( disable: 4251 ) // See IdmApi.h for details
         bool m_UsedByIntervention;
         float m_MinValue;
         float m_MaxValue;
@@ -80,6 +78,5 @@ namespace Kernel
         bool m_Initialized;
         std::map<VectorHabitatType::Enum,std::map<std::string,float>> m_Multiplier;
         ExternalNodeId_t m_externalNodeId;
-#pragma warning( pop )
     };
 }

@@ -33,7 +33,7 @@ namespace Kernel
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
-        virtual bool Configure(const Configuration* config);
+        virtual bool Configure(const Configuration* config) override;
 
         virtual bool Contains(INodeEventContext *ndc);
         virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);
@@ -51,7 +51,7 @@ namespace Kernel
     public:
         IMPLEMENT_DEFAULT_REFERENCE_COUNTING()
 
-        virtual bool Configure(const Configuration* config);
+        virtual bool Configure(const Configuration* config) override;
 
         virtual bool Contains(INodeEventContext *ndc);
         virtual std::vector<ExternalNodeId_t> IsSubset(const std::vector<ExternalNodeId_t>& demographic_node_ids);

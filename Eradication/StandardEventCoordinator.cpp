@@ -355,7 +355,7 @@ namespace Kernel
 
         if( distributed )
         {
-            LOG_DEBUG_F( "Distributed an intervention (%p) to individual %d\n", di->GetName().c_str(), ihec->GetSuid().data);
+            LOG_DEBUG_F( "Distributed an intervention (%s) to individual %d\n", di->GetName().c_str(), ihec->GetSuid().data);
         }
         return distributed;
     }
