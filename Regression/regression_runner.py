@@ -9,6 +9,7 @@ import sys
 import shutil
 import pdb
 
+
 class MyRegressionRunner(object):
 
     # static variables
@@ -23,7 +24,7 @@ class MyRegressionRunner(object):
             self.dtk_hash = ru.md5_hash_of_file(self.params.executable_path)
         except Exception as ex:
             self.dtk_hash = None
-            print( "Exception getting md5 of Eradication binary/exe; OK if doing pymod run." )
+            print( "Exception getting md5 of Eradication binary/exe." )
         self.sim_dir_sem = threading.Semaphore()
         self.emodules_map["interventions"] = []
         self.emodules_map["disease_plugins"] = []
@@ -178,13 +179,9 @@ class MyRegressionRunner(object):
 
         return arg_string
 
-    def transform_path( self, win_path ):
-        return win_path.replace( "\\", "/" ).replace( "bayesianfil01", "mnt" ).replace( "IDM", "idm" ).replace( "//", "/" )
-
     # Copy just build dlls to deployed places based on commandline argument
     # - The default is to use all of the DLLs found in the location the DLL projects
     #   place the DLLs (<trunk>\x64\Release).
-    # - --dll-path allows the user to override this default path
     def copyEModulesOver(self, params):
 
         print( "src_root = " + params.src_root )
@@ -208,7 +205,6 @@ class MyRegressionRunner(object):
             suffix = "*.dll" if os.name == "nt" else "*.so"
             dlls = glob.glob(os.path.join( os.path.join(emodule_dir, dll_subdir), suffix )) 
             for dll in dlls:
-                print( "Considering dll: " + dll )
                 dll_hash = ru.md5_hash_of_file(dll)
                 # print( dll_hash )
                 # 1) calc md5 of dll
@@ -238,7 +234,7 @@ class MyRegressionRunner(object):
                         name = self.crunch_name(os.path.basename(dll_path).split('.')[0])
                         self.dll_name_to_path[name] = dll_path
                     except Exception as ex:
-                        print( str( ex ) )
+                        print("ERROR: " + str(ex) )
 
                 except IOError as ioex:
                     print( "Failed to copy dll " + dll + " to " + os.path.join(os.path.join(params.dll_root, dll_dirs[1]), os.path.basename(dll)) )
@@ -299,18 +295,7 @@ class MyRegressionRunner(object):
 
         # check in bin_dir to see if our binary exists there...
         foundit = False
-        bin_path = None 
-        if scenario_type == "pymod":
-            bin_path = "python " # py script needs to come from folder not hardcoded
-            if os.name == "posix":
-                # This is not the correct solution but I don't know yet how to make sure we use python3 where it's present or just python
-                # Test on windows bamboo
-                bin_path = "python3 "
-            script_name = os.path.basename( scenario_path.strip('/') ) + "_test.py"
-            bin_path += script_name
-            foundit = True
-        else:
-            bin_path = os.path.join(bin_dir, "Eradication" if os.name == "posix" else "Eradication.exe")
+        bin_path = os.path.join(bin_dir, "Eradication" if os.name == "posix" else "Eradication.exe")
         if bin_dir and os.path.exists(bin_dir):
             if os.path.exists(bin_path):
                 foundit = True
@@ -410,11 +395,7 @@ class MyRegressionRunner(object):
         if os.path.isfile(os.path.join(scenario_path, "dtk_post_process.py")):
             self.copy_sim_file(scenario_path, sim_dir, "dtk_post_process.py")
 
-        monitorThread = None    # need scoped here
-
-        # print "Creating run & monitor thread."
         monitorThread = regression_local_monitor.Monitor(sim_id, scenario_path, report, self.params, reply_json, scenario_type)
-
         monitorThread.daemon = False
         monitorThread.start()
 

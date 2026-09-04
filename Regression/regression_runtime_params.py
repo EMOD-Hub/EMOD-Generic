@@ -14,21 +14,6 @@ class RuntimeParameters:
         else:
             self.os_type = "WINDOWS"
 
-        # Jenkins stuff
-        self.mod_path = None
-        if os.path.exists("regression_test.cfg"):
-            with open("regression_test.cfg") as fid01:
-                flines = [val.strip() for val in fid01.readlines()]
-            linux_block = True
-            for lval in flines:
-                if (not linux_block and 'POSIX' not in lval):
-                    continue
-                elif (not linux_block and 'POSIX' in lval):
-                    linux_block = True
-                elif ('local_sim_root' in lval):
-                    self.mod_path = (lval.split('=')[1]).strip()
-                    break
-
         self.display()
 
     def display(self):
@@ -87,11 +72,7 @@ class RuntimeParameters:
 
     @property
     def local_sim_root(self):
-        if (self.mod_path):
-            out_path = os.path.join(self.mod_path, LOCAL_SIM_ROOT)
-        else:
-            out_path = LOCAL_SIM_ROOT
-        return out_path
+        return LOCAL_SIM_ROOT
 
     @property
     def local_bin_root(self):
